@@ -9,7 +9,7 @@ export class GetEstimateDto {
     model: string;
 
     @Transform(({ value }) => parseInt(value))
-    @IsNumber()
+    @IsString()
     @Min(1930)
     @Max(2050)
     year: number;

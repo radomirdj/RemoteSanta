@@ -1,42 +1,59 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Report } from './report.entity';
+import { User } from '@prisma/client';
 
 import { CreateReportDto } from './dtos/create-report.dto';
-import { User } from '../users/user.entity';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class ReportsService {
-    constructor(@InjectRepository(Report) private repo: Repository<Report>) {
+    constructor(private prisma: PrismaService) {
     }
 
     create(reportDto: CreateReportDto, user: User) {
-        const report = this.repo.create(reportDto);
-        report.user = user;
-        return this.repo.save(report);
+        return this.prisma.report.create({
+            data: {
+                ...reportDto,
+                approved: false,
+                user: {
+                    connect: {
+                    id: user.id
+                } }
+            },
+            include: {
+                user: true
+            }
+        });
     }
 
-    async changeApproval(id: number, approved: boolean) {
-        const report = await this.repo.findOne({ where: { id } });
+    async changeApproval(id: string, approved: boolean) {
+        const report = await this.prisma.report.findUnique({
+            where: { id }
+        });      
         if(!report) throw new NotFoundException('Report Not Found');
-        report.approved = approved;
-        return this.repo.save(report);
+
+        return this.prisma.report.update(
+            { where: { id },
+            data: { approved }
+        })
     }
 
-    async createEstimate({ make, model, year, mileage, lng, lat }: GetEstimateDto) {
-        return this.repo.createQueryBuilder()
-        .select('AVG(price)', 'price')
-        .where('make = :make', { make })
-        .andWhere('make = :model', { model })
-        .andWhere('make = :model', { model })
-        .andWhere('year - :year BETWEEN -3 AND 3', { year })
-        .andWhere('lat - :lat BETWEEN -5 AND 5', { lat })
-        .andWhere('lng - :lng BETWEEN -5 AND 5', { lng })
-        .orderBy('ABS(mileage - :mileage)', 'DESC')
-        .setParameters({ mileage })
-        .limit(3)
-        .getRawOne()
+    async createEstimate({ make, model }: GetEstimateDto) {
+        const rsp = await this.prisma.report.aggregate({
+            _avg: {
+                price: true,
+            },
+            where: {
+                make,
+                model,
+                approved: true
+            },
+            orderBy: {
+                price: 'asc'
+            },
+            take: 3
+        });
+
+        return rsp._avg.price;
     }
 }

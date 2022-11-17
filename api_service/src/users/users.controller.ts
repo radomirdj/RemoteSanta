@@ -1,4 +1,6 @@
 import { Controller, Post, Body, Get, Patch, Param, Query, Delete, NotFoundException, Session, UseGuards } from '@nestjs/common';
+import { User } from '@prisma/client';
+
 import { CreateUserDto } from './dtos/creaate-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
@@ -6,7 +8,6 @@ import { AuthService } from './auth.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from '../users/dtos/user.dto';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { User } from './user.entity';
 import { AuthGuard } from '../guards/auth.guard';
 
 @Serialize(UserDto)
@@ -42,7 +43,7 @@ export class UsersController {
     // @UseInterceptors(ClassSerializerInterceptor)
     @Get('/:id')
     async findUser(@Param('id') id: string) {
-        const user = await this.usersService.findOne(parseInt(id));
+        const user = await this.usersService.findOne(id);
         if(!user) { throw new NotFoundException('User Not Found'); }
         return user;
     }
@@ -54,11 +55,11 @@ export class UsersController {
 
     @Delete('/:id')
     deleteUser(@Param('id') id: string) {
-        return this.usersService.remove(parseInt(id));
+        return this.usersService.remove(id);
     }
 
     @Patch('/:id')
     updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
-        return this.usersService.update(parseInt(id), body);
+        return this.usersService.update(id, body);
     }
 }
