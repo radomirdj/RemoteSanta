@@ -2,16 +2,69 @@
 
 version: "3.8"
 services:
-  postgres:
+  pg:
     image: postgres:13.5
-    restart: always
+    # restart: always
     environment:
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=api-service-default
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
+  # minio:
+  #   image: minio/minio
+  #     command: server /data/
+  #     environment:
+  #       MINIO_ACCESS_KEY: my_access_key
+  #       MINIO_SECRET_KEY: my_secret_key
+  #     ports:
+  #       - 9000:9000
+  #     volumes:
+  #       - .docker/volumes/minio/:/data/
+
+  pgtest:
+    image: postgres:13.5
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=reward-service-test
+
+  bare: &app
+    image: node:16.15.1
+    working_dir: /app
+    command: yarn start:dev
+    volumes:
+      - ./api_service/:/app/
+      # - /app/node_modules
+      - yarn-cache:/usr/local/share/.cache/yarn/v2
+    environment:
+      APP_VERSION: 0.1.0-snapshot
+      ENVIRONMENT_NAME: development
+      # NODE_ENV: development
+      # DATABASE_URL: postgres://myuser:mypassword@localhost:5432/median-db
+      DATABASE_URL: postgres://myuser:mypassword@pg:5432/api-service-default
+  full:
+    <<: *app
+    ports:
+      - 3000:3000
+    depends_on:
+      - pg
+      # - minio
+    links:
+      - pg
+      # - minio
+
+  apitest:
+    <<: *app
+    ports:
+      - 8800:8800
+    depends_on:
+      - pgtest
+      # - minio
+
 volumes:
+  yarn-cache:
   postgres:
