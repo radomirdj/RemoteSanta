@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_DB=api-service-default
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - ./backup/:/mnt/backups/
     ports:
       - "5432:5432"
 
@@ -66,5 +66,4 @@ services:
       # - minio
 
 volumes:
-  yarn-cache:
-  postgres:
+  yarn-cache: { external: true }
