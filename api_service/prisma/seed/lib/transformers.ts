@@ -1,3 +1,5 @@
+import * as compose from 'compose-function';
+
 export const foreignKeyTransformer = (
   record,
   foreignKeyName,
@@ -22,4 +24,20 @@ export const createForeignKeyTransformer = (
 ) => {
   return (record) =>
     foreignKeyTransformer(record, foreignKeyName, foreignRecordName);
+};
+
+export const createForeignKeyListTransformer = (foreignKeyList) => {
+  return (record) => {
+    const transformerList = foreignKeyList.map(
+      ({ foreignKeyName, foreignRecordName }) =>
+        createForeignKeyTransformer(foreignKeyName, foreignRecordName),
+    );
+    // console.log(
+    //   'createForeignKeyListTransformer -> transformerList',
+    //   transformerList,
+    //   compose,
+    //   '\n\n\n',
+    // );
+    return compose(...transformerList)(record);
+  };
 };

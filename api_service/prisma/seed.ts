@@ -2,7 +2,7 @@
 
 import { PrismaClient } from '@prisma/client';
 import { seedTable } from './seed/lib/dbUtils';
-import { createForeignKeyTransformer } from './seed/lib/transformers';
+import { createForeignKeyListTransformer } from './seed/lib/transformers';
 // initialize Prisma Client
 const prisma = new PrismaClient();
 
@@ -11,10 +11,10 @@ async function main() {
   await seedTable(
     prisma,
     'Report',
-    createForeignKeyTransformer('userId', 'user'),
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+    ]),
   );
-
-  console.log('main -> ENVIRONMENT_NAME', process.env.ENVIRONMENT_NAME);
 }
 
 // execute the main function
