@@ -1,0 +1,4 @@
+- id: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  email: abc@example.com
+  password: 'abc'
+  admin: false
