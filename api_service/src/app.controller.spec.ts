@@ -6,9 +6,18 @@ describe('AppController', () => {
   let appController: AppController;
 
   beforeEach(async () => {
+    const fakeAppService = {
+      getHello: () => 'Hello World!',
+    };
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        AppService,
+        {
+          provide: AppService,
+          useValue: fakeAppService,
+        },
+      ],
     }).compile();
 
     appController = app.get<AppController>(AppController);

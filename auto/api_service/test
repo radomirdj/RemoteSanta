@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# export SERVICE="full"
+
+./auto/api_service/yarn test ${@} --forceExit
