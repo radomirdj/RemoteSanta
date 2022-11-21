@@ -42,10 +42,13 @@ services:
       - yarn-cache:/usr/local/share/.cache/yarn/v2
     environment:
       APP_VERSION: 0.1.0-snapshot
-      ENVIRONMENT_NAME: development
-      # NODE_ENV: development
-      # DATABASE_URL: postgres://myuser:mypassword@localhost:5432/median-db
+      # ENVIRONMENT_NAME: development
+      # DATABASE_HOST: pg
+      # DATABASE_NAME: api-service-default
+      # DATABASE_USERNAME: myuser
+      # DATABASE_PASSWORD: mypassword
       DATABASE_URL: postgres://myuser:mypassword@pg:5432/api-service-default
+
   full:
     <<: *app
     ports:
@@ -61,6 +64,8 @@ services:
     <<: *app
     ports:
       - 8800:8800
+    environment:
+      DATABASE_URL: postgres://test:test@pgtest:5432/reward-service-test
     depends_on:
       - pgtest
       # - minio
