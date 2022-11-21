@@ -14,23 +14,32 @@ const cookieSession = require('cookie-session');
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV}`
+      envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-  UsersModule, ReportsModule, PrismaModule],
+    UsersModule,
+    ReportsModule,
+    PrismaModule,
+  ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_PIPE,
-    useValue: new ValidationPipe({
-      // We don't allow additional properties!!!
-      whitelist: true
-    })
-  }],
+  providers: [
+    AppService,
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        // We don't allow additional properties!!!
+        whitelist: true,
+      }),
+    },
+  ],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer)  {
-    consumer.apply(cookieSession({
-      keys: ['asdfasfd']
-    }))
-    .forRoutes('*');
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cookieSession({
+          keys: ['asdfasfd'],
+        }),
+      )
+      .forRoutes('*');
   }
 }
