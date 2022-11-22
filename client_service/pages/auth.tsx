@@ -1,9 +1,10 @@
 // import { getSession } from "next-auth/client";
 // import AuthForm from '../components/auth/auth-form';
+import LoginBth from "../components/login-btn";
 
 function AuthPage() {
   //   return <AuthForm />;
-  return <div>Login</div>;
+  return <LoginBth />;
 }
 
 // export async function getServerSideProps(context) {
