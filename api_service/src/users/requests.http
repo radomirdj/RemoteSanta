@@ -1,3 +1,21 @@
+### User Signup Cognito
+POST http://localhost:3000/users/register
+content-type: application/json
+
+{
+    "email": "radomir.m.djokovic@gmail.com",
+    "password": "AbC12345"
+}
+
+### User Signin Cognito
+POST http://localhost:3000/users/login
+content-type: application/json
+
+{
+    "email": "radomir.m.djokovic@gmail.com",
+    "password": "AbC12345"
+}
+
 ### User Signup
 POST http://localhost:3000/users/signup
 content-type: application/json

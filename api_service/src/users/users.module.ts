@@ -6,11 +6,12 @@ import { AuthService } from './auth.service';
 import { PrismaModule } from '../prisma/prisma.module';
 
 import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
+import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 
 @Module({
   imports: [ PrismaModule ],
   controllers: [UsersController],
-  providers: [UsersService, AuthService
+  providers: [UsersService, AuthService, AwsCognitoService
   //   , {
   //   provide: APP_INTERCEPTOR,
   //   useClass: CurrentUserInterceptor
