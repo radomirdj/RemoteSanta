@@ -6,7 +6,7 @@ import {
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
 import { AuthLoginUserDto } from '../dtos/auth-login-user.dto';
-import { CreateUserDto } from '../dtos/creaate-user.dto';
+import { CreateUserDto } from '../dtos/create-user.dto';
 import { ChangePasswordUserDto } from '../dtos/change-password.dto';
 import { ConfirmPasswordUserDto } from '../dtos/confirm-password-user.dto';
 import { ForgotPasswordUserDto } from '../dtos/forgot-password-user.dto';

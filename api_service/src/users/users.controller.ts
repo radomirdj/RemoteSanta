@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 
-import { CreateUserDto } from './dtos/creaate-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthLoginUserDto } from './dtos/auth-login-user.dto';
 import { UsersService } from './users.service';
