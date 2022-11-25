@@ -15,7 +15,7 @@ import { User } from '@prisma/client';
 
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { AuthLoginUserDto } from './dtos/auth-login-user.dto';
+import { LoginUserDto } from './dtos/login-user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
@@ -36,15 +36,14 @@ export class UsersController {
     private awsCognitoService: AwsCognitoService,
   ) {}
 
-  // Cognito
   @Post('/signup')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.signUp(createUserDto);
   }
 
   @Post('/login')
-  async login(@Body() authLoginUserDto: AuthLoginUserDto) {
-    return await this.awsCognitoService.authenticateUser(authLoginUserDto);
+  async login(@Body() loginUserDto: LoginUserDto) {
+    return await this.authService.login(loginUserDto);
   }
 
   @Post('/change-password')

@@ -28,6 +28,14 @@ export class UsersService {
     });
   }
 
+  async findBySub(cognitoSub: string): Promise<User | null> {
+    const userList = await this.prisma.user.findMany({
+      where: { cognitoSub },
+    });
+    if (!userList.length) return null;
+    return userList[0];
+  }
+
   async findByEmail(email: string): Promise<User | null> {
     const userList = await this.prisma.user.findMany({
       where: { email },

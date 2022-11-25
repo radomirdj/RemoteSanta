@@ -7,6 +7,7 @@ import { Prisma } from '@prisma/client';
 import { UsersService } from './users.service';
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { LoginUserDto } from './dtos/login-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 
 import { randomBytes, scrypt as _scrypt } from 'crypto';
@@ -41,5 +42,14 @@ export class AuthService {
       );
       return dbUser;
     });
+  }
+
+  async login(data: LoginUserDto) {
+    const { accessToken, sub } = await this.cognitoService.authenticateUser(
+      data,
+    );
+    const user = await this.usersService.findBySub(sub);
+
+    return { accessToken, ...user };
   }
 }

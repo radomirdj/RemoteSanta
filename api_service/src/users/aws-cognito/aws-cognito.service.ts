@@ -5,7 +5,7 @@ import {
   CognitoUserAttribute,
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
-import { AuthLoginUserDto } from '../dtos/auth-login-user.dto';
+import { LoginUserDto } from '../dtos/login-user.dto';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { ChangePasswordUserDto } from '../dtos/change-password.dto';
 import { ConfirmPasswordUserDto } from '../dtos/confirm-password-user.dto';
@@ -47,8 +47,10 @@ export class AwsCognitoService {
     });
   }
 
-  async authenticateUser(authLoginUserDto: AuthLoginUserDto) {
-    const { email, password } = authLoginUserDto;
+  async authenticateUser(
+    loginUserDto: LoginUserDto,
+  ): Promise<{ accessToken: string; refreshToken: string; sub: string }> {
+    const { email, password } = loginUserDto;
     const userData = {
       Username: email,
       Pool: this.userPool,
@@ -67,6 +69,7 @@ export class AwsCognitoService {
           resolve({
             accessToken: result.getAccessToken().getJwtToken(),
             refreshToken: result.getRefreshToken().getToken(),
+            sub: result.getIdToken().payload.sub,
           });
         },
         onFailure: (err) => {
