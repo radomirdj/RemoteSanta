@@ -13,16 +13,7 @@ import { JwtStrategy } from './jwt.strategy';
 @Module({
   imports: [PrismaModule, PassportModule.register({ defaultStrategy: 'jwt' })],
   controllers: [UsersController],
-  providers: [
-    UsersService,
-    AuthService,
-    AwsCognitoService,
-    JwtStrategy,
-    //   , {
-    //   provide: APP_INTERCEPTOR,
-    //   useClass: CurrentUserInterceptor
-    // }
-  ],
+  providers: [UsersService, AuthService, AwsCognitoService, JwtStrategy],
 })
 export class UsersModule {
   configure(consumer: MiddlewareConsumer) {

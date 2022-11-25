@@ -40,7 +40,7 @@ export class AwsCognitoService {
           if (!result) {
             reject(err);
           } else {
-            resolve(result.user);
+            resolve(result.userSub);
           }
         },
       );

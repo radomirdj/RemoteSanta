@@ -3,7 +3,12 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { UsersService } from './users.service';
+import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { PrismaService } from '../prisma/prisma.service';
+
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 
@@ -11,27 +16,30 @@ const scrypt = promisify(_scrypt);
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private cognitoService: AwsCognitoService,
+    private prisma: PrismaService,
+  ) {}
 
-  async signup(email: string, password: string) {
-    const userList = await this.usersService.find(email);
-    if (userList.length) throw new BadRequestException('Email in use');
+  async signUp(data: CreateUserDto) {
+    const { password: string, ...userDbData } = data;
 
-    const salt = randomBytes(8).toString('hex');
-    const hash = (await scrypt(password, salt, 32)) as Buffer;
-    const result = salt + '.' + hash.toString('hex');
+    const userInDb = await this.usersService.findByEmail(userDbData.email);
+    if (userInDb) throw new BadRequestException('Email in use');
+    return this.prisma.$transaction(async (tx) => {
+      const dbUser = await this.usersService.createUserTransactional(
+        tx,
+        userDbData,
+      );
+      const userSub = await this.cognitoService.registerUser(data);
 
-    return this.usersService.createUser(email, result);
-  }
-
-  async signin(email: string, password: string) {
-    const [user] = await this.usersService.find(email);
-    if (!user) throw new NotFoundException('User Not Found');
-    const [salt, storedHash] = user.password.split('.');
-    const hash = (await scrypt(password, salt, 32)) as Buffer;
-    if (storedHash !== hash.toString('hex')) {
-      throw new BadRequestException('Bad Password');
-    }
-    return user;
+      await this.usersService.setCognitoSubTransactional(
+        tx,
+        dbUser.id,
+        userSub,
+      );
+      return dbUser;
+    });
   }
 }

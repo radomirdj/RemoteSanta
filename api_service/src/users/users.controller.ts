@@ -37,9 +37,9 @@ export class UsersController {
   ) {}
 
   // Cognito
-  @Post('/register')
+  @Post('/signup')
   async register(@Body() createUserDto: CreateUserDto) {
-    return await this.awsCognitoService.registerUser(createUserDto);
+    return this.authService.signUp(createUserDto);
   }
 
   @Post('/login')
@@ -68,19 +68,12 @@ export class UsersController {
     );
   }
 
-  @Post('/signup')
-  async createUser(@Body() body: CreateUserDto, @Session() session: any) {
-    const user = await this.authService.signup(body.email, body.password);
-    session.userId = user.id;
-    return user;
-  }
-
-  @Post('/signin')
-  async signinUser(@Body() body: CreateUserDto, @Session() session: any) {
-    const user = await this.authService.signin(body.email, body.password);
-    session.userId = user.id;
-    return user;
-  }
+  //   @Post('/signin')
+  //   async signinUser(@Body() body: CreateUserDto, @Session() session: any) {
+  //     const user = await this.authService.signin(body.email, body.password);
+  //     session.userId = user.id;
+  //     return user;
+  //   }
 
   @Get('/self')
   @UseGuards(AuthGuard)
@@ -91,26 +84,6 @@ export class UsersController {
   @Post('/signout')
   async signOut(@Session() session: any) {
     session.userId = null;
-  }
-
-  // @UseInterceptors(ClassSerializerInterceptor)
-  @Get('/:id')
-  async findUser(@Param('id') id: string) {
-    const user = await this.usersService.findOne(id);
-    if (!user) {
-      throw new NotFoundException('User Not Found');
-    }
-    return user;
-  }
-
-  @Get('')
-  findAllUser(@Query('email') email: string) {
-    return this.usersService.find(email);
-  }
-
-  @Delete('/:id')
-  deleteUser(@Param('id') id: string) {
-    return this.usersService.remove(id);
   }
 
   @Patch('/:id')
