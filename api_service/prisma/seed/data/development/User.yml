@@ -1,4 +1,7 @@
 - id: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  cognitoId: 821fc4f216c9
   email: abc@example.com
-  password: 'abc'
-  admin: false
+  firstName: Jon
+  lastName: Snow
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00

@@ -94,7 +94,7 @@ const insertOrUpdate = async (
   where[onConflictFields] = record[onConflictFields];
   await prisma[modelName].upsert({
     where,
-    update: {},
+    update: record,
     create: record,
   });
 };
