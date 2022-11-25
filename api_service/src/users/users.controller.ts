@@ -12,6 +12,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { User } from '@prisma/client';
+import { AuthGuard } from '@nestjs/passport';
 
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
@@ -24,7 +25,6 @@ import { ChangePasswordUserDto } from '../users/dtos/change-password.dto';
 import { ForgotPasswordUserDto } from '../users/dtos/forgot-password-user.dto';
 import { ConfirmPasswordUserDto } from '../users/dtos/confirm-password-user.dto';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { AuthGuard } from '../guards/auth.guard';
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 
 @Serialize(UserDto)
@@ -67,26 +67,19 @@ export class UsersController {
     );
   }
 
-  //   @Post('/signin')
-  //   async signinUser(@Body() body: CreateUserDto, @Session() session: any) {
-  //     const user = await this.authService.signin(body.email, body.password);
-  //     session.userId = user.id;
-  //     return user;
-  //   }
-
   @Get('/self')
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard('jwt'))
   async getCurrentUser(@CurrentUser() user: User) {
     return user;
   }
 
-  @Post('/signout')
-  async signOut(@Session() session: any) {
-    session.userId = null;
-  }
+  //   @Post('/signout')
+  //   async signOut(@Session() session: any) {
+  //     session.userId = null;
+  //   }
 
-  @Patch('/:id')
-  updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
-    return this.usersService.update(id, body);
-  }
+  //   @Patch('/:id')
+  //   updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
+  //     return this.usersService.update(id, body);
+  //   }
 }

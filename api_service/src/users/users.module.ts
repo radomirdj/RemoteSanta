@@ -6,7 +6,6 @@ import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
 import { PrismaModule } from '../prisma/prisma.module';
 
-import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 import { JwtStrategy } from './jwt.strategy';
 
@@ -16,7 +15,5 @@ import { JwtStrategy } from './jwt.strategy';
   providers: [UsersService, AuthService, AwsCognitoService, JwtStrategy],
 })
 export class UsersModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CurrentUserMiddleware).forRoutes('*');
-  }
+  configure(consumer: MiddlewareConsumer) {}
 }
