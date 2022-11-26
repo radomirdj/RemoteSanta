@@ -6,6 +6,7 @@ import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { EmailInUseException } from '../src/errors/emailInUseException';
+import { LoginCredentialsWrongException } from '../src/errors/loginCredentialsWrongException';
 
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
@@ -27,11 +28,13 @@ describe('Authentication system', () => {
     await app.init();
   });
 
+  const user1Eamil = 'abc@example.com';
+  const user1Password = 'abcABC123';
+
   describe('/signup (POST)', () => {
     const email = 'abs@abc3.com';
     const firstName = 'Peter';
     const lastName = 'Pan';
-    const user1Eamil = 'abc@example.com';
     const password = '123456';
     // afterEach(() => {
     //   return prisma.user.delete({ where: { email } });
@@ -69,9 +72,23 @@ describe('Authentication system', () => {
       expect(response.body.message).toEqual(EmailInUseException.defaultMessage);
     });
   });
+
+  describe('/login (POST)', () => {
+    it('/login (POST) - with good params', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/login')
+        .send({ email: user1Eamil, password: user1Password })
+        .expect(201);
+      expect(response.body.email).toEqual(user1Eamil);
+    });
+    it('/login (POST) - wrong email', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/login')
+        .send({ email: `a${user1Eamil}`, password: user1Password })
+        .expect(401);
+      expect(response.body.message).toEqual(
+        LoginCredentialsWrongException.defaultMessage,
+      );
+    });
+  });
 });
-
-// const cookie = res.get('Set-Cookie)
-
-// request.get().set('Cookie',cookie)
-EmailInUseException;

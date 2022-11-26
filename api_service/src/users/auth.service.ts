@@ -10,6 +10,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { LoginUserDto } from './dtos/login-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { EmailInUseException } from '../errors/emailInUseException';
+import { LoginCredentialsWrongException } from '../errors/loginCredentialsWrongException';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 
@@ -45,11 +46,17 @@ export class AuthService {
   }
 
   async login(data: LoginUserDto) {
-    const { accessToken, sub } = await this.cognitoService.authenticateUser(
-      data,
-    );
-    const user = await this.usersService.findBySub(sub);
-
-    return { accessToken, ...user };
+    let response;
+    try {
+      const { accessToken, sub } = await this.cognitoService.authenticateUser(
+        data,
+      );
+      const user = await this.usersService.findBySub(sub);
+      response = { accessToken, ...user };
+    } catch (err) {
+      console.log('AuthService -> login -> err', err);
+      throw new LoginCredentialsWrongException();
+    }
+    return response;
   }
 }
