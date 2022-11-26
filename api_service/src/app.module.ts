@@ -8,7 +8,6 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-const cookieSession = require('cookie-session');
 
 @Module({
   imports: [
@@ -33,13 +32,5 @@ const cookieSession = require('cookie-session');
   ],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(
-        cookieSession({
-          keys: ['asdfasfd'],
-        }),
-      )
-      .forRoutes('*');
-  }
+  configure(consumer: MiddlewareConsumer) {}
 }

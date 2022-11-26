@@ -71,3 +71,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Links I've used
+
+The one to setupCognito -
+https://dev.to/fstbraz/authentication-with-aws-cognito-passport-and-nestjs-part-iii-2da5
+https://github.com/fstbraz/authentication-with-aws-cognito-passport-and-nestjs
