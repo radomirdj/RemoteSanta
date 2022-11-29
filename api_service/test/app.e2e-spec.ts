@@ -6,8 +6,7 @@ import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from './../src/users/users.module';
 import { AwsCognitoService } from './../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from './../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
-
-// import { PrismaService } from '../src/prisma/prisma.service';
+jest.mock('../src/users/jwt-values.service');
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -28,7 +27,6 @@ describe('AppController (e2e)', () => {
 
   it('/ (GET)', async () => {
     // const reports = await prisma.report.findMany();
-    // console.log('reports', reports);
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
