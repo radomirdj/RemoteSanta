@@ -29,7 +29,7 @@ const App = () => {
       ) : error ? (
         <div>Error</div>
       ) : (
-        <div style={{ marginBottom: "20px" }}>{message}</div>
+        <b style={{ marginBottom: "20px" }}>{message}</b>
       )}
     </div>
   );

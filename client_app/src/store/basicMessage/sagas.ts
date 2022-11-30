@@ -4,11 +4,8 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { fetchMessageFailure, fetchMessageSuccess } from "./actions";
 import { FETCH_MESSAGE_REQUEST } from "./actionTypes";
 
-const getMessage = async () => {
-  // console.log("\n\n-------getMessage -> rsp", process.env);
-  const rsp = await axios.get<string>("http://localhost:8090");
-  console.log("getMessage -> rsp", rsp);
-  return rsp;
+const getMessage = () => {
+  return axios.get<string>("http://localhost:3050/api/");
 };
 
 /*
