@@ -44,7 +44,7 @@ services:
       PORT: 8090
       DATABASE_URL: postgres://myuser:mypassword@pg:5432/api-service-default
 
-  full:
+  api_full:
     <<: *app
     ports:
       - 8090:8090
@@ -66,19 +66,23 @@ services:
   client_app_full:
     <<: *fe_app
     environment:
-      API_SERVICE_URL: full
+      API_SERVICE_URL: api_full
     ports:
       - 3000:3000
 
-  # nginx:
-  #   depends_on:
-  #     - api
-  #     - client
-  #   restart: always
-  #   build:
-  #     dockerfile: Dockerfile.dev
-  #     context: ./nginx
-  #   ports: "3050:80"
+  nginx:
+    depends_on:
+      - api_full
+      - client_app_full
+    links:
+      - api_full
+      - client_app_full
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - 3050:80
 
   apitest:
     <<: *app

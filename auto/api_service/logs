@@ -1,1 +1,1 @@
-docker-compose logs -f full
+docker-compose logs -f api_full

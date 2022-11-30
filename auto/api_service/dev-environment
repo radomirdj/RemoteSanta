@@ -16,6 +16,7 @@ trap finish EXIT
 
 echo "creating volume"
 docker volume create yarn-cache > /dev/null || true
+docker volume create yarn-cache-fe > /dev/null || true
 
 echo "yarn install"
 docker-compose run --rm bare yarn install

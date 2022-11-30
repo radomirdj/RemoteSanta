@@ -15,10 +15,11 @@ fi
 trap finish EXIT
 
 echo "creating volume"
+docker volume create yarn-cache > /dev/null || true
 docker volume create yarn-cache-fe > /dev/null || true
 
 echo "yarn install"
 docker-compose run --rm client_app_bare yarn install
 
-echo "docker run "${ENVIRONMENT_NAME-development}${SERVICE-bare}
+echo "docker run "${ENVIRONMENT_NAME-development}${SERVICE-client_app_bare}
 docker-compose run -e ENVIRONMENT_NAME=${ENVIRONMENT_NAME-development} --rm --use-aliases --service-ports ${SERVICE-client_app_bare} sh -c "${*}"
