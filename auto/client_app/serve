@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export SERVICE="client_app_full"
+
+./auto/client_app/dev-environment "yarn start"

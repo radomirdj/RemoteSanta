@@ -38,27 +38,41 @@ services:
     command: yarn start:dev
     volumes:
       - ./api_service/:/app/
-      # - /app/node_modules
       - yarn-cache:/usr/local/share/.cache/yarn/v2
     environment:
       APP_VERSION: 0.1.0-snapshot
-      # ENVIRONMENT_NAME: development
-      # DATABASE_HOST: pg
-      # DATABASE_NAME: api-service-default
-      # DATABASE_USERNAME: myuser
-      # DATABASE_PASSWORD: mypassword
+      PORT: 8090
       DATABASE_URL: postgres://myuser:mypassword@pg:5432/api-service-default
 
   full:
     <<: *app
     ports:
-      - 3000:3000
+      - 8090:8090
     depends_on:
       - pg
       # - minio
     links:
       - pg
       # - minio
+
+  client_app_bare: &fe_app # image: node:16.15.1
+    working_dir: /app
+    image: node:16.15.1
+    command: yarn start
+    volumes:
+      - ./client_app/:/app/
+      - yarn-cache-fe:/usr/local/share/.cache/yarn/v2
+    environment:
+      API_SERVICE_URL: full
+
+  client_app_full:
+    <<: *fe_app
+    ports:
+      - 3000:3000
+    depends_on:
+      - full
+    links:
+      - full
 
   apitest:
     <<: *app
@@ -72,3 +86,4 @@ services:
 
 volumes:
   yarn-cache: { external: true }
+  yarn-cache-fe: { external: true }

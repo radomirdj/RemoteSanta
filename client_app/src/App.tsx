@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 
 import {
   getPendingSelector,
@@ -7,6 +8,7 @@ import {
   getErrorSelector
 } from "./store/todo/selectors";
 import { fetchTodoRequest } from "./store/todo/actions";
+import store from "./store";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchTodoRequest());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div style={{ padding: "15px" }}>
@@ -35,4 +37,12 @@ const App = () => {
   );
 };
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+export default AppWrapper;

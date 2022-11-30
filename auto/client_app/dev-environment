@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+function finish {
+  if [[ -n "${PIPELINE_LABEL+1}" ]]; then
+    echo "Kill all containers in CircleCI"
+    ./auto/clean-up || true
+  fi
+}
+
+if [[ -n "${PIPELINE_LABEL+1}" ]]; then
+  echo "Kill all containers in CircleCI"
+  ./auto/clean-up || true
+fi
+
+trap finish EXIT
+
+echo "creating volume"
+docker volume create yarn-cache-fe > /dev/null || true
+
+echo "yarn install"
+docker-compose run --rm client_app_bare yarn install
+
+echo "docker run "${ENVIRONMENT_NAME-development}${SERVICE-bare}
+docker-compose run -e ENVIRONMENT_NAME=${ENVIRONMENT_NAME-development} --rm --use-aliases --service-ports ${SERVICE-client_app_bare} sh -c "${*}"
