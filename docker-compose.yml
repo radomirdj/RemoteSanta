@@ -62,17 +62,23 @@ services:
     volumes:
       - ./client_app/:/app/
       - yarn-cache-fe:/usr/local/share/.cache/yarn/v2
-    environment:
-      API_SERVICE_URL: full
 
   client_app_full:
     <<: *fe_app
+    environment:
+      API_SERVICE_URL: full
     ports:
       - 3000:3000
-    depends_on:
-      - full
-    links:
-      - full
+
+  # nginx:
+  #   depends_on:
+  #     - api
+  #     - client
+  #   restart: always
+  #   build:
+  #     dockerfile: Dockerfile.dev
+  #     context: ./nginx
+  #   ports: "3050:80"
 
   apitest:
     <<: *app

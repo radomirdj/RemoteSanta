@@ -4,20 +4,22 @@ import { Provider } from "react-redux";
 
 import {
   getPendingSelector,
-  getTodosSelector,
+  getMessageSelector,
   getErrorSelector
-} from "./store/todo/selectors";
+} from "./store/basicMessage/selectors";
 import { fetchTodoRequest } from "./store/todo/actions";
+import { fetchMessageRequest } from "./store/basicMessage/actions";
 import store from "./store";
 
 const App = () => {
   const dispatch = useDispatch();
   const pending = useSelector(getPendingSelector);
-  const todos = useSelector(getTodosSelector);
+  const message = useSelector(getMessageSelector);
   const error = useSelector(getErrorSelector);
 
   useEffect(() => {
     dispatch(fetchTodoRequest());
+    dispatch(fetchMessageRequest());
   }, [dispatch]);
 
   return (
@@ -27,11 +29,7 @@ const App = () => {
       ) : error ? (
         <div>Error</div>
       ) : (
-        todos.map((todo, index) => (
-          <div style={{ marginBottom: "10px" }} key={todo.id}>
-            {++index}. {todo.title}
-          </div>
-        ))
+        <div style={{ marginBottom: "20px" }}>{message}</div>
       )}
     </div>
   );
