@@ -4,6 +4,17 @@ services:
 
 # before_install:
 #   - ./auto/api_service/apitest
+before_install:
+  - >-
+    openssl aes-256-cbc 
+    -K $encrypted_8ebb1ef83f64_key 
+    -iv $encrypted_8ebb1ef83f64_iv 
+    -in github_deploy_key.enc 
+    -out github_deploy_key 
+    -d
+  - chmod 600 github_deploy_key
+  - eval $(ssh-agent -s)
+  - ssh-add github_deploy_key
 
 script:
   - ./auto/api_service/test
