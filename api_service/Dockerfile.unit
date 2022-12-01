@@ -11,7 +11,7 @@ COPY src ./src
 COPY prisma ./prisma/
 RUN yarn install --unsafe-perm
 RUN yarn add cross-env
-RUN yarn run prisma generate
+RUN prisma generate
 ENV NODE_ENV=production
 
 ENV PORT 8090
