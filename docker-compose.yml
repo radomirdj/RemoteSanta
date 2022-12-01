@@ -36,6 +36,9 @@ services:
     image: node:16.15.1
     working_dir: /app
     command: yarn start:dev
+    build:
+      context: ./api_service
+      dockerfile: Dockerfile.dev
     volumes:
       - ./api_service/:/app/
       - yarn-cache:/usr/local/share/.cache/yarn/v2
@@ -59,6 +62,9 @@ services:
     working_dir: /app
     image: node:16.15.1
     command: yarn start
+    build:
+      context: ./client_app
+      dockerfile: Dockerfile.dev
     volumes:
       - ./client_app/:/app/
       - yarn-cache-fe:/usr/local/share/.cache/yarn/v2

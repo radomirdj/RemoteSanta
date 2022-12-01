@@ -1,0 +1,18 @@
+sudo: required
+services:
+  - docker
+
+# before_install:
+#   - ./auto/api_service/apitest
+
+script:
+  - ./auto/api_service/test
+  - ./auto/api_service/apitest
+
+  # script:
+  #   - docker run USERNAME/react-test npm test -- --coverage
+
+after__success:
+  - docker build -t raso354/santa_client_app ./client_app
+  - docker build -t raso354/santa_nginx ./nginx
+  - docker build -t raso354/santa_api_service ./api_service
