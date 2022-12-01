@@ -16,3 +16,9 @@ after__success:
   - docker build -t raso354/santa_client_app ./client_app
   - docker build -t raso354/santa_nginx ./nginx
   - docker build -t raso354/santa_api_service ./api_service
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | dockker login -u "$DOCKER_ID" --password-stdin
+  # Push Images
+  - docker push raso354/santa_client_app
+  - docker push raso354/santa_nginx
+  - docker push raso354/santa_api_service
