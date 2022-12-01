@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -e
-
-export SERVICE="unit_test"
-./auto/api_service/dev-environment yarn test

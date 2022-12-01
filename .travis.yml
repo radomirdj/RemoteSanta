@@ -17,10 +17,7 @@ before_install:
   - ssh-add github_deploy_key
 
 script:
-  - ./auto/api_service/unit_test_travis
-  - ./auto/clean-up-with-db
   - ./auto/api_service/apitest
-
   # script:
   #   - docker run USERNAME/react-test npm test -- --coverage
 
