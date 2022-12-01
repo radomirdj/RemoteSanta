@@ -3,7 +3,7 @@ RUN mkdir /app/
 WORKDIR /app/
 RUN chown -R 1001:1001 /app/
 USER 1001
-COPY package.json ./
+COPY --chown=1001:1001 package.json ./
 COPY yarn.lock ./
 RUN yarn install --unsafe-perm
 RUN yarn add cross-env
