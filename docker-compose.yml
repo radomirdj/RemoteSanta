@@ -101,6 +101,19 @@ services:
       - pgtest
       # - minio
 
+  unit_test:
+    image: node:16.15.1
+    working_dir: /app
+    command: yarn test
+    build:
+      context: ./api_service
+      dockerfile: Dockerfile.unit
+    volumes:
+      - ./api_service/:/app/
+    environment:
+      APP_VERSION: 0.1.0-snapshot
+      PORT: 8090
+
 volumes:
   yarn-cache: { external: true }
   yarn-cache-fe: { external: true }
