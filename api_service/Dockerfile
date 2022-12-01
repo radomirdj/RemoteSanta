@@ -2,8 +2,8 @@ FROM node:16.15.1
 RUN mkdir /app/
 WORKDIR /app/
 RUN chown -R 1001:1001 /app/
-USER 1001
-COPY --chown=1001:1001 package.json ./
+USER root
+COPY package.json ./
 COPY yarn.lock ./
 RUN yarn install --unsafe-perm
 RUN yarn add cross-env
