@@ -8,10 +8,10 @@ COPY ./yarn.lock ./
 COPY tsconfig*.json ./
 COPY nest-cli.json ./
 COPY src ./src
-COPY prisma ./prisma
+# COPY prisma ./prisma
 RUN yarn install --unsafe-perm
 RUN yarn add cross-env
-RUN yarn run prisma generate
+# RUN yarn run prisma generate
 ENV NODE_ENV=production
 
 ENV PORT 8090
