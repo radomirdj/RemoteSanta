@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# export SERVICE="api_full"
+set -e
+
+export SERVICE="apitest"
+./auto/api_service/yarn "sleep 10 && 
+    yarn db:migrate && 
+    yarn db:seed
+    yarn test"

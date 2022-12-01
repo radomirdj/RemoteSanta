@@ -17,7 +17,8 @@ before_install:
   - ssh-add github_deploy_key
 
 script:
-  - ./auto/api_service/test
+  - ./auto/api_service/unit_test_travis
+  - ./auto/clean-up-with-db
   - ./auto/api_service/apitest
 
   # script:
