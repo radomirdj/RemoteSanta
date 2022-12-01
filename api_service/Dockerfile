@@ -1,16 +1,15 @@
 FROM node:16.15.1
 RUN mkdir /app/
 WORKDIR /app/
-RUN chown -R 1001:1001 /app/
-USER root
+RUN chown -R 1000:1000 /app/
+USER 1000
 COPY package.json ./
 COPY yarn.lock ./
+RUN yarn install --unsafe-perm
+RUN yarn add cross-env
 COPY tsconfig.build.json ./
 COPY nest-cli.json ./
 COPY src ./src
-RUN sudo chmod 666 /app/
-RUN yarn install --unsafe-perm
-RUN yarn add cross-env
 ENV NODE_ENV=production
 
 ENV PORT 8090
