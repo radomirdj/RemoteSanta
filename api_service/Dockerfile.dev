@@ -8,7 +8,7 @@ COPY ./yarn.lock ./
 COPY tsconfig*.json ./
 COPY nest-cli.json ./
 # COPY src ./src
-# COPY prisma ./prisma/
+ADD prisma ./prisma/
 RUN yarn
 RUN yarn add cross-env
 RUN yarn prisma generate
