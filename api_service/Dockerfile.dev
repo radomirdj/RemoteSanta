@@ -1,4 +1,4 @@
-FROM node:16.15.1
+FROM node:16.15.1 AS builder
 RUN mkdir /app/
 WORKDIR /app/
 RUN chown -R $UID:$UID /app/
@@ -16,11 +16,15 @@ RUN yarn prisma generate
 # COPY . .
 ENV NODE_ENV=production
 
-ENV PORT 8090
-EXPOSE $PORT
-
 RUN yarn build
 
+FROM node:16.15.1
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
+
+ENV PORT 8090
+EXPOSE $PORT
 # ENV NODE_OPTIONS="--require /app/node_modules/@instana/collector/src/immediate"
 
 CMD ["yarn", "start:prod"]
