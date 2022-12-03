@@ -7,12 +7,13 @@ COPY ./package.json ./
 COPY ./yarn.lock ./
 COPY tsconfig*.json ./
 COPY nest-cli.json ./
-# COPY src ./src
+COPY src ./src
 ADD prisma ./prisma/
+ADD test ./test/
 RUN yarn
 RUN yarn add cross-env
 RUN yarn prisma generate
-COPY . .
+# COPY . .
 ENV NODE_ENV=production
 
 ENV PORT 8090
