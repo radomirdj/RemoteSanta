@@ -1,19 +1,4 @@
 #!/usr/bin/env bash
-
-function finish {
-  if [[ -n "${PIPELINE_LABEL+1}" ]]; then
-    echo "Kill all containers in CircleCI"
-    ./auto/clean-up || true
-  fi
-}
-
-if [[ -n "${PIPELINE_LABEL+1}" ]]; then
-  echo "Kill all containers in CircleCI"
-  ./auto/clean-up || true
-fi
-
-trap finish EXIT
-
 echo "creating volume"
 docker volume create yarn-cache > /dev/null || true
 docker volume create yarn-cache-fe > /dev/null || true
