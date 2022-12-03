@@ -13,8 +13,7 @@ ADD test ./test/
 RUN yarn
 RUN yarn add cross-env
 RUN yarn prisma generate
-# COPY . .
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 RUN yarn build
 
