@@ -3,6 +3,8 @@ set -e
 
 export SERVICE="apitest"
 ./auto/api_service/dev-environment "sleep 10 && 
+    yarn add -g ts-node  &&
+    yarn add -g typescript  &&
     ts-node --version &&
     yarn db:migrate && 
     yarn db:seed &&
