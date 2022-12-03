@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+export SERVICE="apitest"
+./auto/api_service/dev-environment "sleep 10 && 
+    yarn db:migrate && 
+    yarn db:seed &&
+    yarn test:e2e"
