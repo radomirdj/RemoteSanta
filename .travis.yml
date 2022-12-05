@@ -33,3 +33,16 @@ after_success:
   - docker push raso354/remotesanta_client_app
   - docker push raso354/remotesanta_santa_nginx
   - docker push raso354/remotesanta_santa_api_service
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "remote-santa"
+  env: "Remotesanta-production"
+  bucket_name: elasticbeanstalk-eu-central-1-154909137467
+  bucket_path: docker-remotesanta
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

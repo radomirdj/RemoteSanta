@@ -1,0 +1,22 @@
+version: "3"
+services:
+  client_app_full:
+    image: "raso354/remotesanta_client_app"
+    mem_limit: 128m
+    hostname: client_app_full
+  api_full:
+    image: "raso354/remotesanta_santa_api_service"
+    mem_limit: 128m
+    hostname: api_full
+    environment:
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
+  nginx:
+    image: "raso354/remotesanta_santa_nginx"
+    mem_limit: 128m
+    hostname: nginx
+    ports:
+      - "80:80"
