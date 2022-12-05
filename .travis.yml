@@ -35,6 +35,7 @@ after_success:
   - docker push raso354/remotesanta_santa_api_service
 
 deploy:
+  skip_cleanup: true
   provider: elasticbeanstalk
   region: "eu-central-1"
   app: "remote-santa"
