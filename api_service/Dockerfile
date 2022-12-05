@@ -1,22 +1,29 @@
-FROM node:16.15.1
+FROM node:16.15.1 AS builder
 RUN mkdir /app/
 WORKDIR /app/
-RUN chown -R 1000:1000 /app/
-USER 1000
-COPY package.json ./
-COPY yarn.lock ./
-RUN yarn install --unsafe-perm
-RUN yarn add cross-env
-COPY tsconfig.build.json ./
+RUN chown -R $UID:$UID /app/
+USER $UID
+COPY ./package.json ./ 
+COPY ./yarn.lock ./
+COPY tsconfig*.json ./
 COPY nest-cli.json ./
-COPY src ./src
+ADD src ./src/
+ADD prisma ./prisma/
+ADD test ./test/
+RUN yarn
+RUN yarn add cross-env
+RUN yarn prisma generate
 ENV NODE_ENV=production
-
-ENV PORT 8090
-EXPOSE $PORT
 
 RUN yarn build
 
+FROM node:16.15.1
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
+
+ENV PORT 8090
+EXPOSE $PORT
 # ENV NODE_OPTIONS="--require /app/node_modules/@instana/collector/src/immediate"
 
 CMD ["yarn", "start:prod"]
