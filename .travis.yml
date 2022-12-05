@@ -30,6 +30,6 @@ after_success:
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push Images
-  - docker push raso354/remotesanta:santa_client_app
-  - docker push raso354/remotesanta:santa_nginx
-  - docker push raso354/remotesanta:santa_api_service
+  - docker push raso354/remotesanta_client_app
+  - docker push raso354/remotesanta_santa_nginx
+  - docker push raso354/remotesanta_santa_api_service
