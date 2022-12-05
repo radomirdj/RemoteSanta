@@ -2,4 +2,4 @@
 
 echo "docker run "${ENVIRONMENT_NAME-development}${SERVICE-nginx}
 
-docker-compose run -e ENVIRONMENT_NAME=${ENVIRONMENT_NAME-development} --rm --use-aliases --service-ports ${SERVICE-nginx}
+docker-compose -f docker-compose-dev.yml run -e ENVIRONMENT_NAME=${ENVIRONMENT_NAME-development} --rm --use-aliases --service-ports ${SERVICE-nginx}

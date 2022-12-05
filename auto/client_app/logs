@@ -1,1 +1,1 @@
-docker-compose logs -f client_app_full
+docker-compose -f docker-compose-dev.yml logs -f client_app_full

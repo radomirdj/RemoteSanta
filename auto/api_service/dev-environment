@@ -4,7 +4,7 @@ docker volume create yarn-cache > /dev/null || true
 docker volume create yarn-cache-fe > /dev/null || true
 
 echo "yarn install"
-docker-compose run --rm bare yarn install
+docker-compose -f docker-compose-dev.yml run --rm bare yarn install
 
 echo "docker run "${ENVIRONMENT_NAME-development}${SERVICE-bare}
-docker-compose run -e ENVIRONMENT_NAME=${ENVIRONMENT_NAME-development} --rm --use-aliases --service-ports ${SERVICE-bare} sh -c "${*}"
+docker-compose -f docker-compose-dev.yml run -e ENVIRONMENT_NAME=${ENVIRONMENT_NAME-development} --rm --use-aliases --service-ports ${SERVICE-bare} sh -c "${*}"
