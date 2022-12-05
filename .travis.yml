@@ -20,14 +20,13 @@ script:
   - ./auto/api_service/test || travis_terminate 1;
   - ./auto/clean-up || travis_terminate 1;
   - ./auto/api_service/apitest || travis_terminate 1;
-
+  - docker build -t raso354/santa_client_app ./client_app || travis_terminate 1;
+  - docker build -t raso354/santa_nginx ./nginx || travis_terminate 1;
+  - docker build -t raso354/santa_api_service ./api_service || travis_terminate 1;
   # script:
   #   - docker run USERNAME/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t raso354/santa_client_app ./client_app
-  - docker build -t raso354/santa_nginx ./nginx
-  - docker build -t raso354/santa_api_service ./api_service
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push Images
