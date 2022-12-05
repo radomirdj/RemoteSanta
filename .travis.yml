@@ -42,7 +42,7 @@ deploy:
   bucket_name: elasticbeanstalk-eu-central-1-154909137467
   bucket_path: docker-remotesanta
   on:
-    branch: master
+    branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY
