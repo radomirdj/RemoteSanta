@@ -1,0 +1,58 @@
+### User Signup Cognito
+POST http://localhost:3000/users/register
+content-type: application/json
+
+{
+    "email": "radomir.m.djokovic@gmail.com",
+    "password": "AbC12345"
+}
+
+### User Signin Cognito
+POST http://localhost:3000/users/login
+content-type: application/json
+
+{
+    "email": "radomir.m.djokovic@gmail.com",
+    "password": "AbC12345"
+}
+
+### User Signup
+POST http://localhost:3000/users/signup
+content-type: application/json
+
+{
+    "email": "raso354a@live.com",
+    "password": "123456"
+}
+
+### User Signin
+POST http://localhost:3000/users/signin
+content-type: application/json
+
+{
+    "email": "raso354a@live.com",
+    "password": "123456"
+}
+
+### Sign Out User
+POST  http://localhost:3000/users/signout
+
+### Get Current User
+GET http://localhost:3000/users/self
+
+### Get One User
+GET http://localhost:3000/users/5
+
+### Find All Users
+GET http://localhost:3000/users?email=raso3542@live.com
+
+### Delete User
+DELETE http://localhost:3000/users/5
+
+### Update User
+PATCH http://localhost:3000/users/5
+content-type: application/json
+
+{
+    "email": "raso354@live.com"
+}

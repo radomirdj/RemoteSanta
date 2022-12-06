@@ -1,0 +1,34 @@
+// binaryTargets = ["native", "darwin"]
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @default(uuid()) @id
+  cognitoSub String?
+  email      String   @unique
+  firstName  String
+  lastName   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  Report     Report[]
+
+  @@index([email])
+  @@index([cognitoSub])
+}
+
+model Report {
+  id       String  @default(uuid()) @id
+  user     User?   @relation(fields: [userId], references: [id])
+  userId   String?
+  price    Int
+  approved Boolean
+  make     String
+  model    String
+}

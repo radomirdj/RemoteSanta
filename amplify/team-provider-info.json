@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-remotesanta-dev-91126-authRole",
+      "UnauthRoleArn": "arn:aws:iam::154909137467:role/amplify-remotesanta-dev-91126-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::154909137467:role/amplify-remotesanta-dev-91126-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-remotesanta-dev-91126-deployment",
+      "UnauthRoleName": "amplify-remotesanta-dev-91126-unauthRole",
+      "StackName": "amplify-remotesanta-dev-91126",
+      "StackId": "arn:aws:cloudformation:eu-central-1:154909137467:stack/amplify-remotesanta-dev-91126/95a29b30-753d-11ed-aba6-060f40c47bb2",
+      "AmplifyAppId": "d3epokk63dnp4f"
+    },
+    "categories": {
+      "auth": {
+        "remotesanta": {}
+      }
+    }
+  }
+}

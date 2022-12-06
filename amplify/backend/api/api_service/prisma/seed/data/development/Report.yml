@@ -1,0 +1,20 @@
+- id: 8f21b4e8-3862-4bde-97bb-ec86472677d3
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  price: 30000
+  approved: true
+  make: 'Audi'
+  model: 'Q5'
+
+- id: 99d3ff6c-4537-45c5-a975-a33120e9d787
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  price: 27000
+  approved: true
+  make: 'Audi'
+  model: 'Q5'
+
+- id: f67e1c43-25c7-4b0a-a9a8-c5080b55eaac
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  price: 33000
+  approved: false
+  make: 'Audi'
+  model: 'Q5'

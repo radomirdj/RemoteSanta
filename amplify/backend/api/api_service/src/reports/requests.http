@@ -1,0 +1,25 @@
+# approve report
+PATCH http://localhost:3000/reports/b3853ef3-969f-4c4e-8e4f-0eb8ae4f4bc2
+content-type: application/json
+
+{
+    "approved": true
+}
+
+### Create Report, "approved": true should be ignored
+POST http://localhost:3000/reports
+content-type: application/json
+
+{
+    "price": 1000,
+    "make": "toyota",
+    "model": "corolla",
+    "year": 1980,
+    "mileage": 20000,
+    "lng": 0,
+    "approved": true,  
+    "lat": 0
+}
+
+###Get estimate for existing vehicle
+GET http://localhost:3000/reports?make=toyota&model=corolla&lat=0&lng=0&mileage=2000&year=1980
