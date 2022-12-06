@@ -26,13 +26,13 @@ script:
 after_success:
   # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker build -t raso354/remotesanta_santa_api_service2 ./api_service || travis_terminate 1;
-  - docker build -t raso354/remotesanta_santa_nginx2 ./nginx || travis_terminate 1;
-  - docker build -t raso354/remotesanta_client_app2 ./client_app || travis_terminate 1;
+  - docker build -t raso354/remotesanta_santa_api_service ./api_service || travis_terminate 1;
+  - docker build -t raso354/remotesanta_santa_nginx ./nginx || travis_terminate 1;
+  - docker build -t raso354/remotesanta_client_app ./client_app || travis_terminate 1;
   # Push Images
-  - docker push raso354/remotesanta_client_app2
-  - docker push raso354/remotesanta_santa_nginx2
-  - docker push raso354/remotesanta_santa_api_service2
+  - docker push raso354/remotesanta_client_app
+  - docker push raso354/remotesanta_santa_nginx
+  - docker push raso354/remotesanta_santa_api_service
 
 deploy:
   skip_cleanup: true
