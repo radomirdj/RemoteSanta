@@ -2,17 +2,19 @@ version: "3"
 services:
   client_app_full:
     image: "raso354/remotesanta_client_app"
-  api_full:
-    image: "raso354/remotesanta_santa_api_service"
-    environment:
-      PORT: "8090"
-  nginx:
-    depends_on:
-      - api_full
-      - client_app_full
-    links:
-      - api_full
-      - client_app_full
-    image: "raso354/remotesanta_santa_nginx"
     ports:
-      - "80:80"
+      - "80:3000"
+  # api_full:
+  #   image: "raso354/remotesanta_santa_api_service"
+  #   environment:
+  #     PORT: "8090"
+  # nginx:
+  #   depends_on:
+  #     - api_full
+  #     - client_app_full
+  #   links:
+  #     - api_full
+  #     - client_app_full
+  #   image: "raso354/remotesanta_santa_nginx"
+  #   ports:
+  #     - "80:80"
