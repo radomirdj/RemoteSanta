@@ -11,6 +11,7 @@ services:
       AWS_COGNITO_USER_POOL_ID: eu-central-1_noXhp82Uw
       AWS_COGNITO_CLIENT_ID: 2498fs14p2bgh24to83tu4iuag
       AWS_COGNITO_AUTHORITY: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_noXhp82Uw
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - "80:8090"
   # nginx:
