@@ -2,7 +2,6 @@ version: "3"
 services:
   client_app_full:
     image: "raso354/remotesanta_client_app"
-    mem_limit: 128m
     hostname: client_app_full
   api_full:
     image: "raso354/remotesanta_santa_api_service"
@@ -16,7 +15,6 @@ services:
       - PGPORT=$PGPORT
   nginx:
     image: "raso354/remotesanta_santa_nginx"
-    mem_limit: 128m
     hostname: nginx
     ports:
       - "80:80"
