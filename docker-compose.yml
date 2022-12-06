@@ -3,11 +3,16 @@ services:
   client_app_full:
     image: "raso354/remotesanta_client_app"
     ports:
-      - "80:3000"
-  # api_full:
-  #   image: "raso354/remotesanta_santa_api_service"
-  #   environment:
-  #     PORT: "8090"
+      - "3000:3000"
+  api_full:
+    image: "raso354/remotesanta_santa_api_service"
+    environment:
+      PORT: "8090"
+      AWS_COGNITO_USER_POOL_ID: eu-central-1_noXhp82Uw
+      AWS_COGNITO_CLIENT_ID: 2498fs14p2bgh24to83tu4iuag
+      AWS_COGNITO_AUTHORITY: https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_noXhp82Uw
+    ports:
+      - "80:8090"
   # nginx:
   #   depends_on:
   #     - api_full
