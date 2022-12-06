@@ -5,14 +5,9 @@ services:
     hostname: client_app_full
   api_full:
     image: "raso354/remotesanta_santa_api_service"
-    mem_limit: 128m
     hostname: api_full
     environment:
-      - PGUSER=$PGUSER
-      - PGHOST=$PGHOST
-      - PGDATABASE=$PGDATABASE
-      - PGPASSWORD=$PGPASSWORD
-      - PGPORT=$PGPORT
+      PORT: "8090"
   nginx:
     image: "raso354/remotesanta_santa_nginx"
     hostname: nginx
