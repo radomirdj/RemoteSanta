@@ -17,10 +17,10 @@ before_install:
   - ssh-add github_deploy_key
 
 script:
-  - ./auto/api_service/test || travis_terminate 1;
-  - ./auto/clean-up || travis_terminate 1;
-  - ./auto/api_service/apitest || travis_terminate 1;
-    # Log in to docker CLI
+  # - ./auto/api_service/test || travis_terminate 1;
+  # - ./auto/clean-up || travis_terminate 1;
+  # - ./auto/api_service/apitest || travis_terminate 1;
+  # Log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin || travis_terminate 1;
   - docker build -t raso354/remotesanta_santa_api_service ./api_service || travis_terminate 1;
   - docker build -t raso354/remotesanta_santa_nginx ./nginx || travis_terminate 1;
