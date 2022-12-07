@@ -72,7 +72,7 @@ services:
   client_app_full:
     <<: *fe_app
     environment:
-      API_SERVICE_URL: http://localhost:3050/api/
+      REACT_APP_BASE_URL: http://localhost:3050/api
       WDS_SOCKET_PORT: 0
     ports:
       - 3000:3000

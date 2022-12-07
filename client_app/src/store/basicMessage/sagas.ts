@@ -5,7 +5,7 @@ import { fetchMessageFailure, fetchMessageSuccess } from "./actions";
 import { FETCH_MESSAGE_REQUEST } from "./actionTypes";
 
 const getMessage = () => {
-  return axios.get<string>("http://localhost:3050/api/");
+  return axios.get<string>(`${process.env.REACT_APP_BASE_URL}/`);
 };
 
 /*
