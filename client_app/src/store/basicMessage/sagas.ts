@@ -5,7 +5,13 @@ import { fetchMessageFailure, fetchMessageSuccess } from "./actions";
 import { FETCH_MESSAGE_REQUEST } from "./actionTypes";
 
 const getMessage = () => {
-  return axios.get<string>(`${process.env.REACT_APP_BASE_URL}/`);
+  console.log(
+    "getMessage -> process.env.REACT_APP_BASE_URL",
+    process.env.REACT_APP_BASE_URL,
+    process.env.REACT_APP_BASE_URL2
+  );
+  axios.get<string>(process.env.REACT_APP_BASE_URL2 || "");
+  return axios.get<string>(process.env.REACT_APP_BASE_URL || "");
 };
 
 /*
