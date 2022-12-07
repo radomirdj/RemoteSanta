@@ -2,7 +2,6 @@ version: "3"
 services:
   client_app_full:
     image: "raso354/remotesanta_client_app"
-    environment:
     ports:
       - "3000:3000"
   api_full:
