@@ -10,6 +10,9 @@ const getMessage = () => {
     process.env.REACT_APP_BASE_URL,
     process.env.REACT_APP_BASE_URL2
   );
+  axios.get<string>(
+    "http://ec2-3-124-242-251.eu-central-1.compute.amazonaws.com/api/"
+  );
   axios.get<string>(process.env.REACT_APP_BASE_URL2 || "");
   return axios.get<string>(process.env.REACT_APP_BASE_URL || "");
 };
