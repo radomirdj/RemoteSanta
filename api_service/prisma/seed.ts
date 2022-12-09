@@ -15,6 +15,13 @@ async function main() {
       { foreignKeyName: 'userId', foreignRecordName: 'user' },
     ]),
   );
+  await seedTable(
+    prisma,
+    'GiftDate',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+    ]),
+  );
 }
 
 // execute the main function

@@ -10,17 +10,63 @@ datasource db {
 }
 
 model User {
-  id         String   @default(uuid()) @id
+  id         String     @default(uuid()) @id
   cognitoSub String?
-  email      String   @unique
+  email      String     @unique
   firstName  String
   lastName   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
   Report     Report[]
+  GiftDate   GiftDate[]
 
   @@index([email])
   @@index([cognitoSub])
+}
+
+enum GiftDateTypeEnum {
+  HOLIDAY
+  BIRTHDAY
+  OTHER
+}
+
+enum GiftDateRecurrenceTypeEnum {
+  MONTHLY
+  YEARLY
+  NONE
+}
+
+model GiftDate {
+  id             String                     @default(uuid()) @id
+  user           User                       @relation(fields: [userId], references: [id])
+  userId         String
+  createdAt      DateTime                   @default(now())
+  updatedAt      DateTime                   @updatedAt
+  type           GiftDateTypeEnum           @default(OTHER)
+  recurrenceType GiftDateRecurrenceTypeEnum @default(NONE)
+  enabled        Boolean                    @default(true)
+  title          String?
+}
+
+// monthlyAmount Decimal @db.Money
+model Org {
+  id   String @default(uuid()) @id
+  name String
+}
+
+enum IntegrationConsraintTypeEnum {
+  MIN_MAX
+  LIST
+}
+
+// constraint  Json
+model GiftCardIntegration {
+  id             String                       @default(uuid()) @id
+  website        String
+  image          String
+  title          String
+  description    String
+  constraintType IntegrationConsraintTypeEnum
 }
 
 model Report {

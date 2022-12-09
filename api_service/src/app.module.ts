@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
+import { GiftDatesModule } from './gift_dates/gift_dates.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ReportsModule } from './reports/reports.module';
     UsersModule,
     ReportsModule,
     PrismaModule,
+    GiftDatesModule,
   ],
   controllers: [AppController],
   providers: [

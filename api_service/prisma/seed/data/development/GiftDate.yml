@@ -1,0 +1,43 @@
+- id: 4b948270-696a-4a32-9c59-ffac4d7aa186
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  type: HOLIDAY
+  recurrenceType: YEARLY
+  enabled: true
+  title: 'New Year'
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: 47797f0d-c1b9-4287-93cc-7e5e42292584
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  type: BIRTHDAY
+  recurrenceType: YEARLY
+  enabled: true
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: d7e7cc0d-4415-48ff-ad3f-0dc6c2cd6e38
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  type: OTHER
+  recurrenceType: MONTHLY
+  enabled: true
+  title: 'Sport Activities'
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: 5794e680-ecb6-450c-8c1a-88ebd63b9e0a
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  type: OTHER
+  recurrenceType: NONE
+  enabled: true
+  title: 'Summer Party'
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: e35b81c7-d772-4e97-8e2f-3c592065caf4
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+  type: OTHER
+  recurrenceType: NONE
+  enabled: false
+  title: 'Winter Party'
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00

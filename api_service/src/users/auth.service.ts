@@ -51,6 +51,7 @@ export class AuthService {
       const { accessToken, sub } = await this.cognitoService.authenticateUser(
         data,
       );
+      if (!sub) throw new LoginCredentialsWrongException();
       const user = await this.usersService.findBySub(sub);
       response = { accessToken, ...user };
     } catch (err) {

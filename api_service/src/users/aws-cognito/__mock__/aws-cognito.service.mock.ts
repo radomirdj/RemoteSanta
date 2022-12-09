@@ -18,6 +18,7 @@ export const AwsCognitoServiceMock = {
       throw new Error('Cognito - Bad Password');
     return {
       accessToken: `access_${foundUser.email}`,
+      sub: foundUser.sub,
     };
   },
   changeUserPassword: async (changePasswordUserDto) => {},
