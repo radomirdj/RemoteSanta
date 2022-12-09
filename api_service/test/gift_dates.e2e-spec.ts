@@ -64,6 +64,11 @@ describe('Gift Dates', () => {
       expect(giftDate.title).toEqual(updateDate.title);
       expect(giftDate.enabled).toEqual(true);
       expect(giftDate.userId).toEqual(user1.id);
+
+      await prisma.giftDate.update({
+        where: { id },
+        data: { title: giftDate1.title },
+      });
     });
 
     it('/gift-dates/:id (PATCH) - wrong user try to update gift date', async () => {
@@ -78,6 +83,13 @@ describe('Gift Dates', () => {
         .expect(404);
     });
 
+    it('/gift-dates/:id (PATCH) - try to update gift date without token', async () => {
+      await request(app.getHttpServer())
+        .patch(`/gift-dates/${giftDate1.id}`)
+        .send(updateDate)
+        .expect(401);
+    });
+
     it('/gift-dates/:id (PATCH) - try to update gift date with bad params', async () => {
       const response = await request(app.getHttpServer())
         .patch(`/gift-dates/${giftDate1.id}`)
@@ -88,7 +100,82 @@ describe('Gift Dates', () => {
         )
         .send({})
         .expect(400);
-      expect(response.body.message[0]).toEqual('title must be a string');
+      expect(response.body.message[0]).toEqual('title should not be empty');
+    });
+  });
+
+  describe('/:id/change-status (POST)', () => {
+    const updateStatus = {
+      enabled: false,
+    };
+
+    it('/:id/change-status (POST) - update gift date status', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/gift-dates/${giftDate1.id}/change-status`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .send(updateStatus)
+        .expect(201);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftDate1.id);
+      const giftDate = await prisma.giftDate.findUnique({
+        where: { id },
+      });
+
+      expect(response.body.type).toEqual(giftDate1.type);
+      expect(response.body.recurrenceType).toEqual(giftDate1.recurrenceType);
+      expect(response.body.title).toEqual(giftDate1.title);
+      expect(response.body.enabled).toEqual(false);
+
+      expect(giftDate).toBeTruthy();
+      expect(giftDate.type).toEqual(giftDate1.type);
+      expect(giftDate.recurrenceType).toEqual(giftDate1.recurrenceType);
+      expect(giftDate.title).toEqual(giftDate1.title);
+      expect(giftDate.enabled).toEqual(false);
+      expect(giftDate.userId).toEqual(user1.id);
+
+      await prisma.giftDate.update({
+        where: { id },
+        data: { enabled: true },
+      });
+    });
+
+    it('/:id/change-status (POST) - wrong user try to update gift date status', async () => {
+      await request(app.getHttpServer())
+        .post(`/gift-dates/${giftDate1.id}/change-status`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(updateStatus)
+        .expect(404);
+    });
+
+    it('/:id/change-status (POST) - try to update gift date status without token', async () => {
+      await request(app.getHttpServer())
+        .post(`/gift-dates/${giftDate1.id}/change-status`)
+        .send(updateStatus)
+        .expect(401);
+    });
+
+    it('/:id/change-status (POST) - try to update gift date status with bad params', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/gift-dates/${giftDate1.id}/change-status`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .send({})
+        .expect(400);
+      expect(response.body.message[0]).toEqual(
+        'enabled must be a boolean value',
+      );
     });
   });
 });
