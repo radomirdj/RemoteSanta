@@ -14,7 +14,7 @@ import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
 
-describe('Gift Dates', () => {
+describe('/gift-dates', () => {
   let app: INestApplication;
   let prisma: PrismaService;
 
@@ -176,6 +176,44 @@ describe('Gift Dates', () => {
       expect(response.body.message[0]).toEqual(
         'enabled must be a boolean value',
       );
+    });
+  });
+
+  describe('/:id (GET)', () => {
+    it('/:id (GET) - get gift date', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/gift-dates/${giftDate1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .expect(200);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftDate1.id);
+
+      expect(response.body.type).toEqual(giftDate1.type);
+      expect(response.body.recurrenceType).toEqual(giftDate1.recurrenceType);
+      expect(response.body.title).toEqual(giftDate1.title);
+      expect(response.body.enabled).toEqual(true);
+    });
+
+    it('/:id (GET) - wrong user try to get gift date', async () => {
+      await request(app.getHttpServer())
+        .get(`/gift-dates/${giftDate1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .expect(404);
+    });
+
+    it('/:id (GET) - try to get gift date without token', async () => {
+      await request(app.getHttpServer())
+        .get(`/gift-dates/${giftDate1.id}`)
+        .expect(401);
     });
   });
 });
