@@ -216,4 +216,43 @@ describe('/gift-dates', () => {
         .expect(401);
     });
   });
+
+  describe('/ (GET)', () => {
+    it('/ (GET) - get gift date list', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/gift-dates/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .expect(200);
+      expect(response.body.length).toEqual(4);
+      const giftDateRsp1 = response.body.find(
+        (giftDateRsp) => giftDateRsp.id === giftDate1.id,
+      );
+
+      expect(giftDateRsp1.type).toEqual(giftDate1.type);
+      expect(giftDateRsp1.recurrenceType).toEqual(giftDate1.recurrenceType);
+      expect(giftDateRsp1.title).toEqual(giftDate1.title);
+      expect(giftDateRsp1.enabled).toEqual(true);
+    });
+
+    it('/ (GET) - user2 gets 0 gift dates', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/gift-dates/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .expect(200);
+
+      expect(response.body.length).toEqual(0);
+    });
+
+    it('/ (GET) - try to get gift dates without token', async () => {
+      await request(app.getHttpServer()).get('/gift-dates/').expect(401);
+    });
+  });
 });

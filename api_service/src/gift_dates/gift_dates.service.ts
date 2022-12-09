@@ -72,7 +72,7 @@ export class GiftDatesService {
 
   getByUser(userId: string): Promise<GiftDate[]> {
     return this.prisma.giftDate.findMany({
-      where: { userId },
+      where: { userId, enabled: true },
     });
   }
 }
