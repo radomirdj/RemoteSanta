@@ -5,4 +5,5 @@ COPY yarn.lock ./
 COPY tsconfig.json ./
 COPY ./ ./
 RUN yarn
+EXPOSE 3000
 CMD ["yarn", "start"]
