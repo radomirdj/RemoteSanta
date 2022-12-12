@@ -9,34 +9,11 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { user1, user2, giftDate1, giftDate2 } from './utils/preseededData';
+import { expectGiftDateRsp, expectGiftDateInDB } from './utils/giftDateChecks';
 import { BirthdayAlreadyAddedException } from '../src/errors/birthdayAlreadyAddedException';
 import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
-
-const expectGiftDateRsp = (responseBody, expectedValue) => {
-  expect(responseBody.type).toEqual(expectedValue.type);
-  expect(responseBody.recurrenceType).toEqual(expectedValue.recurrenceType);
-  expect(responseBody.title).toEqual(expectedValue.title);
-  expect(responseBody.firstAccuranceDate).toEqual(
-    expectedValue.firstAccuranceDate.toISOString(),
-  );
-  expect(responseBody.enabled).toEqual(expectedValue.enabled);
-};
-
-const expectGiftDateInDB = async (id, expectedValue, prisma) => {
-  const giftDate = await prisma.giftDate.findUnique({
-    where: { id },
-  });
-
-  expect(giftDate).toBeTruthy();
-  expect(giftDate.type).toEqual(expectedValue.type);
-  expect(giftDate.recurrenceType).toEqual(expectedValue.recurrenceType);
-  expect(giftDate.title).toEqual(expectedValue.title);
-  expect(giftDate.firstAccuranceDate).toEqual(expectedValue.firstAccuranceDate);
-  expect(giftDate.enabled).toEqual(expectedValue.enabled);
-  expect(giftDate.userId).toEqual(expectedValue.userId);
-};
 
 describe('Gift Dates - create', () => {
   let app: INestApplication;

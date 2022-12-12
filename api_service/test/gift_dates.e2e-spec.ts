@@ -9,8 +9,7 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { user1, user2, giftDate1, giftDate2 } from './utils/preseededData';
-import { BirthdayAlreadyAddedException } from '../src/errors/birthdayAlreadyAddedException';
-import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
+import { expectGiftDateRsp, expectGiftDateInDB } from './utils/giftDateChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -49,21 +48,15 @@ describe('/gift-dates', () => {
 
       const id = response.body.id;
       expect(id).toEqual(giftDate1.id);
-      const giftDate = await prisma.giftDate.findUnique({
-        where: { id },
+      expectGiftDateRsp(response.body, {
+        ...giftDate1,
+        title: updateDate.title,
       });
-
-      expect(response.body.type).toEqual(giftDate1.type);
-      expect(response.body.recurrenceType).toEqual(giftDate1.recurrenceType);
-      expect(response.body.title).toEqual(updateDate.title);
-      expect(response.body.enabled).toEqual(true);
-
-      expect(giftDate).toBeTruthy();
-      expect(giftDate.type).toEqual(giftDate1.type);
-      expect(giftDate.recurrenceType).toEqual(giftDate1.recurrenceType);
-      expect(giftDate.title).toEqual(updateDate.title);
-      expect(giftDate.enabled).toEqual(true);
-      expect(giftDate.userId).toEqual(user1.id);
+      await expectGiftDateInDB(
+        id,
+        { ...giftDate1, title: updateDate.title, userId: user1.id },
+        prisma,
+      );
 
       await prisma.giftDate.update({
         where: { id },
@@ -121,22 +114,16 @@ describe('/gift-dates', () => {
         .expect(201);
 
       const id = response.body.id;
-      expect(id).toEqual(giftDate1.id);
-      const giftDate = await prisma.giftDate.findUnique({
-        where: { id },
+
+      expectGiftDateRsp(response.body, {
+        ...giftDate1,
+        enabled: false,
       });
-
-      expect(response.body.type).toEqual(giftDate1.type);
-      expect(response.body.recurrenceType).toEqual(giftDate1.recurrenceType);
-      expect(response.body.title).toEqual(giftDate1.title);
-      expect(response.body.enabled).toEqual(false);
-
-      expect(giftDate).toBeTruthy();
-      expect(giftDate.type).toEqual(giftDate1.type);
-      expect(giftDate.recurrenceType).toEqual(giftDate1.recurrenceType);
-      expect(giftDate.title).toEqual(giftDate1.title);
-      expect(giftDate.enabled).toEqual(false);
-      expect(giftDate.userId).toEqual(user1.id);
+      await expectGiftDateInDB(
+        id,
+        { ...giftDate1, enabled: false, userId: user1.id },
+        prisma,
+      );
 
       await prisma.giftDate.update({
         where: { id },
@@ -193,10 +180,7 @@ describe('/gift-dates', () => {
       const id = response.body.id;
       expect(id).toEqual(giftDate1.id);
 
-      expect(response.body.type).toEqual(giftDate1.type);
-      expect(response.body.recurrenceType).toEqual(giftDate1.recurrenceType);
-      expect(response.body.title).toEqual(giftDate1.title);
-      expect(response.body.enabled).toEqual(true);
+      expectGiftDateRsp(response.body, giftDate1);
     });
 
     it('/:id (GET) - wrong user try to get gift date', async () => {
@@ -232,10 +216,7 @@ describe('/gift-dates', () => {
         (giftDateRsp) => giftDateRsp.id === giftDate1.id,
       );
 
-      expect(giftDateRsp1.type).toEqual(giftDate1.type);
-      expect(giftDateRsp1.recurrenceType).toEqual(giftDate1.recurrenceType);
-      expect(giftDateRsp1.title).toEqual(giftDate1.title);
-      expect(giftDateRsp1.enabled).toEqual(true);
+      expectGiftDateRsp(giftDateRsp1, giftDate1);
     });
 
     it('/ (GET) - user2 gets 0 gift dates', async () => {

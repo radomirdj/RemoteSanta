@@ -43,7 +43,7 @@ export const giftDates = [
     type: 'HOLIDAY',
     recurrenceType: 'YEARLY',
     enabled: true,
-    firstAccuranceDate: '2022-31-12',
+    firstAccuranceDate: new Date('2022-12-31:00:00.000Z'),
     title: 'New Year',
   },
   {
@@ -52,7 +52,7 @@ export const giftDates = [
     type: 'BIRTHDAY',
     recurrenceType: 'YEARLY',
     enabled: true,
-    firstAccuranceDate: '2022-24-11',
+    firstAccuranceDate: new Date('2022-11-24T00:00:00.000Z'),
   },
   {
     id: 'd7e7cc0d-4415-48ff-ad3f-0dc6c2cd6e38',
@@ -60,7 +60,7 @@ export const giftDates = [
     type: 'OTHER',
     recurrenceType: 'MONTHLY',
     enabled: true,
-    firstAccuranceDate: '2022-01-12',
+    firstAccuranceDate: new Date('2022-12-01T00:00:00.000Z'),
     title: 'Sport Activities',
   },
   {
@@ -69,7 +69,7 @@ export const giftDates = [
     type: 'OTHER',
     recurrenceType: 'NONE',
     enabled: true,
-    firstAccuranceDate: '2023-12-06',
+    firstAccuranceDate: new Date('2023-06-12T00:00:00.000Z'),
     title: 'Summer Party',
   },
   {
@@ -78,7 +78,7 @@ export const giftDates = [
     type: 'OTHER',
     recurrenceType: 'NONE',
     enabled: false,
-    firstAccuranceDate: '2023-12-02',
+    firstAccuranceDate: new Date('2023-02-12:00:00.000Z'),
     title: 'Winter Party',
   },
 ];
