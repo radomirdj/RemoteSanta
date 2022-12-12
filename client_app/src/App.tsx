@@ -23,7 +23,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="test">
+    <div className="login">
       <div style={{ padding: "15px" }}>
         {pending ? (
           <div>Loading...</div>
