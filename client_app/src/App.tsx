@@ -6,10 +6,10 @@ import {
   getPendingSelector,
   getMessageSelector,
   getErrorSelector
-} from "./store/basicMessage/selectors";
-import { fetchTodoRequest } from "./store/todo/actions";
-import { fetchMessageRequest } from "./store/basicMessage/actions";
-import store from "./store";
+} from "./app/store/basicMessage/selectors";
+import { fetchTodoRequest } from "./app/store/todo/actions";
+import { fetchMessageRequest } from "./app/store/basicMessage/actions";
+import store from "./app/store";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,14 +23,16 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ padding: "15px" }}>
-      {pending ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div>Error</div>
-      ) : (
-        <b style={{ marginBottom: "20px" }}>{message}</b>
-      )}
+    <div className="test">
+      <div style={{ padding: "15px" }}>
+        {pending ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>Error</div>
+        ) : (
+          <b style={{ marginBottom: "20px" }} >{message}</b>
+        )}
+      </div>
     </div>
   );
 };
