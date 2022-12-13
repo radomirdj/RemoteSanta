@@ -37,15 +37,16 @@ enum GiftDateRecurrenceTypeEnum {
 }
 
 model GiftDate {
-  id             String                     @default(uuid()) @id
-  user           User                       @relation(fields: [userId], references: [id])
-  userId         String
-  createdAt      DateTime                   @default(now())
-  updatedAt      DateTime                   @updatedAt
-  type           GiftDateTypeEnum           @default(OTHER)
-  recurrenceType GiftDateRecurrenceTypeEnum @default(NONE)
-  enabled        Boolean                    @default(true)
-  title          String?
+  id                 String                     @default(uuid()) @id
+  user               User                       @relation(fields: [userId], references: [id])
+  userId             String
+  createdAt          DateTime                   @default(now())
+  updatedAt          DateTime                   @updatedAt
+  type               GiftDateTypeEnum           @default(OTHER)
+  recurrenceType     GiftDateRecurrenceTypeEnum @default(NONE)
+  enabled            Boolean                    @default(true)
+  title              String?
+  firstAccuranceDate DateTime                   @db.Date
 }
 
 // monthlyAmount Decimal @db.Money

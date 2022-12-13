@@ -9,6 +9,7 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { user1, user2, giftDate1, giftDate2 } from './utils/preseededData';
+import { expectGiftDateRsp, expectGiftDateInDB } from './utils/giftDateChecks';
 import { BirthdayAlreadyAddedException } from '../src/errors/birthdayAlreadyAddedException';
 import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
@@ -35,6 +36,7 @@ describe('Gift Dates - create', () => {
     type: GiftDateTypeEnum.HOLIDAY,
     recurrenceType: GiftDateRecurrenceTypeEnum.YEARLY,
     title: 'New Year',
+    firstAccuranceDate: new Date('2022-12-31T00:00:00.000Z'),
     //   enabled shouls be ignored
     enabled: false,
   };
@@ -43,6 +45,7 @@ describe('Gift Dates - create', () => {
     type: GiftDateTypeEnum.BIRTHDAY,
     // should be ignored
     recurrenceType: GiftDateRecurrenceTypeEnum.MONTHLY,
+    firstAccuranceDate: new Date('2023-02-12T00:00:00.000Z'),
     // should be ignored
     title: 'New Year',
     // enabled shouls be ignored
@@ -51,11 +54,13 @@ describe('Gift Dates - create', () => {
 
   const newGiftDateBirthdayBasic = {
     type: GiftDateTypeEnum.BIRTHDAY,
+    firstAccuranceDate: new Date('2023-03-22T00:00:00.000Z'),
   };
 
   const newGiftDateOther = {
     type: GiftDateTypeEnum.OTHER,
     recurrenceType: GiftDateRecurrenceTypeEnum.NONE,
+    firstAccuranceDate: new Date('2023-05-02T00:00:00.000Z'),
     title: 'Summer Party',
   };
 
@@ -70,21 +75,13 @@ describe('Gift Dates - create', () => {
       .expect(201);
 
     const id = response.body.id;
-    const giftDate = await prisma.giftDate.findUnique({
-      where: { id },
-    });
 
-    expect(response.body.type).toEqual(newGiftDate.type);
-    expect(response.body.recurrenceType).toEqual(newGiftDate.recurrenceType);
-    expect(response.body.title).toEqual(newGiftDate.title);
-    expect(response.body.enabled).toEqual(true);
-
-    expect(giftDate).toBeTruthy();
-    expect(giftDate.type).toEqual(newGiftDate.type);
-    expect(giftDate.recurrenceType).toEqual(newGiftDate.recurrenceType);
-    expect(giftDate.title).toEqual(newGiftDate.title);
-    expect(giftDate.enabled).toEqual(true);
-    expect(giftDate.userId).toEqual(user2.id);
+    expectGiftDateRsp(response.body, { ...newGiftDate, enabled: true });
+    await expectGiftDateInDB(
+      id,
+      { ...newGiftDate, enabled: true, userId: user2.id },
+      prisma,
+    );
 
     await prisma.giftDate.delete({ where: { id } });
   });
@@ -97,25 +94,25 @@ describe('Gift Dates - create', () => {
       )
       .send(newGiftDateBirthdayBasic)
       .expect(201);
-
     const id = response.body.id;
-    const giftDate = await prisma.giftDate.findUnique({
-      where: { id },
+
+    expectGiftDateRsp(response.body, {
+      ...newGiftDateBirthdayBasic,
+      enabled: true,
+      recurrenceType: GiftDateRecurrenceTypeEnum.YEARLY,
+      title: null,
     });
-
-    expect(response.body.type).toEqual(newGiftDateBirthdayBasic.type);
-    expect(response.body.recurrenceType).toEqual(
-      GiftDateRecurrenceTypeEnum.YEARLY,
+    await expectGiftDateInDB(
+      id,
+      {
+        ...newGiftDateBirthdayBasic,
+        enabled: true,
+        userId: user2.id,
+        recurrenceType: GiftDateRecurrenceTypeEnum.YEARLY,
+        title: null,
+      },
+      prisma,
     );
-    expect(response.body.title).toBeNull();
-    expect(response.body.enabled).toEqual(true);
-
-    expect(giftDate).toBeTruthy();
-    expect(giftDate.type).toEqual(newGiftDateBirthdayBasic.type);
-    expect(giftDate.recurrenceType).toEqual(GiftDateRecurrenceTypeEnum.YEARLY);
-    expect(giftDate.title).toBeNull();
-    expect(giftDate.enabled).toEqual(true);
-    expect(giftDate.userId).toEqual(user2.id);
 
     await prisma.giftDate.delete({ where: { id } });
   });
@@ -131,23 +128,24 @@ describe('Gift Dates - create', () => {
       .expect(201);
 
     const id = response.body.id;
-    const giftDate = await prisma.giftDate.findUnique({
-      where: { id },
+
+    expectGiftDateRsp(response.body, {
+      ...newGiftDateBirthday,
+      enabled: true,
+      recurrenceType: GiftDateRecurrenceTypeEnum.YEARLY,
+      title: null,
     });
-
-    expect(response.body.type).toEqual(newGiftDateBirthday.type);
-    expect(response.body.recurrenceType).toEqual(
-      GiftDateRecurrenceTypeEnum.YEARLY,
+    await expectGiftDateInDB(
+      id,
+      {
+        ...newGiftDateBirthday,
+        enabled: true,
+        userId: user2.id,
+        recurrenceType: GiftDateRecurrenceTypeEnum.YEARLY,
+        title: null,
+      },
+      prisma,
     );
-    expect(response.body.title).toBeNull();
-    expect(response.body.enabled).toEqual(true);
-
-    expect(giftDate).toBeTruthy();
-    expect(giftDate.type).toEqual(newGiftDateBirthday.type);
-    expect(giftDate.recurrenceType).toEqual(GiftDateRecurrenceTypeEnum.YEARLY);
-    expect(giftDate.title).toBeNull();
-    expect(giftDate.enabled).toEqual(true);
-    expect(giftDate.userId).toEqual(user2.id);
 
     await prisma.giftDate.delete({ where: { id } });
   });
@@ -177,23 +175,20 @@ describe('Gift Dates - create', () => {
       .expect(201);
 
     const id = response.body.id;
-    const giftDate = await prisma.giftDate.findUnique({
-      where: { id },
+
+    expectGiftDateRsp(response.body, {
+      ...newGiftDateOther,
+      enabled: true,
     });
-
-    expect(response.body.type).toEqual(newGiftDateOther.type);
-    expect(response.body.recurrenceType).toEqual(
-      newGiftDateOther.recurrenceType,
+    await expectGiftDateInDB(
+      id,
+      {
+        ...newGiftDateOther,
+        enabled: true,
+        userId: user2.id,
+      },
+      prisma,
     );
-    expect(response.body.title).toEqual(newGiftDateOther.title);
-    expect(response.body.enabled).toEqual(true);
-
-    expect(giftDate).toBeTruthy();
-    expect(giftDate.type).toEqual(newGiftDateOther.type);
-    expect(giftDate.recurrenceType).toEqual(newGiftDateOther.recurrenceType);
-    expect(giftDate.title).toEqual(newGiftDateOther.title);
-    expect(giftDate.enabled).toEqual(true);
-    expect(giftDate.userId).toEqual(user2.id);
 
     await prisma.giftDate.delete({ where: { id } });
   });
@@ -222,6 +217,21 @@ describe('Gift Dates - create', () => {
       .expect(400);
     expect(response.body.message[0]).toEqual(
       'recurrenceType should not be empty',
+    );
+  });
+
+  it('/gift-dates (POST) - try to create type OTHER without firstAccuranceDate', async () => {
+    const { firstAccuranceDate, ...newGiftDateOtherBad } = newGiftDateOther;
+    const response = await request(app.getHttpServer())
+      .post('/gift-dates')
+      .set(
+        'Authorization',
+        'bearer ' + createToken({ email: user2.email, sub: user2.cognitoSub }),
+      )
+      .send(newGiftDateOtherBad)
+      .expect(400);
+    expect(response.body.message[0]).toEqual(
+      'firstAccuranceDate must be a valid ISO 8601 date string',
     );
   });
 

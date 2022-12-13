@@ -26,6 +26,7 @@ import { ForgotPasswordUserDto } from '../users/dtos/forgot-password-user.dto';
 import { ConfirmPasswordUserDto } from '../users/dtos/confirm-password-user.dto';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
+import { CognitoException } from '../errors/cognitoException';
 
 @Serialize(UserDto)
 @Controller('users')
@@ -48,23 +49,39 @@ export class UsersController {
 
   @Post('/change-password')
   async changePassword(@Body() changePasswordUserDto: ChangePasswordUserDto) {
-    await this.awsCognitoService.changeUserPassword(changePasswordUserDto);
+    try {
+      await this.awsCognitoService.changeUserPassword(changePasswordUserDto);
+    } catch (err) {
+      throw new CognitoException(err.message);
+    }
   }
 
   @Post('/forgot-password')
   async forgotPassword(@Body() forgotPasswordUserDto: ForgotPasswordUserDto) {
-    return await this.awsCognitoService.forgotUserPassword(
-      forgotPasswordUserDto,
-    );
+    let response;
+    try {
+      response = await this.awsCognitoService.forgotUserPassword(
+        forgotPasswordUserDto,
+      );
+    } catch (err) {
+      throw new CognitoException(err.message);
+    }
+    return response;
   }
 
   @Post('/confirm-password')
   async confirmPassword(
     @Body() confirmPasswordUserDto: ConfirmPasswordUserDto,
   ) {
-    return await this.awsCognitoService.confirmUserPassword(
-      confirmPasswordUserDto,
-    );
+    let response;
+    try {
+      response = await this.awsCognitoService.confirmUserPassword(
+        confirmPasswordUserDto,
+      );
+    } catch (err) {
+      throw new CognitoException(err.message);
+    }
+    return response;
   }
 
   @Get('/self')

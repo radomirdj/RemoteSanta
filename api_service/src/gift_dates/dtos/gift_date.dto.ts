@@ -17,7 +17,9 @@ export class GiftDateDto {
   @Expose()
   enabled: boolean;
 
-  //   @Transform(({ obj }) => obj.user.id)
-  //   @Expose()
-  //   userId: number;
+  @Expose()
+  firstAccuranceDate: Date;
+
+  @Expose()
+  userId: number;
 }

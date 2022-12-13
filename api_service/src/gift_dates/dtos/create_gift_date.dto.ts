@@ -4,6 +4,7 @@ import {
   IsOptional,
   ValidateIf,
   IsNotEmpty,
+  IsDateString,
 } from 'class-validator';
 import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
@@ -22,4 +23,7 @@ export class CreateGiftDateDto {
   @IsString()
   @IsNotEmpty()
   title: string;
+
+  @IsDateString()
+  firstAccuranceDate: Date;
 }
