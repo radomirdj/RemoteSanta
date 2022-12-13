@@ -10,6 +10,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { LoginUserDto } from './dtos/login-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { EmailInUseException } from '../errors/emailInUseException';
+import { CognitoException } from '../errors/cognitoException';
 import { LoginCredentialsWrongException } from '../errors/loginCredentialsWrongException';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
@@ -34,7 +35,12 @@ export class AuthService {
         tx,
         userDbData,
       );
-      const userSub = await this.cognitoService.registerUser(data);
+      let userSub;
+      try {
+        userSub = await this.cognitoService.registerUser(data);
+      } catch (err) {
+        throw new CognitoException(err.message);
+      }
 
       await this.usersService.setCognitoSubTransactional(
         tx,
@@ -55,8 +61,7 @@ export class AuthService {
       const user = await this.usersService.findBySub(sub);
       response = { accessToken, ...user };
     } catch (err) {
-      console.log('AuthService -> login -> err', err);
-      throw new LoginCredentialsWrongException();
+      throw new CognitoException(err.message);
     }
     return response;
   }
