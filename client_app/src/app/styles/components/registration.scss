@@ -10,4 +10,8 @@ body {
 .registration {
     background-size: cover;
     height: 100%;
+
+    .error {
+        color: red;
+    }
 }

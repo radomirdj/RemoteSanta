@@ -3,5 +3,5 @@ export interface AuthUser {
     readonly firstName: string;
     readonly lastName: string;
     readonly email: string;
-    readonly accessToken?: string;
+    readonly accessToken: string;
 }

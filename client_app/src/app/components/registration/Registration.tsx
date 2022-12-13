@@ -2,15 +2,16 @@ import React, { useRef, useState } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { signUpRequest } from "../../store/auth/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getErrorSelector } from "../../store/auth/selectors";
 
 const Registration = () => {
     const dispatch = useDispatch();
+    const error = useSelector(getErrorSelector);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
 
     const register = () => {
         dispatch(signUpRequest({ firstName, lastName, email, password }));
@@ -18,6 +19,8 @@ const Registration = () => {
 
     return (
         <div className="registration">
+            {error && <b className="error">{error}</b>}
+            <br />
             <TextField id="outlined-basic" label="First name" variant="outlined" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             <TextField id="outlined-basic" label="Last name" variant="outlined" value={lastName} onChange={(e) => setLastName(e.target.value)} />
             <TextField id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />

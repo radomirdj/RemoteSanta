@@ -5,7 +5,10 @@ import {
   SIGN_UP_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  GET_SELF_REQUEST,
+  GET_SELF_SUCCESS,
+  GET_SELF_FAILURE
 } from "./actionTypes";
 
 export interface AuthState {
@@ -38,6 +41,14 @@ export interface LoginSuccessPayload {
   authUser: AuthUser;
 }
 
+export interface GetSelfSuccessPayload {
+  authUser: AuthUser;
+}
+
+export interface GetSelfFailurePayload {
+  error: string;
+}
+
 export interface SignUpRequest {
   type: typeof SIGN_UP_REQUEST;
   payload: SignUpRequestPayload
@@ -67,10 +78,27 @@ export type LoginFailure = {
   payload: LoginFailurePayload;
 };
 
+export interface GetSelfRequest {
+  type: typeof GET_SELF_REQUEST;
+}
+
+export type GetSelfSuccess = {
+  type: typeof GET_SELF_SUCCESS;
+  payload: GetSelfSuccessPayload;
+};
+
+export type GetSelfFailure = {
+  type: typeof GET_SELF_FAILURE;
+  payload: GetSelfFailurePayload;
+};
+
 export type AuthActions =
   | SignUpRequest
   | SignUpSuccess
   | SignUpFailure
   | LoginRequest
   | LoginSuccess
-  | LoginFailure;
+  | LoginFailure
+  | GetSelfRequest
+  | GetSelfSuccess
+  | GetSelfFailure;

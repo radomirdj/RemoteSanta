@@ -5,7 +5,10 @@ import {
   SIGN_UP_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  GET_SELF_REQUEST,
+  GET_SELF_SUCCESS,
+  GET_SELF_FAILURE
 } from "./actionTypes";
 import {
   SignUpRequest,
@@ -18,7 +21,12 @@ import {
   LoginSuccess,
   LoginFailurePayload,
   LoginFailure,
-  LoginSuccessPayload
+  LoginSuccessPayload,
+  GetSelfRequest,
+  GetSelfSuccessPayload,
+  GetSelfSuccess,
+  GetSelfFailurePayload,
+  GetSelfFailure
 } from "./types";
 
 export const signUpRequest = (payload: SignUpRequestPayload): SignUpRequest => ({
@@ -52,5 +60,22 @@ export const loginFailure = (
   payload: LoginFailurePayload
 ): LoginFailure => ({
   type: LOGIN_FAILURE,
+  payload
+});
+
+export const getSelfRequest = (): GetSelfRequest => ({
+  type: GET_SELF_REQUEST,
+
+});
+
+export const getSelfSuccess = (payload: GetSelfSuccessPayload): GetSelfSuccess => ({
+  type: GET_SELF_SUCCESS,
+  payload
+});
+
+export const getSelfFailure = (
+  payload: GetSelfFailurePayload
+): GetSelfFailure => ({
+  type: GET_SELF_FAILURE,
   payload
 });

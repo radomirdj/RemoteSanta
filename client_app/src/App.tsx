@@ -12,6 +12,7 @@ import { fetchMessageRequest } from "./app/store/basicMessage/actions";
 import store from "./app/store";
 import Login from "./app/components/login/Login";
 import Registration from "./app/components/registration/Registration";
+import Home from "./app/components/home/Home";
 
 
 const App = () => {
@@ -35,11 +36,18 @@ const App = () => {
         ) : (
           <b style={{ marginBottom: "20px" }} >{message}</b>
         )}
+        <br />
+        <br />
+        <br />
         <Login />
         <br />
         <br />
         <br />
         <Registration />
+        <br />
+        <br />
+        <br />
+        <Home />
       </div>
     </div>
   );
