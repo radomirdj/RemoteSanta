@@ -11,7 +11,8 @@ import { fetchTodoRequest } from "./app/store/todo/actions";
 import { fetchMessageRequest } from "./app/store/basicMessage/actions";
 import store from "./app/store";
 import Login from "./app/components/login/Login";
-import Registration from "./app/components/login/Registration";
+import Registration from "./app/components/registration/Registration";
+
 
 const App = () => {
   const dispatch = useDispatch();
