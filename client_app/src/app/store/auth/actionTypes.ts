@@ -7,3 +7,4 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const GET_SELF_REQUEST = "GET_SELF_REQUEST";
 export const GET_SELF_SUCCESS = "GET_SELF_SUCCESS";
 export const GET_SELF_FAILURE = "GET_SELF_FAILURE";
+export const LOGOUT = "LOGOUT";

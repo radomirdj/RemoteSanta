@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSelfRequest } from "../../store/auth/actions";
+import { getSelfRequest, logout } from "../../store/auth/actions";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 
 const Home = () => {
@@ -12,14 +12,14 @@ const Home = () => {
         dispatch(getSelfRequest());
     }, [dispatch]);
 
-    const logout = () => {
-
+    const userLogout = () => {
+        dispatch(logout());
     }
 
     return (
         <div className="home">
             {user.firstName} , {user.lastName} , {user.email}
-            <Button variant="contained" onClick={logout}>Logout</Button>
+            <Button variant="contained" onClick={userLogout}>Logout</Button>
         </div>
 
     );

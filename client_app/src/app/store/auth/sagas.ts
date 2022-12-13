@@ -2,9 +2,9 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { AuthUser } from "../../entitites/AuthUser";
 
-import { getSelfFailure, getSelfSuccess, loginFailure, loginSuccess, signUpFailure, signUpSuccess } from "./actions";
-import { GET_SELF_REQUEST, LOGIN_REQUEST, SIGN_UP_REQUEST } from "./actionTypes";
-import { GetSelfRequest, LoginRequest, LoginRequestPayload, LoginSuccessPayload, SignUpRequest, SignUpRequestPayload } from "./types";
+import { getSelfFailure, getSelfSuccess, loginFailure, loginSuccess, logout, signUpFailure, signUpSuccess } from "./actions";
+import { GET_SELF_REQUEST, LOGIN_REQUEST, LOGOUT, SIGN_UP_REQUEST } from "./actionTypes";
+import { GetSelfRequest, LoginRequest, LoginRequestPayload, LoginSuccessPayload, Logout, SignUpRequest, SignUpRequestPayload } from "./types";
 
 const signUp = (payload: SignUpRequestPayload) => {
   return axios.post<string>("api/users/signup", payload);
@@ -61,20 +61,29 @@ function* getSelfSaga(action: GetSelfRequest) {
   try {
     const token: string = localStorage.getItem("token") || "";
     if (!token) {
-      throw new Error("no token");
+      yield put(
+        getSelfFailure({
+          error: "no token"
+        })
+      );
+    } else {
+      const getSelfSuccessPayload: LoginSuccessPayload = yield call(getUserSelf, token);
+      yield put(
+        getSelfSuccess(getSelfSuccessPayload)
+      );
     }
-    const getSelfSuccessPayload: LoginSuccessPayload = yield call(getUserSelf, token);
-    yield put(
-      getSelfSuccess(getSelfSuccessPayload)
-    );
   } catch (e) {
-    console.log("function*fetchMessageSaga -> e", e);
+    console.log("function*getSelfSaga -> e", e);
     yield put(
       getSelfFailure({
         error: e.response.data.message
       })
     );
   }
+}
+
+function* logoutSaga(action: Logout) {
+  localStorage.removeItem("token");
 }
 
 /*
@@ -85,6 +94,7 @@ function* authSaga() {
   yield all([takeLatest(SIGN_UP_REQUEST, signUpSaga)]);
   yield all([takeLatest(LOGIN_REQUEST, loginSaga)]);
   yield all([takeLatest(GET_SELF_REQUEST, getSelfSaga)]);
+  yield all([takeLatest(LOGOUT, logoutSaga)]);
 }
 
 export default authSaga;

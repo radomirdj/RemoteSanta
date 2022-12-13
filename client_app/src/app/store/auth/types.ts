@@ -8,7 +8,8 @@ import {
   LOGIN_FAILURE,
   GET_SELF_REQUEST,
   GET_SELF_SUCCESS,
-  GET_SELF_FAILURE
+  GET_SELF_FAILURE,
+  LOGOUT
 } from "./actionTypes";
 
 export interface AuthState {
@@ -92,6 +93,10 @@ export type GetSelfFailure = {
   payload: GetSelfFailurePayload;
 };
 
+export type Logout = {
+  type: typeof LOGOUT;
+};
+
 export type AuthActions =
   | SignUpRequest
   | SignUpSuccess
@@ -101,4 +106,5 @@ export type AuthActions =
   | LoginFailure
   | GetSelfRequest
   | GetSelfSuccess
-  | GetSelfFailure;
+  | GetSelfFailure
+  | Logout;

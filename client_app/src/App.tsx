@@ -13,6 +13,10 @@ import store from "./app/store";
 import Login from "./app/components/login/Login";
 import Registration from "./app/components/registration/Registration";
 import Home from "./app/components/home/Home";
+import { getSelfRequest } from "./app/store/auth/actions";
+import { getAuthUserSelector } from "./app/store/auth/selectors";
+import ChangePassword from "./app/components/changePassword/ChangePassword";
+import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
 
 
 const App = () => {
@@ -48,6 +52,14 @@ const App = () => {
         <br />
         <br />
         <Home />
+        <br />
+        <br />
+        <br />
+        <ForgotPassword />
+        <br />
+        <br />
+        <br />
+        <ChangePassword />
       </div>
     </div>
   );

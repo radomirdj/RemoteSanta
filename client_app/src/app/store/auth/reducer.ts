@@ -7,7 +7,8 @@ import {
   LOGIN_REQUEST,
   GET_SELF_REQUEST,
   GET_SELF_SUCCESS,
-  GET_SELF_FAILURE
+  GET_SELF_FAILURE,
+  LOGOUT
 } from "./actionTypes";
 
 import { AuthState, AuthActions } from "./types";
@@ -68,6 +69,12 @@ export default (state = initialState, action: AuthActions) => {
         error: null
       };
     case GET_SELF_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "" },
+      };
+    case LOGOUT:
       return {
         ...state,
         pending: false,
