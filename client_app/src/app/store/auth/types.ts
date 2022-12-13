@@ -9,7 +9,10 @@ import {
   GET_SELF_REQUEST,
   GET_SELF_SUCCESS,
   GET_SELF_FAILURE,
-  LOGOUT
+  LOGOUT,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_FAILURE
 } from "./actionTypes";
 
 export interface AuthState {
@@ -47,6 +50,14 @@ export interface GetSelfSuccessPayload {
 }
 
 export interface GetSelfFailurePayload {
+  error: string;
+}
+
+export interface ForgotPasswordRequestPayload {
+  email: string;
+}
+
+export interface ForgotPasswordFailurePayload {
   error: string;
 }
 
@@ -97,6 +108,20 @@ export type Logout = {
   type: typeof LOGOUT;
 };
 
+export interface ForgotPasswordRequest {
+  type: typeof FORGOT_PASSWORD_REQUEST;
+  payload: ForgotPasswordRequestPayload
+}
+
+export type ForgotPasswordSuccess = {
+  type: typeof FORGOT_PASSWORD_SUCCESS;
+};
+
+export type ForgotPasswordFailure = {
+  type: typeof FORGOT_PASSWORD_FAILURE;
+  payload: ForgotPasswordFailurePayload;
+};
+
 export type AuthActions =
   | SignUpRequest
   | SignUpSuccess
@@ -107,4 +132,7 @@ export type AuthActions =
   | GetSelfRequest
   | GetSelfSuccess
   | GetSelfFailure
+  | ForgotPasswordRequest
+  | ForgotPasswordSuccess
+  | ForgotPasswordFailure
   | Logout;
