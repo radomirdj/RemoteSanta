@@ -30,7 +30,7 @@ function* signUpSaga(action: SignUpRequest) {
       signUpSuccess()
     );
   } catch (e) {
-    console.log("function*fetchMessageSaga -> e", e);
+    console.log("function*signUpSaga -> e", e);
     yield put(
       signUpFailure({
         error: e.response.data.message
@@ -48,7 +48,7 @@ function* loginSaga(action: LoginRequest) {
     );
     localStorage.setItem("token", loginSuccessPayload.authUser.accessToken);
   } catch (e) {
-    console.log("function*fetchMessageSaga -> e", e);
+    console.log("function*loginSaga -> e", e);
     yield put(
       loginFailure({
         error: e.response.data.message
