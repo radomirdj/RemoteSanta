@@ -1,11 +1,16 @@
+import { AuthUser } from "../../entitites/AuthUser";
 import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE
+  SIGN_UP_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
 } from "./actionTypes";
 
-export interface SignUpState {
+export interface AuthState {
   pending: boolean;
+  authUser: AuthUser;
   error: string | null;
 }
 
@@ -18,6 +23,19 @@ export interface SignUpRequestPayload {
   lastName: string;
   email: string;
   password: string;
+}
+
+export interface LoginFailurePayload {
+  error: string;
+}
+
+export interface LoginRequestPayload {
+  email: string;
+  password: string;
+}
+
+export interface LoginSuccessPayload {
+  authUser: AuthUser;
 }
 
 export interface SignUpRequest {
@@ -34,7 +52,25 @@ export type SignUpFailure = {
   payload: SignUpFailurePayload;
 };
 
-export type SignUpActions =
+export interface LoginRequest {
+  type: typeof LOGIN_REQUEST;
+  payload: LoginRequestPayload
+}
+
+export type LoginSuccess = {
+  type: typeof LOGIN_SUCCESS;
+  payload: LoginSuccessPayload;
+};
+
+export type LoginFailure = {
+  type: typeof LOGIN_FAILURE;
+  payload: LoginFailurePayload;
+};
+
+export type AuthActions =
   | SignUpRequest
   | SignUpSuccess
-  | SignUpFailure;
+  | SignUpFailure
+  | LoginRequest
+  | LoginSuccess
+  | LoginFailure;
