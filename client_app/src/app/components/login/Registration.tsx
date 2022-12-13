@@ -2,16 +2,17 @@ import React from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const Login = () => {
+const Registration = () => {
     return (
-        <div className="login">
+        <div className="registration">
+            <TextField id="outlined-basic" label="First name" variant="outlined" />
+            <TextField id="outlined-basic" label="Last name" variant="outlined" />
             <TextField id="outlined-basic" label="Email" variant="outlined" />
             <TextField id="outlined-basic" label="Password" variant="outlined" type="password" />
-            <Button variant="contained">Login</Button>
+            <Button variant="contained">Sign up</Button>
         </div>
-
     );
 };
 
 
-export default Login;
+export default Registration;

@@ -10,6 +10,8 @@ import {
 import { fetchTodoRequest } from "./app/store/todo/actions";
 import { fetchMessageRequest } from "./app/store/basicMessage/actions";
 import store from "./app/store";
+import Login from "./app/components/login/Login";
+import Registration from "./app/components/login/Registration";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,11 @@ const App = () => {
         ) : (
           <b style={{ marginBottom: "20px" }} >{message}</b>
         )}
+        <Login />
+        <br />
+        <br />
+        <br />
+        <Registration />
       </div>
     </div>
   );
