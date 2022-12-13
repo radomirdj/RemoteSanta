@@ -1,47 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { Provider } from "react-redux";
-
-import {
-  getPendingSelector,
-  getMessageSelector,
-  getErrorSelector
-} from "./app/store/basicMessage/selectors";
-import { fetchTodoRequest } from "./app/store/todo/actions";
-import { fetchMessageRequest } from "./app/store/basicMessage/actions";
 import store from "./app/store";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./app/components/login/Login";
 import Registration from "./app/components/registration/Registration";
 
-
 const App = () => {
-  const dispatch = useDispatch();
-  const pending = useSelector(getPendingSelector);
-  const message = useSelector(getMessageSelector);
-  const error = useSelector(getErrorSelector);
-
-  useEffect(() => {
-    dispatch(fetchTodoRequest());
-    dispatch(fetchMessageRequest());
-  }, [dispatch]);
-
   return (
-    <div className="login">
-      <div style={{ padding: "15px" }}>
-        {pending ? (
-          <div>Loading...</div>
-        ) : error ? (
-          <div>Error</div>
-        ) : (
-          <b style={{ marginBottom: "20px" }} >{message}</b>
-        )}
-        <Login />
-        <br />
-        <br />
-        <br />
-        <Registration />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Registration />} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
