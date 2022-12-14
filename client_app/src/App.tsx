@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./app/components/login/Login";
 import Registration from "./app/components/registration/Registration";
 import Home from "./app/components/home/Home";
@@ -9,6 +9,7 @@ import Home from "./app/components/home/Home";
 // import { getAuthUserSelector } from "./app/store/auth/selectors";
 import ChangePassword from "./app/components/changePassword/ChangePassword";
 import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
+import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
 
 const App = () => {
   return (
@@ -18,8 +19,15 @@ const App = () => {
         <Route path="signup" element={<Registration />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="change-password" element={<ChangePassword />} />
-        <Route path="" element={<Home />} />
-        <Route path="*" element={<Login />} />
+        <Route
+          path=""
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
