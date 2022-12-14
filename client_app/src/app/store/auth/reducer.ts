@@ -8,7 +8,10 @@ import {
   GET_SELF_REQUEST,
   GET_SELF_SUCCESS,
   GET_SELF_FAILURE,
-  LOGOUT
+  LOGOUT,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_FAILURE
 } from "./actionTypes";
 
 import { AuthState, AuthActions } from "./types";
@@ -79,6 +82,23 @@ export default (state = initialState, action: AuthActions) => {
         ...state,
         pending: false,
         authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "" },
+      };
+    case FORGOT_PASSWORD_REQUEST:
+      return {
+        ...state,
+        pending: true
+      };
+    case FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null
+      };
+    case FORGOT_PASSWORD_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error
       };
     default:
       return {

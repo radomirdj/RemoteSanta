@@ -9,7 +9,10 @@ import {
   GET_SELF_REQUEST,
   GET_SELF_SUCCESS,
   GET_SELF_FAILURE,
-  LOGOUT
+  LOGOUT,
+  FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_FAILURE
 } from "./actionTypes";
 import {
   SignUpRequest,
@@ -28,7 +31,12 @@ import {
   GetSelfSuccess,
   GetSelfFailurePayload,
   GetSelfFailure,
-  Logout
+  Logout,
+  ForgotPasswordRequestPayload,
+  ForgotPasswordRequest,
+  ForgotPasswordSuccess,
+  ForgotPasswordFailurePayload,
+  ForgotPasswordFailure
 } from "./types";
 
 export const signUpRequest = (payload: SignUpRequestPayload): SignUpRequest => ({
@@ -83,4 +91,20 @@ export const getSelfFailure = (
 
 export const logout = (): Logout => ({
   type: LOGOUT,
+});
+
+export const forgotPasswordRequest = (payload: ForgotPasswordRequestPayload): ForgotPasswordRequest => ({
+  type: FORGOT_PASSWORD_REQUEST,
+  payload
+});
+
+export const forgotPasswordSuccess = (): ForgotPasswordSuccess => ({
+  type: FORGOT_PASSWORD_SUCCESS,
+});
+
+export const forgotPasswordFailure = (
+  payload: ForgotPasswordFailurePayload
+): ForgotPasswordFailure => ({
+  type: FORGOT_PASSWORD_FAILURE,
+  payload
 });
