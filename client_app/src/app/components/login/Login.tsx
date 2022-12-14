@@ -3,6 +3,7 @@ import { loginRequest } from "../../store/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/auth/selectors";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
+import AppFooter from "../app-footer/AppFooter";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Login = () => {
                     // <Button variant="contained" onClick={login}>Login</Button>
                 }
             </div>
+            <AppFooter />
         </>
 
     );

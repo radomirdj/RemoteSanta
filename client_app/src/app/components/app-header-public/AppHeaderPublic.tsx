@@ -1,12 +1,12 @@
 import React from "react";
-import { AppBar, Box, Button, Grid, Toolbar, Typography } from "@mui/material";
+import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
 import Logo from './../../assets/logo.svg';
 import LogoSmall from './../../assets/logo-small.svg';
 import LanguageIcon from './../../assets/icons/language-icon.svg';
 
 const AppHeaderPublic = () => {
     return (
-        <AppBar className="app-header">
+        <AppBar className="app-header-public">
             <Toolbar disableGutters className="toolbar-style">
                 <Grid container className="grid-style">
                     <Grid item md={8} sx={{ display: { xs: 'none', md: 'inline-flex' } }}>

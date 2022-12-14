@@ -1,0 +1,21 @@
+$color-neutral-black: #1F2223;
+$base-unit: 8px;
+$font-size-footer: 10px;
+
+.app-footer {
+    width: 100%;
+    height: $base-unit * 3;
+    bottom: 0;
+    position: fixed;
+    text-align: right;
+    right: $base-unit * 7;
+    justify-content: end;
+
+    .footer-text {
+        color: $color-neutral-black;
+        font-family: 'Montserrat';
+        font-size: $font-size-footer;
+        margin-right: $base-unit * 3;
+        display: inline-flex;
+    }
+}
