@@ -9,20 +9,20 @@ const AppHeaderPublic = () => {
         <AppBar className="app-header-public">
             <Toolbar disableGutters className="toolbar-style">
                 <Grid container className="grid-style">
-                    <Grid item md={8} sx={{ display: { xs: 'none', md: 'inline-flex' } }}>
+                    <Grid item md={8} sx={{ display: { xs: 'none', sm: 'none', md: 'inline-flex' } }}>
                         <img src={Logo} alt="" />
                     </Grid>
-                    <Grid item xs={3} sx={{ display: { xs: 'inline-flex', md: 'none' } }}>
+                    <Grid item xs={3} sm={4} sx={{ display: { xs: 'inline-flex', sm: 'inline-flex', md: 'none' } }}>
                         <img src={LogoSmall} alt="" className="logo-small" />
                     </Grid>
-                    <Grid item xs={1} md={1} className="align-right">
+                    <Grid item xs={1} sm={2} md={1} className="align-right">
                         <img src={LanguageIcon} alt="" className="header-icon" />
                     </Grid>
-                    <Grid item xs={3} md={1} className="align-right" >
+                    <Grid item xs={3} sm={2} md={1} className="align-right" >
                         {/*LABELS*/}
                         <Typography className="header-item">Sign up</Typography>
                     </Grid>
-                    <Grid item xs={5} md={2} className="align-center">
+                    <Grid item xs={5} sm={4} md={2} className="align-center">
                         {/*LABELS*/}
                         <Button variant="contained" className="header-button" disableRipple>Request Demo</Button>
                     </Grid>

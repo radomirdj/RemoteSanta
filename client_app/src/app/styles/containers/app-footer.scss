@@ -7,9 +7,7 @@ $font-size-footer: 10px;
     height: $base-unit * 3;
     bottom: 0;
     position: fixed;
-    text-align: right;
-    right: $base-unit * 7;
-    justify-content: end;
+    text-align: center;
 
     .footer-text {
         color: $color-neutral-black;
