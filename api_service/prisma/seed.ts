@@ -22,6 +22,7 @@ async function main() {
       { foreignKeyName: 'userId', foreignRecordName: 'user' },
     ]),
   );
+  await seedTable(prisma, 'GiftCardIntegration');
 }
 
 // execute the main function

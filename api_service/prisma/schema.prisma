@@ -68,6 +68,8 @@ model GiftCardIntegration {
   title          String
   description    String
   constraintType IntegrationConsraintTypeEnum
+  priority       Int                          @default(1000000)
+  constraintJson Json
 }
 
 model Report {
