@@ -12,7 +12,10 @@ import {
   LOGOUT,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
-  FORGOT_PASSWORD_FAILURE
+  FORGOT_PASSWORD_FAILURE,
+  CHANGE_PASSWORD_REQUEST,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAILURE
 } from "./actionTypes";
 
 export interface AuthState {
@@ -58,6 +61,16 @@ export interface ForgotPasswordRequestPayload {
 }
 
 export interface ForgotPasswordFailurePayload {
+  error: string;
+}
+
+export interface ChangePasswordRequestPayload {
+  email: string;
+  confirmationCode: string;
+  newPassword: string;
+}
+
+export interface ChangePasswordFailurePayload {
   error: string;
 }
 
@@ -122,6 +135,20 @@ export type ForgotPasswordFailure = {
   payload: ForgotPasswordFailurePayload;
 };
 
+export interface ChangePasswordRequest {
+  type: typeof CHANGE_PASSWORD_REQUEST;
+  payload: ChangePasswordRequestPayload
+}
+
+export type ChangePasswordSuccess = {
+  type: typeof CHANGE_PASSWORD_SUCCESS;
+};
+
+export type ChangePasswordFailure = {
+  type: typeof CHANGE_PASSWORD_FAILURE;
+  payload: ChangePasswordFailurePayload;
+};
+
 export type AuthActions =
   | SignUpRequest
   | SignUpSuccess
@@ -135,4 +162,7 @@ export type AuthActions =
   | ForgotPasswordRequest
   | ForgotPasswordSuccess
   | ForgotPasswordFailure
+  | ChangePasswordRequest
+  | ChangePasswordSuccess
+  | ChangePasswordFailure
   | Logout;

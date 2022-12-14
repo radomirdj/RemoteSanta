@@ -12,7 +12,10 @@ import {
   LOGOUT,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
-  FORGOT_PASSWORD_FAILURE
+  FORGOT_PASSWORD_FAILURE,
+  CHANGE_PASSWORD_REQUEST,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAILURE
 } from "./actionTypes";
 import {
   SignUpRequest,
@@ -36,7 +39,12 @@ import {
   ForgotPasswordRequest,
   ForgotPasswordSuccess,
   ForgotPasswordFailurePayload,
-  ForgotPasswordFailure
+  ForgotPasswordFailure,
+  ChangePasswordRequestPayload,
+  ChangePasswordRequest,
+  ChangePasswordSuccess,
+  ChangePasswordFailurePayload,
+  ChangePasswordFailure
 } from "./types";
 
 export const signUpRequest = (payload: SignUpRequestPayload): SignUpRequest => ({
@@ -106,5 +114,21 @@ export const forgotPasswordFailure = (
   payload: ForgotPasswordFailurePayload
 ): ForgotPasswordFailure => ({
   type: FORGOT_PASSWORD_FAILURE,
+  payload
+});
+
+export const changePasswordRequest = (payload: ChangePasswordRequestPayload): ChangePasswordRequest => ({
+  type: CHANGE_PASSWORD_REQUEST,
+  payload
+});
+
+export const changePasswordSuccess = (): ChangePasswordSuccess => ({
+  type: CHANGE_PASSWORD_SUCCESS,
+});
+
+export const changePasswordFailure = (
+  payload: ChangePasswordFailurePayload
+): ChangePasswordFailure => ({
+  type: CHANGE_PASSWORD_FAILURE,
   payload
 });

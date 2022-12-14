@@ -2,9 +2,9 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import { AuthUser } from "../../entitites/AuthUser";
 
-import { forgotPasswordFailure, forgotPasswordSuccess, getSelfFailure, getSelfSuccess, loginFailure, loginSuccess, logout, signUpFailure, signUpSuccess } from "./actions";
-import { FORGOT_PASSWORD_REQUEST, GET_SELF_REQUEST, LOGIN_REQUEST, LOGOUT, SIGN_UP_REQUEST } from "./actionTypes";
-import { ForgotPasswordRequest, ForgotPasswordRequestPayload, GetSelfRequest, LoginRequest, LoginRequestPayload, LoginSuccessPayload, Logout, SignUpRequest, SignUpRequestPayload } from "./types";
+import { changePasswordFailure, changePasswordSuccess, forgotPasswordFailure, forgotPasswordSuccess, getSelfFailure, getSelfSuccess, loginFailure, loginSuccess, logout, signUpFailure, signUpSuccess } from "./actions";
+import { CHANGE_PASSWORD_REQUEST, FORGOT_PASSWORD_REQUEST, GET_SELF_REQUEST, LOGIN_REQUEST, LOGOUT, SIGN_UP_REQUEST } from "./actionTypes";
+import { ChangePasswordRequest, ChangePasswordRequestPayload, ForgotPasswordRequest, ForgotPasswordRequestPayload, GetSelfRequest, LoginRequest, LoginRequestPayload, LoginSuccessPayload, Logout, SignUpRequest, SignUpRequestPayload } from "./types";
 
 const signUp = (payload: SignUpRequestPayload) => {
   return axios.post<string>("api/users/signup", payload);
@@ -22,6 +22,10 @@ const getUserSelf = async (token: string) => {
 
 const forgotPassword = async (payload: ForgotPasswordRequestPayload) => {
   return axios.post<string>("api/users/forgot-password", payload);
+};
+
+const changePassword = async (payload: ChangePasswordRequestPayload) => {
+  return axios.post<string>("api/users/confirm-password", payload);
 };
 
 /*
@@ -106,6 +110,22 @@ function* forgotPasswordSaga(action: ForgotPasswordRequest) {
   }
 }
 
+function* changePasswordSaga(action: ChangePasswordRequest) {
+  try {
+    yield call(changePassword, action.payload);
+    yield put(
+      changePasswordSuccess()
+    );
+  } catch (e) {
+    console.log("function*changePasswordSaga -> e", e);
+    yield put(
+      changePasswordFailure({
+        error: e.response.data.message
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_MESSAGE_REQUEST` action.
   Allows concurrent increments.
@@ -116,6 +136,7 @@ function* authSaga() {
   yield all([takeLatest(GET_SELF_REQUEST, getSelfSaga)]);
   yield all([takeLatest(LOGOUT, logoutSaga)]);
   yield all([takeLatest(FORGOT_PASSWORD_REQUEST, forgotPasswordSaga)]);
+  yield all([takeLatest(CHANGE_PASSWORD_REQUEST, changePasswordSaga)]);
 }
 
 export default authSaga;

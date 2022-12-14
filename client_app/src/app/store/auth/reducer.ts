@@ -11,7 +11,10 @@ import {
   LOGOUT,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
-  FORGOT_PASSWORD_FAILURE
+  FORGOT_PASSWORD_FAILURE,
+  CHANGE_PASSWORD_REQUEST,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAILURE
 } from "./actionTypes";
 
 import { AuthState, AuthActions } from "./types";
@@ -95,6 +98,23 @@ export default (state = initialState, action: AuthActions) => {
         error: null
       };
     case FORGOT_PASSWORD_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error
+      };
+    case CHANGE_PASSWORD_REQUEST:
+      return {
+        ...state,
+        pending: true
+      };
+    case CHANGE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null
+      };
+    case CHANGE_PASSWORD_FAILURE:
       return {
         ...state,
         pending: false,
