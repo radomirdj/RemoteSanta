@@ -88,3 +88,15 @@ export const giftDate2 = giftDates[1];
 export const giftDate3 = giftDates[2];
 export const giftDate4 = giftDates[3];
 export const giftDate5 = giftDates[4];
+
+export const giftCardIntegration1 = {
+  id: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
+  priority: 10,
+  website: 'https://giftoncard.eu',
+  image:
+    'https://giftoncard.eu/public/media/Docs/source/Multibrand%20novi%20dizajn%20380x245-01.png',
+  title: 'Multibrand',
+  description: 'Jedna e kartica, na preko 500 lokacija širom Srbije.',
+  constraintType: 'MIN_MAX',
+  constraintJson: { MIN: 500, MAX: 100000 },
+};
