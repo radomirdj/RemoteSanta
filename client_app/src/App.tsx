@@ -10,15 +10,44 @@ import Home from "./app/components/home/Home";
 import ChangePassword from "./app/components/changePassword/ChangePassword";
 import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
 import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
+import PublicRoute from "./app/components/publicRoute/PublicRoute";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Registration />} />
-        <Route path="forgot-password" element={<ForgotPassword />} />
-        <Route path="change-password" element={<ChangePassword />} />
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <PublicRoute>
+              <Registration />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="change-password"
+          element={
+            <PublicRoute>
+              <ChangePassword />
+            </PublicRoute>
+          }
+        />
         <Route
           path=""
           element={
