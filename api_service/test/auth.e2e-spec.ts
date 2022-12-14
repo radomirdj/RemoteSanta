@@ -78,14 +78,11 @@ describe('Authentication system', () => {
         .expect(201);
       expect(response.body.email).toEqual(user1.email);
     });
-    it('/login (POST) - wrong email', async () => {
-      const response = await request(app.getHttpServer())
+    it('/login (POST) - wrong password', async () => {
+      await request(app.getHttpServer())
         .post('/users/login')
-        .send({ email: `a${user1.email}`, password: user1.password })
-        .expect(401);
-      expect(response.body.message).toEqual(
-        LoginCredentialsWrongException.defaultMessage,
-      );
+        .send({ email: user1.email, password: `a${user1.password}` })
+        .expect(400);
     });
   });
 
