@@ -1,67 +1,64 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
-
-import {
-  getPendingSelector,
-  getMessageSelector,
-  getErrorSelector
-} from "./app/store/basicMessage/selectors";
-import { fetchTodoRequest } from "./app/store/todo/actions";
-import { fetchMessageRequest } from "./app/store/basicMessage/actions";
 import store from "./app/store";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./app/components/login/Login";
 import Registration from "./app/components/registration/Registration";
 import Home from "./app/components/home/Home";
-import { getSelfRequest } from "./app/store/auth/actions";
-import { getAuthUserSelector } from "./app/store/auth/selectors";
+// import { getSelfRequest } from "./app/store/auth/actions";
+// import { getAuthUserSelector } from "./app/store/auth/selectors";
 import ChangePassword from "./app/components/changePassword/ChangePassword";
 import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
-
+import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
+import PublicRoute from "./app/components/publicRoute/PublicRoute";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const pending = useSelector(getPendingSelector);
-  const message = useSelector(getMessageSelector);
-  const error = useSelector(getErrorSelector);
-
-  useEffect(() => {
-    dispatch(fetchTodoRequest());
-    dispatch(fetchMessageRequest());
-  }, [dispatch]);
-
   return (
-    <div className="login">
-      <div style={{ padding: "15px" }}>
-        {pending ? (
-          <div>Loading...</div>
-        ) : error ? (
-          <div>Error</div>
-        ) : (
-          <b style={{ marginBottom: "20px" }} >{message}</b>
-        )}
-        <br />
-        <br />
-        <br />
-        <Login />
-        <br />
-        <br />
-        <br />
-        <Registration />
-        <br />
-        <br />
-        <br />
-        <Home />
-        <br />
-        <br />
-        <br />
-        <ForgotPassword />
-        <br />
-        <br />
-        <br />
-        <ChangePassword />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="signup"
+          element={
+            <PublicRoute>
+              <Registration />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="change-password"
+          element={
+            <PublicRoute>
+              <ChangePassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path=""
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
