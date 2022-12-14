@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import './app/styles/index.scss';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "@fontsource/montserrat";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

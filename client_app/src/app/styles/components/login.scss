@@ -1,22 +1,5 @@
-html {
-  min-height: 100%;
-}
-
-body {
-  min-height: 100%;
-  margin: 0px;
-}
+$base-unit: 8px;
 
 .login {
-  background-image: url("./../../assets/login-image.svg");
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  .error {
-    color: red;
-  }
+    background-image: url("./../../assets/login-image.svg");
 }

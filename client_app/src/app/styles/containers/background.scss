@@ -1,0 +1,22 @@
+$height-full: 100vh;
+$min-height-full: 100%;
+$margin-no-margin: 0px;
+
+html {
+    min-height: $min-height-full;
+}
+
+body {
+    min-height: $min-height-full;
+    margin: $margin-no-margin;
+}
+
+.background {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: $height-full;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
