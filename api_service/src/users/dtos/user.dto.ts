@@ -1,4 +1,5 @@
 import { Expose } from 'class-transformer';
+import { GenderEnum } from '@prisma/client';
 
 export class UserDto {
   @Expose()
@@ -15,4 +16,10 @@ export class UserDto {
 
   @Expose()
   accessToken: string;
+
+  @Expose()
+  birthDate: Date;
+
+  @Expose()
+  gender: GenderEnum;
 }
