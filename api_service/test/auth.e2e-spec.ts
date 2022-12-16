@@ -15,6 +15,30 @@ import { user1 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
 
+export const expectUserRsp = (responseBody, expectedValue) => {
+  expect(responseBody.email).toEqual(expectedValue.email);
+  expect(responseBody.firstName).toEqual(expectedValue.firstName);
+  expect(responseBody.lastName).toEqual(expectedValue.lastName);
+  expect(responseBody.gender).toEqual(expectedValue.gender);
+  expect(responseBody.birthDate).toEqual(expectedValue.birthDate.toISOString());
+};
+
+export const expectUserInDB = async (expectedValue, prisma) => {
+  const userList = await prisma.user.findMany({
+    where: { email: expectedValue.email },
+  });
+
+  expect(userList.length).toEqual(1);
+  const user = userList[0];
+
+  expect(user.email).toEqual(expectedValue.email);
+  expect(user.firstName).toEqual(expectedValue.firstName);
+  expect(user.lastName).toEqual(expectedValue.lastName);
+  expect(user.cognitoSub).toEqual(`sub_${expectedValue.email}`);
+  expect(user.gender).toEqual(expectedValue.gender);
+  expect(user.birthDate).toEqual(expectedValue.birthDate);
+};
+
 describe('Authentication system', () => {
   let app: INestApplication;
   let prisma: PrismaService;
@@ -33,37 +57,31 @@ describe('Authentication system', () => {
   });
 
   describe('/signup (POST)', () => {
-    const email = 'abs@abc3.com';
-    const firstName = 'Peter';
-    const lastName = 'Pan';
-    const password = '123456';
+    const newUser = {
+      email: 'abs@abc3.com',
+      firstName: 'Peter',
+      lastName: 'Pan',
+      password: '123456',
+      gender: 'MALE',
+      birthDate: new Date('2000-04-31T00:00:00.000Z'),
+    };
 
     it('/signup (POST) - with good params', async () => {
       const response = await request(app.getHttpServer())
         .post('/users/signup')
-        .send({ email, password: '123456', firstName, lastName })
+        .send(newUser)
         .expect(201);
 
-      const userList = await prisma.user.findMany({
-        where: { email },
-      });
-      expect(response.body.email).toEqual(email);
-      expect(response.body.firstName).toEqual(firstName);
-      expect(response.body.lastName).toEqual(lastName);
+      expectUserRsp(response.body, newUser);
+      await expectUserInDB(newUser, prisma);
 
-      expect(userList.length).toEqual(1);
-      expect(userList[0].email).toEqual(email);
-      expect(userList[0].firstName).toEqual(firstName);
-      expect(userList[0].lastName).toEqual(lastName);
-      expect(userList[0].cognitoSub).toEqual(`sub_${email}`);
-
-      await prisma.user.delete({ where: { email } });
+      await prisma.user.delete({ where: { email: newUser.email } });
     });
 
     it('/signup (POST) - try to signup existing email', async () => {
       const response = await request(app.getHttpServer())
         .post('/users/signup')
-        .send({ email: user1.email, password, firstName, lastName })
+        .send({ ...newUser, email: user1.email })
         .expect(400);
 
       expect(response.body.message).toEqual(EmailInUseException.defaultMessage);
@@ -76,16 +94,13 @@ describe('Authentication system', () => {
         .post('/users/login')
         .send({ email: user1.email, password: user1.password })
         .expect(201);
-      expect(response.body.email).toEqual(user1.email);
+      expectUserRsp(response.body, user1);
     });
-    it('/login (POST) - wrong email', async () => {
-      const response = await request(app.getHttpServer())
+    it('/login (POST) - wrong password', async () => {
+      await request(app.getHttpServer())
         .post('/users/login')
-        .send({ email: `a${user1.email}`, password: user1.password })
-        .expect(401);
-      expect(response.body.message).toEqual(
-        LoginCredentialsWrongException.defaultMessage,
-      );
+        .send({ email: user1.email, password: `a${user1.password}` })
+        .expect(400);
     });
   });
 
@@ -100,9 +115,7 @@ describe('Authentication system', () => {
         )
         .expect(200);
 
-      expect(response.body.email).toEqual(user1.email);
-      expect(response.body.firstName).toEqual(user1.firstName);
-      expect(response.body.lastName).toEqual(user1.lastName);
+      expectUserRsp(response.body, user1);
     });
   });
 });

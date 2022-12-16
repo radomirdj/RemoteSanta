@@ -6,6 +6,8 @@ export const users = [
     email: 'abc@example.com',
     firstName: 'Jon',
     lastName: 'Snow',
+    gender: 'MALE',
+    birthDate: new Date('1983-02-05T00:00:00.000Z'),
   },
   {
     id: 'd95d6e01-9fb8-4116-ae70-276aca88694a',
@@ -14,6 +16,8 @@ export const users = [
     email: 'abc2@example.com',
     firstName: 'Eddard',
     lastName: 'Stark',
+    gender: 'MALE',
+    birthDate: new Date('1960-01-25T00:00:00.000Z'),
   },
   {
     id: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
@@ -22,6 +26,8 @@ export const users = [
     email: 'abc3@example.com',
     firstName: 'Sansa',
     lastName: 'Stark',
+    gender: 'FEMALE',
+    birthDate: new Date('1993-03-20T00:00:00.000Z'),
   },
   {
     id: '71bed16a-98d9-479b-b5f4-f934a2278aae',
@@ -30,8 +36,11 @@ export const users = [
     email: 'abc4@example.com',
     firstName: 'Arya',
     lastName: 'Stark',
+    gender: 'FEMALE',
+    birthDate: new Date('1997-04-22T00:00:00.000Z'),
   },
 ];
+
 export const user1 = users[0];
 export const user2 = users[1];
 export const user3 = users[2];
@@ -88,3 +97,15 @@ export const giftDate2 = giftDates[1];
 export const giftDate3 = giftDates[2];
 export const giftDate4 = giftDates[3];
 export const giftDate5 = giftDates[4];
+
+export const giftCardIntegration1 = {
+  id: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
+  priority: 10,
+  website: 'https://giftoncard.eu',
+  image:
+    'https://giftoncard.eu/public/media/Docs/source/Multibrand%20novi%20dizajn%20380x245-01.png',
+  title: 'Multibrand',
+  description: 'Jedna e kartica, na preko 500 lokacija širom Srbije.',
+  constraintType: 'MIN_MAX',
+  constraintJson: { MIN: 500, MAX: 100000 },
+};
