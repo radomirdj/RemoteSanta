@@ -1,12 +1,7 @@
-$base-unit: 8px;
-$login-title-font-size: 36px;
-$login-forgot-password-font-size: 12px;
-$color-neutral-black: #1F2223;
-$color-dark-yellow: #FDC886;
-$login-no-account-font-size: 14px;
-$login-error-color: #B3411C;
-$error-icon-width: 18px;
-$error-icon-height: 18px;
+@use "./../variables.scss";
+
+$login-error-icon-width: 18px;
+$login-error-icon-height: 18px;
 
 .login {
     background-image: url("./../../assets/login-image.svg");
@@ -16,106 +11,106 @@ $error-icon-height: 18px;
     }
 
     .login-card {
-        padding-top: $base-unit * 7;
-        padding-bottom: $base-unit * 7;
-        padding-left: $base-unit * 8;
-        padding-right: $base-unit * 8;
-        border-radius: $base-unit * 4;
+        padding-top: variables.$base-unit * 7;
+        padding-bottom: variables.$base-unit * 7;
+        padding-left: variables.$base-unit * 8;
+        padding-right: variables.$base-unit * 8;
+        border-radius: variables.$base-unit * 4;
         text-align: center;
     }
 
     .login-title {
         font-family: "Montserrat";
-        font-size: $login-title-font-size;
-        margin-bottom: $base-unit * 4;
+        font-size: variables.$font-size-title;
+        margin-bottom: variables.$base-unit * 4;
         text-align: start;
-        color: $color-neutral-black;
+        color: variables.$color-neutral-black;
         width: 100%;
     }
 
     .login-title-with-error {
         font-family: "Montserrat";
-        font-size: $login-title-font-size;
-        margin-bottom: $base-unit * 2;
+        font-size: variables.$font-size-title;
+        margin-bottom: variables.$base-unit * 2;
         text-align: start;
-        color: $color-neutral-black;
+        color: variables.$color-neutral-black;
         width: 100%;
     }
 
     .email-input {
-        margin-bottom: $base-unit * 3 !important;
+        margin-bottom: variables.$base-unit * 3 !important;
     }
 
     .MuiFormControl-root {
         margin: 0px;
         width: 100%;
-        border-radius: $base-unit;
-        margin-bottom: $base-unit;
+        border-radius: variables.$base-unit;
+        margin-bottom: variables.$base-unit;
 
         .MuiOutlinedInput-root {
-            border-radius: $base-unit;
+            border-radius: variables.$base-unit;
         }
 
         .MuiOutlinedInput-root.Mui-error {
             .MuiOutlinedInput-notchedOutline {
-                border-color: $login-error-color;
+                border-color: variables.$error-color;
             }
         }
 
         .MuiFormLabel-root.Mui-error {
-            color: $login-error-color;
+            color: variables.$error-color;
         }
     }
 
     .login-forgot-password {
         font-family: "Montserrat";
         text-align: end;
-        font-size: $login-forgot-password-font-size;
+        font-size: variables.$font-size-small;
         cursor: pointer;
-        color: $color-neutral-black;
-        margin-bottom: $base-unit * 4;
+        color: variables.$color-neutral-black;
+        margin-bottom: variables.$base-unit * 4;
         width: 100%;
     }
 
     .login-button,
     & .login-button:hover {
-        background-color: $color-dark-yellow;
-        border-radius: $base-unit;
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
         box-shadow: none;
-        color: $color-neutral-black;
+        color: variables.$color-neutral-black;
         text-transform: none;
         width: 100%;
-        height: $base-unit * 6;
+        height: variables.$base-unit * 6;
         font-weight: bold;
-        margin-bottom: $base-unit * 4;
+        margin-bottom: variables.$base-unit * 4;
     }
 
     .login-no-account {
         font-family: "Montserrat";
         text-align: center;
-        font-size: $login-no-account-font-size;
+        font-size: variables.$font-size-small;
         cursor: pointer;
-        color: $color-neutral-black;
+        color: variables.$color-neutral-black;
         width: 100%;
     }
 
     .login-error {
-        color: $login-error-color;
+        color: variables.$error-color;
         text-align: start;
-        margin-bottom: $base-unit * 3;
+        margin-bottom: variables.$base-unit * 3;
         display: inline-flex;
         width: 100%;
 
         .login-error-icon {
-            width: $error-icon-width !important;
-            height: $error-icon-height;
+            width: $login-error-icon-width !important;
+            height: $login-error-icon-height;
             width: 10%;
-            margin-right: $base-unit;
+            margin-right: variables.$base-unit;
         }
 
         .login-error-message {
             width: 90%;
-            font-size: $login-forgot-password-font-size;
+            font-size: variables.$font-size-small;
         }
     }
 

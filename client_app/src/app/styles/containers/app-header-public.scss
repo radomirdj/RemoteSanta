@@ -1,11 +1,9 @@
-$base-unit: 8px;
-$color-neutral-black: #1F2223;
-$color-dark-yellow: #FDC886;
+@use "./../variables.scss";
 
 .app-header-public {
     background-color: #f5f2ea !important;
     box-shadow: none !important;
-    margin-top: $base-unit * 2;
+    margin-top: variables.$base-unit * 2;
 
     .grid-style {
         display: inline-flex;
@@ -14,40 +12,40 @@ $color-dark-yellow: #FDC886;
 
     .header-item {
         font-family: "Montserrat";
-        color: $color-neutral-black;
-        margin-top: $base-unit;
+        color: variables.$color-neutral-black;
+        margin-top: variables.$base-unit;
         cursor: pointer;
     }
 
     .header-button,
     & .header-button:hover {
-        background-color: $color-dark-yellow;
-        border-radius: $base-unit;
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
         box-shadow: none;
-        color: $color-neutral-black;
+        color: variables.$color-neutral-black;
         text-transform: none;
     }
 
     .header-icon {
-        margin-top: $base-unit;
+        margin-top: variables.$base-unit;
         cursor: pointer;
     }
 
     .toolbar-style {
-        margin-left: $base-unit * 6;
+        margin-left: variables.$base-unit * 6;
     }
 
     .align-right {
         text-align: right;
-        margin-top: $base-unit * 2;
+        margin-top: variables.$base-unit * 2;
     }
 
     .align-center {
         text-align: center;
-        margin-top: $base-unit * 2;
+        margin-top: variables.$base-unit * 2;
     }
 
     .logo-small {
-        margin-top: $base-unit * 2;
+        margin-top: variables.$base-unit * 2;
     }
 }

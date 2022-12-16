@@ -1,19 +1,17 @@
-$color-neutral-black: #1F2223;
-$base-unit: 8px;
-$font-size-footer: 10px;
+@use "./../variables.scss";
 
 .app-footer {
     width: 100%;
-    height: $base-unit * 3;
+    height: variables.$base-unit * 3;
     bottom: 0;
     position: fixed;
     text-align: center;
 
     .footer-text {
-        color: $color-neutral-black;
+        color: variables.$color-neutral-black;
         font-family: 'Montserrat';
-        font-size: $font-size-footer;
-        margin-right: $base-unit * 3;
+        font-size: variables.$font-size-smaller;
+        margin-right: variables.$base-unit * 3;
         display: inline-flex;
     }
 }
