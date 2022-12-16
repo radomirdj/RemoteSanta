@@ -4,6 +4,9 @@ $login-forgot-password-font-size: 12px;
 $color-neutral-black: #1F2223;
 $color-dark-yellow: #FDC886;
 $login-no-account-font-size: 14px;
+$login-error-color: #B3411C;
+$error-icon-width: 18px;
+$error-icon-height: 18px;
 
 .login {
     background-image: url("./../../assets/login-image.svg");
@@ -25,8 +28,18 @@ $login-no-account-font-size: 14px;
         font-family: "Montserrat";
         font-size: $login-title-font-size;
         margin-bottom: $base-unit * 4;
-        float: left;
+        text-align: start;
         color: $color-neutral-black;
+        width: 100%;
+    }
+
+    .login-title-with-error {
+        font-family: "Montserrat";
+        font-size: $login-title-font-size;
+        margin-bottom: $base-unit * 2;
+        text-align: start;
+        color: $color-neutral-black;
+        width: 100%;
     }
 
     .email-input {
@@ -41,6 +54,16 @@ $login-no-account-font-size: 14px;
 
         .MuiOutlinedInput-root {
             border-radius: $base-unit;
+        }
+
+        .MuiOutlinedInput-root.Mui-error {
+            .MuiOutlinedInput-notchedOutline {
+                border-color: $login-error-color;
+            }
+        }
+
+        .MuiFormLabel-root.Mui-error {
+            color: $login-error-color;
         }
     }
 
@@ -74,6 +97,26 @@ $login-no-account-font-size: 14px;
         cursor: pointer;
         color: $color-neutral-black;
         width: 100%;
+    }
+
+    .login-error {
+        color: $login-error-color;
+        text-align: start;
+        margin-bottom: $base-unit * 3;
+        display: inline-flex;
+        width: 100%;
+        float: left;
+
+        .login-error-icon {
+            width: $error-icon-width;
+            height: $error-icon-height;
+            width: 10%;
+        }
+
+        .login-error-message {
+            width: 90%;
+            font-size: $login-forgot-password-font-size;
+        }
     }
 
 }

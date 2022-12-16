@@ -3,10 +3,14 @@ import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
 import Logo from './../../assets/logo.svg';
 import LogoSmall from './../../assets/logo-small.svg';
 import LanguageIcon from './../../assets/icons/language-icon.svg';
+import { useNavigate } from "react-router-dom";
 
 const AppHeaderPublic = () => {
+    const navigate = useNavigate();
 
-
+    const signUpRedirect = () => {
+        navigate("/signup");
+    }
 
     return (
         <AppBar className="app-header-public">
@@ -23,7 +27,7 @@ const AppHeaderPublic = () => {
                     </Grid>
                     <Grid item xs={3} sm={2} md={1} className="align-right" >
                         {/*LABELS*/}
-                        <Typography className="header-item" >Sign up</Typography>
+                        <Typography className="header-item" onClick={signUpRedirect}>Sign up</Typography>
                     </Grid>
                     <Grid item xs={5} sm={4} md={2} className="align-center">
                         {/*LABELS*/}
