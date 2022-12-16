@@ -1,5 +1,79 @@
 $base-unit: 8px;
+$login-title-font-size: 36px;
+$login-forgot-password-font-size: 12px;
+$color-neutral-black: #1F2223;
+$color-dark-yellow: #FDC886;
+$login-no-account-font-size: 14px;
 
 .login {
     background-image: url("./../../assets/login-image.svg");
+
+    .grid-style {
+        justify-content: center;
+    }
+
+    .login-card {
+        padding-top: $base-unit * 7;
+        padding-bottom: $base-unit * 7;
+        padding-left: $base-unit * 8;
+        padding-right: $base-unit * 8;
+        border-radius: $base-unit * 4;
+        text-align: center;
+    }
+
+    .login-title {
+        font-family: "Montserrat";
+        font-size: $login-title-font-size;
+        margin-bottom: $base-unit * 4;
+        float: left;
+        color: $color-neutral-black;
+    }
+
+    .email-input {
+        margin-bottom: $base-unit * 3 !important;
+    }
+
+    .MuiFormControl-root {
+        margin: 0px;
+        width: 100%;
+        border-radius: $base-unit;
+        margin-bottom: $base-unit;
+
+        .MuiOutlinedInput-root {
+            border-radius: $base-unit;
+        }
+    }
+
+    .login-forgot-password {
+        font-family: "Montserrat";
+        text-align: end;
+        font-size: $login-forgot-password-font-size;
+        cursor: pointer;
+        color: $color-neutral-black;
+        margin-bottom: $base-unit * 4;
+        width: 100%;
+    }
+
+    .login-button,
+    & .login-button:hover {
+        background-color: $color-dark-yellow;
+        border-radius: $base-unit;
+        box-shadow: none;
+        color: $color-neutral-black;
+        text-transform: none;
+        width: 100%;
+        height: $base-unit * 6;
+        font-weight: bold;
+        margin-bottom: $base-unit * 4;
+    }
+
+    .login-no-account {
+        font-family: "Montserrat";
+        text-align: center;
+        font-size: $login-no-account-font-size;
+        cursor: pointer;
+        color: $color-neutral-black;
+        width: 100%;
+    }
+
 }

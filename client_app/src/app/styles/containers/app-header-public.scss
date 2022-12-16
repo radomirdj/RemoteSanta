@@ -16,6 +16,7 @@ $color-dark-yellow: #FDC886;
         font-family: "Montserrat";
         color: $color-neutral-black;
         margin-top: $base-unit;
+        cursor: pointer;
     }
 
     .header-button,
@@ -29,6 +30,7 @@ $color-dark-yellow: #FDC886;
 
     .header-icon {
         margin-top: $base-unit;
+        cursor: pointer;
     }
 
     .toolbar-style {
