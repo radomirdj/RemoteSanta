@@ -7,5 +7,6 @@ import { GiftCardIntegrationsService } from './gift_card_integrations.service';
   imports: [PrismaModule],
   controllers: [GiftCardIntegrationsController],
   providers: [GiftCardIntegrationsService],
+  exports: [GiftCardIntegrationsService],
 })
 export class GiftCardIntegrationsModule {}

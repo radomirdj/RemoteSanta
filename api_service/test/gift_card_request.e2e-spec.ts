@@ -8,11 +8,17 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
+import { AmountFailsCounstraintException } from '../src/errors//amountFailsCounstraintException';
+
+import { GiftCardRequestStatusEnum } from '@prisma/client';
+
 import {
   user1,
   user2,
+  user3,
   giftCardRequest1,
   giftCardRequest2,
+  giftCardIntegration1,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -24,6 +30,20 @@ export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
   );
   expect(responseBody.amount).toEqual(expectedValue.amount);
   expect(responseBody.status).toEqual(expectedValue.status);
+};
+
+export const expectGiftCardRequestInDB = async (id, expectedValue, prisma) => {
+  const giftCardRequest = await prisma.giftCardRequest.findUnique({
+    where: { id },
+  });
+
+  expect(giftCardRequest).toBeTruthy();
+  expect(giftCardRequest.userId).toEqual(expectedValue.userId);
+  expect(giftCardRequest.giftCardIntegrationId).toEqual(
+    expectedValue.giftCardIntegrationId,
+  );
+  expect(giftCardRequest.amount).toEqual(expectedValue.amount);
+  expect(giftCardRequest.status).toEqual(expectedValue.status);
 };
 
 describe('/gift-card-requests', () => {
@@ -104,7 +124,7 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user2.email, sub: user2.cognitoSub }),
+            createToken({ email: user3.email, sub: user3.cognitoSub }),
         )
         .expect(200);
 
@@ -114,6 +134,83 @@ describe('/gift-card-requests', () => {
     it('/ (GET) - try to get gift card requests without token', async () => {
       await request(app.getHttpServer())
         .get('/gift-card-requests/')
+        .expect(401);
+    });
+  });
+
+  describe('/ (POST)', () => {
+    const newGiftCardRequest = {
+      giftCardIntegrationId: giftCardIntegration1.id,
+      amount: 700,
+      //   status shouls be ignored
+      status: GiftCardRequestStatusEnum.COMPLETED,
+    };
+
+    it('/ (POST) - create gift card request', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(newGiftCardRequest)
+        .expect(201);
+
+      const id = response.body.id;
+
+      expectGiftCardRequestRsp(response.body, {
+        ...newGiftCardRequest,
+        userId: user2.id,
+        status: GiftCardRequestStatusEnum.PENDING,
+      });
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...newGiftCardRequest,
+          status: GiftCardRequestStatusEnum.PENDING,
+          userId: user2.id,
+        },
+        prisma,
+      );
+
+      await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
+    it('/ (POST) - try to create gift card request with wrong amount', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send({ ...newGiftCardRequest, amount: 400 })
+        .expect(400);
+
+      expect(response.body.message).toEqual(
+        AmountFailsCounstraintException.defaultMessage,
+      );
+    });
+
+    it('/ (POST) - try to create gift card request with wrong giftCardIntegrationId', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send({ ...newGiftCardRequest, giftCardIntegrationId: user1.id })
+        .expect(404);
+
+      expect(response.body.message).toEqual('GiftCardIntegration Not Found');
+    });
+
+    it('/ (POST) - try to create gift card request with non authorised user', async () => {
+      await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .send(newGiftCardRequest)
         .expect(401);
     });
   });

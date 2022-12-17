@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { GiftCardIntegrationsService } from '../gift_card_integrations/gift_card_integrations.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
 import {
   User,
@@ -9,9 +10,16 @@ import {
 
 @Injectable()
 export class GiftCardRequestService {
-  constructor(private prisma: PrismaService) {}
-  create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
+  constructor(
+    private prisma: PrismaService,
+    private giftCardIntegrationsService: GiftCardIntegrationsService,
+  ) {}
+  async create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
+    await this.giftCardIntegrationsService.validateIntegrationRequest(
+      giftCardIntegrationId,
+      data.amount,
+    );
     return this.prisma.giftCardRequest.create({
       data: {
         ...data,
