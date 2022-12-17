@@ -6,6 +6,9 @@ import { IntegrationConsraintTypeEnum } from '@prisma/client';
 import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
+import { GiftCardIntegrationsModule } from '../src/gift_card_integrations/gift_card_integrations.module';
+import { GiftCardIntegrationsService } from '../src/gift_card_integrations/gift_card_integrations.service';
+import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { giftCardIntegration1, user1 } from './utils/preseededData';
@@ -24,16 +27,25 @@ export const expectGiftCardIntegrationRsp = (responseBody, expectedValue) => {
 
 describe('/gift-card-integrations', () => {
   let app: INestApplication;
+  let giftCardIntegrationsService: GiftCardIntegrationsService;
+  let prisma: PrismaService;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, PrismaModule, UsersModule],
+      imports: [
+        AppModule,
+        PrismaModule,
+        UsersModule,
+        GiftCardIntegrationsModule,
+      ],
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
+    giftCardIntegrationsService = app.get(GiftCardIntegrationsService);
+    prisma = app.get(PrismaService);
     await app.init();
   });
 
@@ -84,6 +96,25 @@ describe('/gift-card-integrations', () => {
         giftCardIntegrationRsp1,
         giftCardIntegration1,
       );
+    });
+  });
+
+  describe('GiftCardIntegrationsService - CHECK SEED', () => {
+    it.only('All Preseeded GiftCardIntegrations should accept 1000 points', async () => {
+      const integrationList = await prisma.giftCardIntegration.findMany({});
+      const promiseList = integrationList.map(async (integration) => {
+        try {
+          await giftCardIntegrationsService.validateIntegrationRequest(
+            integration.id,
+            1000,
+          );
+        } catch (err) {
+          expect(integration.id).toEqual(
+            'Integration should accept 1000 points, check seed.',
+          );
+        }
+      });
+      await Promise.all(promiseList);
     });
   });
 });
