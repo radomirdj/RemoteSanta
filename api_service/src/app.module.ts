@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { GiftDatesModule } from './gift_dates/gift_dates.module';
 import { GiftCardIntegrationsModule } from './gift_card_integrations/gift_card_integrations.module';
+import { GiftCardRequestModule } from './gift_card_request/gift_card_request.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { GiftCardIntegrationsModule } from './gift_card_integrations/gift_card_i
     PrismaModule,
     GiftDatesModule,
     GiftCardIntegrationsModule,
+    GiftCardRequestModule,
   ],
   controllers: [AppController],
   providers: [

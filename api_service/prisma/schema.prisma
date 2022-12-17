@@ -8,6 +8,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 enum GenderEnum {
   MALE
   FEMALE
@@ -15,17 +16,18 @@ enum GenderEnum {
 }
 
 model User {
-  id         String     @default(uuid()) @id
-  cognitoSub String?
-  email      String     @unique
-  firstName  String
-  lastName   String
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  Report     Report[]
-  GiftDate   GiftDate[]
-  birthDate DateTime    @db.Date
-  gender    GenderEnum
+  id              String            @id @default(uuid())
+  cognitoSub      String?
+  email           String            @unique
+  firstName       String
+  lastName        String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  Report          Report[]
+  GiftDate        GiftDate[]
+  birthDate       DateTime          @db.Date
+  gender          GenderEnum
+  GiftCardRequest GiftCardRequest[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -44,7 +46,7 @@ enum GiftDateRecurrenceTypeEnum {
 }
 
 model GiftDate {
-  id                 String                     @default(uuid()) @id
+  id                 String                     @id @default(uuid())
   user               User                       @relation(fields: [userId], references: [id])
   userId             String
   createdAt          DateTime                   @default(now())
@@ -58,7 +60,7 @@ model GiftDate {
 
 // monthlyAmount Decimal @db.Money
 model Org {
-  id   String @default(uuid()) @id
+  id   String @id @default(uuid())
   name String
 }
 
@@ -69,18 +71,37 @@ enum IntegrationConsraintTypeEnum {
 
 // constraint  Json
 model GiftCardIntegration {
-  id             String                       @default(uuid()) @id
-  website        String
-  image          String
-  title          String
-  description    String
-  constraintType IntegrationConsraintTypeEnum
-  priority       Int                          @default(1000000)
-  constraintJson Json
+  id              String                       @id @default(uuid())
+  website         String
+  image           String
+  title           String
+  description     String
+  constraintType  IntegrationConsraintTypeEnum
+  priority        Int                          @default(1000000)
+  constraintJson  Json
+  GiftCardRequest GiftCardRequest[]
+}
+
+enum GiftCardRequestStatusEnum {
+  PENDING
+  COMPLETED
+  DECLINED
+}
+
+model GiftCardRequest {
+  id                    String                    @id @default(uuid())
+  user                  User                      @relation(fields: [userId], references: [id])
+  userId                String
+  giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
+  giftCardIntegrationId String
+  amount                Int
+  status                GiftCardRequestStatusEnum
+  createdAt             DateTime                  @default(now())
+  updatedAt             DateTime                  @updatedAt
 }
 
 model Report {
-  id       String  @default(uuid()) @id
+  id       String  @id @default(uuid())
   user     User?   @relation(fields: [userId], references: [id])
   userId   String?
   price    Int

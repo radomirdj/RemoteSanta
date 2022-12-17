@@ -109,3 +109,23 @@ export const giftCardIntegration1 = {
   constraintType: 'MIN_MAX',
   constraintJson: { MIN: 500, MAX: 100000 },
 };
+
+export const giftCardRequestList = [
+  {
+    id: '9794fc09-68ee-4f3d-ac3f-b5ea759021ca',
+    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    giftCardIntegrationId: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
+    amount: 1000,
+    status: 'PENDING',
+  },
+  {
+    id: '17dd40fa-dff8-4b53-bdf1-a83ba1475e44',
+    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    giftCardIntegrationId: '3ada6b27-f579-4297-9042-2d46b89b594e',
+    amount: 2000,
+    status: 'PENDING',
+  },
+];
+
+export const giftCardRequest1 = giftCardRequestList[0];
+export const giftCardRequest2 = giftCardRequestList[1];

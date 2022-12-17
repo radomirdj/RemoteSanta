@@ -23,6 +23,17 @@ async function main() {
     ]),
   );
   await seedTable(prisma, 'GiftCardIntegration');
+  await seedTable(
+    prisma,
+    'GiftCardRequest',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+      {
+        foreignKeyName: 'giftCardIntegrationId',
+        foreignRecordName: 'giftCardIntegration',
+      },
+    ]),
+  );
 }
 
 // execute the main function
