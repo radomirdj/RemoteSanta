@@ -10,6 +10,11 @@ import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cog
 import { createToken } from './utils/tokenService';
 import { AmountFailsCounstraintException } from '../src/errors//amountFailsCounstraintException';
 
+import {
+  expectGiftCardRequestInDB,
+  expectGiftCardRequestRsp,
+} from './utils/giftCardRequestChecks';
+
 import { GiftCardRequestStatusEnum } from '@prisma/client';
 
 import {
@@ -22,29 +27,6 @@ import {
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
-
-export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
-  expect(responseBody.userId).toEqual(expectedValue.userId);
-  expect(responseBody.giftCardIntegrationId).toEqual(
-    expectedValue.giftCardIntegrationId,
-  );
-  expect(responseBody.amount).toEqual(expectedValue.amount);
-  expect(responseBody.status).toEqual(expectedValue.status);
-};
-
-export const expectGiftCardRequestInDB = async (id, expectedValue, prisma) => {
-  const giftCardRequest = await prisma.giftCardRequest.findUnique({
-    where: { id },
-  });
-
-  expect(giftCardRequest).toBeTruthy();
-  expect(giftCardRequest.userId).toEqual(expectedValue.userId);
-  expect(giftCardRequest.giftCardIntegrationId).toEqual(
-    expectedValue.giftCardIntegrationId,
-  );
-  expect(giftCardRequest.amount).toEqual(expectedValue.amount);
-  expect(giftCardRequest.status).toEqual(expectedValue.status);
-};
 
 describe('/gift-card-requests', () => {
   let app: INestApplication;

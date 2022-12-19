@@ -1,5 +1,5 @@
 import { Expose } from 'class-transformer';
-import { GenderEnum } from '@prisma/client';
+import { GenderEnum, UserRoleEnum } from '@prisma/client';
 
 export class UserDto {
   @Expose()
@@ -22,4 +22,7 @@ export class UserDto {
 
   @Expose()
   gender: GenderEnum;
+
+  @Expose()
+  userRole: UserRoleEnum;
 }

@@ -11,6 +11,7 @@ import { ReportsModule } from './reports/reports.module';
 import { GiftDatesModule } from './gift_dates/gift_dates.module';
 import { GiftCardIntegrationsModule } from './gift_card_integrations/gift_card_integrations.module';
 import { GiftCardRequestModule } from './gift_card_request/gift_card_request.module';
+import { AdminGiftCardRequestsModule } from './admin_gift_card_requests/admin_gift_card_requests.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { GiftCardRequestModule } from './gift_card_request/gift_card_request.mod
     GiftDatesModule,
     GiftCardIntegrationsModule,
     GiftCardRequestModule,
+    AdminGiftCardRequestsModule,
   ],
   controllers: [AppController],
   providers: [

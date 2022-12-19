@@ -15,6 +15,11 @@ enum GenderEnum {
   OTHER
 }
 
+enum UserRoleEnum {
+  BASIC_USER
+  ADMIN
+}
+
 model User {
   id              String            @id @default(uuid())
   cognitoSub      String?
@@ -27,7 +32,9 @@ model User {
   GiftDate        GiftDate[]
   birthDate       DateTime          @db.Date
   gender          GenderEnum
+  userRole        UserRoleEnum      @default(BASIC_USER)
   GiftCardRequest GiftCardRequest[]
+  GiftCard        GiftCard[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -98,6 +105,25 @@ model GiftCardRequest {
   status                GiftCardRequestStatusEnum
   createdAt             DateTime                  @default(now())
   updatedAt             DateTime                  @updatedAt
+  GiftCard              GiftCard[]
+}
+
+model GiftCard {
+  id                String          @id @default(uuid())
+  // owner                 User                      @relation(fields: [ownerId], references: [id])
+  // ownerId               String
+  createdBy         User            @relation(fields: [createdById], references: [id])
+  createdById       String
+  // giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
+  // giftCardIntegrationId String
+  giftCardRequest   GiftCardRequest @relation(fields: [giftCardRequestId], references: [id])
+  giftCardRequestId String
+  description       String
+  url               String
+  // amount                Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Report {

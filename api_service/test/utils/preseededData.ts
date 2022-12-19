@@ -37,6 +37,7 @@ export const users = [
     firstName: 'Arya',
     lastName: 'Stark',
     gender: 'FEMALE',
+    role: 'ADMIN',
     birthDate: new Date('1997-04-22T00:00:00.000Z'),
   },
 ];
@@ -44,6 +45,7 @@ export const users = [
 export const user1 = users[0];
 export const user2 = users[1];
 export const user3 = users[2];
+export const admin = users[3];
 
 export const giftDates = [
   {

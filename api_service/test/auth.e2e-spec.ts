@@ -12,6 +12,7 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { user1 } from './utils/preseededData';
+import { UserRoleEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -20,6 +21,7 @@ export const expectUserRsp = (responseBody, expectedValue) => {
   expect(responseBody.firstName).toEqual(expectedValue.firstName);
   expect(responseBody.lastName).toEqual(expectedValue.lastName);
   expect(responseBody.gender).toEqual(expectedValue.gender);
+  expect(responseBody.userRole).toEqual(expectedValue.userRole);
   expect(responseBody.birthDate).toEqual(expectedValue.birthDate.toISOString());
 };
 
@@ -36,6 +38,7 @@ export const expectUserInDB = async (expectedValue, prisma) => {
   expect(user.lastName).toEqual(expectedValue.lastName);
   expect(user.cognitoSub).toEqual(`sub_${expectedValue.email}`);
   expect(user.gender).toEqual(expectedValue.gender);
+  expect(user.userRole).toEqual(expectedValue.userRole);
   expect(user.birthDate).toEqual(expectedValue.birthDate);
 };
 
@@ -72,8 +75,14 @@ describe('Authentication system', () => {
         .send(newUser)
         .expect(201);
 
-      expectUserRsp(response.body, newUser);
-      await expectUserInDB(newUser, prisma);
+      expectUserRsp(response.body, {
+        ...newUser,
+        userRole: UserRoleEnum.BASIC_USER,
+      });
+      await expectUserInDB(
+        { ...newUser, userRole: UserRoleEnum.BASIC_USER },
+        prisma,
+      );
 
       await prisma.user.delete({ where: { email: newUser.email } });
     });
@@ -94,7 +103,10 @@ describe('Authentication system', () => {
         .post('/users/login')
         .send({ email: user1.email, password: user1.password })
         .expect(201);
-      expectUserRsp(response.body, user1);
+      expectUserRsp(response.body, {
+        ...user1,
+        userRole: UserRoleEnum.BASIC_USER,
+      });
     });
     it('/login (POST) - wrong password', async () => {
       await request(app.getHttpServer())
@@ -115,7 +127,10 @@ describe('Authentication system', () => {
         )
         .expect(200);
 
-      expectUserRsp(response.body, user1);
+      expectUserRsp(response.body, {
+        ...user1,
+        userRole: UserRoleEnum.BASIC_USER,
+      });
     });
   });
 });
