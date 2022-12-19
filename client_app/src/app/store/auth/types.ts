@@ -33,6 +33,8 @@ export interface SignUpRequestPayload {
   lastName: string;
   email: string;
   password: string;
+  birthDate: Date;
+  gender: string;
 }
 
 export interface LoginFailurePayload {

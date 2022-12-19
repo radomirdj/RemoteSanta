@@ -11,6 +11,7 @@ import ChangePassword from "./app/components/changePassword/ChangePassword";
 import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
 import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
 import PublicRoute from "./app/components/publicRoute/PublicRoute";
+import VerifyEmail from "./app/components/verify-email/VerifyEmail";
 
 const App = () => {
   return (
@@ -45,6 +46,14 @@ const App = () => {
           element={
             <PublicRoute>
               <ChangePassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="verify-email"
+          element={
+            <PublicRoute>
+              <VerifyEmail />
             </PublicRoute>
           }
         />

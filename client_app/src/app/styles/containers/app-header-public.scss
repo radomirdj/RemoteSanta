@@ -1,7 +1,7 @@
 @use "./../variables.scss";
 
 .app-header-public {
-    background-color: #f5f2ea !important;
+    background-color: variables.$main-yellow !important;
     box-shadow: none !important;
     margin-top: variables.$base-unit * 2;
 
