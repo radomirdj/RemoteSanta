@@ -73,7 +73,7 @@ const Login = () => {
                   </div>
                 )}
                 <TextField
-                  error={error || errors.email ? true : false}
+                  error={errors.email ? true : false}
                   id="outlined-basic"
                   label="Email"
                   variant="outlined"
@@ -101,7 +101,7 @@ const Login = () => {
                   {/*LABELS */}
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
                   <OutlinedInput
-                    error={error || errors.password ? true : false}
+                    error={errors.password ? true : false}
                     id="outlined-password"
                     type={showPassword ? "text" : "password"}
                     endAdornment={

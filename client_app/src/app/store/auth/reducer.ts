@@ -1,3 +1,4 @@
+import { PlaylistAddOutlined } from "@mui/icons-material";
 import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -22,7 +23,8 @@ import { AuthState, AuthActions } from "./types";
 const initialState: AuthState = {
   pending: false,
   authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "" },
-  error: null
+  error: null,
+  emailToResetPassword: null,
 };
 
 export default (state = initialState, action: AuthActions) => {
@@ -89,13 +91,14 @@ export default (state = initialState, action: AuthActions) => {
     case FORGOT_PASSWORD_REQUEST:
       return {
         ...state,
-        pending: true
+        pending: true,
+        emailToResetPassword: action.payload.email
       };
     case FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         pending: false,
-        error: null
+        error: null,
       };
     case FORGOT_PASSWORD_FAILURE:
       return {

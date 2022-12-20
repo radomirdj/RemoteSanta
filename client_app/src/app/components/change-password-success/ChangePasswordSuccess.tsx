@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
 
-const VerifyEmail = () => {
+const ChangePasswordSuccess = () => {
   const navigate = useNavigate();
 
   const loginRedirect = () => {
@@ -14,20 +14,14 @@ const VerifyEmail = () => {
   return (
     <>
       <AppHeaderPublic />
-      <div className="background verify-email">
+      <div className="background change-password-success">
         {/*LABELS */}
-        <div className="verify-email-content">
-          <Typography className="verify-email-small-text">
-            Thank you for registering!
-          </Typography>
-          <Typography className="verify-email-title">
-            Verify your email address
-          </Typography>
-          <Typography className="verify-email-small-text">
-            Check your email & click the link to activate your account
+        <div className="change-password-success-content">
+          <Typography className="change-password-success-title">
+            Your password is successfully changed
           </Typography>
           <Typography
-            className="verify-email-small-text-link"
+            className="change-password-success-link"
             onClick={loginRedirect}
           >
             <u>Back to Login</u>
@@ -39,4 +33,4 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+export default ChangePasswordSuccess;

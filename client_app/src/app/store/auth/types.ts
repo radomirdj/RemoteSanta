@@ -22,6 +22,7 @@ export interface AuthState {
   pending: boolean;
   authUser: AuthUser;
   error: string | null;
+  emailToResetPassword: string | null;
 }
 
 export interface SignUpFailurePayload {

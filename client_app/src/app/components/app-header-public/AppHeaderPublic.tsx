@@ -37,11 +37,15 @@ const AppHeaderPublic = () => {
           >
             <img src={LogoSmall} alt="" className="logo-small" />
           </Grid>
-          <Grid item xs={1} sm={2} md={1} className="align-right">
-            {window.location.pathname !== "/verify-email" && (
-              <img src={LanguageIcon} alt="" className="header-icon" />
+          {window.location.pathname !== "/forgot-password" &&
+            window.location.pathname !== "/change-password" && (
+              <Grid item xs={1} sm={2} md={1} className="align-right">
+                {window.location.pathname !== "/verify-email" &&
+                  window.location.pathname !== "/change-password-success" && (
+                    <img src={LanguageIcon} alt="" className="header-icon" />
+                  )}
+              </Grid>
             )}
-          </Grid>
           <Grid item xs={3} sm={2} md={1} className="align-right">
             {/*LABELS*/}
             {window.location.pathname === "/login" && (
@@ -56,17 +60,24 @@ const AppHeaderPublic = () => {
               </Typography>
             )}
           </Grid>
+          {(window.location.pathname === "/forgot-password" ||
+            window.location.pathname === "/change-password") && (
+            <Grid item xs={1} sm={2} md={1} className="align-right">
+              <img src={LanguageIcon} alt="" className="header-icon" />
+            </Grid>
+          )}
           <Grid item xs={5} sm={4} md={2} className="align-center">
             {/*LABELS*/}
-            {window.location.pathname !== "/verify-email" && (
-              <Button
-                variant="contained"
-                className="header-button"
-                disableRipple
-              >
-                Request Demo
-              </Button>
-            )}
+            {window.location.pathname !== "/verify-email" &&
+              window.location.pathname !== "/change-password-success" && (
+                <Button
+                  variant="contained"
+                  className="header-button"
+                  disableRipple
+                >
+                  Request Demo
+                </Button>
+              )}
           </Grid>
         </Grid>
       </Toolbar>

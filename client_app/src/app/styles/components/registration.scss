@@ -30,7 +30,6 @@ $registration-error-label-color: #666666;
         }
     }
 
-
     .registration-card {
         padding-top: variables.$base-unit * 3;
         padding-bottom: variables.$base-unit * 3;
@@ -38,7 +37,6 @@ $registration-error-label-color: #666666;
         padding-right: variables.$base-unit * 8;
         border-radius: variables.$base-unit * 4;
         text-align: center;
-        z-index: 1200;
     }
 
     .registration-title {

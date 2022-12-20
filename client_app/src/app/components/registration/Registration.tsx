@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import dayjs, { Dayjs } from "dayjs";
 import { signUpRequest } from "../../store/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/auth/selectors";
