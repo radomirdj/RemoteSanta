@@ -105,7 +105,7 @@ model GiftCardRequest {
   status                GiftCardRequestStatusEnum
   createdAt             DateTime                  @default(now())
   updatedAt             DateTime                  @updatedAt
-  GiftCard              GiftCard[]
+  GiftCard              GiftCard?
 }
 
 model GiftCard {
@@ -117,7 +117,7 @@ model GiftCard {
   // giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
   // giftCardIntegrationId String
   giftCardRequest   GiftCardRequest @relation(fields: [giftCardRequestId], references: [id])
-  giftCardRequestId String
+  giftCardRequestId String          @unique
   description       String
   url               String
   // amount                Int

@@ -5,10 +5,44 @@ import {
   GiftCardRequest,
   GiftCardRequestStatusEnum,
 } from '@prisma/client';
+import { FulfillGiftCardRequestDto } from './dtos/fulfill_giift_card_request.dto';
 
 @Injectable()
 export class AdminGiftCardRequestsService {
   constructor(private prisma: PrismaService) {}
+
+  async fulfillRequest(
+    id: string,
+    data: FulfillGiftCardRequestDto,
+    admin: User,
+  ): Promise<GiftCardRequest> {
+    const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
+      where: { id },
+    });
+    if (!giftCardRequest)
+      throw new NotFoundException('GiftCardRequest Not Found');
+
+    await this.prisma.giftCard.create({
+      data: {
+        ...data,
+        giftCardRequest: {
+          connect: {
+            id,
+          },
+        },
+        createdBy: {
+          connect: {
+            id: admin.id,
+          },
+        },
+      },
+    });
+
+    return this.prisma.giftCardRequest.update({
+      where: { id },
+      data: { status: GiftCardRequestStatusEnum.COMPLETED },
+    });
+  }
 
   async getOne(id: string): Promise<GiftCardRequest> {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
