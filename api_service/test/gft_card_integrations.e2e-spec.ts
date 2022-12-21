@@ -100,7 +100,7 @@ describe('/gift-card-integrations', () => {
   });
 
   describe('GiftCardIntegrationsService - CHECK SEED', () => {
-    it.only('All Preseeded GiftCardIntegrations should accept 1000 points', async () => {
+    it('All Preseeded GiftCardIntegrations should accept 1000 points', async () => {
       const integrationList = await prisma.giftCardIntegration.findMany({});
       const promiseList = integrationList.map(async (integration) => {
         try {

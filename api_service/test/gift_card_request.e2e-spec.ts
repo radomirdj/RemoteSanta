@@ -90,7 +90,7 @@ describe('/gift-card-requests', () => {
             createToken({ email: user1.email, sub: user1.cognitoSub }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(2);
+      expect(response.body.length).toEqual(3);
       const giftDateRsp1 = response.body[0];
       const giftDateRsp2 = response.body[1];
 
