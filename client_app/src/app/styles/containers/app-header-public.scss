@@ -1,0 +1,51 @@
+@use "./../variables.scss";
+
+.app-header-public {
+    background-color: variables.$main-yellow !important;
+    box-shadow: none !important;
+    margin-top: variables.$base-unit * 2;
+
+    .grid-style {
+        display: inline-flex;
+        justify-content: space-between;
+    }
+
+    .header-item {
+        font-family: "Montserrat";
+        color: variables.$color-neutral-black;
+        margin-top: variables.$base-unit;
+        cursor: pointer;
+    }
+
+    .header-button,
+    & .header-button:hover {
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+    }
+
+    .header-icon {
+        margin-top: variables.$base-unit;
+        cursor: pointer;
+    }
+
+    .toolbar-style {
+        margin-left: variables.$base-unit * 6;
+    }
+
+    .align-right {
+        text-align: right;
+        margin-top: variables.$base-unit * 2;
+    }
+
+    .align-center {
+        text-align: center;
+        margin-top: variables.$base-unit * 2;
+    }
+
+    .logo-small {
+        margin-top: variables.$base-unit * 2;
+    }
+}

@@ -1,0 +1,32 @@
+@use "./../variables.scss";
+
+.verify-email {
+    background-image: url("./../../assets/verify-email-image.svg");
+
+    .verify-email-content{
+        padding-bottom: variables.$base-unit * 36;
+  
+
+        .verify-email-small-text{
+            font-family: "Montserrat";
+            text-align: center;
+            margin-bottom: variables.$base-unit * 4;
+        }
+
+        .verify-email-small-text-link{
+            font-family: "Montserrat";
+            margin-bottom: variables.$base-unit * 4;
+            cursor: pointer;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .verify-email-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            margin-bottom: variables.$base-unit * 4;
+            text-align: center;
+        }
+    }
+}

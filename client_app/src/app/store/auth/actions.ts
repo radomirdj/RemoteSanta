@@ -47,9 +47,9 @@ import {
   ChangePasswordFailure
 } from "./types";
 
-export const signUpRequest = (payload: SignUpRequestPayload): SignUpRequest => ({
+export const signUpRequest = (payload: SignUpRequestPayload, navigate:Function): SignUpRequest => ({
   type: SIGN_UP_REQUEST,
-  payload
+  payload, navigate
 });
 
 export const signUpSuccess = (
@@ -101,9 +101,9 @@ export const logout = (): Logout => ({
   type: LOGOUT,
 });
 
-export const forgotPasswordRequest = (payload: ForgotPasswordRequestPayload): ForgotPasswordRequest => ({
+export const forgotPasswordRequest = (payload: ForgotPasswordRequestPayload, navigate:Function): ForgotPasswordRequest => ({
   type: FORGOT_PASSWORD_REQUEST,
-  payload
+  payload, navigate
 });
 
 export const forgotPasswordSuccess = (): ForgotPasswordSuccess => ({
@@ -117,9 +117,9 @@ export const forgotPasswordFailure = (
   payload
 });
 
-export const changePasswordRequest = (payload: ChangePasswordRequestPayload): ChangePasswordRequest => ({
+export const changePasswordRequest = (payload: ChangePasswordRequestPayload, navigate:Function): ChangePasswordRequest => ({
   type: CHANGE_PASSWORD_REQUEST,
-  payload
+  payload, navigate
 });
 
 export const changePasswordSuccess = (): ChangePasswordSuccess => ({

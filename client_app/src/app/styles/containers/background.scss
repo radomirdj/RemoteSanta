@@ -1,6 +1,5 @@
 $height-full: 100vh;
 $min-height-full: 100%;
-$margin-no-margin: 0px;
 
 html {
     min-height: $min-height-full;
@@ -8,7 +7,7 @@ html {
 
 body {
     min-height: $min-height-full;
-    margin: $margin-no-margin;
+    margin: 0px;
 }
 
 .background {

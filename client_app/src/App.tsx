@@ -11,6 +11,8 @@ import ChangePassword from "./app/components/changePassword/ChangePassword";
 import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
 import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
 import PublicRoute from "./app/components/publicRoute/PublicRoute";
+import VerifyEmail from "./app/components/verify-email/VerifyEmail";
+import ChangePasswordSuccess from "./app/components/change-password-success/ChangePasswordSuccess";
 
 const App = () => {
   return (
@@ -41,10 +43,26 @@ const App = () => {
           }
         />
         <Route
+          path="change-password-success"
+          element={
+            <PublicRoute>
+              <ChangePasswordSuccess />
+            </PublicRoute>
+          }
+        />
+        <Route
           path="change-password"
           element={
             <PublicRoute>
               <ChangePassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="verify-email"
+          element={
+            <PublicRoute>
+              <VerifyEmail />
             </PublicRoute>
           }
         />
