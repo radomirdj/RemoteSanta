@@ -127,7 +127,15 @@ export const giftCardRequestList = [
     amount: 2000,
     status: 'PENDING',
   },
+  {
+    id: '4098665d-b252-43d7-b40e-3d8444ab4567',
+    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    giftCardIntegrationId: 'df7d81e9-d70f-4d0c-8f99-6db378c6f89c',
+    amount: 3000,
+    status: 'COMPLETED',
+  },
 ];
 
 export const giftCardRequest1 = giftCardRequestList[0];
 export const giftCardRequest2 = giftCardRequestList[1];
+export const giftCardRequestFulfilled = giftCardRequestList[2];

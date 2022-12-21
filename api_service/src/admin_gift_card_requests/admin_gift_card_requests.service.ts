@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  MethodNotAllowedException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import {
   User,
@@ -21,6 +25,12 @@ export class AdminGiftCardRequestsService {
     });
     if (!giftCardRequest)
       throw new NotFoundException('GiftCardRequest Not Found');
+
+    if (giftCardRequest.status !== GiftCardRequestStatusEnum.PENDING) {
+      throw new MethodNotAllowedException(
+        'GiftCardRequest is not in PENDING state.',
+      );
+    }
 
     await this.prisma.giftCard.create({
       data: {

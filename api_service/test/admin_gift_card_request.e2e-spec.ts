@@ -21,6 +21,7 @@ import {
   admin,
   giftCardRequest1,
   giftCardRequest2,
+  giftCardRequestFulfilled,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -164,6 +165,20 @@ describe('admin/gift-card-requests', () => {
       await prisma.giftCard.deleteMany({
         where: { giftCardRequestId: id },
       });
+    });
+
+    it('/:id/fulfill (POST) -  (ADMIN) try to fulfill gift card request which is already fulfilled', async () => {
+      await request(app.getHttpServer())
+        .post(
+          `/admin/gift-card-requests/${giftCardRequestFulfilled.id}/fulfill`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(newGiftCard)
+        .expect(405);
     });
 
     it('/:id/fulfill (POST) -  (NOT ADMIN) try to fulfill gift card request', async () => {

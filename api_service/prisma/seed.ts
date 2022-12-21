@@ -34,6 +34,17 @@ async function main() {
       },
     ]),
   );
+  await seedTable(
+    prisma,
+    'GiftCard',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
+      {
+        foreignKeyName: 'giftCardRequestId',
+        foreignRecordName: 'giftCardRequest',
+      },
+    ]),
+  );
 }
 
 // execute the main function
