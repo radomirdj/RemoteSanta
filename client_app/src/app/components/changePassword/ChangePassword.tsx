@@ -41,16 +41,14 @@ const ChangePassword = () => {
   } = useForm();
 
   const resetPassword = (data: any) => {
-    if (!error) {
-      dispatch(
-        changePasswordRequest({
-          email: emailToResetPassword || "",
-          confirmationCode: data.confirmationCode,
-          newPassword: data.newPassword,
-        })
-      );
-      navigate("/change-password-success");
-    }
+    dispatch(
+      changePasswordRequest({
+        email: emailToResetPassword || "",
+        confirmationCode: data.confirmationCode,
+        newPassword: data.newPassword,
+      })
+    );
+    navigate("/change-password-success");
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);

@@ -48,7 +48,6 @@ const Registration = () => {
   };
 
   const onSubmit = (data: any) => {
-    console.log(data);
     const birthDate = new Date(
       Date.UTC(data.birthDate.$y, data.birthDate.$M, data.birthDate.$D, 0, 0, 0)
     );

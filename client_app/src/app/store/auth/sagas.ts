@@ -1,6 +1,5 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
+import axios from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { AuthUser } from "../../entitites/AuthUser";
 
 import { changePasswordFailure, changePasswordSuccess, forgotPasswordFailure, forgotPasswordSuccess, getSelfFailure, getSelfSuccess, loginFailure, loginSuccess, logout, signUpFailure, signUpSuccess } from "./actions";
 import { CHANGE_PASSWORD_REQUEST, FORGOT_PASSWORD_REQUEST, GET_SELF_REQUEST, LOGIN_REQUEST, LOGOUT, SIGN_UP_REQUEST } from "./actionTypes";
