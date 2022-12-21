@@ -42,13 +42,15 @@ const ChangePassword = () => {
 
   const resetPassword = (data: any) => {
     dispatch(
-      changePasswordRequest({
-        email: emailToResetPassword || "",
-        confirmationCode: data.confirmationCode,
-        newPassword: data.newPassword,
-      })
+      changePasswordRequest(
+        {
+          email: emailToResetPassword || "",
+          confirmationCode: data.confirmationCode,
+          newPassword: data.newPassword,
+        },
+        navigate
+      )
     );
-    navigate("/change-password-success");
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -60,7 +62,9 @@ const ChangePassword = () => {
   };
 
   const getConfirmationCode = (data: any) => {
-    dispatch(forgotPasswordRequest({ email: emailToResetPassword || "" }));
+    dispatch(
+      forgotPasswordRequest({ email: emailToResetPassword || "" }, navigate)
+    );
   };
 
   return (

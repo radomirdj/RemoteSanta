@@ -36,6 +36,7 @@ function* signUpSaga(action: SignUpRequest) {
     yield put(
       signUpSuccess()
     );
+    action.navigate("/verify-email");
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(
@@ -99,6 +100,7 @@ function* forgotPasswordSaga(action: ForgotPasswordRequest) {
     yield put(
       forgotPasswordSuccess()
     );
+    action.navigate("/change-password");
   } catch (e) {
     console.log("function*forgotPasswordSaga -> e", e);
     yield put(
@@ -115,6 +117,7 @@ function* changePasswordSaga(action: ChangePasswordRequest) {
     yield put(
       changePasswordSuccess()
     );
+    action.navigate("/change-password-success")
   } catch (e) {
     console.log("function*changePasswordSaga -> e", e);
     yield put(

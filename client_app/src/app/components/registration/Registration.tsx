@@ -52,16 +52,18 @@ const Registration = () => {
       Date.UTC(data.birthDate.$y, data.birthDate.$M, data.birthDate.$D, 0, 0, 0)
     );
     dispatch(
-      signUpRequest({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        password: data.password,
-        birthDate,
-        gender: data.gender,
-      })
+      signUpRequest(
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+          birthDate,
+          gender: data.gender,
+        },
+        navigate
+      )
     );
-    navigate("/verify-email");
   };
 
   const loginRedirect = () => {

@@ -21,8 +21,7 @@ const ForgotPassword = () => {
   } = useForm();
 
   const getConfirmationCode = (data: any) => {
-    dispatch(forgotPasswordRequest({ email: data.email }));
-    navigate("/change-password");
+    dispatch(forgotPasswordRequest({ email: data.email }, navigate));
   };
 
   const loginRedirect = () => {

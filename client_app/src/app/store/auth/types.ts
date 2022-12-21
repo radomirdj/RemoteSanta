@@ -80,6 +80,7 @@ export interface ChangePasswordFailurePayload {
 export interface SignUpRequest {
   type: typeof SIGN_UP_REQUEST;
   payload: SignUpRequestPayload
+  navigate:Function
 }
 
 export type SignUpSuccess = {
@@ -127,6 +128,7 @@ export type Logout = {
 export interface ForgotPasswordRequest {
   type: typeof FORGOT_PASSWORD_REQUEST;
   payload: ForgotPasswordRequestPayload
+  navigate:Function
 }
 
 export type ForgotPasswordSuccess = {
@@ -141,6 +143,7 @@ export type ForgotPasswordFailure = {
 export interface ChangePasswordRequest {
   type: typeof CHANGE_PASSWORD_REQUEST;
   payload: ChangePasswordRequestPayload
+  navigate:Function
 }
 
 export type ChangePasswordSuccess = {
