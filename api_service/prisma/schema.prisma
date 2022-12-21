@@ -101,6 +101,7 @@ model GiftCardRequest {
   userId                String
   giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
   giftCardIntegrationId String
+  adminComment          String?
   amount                Int
   status                GiftCardRequestStatusEnum
   createdAt             DateTime                  @default(now())

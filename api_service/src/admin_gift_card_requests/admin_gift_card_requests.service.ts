@@ -10,6 +10,7 @@ import {
   GiftCardRequestStatusEnum,
 } from '@prisma/client';
 import { FulfillGiftCardRequestDto } from './dtos/fulfill_giift_card_request.dto';
+import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
 
 @Injectable()
 export class AdminGiftCardRequestsService {
@@ -51,6 +52,30 @@ export class AdminGiftCardRequestsService {
     return this.prisma.giftCardRequest.update({
       where: { id },
       data: { status: GiftCardRequestStatusEnum.COMPLETED },
+    });
+  }
+  async declineRequest(
+    id: string,
+    data: DeclineGiftCardRequestDto,
+  ): Promise<GiftCardRequest> {
+    const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
+      where: { id },
+    });
+    if (!giftCardRequest)
+      throw new NotFoundException('GiftCardRequest Not Found');
+
+    if (giftCardRequest.status !== GiftCardRequestStatusEnum.PENDING) {
+      throw new MethodNotAllowedException(
+        'GiftCardRequest is not in PENDING state.',
+      );
+    }
+
+    return this.prisma.giftCardRequest.update({
+      where: { id },
+      data: {
+        status: GiftCardRequestStatusEnum.DECLINED,
+        adminComment: data.adminComment,
+      },
     });
   }
 

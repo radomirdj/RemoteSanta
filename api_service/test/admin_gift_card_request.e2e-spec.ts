@@ -200,4 +200,57 @@ describe('admin/gift-card-requests', () => {
         .expect(401);
     });
   });
+
+  describe('/:id/decline (POST)', () => {
+    const declineRequest = {
+      adminComment: 'there are problems with card',
+    };
+    it('/:id/decline (POST) -  Admin decline gift card request', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/gift-card-requests/${giftCardRequest1.id}/decline`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(declineRequest)
+        .expect(201);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest1.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest1,
+        status: GiftCardRequestStatusEnum.DECLINED,
+      });
+
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...giftCardRequest1,
+          status: GiftCardRequestStatusEnum.DECLINED,
+        },
+        prisma,
+      );
+
+      await prisma.giftCardRequest.update({
+        where: { id },
+        data: { status: GiftCardRequestStatusEnum.PENDING },
+      });
+    });
+
+    it('/:id/decline (POST) -  (ADMIN) try to decline gift card request which is already fulfilled', async () => {
+      await request(app.getHttpServer())
+        .post(
+          `/admin/gift-card-requests/${giftCardRequestFulfilled.id}/decline`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(declineRequest)
+        .expect(405);
+    });
+  });
 });

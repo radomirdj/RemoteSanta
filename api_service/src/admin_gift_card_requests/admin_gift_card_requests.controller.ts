@@ -3,6 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { AdminGiftCardRequestsService } from './admin_gift_card_requests.service';
 import { AdminGuard } from '../guards/admin.guard';
 import { FulfillGiftCardRequestDto } from './dtos/fulfill_giift_card_request.dto';
+import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '@prisma/client';
 
@@ -20,6 +21,14 @@ export class AdminGiftCardRequestsController {
     @CurrentUser() user: User,
   ) {
     return this.adminGiftCardRequestsService.fulfillRequest(id, body, user);
+  }
+
+  @Post('/:id/decline')
+  declineGiftCardRequest(
+    @Param('id') id: string,
+    @Body() body: DeclineGiftCardRequestDto,
+  ) {
+    return this.adminGiftCardRequestsService.declineRequest(id, body);
   }
 
   @Get('/:id')
