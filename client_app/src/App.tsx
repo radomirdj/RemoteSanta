@@ -13,6 +13,7 @@ import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
 import PublicRoute from "./app/components/publicRoute/PublicRoute";
 import VerifyEmail from "./app/components/verify-email/VerifyEmail";
 import ChangePasswordSuccess from "./app/components/change-password-success/ChangePasswordSuccess";
+import ErrorPage from "./app/components/error-page/ErrorPage";
 
 const App = () => {
   return (
@@ -66,6 +67,7 @@ const App = () => {
             </PublicRoute>
           }
         />
+        <Route path="error-page" element={<ErrorPage />} />
         <Route
           path=""
           element={
@@ -74,7 +76,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/error-page" />} />
       </Routes>
     </BrowserRouter>
   );

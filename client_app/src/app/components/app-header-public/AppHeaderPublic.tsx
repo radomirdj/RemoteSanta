@@ -41,7 +41,8 @@ const AppHeaderPublic = () => {
             window.location.pathname !== "/change-password" && (
               <Grid item xs={1} sm={2} md={1} className="align-right">
                 {window.location.pathname !== "/verify-email" &&
-                  window.location.pathname !== "/change-password-success" && (
+                  window.location.pathname !== "/change-password-success" &&
+                  window.location.pathname !== "/error-page" && (
                     <img src={LanguageIcon} alt="" className="header-icon" />
                   )}
               </Grid>
@@ -69,7 +70,8 @@ const AppHeaderPublic = () => {
           <Grid item xs={5} sm={4} md={2} className="align-center">
             {/*LABELS*/}
             {window.location.pathname !== "/verify-email" &&
-              window.location.pathname !== "/change-password-success" && (
+              window.location.pathname !== "/change-password-success" &&
+              window.location.pathname !== "/error-page" && (
                 <Button
                   variant="contained"
                   className="header-button"
