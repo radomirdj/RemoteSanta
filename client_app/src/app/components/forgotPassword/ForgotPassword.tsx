@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = useForm();
 
   const getConfirmationCode = (data: any) => {
@@ -33,7 +33,7 @@ const ForgotPassword = () => {
       <AppHeaderPublic />
       <div className="background forgot-password">
         <Grid container className="grid-style">
-          <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+          <Grid item xs={10} sm={6} md={4}>
             <Card className="forgot-password-card">
               <form onSubmit={handleSubmit(getConfirmationCode)}>
                 {/*LABELS */}
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex(),
+                    pattern: getEmailRegex()
                   })}
                 />
                 {/*LABELS */}

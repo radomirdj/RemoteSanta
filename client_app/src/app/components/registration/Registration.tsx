@@ -14,7 +14,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  Typography,
+  Typography
 } from "@mui/material";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
@@ -35,11 +35,11 @@ const Registration = () => {
     register,
     formState: { errors },
     handleSubmit,
-    control,
+    control
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -59,7 +59,7 @@ const Registration = () => {
           email: data.email,
           password: data.password,
           birthDate,
-          gender: data.gender,
+          gender: data.gender
         },
         navigate
       )
@@ -75,7 +75,7 @@ const Registration = () => {
       <div className="background registration">
         <AppHeaderPublic />
         <Grid container className="grid-style">
-          <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+          <Grid item xs={10} sm={6} md={4}>
             <Card className="registration-card">
               <form onSubmit={handleSubmit(onSubmit)}>
                 {/*LABELS */}
@@ -146,7 +146,7 @@ const Registration = () => {
                         label="Date of birth"
                         disableFuture
                         value={field.value}
-                        onChange={(date) => field.onChange(date)}
+                        onChange={date => field.onChange(date)}
                         className={
                           errors.birthDate
                             ? "registration-date-with-error"
@@ -201,7 +201,7 @@ const Registration = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex(),
+                    pattern: getEmailRegex()
                   })}
                 />
                 {/*LABELS */}
@@ -243,7 +243,7 @@ const Registration = () => {
                     label="Password"
                     {...register("password", {
                       required: true,
-                      pattern: getPasswordRegex(),
+                      pattern: getPasswordRegex()
                     })}
                   />
                   {/*LABELS */}

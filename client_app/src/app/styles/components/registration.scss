@@ -3,136 +3,139 @@
 $registration-error-label-color: #666666;
 
 .registration {
-    background-image: url("./../../assets/registration-image.svg");
+  background-image: url("./../../assets/registration-image.svg");
 
-    .grid-style {
-        justify-content: center;
-        z-index: 1200;
+  .grid-style {
+    justify-content: center;
+    z-index: 1200;
+  }
+
+  .registration-error {
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 3;
+    display: inline-flex;
+    width: 100%;
+
+    .registration-error-icon {
+      width: $login-error-icon-width !important;
+      height: $login-error-icon-height;
+      width: 10%;
+      margin-right: variables.$base-unit;
     }
 
-    .registration-error {
-        color: variables.$error-color;
-        text-align: start;
-        margin-bottom: variables.$base-unit * 3;
-        display: inline-flex;
-        width: 100%;
+    .registration-error-message {
+      width: 90%;
+      font-size: variables.$font-size-small;
+    }
+  }
 
-        .registration-error-icon {
-            width: $login-error-icon-width !important;
-            height: $login-error-icon-height;
-            width: 10%;
-            margin-right: variables.$base-unit;
-        }
+  .registration-card {
+    padding-top: variables.$base-unit * 3;
+    padding-bottom: variables.$base-unit * 3;
+    padding-left: variables.$base-unit * 8;
+    padding-right: variables.$base-unit * 8;
+    border-radius: variables.$base-unit * 4;
+    text-align: center;
 
-        .registration-error-message {
-            width: 90%;
-            font-size: variables.$font-size-small;
-        }
+    @media screen and (min-width: 1500px) {
+      width: 400px;
+    }
+  }
+
+  .registration-title {
+    font-family: "Montserrat";
+    font-size: variables.$font-size-title;
+    margin-bottom: variables.$base-unit * 3;
+    text-align: start;
+    color: variables.$color-neutral-black;
+    width: 100%;
+  }
+
+  .registration-title-with-error {
+    font-family: "Montserrat";
+    font-size: variables.$font-size-title;
+    margin-bottom: variables.$base-unit * 3;
+    text-align: start;
+    color: variables.$color-neutral-black;
+    width: 100%;
+  }
+
+  .registration-input {
+    margin-bottom: variables.$base-unit * 2 !important;
+  }
+
+  .registration-input-with-error {
+    margin-bottom: 0px !important;
+  }
+
+  .MuiFormControl-root {
+    margin: 0px;
+    width: 100%;
+    border-radius: variables.$base-unit;
+
+    .MuiOutlinedInput-root {
+      border-radius: variables.$base-unit;
     }
 
-    .registration-card {
-        padding-top: variables.$base-unit * 3;
-        padding-bottom: variables.$base-unit * 3;
-        padding-left: variables.$base-unit * 8;
-        padding-right: variables.$base-unit * 8;
-        border-radius: variables.$base-unit * 4;
-        text-align: center;
+    .MuiOutlinedInput-root.Mui-error {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: variables.$error-color;
+      }
     }
 
-    .registration-title {
-        font-family: "Montserrat";
-        font-size: variables.$font-size-title;
-        margin-bottom: variables.$base-unit * 3;
-        text-align: start;
-        color: variables.$color-neutral-black;
-        width: 100%;
+    .MuiFormLabel-root.Mui-error {
+      color: $registration-error-label-color;
     }
 
-    .registration-title-with-error {
-        font-family: "Montserrat";
-        font-size: variables.$font-size-title;
-        margin-bottom: variables.$base-unit * 3;
-        text-align: start;
-        color: variables.$color-neutral-black;
-        width: 100%;
+    .MuiSelect-select {
+      text-align: start;
     }
+  }
 
-    .registration-input {
-        margin-bottom: variables.$base-unit * 2 !important;
+  .registration-date-with-error {
+    .MuiOutlinedInput-root {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: variables.$error-color;
+      }
     }
+  }
 
-    .registration-input-with-error {
-        margin-bottom: 0px !important;
+  .registration-gender-with-error {
+    .MuiOutlinedInput-notchedOutline {
+      border-color: variables.$error-color;
     }
+  }
 
-    .MuiFormControl-root {
-        margin: 0px;
-        width: 100%;
-        border-radius: variables.$base-unit;
+  .registration-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit;
+    display: inline-flex;
+    width: 100%;
+  }
 
-        .MuiOutlinedInput-root {
-            border-radius: variables.$base-unit;
-        }
+  .registration-button,
+  & .registration-button:hover {
+    background-color: variables.$color-dark-yellow;
+    border-radius: variables.$base-unit;
+    box-shadow: none;
+    color: variables.$color-neutral-black;
+    text-transform: none;
+    width: 100%;
+    height: variables.$base-unit * 6;
+    font-weight: bold;
+    margin-bottom: variables.$base-unit * 2;
+  }
 
-        .MuiOutlinedInput-root.Mui-error {
-            .MuiOutlinedInput-notchedOutline {
-                border-color: variables.$error-color;
-            }
-        }
-
-        .MuiFormLabel-root.Mui-error {
-            color: $registration-error-label-color;
-        }
-
-        .MuiSelect-select{
-            text-align: start;
-        }
-    }
-
-    .registration-date-with-error {
-        .MuiOutlinedInput-root {
-            .MuiOutlinedInput-notchedOutline {
-                border-color: variables.$error-color;
-            }
-        }
-    }
-
-    .registration-gender-with-error {
-        .MuiOutlinedInput-notchedOutline {
-            border-color: variables.$error-color;
-        }
-    }
-
-    .registration-error-fe {
-        font-size: variables.$font-size-small;
-        color: variables.$error-color;
-        text-align: start;
-        margin-bottom: variables.$base-unit;
-        display: inline-flex;
-        width: 100%;
-    }
-
-    .registration-button,
-    & .registration-button:hover {
-        background-color: variables.$color-dark-yellow;
-        border-radius: variables.$base-unit;
-        box-shadow: none;
-        color: variables.$color-neutral-black;
-        text-transform: none;
-        width: 100%;
-        height: variables.$base-unit * 6;
-        font-weight: bold;
-        margin-bottom: variables.$base-unit * 2;
-    }
-
-    .registration-have-account {
-        font-family: "Montserrat";
-        margin-left: auto;
-        margin-right: auto;
-        font-size: variables.$font-size-small;
-        cursor: pointer;
-        color: variables.$color-neutral-black;
-        width: max-content;
-    }
-
+  .registration-have-account {
+    font-family: "Montserrat";
+    margin-left: auto;
+    margin-right: auto;
+    font-size: variables.$font-size-small;
+    cursor: pointer;
+    color: variables.$color-neutral-black;
+    width: max-content;
+  }
 }

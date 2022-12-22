@@ -14,7 +14,7 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -30,10 +30,10 @@ const Login = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = useForm();
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -58,7 +58,7 @@ const Login = () => {
       <AppHeaderPublic />
       <div className="background login">
         <Grid container className="grid-style">
-          <Grid item xs={10} sm={6} md={4} lg={4} xl={3}>
+          <Grid item xs={10} sm={6} md={4}>
             <Card className="login-card">
               <form onSubmit={handleSubmit(onSubmit)}>
                 {/*LABELS */}
@@ -82,7 +82,7 @@ const Login = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex(),
+                    pattern: getEmailRegex()
                   })}
                 />
                 {/*LABELS */}
