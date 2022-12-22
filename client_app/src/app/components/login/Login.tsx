@@ -14,7 +14,7 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -30,10 +30,10 @@ const Login = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm();
 
-  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -82,7 +82,7 @@ const Login = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex()
+                    pattern: getEmailRegex(),
                   })}
                 />
                 {/*LABELS */}

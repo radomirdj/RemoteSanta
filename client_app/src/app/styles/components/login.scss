@@ -19,8 +19,10 @@ $login-error-label-color: #666666;
     border-radius: variables.$base-unit * 4;
     text-align: center;
 
-    @media screen and (min-width: 1500px) {
+    @media screen and (min-width: variables.$breakpoint-xl) {
       width: 400px;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 
