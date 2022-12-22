@@ -41,6 +41,9 @@ export class GiftCardRequestService {
   async getOneByUser(id: string, userId: string): Promise<GiftCardRequest> {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
+      include: {
+        giftCardIntegration: true,
+      },
     });
     if (!giftCardRequest || giftCardRequest.userId !== userId)
       throw new NotFoundException('GiftCardRequest Not Found');
@@ -50,6 +53,9 @@ export class GiftCardRequestService {
   getByUser(userId: string): Promise<GiftCardRequest[]> {
     return this.prisma.giftCardRequest.findMany({
       where: { userId },
+      include: {
+        giftCardIntegration: true,
+      },
       orderBy: [
         {
           createdAt: 'desc',

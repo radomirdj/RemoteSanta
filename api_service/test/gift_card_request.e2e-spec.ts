@@ -24,6 +24,7 @@ import {
   giftCardRequest1,
   giftCardRequest2,
   giftCardIntegration1,
+  giftCardIntegration2,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -59,7 +60,10 @@ describe('/gift-card-requests', () => {
       const id = response.body.id;
       expect(id).toEqual(giftCardRequest1.id);
 
-      expectGiftCardRequestRsp(response.body, giftCardRequest1);
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest1,
+        integrationTitle: giftCardIntegration1.title,
+      });
     });
 
     it('/:id (GET) - wrong user try to get gift card request', async () => {
@@ -95,9 +99,15 @@ describe('/gift-card-requests', () => {
       const giftDateRsp2 = response.body[1];
 
       expect(giftDateRsp1.id).toEqual(giftCardRequest2.id);
-      expectGiftCardRequestRsp(giftDateRsp1, giftCardRequest2);
+      expectGiftCardRequestRsp(giftDateRsp1, {
+        ...giftCardRequest2,
+        integrationTitle: giftCardIntegration2.title,
+      });
       expect(giftDateRsp2.id).toEqual(giftCardRequest1.id);
-      expectGiftCardRequestRsp(giftDateRsp2, giftCardRequest1);
+      expectGiftCardRequestRsp(giftDateRsp2, {
+        ...giftCardRequest1,
+        integrationTitle: giftCardIntegration1.title,
+      });
     });
 
     it('/ (GET) - user2 gets 0 gift card requests', async () => {
