@@ -22,7 +22,7 @@ import { AuthState, AuthActions } from "./types";
 
 const initialState: AuthState = {
   pending: false,
-  authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "" },
+  authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate:undefined, gender:"" },
   error: null,
   emailToResetPassword: null,
 };
@@ -80,13 +80,13 @@ export default (state = initialState, action: AuthActions) => {
       return {
         ...state,
         pending: false,
-        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "" },
+        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"" },
       };
     case LOGOUT:
       return {
         ...state,
         pending: false,
-        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "" },
+        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"" },
       };
     case FORGOT_PASSWORD_REQUEST:
       return {

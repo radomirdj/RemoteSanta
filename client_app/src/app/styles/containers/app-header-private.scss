@@ -1,6 +1,6 @@
 @use "./../variables.scss";
 
-.app-header-public {
+.app-header-private{
     background-color: variables.$main-yellow !important;
     box-shadow: none !important;
     margin-top: variables.$base-unit * 2;
@@ -12,6 +12,38 @@
 
     .toolbar-style {
         margin-left: variables.$base-unit * 6;
+    }
+
+    .logo-small {
+        margin-top: variables.$base-unit * 2;
+    }
+
+    .align-right {
+        text-align: right;
+        margin-top: variables.$base-unit * 2;
+    }
+
+    .align-center {
+        text-align: center;
+        margin-top: variables.$base-unit * 2;
+    }
+
+    .align-left{
+        text-align: left;
+        margin-top: variables.$base-unit * 2;
+
+        .MuiPaper-root{
+            .MuiList-root{
+                background-color: aqua;
+            }
+        }
+    }
+
+    .header-item {
+        font-family: "Montserrat";
+        color: variables.$color-neutral-black;
+        margin-top: variables.$base-unit;
+        cursor: pointer;
     }
 
 }
