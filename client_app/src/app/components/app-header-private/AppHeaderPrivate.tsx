@@ -15,15 +15,21 @@ import LogoSmall from "./../../assets/logo-small.svg";
 import AvatarMale from "./../../assets/avatars/avatar-male.svg";
 import AvatarFemale from "./../../assets/avatars/avatar-female.svg";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
+import { logout } from "../../store/auth/actions";
 
 const AppHeaderPrivate = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const user = useSelector(getAuthUserSelector);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+  const userLogout = () => {
+    dispatch(logout());
+  };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -127,7 +133,9 @@ const AppHeaderPrivate = () => {
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Logout</Typography>
+                <Typography textAlign="center" onClick={userLogout}>
+                  Logout
+                </Typography>
               </MenuItem>
             </Menu>
           </Grid>

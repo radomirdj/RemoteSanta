@@ -7,22 +7,16 @@ import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 
 const Home = () => {
   const dispatch = useDispatch();
-  //const user = useSelector(getAuthUserSelector);
 
   useEffect(() => {
     dispatch(getSelfRequest());
   }, [dispatch]);
 
-  //   const userLogout = () => {
-  //     dispatch(logout());
-  //   };
-
   return (
     <>
       <AppHeaderPrivate />
       <div className="background home">
-        {/* {user.firstName} , {user.lastName} , {user.email}
-            <Button variant="contained" onClick={userLogout}>Logout</Button> */}
+        {/* {user.firstName} , {user.lastName} , {user.email}*/}
       </div>
       <AppFooter />
     </>
