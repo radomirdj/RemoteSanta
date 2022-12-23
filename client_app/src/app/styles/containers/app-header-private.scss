@@ -45,5 +45,25 @@
         margin-top: variables.$base-unit;
         cursor: pointer;
     }
+}
 
+.MuiPopover-root{
+    .MuiPaper-root{
+        border-radius: variables.$base-unit * 2;
+        width: variables.$base-unit * 19;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+  
+        .MuiList-root{
+            border-radius: variables.$base-unit * 3;
+            padding-top: variables.$base-unit * 2;
+            padding-bottom: variables.$base-unit *2;
+            .MuiMenuItem-root{
+                padding-bottom: variables.$base-unit ;
+                .MuiTypography-root{
+                    font-family: "Montserrat";
+                    margin-left: variables.$base-unit * 2;
+                }
+            }
+        }
+    }
 }

@@ -7,7 +7,6 @@ import {
   Menu,
   MenuItem,
   Toolbar,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import Logo from "./../../assets/logo.svg";
