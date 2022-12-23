@@ -14,12 +14,16 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  Typography
+  Typography,
 } from "@mui/material";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
 import { useForm, Controller } from "react-hook-form";
-import { getEmailRegex, getPasswordRegex } from "./../../utils/Utils";
+import {
+  createUTCDate,
+  getEmailRegex,
+  getPasswordRegex,
+} from "./../../utils/Utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -35,11 +39,11 @@ const Registration = () => {
     register,
     formState: { errors },
     handleSubmit,
-    control
+    control,
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -48,9 +52,12 @@ const Registration = () => {
   };
 
   const onSubmit = (data: any) => {
-    const birthDate = new Date(
-      Date.UTC(data.birthDate.$y, data.birthDate.$M, data.birthDate.$D, 0, 0, 0)
+    const birthDate = createUTCDate(
+      data.birthDate.$y,
+      data.birthDate.$M,
+      data.birthDate.$D
     );
+
     dispatch(
       signUpRequest(
         {
@@ -59,7 +66,7 @@ const Registration = () => {
           email: data.email,
           password: data.password,
           birthDate,
-          gender: data.gender
+          gender: data.gender,
         },
         navigate
       )
@@ -146,7 +153,7 @@ const Registration = () => {
                         label="Date of birth"
                         disableFuture
                         value={field.value}
-                        onChange={date => field.onChange(date)}
+                        onChange={(date) => field.onChange(date)}
                         className={
                           errors.birthDate
                             ? "registration-date-with-error"
@@ -201,7 +208,7 @@ const Registration = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex()
+                    pattern: getEmailRegex(),
                   })}
                 />
                 {/*LABELS */}
@@ -243,7 +250,7 @@ const Registration = () => {
                     label="Password"
                     {...register("password", {
                       required: true,
-                      pattern: getPasswordRegex()
+                      pattern: getPasswordRegex(),
                     })}
                   />
                   {/*LABELS */}

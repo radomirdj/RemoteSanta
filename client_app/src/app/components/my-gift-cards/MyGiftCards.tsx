@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchGiftCardRequestList } from "../../store/gift-card-request/actions";
@@ -14,7 +15,9 @@ const MyGiftCards = () => {
   return (
     <>
       <AppHeaderPrivate />
-      <div className="background my-gift-cards"></div>
+      <div className="background my-gift-cards">
+        <Typography className="my-gift-cards-title">My Gift Cards</Typography>
+      </div>
       <AppFooter />
     </>
   );
