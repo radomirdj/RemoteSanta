@@ -11,7 +11,7 @@ import { LoginCredentialsWrongException } from '../src/errors/loginCredentialsWr
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
-import { user1 } from './utils/preseededData';
+import { user1, org1 } from './utils/preseededData';
 import { UserRoleEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
@@ -23,6 +23,9 @@ export const expectUserRsp = (responseBody, expectedValue) => {
   expect(responseBody.gender).toEqual(expectedValue.gender);
   expect(responseBody.userRole).toEqual(expectedValue.userRole);
   expect(responseBody.birthDate).toEqual(expectedValue.birthDate.toISOString());
+  if (expectedValue.orgName) {
+    expect(responseBody.org.name).toEqual(expectedValue.orgName);
+  }
 };
 
 export const expectUserInDB = async (expectedValue, prisma) => {
@@ -78,6 +81,7 @@ describe('Authentication system', () => {
       expectUserRsp(response.body, {
         ...newUser,
         userRole: UserRoleEnum.BASIC_USER,
+        orgName: org1.name,
       });
       await expectUserInDB(
         { ...newUser, userRole: UserRoleEnum.BASIC_USER },
@@ -106,6 +110,7 @@ describe('Authentication system', () => {
       expectUserRsp(response.body, {
         ...user1,
         userRole: UserRoleEnum.BASIC_USER,
+        orgName: org1.name,
       });
     });
     it('/login (POST) - wrong password', async () => {
@@ -130,6 +135,7 @@ describe('Authentication system', () => {
       expectUserRsp(response.body, {
         ...user1,
         userRole: UserRoleEnum.BASIC_USER,
+        orgName: org1.name,
       });
     });
   });

@@ -152,3 +152,9 @@ export const giftCardRequestList = [
 export const giftCardRequest1 = giftCardRequestList[0];
 export const giftCardRequest2 = giftCardRequestList[1];
 export const giftCardRequestFulfilled = giftCardRequestList[2];
+
+export const org1 = {
+  id: '752e05ce-4a81-4148-87c5-30832406d48c',
+  name: 'Top Inc.',
+  pointsPerMonth: 1200,
+};

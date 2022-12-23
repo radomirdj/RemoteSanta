@@ -2,6 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { User, Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 
+const userDefaultJoin = {
+  org: true,
+};
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
@@ -16,21 +19,23 @@ export class UsersService {
     return tx.user.update({ where: { id }, data: { cognitoSub } });
   }
 
-  createUser(data: Prisma.UserCreateInput): Promise<User> {
-    return this.prisma.user.create({
-      data,
-    });
-  }
+  // createUser(data: Prisma.UserCreateInput): Promise<User> {
+  //   return this.prisma.user.create({
+  //     data,
+  //   });
+  // }
 
   findById(id: string): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: { id },
+      include: userDefaultJoin,
     });
   }
 
   async findBySub(cognitoSub: string): Promise<User | null> {
     const userList = await this.prisma.user.findMany({
       where: { cognitoSub },
+      include: userDefaultJoin,
     });
     if (!userList.length) return null;
     return userList[0];
@@ -39,6 +44,7 @@ export class UsersService {
   async findByEmail(email: string): Promise<User | null> {
     const userList = await this.prisma.user.findMany({
       where: { email },
+      include: userDefaultJoin,
     });
     if (!userList.length) return null;
     return userList[0];
@@ -49,6 +55,7 @@ export class UsersService {
 
     const userList = await this.prisma.user.findMany({
       where: { cognitoSub },
+      include: userDefaultJoin,
     });
     if (!userList.length) return null;
     return userList[0];

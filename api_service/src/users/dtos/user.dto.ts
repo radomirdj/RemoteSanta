@@ -1,6 +1,7 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 import { GenderEnum, UserRoleEnum } from '@prisma/client';
-
+import { OrgDto } from './org.dto';
+import { ValidateNested } from 'class-validator';
 export class UserDto {
   @Expose()
   id: number;
@@ -25,4 +26,9 @@ export class UserDto {
 
   @Expose()
   userRole: UserRoleEnum;
+
+  @ValidateNested()
+  @Expose()
+  @Type(() => OrgDto)
+  org: OrgDto;
 }
