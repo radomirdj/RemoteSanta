@@ -30,11 +30,16 @@ export class AuthService {
 
     const userInDb = await this.usersService.findByEmail(userDbData.email);
     if (userInDb) throw new EmailInUseException();
-    return this.prisma.$transaction(async (tx) => {
-      const dbUser = await this.usersService.createUserTransactional(
-        tx,
-        userDbData,
-      );
+    const dbUser = await this.prisma.$transaction(async (tx) => {
+      const dbUser = await this.usersService.createUserTransactional(tx, {
+        ...userDbData,
+        // TODO move to orgId from Invite
+        org: {
+          connect: {
+            id: '752e05ce-4a81-4148-87c5-30832406d48c',
+          },
+        },
+      });
       let userSub;
       try {
         userSub = await this.cognitoService.registerUser(data);
@@ -49,6 +54,8 @@ export class AuthService {
       );
       return dbUser;
     });
+
+    return this.usersService.findById(dbUser.id);
   }
 
   async login(data: LoginUserDto) {

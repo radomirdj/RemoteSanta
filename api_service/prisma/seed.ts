@@ -7,7 +7,14 @@ import { createForeignKeyListTransformer } from './seed/lib/transformers';
 const prisma = new PrismaClient();
 
 async function main() {
-  await seedTable(prisma, 'User');
+  await seedTable(prisma, 'Org');
+  await seedTable(
+    prisma,
+    'User',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+    ]),
+  );
   await seedTable(
     prisma,
     'Report',

@@ -5,6 +5,7 @@
   lastName: Snow
   gender: MALE
   birthDate: 1983-02-05T00:00:00.000Z
+  orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
 
@@ -15,6 +16,7 @@
   lastName: Stark
   gender: MALE
   birthDate: 1960-01-25T00:00:00.000Z
+  orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
 
@@ -25,6 +27,7 @@
   lastName: Stark
   gender: FEMALE
   birthDate: 1993-03-20T00:00:00.000Z
+  orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
 
@@ -36,5 +39,6 @@
   gender: FEMALE
   userRole: ADMIN
   birthDate: 1997-04-22T00:00:00.000Z
+  orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00

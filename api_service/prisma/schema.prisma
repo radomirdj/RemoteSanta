@@ -33,6 +33,8 @@ model User {
   birthDate       DateTime          @db.Date
   gender          GenderEnum
   userRole        UserRoleEnum      @default(BASIC_USER)
+  org             Org               @relation(fields: [orgId], references: [id])
+  orgId           String
   GiftCardRequest GiftCardRequest[]
   GiftCard        GiftCard[]
 
@@ -67,8 +69,10 @@ model GiftDate {
 
 // monthlyAmount Decimal @db.Money
 model Org {
-  id   String @id @default(uuid())
-  name String
+  id             String @id @default(uuid())
+  name           String
+  pointsPerMonth Int
+  User           User[]
 }
 
 enum IntegrationConsraintTypeEnum {

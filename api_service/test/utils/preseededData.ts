@@ -112,6 +112,19 @@ export const giftCardIntegration1 = {
   constraintJson: { MIN: 500, MAX: 100000 },
 };
 
+export const giftCardIntegration2 = {
+  id: '3ada6b27-f579-4297-9042-2d46b89b594e',
+  priority: 20,
+  website: 'https://www.sportvision.rs',
+  image:
+    'https://www.supernova-kranj.si//fileadmin/shared/logos/Sport_Vision.png',
+  title: 'Sport Vision',
+  description:
+    'U odlično opremljenim prodavnicama čekaju vas odlična usluga i najkvalitetniji brendovi (Nike, Adidas,Champion,Umbro,Ellesse,Lonsdale,Slayenger,SergioTacchini,Converse,Karrimor,Slazenger and others).Lokacije u celoj Srbiji.',
+  constraintType: 'MIN_MAX',
+  constraintJson: { MIN: 500, MAX: 100000 },
+};
+
 export const giftCardRequestList = [
   {
     id: '9794fc09-68ee-4f3d-ac3f-b5ea759021ca',
@@ -139,3 +152,9 @@ export const giftCardRequestList = [
 export const giftCardRequest1 = giftCardRequestList[0];
 export const giftCardRequest2 = giftCardRequestList[1];
 export const giftCardRequestFulfilled = giftCardRequestList[2];
+
+export const org1 = {
+  id: '752e05ce-4a81-4148-87c5-30832406d48c',
+  name: 'Top Inc.',
+  pointsPerMonth: 1200,
+};

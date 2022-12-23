@@ -5,6 +5,11 @@ export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
   );
   expect(responseBody.amount).toEqual(expectedValue.amount);
   expect(responseBody.status).toEqual(expectedValue.status);
+  if (expectedValue.integrationTitle) {
+    expect(responseBody.giftCardIntegration.title).toEqual(
+      expectedValue.integrationTitle,
+    );
+  }
 };
 
 export const expectGiftCardRequestInDB = async (id, expectedValue, prisma) => {

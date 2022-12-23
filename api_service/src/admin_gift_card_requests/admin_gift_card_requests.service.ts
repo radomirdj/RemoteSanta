@@ -82,6 +82,9 @@ export class AdminGiftCardRequestsService {
   async getOne(id: string): Promise<GiftCardRequest> {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
+      include: {
+        giftCardIntegration: true,
+      },
     });
     if (!giftCardRequest)
       throw new NotFoundException('GiftCardRequest Not Found');
@@ -91,6 +94,9 @@ export class AdminGiftCardRequestsService {
   getPendingList(): Promise<GiftCardRequest[]> {
     return this.prisma.giftCardRequest.findMany({
       where: { status: GiftCardRequestStatusEnum.PENDING },
+      include: {
+        giftCardIntegration: true,
+      },
       orderBy: [
         {
           createdAt: 'desc',
