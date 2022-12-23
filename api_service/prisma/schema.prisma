@@ -21,22 +21,24 @@ enum UserRoleEnum {
 }
 
 model User {
-  id              String            @id @default(uuid())
-  cognitoSub      String?
-  email           String            @unique
-  firstName       String
-  lastName        String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  Report          Report[]
-  GiftDate        GiftDate[]
-  birthDate       DateTime          @db.Date
-  gender          GenderEnum
-  userRole        UserRoleEnum      @default(BASIC_USER)
-  org             Org               @relation(fields: [orgId], references: [id])
-  orgId           String
-  GiftCardRequest GiftCardRequest[]
-  GiftCard        GiftCard[]
+  id                               String                        @id @default(uuid())
+  cognitoSub                       String?
+  email                            String                        @unique
+  firstName                        String
+  lastName                         String
+  createdAt                        DateTime                      @default(now())
+  updatedAt                        DateTime                      @updatedAt
+  Report                           Report[]
+  GiftDate                         GiftDate[]
+  birthDate                        DateTime                      @db.Date
+  gender                           GenderEnum
+  userRole                         UserRoleEnum                  @default(BASIC_USER)
+  org                              Org                           @relation(fields: [orgId], references: [id])
+  orgId                            String
+  GiftCardRequest                  GiftCardRequest[]
+  GiftCard                         GiftCard[]
+  claimPointsEventFulfillmentAdmin ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_admin")
+  claimPointsEventFulfillmentUser  ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
 
   @@index([email])
   @@index([cognitoSub])
@@ -65,6 +67,25 @@ model GiftDate {
   enabled            Boolean                    @default(true)
   title              String?
   firstAccuranceDate DateTime                   @db.Date
+}
+
+model ClaimPointsEvent {
+  id                          String                        @id @default(uuid())
+  validTo                     DateTime
+  description                 String
+  ClaimPointsEventFulfillment ClaimPointsEventFulfillment[]
+}
+
+model ClaimPointsEventFulfillment {
+  id                 String           @id @default(uuid())
+  createdAt          DateTime         @default(now())
+  amount             Int
+  createdBy          User             @relation("ClaimPointsEventFulfillment_admin", fields: [createdById], references: [id])
+  createdById        String
+  claimPointsEvent   ClaimPointsEvent @relation(fields: [claimPointsEventId], references: [id])
+  claimPointsEventId String
+  user               User             @relation("ClaimPointsEventFulfillment_user", fields: [userId], references: [id])
+  userId             String
 }
 
 // monthlyAmount Decimal @db.Money
