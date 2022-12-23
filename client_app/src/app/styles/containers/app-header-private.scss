@@ -1,0 +1,17 @@
+@use "./../variables.scss";
+
+.app-header-public {
+    background-color: variables.$main-yellow !important;
+    box-shadow: none !important;
+    margin-top: variables.$base-unit * 2;
+
+    .grid-style {
+        display: inline-flex;
+        justify-content: space-between;
+    }
+
+    .toolbar-style {
+        margin-left: variables.$base-unit * 6;
+    }
+
+}

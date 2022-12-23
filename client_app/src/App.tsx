@@ -14,6 +14,10 @@ import PublicRoute from "./app/components/publicRoute/PublicRoute";
 import VerifyEmail from "./app/components/verify-email/VerifyEmail";
 import ChangePasswordSuccess from "./app/components/change-password-success/ChangePasswordSuccess";
 import ErrorPage from "./app/components/error-page/ErrorPage";
+import MyGiftCards from "./app/components/my-gift-cards/MyGiftCards";
+import Demo from "./app/components/demo/Demo";
+import History from "./app/components/history/History";
+import UserProfile from "./app/components/user-profile/UserProfile";
 
 const App = () => {
   return (
@@ -68,6 +72,38 @@ const App = () => {
           }
         />
         <Route path="error-page" element={<ErrorPage />} />
+        <Route
+          path="my-gift-cards"
+          element={
+            <PrivateRoute>
+              <MyGiftCards />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="demo"
+          element={
+            <PrivateRoute>
+              <Demo />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="history"
+          element={
+            <PrivateRoute>
+              <History />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="user-profile"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
         <Route
           path=""
           element={
