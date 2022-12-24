@@ -3,7 +3,7 @@
 .app-header-private{
     background-color: variables.$main-yellow !important;
     box-shadow: none !important;
-    margin-top: variables.$base-unit * 2;
+    padding-top: variables.$base-unit * 2;
 
     .grid-style {
         display: inline-flex;
@@ -44,6 +44,14 @@
         color: variables.$color-neutral-black;
         margin-top: variables.$base-unit;
         cursor: pointer;
+    }
+
+    .header-item-active {
+        font-family: "Montserrat";
+        color: variables.$color-neutral-black;
+        margin-top: variables.$base-unit;
+        cursor: pointer;
+        text-decoration-line: underline;
     }
 }
 

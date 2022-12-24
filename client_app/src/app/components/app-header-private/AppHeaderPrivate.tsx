@@ -81,19 +81,40 @@ const AppHeaderPrivate = () => {
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-right">
             {/*LABELS*/}
-            <Typography className="header-item" onClick={homeRedirect}>
+            <Typography
+              className={
+                window.location.pathname === "/"
+                  ? "header-item-active"
+                  : "header-item"
+              }
+              onClick={homeRedirect}
+            >
               Home
             </Typography>
           </Grid>
           <Grid item xs={3} sm={2} md={2} className="align-center">
             {/*LABELS*/}
-            <Typography className="header-item" onClick={myGiftCardsRedirect}>
+            <Typography
+              className={
+                window.location.pathname === "/my-gift-cards"
+                  ? "header-item-active"
+                  : "header-item"
+              }
+              onClick={myGiftCardsRedirect}
+            >
               My Gift Cards
             </Typography>
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-left">
             {/*LABELS*/}
-            <Typography className="header-item" onClick={demoRedirect}>
+            <Typography
+              className={
+                window.location.pathname === "/demo"
+                  ? "header-item-active"
+                  : "header-item"
+              }
+              onClick={demoRedirect}
+            >
               Demo
             </Typography>
           </Grid>
@@ -130,6 +151,9 @@ const AppHeaderPrivate = () => {
                 <Typography textAlign="center" onClick={historyRedirect}>
                   History
                 </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Language</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="center" onClick={userLogout}>

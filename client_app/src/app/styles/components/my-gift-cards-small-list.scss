@@ -1,16 +1,13 @@
 @use "./../variables.scss";
-.my-gift-cards {
+.my-gift-cards-small-list {
     background-image: url("./../../assets/home-image.svg");
-    height: 100% !important;
-    background-repeat:  repeat !important;
-    background-size: contain !important;
+ 
 
     .grid-style{
-        padding-top: variables.$base-unit * 15;
         justify-content: space-around;
         overflow-y: auto;
         max-width: 1200px;
-        padding-bottom: variables.$base-unit * 12;
+        padding-bottom: variables.$base-unit * 1;
         z-index: 1000;
 
         .my-gift-cards-title{
