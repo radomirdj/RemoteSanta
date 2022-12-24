@@ -2,9 +2,7 @@
 .my-gift-cards-small-list {
     background-image: url("./../../assets/home-image.svg");
  
-
     .grid-style{
-        justify-content: space-around;
         overflow-y: auto;
         max-width: 1200px;
         padding-bottom: variables.$base-unit * 1;
