@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchGiftCardRequestList } from "../../store/gift-card-request/actions";
 import { getGiftCardRequestListSelector } from "../../store/gift-card-request/selectors";
 import AppFooter from "../app-footer/AppFooter";
@@ -10,10 +11,15 @@ import MyGiftCardItem from "./MyGiftCardItem";
 const MyGiftCards = () => {
   const dispatch = useDispatch();
   const giftCardRequestList = useSelector(getGiftCardRequestListSelector);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchGiftCardRequestList());
   }, [dispatch]);
+
+  const chooseGiftCardRedirect = () => {
+    navigate("/choose-gift-card");
+  };
 
   let giftCardRequestList2 = giftCardRequestList.map((obj) => ({ ...obj }));
   const giftCardRequestList3 = giftCardRequestList2.concat(giftCardRequestList);
@@ -43,7 +49,14 @@ const MyGiftCards = () => {
           </Grid>
           <Grid item xs={12} className="grid-item">
             <Typography className="my-gift-cards-text">
-              Use your points<u className="my-gift-cards-link">now</u>.
+              Use your points
+              <u
+                className="my-gift-cards-link"
+                onClick={chooseGiftCardRedirect}
+              >
+                now
+              </u>
+              .
             </Typography>
           </Grid>
           {giftCardRequestList2.map((element, i) => {

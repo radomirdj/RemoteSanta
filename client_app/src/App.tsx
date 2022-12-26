@@ -18,6 +18,7 @@ import MyGiftCards from "./app/components/my-gift-cards/MyGiftCards";
 import Demo from "./app/components/demo/Demo";
 import History from "./app/components/history/History";
 import UserProfile from "./app/components/user-profile/UserProfile";
+import ChooseGiftCard from "./app/components/choose-giftcard/ChooseGiftCard";
 
 const App = () => {
   return (
@@ -101,6 +102,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <UserProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="choose-gift-card"
+          element={
+            <PrivateRoute>
+              <ChooseGiftCard />
             </PrivateRoute>
           }
         />
