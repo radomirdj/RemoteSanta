@@ -1,7 +1,10 @@
 import {
   FETCH_GIFT_CARD_REQUEST_LIST,
  FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
-FETCH_GIFT_CARD_REQUEST_LIST_FAILURE
+FETCH_GIFT_CARD_REQUEST_LIST_FAILURE,
+FETCH_GIFT_CARD_INTEGRATION_LIST,
+FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE,
+FETCH_GIFT_CARD_INTEGRATION_LIST_SUCCESS
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
@@ -30,6 +33,7 @@ export interface IGiftCardRequest {
 export interface GiftCardRequestState {
   pending: boolean;
   giftCardRequestList: IGiftCardRequest[];
+  giftCardIntegrationList: IGiftCardIntegration[];
   error: string | null;
 }
 
@@ -38,6 +42,14 @@ export interface FetchGiftCardRequestListSuccessPayload {
 }
 
 export interface FetchGiftCardRequestListFailurePayload {
+  error: string;
+}
+
+export interface FetchGiftCardIntegrationListSuccessPayload {
+  giftCardIntegrationList: IGiftCardIntegration[];
+}
+
+export interface FetchGiftCardIntegrationListFailurePayload {
   error: string;
 }
 
@@ -55,7 +67,24 @@ export interface FetchGiftCardRequestListFailure {
   payload:FetchGiftCardRequestListFailurePayload
 }
 
+export interface FetchGiftCardIntegrationList{
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_LIST;
+}
+
+export interface FetchGiftCardIntegrationListSuccess {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_LIST_SUCCESS,
+  payload:FetchGiftCardIntegrationListSuccessPayload 
+}
+
+export interface FetchGiftCardIntegrationListFailure {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE;
+  payload:FetchGiftCardIntegrationListFailurePayload
+}
+
 export type GiftCardRequestActions =
   | FetchGiftCardRequestListFailure
   | FetchGiftCardRequestListSuccess
-  | FetchGiftCardRequestList;
+  | FetchGiftCardRequestList
+  | FetchGiftCardIntegrationListFailure
+  | FetchGiftCardIntegrationListSuccess
+  | FetchGiftCardIntegrationList;
