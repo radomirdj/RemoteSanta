@@ -17,11 +17,14 @@ export interface IGiftCardIntegration {
 
 export interface IGiftCardRequest {
   id: string;
+  adminComment:string;
   userId: string;
   giftCardIntegrationId: string;
   amount: string;
   status:string;
   giftCardIntegration:IGiftCardIntegration;
+  createdAt:Date;
+  updatedAt:Date;
 }
 
 export interface GiftCardRequestState {

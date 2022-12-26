@@ -17,7 +17,9 @@ const MyGiftCards = () => {
 
   let giftCardRequestList2 = giftCardRequestList.map((obj) => ({ ...obj }));
   const giftCardRequestList3 = giftCardRequestList2.concat(giftCardRequestList);
-  giftCardRequestList2 = giftCardRequestList2.concat(giftCardRequestList);
+  giftCardRequestList2 = giftCardRequestList2.concat(giftCardRequestList3);
+
+  giftCardRequestList2.pop();
 
   return (
     <>
@@ -31,19 +33,23 @@ const MyGiftCards = () => {
       >
         {/*LABELS */}
         <Grid container spacing={4} className="grid-style">
-          <Grid item xs={12} className="grid-title">
+          <Grid item xs={6} className="grid-title">
             <Typography className="my-gift-cards-title">
               My Gift Cards
             </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography className="my-gift-card-points">4000 PTS</Typography>
+          </Grid>
+          <Grid item xs={12}>
             <Typography className="my-gift-cards-text">
               Use your points<u className="my-gift-cards-link">now</u>.
-              <span className=""> 4000 PTS</span>
             </Typography>
           </Grid>
           {giftCardRequestList2.map((element, i) => {
             return (
               <Grid item xs={12} sm={6} md={4} key={i}>
-                <MyGiftCardItem />
+                <MyGiftCardItem {...element} />
               </Grid>
             );
           })}
