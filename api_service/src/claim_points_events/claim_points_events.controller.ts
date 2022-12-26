@@ -13,7 +13,7 @@ export class ClaimPointsEventsController {
   constructor(private claimPointsEventsService: ClaimPointsEventsService) {}
 
   @Get('/')
-  async getGiftCardRequestList(@CurrentUser() user: User) {
+  async getClaimPointsEventsList(@CurrentUser() user: User) {
     return this.claimPointsEventsService.getByUser(user.id, user.orgId);
   }
 }

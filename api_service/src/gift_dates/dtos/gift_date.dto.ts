@@ -3,7 +3,7 @@ import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
 export class GiftDateDto {
   @Expose()
-  id: number;
+  id: string;
 
   @Expose()
   type: GiftDateTypeEnum;
@@ -21,5 +21,5 @@ export class GiftDateDto {
   firstAccuranceDate: Date;
 
   @Expose()
-  userId: number;
+  userId: string;
 }

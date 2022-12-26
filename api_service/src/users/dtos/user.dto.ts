@@ -4,7 +4,7 @@ import { OrgDto } from './org.dto';
 import { ValidateNested } from 'class-validator';
 export class UserDto {
   @Expose()
-  id: number;
+  id: string;
 
   @Expose()
   email: string;
