@@ -158,3 +158,15 @@ export const org1 = {
   name: 'Top Inc.',
   pointsPerMonth: 1200,
 };
+
+export const lastClaimPointsEvent = {
+  id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',
+  validTo: '2054-01-01T00:00:00.000Z',
+  description: 'Make December to remember.',
+  claimPointsEventFulfillment: {
+    id: 'b6b47e55-5213-441f-87db-c7e32bd5b70e',
+    amount: 1200,
+    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    createdAt: '2022-12-26T09:44:19.183Z',
+  },
+};
