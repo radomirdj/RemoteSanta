@@ -10,14 +10,13 @@ $card-button-width: 83%;
     .grid-style{
         overflow-y: auto;
         max-width: 1200px;
-        padding-bottom: variables.$base-unit * 1;
         z-index: 1000;
 
         .my-gift-cards-title{
             font-family: "Montserrat";
             font-size: variables.$font-size-title;
             margin-left: variables.$base-unit ;
-            margin-bottom: variables.$base-unit * 2;
+            margin-bottom: variables.$base-unit ;
             width: max-content;
         } 
 
@@ -42,6 +41,10 @@ $card-button-width: 83%;
             font-size: variables.$font-size-larger;
            font-family: "Montserrat";
            float: right;
+        }
+
+        .grid-item{
+            padding-top: 0px;
         }
 
         .card-item{
