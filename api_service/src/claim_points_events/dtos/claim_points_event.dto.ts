@@ -18,5 +18,5 @@ export class ClaimPointsEventDto {
   @ValidateNested()
   @Expose()
   @Type(() => ClaimPointsEventFulfillmentDto)
-  claimPointsEventFulfillment: ClaimPointsEventFulfillmentDto;
+  claimPointsEventFulfillment?: ClaimPointsEventFulfillmentDto;
 }
