@@ -13,6 +13,7 @@ import { GiftCardIntegrationsModule } from './gift_card_integrations/gift_card_i
 import { GiftCardRequestModule } from './gift_card_request/gift_card_request.module';
 import { AdminGiftCardRequestsModule } from './admin_gift_card_requests/admin_gift_card_requests.module';
 import { ClaimPointsEventsModule } from './claim_points_events/claim_points_events.module';
+import { AdminOrgsModule } from './admin_orgs/admin_orgs.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ClaimPointsEventsModule } from './claim_points_events/claim_points_even
     GiftCardRequestModule,
     AdminGiftCardRequestsModule,
     ClaimPointsEventsModule,
+    AdminOrgsModule,
   ],
   controllers: [AppController],
   providers: [
