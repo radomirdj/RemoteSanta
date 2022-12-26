@@ -1,3 +1,13 @@
+@use "./../variables.scss";
+
 .choose-gift-card {
     background-image: url("./../../assets/home-image.svg");
+
+    .MuiStepLabel-label{
+        font-family: "Montserrat";
+    }
+
+    .MuiStepper-root{
+        width: variables.$base-unit * 82;
+    }
 }
