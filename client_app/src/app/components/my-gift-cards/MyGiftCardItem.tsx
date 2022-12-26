@@ -13,7 +13,6 @@ import WatchGlass from "./../../assets/icons/watchglass.svg";
 import DeclinedIcon from "./../../assets/icons/declined-icon.svg";
 
 const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
-  console.log(giftCardRequest);
   return (
     <Card sx={{ maxWidth: 350 }} className="card-item">
       <CardMedia
