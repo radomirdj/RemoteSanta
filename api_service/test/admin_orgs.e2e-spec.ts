@@ -8,6 +8,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
+import { OrgTransactionTypeEnum } from '@prisma/client';
 
 import {
   user2,
@@ -163,13 +164,79 @@ describe('admin/orgs', () => {
     });
 
     it('/ (GET) - NON ADMIN user, try to get ORGS TRANSACTIONS', async () => {
-      const response = await request(app.getHttpServer())
+      await request(app.getHttpServer())
         .get(`/admin/orgs/${org1.id}/transactions/`)
         .set(
           'Authorization',
           'bearer ' +
             createToken({ email: user2.email, sub: user2.cognitoSub }),
         )
+        .expect(403);
+    });
+  });
+
+  describe('/:id/transactions/admin-to-org/ (POST)', () => {
+    const newAdmitToOrgTransaction = {
+      amount: 12000,
+    };
+
+    it('/ (POST) - ADMIN create admin-to-org transaction', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/orgs/${org1.id}/transactions/admin-to-org/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(newAdmitToOrgTransaction)
+        .expect(201);
+
+      const id = response.body.id;
+      expect(response.body.totalAmount).toEqual(
+        newAdmitToOrgTransaction.amount,
+      );
+      expect(response.body.eventId).toBeFalsy();
+      expect(response.body.type).toEqual(OrgTransactionTypeEnum.ADMIN_TO_ORG);
+      expect(response.body.orgId).toEqual(org1.id);
+
+      const dbAdminToOrg = await prisma.orgTransaction.findUnique({
+        where: {
+          id,
+        },
+      });
+
+      expect(dbAdminToOrg.totalAmount).toEqual(newAdmitToOrgTransaction.amount);
+      expect(dbAdminToOrg.eventId).toBeFalsy();
+      expect(dbAdminToOrg.type).toEqual(OrgTransactionTypeEnum.ADMIN_TO_ORG);
+      expect(dbAdminToOrg.orgId).toEqual(org1.id);
+      await prisma.orgTransaction.deleteMany({
+        where: {
+          id,
+        },
+      });
+    });
+
+    it('/ (POST) - ADMIN try to create admin-to-org transaction with bad ORG id', async () => {
+      await request(app.getHttpServer())
+        .post(`/admin/orgs/${user2.id}/transactions/admin-to-org/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(newAdmitToOrgTransaction)
+        .expect(404);
+    });
+
+    it('/ (POST) - NOT ADMIN try to create admin-to-org transaction', async () => {
+      await request(app.getHttpServer())
+        .post(`/admin/orgs/${org1.id}/transactions/admin-to-org/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(newAdmitToOrgTransaction)
         .expect(403);
     });
   });

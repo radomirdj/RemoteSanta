@@ -5,6 +5,8 @@ import { AdminGuard } from '../guards/admin.guard';
 import { AdminOrgsService } from './admin_orgs.service';
 import { OrgDto } from './dtos/org.dto';
 import { OrgTransactionDto } from './dtos/org_transaction.dto';
+import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
+import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 
 @Controller('admin/orgs')
 @UseGuards(AuthGuard('jwt'), AdminGuard)
@@ -27,5 +29,21 @@ export class AdminOrgsController {
   @Get('/:id/transactions/')
   async getOrgTransactions(@Param('id') id: string) {
     return this.adminOrgsService.getOrgTransactionList(id);
+  }
+
+  @Post('/:id/transactions/admin-to-org/')
+  createAdminToOrgTransaction(
+    @Param('id') id: string,
+    @Body() body: CreateAdminToOrgDto,
+  ) {
+    return this.adminOrgsService.createTransactionAdminToOrg(id, body);
+  }
+
+  @Post('/:id/transactions/org-to-employees/')
+  createOrgToEmployeesTransaction(
+    @Param('id') id: string,
+    @Body() body: CreateOrgToEmployeesDto,
+  ) {
+    return this.adminOrgsService.createTransactionOrgToEmployees(id, body);
   }
 }
