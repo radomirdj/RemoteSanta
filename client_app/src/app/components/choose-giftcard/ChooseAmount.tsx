@@ -1,8 +1,9 @@
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
+import { setGiftCardRequestAmount } from "../../store/gift-card-request/actions";
 
 const ChooseAmount = () => {
   const user = useSelector(getAuthUserSelector);
@@ -11,10 +12,11 @@ const ChooseAmount = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const dispatch = useDispatch();
 
-  const onSubmit = (data: any) => {};
-
-  console.log(user);
+  const onSubmit = (data: any) => {
+    dispatch(setGiftCardRequestAmount({ amount: data.amount }));
+  };
 
   return (
     <>

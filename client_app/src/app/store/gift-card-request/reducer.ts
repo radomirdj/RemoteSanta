@@ -1,10 +1,13 @@
+import { act } from "@testing-library/react";
 import {
   FETCH_GIFT_CARD_INTEGRATION_LIST,
   FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE,
   FETCH_GIFT_CARD_INTEGRATION_LIST_SUCCESS,
   FETCH_GIFT_CARD_REQUEST_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST_FAILURE,
-  FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS
+  FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
+  SET_GIFT_CARD_REQUEST_AMOUNT,
+  SET_GIFT_CARD_REQUEST_INTEGRATION
 } from "./actionTypes";
 
 import { GiftCardRequestActions, GiftCardRequestState } from "./types";
@@ -13,6 +16,9 @@ const initialState: GiftCardRequestState = {
   pending: false,
   giftCardRequestList: [],
   giftCardIntegrationList: [],
+  giftCardRequestIntegration: null,
+  stepperPage:0,
+  giftCardRequestAmount: 0,
   error: null
 };
 
@@ -55,6 +61,20 @@ export default (state = initialState, action: GiftCardRequestActions) => {
           pending: false,
           giftCardIntegrationList: [],
           error: action.payload.error
+        };
+      case SET_GIFT_CARD_REQUEST_INTEGRATION:
+        return {
+          ...state,
+          pending: false,
+          giftCardRequestIntegration: action.payload.integration,
+          stepperPage:1,
+        };
+      case SET_GIFT_CARD_REQUEST_AMOUNT:
+        return {
+          ...state,
+          pending: false,
+          giftCardRequestAmount: action.payload.amount,
+          stepperPage:2
         };
     default:
       return {

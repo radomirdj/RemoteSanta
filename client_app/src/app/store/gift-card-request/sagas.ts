@@ -1,8 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess } from "./actions";
-import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST } from "./actionTypes";
-import { IGiftCardIntegration, IGiftCardRequest } from "./types";
+import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess, setGiftCardRequestAmount, setGiftCardRequestIntegration } from "./actions";
+import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST, SET_GIFT_CARD_REQUEST_AMOUNT, SET_GIFT_CARD_REQUEST_INTEGRATION } from "./actionTypes";
+import { IGiftCardIntegration, IGiftCardRequest, SetGiftCardRequestAmount, SetGiftCardRequestIntegration } from "./types";
 
 const getGiftCardRequestList = (token:string) =>
   axios.get<IGiftCardRequest[]>("api/gift-card-requests/",{ headers: { Authorization: `Bearer ${token}` } });
@@ -49,6 +49,14 @@ function* fetchGiftCardIntegrationListSaga() {
   }
 }
 
+function* setGiftCardRequestIntegrationSaga(action:SetGiftCardRequestIntegration) {
+  yield call(setGiftCardRequestIntegration, action.payload);
+}
+
+function* setGiftCardRequestAmountSaga(action:SetGiftCardRequestAmount) {
+  yield call(setGiftCardRequestAmount, action.payload);
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -56,6 +64,8 @@ function* fetchGiftCardIntegrationListSaga() {
 function* todoSaga() {
   yield all([takeLatest(FETCH_GIFT_CARD_REQUEST_LIST, fetchGiftCardRequestListSaga)]);
   yield all([takeLatest(FETCH_GIFT_CARD_INTEGRATION_LIST, fetchGiftCardIntegrationListSaga)]);
+  yield all([takeLatest(SET_GIFT_CARD_REQUEST_INTEGRATION, setGiftCardRequestIntegrationSaga)]);
+  yield all([takeLatest(SET_GIFT_CARD_REQUEST_AMOUNT, setGiftCardRequestAmountSaga)]);
 }
 
 export default todoSaga;

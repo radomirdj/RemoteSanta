@@ -13,11 +13,14 @@ import AlarmIcon from "@mui/icons-material/Alarm";
 import React from "react";
 import { IGiftCardIntegration } from "../../store/gift-card-request/types";
 import { ChevronRight } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { setGiftCardRequestIntegration } from "../../store/gift-card-request/actions";
 
 const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
 
   const style = {
     position: "absolute",
@@ -29,6 +32,12 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
     border: "2px solid #ffffff",
     borderRadius: "24px",
     p: 4,
+  };
+
+  const onSubmit = () => {
+    dispatch(
+      setGiftCardRequestIntegration({ integration: giftCardIntegration })
+    );
   };
 
   return (
@@ -84,7 +93,7 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
             </div>
           </Grid>
           <Grid item xs={4}>
-            <IconButton className="chevron-icon-button">
+            <IconButton className="chevron-icon-button" onClick={onSubmit}>
               <ChevronRight />
             </IconButton>
           </Grid>

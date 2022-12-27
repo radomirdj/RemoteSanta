@@ -2,7 +2,10 @@ import { Card, Grid, Step, StepLabel, Stepper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGiftCardIntegrationList } from "../../store/gift-card-request/actions";
-import { getGiftCardIntegrationListSelector } from "../../store/gift-card-request/selectors";
+import {
+  getGiftCardIntegrationListSelector,
+  getStepperPagetSelector,
+} from "../../store/gift-card-request/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import ColorlibStepIcon from "./ColorlibStepIcon";
@@ -15,7 +18,7 @@ const ChooseGiftCard = () => {
   const giftCardIntegrationList = useSelector(
     getGiftCardIntegrationListSelector
   );
-  const [activeStep, setActiveStep] = useState(1);
+  const activeStep = useSelector(getStepperPagetSelector);
 
   console.log(giftCardIntegrationList);
   //LABELS

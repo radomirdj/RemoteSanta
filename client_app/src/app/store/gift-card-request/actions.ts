@@ -4,7 +4,9 @@ import {
   FETCH_GIFT_CARD_REQUEST_LIST_FAILURE,
   FETCH_GIFT_CARD_INTEGRATION_LIST,
   FETCH_GIFT_CARD_INTEGRATION_LIST_SUCCESS,
-  FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE
+  FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE,
+  SET_GIFT_CARD_REQUEST_INTEGRATION,
+  SET_GIFT_CARD_REQUEST_AMOUNT
 } from "./actionTypes";
 import {
   FetchGiftCardRequestList,
@@ -16,7 +18,11 @@ import {
   FetchGiftCardIntegrationListSuccessPayload,
   FetchGiftCardIntegrationListSuccess,
   FetchGiftCardIntegrationListFailurePayload,
-  FetchGiftCardIntegrationListFailure
+  FetchGiftCardIntegrationListFailure,
+  SetGiftCardIntegrationPayload,
+  SetGiftCardRequestIntegration,
+  SetGiftCardAmountPayload,
+  SetGiftCardRequestAmount
 } from "./types";
 
 export const fetchGiftCardRequestList = (): FetchGiftCardRequestList => ({
@@ -52,5 +58,19 @@ export const fetchGiftCardIntegrationListFailure = (
   payload: FetchGiftCardIntegrationListFailurePayload
 ): FetchGiftCardIntegrationListFailure => ({
   type: FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE,
+  payload
+});
+
+export const setGiftCardRequestIntegration = (
+  payload: SetGiftCardIntegrationPayload
+): SetGiftCardRequestIntegration => ({
+  type: SET_GIFT_CARD_REQUEST_INTEGRATION,
+  payload
+});
+
+export const setGiftCardRequestAmount = (
+  payload: SetGiftCardAmountPayload
+): SetGiftCardRequestAmount => ({
+  type: SET_GIFT_CARD_REQUEST_AMOUNT,
   payload
 });
