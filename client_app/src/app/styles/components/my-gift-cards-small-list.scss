@@ -53,6 +53,7 @@ $card-button-width: 83%;
             background-color: variables.$main-blue;
             border-radius: variables.$base-unit * 3;
             height:variables.$base-unit * 51;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
 
         .card-image{

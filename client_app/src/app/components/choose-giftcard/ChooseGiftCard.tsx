@@ -1,4 +1,4 @@
-import { Step, StepLabel, Stepper } from "@mui/material";
+import { Grid, Step, StepLabel, Stepper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGiftCardIntegrationList } from "../../store/gift-card-request/actions";
@@ -7,6 +7,7 @@ import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import ColorlibStepIcon from "./ColorlibStepIcon";
 import ColorlibConnector from "./ColorlibConnector";
+import GiftCardIntegrationItem from "./GiftCardIntegrationItem";
 
 const ChooseGiftCard = () => {
   const dispatch = useDispatch();
@@ -26,22 +27,30 @@ const ChooseGiftCard = () => {
     <>
       <AppHeaderPrivate />
       <div className="background choose-gift-card">
-        <Stepper
-          alternativeLabel
-          activeStep={activeStep}
-          connector={<ColorlibConnector />}
-        >
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel
-                StepIconComponent={ColorlibStepIcon}
-                className="step-label-style"
-              >
-                {label}
-              </StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+        <Grid container spacing={4} className="grid-style">
+          <Grid item xs={12}>
+            <Stepper
+              alternativeLabel
+              activeStep={activeStep}
+              connector={<ColorlibConnector />}
+            >
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel StepIconComponent={ColorlibStepIcon}>
+                    {label}
+                  </StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Grid>
+          {giftCardIntegrationList.map((element, i) => {
+            return (
+              <Grid item xs={12} sm={6} md={3} key={i}>
+                <GiftCardIntegrationItem {...element} />
+              </Grid>
+            );
+          })}
+        </Grid>
       </div>
       <AppFooter />
     </>

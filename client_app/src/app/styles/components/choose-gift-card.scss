@@ -1,13 +1,101 @@
 @use "./../variables.scss";
 
+$grid-max-width: 1000px;
+$card-title-margin-left: 4px;
+$chevron-right-margin-right: 4px;
+$grid-margin-top: 10px;
+$modal-image-width:90%;
+
 .choose-gift-card {
     background-image: url("./../../assets/home-image.svg");
+    height: 100% !important;
+    background-repeat:  repeat !important;
+    background-size: contain !important;
 
     .MuiStepLabel-label{
         font-family: "Montserrat";
     }
 
     .MuiStepper-root{
-        width: variables.$base-unit * 82;
+        width: variables.$base-unit * 100;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .grid-style{
+        padding-top: variables.$base-unit * 18;
+        overflow-y: auto;
+        max-width: $grid-max-width;
+        padding-bottom: variables.$base-unit * 12;
+        z-index: 1000;
+
+        .card-item{
+            margin-left: auto;
+            margin-right: auto;
+            background-color: variables.$main-blue;
+            border-radius: variables.$base-unit * 2;
+            height:variables.$base-unit * 32;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        .card-image{
+            width: $card-image-width;
+            height:variables.$base-unit * 15;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: variables.$base-unit * 3;
+            border-radius: variables.$base-unit * 2;
+        }
+
+        .card-title{
+            font-family: "Montserrat" ;
+            margin-left: $card-title-margin-left;
+            margin-bottom: 0px;
+        }
+
+        .card-link{
+            font-family: "Montserrat";
+            margin-left: $card-title-margin-left;
+            cursor: pointer;
+            width: max-content;
+        }
+
+        .chevron-icon-button{
+            background-color: variables.$color-neutral-white;
+            margin-bottom: variables.$base-unit * 2;
+            float: right;
+            margin-right: $chevron-right-margin-right;
+        }
+
+        .grid-vertical-align{
+            margin-top: $grid-margin-top;
+            margin-bottom: auto;
+        }
+    }
+}
+
+.MuiModal-root{
+    .MuiCard-root{
+        padding-top: variables.$base-unit * 6;
+        padding-bottom: variables.$base-unit * 5;
+        .MuiTypography-h6{
+            font-family: "Montserrat";
+            margin-top:variables.$base-unit * 2;
+            margin-left:variables.$base-unit * 3;
+        }
+
+        .MuiTypography-body1{
+            font-family: "Montserrat" ;
+            margin-left: variables.$base-unit * 3;
+            margin-right: variables.$base-unit * 3;
+        }
+    }
+
+    .modal-card-image{
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: variables.$base-unit * 3;
+        width: $modal-image-width;
+        height: variables.$base-unit * 28;
     }
 }

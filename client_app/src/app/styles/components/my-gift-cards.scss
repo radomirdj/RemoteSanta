@@ -3,6 +3,7 @@
 $pending-icon-width: 20px;
 $card-image-width: 83%;
 $card-button-width: 83%;
+$grid-max-width: 1200px;
 
 .my-gift-cards {
     background-image: url("./../../assets/home-image.svg");
@@ -13,7 +14,7 @@ $card-button-width: 83%;
     .grid-style{
         padding-top: variables.$base-unit * 15;
         overflow-y: auto;
-        max-width: 1200px;
+        max-width: $grid-max-width;
         padding-bottom: variables.$base-unit * 12;
         z-index: 1000;
 
@@ -58,6 +59,7 @@ $card-button-width: 83%;
             background-color: variables.$main-blue;
             border-radius: variables.$base-unit * 3;
             height:variables.$base-unit * 51;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
 
         .card-image{
