@@ -20,9 +20,13 @@ export class ClaimPointsEventsService {
         },
       },
       include: {
-        ClaimPointsEventFulfillment: {
-          where: {
-            userId,
+        OrgTransaction: {
+          include: {
+            ClaimPointsEventFulfillment: {
+              where: {
+                userId,
+              },
+            },
           },
         },
       },
@@ -32,10 +36,16 @@ export class ClaimPointsEventsService {
         },
       ],
     });
+
     return pointsEventList.map((pointsEvent) => {
-      const { ClaimPointsEventFulfillment, ...restData } = pointsEvent;
+      const { OrgTransaction, ...restData } = pointsEvent;
+      if (!OrgTransaction.length)
+        return { ...restData, amount: org.pointsPerMonth };
+
+      const { ClaimPointsEventFulfillment, ..._ } = OrgTransaction[0];
       if (!ClaimPointsEventFulfillment.length)
         return { ...restData, amount: org.pointsPerMonth };
+
       return {
         claimPointsEventFulfillment: ClaimPointsEventFulfillment[0],
         ...restData,

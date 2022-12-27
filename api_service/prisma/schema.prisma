@@ -70,30 +70,50 @@ model GiftDate {
 }
 
 model ClaimPointsEvent {
+  id             String           @id @default(uuid())
+  validTo        DateTime
+  description    String
+  OrgTransaction OrgTransaction[]
+}
+
+enum OrgTransactionTypeEnum {
+  ORG_TO_EMPLOYEES
+  ADMIN_TO_ORG
+}
+
+model OrgTransaction {
   id                          String                        @id @default(uuid())
-  validTo                     DateTime
-  description                 String
+  createdAt                   DateTime                      @default(now())
+  type                        OrgTransactionTypeEnum
+  totalAmount                 Int
+  org                         Org                           @relation(fields: [orgId], references: [id])
+  orgId                       String
+  event                       ClaimPointsEvent?             @relation(fields: [eventId], references: [id])
+  eventId                     String?
   ClaimPointsEventFulfillment ClaimPointsEventFulfillment[]
 }
 
 model ClaimPointsEventFulfillment {
-  id                 String           @id @default(uuid())
-  createdAt          DateTime         @default(now())
-  amount             Int
-  createdBy          User             @relation("ClaimPointsEventFulfillment_admin", fields: [createdById], references: [id])
-  createdById        String
-  claimPointsEvent   ClaimPointsEvent @relation(fields: [claimPointsEventId], references: [id])
-  claimPointsEventId String
-  user               User             @relation("ClaimPointsEventFulfillment_user", fields: [userId], references: [id])
-  userId             String
+  id               String         @id @default(uuid())
+  createdAt        DateTime       @default(now())
+  amount           Int
+  createdBy        User           @relation("ClaimPointsEventFulfillment_admin", fields: [createdById], references: [id])
+  createdById      String
+  orgTransaction   OrgTransaction @relation(fields: [orgTransactionId], references: [id])
+  orgTransactionId String
+  user             User           @relation("ClaimPointsEventFulfillment_user", fields: [userId], references: [id])
+  userId           String
 }
+
+
 
 // monthlyAmount Decimal @db.Money
 model Org {
-  id             String @id @default(uuid())
+  id             String           @id @default(uuid())
   name           String
   pointsPerMonth Int
   User           User[]
+  OrgTransaction OrgTransaction[]
 }
 
 enum IntegrationConsraintTypeEnum {
