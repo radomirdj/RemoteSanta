@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -81,6 +82,7 @@ const ChooseAmount = () => {
                 className="choose-amount-back-button"
                 disableRipple
                 onClick={onBack}
+                startIcon={<ChevronLeft className="back-button-icon" />}
               >
                 Back
               </Button>
@@ -91,6 +93,7 @@ const ChooseAmount = () => {
                 className="choose-amount-next-button"
                 disableRipple
                 type="submit"
+                endIcon={<ChevronRight className="next-button-icon" />}
               >
                 Next
               </Button>

@@ -21,18 +21,12 @@ const MyGiftCards = () => {
     navigate("/choose-gift-card");
   };
 
-  let giftCardRequestList2 = giftCardRequestList.map((obj) => ({ ...obj }));
-  const giftCardRequestList3 = giftCardRequestList2.concat(giftCardRequestList);
-  giftCardRequestList2 = giftCardRequestList2.concat(giftCardRequestList3);
-
-  giftCardRequestList2.pop();
-
   return (
     <>
       <AppHeaderPrivate />
       <div
         className={
-          giftCardRequestList2.length > 3
+          giftCardRequestList.length > 3
             ? "background my-gift-cards"
             : "background my-gift-cards-small-list"
         }
@@ -59,7 +53,7 @@ const MyGiftCards = () => {
               .
             </Typography>
           </Grid>
-          {giftCardRequestList2.map((element, i) => {
+          {giftCardRequestList.map((element, i) => {
             return (
               <Grid item xs={12} sm={6} md={4} key={i}>
                 <MyGiftCardItem {...element} />

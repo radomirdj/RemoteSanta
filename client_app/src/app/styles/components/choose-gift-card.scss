@@ -19,6 +19,16 @@ $modal-image-width:90%;
         padding-bottom: variables.$base-unit * 12;
         z-index: 1000;
 
+        .MuiStepLabel-label{
+          font-family: "Montserrat";
+        }
+      
+      .MuiStepper-root{
+          width: variables.$base-unit * 100;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
         .card-item{
             margin-left: auto;
             margin-right: auto;
@@ -90,18 +100,18 @@ $modal-image-width:90%;
     }
 }
 
-.MuiStepLabel-label{
-    font-family: "Montserrat";
-}
-
-.MuiStepper-root{
-    width: variables.$base-unit * 100;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .choose-gift-card-step-2{
     background-image: url("./../../assets/home-image.svg");
+
+    .MuiStepLabel-label{
+      font-family: "Montserrat";
+    }
+  
+  .MuiStepper-root{
+      width: variables.$base-unit * 100;
+      margin-left: auto;
+      margin-right: auto;
+    } 
 
     .choose-amount-card{
         padding-top: variables.$base-unit * 7;
@@ -167,7 +177,7 @@ $modal-image-width:90%;
             box-shadow: none;
             color: variables.$color-neutral-black;
             text-transform: none;
-            width: 50%;
+            width: 55%;
             height: variables.$base-unit * 6;
             font-weight: bold;
             margin-bottom: variables.$base-unit ;
@@ -181,7 +191,7 @@ $modal-image-width:90%;
             box-shadow: none;
             color: variables.$color-neutral-black;
             text-transform: none;
-            width: 50%;
+            width: 55%;
             height: variables.$base-unit * 6;
             font-weight: bold;
             margin-bottom: variables.$base-unit ;
@@ -195,6 +205,14 @@ $modal-image-width:90%;
             margin-bottom: variables.$base-unit * 2;
             display: inline-flex;
             width: 100%;
+          }
+
+          .back-button-icon{
+            margin-left: -8px;
+          }
+
+          .next-button-icon{
+            margin-right: -8px;
           }
 
           .amount-input-with-error {
