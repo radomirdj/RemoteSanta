@@ -1,8 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess, setGiftCardRequestAmount, setGiftCardRequestIntegration } from "./actions";
-import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST, SET_GIFT_CARD_REQUEST_AMOUNT, SET_GIFT_CARD_REQUEST_INTEGRATION } from "./actionTypes";
-import { IGiftCardIntegration, IGiftCardRequest, SetGiftCardRequestAmount, SetGiftCardRequestIntegration } from "./types";
+import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess, setGiftCardRequestAmount, setGiftCardRequestIntegration, setGiftCardRequestStepBack } from "./actions";
+import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST, SET_GIFT_CARD_REQUEST_AMOUNT, SET_GIFT_CARD_REQUEST_INTEGRATION, SET_GIFT_CARD_REQUEST_STEP_BACK } from "./actionTypes";
+import { IGiftCardIntegration, IGiftCardRequest, SetGiftCardRequestAmount, SetGiftCardRequestIntegration, SetGiftCardRequestStepBack } from "./types";
 
 const getGiftCardRequestList = (token:string) =>
   axios.get<IGiftCardRequest[]>("api/gift-card-requests/",{ headers: { Authorization: `Bearer ${token}` } });
@@ -57,6 +57,10 @@ function* setGiftCardRequestAmountSaga(action:SetGiftCardRequestAmount) {
   yield call(setGiftCardRequestAmount, action.payload);
 }
 
+function* setGiftCardRequestStepBackSaga(action:SetGiftCardRequestStepBack) {
+  yield call(setGiftCardRequestStepBack, action.payload);
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -66,6 +70,7 @@ function* todoSaga() {
   yield all([takeLatest(FETCH_GIFT_CARD_INTEGRATION_LIST, fetchGiftCardIntegrationListSaga)]);
   yield all([takeLatest(SET_GIFT_CARD_REQUEST_INTEGRATION, setGiftCardRequestIntegrationSaga)]);
   yield all([takeLatest(SET_GIFT_CARD_REQUEST_AMOUNT, setGiftCardRequestAmountSaga)]);
+  yield all([takeLatest(SET_GIFT_CARD_REQUEST_STEP_BACK, setGiftCardRequestStepBackSaga)]);
 }
 
 export default todoSaga;

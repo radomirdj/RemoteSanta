@@ -3,7 +3,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
-import { setGiftCardRequestAmount } from "../../store/gift-card-request/actions";
+import {
+  setGiftCardRequestAmount,
+  setGiftCardRequestStepBack,
+} from "../../store/gift-card-request/actions";
+import { getStepperPagetSelector } from "../../store/gift-card-request/selectors";
 
 const ChooseAmount = () => {
   const user = useSelector(getAuthUserSelector);
@@ -13,9 +17,14 @@ const ChooseAmount = () => {
     handleSubmit,
   } = useForm();
   const dispatch = useDispatch();
+  const activeStep = useSelector(getStepperPagetSelector);
 
   const onSubmit = (data: any) => {
     dispatch(setGiftCardRequestAmount({ amount: data.amount }));
+  };
+
+  const onBack = () => {
+    dispatch(setGiftCardRequestStepBack({ currentStep: activeStep }));
   };
 
   return (
@@ -71,6 +80,7 @@ const ChooseAmount = () => {
                 variant="contained"
                 className="choose-amount-back-button"
                 disableRipple
+                onClick={onBack}
               >
                 Back
               </Button>

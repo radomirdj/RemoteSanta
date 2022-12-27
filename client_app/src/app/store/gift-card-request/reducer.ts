@@ -7,7 +7,8 @@ import {
   FETCH_GIFT_CARD_REQUEST_LIST_FAILURE,
   FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
   SET_GIFT_CARD_REQUEST_AMOUNT,
-  SET_GIFT_CARD_REQUEST_INTEGRATION
+  SET_GIFT_CARD_REQUEST_INTEGRATION,
+  SET_GIFT_CARD_REQUEST_STEP_BACK
 } from "./actionTypes";
 
 import { GiftCardRequestActions, GiftCardRequestState } from "./types";
@@ -76,6 +77,23 @@ export default (state = initialState, action: GiftCardRequestActions) => {
           giftCardRequestAmount: action.payload.amount,
           stepperPage:2
         };
+      case SET_GIFT_CARD_REQUEST_STEP_BACK:
+        if(action.payload.currentStep === 1){
+        return {
+          ...state,
+          pending: false,
+          giftCardRequestAmount: 0,
+          giftCardRequestIntegration:null,
+          stepperPage:0
+        };
+      } else {
+        return {
+          ...state,
+          pending: false,
+          giftCardRequestAmount: 0,
+          stepperPage:1
+        };
+      }
     default:
       return {
         ...state

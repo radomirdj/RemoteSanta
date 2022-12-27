@@ -6,7 +6,8 @@ import {
   FETCH_GIFT_CARD_INTEGRATION_LIST_SUCCESS,
   FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE,
   SET_GIFT_CARD_REQUEST_INTEGRATION,
-  SET_GIFT_CARD_REQUEST_AMOUNT
+  SET_GIFT_CARD_REQUEST_AMOUNT,
+  SET_GIFT_CARD_REQUEST_STEP_BACK
 } from "./actionTypes";
 import {
   FetchGiftCardRequestList,
@@ -22,7 +23,9 @@ import {
   SetGiftCardIntegrationPayload,
   SetGiftCardRequestIntegration,
   SetGiftCardAmountPayload,
-  SetGiftCardRequestAmount
+  SetGiftCardRequestAmount,
+  SetGiftCardRequestStepBackPayload,
+  SetGiftCardRequestStepBack
 } from "./types";
 
 export const fetchGiftCardRequestList = (): FetchGiftCardRequestList => ({
@@ -72,5 +75,12 @@ export const setGiftCardRequestAmount = (
   payload: SetGiftCardAmountPayload
 ): SetGiftCardRequestAmount => ({
   type: SET_GIFT_CARD_REQUEST_AMOUNT,
+  payload
+});
+
+export const setGiftCardRequestStepBack = (
+  payload: SetGiftCardRequestStepBackPayload
+): SetGiftCardRequestStepBack => ({
+  type: SET_GIFT_CARD_REQUEST_STEP_BACK,
   payload
 });
