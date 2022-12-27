@@ -159,6 +159,12 @@ export const org1 = {
   pointsPerMonth: 1200,
 };
 
+export const org2 = {
+  id: '62b1828e-0b0f-4123-af61-531e7967134c',
+  name: 'W_Inc 2',
+  pointsPerMonth: 600,
+};
+
 export const lastClaimPointsEvent = {
   id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',
   validTo: '2054-01-01T00:00:00.000Z',
@@ -170,3 +176,18 @@ export const lastClaimPointsEvent = {
     createdAt: '2022-12-26T09:44:19.183Z',
   },
 };
+
+export const org1Transactions = [
+  {
+    id: '4a49457a-774d-4443-8da5-692748000beb',
+    orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+    type: 'ORG_TO_EMPLOYEES',
+    totalAmount: 1200,
+  },
+  {
+    id: 'ca16d572-9640-4470-8c8a-af3bb3fd42b6',
+    orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+    type: 'ADMIN_TO_ORG',
+    totalAmount: 4800,
+  },
+];

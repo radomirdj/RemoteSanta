@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { OrgDto } from './dtos/org.dto';
-
+import { OrgTransactionDto } from './dtos/org_transaction.dto';
 @Injectable()
 export class AdminOrgsService {
   constructor(private prisma: PrismaService) {}
@@ -30,6 +30,19 @@ export class AdminOrgsService {
       orderBy: [
         {
           name: 'asc',
+        },
+      ],
+    });
+  }
+
+  getOrgTransactionList(orgId: string): Promise<OrgTransactionDto[]> {
+    return this.prisma.orgTransaction.findMany({
+      where: {
+        orgId,
+      },
+      orderBy: [
+        {
+          createdAt: 'desc',
         },
       ],
     });

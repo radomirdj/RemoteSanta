@@ -2,9 +2,11 @@
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   type: ADMIN_TO_ORG
   totalAmount: 4800
+  createdAt: 2022-11-14T21:59:43.10-05:00
 
 - id: 4a49457a-774d-4443-8da5-692748000beb
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   type: ORG_TO_EMPLOYEES
   eventId: ec8dc7a8-0ed3-4815-bd0d-d2073005625e
   totalAmount: 1200
+  createdAt: 2022-11-15T21:59:43.10-05:00
