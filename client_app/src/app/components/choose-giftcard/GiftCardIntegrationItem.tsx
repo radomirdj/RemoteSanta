@@ -90,7 +90,6 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions></CardActions>
     </Card>
   );
 };
