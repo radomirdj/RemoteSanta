@@ -8,7 +8,10 @@ import {
   setGiftCardRequestAmount,
   setGiftCardRequestStepBack,
 } from "../../store/gift-card-request/actions";
-import { getStepperPagetSelector } from "../../store/gift-card-request/selectors";
+import {
+  getGiftCardRequestIntegrationSelector,
+  getStepperPagetSelector,
+} from "../../store/gift-card-request/selectors";
 
 const ChooseAmount = () => {
   const user = useSelector(getAuthUserSelector);
@@ -19,6 +22,11 @@ const ChooseAmount = () => {
   } = useForm();
   const dispatch = useDispatch();
   const activeStep = useSelector(getStepperPagetSelector);
+  const giftCardIntegration = useSelector(
+    getGiftCardRequestIntegrationSelector
+  );
+  const constraintString = JSON.stringify(giftCardIntegration?.constraintJson);
+  const constraintJson = JSON.parse(constraintString);
 
   const onSubmit = (data: any) => {
     dispatch(setGiftCardRequestAmount({ amount: data.amount }));
@@ -53,8 +61,8 @@ const ChooseAmount = () => {
             type="number"
             {...register("amount", {
               required: true,
-              min: 500,
-              max: 100000,
+              min: constraintJson["MIN"],
+              max: constraintJson["MAX"],
             })}
           />
           {/*LABELS */}
