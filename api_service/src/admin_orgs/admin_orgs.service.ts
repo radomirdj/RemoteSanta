@@ -37,6 +37,9 @@ export class AdminOrgsService {
 
   getOrgTransactionList(orgId: string): Promise<OrgTransactionDto[]> {
     return this.prisma.orgTransaction.findMany({
+      include: {
+        event: true,
+      },
       where: {
         orgId,
       },

@@ -23,6 +23,13 @@ export const expectOrgTransactionRsp = (responseBody, expectedValue) => {
   expect(responseBody.orgId).toEqual(expectedValue.orgId);
   expect(responseBody.type).toEqual(expectedValue.type);
   expect(responseBody.totalAmount).toEqual(expectedValue.totalAmount);
+  if (expectedValue.event) {
+    expect(responseBody.event.description).toEqual(
+      expectedValue.event.description,
+    );
+  } else {
+    expect(responseBody.event).toBeFalsy();
+  }
 };
 
 describe('admin/orgs', () => {

@@ -183,6 +183,9 @@ export const org1Transactions = [
     orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
     type: 'ORG_TO_EMPLOYEES',
     totalAmount: 1200,
+    event: {
+      description: 'Make December to remember.',
+    },
   },
   {
     id: 'ca16d572-9640-4470-8c8a-af3bb3fd42b6',
