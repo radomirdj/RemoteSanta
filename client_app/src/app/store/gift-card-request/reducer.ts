@@ -8,6 +8,7 @@ import {
   FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
   SET_GIFT_CARD_REQUEST_AMOUNT,
   SET_GIFT_CARD_REQUEST_INTEGRATION,
+  SET_GIFT_CARD_REQUEST_RESET_DATA,
   SET_GIFT_CARD_REQUEST_STEP_BACK
 } from "./actionTypes";
 
@@ -94,6 +95,14 @@ export default (state = initialState, action: GiftCardRequestActions) => {
           stepperPage:1
         };
       }
+      case SET_GIFT_CARD_REQUEST_RESET_DATA:
+        return {
+          ...state,
+          pending: false,
+          giftCardRequestAmount: 0,
+          giftCardRequestIntegration: null,
+          stepperPage:0
+        };
     default:
       return {
         ...state

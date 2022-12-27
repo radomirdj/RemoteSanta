@@ -1,7 +1,10 @@
 import { Card, Grid, Step, StepLabel, Stepper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGiftCardIntegrationList } from "../../store/gift-card-request/actions";
+import {
+  fetchGiftCardIntegrationList,
+  setGiftCardRequestResetData,
+} from "../../store/gift-card-request/actions";
 import {
   getGiftCardIntegrationListSelector,
   getStepperPagetSelector,
@@ -23,6 +26,7 @@ const ChooseGiftCard = () => {
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
 
   useEffect(() => {
+    dispatch(setGiftCardRequestResetData());
     dispatch(fetchGiftCardIntegrationList());
   }, [dispatch]);
 

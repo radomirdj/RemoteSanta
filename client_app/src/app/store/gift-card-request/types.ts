@@ -7,7 +7,8 @@ FETCH_GIFT_CARD_INTEGRATION_LIST_FAILURE,
 FETCH_GIFT_CARD_INTEGRATION_LIST_SUCCESS,
 SET_GIFT_CARD_REQUEST_INTEGRATION,
 SET_GIFT_CARD_REQUEST_AMOUNT,
-SET_GIFT_CARD_REQUEST_STEP_BACK
+SET_GIFT_CARD_REQUEST_STEP_BACK,
+SET_GIFT_CARD_REQUEST_RESET_DATA
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
@@ -114,6 +115,10 @@ export interface SetGiftCardRequestStepBack{
   payload:SetGiftCardRequestStepBackPayload
 }
 
+export interface SetGiftCardRequestResetData{
+  type: typeof SET_GIFT_CARD_REQUEST_RESET_DATA;
+}
+
 export type GiftCardRequestActions =
   | FetchGiftCardRequestListFailure
   | FetchGiftCardRequestListSuccess
@@ -123,4 +128,5 @@ export type GiftCardRequestActions =
   | FetchGiftCardIntegrationList
   | SetGiftCardRequestAmount
   | SetGiftCardRequestIntegration
-  | SetGiftCardRequestStepBack;
+  | SetGiftCardRequestStepBack
+  | SetGiftCardRequestResetData;

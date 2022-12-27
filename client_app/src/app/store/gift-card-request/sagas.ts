@@ -1,8 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess, setGiftCardRequestAmount, setGiftCardRequestIntegration, setGiftCardRequestStepBack } from "./actions";
-import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST, SET_GIFT_CARD_REQUEST_AMOUNT, SET_GIFT_CARD_REQUEST_INTEGRATION, SET_GIFT_CARD_REQUEST_STEP_BACK } from "./actionTypes";
-import { IGiftCardIntegration, IGiftCardRequest, SetGiftCardRequestAmount, SetGiftCardRequestIntegration, SetGiftCardRequestStepBack } from "./types";
+import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess, setGiftCardRequestAmount, setGiftCardRequestIntegration, setGiftCardRequestResetData, setGiftCardRequestStepBack } from "./actions";
+import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST, SET_GIFT_CARD_REQUEST_AMOUNT, SET_GIFT_CARD_REQUEST_INTEGRATION, SET_GIFT_CARD_REQUEST_RESET_DATA, SET_GIFT_CARD_REQUEST_STEP_BACK } from "./actionTypes";
+import { IGiftCardIntegration, IGiftCardRequest, SetGiftCardRequestAmount, SetGiftCardRequestIntegration, SetGiftCardRequestResetData, SetGiftCardRequestStepBack } from "./types";
 
 const getGiftCardRequestList = (token:string) =>
   axios.get<IGiftCardRequest[]>("api/gift-card-requests/",{ headers: { Authorization: `Bearer ${token}` } });
@@ -61,6 +61,10 @@ function* setGiftCardRequestStepBackSaga(action:SetGiftCardRequestStepBack) {
   yield call(setGiftCardRequestStepBack, action.payload);
 }
 
+function* setGiftCardRequestResetDataSaga(action:SetGiftCardRequestResetData) {
+  yield call(setGiftCardRequestResetData);
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -71,6 +75,7 @@ function* todoSaga() {
   yield all([takeLatest(SET_GIFT_CARD_REQUEST_INTEGRATION, setGiftCardRequestIntegrationSaga)]);
   yield all([takeLatest(SET_GIFT_CARD_REQUEST_AMOUNT, setGiftCardRequestAmountSaga)]);
   yield all([takeLatest(SET_GIFT_CARD_REQUEST_STEP_BACK, setGiftCardRequestStepBackSaga)]);
+  yield all([takeLatest(SET_GIFT_CARD_REQUEST_RESET_DATA, setGiftCardRequestResetDataSaga)]);
 }
 
 export default todoSaga;
