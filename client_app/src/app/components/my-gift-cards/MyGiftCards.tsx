@@ -26,7 +26,7 @@ const MyGiftCards = () => {
       <AppHeaderPrivate />
       <div
         className={
-          giftCardRequestList.length > 3
+          giftCardRequestList.length > 4
             ? "background my-gift-cards"
             : "background my-gift-cards-small-list"
         }
@@ -55,7 +55,7 @@ const MyGiftCards = () => {
           </Grid>
           {giftCardRequestList.map((element, i) => {
             return (
-              <Grid item xs={12} sm={6} md={4} key={i}>
+              <Grid item xs={12} sm={6} md={3} key={i}>
                 <MyGiftCardItem {...element} />
               </Grid>
             );

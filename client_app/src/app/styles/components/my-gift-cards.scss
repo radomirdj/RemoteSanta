@@ -1,6 +1,6 @@
 @use "./../variables.scss";
 
-$pending-icon-width: 20px;
+$declined-icon-width: 20px;
 $card-image-width: 83%;
 $card-button-width: 83%;
 $grid-max-width: 1200px;
@@ -56,15 +56,15 @@ $grid-max-width: 1200px;
         .card-item{
             margin-left: auto;
             margin-right: auto;
-            background-color: variables.$main-blue;
+            background-color: rgb(193, 211, 229, 0.6);
             border-radius: variables.$base-unit * 3;
-            height:variables.$base-unit * 51;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            height:variables.$base-unit * 45;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
         }
 
         .card-image{
             width: $card-image-width;
-            height:variables.$base-unit * 22;
+            height:variables.$base-unit * 18;
             margin-left: auto;
             margin-right: auto;
             margin-top: variables.$base-unit * 5;
@@ -84,7 +84,7 @@ $grid-max-width: 1200px;
 
         .card-amount{
             float: right;
-            font-family: "Roboto","Helvetica","Arial",sans-serif;
+            font-family: "Montserrat";
             font-weight: bold;
             color: variables.$color-neutral-gray;
             margin-right: variables.$base-unit * 2;
@@ -100,27 +100,31 @@ $grid-max-width: 1200px;
           width: $card-button-width;
           margin-left: auto;
           margin-right: auto;
-          height: variables.$base-unit * 6;
+          height: variables.$base-unit * 5;
           font-weight: bold;
           margin-bottom: variables.$base-unit * 4;
         }
 
         .card-pending-icon{
             margin-left: variables.$base-unit * 3;
-            width: $pending-icon-width;
+            width: variables.$base-unit * 2;
             margin-top: variables.$base-unit;
         }
 
         .card-declined-icon{
             margin-left: variables.$base-unit * 3;
-            width: variables.$base-unit * 3;
+            width: $declined-icon-width;
             margin-top: variables.$base-unit;
         }
 
         .card-declined-text{
             color: variables.$error-color;
+            font-family: "Montserrat";
         }
       
+        .pending-text{
+            font-family: "Montserrat";
+           }
     }
 }
 
