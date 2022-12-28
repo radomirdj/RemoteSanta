@@ -1,0 +1,42 @@
+- id: 4b7e82dd-2f71-4be4-a55f-cc20b60c6eae
+  type: PLATFORM
+
+- id: 2d1b6de0-e182-43f8-b8ce-96baccb4ecd4
+  type: USER_ACTIVE
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+
+- id: bbb32b33-2b0f-43f2-b7fb-fb8a6217d14b
+  type: USER_RESERVED
+  userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
+
+- id: e9632ea7-16d5-4555-8217-98f92c88d806
+  type: USER_ACTIVE
+  userId: d95d6e01-9fb8-4116-ae70-276aca88694a
+
+- id: 33f3dcad-9ef5-49dc-9fb2-8277c88c49d2
+  type: USER_RESERVED
+  userId: d95d6e01-9fb8-4116-ae70-276aca88694a
+
+- id: a6490a6e-253b-4aa0-810c-f7e5b3790138
+  type: USER_ACTIVE
+  userId: 25752f92-defd-4bb5-9553-154fc5ce9d8b
+
+- id: 7ed49c43-db63-4631-84ae-d07bc461bbbb
+  type: USER_RESERVED
+  userId: 25752f92-defd-4bb5-9553-154fc5ce9d8b
+
+- id: da727ca7-af9b-4fd3-b317-52e2e9acf0a6
+  type: USER_ACTIVE
+  userId: 71bed16a-98d9-479b-b5f4-f934a2278aae
+
+- id: 1d07919a-6ba6-461d-8c0c-83133969561c
+  type: USER_RESERVED
+  userId: 71bed16a-98d9-479b-b5f4-f934a2278aae
+
+- id: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
+  type: ORG
+  orgId: 752e05ce-4a81-4148-87c5-30832406d48c
+
+- id: 1c80baff-e523-4787-a94d-7edcf35216aa
+  type: ORG
+  orgId: 62b1828e-0b0f-4123-af61-531e7967134c

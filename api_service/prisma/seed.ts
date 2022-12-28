@@ -77,6 +77,15 @@ async function main() {
       },
     ]),
   );
+
+  await seedTable(
+    prisma,
+    'BalanceSide',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+      { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+    ]),
+  );
 }
 
 // execute the main function
