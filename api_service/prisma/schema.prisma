@@ -21,24 +21,24 @@ enum UserRoleEnum {
 }
 
 model User {
-  id                               String                        @id @default(uuid())
-  cognitoSub                       String?
-  email                            String                        @unique
-  firstName                        String
-  lastName                         String
-  createdAt                        DateTime                      @default(now())
-  updatedAt                        DateTime                      @updatedAt
-  Report                           Report[]
-  GiftDate                         GiftDate[]
-  birthDate                        DateTime                      @db.Date
-  gender                           GenderEnum
-  userRole                         UserRoleEnum                  @default(BASIC_USER)
-  org                              Org                           @relation(fields: [orgId], references: [id])
-  orgId                            String
-  GiftCardRequest                  GiftCardRequest[]
-  GiftCard                         GiftCard[]
-  claimPointsEventFulfillmentAdmin ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_admin")
-  claimPointsEventFulfillmentUser  ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
+  id                              String                        @id @default(uuid())
+  cognitoSub                      String?
+  email                           String                        @unique
+  firstName                       String
+  lastName                        String
+  createdAt                       DateTime                      @default(now())
+  updatedAt                       DateTime                      @updatedAt
+  Report                          Report[]
+  GiftDate                        GiftDate[]
+  birthDate                       DateTime                      @db.Date
+  gender                          GenderEnum
+  userRole                        UserRoleEnum                  @default(BASIC_USER)
+  org                             Org                           @relation(fields: [orgId], references: [id])
+  orgId                           String
+  GiftCardRequest                 GiftCardRequest[]
+  GiftCard                        GiftCard[]
+  claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
+  OrgTransaction                  OrgTransaction[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -90,6 +90,8 @@ model OrgTransaction {
   orgId                       String
   event                       ClaimPointsEvent?             @relation(fields: [eventId], references: [id])
   eventId                     String?
+  createdBy                   User                          @relation(fields: [createdById], references: [id])
+  createdById                 String
   ClaimPointsEventFulfillment ClaimPointsEventFulfillment[]
 }
 
@@ -97,15 +99,11 @@ model ClaimPointsEventFulfillment {
   id               String         @id @default(uuid())
   createdAt        DateTime       @default(now())
   amount           Int
-  createdBy        User           @relation("ClaimPointsEventFulfillment_admin", fields: [createdById], references: [id])
-  createdById      String
   orgTransaction   OrgTransaction @relation(fields: [orgTransactionId], references: [id])
   orgTransactionId String
   user             User           @relation("ClaimPointsEventFulfillment_user", fields: [userId], references: [id])
   userId           String
 }
-
-
 
 // monthlyAmount Decimal @db.Money
 model Org {

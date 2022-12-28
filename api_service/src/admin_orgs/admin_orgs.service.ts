@@ -77,6 +77,7 @@ export class AdminOrgsService {
   async createTransactionAdminToOrg(
     orgId: string,
     createAdminToOrgDto: CreateAdminToOrgDto,
+    admin: User,
   ): Promise<OrgTransactionDto> {
     await this.getById(orgId);
 
@@ -87,6 +88,11 @@ export class AdminOrgsService {
         org: {
           connect: {
             id: orgId,
+          },
+        },
+        createdBy: {
+          connect: {
+            id: admin.id,
           },
         },
       },
@@ -115,6 +121,11 @@ export class AdminOrgsService {
               id: orgId,
             },
           },
+          createdBy: {
+            connect: {
+              id: admin.id,
+            },
+          },
           event: {
             connect: {
               id: createOrgToUserDto.eventId,
@@ -124,7 +135,6 @@ export class AdminOrgsService {
       });
       const eventFulfillmentData = employeeList.map((employee: User) => ({
         amount: org.pointsPerMonth,
-        createdById: admin.id,
         orgTransactionId: orgTransaction.id,
         userId: employee.id,
       }));

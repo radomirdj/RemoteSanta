@@ -59,6 +59,7 @@ async function main() {
     'OrgTransaction',
     createForeignKeyListTransformer([
       { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
       {
         foreignKeyName: 'eventId',
         foreignRecordName: 'event',
@@ -70,7 +71,6 @@ async function main() {
     'ClaimPointsEventFulfillment',
     createForeignKeyListTransformer([
       { foreignKeyName: 'userId', foreignRecordName: 'user' },
-      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
       {
         foreignKeyName: 'orgTransactionId',
         foreignRecordName: 'orgTransaction',

@@ -37,8 +37,9 @@ export class AdminOrgsController {
   createAdminToOrgTransaction(
     @Param('id') id: string,
     @Body() body: CreateAdminToOrgDto,
+    @CurrentUser() user: User,
   ) {
-    return this.adminOrgsService.createTransactionAdminToOrg(id, body);
+    return this.adminOrgsService.createTransactionAdminToOrg(id, body, user);
   }
 
   @Post('/:id/transactions/org-to-employees/')

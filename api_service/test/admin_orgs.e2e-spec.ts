@@ -199,6 +199,7 @@ describe('admin/orgs', () => {
       expect(response.body.eventId).toBeFalsy();
       expect(response.body.type).toEqual(OrgTransactionTypeEnum.ADMIN_TO_ORG);
       expect(response.body.orgId).toEqual(org1.id);
+      expect(response.body.createdById).toEqual(admin.id);
 
       const dbAdminToOrg = await prisma.orgTransaction.findUnique({
         where: {
@@ -210,6 +211,8 @@ describe('admin/orgs', () => {
       expect(dbAdminToOrg.eventId).toBeFalsy();
       expect(dbAdminToOrg.type).toEqual(OrgTransactionTypeEnum.ADMIN_TO_ORG);
       expect(dbAdminToOrg.orgId).toEqual(org1.id);
+      expect(dbAdminToOrg.createdById).toEqual(admin.id);
+
       await prisma.orgTransaction.deleteMany({
         where: {
           id,
@@ -270,6 +273,7 @@ describe('admin/orgs', () => {
         OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
       );
       expect(response.body.orgId).toEqual(org1.id);
+      expect(response.body.createdById).toEqual(admin.id);
 
       // Check Event Fulfillment List
       const dbClaimPointsEventFulfillmentList =
@@ -287,7 +291,6 @@ describe('admin/orgs', () => {
           expect(dbClaimPointsEventFulfillment.amount).toEqual(
             org1.pointsPerMonth,
           );
-          expect(dbClaimPointsEventFulfillment.createdById).toEqual(admin.id);
           expect(dbClaimPointsEventFulfillment.orgTransactionId).toEqual(id);
         },
       );
@@ -303,6 +306,7 @@ describe('admin/orgs', () => {
         },
       });
       expect(dbOrgToEmployee.totalAmount).toEqual(totalAmount);
+      expect(dbOrgToEmployee.createdById).toEqual(admin.id);
       expect(dbOrgToEmployee.eventId).toEqual(
         newOrgToEmployeeTransaction.eventId,
       );
