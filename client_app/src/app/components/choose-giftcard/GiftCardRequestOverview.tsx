@@ -2,8 +2,12 @@ import { ChevronLeft } from "@mui/icons-material";
 import { Button, Card, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getAuthUserSelector } from "../../store/auth/selectors";
-import { setGiftCardRequestStepBack } from "../../store/gift-card-request/actions";
+import {
+  postGiftCardRequest,
+  setGiftCardRequestStepBack,
+} from "../../store/gift-card-request/actions";
 import {
   getGiftCardRequestAmountSelector,
   getGiftCardRequestIntegrationSelector,
@@ -18,9 +22,22 @@ const GiftCardRequestOverview = () => {
   const giftCardRequestAmount = useSelector(getGiftCardRequestAmountSelector);
   const user = useSelector(getAuthUserSelector);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onBack = () => {
     dispatch(setGiftCardRequestStepBack({ currentStep: activeStep }));
+  };
+
+  const onSubmit = () => {
+    dispatch(
+      postGiftCardRequest(
+        {
+          giftCardIntegrationId: giftCardIntegration?.id || "",
+          amount: giftCardRequestAmount,
+        },
+        navigate
+      )
+    );
   };
 
   return (
@@ -66,6 +83,7 @@ const GiftCardRequestOverview = () => {
               className="overview-confirm-button"
               disableRipple
               type="submit"
+              onClick={onSubmit}
             >
               Confirm
             </Button>

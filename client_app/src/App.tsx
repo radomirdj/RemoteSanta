@@ -19,6 +19,7 @@ import Demo from "./app/components/demo/Demo";
 import History from "./app/components/history/History";
 import UserProfile from "./app/components/user-profile/UserProfile";
 import ChooseGiftCard from "./app/components/choose-giftcard/ChooseGiftCard";
+import GiftCardRequestSuccess from "./app/components/gift-card-request-success/GiftCardRequestSuccess";
 
 const App = () => {
   return (
@@ -110,6 +111,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <ChooseGiftCard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="gift-card-request-success"
+          element={
+            <PrivateRoute>
+              <GiftCardRequestSuccess />
             </PrivateRoute>
           }
         />

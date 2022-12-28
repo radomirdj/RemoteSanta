@@ -29,7 +29,7 @@ const ChooseAmount = () => {
   const constraintJson = JSON.parse(constraintString);
 
   const onSubmit = (data: any) => {
-    dispatch(setGiftCardRequestAmount({ amount: data.amount }));
+    dispatch(setGiftCardRequestAmount({ amount: Number(data.amount) }));
   };
 
   const onBack = () => {
