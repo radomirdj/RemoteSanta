@@ -107,7 +107,7 @@ $modal-image-width:90%;
       font-family: "Montserrat";
     }
   
-  .MuiStepper-root{
+    .MuiStepper-root{
       width: variables.$base-unit * 100;
       margin-left: auto;
       margin-right: auto;
@@ -120,6 +120,7 @@ $modal-image-width:90%;
         padding-right: variables.$base-unit * 8;
         border-radius: variables.$base-unit * 4;
         text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
         @media screen and (min-width: variables.$breakpoint-sm) {
             width: 400px;
@@ -218,5 +219,107 @@ $modal-image-width:90%;
           .amount-input-with-error {
             margin-bottom: 0px !important;
           }
+    }
+    .overview-card{
+      padding-top: variables.$base-unit * 5;
+      padding-bottom: variables.$base-unit * 5;
+      padding-left: variables.$base-unit * 8;
+      padding-right: variables.$base-unit * 8;
+      border-radius: variables.$base-unit * 4;
+      text-align: center;
+      box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
+      @media screen and (min-width: variables.$breakpoint-sm) {
+          width: 400px;
+          margin-right: auto;
+          margin-left: auto;
+        }
+
+      .overview-title{
+          font-family: "Montserrat";
+          font-size: variables.$font-size-title;
+          margin-bottom: variables.$base-unit * 3;
+          text-align: start;
+          color: variables.$color-neutral-black;
+          width: 100%;
+      }
+
+      .overview-child-card{
+        background-color: rgb(207, 209, 129, 0.5);
+        height: variables.$base-unit * 22;
+        border-radius: variables.$base-unit * 3;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+      }
+
+      .overview-brand-title{
+          font-family: "Montserrat";
+          font-size: variables.$font-size-large;
+          margin-left: variables.$base-unit * 4;
+          text-align: start;
+          color: variables.$color-neutral-black;
+       
+      }
+
+      .overview-amount{
+        font-family: "Montserrat";
+          font-size: variables.$font-size-medium;
+          margin-top: variables.$base-unit;
+          margin-left: variables.$base-unit * 4;
+          text-align: start;
+          color: variables.$color-neutral-gray;
+          width: 50%;
+      }
+
+      .image-style{
+        height: variables.$base-unit * 11;
+        width:  variables.$base-unit * 17;
+        border-radius: variables.$base-unit * 2;
+        float: left;
+      }
+
+      .grid-style{
+        height: 100%;
+      }
+
+      .grid-item{
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .overview-back-button{
+        float: left;
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        width: 55%;
+        height: variables.$base-unit * 6;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit ;
+        margin-top: variables.$base-unit ;
+      }
+
+      .overview-confirm-button{
+        float: right;
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        width: 55%;
+        height: variables.$base-unit * 6;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit ;
+        margin-top: variables.$base-unit ;
+      }
+
+      .back-button-icon{
+        margin-left: -8px;
+      }
+
+      .button-container{
+        margin-top: variables.$base-unit * 4;
+      }
     }
 }

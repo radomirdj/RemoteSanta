@@ -15,6 +15,7 @@ import ColorlibStepIcon from "./ColorlibStepIcon";
 import ColorlibConnector from "./ColorlibConnector";
 import GiftCardIntegrationItem from "./GiftCardIntegrationItem";
 import ChooseAmount from "./ChooseAmount";
+import GiftCardRequestOverview from "./GiftCardRequestOverview";
 
 const ChooseGiftCard = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,11 @@ const ChooseGiftCard = () => {
           {activeStep === 1 && (
             <Grid item xs={12}>
               <ChooseAmount />
+            </Grid>
+          )}
+          {activeStep === 2 && (
+            <Grid item xs={12}>
+              <GiftCardRequestOverview />
             </Grid>
           )}
         </Grid>
