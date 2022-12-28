@@ -9,7 +9,7 @@ export class OrgDto {
   name: string;
 
   @Expose()
-  userCount?: number;
+  employeeNumber?: number;
 
   @Expose()
   totalPointsPerMonth?: number;

@@ -1,8 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { OrgDto } from './dtos/org.dto';
 import { OrgTransactionDto } from './dtos/org_transaction.dto';
-import { OrgTransactionTypeEnum } from '@prisma/client';
+import { OrgTransactionTypeEnum, User, Org } from '@prisma/client';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 
@@ -23,7 +27,7 @@ export class AdminOrgsService {
     const { _count, ...otherData } = org;
 
     return {
-      userCount: _count.User,
+      employeeNumber: _count.User,
       totalPointsPerMonth: _count.User * otherData.pointsPerMonth,
       ...otherData,
     };
@@ -55,13 +59,19 @@ export class AdminOrgsService {
     });
   }
 
-  async getById(orgId: string) {
+  async getById(orgId: string): Promise<Org> {
     const org = await this.prisma.org.findUnique({
       where: { id: orgId },
     });
     if (!org) throw new NotFoundException('Org Not Found');
 
     return org;
+  }
+
+  getEmployeeListByOrg(orgId: string): Promise<User[]> {
+    return this.prisma.user.findMany({
+      where: { orgId },
+    });
   }
 
   async createTransactionAdminToOrg(
@@ -83,25 +93,49 @@ export class AdminOrgsService {
     });
   }
 
-  createTransactionOrgToEmployees(
+  async createTransactionOrgToEmployees(
     orgId: string,
     createOrgToUserDto: CreateOrgToEmployeesDto,
+    admin: User,
   ): Promise<OrgTransactionDto> {
-    return this.prisma.orgTransaction.create({
-      data: {
-        totalAmount: createOrgToUserDto.amount,
-        type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
-        org: {
-          connect: {
-            id: orgId,
+    const [org, employeeList] = await Promise.all([
+      this.getById(orgId),
+      this.getEmployeeListByOrg(orgId),
+    ]);
+    if (employeeList.length !== createOrgToUserDto.employeeNumber)
+      throw new ConflictException("Employee Number doesn't match DB.");
+
+    return this.prisma.$transaction(async (tx) => {
+      const orgTransaction = await tx.orgTransaction.create({
+        data: {
+          totalAmount: createOrgToUserDto.employeeNumber * org.pointsPerMonth,
+          type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
+          org: {
+            connect: {
+              id: orgId,
+            },
+          },
+          event: {
+            connect: {
+              id: createOrgToUserDto.eventId,
+            },
           },
         },
-        event: {
-          connect: {
-            id: createOrgToUserDto.eventId,
-          },
-        },
-      },
+      });
+      const eventFulfillmentData = employeeList.map((employee: User) => ({
+        amount: org.pointsPerMonth,
+        createdById: admin.id,
+        orgTransactionId: orgTransaction.id,
+        userId: employee.id,
+      }));
+      const { count } = await tx.claimPointsEventFulfillment.createMany({
+        data: eventFulfillmentData,
+      });
+
+      if (count !== createOrgToUserDto.employeeNumber)
+        throw new ConflictException("Employee Number doesn't match DB.");
+
+      return orgTransaction;
     });
   }
 }

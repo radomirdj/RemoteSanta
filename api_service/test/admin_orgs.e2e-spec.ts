@@ -16,6 +16,7 @@ import {
   org1,
   org2,
   org1Transactions,
+  claimPointsEvent10Id,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -63,7 +64,7 @@ describe('admin/orgs', () => {
       const rspOrg = response.body;
       expect(rspOrg.name).toEqual(org1.name);
       expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
-      expect(rspOrg.userCount).toEqual(4);
+      expect(rspOrg.employeeNumber).toEqual(org1.employeeNumber);
       expect(rspOrg.totalPointsPerMonth).toEqual(4800);
     });
 
@@ -79,7 +80,7 @@ describe('admin/orgs', () => {
       const rspOrg = response.body;
       expect(rspOrg.name).toEqual(org2.name);
       expect(rspOrg.pointsPerMonth).toEqual(org2.pointsPerMonth);
-      expect(rspOrg.userCount).toEqual(0);
+      expect(rspOrg.employeeNumber).toEqual(0);
       expect(rspOrg.totalPointsPerMonth).toEqual(0);
     });
 
@@ -237,6 +238,137 @@ describe('admin/orgs', () => {
             createToken({ email: user2.email, sub: user2.cognitoSub }),
         )
         .send(newAdmitToOrgTransaction)
+        .expect(403);
+    });
+  });
+
+  describe('/:id/transactions/org-to-employees/ (POST)', () => {
+    const totalAmount = org1.employeeNumber * org1.pointsPerMonth;
+    const newOrgToEmployeeTransaction = {
+      employeeNumber: org1.employeeNumber,
+      eventId: claimPointsEvent10Id,
+    };
+
+    it('/ (POST) - ADMIN create org-to-employees transaction', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/orgs/${org1.id}/transactions/org-to-employees/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(newOrgToEmployeeTransaction)
+        .expect(201);
+
+      const id = response.body.id;
+      // Check OrgTransaction Body response
+      expect(response.body.totalAmount).toEqual(totalAmount);
+      expect(response.body.eventId).toEqual(
+        newOrgToEmployeeTransaction.eventId,
+      );
+      expect(response.body.type).toEqual(
+        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
+      );
+      expect(response.body.orgId).toEqual(org1.id);
+
+      // Check Event Fulfillment List
+      const dbClaimPointsEventFulfillmentList =
+        await prisma.claimPointsEventFulfillment.findMany({
+          where: {
+            orgTransactionId: id,
+          },
+        });
+
+      expect(dbClaimPointsEventFulfillmentList.length).toEqual(
+        org1.employeeNumber,
+      );
+      dbClaimPointsEventFulfillmentList.forEach(
+        (dbClaimPointsEventFulfillment) => {
+          expect(dbClaimPointsEventFulfillment.amount).toEqual(
+            org1.pointsPerMonth,
+          );
+          expect(dbClaimPointsEventFulfillment.createdById).toEqual(admin.id);
+          expect(dbClaimPointsEventFulfillment.orgTransactionId).toEqual(id);
+        },
+      );
+
+      expect(dbClaimPointsEventFulfillmentList[0].userId).not.toEqual(
+        dbClaimPointsEventFulfillmentList[1].userId,
+      );
+
+      // Check OrgTransaction in DB
+      const dbOrgToEmployee = await prisma.orgTransaction.findUnique({
+        where: {
+          id,
+        },
+      });
+      expect(dbOrgToEmployee.totalAmount).toEqual(totalAmount);
+      expect(dbOrgToEmployee.eventId).toEqual(
+        newOrgToEmployeeTransaction.eventId,
+      );
+      expect(dbOrgToEmployee.type).toEqual(
+        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
+      );
+      expect(dbOrgToEmployee.orgId).toEqual(org1.id);
+
+      // Clean DB
+      await prisma.claimPointsEventFulfillment.deleteMany({
+        where: {
+          orgTransactionId: id,
+        },
+      });
+
+      await prisma.orgTransaction.deleteMany({
+        where: {
+          id,
+        },
+      });
+    });
+
+    it('/ (POST) - ADMIN try to create org-to-employees transaction with bad employeeNumber', async () => {
+      await request(app.getHttpServer())
+        .post(`/admin/orgs/${org1.id}/transactions/org-to-employees/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send({
+          ...newOrgToEmployeeTransaction,
+          employeeNumber: newOrgToEmployeeTransaction.employeeNumber - 1,
+        })
+        .expect(409);
+      const dbOrgToEmployeeList = await prisma.orgTransaction.findMany({
+        where: {
+          eventId: claimPointsEvent10Id,
+        },
+      });
+      // It's enough to check for OrgTransaction is not in DB.
+      // It means that ClaimPointsEventFulfillment is noot in DB too, because it has foreign key too OrgTransaction.
+      expect(dbOrgToEmployeeList.length).toEqual(0);
+    });
+
+    it('/ (POST) - ADMIN try to create org-to-employees transaction with bad Org', async () => {
+      await request(app.getHttpServer())
+        .post(`/admin/orgs/${user2.id}/transactions/org-to-employees/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(newOrgToEmployeeTransaction)
+        .expect(404);
+    });
+
+    it('/ (POST) - NOT ADMIN try to create org-to-employees transaction', async () => {
+      await request(app.getHttpServer())
+        .post(`/admin/orgs/${org1.id}/transactions/org-to-employees/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(newOrgToEmployeeTransaction)
         .expect(403);
     });
   });

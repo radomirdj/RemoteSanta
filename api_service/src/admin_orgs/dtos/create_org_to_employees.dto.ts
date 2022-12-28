@@ -8,5 +8,5 @@ export class CreateOrgToEmployeesDto {
   @IsInt()
   @Min(1)
   @Max(1000000)
-  amount: number;
+  employeeNumber: number;
 }

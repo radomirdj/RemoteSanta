@@ -157,6 +157,7 @@ export const org1 = {
   id: '752e05ce-4a81-4148-87c5-30832406d48c',
   name: 'Top Inc.',
   pointsPerMonth: 1200,
+  employeeNumber: 4,
 };
 
 export const org2 = {
@@ -164,6 +165,14 @@ export const org2 = {
   name: 'W_Inc 2',
   pointsPerMonth: 600,
 };
+
+export const claimPointsEvent1 = {
+  id: 'e0c01322-f499-4f84-baac-af230e238d07',
+  validTo: '2022-11-01T00:00:00.000Z',
+  description: 'You don’t waste October sunshine.',
+};
+
+export const claimPointsEvent10Id = 'e545e477-d10a-48da-9c1f-919cb456e64a';
 
 export const lastClaimPointsEvent = {
   id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',

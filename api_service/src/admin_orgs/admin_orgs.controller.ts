@@ -7,6 +7,8 @@ import { OrgDto } from './dtos/org.dto';
 import { OrgTransactionDto } from './dtos/org_transaction.dto';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { User } from '@prisma/client';
 
 @Controller('admin/orgs')
 @UseGuards(AuthGuard('jwt'), AdminGuard)
@@ -43,7 +45,12 @@ export class AdminOrgsController {
   createOrgToEmployeesTransaction(
     @Param('id') id: string,
     @Body() body: CreateOrgToEmployeesDto,
+    @CurrentUser() user: User,
   ) {
-    return this.adminOrgsService.createTransactionOrgToEmployees(id, body);
+    return this.adminOrgsService.createTransactionOrgToEmployees(
+      id,
+      body,
+      user,
+    );
   }
 }
