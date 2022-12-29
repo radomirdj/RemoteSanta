@@ -27,7 +27,7 @@ const AppHeaderPrivate = () => {
   );
 
   const userLogout = () => {
-    dispatch(logout());
+    dispatch(logout(navigate));
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {

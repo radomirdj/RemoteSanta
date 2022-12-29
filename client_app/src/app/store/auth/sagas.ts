@@ -92,6 +92,7 @@ function* getSelfSaga(action: GetSelfRequest) {
 
 function* logoutSaga(action: Logout) {
   localStorage.removeItem("token");
+  action.navigate("/login");
 }
 
 function* forgotPasswordSaga(action: ForgotPasswordRequest) {

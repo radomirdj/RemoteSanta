@@ -123,6 +123,7 @@ export type GetSelfFailure = {
 
 export type Logout = {
   type: typeof LOGOUT;
+  navigate:Function
 };
 
 export interface ForgotPasswordRequest {
