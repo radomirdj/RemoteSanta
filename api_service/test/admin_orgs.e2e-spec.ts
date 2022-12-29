@@ -146,7 +146,7 @@ describe('admin/orgs', () => {
         )
         .expect(200);
 
-      expect(response.body.length).toEqual(2);
+      expect(response.body.length).toEqual(4);
       expectOrgTransactionRsp(response.body[0], org1Transactions[0]);
       expectOrgTransactionRsp(response.body[1], org1Transactions[1]);
     });
