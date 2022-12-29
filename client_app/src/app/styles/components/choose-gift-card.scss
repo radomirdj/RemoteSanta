@@ -24,7 +24,9 @@ $modal-image-width:90%;
         }
       
       .MuiStepper-root{
+        @media screen and (min-width: variables.$breakpoint-md){
           width: variables.$base-unit * 100;
+        }
           margin-left: auto;
           margin-right: auto;
         }
@@ -120,7 +122,9 @@ $modal-image-width:90%;
     }
   
     .MuiStepper-root{
-      width: variables.$base-unit * 100;
+      @media screen and (min-width: variables.$breakpoint-md){
+        width: variables.$base-unit * 100;
+      }
       margin-left: auto;
       margin-right: auto;
     } 
