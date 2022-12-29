@@ -120,6 +120,18 @@ $card-button-width: 83%;
        .pending-text{
             font-family: "Montserrat";
        }
+
+       .MuiGrid-root{
+        .MuiGrid-item{
+            padding-left: 0px;
+        }
+    }
+    }
+
+    .MuiGrid-root{
+        .MuiGrid-item{
+            padding-left: 16px;
+        }
     }
 }
 
