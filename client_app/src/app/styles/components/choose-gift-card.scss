@@ -72,7 +72,18 @@ $modal-image-width:90%;
             margin-top: $grid-margin-top;
             margin-bottom: auto;
         }
+        
+        .MuiGrid-root{
+          .MuiGrid-item{
+              padding-left: 0px;
+          }
+      }
     }
+    .MuiGrid-root{
+      .MuiGrid-item{
+          padding-left: 16px;
+      }
+  }
 }
 
 .MuiModal-root{

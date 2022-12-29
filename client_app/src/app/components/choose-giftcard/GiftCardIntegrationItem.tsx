@@ -41,7 +41,7 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 260 }} className="card-item">
+    <Card sx={{ maxWidth: 218 }} className="card-item">
       <CardMedia
         component="img"
         image={giftCardIntegration.image}
