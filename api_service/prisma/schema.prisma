@@ -185,16 +185,24 @@ model BalanceSide {
   ladgerTo   Ledger[]            @relation("Ledger_to")
 }
 
+enum LedgerTypeEnum {
+  ORG_TO_EMPLOYEES
+  ADMIN_TO_ORG
+  GIFT_CARD_REQUEST_CREATED
+  GIFT_CARD_REQUEST_COMPLETED
+  GIFT_CARD_REQUEST_DECLINED
+}
+
 model Ledger {
-  id          String              @id @default(uuid())
-  type        BalanceSideTypeEnum
+  id          String         @id @default(uuid())
+  type        LedgerTypeEnum
   amount      Int
   detailsJson Json
-  from        BalanceSide         @relation("Ledger_from", fields: [fromId], references: [id])
+  from        BalanceSide    @relation("Ledger_from", fields: [fromId], references: [id])
   fromId      String
-  to          BalanceSide         @relation("Ledger_to", fields: [toId], references: [id])
+  to          BalanceSide    @relation("Ledger_to", fields: [toId], references: [id])
   toId        String
-  createdAt   DateTime            @default(now())
+  createdAt   DateTime       @default(now())
 }
 
 model Report {

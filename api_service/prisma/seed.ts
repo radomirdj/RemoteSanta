@@ -86,6 +86,15 @@ async function main() {
       { foreignKeyName: 'orgId', foreignRecordName: 'org' },
     ]),
   );
+
+  await seedTable(
+    prisma,
+    'Ledger',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'fromId', foreignRecordName: 'from' },
+      { foreignKeyName: 'toId', foreignRecordName: 'to' },
+    ]),
+  );
 }
 
 // execute the main function
