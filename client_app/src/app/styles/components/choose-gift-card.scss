@@ -139,7 +139,7 @@ $modal-image-width:90%;
         box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
         @media screen and (min-width: variables.$breakpoint-sm) {
-            width: 400px;
+            width: variables.$base-unit * 50;
             margin-right: auto;
             margin-left: auto;
           }
@@ -246,7 +246,7 @@ $modal-image-width:90%;
       box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
       @media screen and (min-width: variables.$breakpoint-sm) {
-          width: 400px;
+          width: variables.$base-unit * 52;
           margin-right: auto;
           margin-left: auto;
         }
@@ -276,21 +276,28 @@ $modal-image-width:90%;
        
       }
 
-      .overview-amount{
-        font-family: "Montserrat";
+      .overview-points{
+          font-family: "Montserrat";
           font-size: variables.$font-size-medium;
           margin-top: variables.$base-unit;
           margin-left: variables.$base-unit * 4;
           text-align: start;
           color: variables.$color-neutral-gray;
-          width: 50%;
       }
+
+      .overview-amount{
+        font-family: "Montserrat";
+        font-size: variables.$font-size-small;
+        margin-top: variables.$base-unit;
+        margin-left: variables.$base-unit * 4;
+        text-align: start;
+        color: variables.$color-neutral-gray;
+    }
 
       .image-style{
         height: variables.$base-unit * 11;
         width:  variables.$base-unit * 17;
         border-radius: variables.$base-unit * 2;
-        float: left;
       }
 
       .grid-style{

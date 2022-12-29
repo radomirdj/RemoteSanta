@@ -51,7 +51,7 @@ const GiftCardRequestOverview = () => {
               <Typography className="overview-brand-title">
                 {giftCardIntegration?.title}
               </Typography>
-              <Typography className="overview-amount">
+              <Typography className="overview-points">
                 {giftCardRequestAmount} PTS
               </Typography>
               <Typography className="overview-amount">{user.email}</Typography>
