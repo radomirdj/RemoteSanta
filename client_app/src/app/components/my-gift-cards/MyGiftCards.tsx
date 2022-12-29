@@ -33,17 +33,14 @@ const MyGiftCards = () => {
       >
         {/*LABELS */}
         <Grid container spacing={4} className="grid-style">
-          <Grid item xs={6} className="grid-title">
+          <Grid item xs={12} className="grid-title">
             <Typography className="my-gift-cards-title">
               My Gift Cards
             </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <Typography className="my-gift-card-points">4000 PTS</Typography>
-          </Grid>
           <Grid item xs={12} className="grid-item">
             <Typography className="my-gift-cards-text">
-              Use your points
+              <b className="my-gift-card-points"> 4000 PTS</b>- Use your points
               <u
                 className="my-gift-cards-link"
                 onClick={chooseGiftCardRedirect}

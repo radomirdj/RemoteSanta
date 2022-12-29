@@ -22,7 +22,7 @@ $grid-max-width: 1200px;
             font-family: "Montserrat";
             font-size: variables.$font-size-title;
             margin-left: variables.$base-unit ;
-            margin-bottom: variables.$base-unit * 2;
+            margin-bottom: variables.$base-unit;
             width: max-content;
         } 
 
@@ -44,9 +44,12 @@ $grid-max-width: 1200px;
         } 
 
         .my-gift-card-points{
-            font-size: variables.$font-size-larger;
-           font-family: "Montserrat";
-           float: right;
+            font-size: variables.$font-size-large;
+            font-weight: 600;
+            margin-bottom: variables.$base-unit;
+            color: variables.$main-green;
+            margin-right: variables.$base-unit ;
+            font-family: "Roboto","Helvetica","Arial",sans-serif;
         }
 
         .grid-item{
