@@ -11,7 +11,12 @@ import { LoginCredentialsWrongException } from '../src/errors/loginCredentialsWr
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
-import { user1, org1 } from './utils/preseededData';
+import {
+  user1,
+  org1,
+  user1ActivePoints,
+  user1ReservedPoints,
+} from './utils/preseededData';
 import { UserRoleEnum, BalanceSideTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
@@ -150,6 +155,11 @@ describe('Authentication system', () => {
             createToken({ email: user1.email, sub: user1.cognitoSub }),
         )
         .expect(200);
+
+      expect(response.body.userBalance.pointsActive).toEqual(user1ActivePoints);
+      expect(response.body.userBalance.pointsReserved).toEqual(
+        user1ReservedPoints,
+      );
 
       expectUserRsp(response.body, {
         ...user1,

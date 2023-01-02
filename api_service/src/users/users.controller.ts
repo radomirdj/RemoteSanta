@@ -19,6 +19,7 @@ import { UpdateUserDto } from './dtos/update-user.dto';
 import { LoginUserDto } from './dtos/login-user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
+import { LedgerService } from '../ledger/ledger.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from '../users/dtos/user.dto';
 import { ChangePasswordUserDto } from '../users/dtos/change-password.dto';
@@ -35,6 +36,7 @@ export class UsersController {
     private usersService: UsersService,
     private authService: AuthService,
     private awsCognitoService: AwsCognitoService,
+    private ledgerService: LedgerService,
   ) {}
 
   @Post('/signup')
@@ -87,7 +89,11 @@ export class UsersController {
   @Get('/self')
   @UseGuards(AuthGuard('jwt'))
   async getCurrentUser(@CurrentUser() user: User) {
-    return user;
+    const userBalance = await this.ledgerService.getUserBalance(user.id);
+    return {
+      ...user,
+      userBalance,
+    };
   }
 
   //   @Post('/signout')
