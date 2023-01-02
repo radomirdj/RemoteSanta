@@ -15,29 +15,21 @@ const Home = () => {
   const claimPointsEventList = useSelector(getClaimPointsEventListSelector);
   const user = useSelector(getAuthUserSelector);
   const navigate = useNavigate();
-  const [eventList, setEventList] =
-    useState<IClaimPointEvent[]>(claimPointsEventList);
-
-  console.log(claimPointsEventList);
 
   useEffect(() => {
     dispatch(fetchClaimPointsEventList());
   }, [dispatch]);
 
-  useEffect(() => {
-    let list = eventList;
-    const currentDate = new Date();
-    list.forEach((item, i) => {
-      let validToDate = new Date(item.validTo);
-      if (item.claimPointsEventFulfillment) {
-        list.splice(i, 1);
-      }
-      if (currentDate > validToDate) {
-        list.splice(i, 1);
-      }
-    });
-    setEventList(list);
-  }, [claimPointsEventList]);
+  const currentDate = new Date();
+  const filteredList = claimPointsEventList.filter((claimPointsEvent) => {
+    let validToDate = new Date(claimPointsEvent.validTo);
+    if (
+      currentDate > validToDate ||
+      claimPointsEvent.claimPointsEventFulfillment
+    )
+      return false;
+    return true;
+  });
 
   const chooseGiftCardRedirect = () => {
     navigate("/choose-gift-card");
@@ -65,7 +57,7 @@ const Home = () => {
               Use your points <u onClick={chooseGiftCardRedirect}>now</u>.
             </Typography>
           </Grid>
-          {eventList.map((element, i) => {
+          {filteredList.map((element, i) => {
             return (
               <Grid item xs={12} key={i}>
                 <ClaimPointsEventItem {...element} />

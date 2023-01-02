@@ -295,9 +295,11 @@ $modal-image-width:90%;
     }
 
       .image-style{
-        height: variables.$base-unit * 11;
+        height: variables.$base-unit * 12;
         width:  variables.$base-unit * 17;
         border-radius: variables.$base-unit * 2;
+        float: right;
+        margin-right: variables.$base-unit * 3;
       }
 
       .grid-style{
