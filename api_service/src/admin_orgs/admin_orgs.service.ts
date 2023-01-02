@@ -4,6 +4,7 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { LedgerService } from '../ledger/ledger.service';
 import { OrgDto } from './dtos/org.dto';
 import { OrgTransactionDto } from './dtos/org_transaction.dto';
 import { OrgTransactionTypeEnum, User, Org } from '@prisma/client';
@@ -12,7 +13,10 @@ import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 
 @Injectable()
 export class AdminOrgsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private ledgerService: LedgerService,
+  ) {}
 
   async getDetails(id: string): Promise<OrgDto> {
     const org = await this.prisma.org.findUnique({
@@ -81,21 +85,30 @@ export class AdminOrgsService {
   ): Promise<OrgTransactionDto> {
     await this.getById(orgId);
 
-    return this.prisma.orgTransaction.create({
-      data: {
-        totalAmount: createAdminToOrgDto.amount,
-        type: OrgTransactionTypeEnum.ADMIN_TO_ORG,
-        org: {
-          connect: {
-            id: orgId,
+    return this.prisma.$transaction(async (tx) => {
+      const orgTransaction = await tx.orgTransaction.create({
+        data: {
+          totalAmount: createAdminToOrgDto.amount,
+          type: OrgTransactionTypeEnum.ADMIN_TO_ORG,
+          org: {
+            connect: {
+              id: orgId,
+            },
+          },
+          createdBy: {
+            connect: {
+              id: admin.id,
+            },
           },
         },
-        createdBy: {
-          connect: {
-            id: admin.id,
-          },
-        },
-      },
+      });
+      await this.ledgerService.createAdminToOrgTransaction(
+        tx,
+        orgId,
+        createAdminToOrgDto.amount,
+        orgTransaction.id,
+      );
+      return orgTransaction;
     });
   }
 

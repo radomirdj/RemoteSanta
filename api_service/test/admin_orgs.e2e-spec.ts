@@ -8,7 +8,9 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
-import { OrgTransactionTypeEnum } from '@prisma/client';
+import { OrgTransactionTypeEnum, LedgerTypeEnum } from '@prisma/client';
+import { LedgerService } from '../src/ledger/ledger.service';
+import { LedgerModule } from '../src/ledger/ledger.module';
 
 import {
   user2,
@@ -17,6 +19,9 @@ import {
   org2,
   org1Transactions,
   claimPointsEvent10Id,
+  org1BalanceSideId,
+  platformBalanceSideId,
+  org1Points,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -37,10 +42,11 @@ export const expectOrgTransactionRsp = (responseBody, expectedValue) => {
 describe('admin/orgs', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+  let ledgerService: LedgerService;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, PrismaModule, UsersModule],
+      imports: [AppModule, PrismaModule, UsersModule, LedgerModule],
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
@@ -48,6 +54,7 @@ describe('admin/orgs', () => {
 
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
+    ledgerService = app.get(LedgerService);
     await app.init();
   });
 
@@ -181,7 +188,8 @@ describe('admin/orgs', () => {
       amount: 12000,
     };
 
-    it('/ (POST) - ADMIN create admin-to-org transaction', async () => {
+    it.only('/ (POST) - ADMIN create admin-to-org transaction', async () => {
+      const testStartTime = new Date();
       const response = await request(app.getHttpServer())
         .post(`/admin/orgs/${org1.id}/transactions/admin-to-org/`)
         .set(
@@ -213,6 +221,30 @@ describe('admin/orgs', () => {
       expect(dbAdminToOrg.orgId).toEqual(org1.id);
       expect(dbAdminToOrg.createdById).toEqual(admin.id);
 
+      // Check Ledger Data
+      const addedLadger = await prisma.ledger.findMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+      expect(addedLadger.length).toEqual(1);
+      expect(addedLadger[0].type).toEqual(LedgerTypeEnum.ADMIN_TO_ORG);
+      expect(addedLadger[0].amount).toEqual(newAdmitToOrgTransaction.amount);
+      expect(addedLadger[0].fromId).toEqual(platformBalanceSideId);
+      expect(addedLadger[0].toId).toEqual(org1BalanceSideId);
+
+      const orgBalance = await ledgerService.getOrgBalance(org1.id);
+      expect(orgBalance).toEqual(org1Points + newAdmitToOrgTransaction.amount);
+
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
       await prisma.orgTransaction.deleteMany({
         where: {
           id,

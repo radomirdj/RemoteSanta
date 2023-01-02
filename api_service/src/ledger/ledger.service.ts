@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { BalanceSideTypeEnum, BalanceSide } from '@prisma/client';
+import {
+  BalanceSideTypeEnum,
+  BalanceSide,
+  LedgerTypeEnum,
+} from '@prisma/client';
 import { UserBalanceDto } from './dtos/user_balance.dto';
+import consts from '../utils/consts';
 @Injectable()
 export class LedgerService {
   constructor(private prisma: PrismaService) {}
@@ -18,6 +23,43 @@ export class LedgerService {
           userId,
         },
       ],
+    });
+  }
+
+  async getOrgLedgerSide(orgId: string) {
+    const balanceSideDBList = await this.prisma.balanceSide.findMany({
+      where: { orgId, type: BalanceSideTypeEnum.ORG },
+    });
+    if (balanceSideDBList.length !== 1) {
+      throw new Error('getOrgLedgerSide fails Side List.');
+    }
+
+    return balanceSideDBList[0];
+  }
+
+  async createAdminToOrgTransaction(
+    tx,
+    orgId: string,
+    amount: number,
+    transactionId: string,
+  ) {
+    const orgSide = await this.getOrgLedgerSide(orgId);
+    return tx.ledger.create({
+      data: {
+        type: LedgerTypeEnum.ADMIN_TO_ORG,
+        amount,
+        detailsJson: { transactionId },
+        from: {
+          connect: {
+            id: consts.platformBalanceSideId,
+          },
+        },
+        to: {
+          connect: {
+            id: orgSide.id,
+          },
+        },
+      },
     });
   }
 
@@ -42,16 +84,11 @@ export class LedgerService {
   }
 
   async getOrgBalance(orgId): Promise<number> {
-    const balanceSideDBList = await this.prisma.balanceSide.findMany({
-      where: { orgId, type: BalanceSideTypeEnum.ORG },
-    });
-    if (balanceSideDBList.length !== 1) {
-      throw new Error('getOrgBalance fails Side List.');
-    }
+    const orgSide = await this.getOrgLedgerSide(orgId);
 
     const [[toOrg], [fromOrg]] = await Promise.all([
-      this.aggregateLadgerSum([balanceSideDBList[0].id], 'toId'),
-      this.aggregateLadgerSum([balanceSideDBList[0].id], 'fromId'),
+      this.aggregateLadgerSum([orgSide.id], 'toId'),
+      this.aggregateLadgerSum([orgSide.id], 'fromId'),
     ]);
 
     return toOrg - fromOrg;

@@ -170,6 +170,8 @@ export const org1 = {
 };
 
 export const org1Points = 9200;
+export const org1BalanceSideId = 'dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3';
+export const platformBalanceSideId = '4b7e82dd-2f71-4be4-a55f-cc20b60c6eae';
 
 export const org2 = {
   id: '62b1828e-0b0f-4123-af61-531e7967134c',
