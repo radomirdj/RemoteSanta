@@ -12,7 +12,7 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { user1, org1 } from './utils/preseededData';
-import { UserRoleEnum } from '@prisma/client';
+import { UserRoleEnum, BalanceSideTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -88,6 +88,25 @@ describe('Authentication system', () => {
         prisma,
       );
 
+      const balanceSideDBList = await prisma.balanceSide.findMany({
+        where: { userId: response.body.id },
+      });
+      expect(balanceSideDBList.length).toEqual(2);
+      const balanceSideActive = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_ACTIVE,
+      );
+      expect(balanceSideActive).toBeDefined();
+      expect(balanceSideActive.userId).toEqual(response.body.id);
+
+      const balanceSideReserved = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_RESERVED,
+      );
+      expect(balanceSideReserved).toBeDefined();
+      expect(balanceSideReserved.userId).toEqual(response.body.id);
+
+      await prisma.balanceSide.deleteMany({
+        where: { userId: response.body.id },
+      });
       await prisma.user.delete({ where: { email: newUser.email } });
     });
 

@@ -8,9 +8,14 @@ import { PrismaModule } from '../prisma/prisma.module';
 
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 import { JwtStrategy } from './jwt.strategy';
+import { LedgerModule } from '../ledger/ledger.module';
 
 @Module({
-  imports: [PrismaModule, PassportModule.register({ defaultStrategy: 'jwt' })],
+  imports: [
+    PrismaModule,
+    LedgerModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+  ],
   controllers: [UsersController],
   providers: [UsersService, AuthService, AwsCognitoService, JwtStrategy],
 })
