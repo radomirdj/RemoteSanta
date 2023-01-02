@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { fetchClaimPointsEventList } from "../../store/claim-points-event/actions";
 import { getClaimPointsEventListSelector } from "../../store/claim-points-event/selectors";
-import { IClaimPointEvent } from "../../store/claim-points-event/types";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import ClaimPointsEventItem from "./ClaimPointsEventItem";
