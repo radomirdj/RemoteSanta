@@ -53,6 +53,14 @@ export class LedgerService {
       (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_RESERVED,
     );
 
+    if (
+      balanceSideDBList.length !== 2 ||
+      !balanceSideActive ||
+      !balanceSideReserved
+    ) {
+      throw new Error('getUserBalance fails Side List.');
+    }
+
     const [[toActive, toReserved], [fromActive, fromReserved]] =
       await Promise.all([
         this.aggregateLadgerSum(
