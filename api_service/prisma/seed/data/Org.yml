@@ -1,3 +1,7 @@
 - id: 752e05ce-4a81-4148-87c5-30832406d48c
   name: 'Top Inc.'
   pointsPerMonth: 1200
+
+- id: 62b1828e-0b0f-4123-af61-531e7967134c
+  name: 'W_Inc 2'
+  pointsPerMonth: 600

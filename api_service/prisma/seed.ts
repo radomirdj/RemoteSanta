@@ -52,6 +52,31 @@ async function main() {
       },
     ]),
   );
+
+  await seedTable(prisma, 'ClaimPointsEvent');
+  await seedTable(
+    prisma,
+    'OrgTransaction',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
+      {
+        foreignKeyName: 'eventId',
+        foreignRecordName: 'event',
+      },
+    ]),
+  );
+  await seedTable(
+    prisma,
+    'ClaimPointsEventFulfillment',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+      {
+        foreignKeyName: 'orgTransactionId',
+        foreignRecordName: 'orgTransaction',
+      },
+    ]),
+  );
 }
 
 // execute the main function

@@ -1,0 +1,63 @@
+- id: e0c01322-f499-4f84-baac-af230e238d07
+  description: 'You don’t waste October sunshine.'
+  validTo: 2022-11-01T00:00:00.000Z
+
+- id: 6cb4941a-b277-400f-811a-a06c77d9a61f
+  description: 'November. Every leaf is a flower.'
+  validTo: 2022-12-01T00:00:00.000Z
+
+- id: d9275e70-d757-498b-a90b-d298670198e8
+  description: 'Make December to remember.'
+  validTo: 2023-01-01T00:00:00.000Z
+
+- id: bf279582-695f-4420-bc21-40b1a14abf80
+  description: 'January, month of empty pockets!'
+  validTo: 2023-02-01T00:00:00.000Z
+
+- id: a6c86b67-7837-4dad-b050-de6990f097b8
+  description: 'February. Border between winter and spring.'
+  validTo: 2023-03-01T00:00:00.000Z
+
+- id: 94187ea3-4a18-4e78-9997-cdb8a81bb6e6
+  description: 'March. Third month of the year, first month of Spring.'
+  validTo: 2023-04-01T00:00:00.000Z
+
+- id: cd2cf8ba-6e8e-4091-b2ea-673750e25493
+  description: 'Happy April! Here’s hoping nobody fools you.'
+  validTo: 2023-05-01T00:00:00.000Z
+
+- id: effd240a-3576-42df-922c-a8db4a4cf638
+  description: 'May you see spring all around you.'
+  validTo: 2023-06-01T00:00:00.000Z
+
+- id: 16328f34-4abb-478b-8b38-64d851a594e5
+  description: 'June suns, you cannot store them.'
+  validTo: 2023-07-01T00:00:00.000Z
+
+- id: 421989d2-2ab9-4ea9-9482-128b1fa5d7d3
+  description: 'July. Blind date with summer.'
+  validTo: 2023-08-01T00:00:00.000Z
+
+- id: 9948ba0c-91dd-47cb-9c7a-a2264daaf883
+  description: 'August is like the Sunday of summer.'
+  validTo: 2023-09-01T00:00:00.000Z
+
+- id: e545e477-d10a-48da-9c1f-919cb456e64a
+  description: 'September.Life starts all over again when it gets crisp in the fall.'
+  validTo: 2023-10-01T00:00:00.000Z
+
+- id: 1d0701fb-d83b-4277-9810-baad0b338164
+  description: 'You don’t waste October sunshine.'
+  validTo: 2023-11-01T00:00:00.000Z
+
+- id: 2d867b50-8e6e-4c81-b242-8b2492782977
+  description: 'November. Every leaf is a flower.'
+  validTo: 2023-12-01T00:00:00.000Z
+
+- id: 6581643a-826d-406c-a7a9-4c6a6a28d3c8
+  description: 'Make December to remember.'
+  validTo: 2024-01-01T00:00:00.000Z
+
+- id: ec8dc7a8-0ed3-4815-bd0d-d2073005625e
+  description: 'Make December to remember.'
+  validTo: 2054-01-01T00:00:00.000Z

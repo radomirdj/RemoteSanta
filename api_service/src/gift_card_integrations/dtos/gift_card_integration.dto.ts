@@ -1,9 +1,9 @@
 import { Expose, Transform } from 'class-transformer';
 import { IntegrationConsraintTypeEnum } from '@prisma/client';
 
-export class GiftDateDto {
+export class GiftCardIntegrationDto {
   @Expose()
-  id: number;
+  id: string;
 
   @Expose()
   website: string;

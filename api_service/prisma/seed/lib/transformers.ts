@@ -6,6 +6,7 @@ export const foreignKeyTransformer = (
   foreignRecordName,
 ) => {
   const { [foreignKeyName]: foreignKeyId, ...rest } = record;
+  if (!foreignKeyId) return record;
   const otherRecord = {
     connect: {
       id: foreignKeyId,

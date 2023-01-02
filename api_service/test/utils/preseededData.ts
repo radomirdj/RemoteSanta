@@ -157,4 +157,49 @@ export const org1 = {
   id: '752e05ce-4a81-4148-87c5-30832406d48c',
   name: 'Top Inc.',
   pointsPerMonth: 1200,
+  employeeNumber: 4,
 };
+
+export const org2 = {
+  id: '62b1828e-0b0f-4123-af61-531e7967134c',
+  name: 'W_Inc 2',
+  pointsPerMonth: 600,
+};
+
+export const claimPointsEvent1 = {
+  id: 'e0c01322-f499-4f84-baac-af230e238d07',
+  validTo: '2022-11-01T00:00:00.000Z',
+  description: 'You don’t waste October sunshine.',
+};
+
+export const claimPointsEvent10Id = 'e545e477-d10a-48da-9c1f-919cb456e64a';
+
+export const lastClaimPointsEvent = {
+  id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',
+  validTo: '2054-01-01T00:00:00.000Z',
+  description: 'Make December to remember.',
+  claimPointsEventFulfillment: {
+    id: 'b6b47e55-5213-441f-87db-c7e32bd5b70e',
+    amount: 1200,
+    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    createdAt: '2022-12-26T09:44:19.183Z',
+  },
+};
+
+export const org1Transactions = [
+  {
+    id: '4a49457a-774d-4443-8da5-692748000beb',
+    orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+    type: 'ORG_TO_EMPLOYEES',
+    totalAmount: 1200,
+    event: {
+      description: 'Make December to remember.',
+    },
+  },
+  {
+    id: 'ca16d572-9640-4470-8c8a-af3bb3fd42b6',
+    orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+    type: 'ADMIN_TO_ORG',
+    totalAmount: 4800,
+  },
+];
