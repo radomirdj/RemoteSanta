@@ -41,6 +41,22 @@ export class LedgerService {
     });
   }
 
+  async getOrgBalance(orgId): Promise<number> {
+    const balanceSideDBList = await this.prisma.balanceSide.findMany({
+      where: { orgId, type: BalanceSideTypeEnum.ORG },
+    });
+    if (balanceSideDBList.length !== 1) {
+      throw new Error('getOrgBalance fails Side List.');
+    }
+
+    const [[toOrg], [fromOrg]] = await Promise.all([
+      this.aggregateLadgerSum([balanceSideDBList[0].id], 'toId'),
+      this.aggregateLadgerSum([balanceSideDBList[0].id], 'fromId'),
+    ]);
+
+    return toOrg - fromOrg;
+  }
+
   async getUserBalance(userId: string): Promise<UserBalanceDto> {
     const balanceSideDBList = await this.prisma.balanceSide.findMany({
       where: { userId: userId },

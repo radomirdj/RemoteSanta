@@ -169,11 +169,15 @@ export const org1 = {
   employeeNumber: 4,
 };
 
+export const org1Points = 9200;
+
 export const org2 = {
   id: '62b1828e-0b0f-4123-af61-531e7967134c',
   name: 'W_Inc 2',
   pointsPerMonth: 600,
 };
+
+export const org2Points = 0;
 
 export const claimPointsEvent1 = {
   id: 'e0c01322-f499-4f84-baac-af230e238d07',

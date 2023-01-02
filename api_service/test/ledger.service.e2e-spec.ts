@@ -18,6 +18,10 @@ import {
   user2ReservedPoints,
   user3ActivePoints,
   user3ReservedPoints,
+  org1Points,
+  org2Points,
+  org1,
+  org2,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -41,7 +45,7 @@ describe('LedgerService', () => {
     await app.init();
   });
 
-  describe('LedgerService get user points', () => {
+  describe('LedgerService get User points', () => {
     it('Get user1 points', async () => {
       const user1Balance = await ledgerService.getUserBalance(user1.id);
       expect(user1Balance.pointsActive).toEqual(user1ActivePoints);
@@ -58,6 +62,18 @@ describe('LedgerService', () => {
       const user1Balance = await ledgerService.getUserBalance(user3.id);
       expect(user1Balance.pointsActive).toEqual(user3ActivePoints);
       expect(user1Balance.pointsReserved).toEqual(user3ReservedPoints);
+    });
+  });
+
+  describe('LedgerService get Org points', () => {
+    it('Get org1 points', async () => {
+      const user1Balance = await ledgerService.getOrgBalance(org1.id);
+      expect(user1Balance).toEqual(org1Points);
+    });
+
+    it('Get org2 points', async () => {
+      const user2Balance = await ledgerService.getOrgBalance(org2.id);
+      expect(user2Balance).toEqual(org2Points);
     });
   });
 });
