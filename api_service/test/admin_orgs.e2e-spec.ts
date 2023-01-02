@@ -188,6 +188,7 @@ describe('admin/orgs', () => {
       amount: 12000,
     };
 
+    it('/ (POST) - ADMIN create admin-to-org transaction', async () => {
       const testStartTime = new Date();
       const response = await request(app.getHttpServer())
         .post(`/admin/orgs/${org1.id}/transactions/admin-to-org/`)
