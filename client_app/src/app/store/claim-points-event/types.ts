@@ -12,8 +12,9 @@ export interface IClaimPointsEventFullFillment{
 export interface IClaimPointEvent {
   id: string;
   validTo:Date;
+  amount?:number;
   description:string;
-  claimPointsEventFulfillment: IClaimPointsEventFullFillment;
+  claimPointsEventFulfillment?: IClaimPointsEventFullFillment;
 }
 
 export interface ClaimPointsEventState {
@@ -30,7 +31,6 @@ export interface FetchClaimPointsEventListFailurePayload {
   error: string;
 }
 
-
 export interface FetchClaimPointsEventList{
   type: typeof FETCH_CLAIM_POINTS_EVENT_LIST;
 }
@@ -44,7 +44,6 @@ export interface FetchClaimPointsEventListFailure {
   type: typeof FETCH_CLAIM_POINTS_EVENT_LIST_FAILURE;
   payload:FetchClaimPointsEventListFailurePayload
 }
-
 
 export type ClaimPointsEventActions =
   | FetchClaimPointsEventList

@@ -1,3 +1,105 @@
+@use "./../variables.scss";
+
+$grid-max-width: 968px;
+$margin-right:4px;
+$dollar-illustration-width:76px;
+$dollar-illustration-height:86px;
+$points-margin-bottom:36px;
+
 .home {
     background-image: url("./../../assets/home-image.svg");
+    height: 100% !important;
+    background-repeat:  repeat !important;
+    background-size: contain !important;
+
+    .grid-style{
+        padding-top: variables.$base-unit * 18;
+        overflow-y: auto;
+        padding-bottom: variables.$base-unit * 12;
+        z-index: 1000;
+        max-width: $grid-max-width;
+
+        .home-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            width: max-content;
+        } 
+
+        .home-title-right{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            width: max-content;
+            float: right;
+            margin-right: $margin-right;
+        } 
+
+        .home-text{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-medium;
+            margin-bottom: variables.$base-unit ;
+            width: max-content;
+            color: variables.$color-neutral-gray;
+            padding-bottom: variables.$base-unit ;
+        }
+
+        .home-text-right{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-medium;
+            margin-bottom: variables.$base-unit ;
+            width: max-content;
+            color: variables.$color-neutral-gray;
+            padding-bottom: variables.$base-unit ;
+            float: right;
+            margin-right: $margin-right;
+        }
+
+        .card-item{
+            background-color: rgb(253, 222, 146, 0.5);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            margin-bottom: variables.$base-unit * 2;
+            height:  variables.$base-unit  * 11;
+            border-radius: variables.$base-unit * 2;
+
+            .card-grid-item{
+                margin-right: auto;
+                margin-left: variables.$base-unit * 2;
+            }
+
+            .card-illustration-style{
+                width: $dollar-illustration-width;
+                height: $dollar-illustration-height;
+            }
+
+            .card-description{
+                font-family: "Montserrat";
+                margin-bottom: auto;
+                margin-top: auto;
+            }
+
+            .grid-description-style{
+                margin-top: auto;
+                margin-bottom: variables.$base-unit * 5;
+            }
+
+            .card-points{
+                font-size: variables.$font-size-large;
+                font-family: "Montserrat";
+                float: right;
+                margin-right: variables.$base-unit * 5;
+            }
+
+            .grid-points-style{
+                margin-top: auto;
+                margin-bottom: $points-margin-bottom;
+            }
+        }
+    }
+
+    .MuiGrid-root{
+        justify-content: center;
+        .MuiGrid-item{
+            padding-top: 8px;
+            padding-left: 16px;
+        }
+    }
 }
