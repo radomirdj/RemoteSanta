@@ -36,6 +36,7 @@ import {
   user3ActiveBalanceSideId,
   user3ReservedBalanceSideId,
 } from './utils/preseededData';
+import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -180,31 +181,17 @@ describe('/gift-card-requests', () => {
       );
 
       // Check Ledger
-      const addedLadger = await prisma.ledger.findMany({
-        where: {
-          createdAt: {
-            gte: testStartTime,
-          },
-        },
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user3ActiveBalanceSideId,
+        toId: user3ReservedBalanceSideId,
+        amount: newGiftCardRequest.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
       });
 
-      expect(addedLadger.length).toEqual(1);
-      const addedLadgerEntity = addedLadger[0];
-      expect(addedLadgerEntity.fromId).toEqual(user3ActiveBalanceSideId);
-      expect(addedLadgerEntity.toId).toEqual(user3ReservedBalanceSideId);
-      expect(addedLadgerEntity.amount).toEqual(newGiftCardRequest.amount);
-      expect(addedLadgerEntity.type).toEqual(
-        LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
-      );
-
-      // Check User Balance
-      const user3Balance = await ledgerService.getUserBalance(user3.id);
-      expect(user3Balance.pointsActive).toEqual(
-        user3ActivePoints - newGiftCardRequest.amount,
-      );
-      expect(user3Balance.pointsReserved).toEqual(
-        user3ReservedPoints + newGiftCardRequest.amount,
-      );
+      await checkBalance(ledgerService, user3.id, {
+        pointsActive: user3ActivePoints - newGiftCardRequest.amount,
+        pointsReserved: user3ReservedPoints + newGiftCardRequest.amount,
+      });
 
       // Clean DB
       await prisma.ledger.deleteMany({

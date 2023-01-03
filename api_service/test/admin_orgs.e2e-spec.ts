@@ -31,6 +31,7 @@ import {
   platformBalanceSideId,
   org1Points,
 } from './utils/preseededData';
+import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -230,18 +231,12 @@ describe('admin/orgs', () => {
       expect(dbAdminToOrg.createdById).toEqual(admin.id);
 
       // Check Ledger Data
-      const addedLadger = await prisma.ledger.findMany({
-        where: {
-          createdAt: {
-            gte: testStartTime,
-          },
-        },
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: platformBalanceSideId,
+        toId: org1BalanceSideId,
+        amount: newAdmitToOrgTransaction.amount,
+        type: LedgerTypeEnum.ADMIN_TO_ORG,
       });
-      expect(addedLadger.length).toEqual(1);
-      expect(addedLadger[0].type).toEqual(LedgerTypeEnum.ADMIN_TO_ORG);
-      expect(addedLadger[0].amount).toEqual(newAdmitToOrgTransaction.amount);
-      expect(addedLadger[0].fromId).toEqual(platformBalanceSideId);
-      expect(addedLadger[0].toId).toEqual(org1BalanceSideId);
 
       const orgBalance = await ledgerService.getOrgBalance(org1.id);
       expect(orgBalance).toEqual(org1Points + newAdmitToOrgTransaction.amount);

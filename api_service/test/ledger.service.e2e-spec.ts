@@ -23,6 +23,7 @@ import {
   org1,
   org2,
 } from './utils/preseededData';
+import { checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -47,21 +48,24 @@ describe('LedgerService', () => {
 
   describe('LedgerService get User points', () => {
     it('Get user1 points', async () => {
-      const userBalance = await ledgerService.getUserBalance(user1.id);
-      expect(userBalance.pointsActive).toEqual(user1ActivePoints);
-      expect(userBalance.pointsReserved).toEqual(user1ReservedPoints);
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints,
+        pointsReserved: user1ReservedPoints,
+      });
     });
 
     it('Get user2 points', async () => {
-      const userBalance = await ledgerService.getUserBalance(user2.id);
-      expect(userBalance.pointsActive).toEqual(user2ActivePoints);
-      expect(userBalance.pointsReserved).toEqual(user2ReservedPoints);
+      await checkBalance(ledgerService, user2.id, {
+        pointsActive: user2ActivePoints,
+        pointsReserved: user2ReservedPoints,
+      });
     });
 
     it('Get user3 points', async () => {
-      const userBalance = await ledgerService.getUserBalance(user3.id);
-      expect(userBalance.pointsActive).toEqual(user3ActivePoints);
-      expect(userBalance.pointsReserved).toEqual(user3ReservedPoints);
+      await checkBalance(ledgerService, user3.id, {
+        pointsActive: user3ActivePoints,
+        pointsReserved: user3ReservedPoints,
+      });
     });
   });
 
