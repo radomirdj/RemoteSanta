@@ -45,6 +45,13 @@ export const users = [
 export const user1 = users[0];
 export const user1ActivePoints = 6400;
 export const user1ReservedPoints = 3000;
+export const user1ActiveBalanceSideId = '2d1b6de0-e182-43f8-b8ce-96baccb4ecd4';
+export const user1ReservedBalanceSideId =
+  'bbb32b33-2b0f-43f2-b7fb-fb8a6217d14b';
+
+export const user3ActiveBalanceSideId = 'a6490a6e-253b-4aa0-810c-f7e5b3790138';
+export const user3ReservedBalanceSideId =
+  '7ed49c43-db63-4631-84ae-d07bc461bbbb';
 
 export const user2 = users[1];
 export const user2ActivePoints = 0;

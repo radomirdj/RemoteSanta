@@ -11,10 +11,14 @@ import {
 } from '@prisma/client';
 import { FulfillGiftCardRequestDto } from './dtos/fulfill_giift_card_request.dto';
 import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
+import { LedgerService } from '../ledger/ledger.service';
 
 @Injectable()
 export class AdminGiftCardRequestsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private ledgerService: LedgerService,
+  ) {}
 
   async fulfillRequest(
     id: string,
@@ -33,25 +37,35 @@ export class AdminGiftCardRequestsService {
       );
     }
 
-    await this.prisma.giftCard.create({
-      data: {
-        ...data,
-        giftCardRequest: {
-          connect: {
-            id,
+    return this.prisma.$transaction(async (tx) => {
+      const [rsp1, rsp2, giftCardRequestRsp] = await Promise.all([
+        tx.giftCard.create({
+          data: {
+            ...data,
+            giftCardRequest: {
+              connect: {
+                id,
+              },
+            },
+            createdBy: {
+              connect: {
+                id: admin.id,
+              },
+            },
           },
-        },
-        createdBy: {
-          connect: {
-            id: admin.id,
-          },
-        },
-      },
-    });
-
-    return this.prisma.giftCardRequest.update({
-      where: { id },
-      data: { status: GiftCardRequestStatusEnum.COMPLETED },
+        }),
+        this.ledgerService.createGiftCardRequestCompletedTransaction(
+          tx,
+          giftCardRequest.userId,
+          giftCardRequest.amount,
+          giftCardRequest.id,
+        ),
+        tx.giftCardRequest.update({
+          where: { id },
+          data: { status: GiftCardRequestStatusEnum.COMPLETED },
+        }),
+      ]);
+      return giftCardRequestRsp;
     });
   }
   async declineRequest(
@@ -70,12 +84,23 @@ export class AdminGiftCardRequestsService {
       );
     }
 
-    return this.prisma.giftCardRequest.update({
-      where: { id },
-      data: {
-        status: GiftCardRequestStatusEnum.DECLINED,
-        adminComment: data.adminComment,
-      },
+    return this.prisma.$transaction(async (tx) => {
+      const [rsp1, giftCardRequestRsp] = await Promise.all([
+        this.ledgerService.createGiftCardRequestDeclinedTransaction(
+          tx,
+          giftCardRequest.userId,
+          giftCardRequest.amount,
+          giftCardRequest.id,
+        ),
+        tx.giftCardRequest.update({
+          where: { id },
+          data: {
+            status: GiftCardRequestStatusEnum.DECLINED,
+            adminComment: data.adminComment,
+          },
+        }),
+      ]);
+      return giftCardRequestRsp;
     });
   }
 

@@ -5,6 +5,8 @@ import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
 import { PrismaService } from '../src/prisma/prisma.service';
+import { LedgerModule } from '../src/ledger/ledger.module';
+import { LedgerService } from '../src/ledger/ledger.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
@@ -15,7 +17,7 @@ import {
   expectGiftCardRequestRsp,
 } from './utils/giftCardRequestChecks';
 
-import { GiftCardRequestStatusEnum } from '@prisma/client';
+import { GiftCardRequestStatusEnum, LedgerTypeEnum } from '@prisma/client';
 
 import {
   user1,
@@ -25,6 +27,14 @@ import {
   giftCardRequest2,
   giftCardIntegration1,
   giftCardIntegration2,
+  user1ActiveBalanceSideId,
+  user1ReservedBalanceSideId,
+  user1ActivePoints,
+  user1ReservedPoints,
+  user3ActivePoints,
+  user3ReservedPoints,
+  user3ActiveBalanceSideId,
+  user3ReservedBalanceSideId,
 } from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
@@ -32,10 +42,12 @@ jest.mock('../src/users/jwt-values.service');
 describe('/gift-card-requests', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+  let ledgerService: LedgerService;
+  const testStartTime = new Date();
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, PrismaModule, UsersModule],
+      imports: [AppModule, PrismaModule, UsersModule, LedgerModule],
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
@@ -43,6 +55,7 @@ describe('/gift-card-requests', () => {
 
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
+    ledgerService = app.get(LedgerService);
     await app.init();
   });
 
@@ -144,7 +157,7 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user2.email, sub: user2.cognitoSub }),
+            createToken({ email: user3.email, sub: user3.cognitoSub }),
         )
         .send(newGiftCardRequest)
         .expect(201);
@@ -153,7 +166,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
-        userId: user2.id,
+        userId: user3.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
       await expectGiftCardRequestInDB(
@@ -161,10 +174,46 @@ describe('/gift-card-requests', () => {
         {
           ...newGiftCardRequest,
           status: GiftCardRequestStatusEnum.PENDING,
-          userId: user2.id,
+          userId: user3.id,
         },
         prisma,
       );
+
+      // Check Ledger
+      const addedLadger = await prisma.ledger.findMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      expect(addedLadger.length).toEqual(1);
+      const addedLadgerEntity = addedLadger[0];
+      expect(addedLadgerEntity.fromId).toEqual(user3ActiveBalanceSideId);
+      expect(addedLadgerEntity.toId).toEqual(user3ReservedBalanceSideId);
+      expect(addedLadgerEntity.amount).toEqual(newGiftCardRequest.amount);
+      expect(addedLadgerEntity.type).toEqual(
+        LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
+      );
+
+      // Check User Balance
+      const user3Balance = await ledgerService.getUserBalance(user3.id);
+      expect(user3Balance.pointsActive).toEqual(
+        user3ActivePoints - newGiftCardRequest.amount,
+      );
+      expect(user3Balance.pointsReserved).toEqual(
+        user3ReservedPoints + newGiftCardRequest.amount,
+      );
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
 
       await prisma.giftCardRequest.delete({ where: { id } });
     });

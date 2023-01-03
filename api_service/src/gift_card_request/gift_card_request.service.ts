@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { LedgerService } from '../ledger/ledger.service';
 import { GiftCardIntegrationsService } from '../gift_card_integrations/gift_card_integrations.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
 import {
@@ -13,6 +14,7 @@ export class GiftCardRequestService {
   constructor(
     private prisma: PrismaService,
     private giftCardIntegrationsService: GiftCardIntegrationsService,
+    private ledgerService: LedgerService,
   ) {}
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
@@ -20,21 +22,31 @@ export class GiftCardRequestService {
       giftCardIntegrationId,
       data.amount,
     );
-    return this.prisma.giftCardRequest.create({
-      data: {
-        ...data,
-        status: GiftCardRequestStatusEnum.PENDING,
-        giftCardIntegration: {
-          connect: {
-            id: giftCardIntegrationId,
+    return this.prisma.$transaction(async (tx) => {
+      const giftCardRequest = await tx.giftCardRequest.create({
+        data: {
+          ...data,
+          status: GiftCardRequestStatusEnum.PENDING,
+          giftCardIntegration: {
+            connect: {
+              id: giftCardIntegrationId,
+            },
+          },
+          user: {
+            connect: {
+              id: user.id,
+            },
           },
         },
-        user: {
-          connect: {
-            id: user.id,
-          },
-        },
-      },
+      });
+
+      await this.ledgerService.createGiftCardRequestCreatedTransaction(
+        tx,
+        user.id,
+        data.amount,
+        giftCardRequest.id,
+      );
+      return giftCardRequest;
     });
   }
 

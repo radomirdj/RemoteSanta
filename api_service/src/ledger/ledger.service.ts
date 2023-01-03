@@ -138,6 +138,91 @@ export class LedgerService {
     return rsp;
   }
 
+  createGiftCardRequestTransaction(
+    tx,
+    type: LedgerTypeEnum,
+    fromId: string,
+    toId: string,
+    amount: number,
+    requestId: string,
+  ) {
+    return tx.ledger.create({
+      data: {
+        type,
+        amount,
+        detailsJson: { requestId },
+        from: {
+          connect: {
+            id: fromId,
+          },
+        },
+        to: {
+          connect: {
+            id: toId,
+          },
+        },
+      },
+    });
+  }
+
+  async createGiftCardRequestCreatedTransaction(
+    tx,
+    userId: string,
+    amount: number,
+    requestId: string,
+  ) {
+    const { activeList, reservedList } = await this.getUserListLedgerSide([
+      userId,
+    ]);
+
+    return this.createGiftCardRequestTransaction(
+      tx,
+      LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
+      activeList[0].id,
+      reservedList[0].id,
+      amount,
+      requestId,
+    );
+  }
+
+  async createGiftCardRequestCompletedTransaction(
+    tx,
+    userId: string,
+    amount: number,
+    requestId: string,
+  ) {
+    const { reservedList } = await this.getUserListLedgerSide([userId]);
+
+    return this.createGiftCardRequestTransaction(
+      tx,
+      LedgerTypeEnum.GIFT_CARD_REQUEST_COMPLETED,
+      reservedList[0].id,
+      consts.platformBalanceSideId,
+      amount,
+      requestId,
+    );
+  }
+
+  async createGiftCardRequestDeclinedTransaction(
+    tx,
+    userId: string,
+    amount: number,
+    requestId: string,
+  ) {
+    const { activeList, reservedList } = await this.getUserListLedgerSide([
+      userId,
+    ]);
+
+    return this.createGiftCardRequestTransaction(
+      tx,
+      LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED,
+      reservedList[0].id,
+      activeList[0].id,
+      amount,
+      requestId,
+    );
+  }
+
   async aggregateLadgerSum(idList: string[], field): Promise<number[]> {
     let where = {};
     where[field] = {

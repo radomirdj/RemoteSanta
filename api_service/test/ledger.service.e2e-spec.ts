@@ -47,21 +47,21 @@ describe('LedgerService', () => {
 
   describe('LedgerService get User points', () => {
     it('Get user1 points', async () => {
-      const user1Balance = await ledgerService.getUserBalance(user1.id);
-      expect(user1Balance.pointsActive).toEqual(user1ActivePoints);
-      expect(user1Balance.pointsReserved).toEqual(user1ReservedPoints);
+      const userBalance = await ledgerService.getUserBalance(user1.id);
+      expect(userBalance.pointsActive).toEqual(user1ActivePoints);
+      expect(userBalance.pointsReserved).toEqual(user1ReservedPoints);
     });
 
     it('Get user2 points', async () => {
-      const user1Balance = await ledgerService.getUserBalance(user2.id);
-      expect(user1Balance.pointsActive).toEqual(user2ActivePoints);
-      expect(user1Balance.pointsReserved).toEqual(user2ReservedPoints);
+      const userBalance = await ledgerService.getUserBalance(user2.id);
+      expect(userBalance.pointsActive).toEqual(user2ActivePoints);
+      expect(userBalance.pointsReserved).toEqual(user2ReservedPoints);
     });
 
     it('Get user3 points', async () => {
-      const user1Balance = await ledgerService.getUserBalance(user3.id);
-      expect(user1Balance.pointsActive).toEqual(user3ActivePoints);
-      expect(user1Balance.pointsReserved).toEqual(user3ReservedPoints);
+      const userBalance = await ledgerService.getUserBalance(user3.id);
+      expect(userBalance.pointsActive).toEqual(user3ActivePoints);
+      expect(userBalance.pointsReserved).toEqual(user3ReservedPoints);
     });
   });
 
