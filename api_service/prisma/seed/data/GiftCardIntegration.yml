@@ -1,7 +1,7 @@
 - id: 469cf71d-86a5-450e-afc7-76bc6996a3ad
   priority: 10
   website: https://giftoncard.eu
-  image: https://giftoncard.eu/public/media/Docs/source/Multibrand%20novi%20dizajn%20380x245-01.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png
   title: Multibrand
   description: Jedna e kartica, na preko 500 lokacija širom Srbije.
   constraintType: MIN_MAX
@@ -10,7 +10,7 @@
 - id: 3ada6b27-f579-4297-9042-2d46b89b594e
   priority: 20
   website: https://www.sportvision.rs
-  image: https://www.supernova-kranj.si//fileadmin/shared/logos/Sport_Vision.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/SportVision.png
   title: Sport Vision
   description: U odlično opremljenim prodavnicama čekaju vas odlična usluga i najkvalitetniji brendovi (Nike, Adidas,Champion,Umbro,Ellesse,Lonsdale,Slayenger,SergioTacchini,Converse,Karrimor,Slazenger and others).Lokacije u celoj Srbiji.
   constraintType: MIN_MAX
@@ -19,7 +19,7 @@
 - id: 023bf681-121d-48a1-a550-da1f9b37abe3
   priority: 30
   website: https://www.n-sport.net
-  image: http://www.sup.rs/wp-content/uploads/2017/12/N-sport.jpg
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png
   title: N Sport
   description: Od sportske opreme i obuće do elegantne garderobe i cipela, sve na jednom mestu. Karticu je moguće koristiti u svim prodajnim objektima N sport-a, N fashion-a, N selection-a i Lacoste Srbija.
   constraintType: MIN_MAX
@@ -28,7 +28,7 @@
 - id: d60c3469-d2ad-4701-906c-c677badaa478
   priority: 40
   website: https://www.soliver.eu
-  image: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/SOliver-Logo.svg/1200px-SOliver-Logo.svg.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/sOliver.png
   title: s. Oliver
   description: Jedan od vodećih evropskih brendova na polju mode, kako za svakodnevne tako i za specijalne prilike.
   constraintType: MIN_MAX
@@ -37,7 +37,7 @@
 - id: df7d81e9-d70f-4d0c-8f99-6db378c6f89c
   priority: 50
   website: https://www.thebodyshop.rs
-  image: data:image/png;base64,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
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/TheBodyShop.png
   title: The Body Shop
   description: Sve šta vam treba iz sveta kozmetike na jednom mestu - The Body Shop!
   constraintType: MIN_MAX
@@ -46,7 +46,7 @@
 - id: f4c319a8-704a-4b61-a670-31c7d25e83b9
   priority: 60
   website: https://toyzzz.rs
-  image: https://toyzzz.rs/wp-content/uploads/2022/01/logo.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Toyzzz.png
   title: Toyzzz
   description: Poklon kartica za mališane svih uzrasta. U Toyzzz-u mogu pronaći sve što im treba od igračaka
   constraintType: MIN_MAX
@@ -55,7 +55,7 @@
 - id: 7d896c06-8c1e-4bc4-822e-870b9ff1aab1
   priority: 70
   website: https://www.underarmour.com/en-us/
-  image: https://giftoncard.eu/public/images/196_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/UnderArmour.png
   title: Under Armour
   description: Vodeći brend kada je u pitanju sportska odeća, obuća, aksesoari i rekviziti.
   constraintType: MIN_MAX
@@ -64,7 +64,7 @@
 - id: f307e9a4-aaa7-4c9a-a71c-88e771823594
   priority: 80
   website: https://www.adidas.com/us
-  image: https://giftoncard.eu/public/images/189_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Adidas.png
   title: Adidas
   description: Jedan od najpoznatijih svetski brendova sportske odeće i obuće.
   constraintType: MIN_MAX
@@ -73,8 +73,8 @@
 - id: 5b7843e4-110f-40f9-b438-408fd9b3597f
   priority: 90
   website: ''
-  image: https://giftoncard.eu/public/images/187_card.png
-  title: Pet Multibrand
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/PetKlub.png
+  title: Pet Klub
   description: Kartica stvorena da se pobrine za sve potrebe kućnih ljubimaca, od hrane, kupanja i šišanja pa sve do veterinarskih usluga.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
@@ -82,7 +82,7 @@
 - id: d789db6b-a555-4ff7-97da-270cf8f0aba9
   priority: 100
   website: https://rs.proteini.si
-  image: https://giftoncard.eu/public/images/214_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Proteini.png
   title: PROTEINI.SI
   description: Poklon kartica za sve ljubitelje fitnesa, treninga i teretane kao i za profesionalne sportiste.
   constraintType: MIN_MAX
@@ -91,7 +91,7 @@
 - id: d789db6b-a555-4ff7-97da-270cf8f0aba9
   priority: 110
   website: tehnomedia.rs
-  image: https://giftoncard.eu/public/images/138_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomedia.png
   title: Tehnomedia
   description: Sve što vam je potrebno od tehnike! 38+ objekata u Srbiji i on line proadaja !
   constraintType: MIN_MAX
@@ -100,7 +100,7 @@
 - id: d9f1c8d0-59a1-45c5-bb8d-be0e5d4fc99b
   priority: 120
   website: ''
-  image: https://giftoncard.eu/public/images/183_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Carpisa.png
   title: Carpisa
   description: Tašne, torbe, rančevi i koferi. Sve na jednom mestu!
   constraintType: MIN_MAX
@@ -109,7 +109,7 @@
 - id: ef1a14d7-ef31-474d-9907-7fabeefa4d17
   priority: 130
   website: https://www.comma-store.eu
-  image: https://giftoncard.eu/public/images/201_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Comma.png
   title: Comma
   description: Idealna poklon kartica za žene i devojke koje vole glamur!
   constraintType: MIN_MAX
@@ -118,7 +118,7 @@
 - id: bf776d98-70e7-4536-9c03-7fad26ed658f
   priority: 140
   website: https://univerexport.rs
-  image: https://giftoncard.eu/public/images/184_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Univerexport.png
   title: Univer Export
   description: Najveći domaći trgovinski lanac sa gotovo 160 maloprodajnih objekata
   constraintType: MIN_MAX
@@ -127,7 +127,7 @@
 - id: ba868c93-f5d8-4825-8c4f-a6dc832a20ea
   priority: 150
   website: ''
-  image: https://giftoncard.eu/public/images/216_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BelaGriva.png
   title: Bela Griva
   description: Poklon kartica skrojena za ljubitelje jahanja ali i za one koji bi da probaju nešto novo.
   constraintType: MIN_MAX
@@ -136,7 +136,7 @@
 - id: f9b20424-255f-4ac0-98d3-e8ef7514455b
   priority: 160
   website: ''
-  image: https://giftoncard.eu/public/images/211_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BioSpajz.png
   title: Bio Špajz
   description: Poklon kartica idealna za sve ljubitelje zdrave hrane!
   constraintType: MIN_MAX
@@ -145,7 +145,7 @@
 - id: 75505b23-f4a8-4a9a-957a-389e62b89855
   priority: 170
   website: https://www.tehnomanija.rs
-  image: https://giftoncard.eu/public/images/157_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomanija.png
   title: Tehnomanija
   description: Jedan od najvecih retail lanaca elektricnih i elektronskih uredjaja u Srbiji. 43 maloprodajna objekata širom Srbije i odlična online prodavnica. Zajedno nude širok asortiman od 20.000 različitih proizvoda renomiranih proizvođača. Plaćanje poklon karticom se primenjuje na redovne i akcijske cene za odlozeno placanje, a ne vazi na cene za gotovinsko placanje.
   constraintType: MIN_MAX
@@ -154,7 +154,7 @@
 - id: f852edb9-a34d-4d63-83a1-263c81c922b2
   priority: 180
   website: https://ekspedicija.rs
-  image: https://giftoncard.eu/public/images/213_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Ekspedicija.png
   title: Ekspedicija
   description: Gomila kreativnih i šašavih poklona na jednom mestu.
   constraintType: MIN_MAX
@@ -163,7 +163,7 @@
 - id: b3ebee83-447e-47f3-87d3-1f8b4266f02f
   priority: 190
   website: https://katrin.rs
-  image: https://giftoncard.eu/public/images/203_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Katrin.png
   title: Katrin
   description: Poklon kartica domaćeg modnog brenda koja će obradovati svaku damu i devojku.
   constraintType: MIN_MAX
@@ -172,7 +172,7 @@
 - id: 799de00e-5c4b-4f6f-bb9f-32382ea00436
   priority: 200
   website: https://www.fashion-luna.com
-  image: https://giftoncard.eu/public/images/193_card.png
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Luna.png
   title: Luna
   description: Garderoba i aksesoari za dame koje u svakoj prilici biraju stil, udobnost i kvalitet.
   constraintType: MIN_MAX
