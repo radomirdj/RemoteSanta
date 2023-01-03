@@ -4,9 +4,16 @@ import {
   BalanceSideTypeEnum,
   BalanceSide,
   LedgerTypeEnum,
+  Ledger,
 } from '@prisma/client';
 import { UserBalanceDto } from './dtos/user_balance.dto';
 import consts from '../utils/consts';
+
+interface LedgerUserSideLists {
+  activeList: BalanceSide[];
+  reservedList: BalanceSide[];
+}
+
 @Injectable()
 export class LedgerService {
   constructor(private prisma: PrismaService) {}
@@ -26,7 +33,45 @@ export class LedgerService {
     });
   }
 
-  async getOrgLedgerSide(orgId: string) {
+  async getUserListLedgerSide(
+    userIdList: string[],
+  ): Promise<LedgerUserSideLists> {
+    const balanceSideDBList = await this.prisma.balanceSide.findMany({
+      where: {
+        userId: {
+          in: userIdList,
+        },
+        type: {
+          in: [
+            BalanceSideTypeEnum.USER_ACTIVE,
+            BalanceSideTypeEnum.USER_RESERVED,
+          ],
+        },
+      },
+    });
+
+    const activeList = balanceSideDBList.filter(
+      (balanceSideDB) => balanceSideDB.type === BalanceSideTypeEnum.USER_ACTIVE,
+    );
+    const reservedList = balanceSideDBList.filter(
+      (balanceSideDB) =>
+        balanceSideDB.type === BalanceSideTypeEnum.USER_RESERVED,
+    );
+
+    if (
+      activeList.length !== userIdList.length ||
+      reservedList.length !== userIdList.length
+    ) {
+      throw new Error('getUserListLedgerSide fails Side List.');
+    }
+
+    return {
+      activeList,
+      reservedList,
+    };
+  }
+
+  async getOrgLedgerSide(orgId: string): Promise<BalanceSide> {
     const balanceSideDBList = await this.prisma.balanceSide.findMany({
       where: { orgId, type: BalanceSideTypeEnum.ORG },
     });
@@ -42,7 +87,7 @@ export class LedgerService {
     orgId: string,
     amount: number,
     transactionId: string,
-  ) {
+  ): Promise<Ledger> {
     const orgSide = await this.getOrgLedgerSide(orgId);
     return tx.ledger.create({
       data: {
@@ -63,7 +108,37 @@ export class LedgerService {
     });
   }
 
-  async aggregateLadgerSum(idList: string[], field) {
+  async createOrgToEmployesTransaction(
+    tx,
+    orgId: string,
+    employeeIdList: string[],
+    amount: number,
+    transactionId: string,
+  ) {
+    const [{ activeList }, orgSide] = await Promise.all([
+      this.getUserListLedgerSide(employeeIdList),
+      this.getOrgLedgerSide(orgId),
+    ]);
+
+    const data = activeList.map((activeBalanceSide) => ({
+      type: LedgerTypeEnum.ORG_TO_EMPLOYEES,
+      amount,
+      fromId: orgSide.id,
+      toId: activeBalanceSide.id,
+      detailsJson: { transactionId },
+    }));
+    const rsp = await tx.ledger.createMany({
+      data,
+    });
+    if (rsp.count !== employeeIdList.length) {
+      throw new Error(
+        'createOrgToEmployesTransaction fails Transaction Count.',
+      );
+    }
+    return rsp;
+  }
+
+  async aggregateLadgerSum(idList: string[], field): Promise<number[]> {
     let where = {};
     where[field] = {
       in: idList,

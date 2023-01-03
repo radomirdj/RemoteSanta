@@ -13,7 +13,15 @@ import { LedgerService } from '../src/ledger/ledger.service';
 import { LedgerModule } from '../src/ledger/ledger.module';
 
 import {
+  user1,
   user2,
+  user3,
+  user1ActivePoints,
+  user1ReservedPoints,
+  user2ActivePoints,
+  user2ReservedPoints,
+  user3ActivePoints,
+  user3ReservedPoints,
   admin,
   org1,
   org2,
@@ -43,6 +51,7 @@ describe('admin/orgs', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let ledgerService: LedgerService;
+  const testStartTime = new Date();
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -189,7 +198,6 @@ describe('admin/orgs', () => {
     };
 
     it('/ (POST) - ADMIN create admin-to-org transaction', async () => {
-      const testStartTime = new Date();
       const response = await request(app.getHttpServer())
         .post(`/admin/orgs/${org1.id}/transactions/admin-to-org/`)
         .set(
@@ -238,6 +246,7 @@ describe('admin/orgs', () => {
       const orgBalance = await ledgerService.getOrgBalance(org1.id);
       expect(orgBalance).toEqual(org1Points + newAdmitToOrgTransaction.amount);
 
+      // Clean Data
       await prisma.ledger.deleteMany({
         where: {
           createdAt: {
@@ -347,7 +356,63 @@ describe('admin/orgs', () => {
       );
       expect(dbOrgToEmployee.orgId).toEqual(org1.id);
 
+      // Check Ledger Data
+      const addedLadger = await prisma.ledger.findMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+      expect(addedLadger.length).toEqual(org1.employeeNumber);
+      addedLadger.forEach((addedLadgerEntity) => {
+        expect(addedLadgerEntity.fromId).toEqual(org1BalanceSideId);
+        expect(addedLadgerEntity.amount).toEqual(org1.pointsPerMonth);
+        expect(addedLadgerEntity.type).toEqual(LedgerTypeEnum.ORG_TO_EMPLOYEES);
+      });
+
+      // Check User And Org balance
+      const [
+        orgBalance,
+        user1Balance,
+        user2Balance,
+        user3Balance,
+        adminBalance,
+      ] = await Promise.all([
+        ledgerService.getOrgBalance(org1.id),
+        ledgerService.getUserBalance(user1.id),
+        ledgerService.getUserBalance(user2.id),
+        ledgerService.getUserBalance(user3.id),
+        ledgerService.getUserBalance(admin.id),
+      ]);
+      expect(orgBalance).toEqual(org1Points - totalAmount);
+
+      expect(user1Balance.pointsActive).toEqual(
+        user1ActivePoints + org1.pointsPerMonth,
+      );
+      expect(user1Balance.pointsReserved).toEqual(user1ReservedPoints);
+
+      expect(user2Balance.pointsActive).toEqual(
+        user2ActivePoints + org1.pointsPerMonth,
+      );
+      expect(user2Balance.pointsReserved).toEqual(user2ReservedPoints);
+
+      expect(user3Balance.pointsActive).toEqual(
+        user3ActivePoints + org1.pointsPerMonth,
+      );
+      expect(user3Balance.pointsReserved).toEqual(user3ReservedPoints);
+
+      expect(adminBalance.pointsActive).toEqual(org1.pointsPerMonth);
+      expect(adminBalance.pointsReserved).toEqual(0);
       // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
       await prisma.claimPointsEventFulfillment.deleteMany({
         where: {
           orgTransactionId: id,

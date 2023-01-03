@@ -158,6 +158,14 @@ export class AdminOrgsService {
       if (count !== createOrgToUserDto.employeeNumber)
         throw new ConflictException("Employee Number doesn't match DB.");
 
+      await this.ledgerService.createOrgToEmployesTransaction(
+        tx,
+        orgId,
+        employeeList.map((employee) => employee.id),
+        org.pointsPerMonth,
+        orgTransaction.id,
+      );
+
       return orgTransaction;
     });
   }
