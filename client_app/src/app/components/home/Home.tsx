@@ -53,7 +53,11 @@ const Home = () => {
           </Grid>
           <Grid item xs={6}>
             <Typography className="home-text-right">
-              Use your points <u onClick={chooseGiftCardRedirect}>now</u>.
+              Use your points{" "}
+              <u onClick={chooseGiftCardRedirect} className="home-link">
+                now
+              </u>
+              .
             </Typography>
           </Grid>
           {filteredList.map((element, i) => {

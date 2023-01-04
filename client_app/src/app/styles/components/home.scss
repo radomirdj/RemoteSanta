@@ -42,6 +42,10 @@ $points-margin-bottom:36px;
             padding-bottom: variables.$base-unit ;
         }
 
+        .home-link{
+            cursor: pointer;
+        }
+
         .home-text-right{
             font-family: "Montserrat";
             font-size: variables.$font-size-medium;

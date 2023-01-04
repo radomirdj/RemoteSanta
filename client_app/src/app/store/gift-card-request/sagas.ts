@@ -91,7 +91,7 @@ function* postGiftCardRequestSaga(action: PostGiftCardRequest) {
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
 */
-function* todoSaga() {
+function* giftCardRequestSaga() {
   yield all([takeLatest(FETCH_GIFT_CARD_REQUEST_LIST, fetchGiftCardRequestListSaga)]);
   yield all([takeLatest(FETCH_GIFT_CARD_INTEGRATION_LIST, fetchGiftCardIntegrationListSaga)]);
   yield all([takeLatest(SET_GIFT_CARD_REQUEST_INTEGRATION, setGiftCardRequestIntegrationSaga)]);
@@ -101,4 +101,4 @@ function* todoSaga() {
   yield all([takeLatest(POST_GIFT_CARD_REQUEST, postGiftCardRequestSaga)]);
 }
 
-export default todoSaga;
+export default giftCardRequestSaga;

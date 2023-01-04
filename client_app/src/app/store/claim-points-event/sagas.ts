@@ -33,8 +33,8 @@ function* fetchClaimPointsEventListSaga() {
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
 */
-function* todoSaga() {
+function* claimPointsEventSaga() {
   yield all([takeLatest(FETCH_CLAIM_POINTS_EVENT_LIST, fetchClaimPointsEventListSaga)]);
 }
 
-export default todoSaga;
+export default claimPointsEventSaga;
