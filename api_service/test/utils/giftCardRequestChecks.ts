@@ -5,6 +5,7 @@ export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
   );
   expect(responseBody.amount).toEqual(expectedValue.amount);
   expect(responseBody.status).toEqual(expectedValue.status);
+  expect(responseBody.createdAt).toBeDefined();
   if (expectedValue.integrationTitle) {
     expect(responseBody.giftCardIntegration.title).toEqual(
       expectedValue.integrationTitle,

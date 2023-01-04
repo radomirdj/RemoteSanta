@@ -22,5 +22,8 @@ export class GiftCardRequestDto {
   amount: string;
 
   @Expose()
+  createdAt: Date;
+
+  @Expose()
   status: GiftCardRequestStatusEnum;
 }
