@@ -1,8 +1,9 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class FulfillGiftCardRequestDto {
+  @IsOptional()
   @IsString()
-  description: string;
+  description?: string;
 
   @IsString()
   @IsNotEmpty()

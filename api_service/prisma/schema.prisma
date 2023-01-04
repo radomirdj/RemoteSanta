@@ -160,7 +160,7 @@ model GiftCard {
   createdById       String
   giftCardRequest   GiftCardRequest @relation(fields: [giftCardRequestId], references: [id])
   giftCardRequestId String          @unique
-  description       String
+  description       String?
   url               String
 
   createdAt DateTime @default(now())
