@@ -13,6 +13,16 @@ import PrivateRoute from "./app/components/privateRoute/PrivateRoute";
 import PublicRoute from "./app/components/publicRoute/PublicRoute";
 import VerifyEmail from "./app/components/verify-email/VerifyEmail";
 import ChangePasswordSuccess from "./app/components/change-password-success/ChangePasswordSuccess";
+import ErrorPage from "./app/components/error-page/ErrorPage";
+import MyGiftCards from "./app/components/my-gift-cards/MyGiftCards";
+import Demo from "./app/components/demo/Demo";
+import History from "./app/components/history/History";
+import UserProfile from "./app/components/user-profile/UserProfile";
+import ChooseGiftCard from "./app/components/choose-giftcard/ChooseGiftCard";
+import GiftCardRequestSuccess from "./app/components/gift-card-request-success/GiftCardRequestSuccess";
+import AdminRoute from "./app/components/adminRoute/AdminRoute";
+import AdminGiftCardRequests from "./app/components/admin-gift-card-requests/AdminGiftCardRequests";
+import AdminOrganizations from "./app/components/admin-organizations/AdminOrganizations";
 
 const App = () => {
   return (
@@ -66,6 +76,71 @@ const App = () => {
             </PublicRoute>
           }
         />
+        <Route path="error-page" element={<ErrorPage />} />
+        <Route
+          path="my-gift-cards"
+          element={
+            <PrivateRoute>
+              <MyGiftCards />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="demo"
+          element={
+            <PrivateRoute>
+              <Demo />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="history"
+          element={
+            <PrivateRoute>
+              <History />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="user-profile"
+          element={
+            <PrivateRoute>
+              <UserProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="choose-gift-card"
+          element={
+            <PrivateRoute>
+              <ChooseGiftCard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="gift-card-request-success"
+          element={
+            <PrivateRoute>
+              <GiftCardRequestSuccess />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="admin-home"
+          element={
+            <AdminRoute>
+              <AdminGiftCardRequests />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="admin-organizations"
+          element={
+            <AdminRoute>
+              <AdminOrganizations />
+            </AdminRoute>
+          }
+        />
         <Route
           path=""
           element={
@@ -74,7 +149,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/error-page" />} />
       </Routes>
     </BrowserRouter>
   );

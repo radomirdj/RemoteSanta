@@ -1,4 +1,3 @@
-import { AuthUser } from "../../entitites/AuthUser";
 import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -97,8 +96,9 @@ export const getSelfFailure = (
   payload
 });
 
-export const logout = (): Logout => ({
-  type: LOGOUT,
+export const logout = (navigate:Function): Logout => ({
+  type: LOGOUT, 
+  navigate
 });
 
 export const forgotPasswordRequest = (payload: ForgotPasswordRequestPayload, navigate:Function): ForgotPasswordRequest => ({

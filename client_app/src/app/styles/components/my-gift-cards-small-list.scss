@@ -1,0 +1,140 @@
+@use "./../variables.scss";
+
+$declined-icon-width: 20px;
+$card-image-width: 83%;
+$card-button-width: 83%;
+
+.my-gift-cards-small-list {
+    background-image: url("./../../assets/home-image.svg");
+ 
+    .grid-style{
+        overflow-y: auto;
+        max-width: 1200px;
+        z-index: 1000;
+
+        .my-gift-cards-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            margin-left: variables.$base-unit ;
+            margin-bottom: variables.$base-unit;
+            width: max-content;
+        } 
+
+        .my-gift-cards-text{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-medium;
+            margin-left: variables.$base-unit ;
+            margin-bottom: variables.$base-unit ;
+            width: max-content;
+        } 
+
+        .my-gift-cards-link{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-medium;
+            margin-left: variables.$base-unit ;
+            margin-bottom: variables.$base-unit ;
+            cursor: pointer;
+            width: max-content;
+        } 
+
+        .my-gift-card-points{
+            font-size: variables.$font-size-large;
+            font-weight: 600;
+            margin-bottom: variables.$base-unit;
+            color: variables.$main-green;
+            margin-right: variables.$base-unit ;
+            font-family: "Roboto","Helvetica","Arial",sans-serif;
+        }
+
+        .grid-item{
+            padding-top: 0px;
+        }
+
+        .card-item{
+            margin-left: auto;
+            margin-right: auto;
+            background-color: rgb(193, 211, 229, 0.6);
+            border-radius: variables.$base-unit * 3;
+            height:variables.$base-unit * 45;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            margin-bottom: variables.$base-unit * 2;
+        }
+
+        .card-image{
+            width: $card-image-width;
+            height:variables.$base-unit * 18;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: variables.$base-unit * 5;
+            border-radius: variables.$base-unit * 3;
+        }
+
+        .card-title{
+            font-family: "Montserrat";
+            margin-left: variables.$base-unit * 2;
+        }
+
+        .card-date{
+            font-family: "Montserrat";
+            color: variables.$color-neutral-black;
+            margin-left: variables.$base-unit * 2;
+        }
+
+        .card-amount{
+            float: right;
+            font-family: "Montserrat";
+            font-weight: bold;
+            color: variables.$color-neutral-gray;
+            margin-right: variables.$base-unit * 2;
+        }
+
+        .card-button,
+        & .card-button:hover {
+          background-color: variables.$color-neutral-white;
+          border-radius: variables.$base-unit;
+          box-shadow: none;
+          color: variables.$color-neutral-black;
+          text-transform: none;
+          width: $card-button-width;
+          margin-left: auto;
+          margin-right: auto;
+          height: variables.$base-unit * 5;
+          font-weight: bold;
+          margin-bottom: variables.$base-unit * 4;
+        }
+
+        .card-pending-icon{
+            margin-left: variables.$base-unit * 3;
+            width: variables.$base-unit * 2;
+            margin-top: variables.$base-unit;
+        }
+
+        .card-declined-icon{
+            margin-left: variables.$base-unit * 3;
+            width: $declined-icon-width;
+            margin-top: variables.$base-unit;
+        }
+
+        .card-declined-text{
+            color: variables.$error-color;
+            font-family: "Montserrat";
+        }
+
+       .pending-text{
+            font-family: "Montserrat";
+       }
+
+       .MuiGrid-root{
+        .MuiGrid-item{
+            padding-left: 0px;
+        }
+    }
+    }
+
+    .MuiGrid-root{
+        .MuiGrid-item{
+            padding-left: 16px;
+        }
+    }
+}
+

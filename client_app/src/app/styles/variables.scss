@@ -4,10 +4,25 @@ $base-unit: 8px;
 /* COLORS */
 $color-neutral-black: #1F2223;
 $color-dark-yellow: #FDC886;
+$color-light-yellow: #FDDE92;
 $error-color: #B3411C;
 $main-yellow:#f5f2ea;
+$main-blue: #c1d3e5;
+$color-neutral-gray: #797A7B;
+$color-neutral-white: #ffffff;
+$main-green:#CFD181;
 
 /* FONTS */
 $font-size-title: 36px;
+$font-size-larger:28px;
+$font-size-large:24px;
+$font-size-medium: 16px;
 $font-size-small: 12px;
 $font-size-smaller: 10px;
+
+/* BREAKPOINTS */
+$breakpoint-xl: 1536px;
+$breakpoint-lg: 1200px;
+$breakpoint-sm: 600px;
+$breakpoint-xs: 0px;
+$breakpoint-md: 900px;

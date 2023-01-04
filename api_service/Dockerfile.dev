@@ -1,4 +1,4 @@
-FROM node:16.15.1 AS builder
+FROM --platform=linux/amd64 node:16.15.1 AS builder
 RUN mkdir /app/
 WORKDIR /app/
 RUN chown -R $UID:$UID /app/
@@ -17,7 +17,7 @@ ENV NODE_ENV=development
 
 RUN yarn build
 
-FROM node:16.15.1
+FROM --platform=linux/amd64 node:16.15.1
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/dist ./dist

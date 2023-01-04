@@ -3,6 +3,7 @@
 $login-error-icon-width: 18px;
 $login-error-icon-height: 18px;
 $login-error-label-color: #666666;
+$login-form-width:400px;
 
 .login {
   background-image: url("./../../assets/login-image.svg");
@@ -19,8 +20,10 @@ $login-error-label-color: #666666;
     border-radius: variables.$base-unit * 4;
     text-align: center;
 
-    @media screen and (min-width: 1500px) {
-      width: 400px;
+    @media screen and (min-width: variables.$breakpoint-xl) {
+      width: $login-form-width;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
 

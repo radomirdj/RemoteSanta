@@ -1,0 +1,38 @@
+@use "./../variables.scss";
+
+$main-text-width: 55%;
+
+.gift-card-request-success{
+    background-color: variables.$main-yellow;
+
+    .gift-card-request-success-content{
+        width: 100%;
+        text-align: center;
+        padding-top: variables.$base-unit * 8;
+
+        .gift-card-request-success-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            margin-bottom: variables.$base-unit * 3;
+            text-align: center;
+            width: $main-text-width;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gift-card-request-success-link{
+            font-family: "Montserrat";
+            cursor: pointer;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .success-illustration{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: variables.$base-unit *4;
+            width: variables.$base-unit * 44;
+        }
+    }
+}
