@@ -16,6 +16,9 @@ export class OrgTransactionDto {
   @Expose()
   totalAmount: number;
 
+  @Expose()
+  createdAt: Date;
+
   @ValidateNested()
   @Expose()
   @Type(() => ClaimPointsEventDto)
