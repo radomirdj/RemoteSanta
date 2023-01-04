@@ -14,8 +14,8 @@ export class AdminUsersService {
 
   async getUserDetailsById(id: string): Promise<UserDto> {
     const user = await this.usersService.findById(id);
-    const userBalance = await this.ledgerService.getUserBalance(id);
     if (!user) throw new NotFoundException('User Not Found');
+    const userBalance = await this.ledgerService.getUserBalance(id);
     return {
       ...user,
       userBalance,
