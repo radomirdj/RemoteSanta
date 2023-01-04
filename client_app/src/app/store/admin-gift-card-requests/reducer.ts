@@ -31,7 +31,7 @@ export default (state = initialState, action: AdminGiftCardRequestActions) => {
       return {
         ...state,
         pending: false,
-        claimPointsEventList: [],
+        adminGiftCardRequestList: [],
         error: action.payload.error
       };
     default:

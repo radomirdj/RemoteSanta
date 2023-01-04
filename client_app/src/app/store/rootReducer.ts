@@ -6,6 +6,7 @@ import authReducer from "./auth/reducer";
 import giftCardRequestReducer from "./gift-card-request/reducer";
 import claimPointsEventReducer from "./claim-points-event/reducer";
 import adminGiftCardRequestReducer from "./admin-gift-card-requests/reducer";
+import adminOrganizationReducer from "./admin-organization/reducer";
 
 const rootReducer = combineReducers({
   todo: todoReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   giftCardRequest: giftCardRequestReducer,
   claimPointsEvent: claimPointsEventReducer,
-  adminGiftCardRequest: adminGiftCardRequestReducer
+  adminGiftCardRequest: adminGiftCardRequestReducer,
+  adminOrganization: adminOrganizationReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
