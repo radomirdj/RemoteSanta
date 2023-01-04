@@ -9,7 +9,12 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 
-import { user1, user2, lastClaimPointsEvent } from './utils/preseededData';
+import {
+  user1,
+  user2,
+  admin,
+  lastClaimPointsEvent,
+} from './utils/preseededData';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -50,6 +55,24 @@ describe('/claim-points-events', () => {
       expect(lastEvent.claimPointsEventFulfillment.amount).toEqual(
         lastClaimPointsEvent.claimPointsEventFulfillment.amount,
       );
+    });
+
+    it('/ (GET) - get claim-points-events list for ADMIN - fulfilled last event', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/claim-points-events/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .expect(200);
+      const eventList = response.body;
+      expect(new Date(eventList[0].validTo).getTime()).toBeGreaterThan(
+        new Date().getTime(),
+      );
+      const lastEvent = eventList[eventList.length - 1];
+      expect(lastEvent.description).toEqual(lastClaimPointsEvent.description);
+      expect(lastEvent.claimPointsEventFulfillment).toBeFalsy();
     });
 
     it("/ (GET) - get claim-points-events list for user2 - didn't fulfilled last event", async () => {
