@@ -15,6 +15,7 @@ import { AdminGiftCardRequestsModule } from './admin_gift_card_requests/admin_gi
 import { ClaimPointsEventsModule } from './claim_points_events/claim_points_events.module';
 import { AdminOrgsModule } from './admin_orgs/admin_orgs.module';
 import { LedgerModule } from './ledger/ledger.module';
+import { AdminUsersModule } from './admin_users/admin_users.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { LedgerModule } from './ledger/ledger.module';
     ClaimPointsEventsModule,
     AdminOrgsModule,
     LedgerModule,
+    AdminUsersModule,
   ],
   controllers: [AppController],
   providers: [

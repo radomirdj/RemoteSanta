@@ -17,7 +17,7 @@ export class UserDto {
   lastName: string;
 
   @Expose()
-  accessToken: string;
+  accessToken?: string;
 
   @Expose()
   birthDate: Date;

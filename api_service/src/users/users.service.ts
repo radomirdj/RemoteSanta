@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { User, Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
+import { UserDto } from './dtos/user.dto';
 
 const userDefaultJoin = {
   org: true,
@@ -25,7 +26,7 @@ export class UsersService {
   //   });
   // }
 
-  findById(id: string): Promise<User | null> {
+  findById(id: string): Promise<UserDto | null> {
     return this.prisma.user.findUnique({
       where: { id },
       include: userDefaultJoin,

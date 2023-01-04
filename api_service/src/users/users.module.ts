@@ -18,6 +18,7 @@ import { LedgerModule } from '../ledger/ledger.module';
   ],
   controllers: [UsersController],
   providers: [UsersService, AuthService, AwsCognitoService, JwtStrategy],
+  exports: [UsersService],
 })
 export class UsersModule {
   configure(consumer: MiddlewareConsumer) {}
