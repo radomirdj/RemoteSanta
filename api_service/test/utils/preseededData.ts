@@ -43,8 +43,24 @@ export const users = [
 ];
 
 export const user1 = users[0];
+export const user1ActivePoints = 6400;
+export const user1ReservedPoints = 3000;
+export const user1ActiveBalanceSideId = '2d1b6de0-e182-43f8-b8ce-96baccb4ecd4';
+export const user1ReservedBalanceSideId =
+  'bbb32b33-2b0f-43f2-b7fb-fb8a6217d14b';
+
+export const user3ActiveBalanceSideId = 'a6490a6e-253b-4aa0-810c-f7e5b3790138';
+export const user3ReservedBalanceSideId =
+  '7ed49c43-db63-4631-84ae-d07bc461bbbb';
+
 export const user2 = users[1];
+export const user2ActivePoints = 0;
+export const user2ReservedPoints = 0;
+
 export const user3 = users[2];
+export const user3ActivePoints = 2400;
+export const user3ReservedPoints = 0;
+
 export const admin = users[3];
 
 export const giftDates = [
@@ -160,11 +176,17 @@ export const org1 = {
   employeeNumber: 4,
 };
 
+export const org1Points = 9200;
+export const org1BalanceSideId = 'dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3';
+export const platformBalanceSideId = '4b7e82dd-2f71-4be4-a55f-cc20b60c6eae';
+
 export const org2 = {
   id: '62b1828e-0b0f-4123-af61-531e7967134c',
   name: 'W_Inc 2',
   pointsPerMonth: 600,
 };
+
+export const org2Points = 0;
 
 export const claimPointsEvent1 = {
   id: 'e0c01322-f499-4f84-baac-af230e238d07',
@@ -191,7 +213,7 @@ export const org1Transactions = [
     id: '4a49457a-774d-4443-8da5-692748000beb',
     orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
     type: 'ORG_TO_EMPLOYEES',
-    totalAmount: 1200,
+    totalAmount: 2400,
     event: {
       description: 'Make December to remember.',
     },
@@ -200,6 +222,6 @@ export const org1Transactions = [
     id: 'ca16d572-9640-4470-8c8a-af3bb3fd42b6',
     orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
     type: 'ADMIN_TO_ORG',
-    totalAmount: 4800,
+    totalAmount: 24000,
   },
 ];

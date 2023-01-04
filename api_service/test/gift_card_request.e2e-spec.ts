@@ -5,17 +5,20 @@ import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
 import { PrismaService } from '../src/prisma/prisma.service';
+import { LedgerModule } from '../src/ledger/ledger.module';
+import { LedgerService } from '../src/ledger/ledger.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { AmountFailsCounstraintException } from '../src/errors//amountFailsCounstraintException';
+import { NotEnoughBalanceException } from '../src/errors/notEnoughBalanceException';
 
 import {
   expectGiftCardRequestInDB,
   expectGiftCardRequestRsp,
 } from './utils/giftCardRequestChecks';
 
-import { GiftCardRequestStatusEnum } from '@prisma/client';
+import { GiftCardRequestStatusEnum, LedgerTypeEnum } from '@prisma/client';
 
 import {
   user1,
@@ -25,17 +28,28 @@ import {
   giftCardRequest2,
   giftCardIntegration1,
   giftCardIntegration2,
+  user1ActiveBalanceSideId,
+  user1ReservedBalanceSideId,
+  user1ActivePoints,
+  user1ReservedPoints,
+  user3ActivePoints,
+  user3ReservedPoints,
+  user3ActiveBalanceSideId,
+  user3ReservedBalanceSideId,
 } from './utils/preseededData';
+import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
 describe('/gift-card-requests', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+  let ledgerService: LedgerService;
+  const testStartTime = new Date();
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, PrismaModule, UsersModule],
+      imports: [AppModule, PrismaModule, UsersModule, LedgerModule],
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
@@ -43,6 +57,7 @@ describe('/gift-card-requests', () => {
 
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
+    ledgerService = app.get(LedgerService);
     await app.init();
   });
 
@@ -144,7 +159,7 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user2.email, sub: user2.cognitoSub }),
+            createToken({ email: user3.email, sub: user3.cognitoSub }),
         )
         .send(newGiftCardRequest)
         .expect(201);
@@ -153,7 +168,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
-        userId: user2.id,
+        userId: user3.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
       await expectGiftCardRequestInDB(
@@ -161,10 +176,32 @@ describe('/gift-card-requests', () => {
         {
           ...newGiftCardRequest,
           status: GiftCardRequestStatusEnum.PENDING,
-          userId: user2.id,
+          userId: user3.id,
         },
         prisma,
       );
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user3ActiveBalanceSideId,
+        toId: user3ReservedBalanceSideId,
+        amount: newGiftCardRequest.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
+      });
+
+      await checkBalance(ledgerService, user3.id, {
+        pointsActive: user3ActivePoints - newGiftCardRequest.amount,
+        pointsReserved: user3ReservedPoints + newGiftCardRequest.amount,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
 
       await prisma.giftCardRequest.delete({ where: { id } });
     });
@@ -175,13 +212,29 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user2.email, sub: user2.cognitoSub }),
+            createToken({ email: user3.email, sub: user3.cognitoSub }),
         )
         .send({ ...newGiftCardRequest, amount: 400 })
         .expect(400);
 
       expect(response.body.message).toEqual(
         AmountFailsCounstraintException.defaultMessage,
+      );
+    });
+
+    it('/ (POST) - try to create gift card - user without points', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(newGiftCardRequest)
+        .expect(400);
+
+      expect(response.body.message).toEqual(
+        NotEnoughBalanceException.defaultMessage,
       );
     });
 

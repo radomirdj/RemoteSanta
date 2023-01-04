@@ -13,8 +13,9 @@ import {
   expectGiftCardRequestInDB,
   expectGiftCardRequestRsp,
 } from './utils/giftCardRequestChecks';
+import { LedgerService } from '../src/ledger/ledger.service';
 
-import { GiftCardRequestStatusEnum } from '@prisma/client';
+import { GiftCardRequestStatusEnum, LedgerTypeEnum } from '@prisma/client';
 
 import {
   user2,
@@ -24,15 +25,25 @@ import {
   giftCardRequestFulfilled,
   giftCardIntegration1,
   giftCardIntegration2,
+  user3ReservedPoints,
+  user1ActiveBalanceSideId,
+  user1ReservedBalanceSideId,
+  platformBalanceSideId,
+  user1,
+  user1ActivePoints,
+  user1ReservedPoints,
 } from './utils/preseededData';
+import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
 describe('admin/gift-card-requests', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+  let ledgerService: LedgerService;
+  const testStartTime = new Date();
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule, PrismaModule, UsersModule],
     })
@@ -42,6 +53,7 @@ describe('admin/gift-card-requests', () => {
 
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
+    ledgerService = app.get(LedgerService);
     await app.init();
   });
 
@@ -168,6 +180,28 @@ describe('admin/gift-card-requests', () => {
       expect(giftCard.description).toEqual(newGiftCard.description);
       expect(giftCard.url).toEqual(newGiftCard.url);
 
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user1ReservedBalanceSideId,
+        toId: platformBalanceSideId,
+        amount: giftCardRequest1.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_COMPLETED,
+      });
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints,
+        pointsReserved: user1ReservedPoints - giftCardRequest1.amount,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
       await prisma.giftCardRequest.update({
         where: { id },
         data: { status: GiftCardRequestStatusEnum.PENDING },
@@ -243,6 +277,28 @@ describe('admin/gift-card-requests', () => {
         },
         prisma,
       );
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user1ReservedBalanceSideId,
+        toId: user1ActiveBalanceSideId,
+        amount: giftCardRequest1.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED,
+      });
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints + giftCardRequest1.amount,
+        pointsReserved: user1ReservedPoints - giftCardRequest1.amount,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
 
       await prisma.giftCardRequest.update({
         where: { id },

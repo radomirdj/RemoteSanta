@@ -11,45 +11,22 @@ import { LoginCredentialsWrongException } from '../src/errors/loginCredentialsWr
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
-import { user1, org1 } from './utils/preseededData';
-import { UserRoleEnum } from '@prisma/client';
+import {
+  user1,
+  org1,
+  user1ActivePoints,
+  user1ReservedPoints,
+} from './utils/preseededData';
+import { expectUserRsp, expectUserInDB } from './utils/userChecks';
+import { UserRoleEnum, BalanceSideTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
-
-export const expectUserRsp = (responseBody, expectedValue) => {
-  expect(responseBody.email).toEqual(expectedValue.email);
-  expect(responseBody.firstName).toEqual(expectedValue.firstName);
-  expect(responseBody.lastName).toEqual(expectedValue.lastName);
-  expect(responseBody.gender).toEqual(expectedValue.gender);
-  expect(responseBody.userRole).toEqual(expectedValue.userRole);
-  expect(responseBody.birthDate).toEqual(expectedValue.birthDate.toISOString());
-  if (expectedValue.orgName) {
-    expect(responseBody.org.name).toEqual(expectedValue.orgName);
-  }
-};
-
-export const expectUserInDB = async (expectedValue, prisma) => {
-  const userList = await prisma.user.findMany({
-    where: { email: expectedValue.email },
-  });
-
-  expect(userList.length).toEqual(1);
-  const user = userList[0];
-
-  expect(user.email).toEqual(expectedValue.email);
-  expect(user.firstName).toEqual(expectedValue.firstName);
-  expect(user.lastName).toEqual(expectedValue.lastName);
-  expect(user.cognitoSub).toEqual(`sub_${expectedValue.email}`);
-  expect(user.gender).toEqual(expectedValue.gender);
-  expect(user.userRole).toEqual(expectedValue.userRole);
-  expect(user.birthDate).toEqual(expectedValue.birthDate);
-};
 
 describe('Authentication system', () => {
   let app: INestApplication;
   let prisma: PrismaService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule, PrismaModule, UsersModule],
     })
@@ -88,6 +65,25 @@ describe('Authentication system', () => {
         prisma,
       );
 
+      const balanceSideDBList = await prisma.balanceSide.findMany({
+        where: { userId: response.body.id },
+      });
+      expect(balanceSideDBList.length).toEqual(2);
+      const balanceSideActive = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_ACTIVE,
+      );
+      expect(balanceSideActive).toBeDefined();
+      expect(balanceSideActive.userId).toEqual(response.body.id);
+
+      const balanceSideReserved = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_RESERVED,
+      );
+      expect(balanceSideReserved).toBeDefined();
+      expect(balanceSideReserved.userId).toEqual(response.body.id);
+
+      await prisma.balanceSide.deleteMany({
+        where: { userId: response.body.id },
+      });
       await prisma.user.delete({ where: { email: newUser.email } });
     });
 
@@ -131,6 +127,11 @@ describe('Authentication system', () => {
             createToken({ email: user1.email, sub: user1.cognitoSub }),
         )
         .expect(200);
+
+      expect(response.body.userBalance.pointsActive).toEqual(user1ActivePoints);
+      expect(response.body.userBalance.pointsReserved).toEqual(
+        user1ReservedPoints,
+      );
 
       expectUserRsp(response.body, {
         ...user1,

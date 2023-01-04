@@ -4,7 +4,10 @@ import { GiftCardRequestService } from './gift_card_request.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '@prisma/client';
+import { Serialize } from '../interceptors/serialize.interceptor';
+import { GiftCardRequestDto } from './dtos/gift_card_request.dto';
 
+@Serialize(GiftCardRequestDto)
 @Controller('gift-card-requests')
 @UseGuards(AuthGuard('jwt'))
 export class GiftCardRequestController {

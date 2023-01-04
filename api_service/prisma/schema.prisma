@@ -39,6 +39,7 @@ model User {
   GiftCard                        GiftCard[]
   claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
   OrgTransaction                  OrgTransaction[]
+  BalanceSide                     BalanceSide[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -112,6 +113,7 @@ model Org {
   pointsPerMonth Int
   User           User[]
   OrgTransaction OrgTransaction[]
+  BalanceSide    BalanceSide[]
 }
 
 enum IntegrationConsraintTypeEnum {
@@ -154,20 +156,53 @@ model GiftCardRequest {
 
 model GiftCard {
   id                String          @id @default(uuid())
-  // owner                 User                      @relation(fields: [ownerId], references: [id])
-  // ownerId               String
   createdBy         User            @relation(fields: [createdById], references: [id])
   createdById       String
-  // giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
-  // giftCardIntegrationId String
   giftCardRequest   GiftCardRequest @relation(fields: [giftCardRequestId], references: [id])
   giftCardRequestId String          @unique
   description       String
   url               String
-  // amount                Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum BalanceSideTypeEnum {
+  USER_ACTIVE
+  USER_RESERVED
+  ORG
+  PLATFORM
+}
+
+model BalanceSide {
+  id         String              @id @default(uuid())
+  type       BalanceSideTypeEnum
+  user       User?               @relation(fields: [userId], references: [id])
+  userId     String?
+  org        Org?                @relation(fields: [orgId], references: [id])
+  orgId      String?
+  ladgerFrom Ledger[]            @relation("Ledger_from")
+  ladgerTo   Ledger[]            @relation("Ledger_to")
+}
+
+enum LedgerTypeEnum {
+  ORG_TO_EMPLOYEES
+  ADMIN_TO_ORG
+  GIFT_CARD_REQUEST_CREATED
+  GIFT_CARD_REQUEST_COMPLETED
+  GIFT_CARD_REQUEST_DECLINED
+}
+
+model Ledger {
+  id          String         @id @default(uuid())
+  type        LedgerTypeEnum
+  amount      Int
+  detailsJson Json
+  from        BalanceSide    @relation("Ledger_from", fields: [fromId], references: [id])
+  fromId      String
+  to          BalanceSide    @relation("Ledger_to", fields: [toId], references: [id])
+  toId        String
+  createdAt   DateTime       @default(now())
 }
 
 model Report {

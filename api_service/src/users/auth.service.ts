@@ -14,6 +14,7 @@ import { CognitoException } from '../errors/cognitoException';
 import { LoginCredentialsWrongException } from '../errors/loginCredentialsWrongException';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
+import { LedgerService } from '../ledger/ledger.service';
 
 const scrypt = promisify(_scrypt);
 
@@ -23,6 +24,7 @@ export class AuthService {
     private usersService: UsersService,
     private cognitoService: AwsCognitoService,
     private prisma: PrismaService,
+    private ledgerService: LedgerService,
   ) {}
 
   async signUp(data: CreateUserDto) {
@@ -46,12 +48,14 @@ export class AuthService {
       } catch (err) {
         throw new CognitoException(err.message);
       }
-
-      await this.usersService.setCognitoSubTransactional(
+      const ledgerPromise = this.ledgerService.createUserSides(tx, dbUser.id);
+      const cognitoUpdatePromise = this.usersService.setCognitoSubTransactional(
         tx,
         dbUser.id,
         userSub,
       );
+
+      await Promise.all([ledgerPromise, cognitoUpdatePromise]);
       return dbUser;
     });
 
