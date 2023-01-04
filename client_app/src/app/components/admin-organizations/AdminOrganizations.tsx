@@ -2,14 +2,14 @@ import React from "react";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 
-const AdminGiftCardRequests = () => {
+const AdminOrganizations = () => {
   return (
     <>
       <AppHeaderAdmin />
-      <div className="background admin-gift-card-requests"> </div>
+      <div className="background admin-organizations"></div>
       <AppFooter />
     </>
   );
 };
 
-export default AdminGiftCardRequests;
+export default AdminOrganizations;
