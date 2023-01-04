@@ -121,7 +121,7 @@ export const giftCardIntegration1 = {
   priority: 10,
   website: 'https://giftoncard.eu',
   image:
-    'https://giftoncard.eu/public/media/Docs/source/Multibrand%20novi%20dizajn%20380x245-01.png',
+    'https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png',
   title: 'Multibrand',
   description: 'Jedna e kartica, na preko 500 lokacija širom Srbije.',
   constraintType: 'MIN_MAX',
