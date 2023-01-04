@@ -30,7 +30,7 @@ describe('/gift-card-integrations', () => {
   let giftCardIntegrationsService: GiftCardIntegrationsService;
   let prisma: PrismaService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         AppModule,

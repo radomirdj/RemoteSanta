@@ -32,7 +32,7 @@ describe('LedgerService', () => {
   let prisma: PrismaService;
   let ledgerService: LedgerService;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule, PrismaModule, UsersModule, LedgerModule],
     })

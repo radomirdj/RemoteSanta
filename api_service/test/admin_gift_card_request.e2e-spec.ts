@@ -43,7 +43,7 @@ describe('admin/gift-card-requests', () => {
   let ledgerService: LedgerService;
   const testStartTime = new Date();
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule, PrismaModule, UsersModule],
     })
