@@ -1,11 +1,16 @@
 import { Navigate } from "react-router-dom";
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthUserTokenSelector } from "../../store/auth/selectors";
+import {
+  getAuthUserRoleSelector,
+  getAuthUserTokenSelector,
+} from "../../store/auth/selectors";
 import { getSelfRequest } from "../../store/auth/actions";
+import { UserRole } from "../../enums/UserRole";
 
 function AdminRoute({ children }: { children: ReactNode }) {
   const stateToken = useSelector(getAuthUserTokenSelector);
+  const stateUserRole = useSelector(getAuthUserRoleSelector);
   let token = localStorage.getItem("token");
   let userRole = localStorage.getItem("userRole");
   const dispatch = useDispatch();
@@ -17,11 +22,11 @@ function AdminRoute({ children }: { children: ReactNode }) {
   useEffect(() => {
     token = localStorage.getItem("token");
     userRole = localStorage.getItem("userRole");
-  }, [stateToken]);
+  }, [stateToken, stateUserRole]);
   if (!token) {
     return <Navigate to="/login" replace />;
   }
-  if (userRole === "BASIC_USER") {
+  if (userRole === UserRole.BASIC_USER) {
     return <Navigate to="/" replace />;
   }
   return <div>{children}</div>;

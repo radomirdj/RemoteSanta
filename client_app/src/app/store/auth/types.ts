@@ -1,4 +1,3 @@
-import { AuthUser } from "../../entitites/AuthUser";
 import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -17,6 +16,17 @@ import {
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAILURE
 } from "./actionTypes";
+
+export interface AuthUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  birthDate: Date | undefined;
+  gender: string;
+  accessToken: string;
+  userRole: string;
+}
 
 export interface AuthState {
   pending: boolean;

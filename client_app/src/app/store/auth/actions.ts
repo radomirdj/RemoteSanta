@@ -1,4 +1,3 @@
-import { AuthUser } from "../../entitites/AuthUser";
 import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
