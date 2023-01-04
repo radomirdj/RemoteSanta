@@ -80,13 +80,13 @@ export default (state = initialState, action: AuthActions) => {
       return {
         ...state,
         pending: false,
-        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"" },
+        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"", userRole:"" },
       };
     case LOGOUT:
       return {
         ...state,
         pending: false,
-        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"" },
+        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"", userRole:"" },
       };
     case FORGOT_PASSWORD_REQUEST:
       return {
