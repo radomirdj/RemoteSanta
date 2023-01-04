@@ -1,6 +1,8 @@
-import { Expose, Transform } from 'class-transformer';
+import { Expose, Transform, Type } from 'class-transformer';
 import { GiftCardRequestStatusEnum } from '@prisma/client';
+import { ValidateNested } from 'class-validator';
 
+import { GiftCardIntegrationDto } from '../../gift_card_integrations/dtos/gift_card_integration.dto';
 export class GiftCardRequestDto {
   @Expose()
   id: string;
@@ -10,6 +12,11 @@ export class GiftCardRequestDto {
 
   @Expose()
   giftCardIntegrationId: string;
+
+  @ValidateNested()
+  @Expose()
+  @Type(() => GiftCardIntegrationDto)
+  giftCardIntegration: GiftCardIntegrationDto;
 
   @Expose()
   amount: string;
