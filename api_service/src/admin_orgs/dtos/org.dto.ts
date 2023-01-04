@@ -9,6 +9,9 @@ export class OrgDto {
   name: string;
 
   @Expose()
+  balance?: number;
+
+  @Expose()
   employeeNumber?: number;
 
   @Expose()

@@ -30,6 +30,7 @@ import {
   org1BalanceSideId,
   platformBalanceSideId,
   org1Points,
+  org2Points,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
@@ -84,6 +85,7 @@ describe('admin/orgs', () => {
       expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
       expect(rspOrg.employeeNumber).toEqual(org1.employeeNumber);
       expect(rspOrg.totalPointsPerMonth).toEqual(4800);
+      expect(rspOrg.balance).toEqual(org1Points);
     });
 
     it('/:id (GET) - get ORG2 details by ADMIN', async () => {
@@ -100,6 +102,7 @@ describe('admin/orgs', () => {
       expect(rspOrg.pointsPerMonth).toEqual(org2.pointsPerMonth);
       expect(rspOrg.employeeNumber).toEqual(0);
       expect(rspOrg.totalPointsPerMonth).toEqual(0);
+      expect(rspOrg.balance).toEqual(org2Points);
     });
 
     it('/:id (GET) - NON ADMIN user, get ORG details', async () => {

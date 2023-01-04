@@ -30,8 +30,10 @@ export class AdminOrgsService {
     if (!org) throw new NotFoundException('Org Not Found');
     const { _count, ...otherData } = org;
 
+    const balance = await this.ledgerService.getOrgBalance(id);
     return {
       employeeNumber: _count.User,
+      balance,
       totalPointsPerMonth: _count.User * otherData.pointsPerMonth,
       ...otherData,
     };
