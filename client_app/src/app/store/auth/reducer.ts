@@ -22,7 +22,7 @@ import { AuthState, AuthActions } from "./types";
 
 const initialState: AuthState = {
   pending: false,
-  authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate:undefined, gender:"" },
+  authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate:undefined, gender:"", userRole:"" },
   error: null,
   emailToResetPassword: null,
 };

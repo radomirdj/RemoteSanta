@@ -55,6 +55,7 @@ function* loginSaga(action: LoginRequest) {
       loginSuccess(loginSuccessPayload)
     );
     localStorage.setItem("token", loginSuccessPayload.authUser.accessToken);
+    localStorage.setItem("userRole", loginSuccessPayload.authUser.userRole);
   } catch (e) {
     console.log("function*loginSaga -> e", e);
     yield put(
@@ -92,6 +93,7 @@ function* getSelfSaga(action: GetSelfRequest) {
 
 function* logoutSaga(action: Logout) {
   localStorage.removeItem("token");
+  localStorage.removeItem("userRole");
   action.navigate("/login");
 }
 

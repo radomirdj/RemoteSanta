@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserTokenSelector } from "../../store/auth/selectors";
 import { getSelfRequest } from "../../store/auth/actions";
 
-function PrivateRoute({ children }: { children: ReactNode }) {
+function AdminRoute({ children }: { children: ReactNode }) {
   const stateToken = useSelector(getAuthUserTokenSelector);
   let token = localStorage.getItem("token");
   let userRole = localStorage.getItem("userRole");
@@ -21,10 +21,10 @@ function PrivateRoute({ children }: { children: ReactNode }) {
   if (!token) {
     return <Navigate to="/login" replace />;
   }
-  if (userRole === "ADMIN") {
-    return <Navigate to="/admin-home" replace />;
+  if (userRole === "BASIC_USER") {
+    return <Navigate to="/" replace />;
   }
   return <div>{children}</div>;
 }
 
-export default PrivateRoute;
+export default AdminRoute;

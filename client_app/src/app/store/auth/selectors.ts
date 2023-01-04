@@ -10,3 +10,6 @@ export const getEmailToResetPasswordSelector = (state: AppState) => state.auth.e
 
 export const getAuthUserTokenSelector = (state: AppState) =>
   state.auth.authUser.accessToken;
+
+  export const getAuthUserRoleSelector = (state: AppState) =>
+  state.auth.authUser.userRole;

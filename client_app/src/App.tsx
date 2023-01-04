@@ -20,6 +20,8 @@ import History from "./app/components/history/History";
 import UserProfile from "./app/components/user-profile/UserProfile";
 import ChooseGiftCard from "./app/components/choose-giftcard/ChooseGiftCard";
 import GiftCardRequestSuccess from "./app/components/gift-card-request-success/GiftCardRequestSuccess";
+import AdminRoute from "./app/components/adminRoute/AdminRoute";
+import AdminGiftCardRequests from "./app/components/admin-gift-card-requests/AdminGiftCardRequests";
 
 const App = () => {
   return (
@@ -120,6 +122,14 @@ const App = () => {
             <PrivateRoute>
               <GiftCardRequestSuccess />
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="admin-home"
+          element={
+            <AdminRoute>
+              <AdminGiftCardRequests />
+            </AdminRoute>
           }
         />
         <Route

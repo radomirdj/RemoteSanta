@@ -6,4 +6,5 @@ export interface AuthUser {
   readonly birthDate: Date | undefined;
   readonly gender: string;
   readonly accessToken: string;
+  readonly userRole: string;
 }
