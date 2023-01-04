@@ -11,6 +11,7 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
 import { AmountFailsCounstraintException } from '../src/errors//amountFailsCounstraintException';
+import { NotEnoughBalanceException } from '../src/errors/notEnoughBalanceException';
 
 import {
   expectGiftCardRequestInDB,
@@ -211,13 +212,29 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user2.email, sub: user2.cognitoSub }),
+            createToken({ email: user3.email, sub: user3.cognitoSub }),
         )
         .send({ ...newGiftCardRequest, amount: 400 })
         .expect(400);
 
       expect(response.body.message).toEqual(
         AmountFailsCounstraintException.defaultMessage,
+      );
+    });
+
+    it('/ (POST) - try to create gift card - user without points', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(newGiftCardRequest)
+        .expect(400);
+
+      expect(response.body.message).toEqual(
+        NotEnoughBalanceException.defaultMessage,
       );
     });
 

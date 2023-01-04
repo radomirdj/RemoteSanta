@@ -8,6 +8,7 @@ import {
 } from '@prisma/client';
 import { UserBalanceDto } from './dtos/user_balance.dto';
 import consts from '../utils/consts';
+import { NotEnoughBalanceException } from '../errors/notEnoughBalanceException';
 
 interface LedgerUserSideLists {
   activeList: BalanceSide[];
@@ -252,6 +253,13 @@ export class LedgerService {
     ]);
 
     return toOrg - fromOrg;
+  }
+
+  async validateUserActiveBalance(userId: string, minBalance: number) {
+    const { pointsActive } = await this.getUserBalance(userId);
+    if (pointsActive < minBalance) {
+      throw new NotEnoughBalanceException();
+    }
   }
 
   async getUserBalance(userId: string): Promise<UserBalanceDto> {

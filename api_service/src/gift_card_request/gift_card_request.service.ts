@@ -16,12 +16,17 @@ export class GiftCardRequestService {
     private giftCardIntegrationsService: GiftCardIntegrationsService,
     private ledgerService: LedgerService,
   ) {}
+
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
-    await this.giftCardIntegrationsService.validateIntegrationRequest(
-      giftCardIntegrationId,
-      data.amount,
-    );
+    await Promise.all([
+      this.giftCardIntegrationsService.validateIntegrationRequest(
+        giftCardIntegrationId,
+        data.amount,
+      ),
+      this.ledgerService.validateUserActiveBalance(user.id, data.amount),
+    ]);
+
     return this.prisma.$transaction(async (tx) => {
       const giftCardRequest = await tx.giftCardRequest.create({
         data: {
