@@ -142,13 +142,6 @@ const Login = () => {
                 >
                   Sign in
                 </Button>
-                {/*LABELS */}
-                <Typography
-                  className="login-no-account"
-                  onClick={signUpRedirect}
-                >
-                  Don't have an account? <u>Register now</u>
-                </Typography>
               </form>
             </Card>
           </Grid>

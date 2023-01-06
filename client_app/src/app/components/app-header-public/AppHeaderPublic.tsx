@@ -38,7 +38,8 @@ const AppHeaderPublic = () => {
             <img src={LogoSmall} alt="" className="logo-small" />
           </Grid>
           {window.location.pathname !== "/forgot-password" &&
-            window.location.pathname !== "/change-password" && (
+            window.location.pathname !== "/change-password" &&
+            window.location.pathname !== "/login" && (
               <Grid item xs={1} sm={2} md={1} className="align-right">
                 {window.location.pathname !== "/verify-email" &&
                   window.location.pathname !== "/change-password-success" &&
@@ -49,12 +50,6 @@ const AppHeaderPublic = () => {
             )}
           <Grid item xs={3} sm={2} md={1} className="align-right">
             {/*LABELS*/}
-            {window.location.pathname === "/login" && (
-              <Typography className="header-item" onClick={signUpRedirect}>
-                Sign up
-              </Typography>
-            )}
-            {/*LABELS*/}
             {window.location.pathname === "/signup" && (
               <Typography className="header-item" onClick={loginRedirect}>
                 Sign in
@@ -62,6 +57,7 @@ const AppHeaderPublic = () => {
             )}
           </Grid>
           {(window.location.pathname === "/forgot-password" ||
+            window.location.pathname === "/login" ||
             window.location.pathname === "/change-password") && (
             <Grid item xs={1} sm={2} md={1} className="align-right">
               <img src={LanguageIcon} alt="" className="header-icon" />

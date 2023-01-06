@@ -94,17 +94,7 @@ $login-form-width:400px;
     width: 100%;
     height: variables.$base-unit * 6;
     font-weight: bold;
-    margin-bottom: variables.$base-unit * 4;
-  }
-
-  .login-no-account {
-    font-family: "Montserrat";
-    margin-left: auto;
-    margin-right: auto;
-    font-size: variables.$font-size-small;
-    cursor: pointer;
-    color: variables.$color-neutral-black;
-    width: max-content;
+    margin-bottom: variables.$base-unit * 2;
   }
 
   .login-error {
