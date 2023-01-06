@@ -55,7 +55,7 @@ describe('/claim-points-events', () => {
       expect(lastEvent.claimPointsEventFulfillment.amount).toEqual(
         lastClaimPointsEvent.claimPointsEventFulfillment.amount,
       );
-      expect(lastEvent.title).toBeDefined();
+      expect(lastEvent.title).toEqual(lastClaimPointsEvent.title);
     });
 
     it('/ (GET) - get claim-points-events list for ADMIN - fulfilled last event', async () => {
@@ -74,7 +74,7 @@ describe('/claim-points-events', () => {
       const lastEvent = eventList[eventList.length - 1];
       expect(lastEvent.description).toEqual(lastClaimPointsEvent.description);
       expect(lastEvent.claimPointsEventFulfillment).toBeFalsy();
-      expect(lastEvent.title).toBeDefined();
+      expect(lastEvent.title).toEqual(lastClaimPointsEvent.title);
     });
 
     it("/ (GET) - get claim-points-events list for user2 - didn't fulfilled last event", async () => {
@@ -93,7 +93,7 @@ describe('/claim-points-events', () => {
       const lastEvent = eventList[eventList.length - 1];
       expect(lastEvent.description).toEqual(lastClaimPointsEvent.description);
       expect(lastEvent.claimPointsEventFulfillment).toBeFalsy();
-      expect(lastEvent.title).toBeDefined();
+      expect(lastEvent.title).toEqual(lastClaimPointsEvent.title);
     });
   });
 });
