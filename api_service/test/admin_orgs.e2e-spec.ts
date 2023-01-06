@@ -134,7 +134,7 @@ describe('admin/orgs', () => {
         .expect(200);
 
       expect(response.body.length).toEqual(2);
-      const rspOrg = response.body[0];
+      const rspOrg = response.body[1];
       expect(rspOrg.name).toEqual(org1.name);
       expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
     });
