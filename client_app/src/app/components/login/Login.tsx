@@ -45,10 +45,6 @@ const Login = () => {
     dispatch(loginRequest(data));
   };
 
-  const signUpRedirect = () => {
-    navigate("/signup");
-  };
-
   const forgotPasswordRedirect = () => {
     navigate("/forgot-password");
   };

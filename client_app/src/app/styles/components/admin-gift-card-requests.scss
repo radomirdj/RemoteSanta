@@ -1,6 +1,8 @@
 @use "./../variables.scss";
 
 $grid-max-width: 1200px;
+$row-green:#EDEEC4;
+$th-height:36px;
 
 .admin-gift-card-requests{
     background-image: url("./../../assets/home-image.svg");
@@ -19,7 +21,8 @@ $grid-max-width: 1200px;
 
     .admin-table-cell-title{
         font-weight: bold;
-        background-color: #D3D3D3;
+        background-color: $row-green;
+        height: $th-height;
     }
 
     .table-style{

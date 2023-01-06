@@ -48,7 +48,7 @@ const AdminGiftCardRequests = () => {
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(even)": {
-      backgroundColor: "#D3D3D3",
+      backgroundColor: "#EDEEC4",
     },
     // hide last border
     "&:last-child td, &:last-child th": {
