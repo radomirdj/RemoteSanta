@@ -16,6 +16,7 @@ import { ClaimPointsEventsModule } from './claim_points_events/claim_points_even
 import { AdminOrgsModule } from './admin_orgs/admin_orgs.module';
 import { LedgerModule } from './ledger/ledger.module';
 import { AdminUsersModule } from './admin_users/admin_users.module';
+import { OrgsModule } from './orgs/orgs.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { AdminUsersModule } from './admin_users/admin_users.module';
     AdminOrgsModule,
     LedgerModule,
     AdminUsersModule,
+    OrgsModule,
   ],
   controllers: [AppController],
   providers: [

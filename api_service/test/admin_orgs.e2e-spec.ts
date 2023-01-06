@@ -33,6 +33,7 @@ import {
   org2Points,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
+import { expectOrgRsp } from './utils/orgsChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -81,11 +82,10 @@ describe('admin/orgs', () => {
         )
         .expect(200);
       const rspOrg = response.body;
-      expect(rspOrg.name).toEqual(org1.name);
-      expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
-      expect(rspOrg.employeeNumber).toEqual(org1.employeeNumber);
-      expect(rspOrg.totalPointsPerMonth).toEqual(4800);
-      expect(rspOrg.balance).toEqual(org1Points);
+      expectOrgRsp(rspOrg, {
+        ...org1,
+        balance: org1Points,
+      });
     });
 
     it('/:id (GET) - get ORG2 details by ADMIN', async () => {
@@ -98,11 +98,10 @@ describe('admin/orgs', () => {
         )
         .expect(200);
       const rspOrg = response.body;
-      expect(rspOrg.name).toEqual(org2.name);
-      expect(rspOrg.pointsPerMonth).toEqual(org2.pointsPerMonth);
-      expect(rspOrg.employeeNumber).toEqual(0);
-      expect(rspOrg.totalPointsPerMonth).toEqual(0);
-      expect(rspOrg.balance).toEqual(org2Points);
+      expectOrgRsp(rspOrg, {
+        ...org2,
+        balance: org2Points,
+      });
     });
 
     it('/:id (GET) - NON ADMIN user, get ORG details', async () => {

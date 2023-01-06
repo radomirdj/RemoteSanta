@@ -27,6 +27,7 @@ export const users = [
     firstName: 'Sansa',
     lastName: 'Stark',
     gender: 'FEMALE',
+    role: 'USER_MANAGER',
     birthDate: new Date('1993-03-20T00:00:00.000Z'),
   },
   {
@@ -39,6 +40,17 @@ export const users = [
     gender: 'FEMALE',
     role: 'ADMIN',
     birthDate: new Date('1997-04-22T00:00:00.000Z'),
+  },
+  {
+    id: 'c7f44075-8888-44a8-a897-f4a4db0d3050',
+    cognitoSub: 'f4a4db0d3050',
+    password: 'abcABC123',
+    email: 'abc5@example.com',
+    firstName: 'Tywin',
+    lastName: 'Lannister',
+    gender: 'MALE',
+    role: 'USER_MANAGER',
+    birthDate: new Date('1945-04-19T00:00:00.000Z'),
   },
 ];
 
@@ -62,6 +74,10 @@ export const user3ActivePoints = 2400;
 export const user3ReservedPoints = 0;
 
 export const admin = users[3];
+
+export const org2Manager = users[4];
+export const org2ActivePoints = 0;
+export const org2ReservedPoints = 0;
 
 export const giftDates = [
   {
@@ -171,7 +187,7 @@ export const giftCardRequestFulfilled = giftCardRequestList[2];
 
 export const org1 = {
   id: '752e05ce-4a81-4148-87c5-30832406d48c',
-  name: 'Top Inc.',
+  name: 'Winterfell Inc.',
   pointsPerMonth: 1200,
   employeeNumber: 4,
 };
@@ -182,8 +198,9 @@ export const platformBalanceSideId = '4b7e82dd-2f71-4be4-a55f-cc20b60c6eae';
 
 export const org2 = {
   id: '62b1828e-0b0f-4123-af61-531e7967134c',
-  name: 'W_Inc 2',
+  name: 'Casterly Rock Inc.',
   pointsPerMonth: 600,
+  employeeNumber: 1,
 };
 
 export const org2Points = 0;

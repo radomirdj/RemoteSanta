@@ -8,5 +8,6 @@ import { AdminOrgsService } from './admin_orgs.service';
   imports: [PrismaModule, LedgerModule],
   controllers: [AdminOrgsController],
   providers: [AdminOrgsService],
+  exports: [AdminOrgsService],
 })
 export class AdminOrgsModule {}
