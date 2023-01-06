@@ -15,7 +15,7 @@ import { LedgerModule } from '../src/ledger/ledger.module';
 import {
   user1,
   user2,
-  user3,
+  user3Manager,
   user1ActivePoints,
   user1ReservedPoints,
   user2ActivePoints,
@@ -381,7 +381,7 @@ describe('admin/orgs', () => {
         ledgerService.getOrgBalance(org1.id),
         ledgerService.getUserBalance(user1.id),
         ledgerService.getUserBalance(user2.id),
-        ledgerService.getUserBalance(user3.id),
+        ledgerService.getUserBalance(user3Manager.id),
         ledgerService.getUserBalance(admin.id),
       ]);
       expect(orgBalance).toEqual(org1Points - totalAmount);

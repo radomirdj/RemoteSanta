@@ -57,7 +57,7 @@ export const user2 = users[1];
 export const user2ActivePoints = 0;
 export const user2ReservedPoints = 0;
 
-export const user3 = users[2];
+export const user3Manager = users[2];
 export const user3ActivePoints = 2400;
 export const user3ReservedPoints = 0;
 

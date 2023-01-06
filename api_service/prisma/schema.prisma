@@ -17,6 +17,7 @@ enum GenderEnum {
 
 enum UserRoleEnum {
   BASIC_USER
+  USER_MANAGER
   ADMIN
 }
 

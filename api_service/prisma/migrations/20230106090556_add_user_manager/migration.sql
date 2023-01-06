@@ -1,0 +1,2 @@
+-- AlterEnum
+ALTER TYPE "UserRoleEnum" ADD VALUE 'USER_MANAGER';

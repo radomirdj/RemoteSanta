@@ -26,6 +26,7 @@
   firstName: Sansa
   lastName: Stark
   gender: FEMALE
+  userRole: USER_MANAGER
   birthDate: 1993-03-20T00:00:00.000Z
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
