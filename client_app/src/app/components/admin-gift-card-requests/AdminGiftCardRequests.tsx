@@ -22,7 +22,7 @@ import { styled } from "@mui/material/styles";
 
 const AdminGiftCardRequests = () => {
   const dispatch = useDispatch();
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const rowsPerPage: number = 6;
   const [page, setPage] = React.useState(0);
   const adminGiftCardRequestList = useSelector(
     getAdminGiftCardRequestListSelector
@@ -34,13 +34,6 @@ const AdminGiftCardRequests = () => {
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
   };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -82,6 +75,9 @@ const AdminGiftCardRequests = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell align="left" className="admin-table-cell-title">
+                      ID
+                    </TableCell>
+                    <TableCell align="left" className="admin-table-cell-title">
                       Integration
                     </TableCell>
                     <TableCell align="left" className="admin-table-cell-title">
@@ -100,6 +96,9 @@ const AdminGiftCardRequests = () => {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((giftCardRequest) => (
                       <StyledTableRow key={giftCardRequest.id}>
+                        <StyledTableCell align="left">
+                          {giftCardRequest.id}
+                        </StyledTableCell>
                         <StyledTableCell
                           component="th"
                           scope="row"
@@ -130,13 +129,12 @@ const AdminGiftCardRequests = () => {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
+              rowsPerPageOptions={[rowsPerPage]}
               component="div"
               count={adminGiftCardRequestList.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Grid>
         </Grid>

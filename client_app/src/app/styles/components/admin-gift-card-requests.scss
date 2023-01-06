@@ -12,8 +12,9 @@ $grid-max-width: 1200px;
     .admin-title{
         font-family: "Montserrat";
         font-size: variables.$font-size-title;
-        margin-bottom: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit *3;
         width: max-content;
+        padding-top: variables.$base-unit * 7;
     } 
 
     .admin-table-cell-title{
