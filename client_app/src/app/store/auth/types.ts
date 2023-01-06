@@ -17,6 +17,17 @@ import {
   CHANGE_PASSWORD_FAILURE
 } from "./actionTypes";
 
+export interface IOrg{
+  id:string;
+  name:string;
+  pointsPerMonth:number;
+}
+
+export interface IUserBalance{
+  pointsActive:number;
+  pointsReserved:number;
+}
+
 export interface AuthUser {
   id: string;
   firstName: string;
@@ -26,6 +37,8 @@ export interface AuthUser {
   gender: string;
   accessToken: string;
   userRole: string;
+  org?:IOrg;
+  userBalance?:IUserBalance;
 }
 
 export interface AuthState {

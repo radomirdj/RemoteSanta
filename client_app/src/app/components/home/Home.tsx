@@ -46,7 +46,9 @@ const Home = () => {
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography className="home-title-right">4000 PTS</Typography>
+            <Typography className="home-title-right">
+              {user.userBalance?.pointsActive} PTS
+            </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography className="home-text">Upcoming events</Typography>

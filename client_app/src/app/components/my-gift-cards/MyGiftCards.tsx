@@ -1,7 +1,9 @@
 import { Grid, Typography } from "@mui/material";
+import userEvent from "@testing-library/user-event";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getAuthUserSelector } from "../../store/auth/selectors";
 import { fetchGiftCardRequestList } from "../../store/gift-card-request/actions";
 import { getGiftCardRequestListSelector } from "../../store/gift-card-request/selectors";
 import AppFooter from "../app-footer/AppFooter";
@@ -12,6 +14,7 @@ const MyGiftCards = () => {
   const dispatch = useDispatch();
   const giftCardRequestList = useSelector(getGiftCardRequestListSelector);
   const navigate = useNavigate();
+  const user = useSelector(getAuthUserSelector);
 
   useEffect(() => {
     dispatch(fetchGiftCardRequestList());
@@ -40,7 +43,11 @@ const MyGiftCards = () => {
           </Grid>
           <Grid item xs={12} className="grid-item">
             <Typography className="my-gift-cards-text">
-              <b className="my-gift-card-points"> 4000 PTS</b>- Use your points
+              <b className="my-gift-card-points">
+                {" "}
+                {user.userBalance?.pointsActive} PTS
+              </b>
+              - Use your points
               <u
                 className="my-gift-cards-link"
                 onClick={chooseGiftCardRedirect}
