@@ -130,8 +130,8 @@ $modal-image-width:90%;
     } 
 
     .choose-amount-card{
-        padding-top: variables.$base-unit * 7;
-        padding-bottom: variables.$base-unit * 7;
+        padding-top: variables.$base-unit * 5;
+        padding-bottom: variables.$base-unit * 5;
         padding-left: variables.$base-unit * 8;
         padding-right: variables.$base-unit * 8;
         border-radius: variables.$base-unit * 4;
@@ -147,11 +147,21 @@ $modal-image-width:90%;
         .choose-amount-title{
             font-family: "Montserrat";
             font-size: variables.$font-size-title;
-            margin-bottom: variables.$base-unit * 4;
+            margin-bottom: variables.$base-unit ;
             text-align: start;
             color: variables.$color-neutral-black;
             width: 100%;
         }
+
+        .choose-amount-active-points{
+          font-family: "Montserrat";
+          font-size: variables.$font-size-medium;
+          margin-bottom: variables.$base-unit * 5;
+          text-align: start;
+          color: variables.$color-neutral-gray;
+          width: 100%;
+      }
+
 
         .email-input {
             margin-bottom: variables.$base-unit * 3 !important;

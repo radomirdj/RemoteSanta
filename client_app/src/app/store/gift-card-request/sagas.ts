@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { SignUpRequestPayload } from "../auth/types";
+import { getSelfRequest } from "../auth/actions";
 import { fetchGiftCardIntegrationListFailure, fetchGiftCardIntegrationListSuccess, fetchGiftCardRequestListFailure, fetchGiftCardRequestListSuccess, postGiftCardRequestFailure, postGiftCardRequestSuccess, setGiftCardRequestAmount, setGiftCardRequestIntegration, setGiftCardRequestResetData, setGiftCardRequestStepBack } from "./actions";
 import { FETCH_GIFT_CARD_INTEGRATION_LIST, FETCH_GIFT_CARD_REQUEST_LIST, POST_GIFT_CARD_REQUEST, SET_GIFT_CARD_REQUEST_AMOUNT, SET_GIFT_CARD_REQUEST_INTEGRATION, SET_GIFT_CARD_REQUEST_RESET_DATA, SET_GIFT_CARD_REQUEST_STEP_BACK } from "./actionTypes";
 import { IGiftCardIntegration, IGiftCardRequest, PostGiftCardRequest, PostGiftCardRequestPayload, SetGiftCardRequestAmount, SetGiftCardRequestIntegration, SetGiftCardRequestResetData, SetGiftCardRequestStepBack } from "./types";
@@ -77,6 +77,7 @@ function* postGiftCardRequestSaga(action: PostGiftCardRequest) {
     yield put(
       postGiftCardRequestSuccess()
     );
+    yield put(getSelfRequest());
     action.navigate("/gift-card-request-success");
   } catch (e) {
     yield put(

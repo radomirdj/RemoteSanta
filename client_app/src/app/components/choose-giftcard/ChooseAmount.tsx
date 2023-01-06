@@ -53,6 +53,9 @@ const ChooseAmount = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           {/*LABELS */}
           <Typography className="choose-amount-title">Choose Amount</Typography>
+          <Typography className="choose-amount-active-points">
+            Your balance is {user.userBalance?.pointsActive} PTS.
+          </Typography>
           <TextField
             id="outlined-basic"
             label="Email"
@@ -99,7 +102,6 @@ const ChooseAmount = () => {
           {errors.amount?.type === "validate" && (
             <Typography className="choose-amount-error-fe">
               The amount you specified is greater then the amount you have.
-              Allowed amount is {user.userBalance?.pointsActive} PTS.
             </Typography>
           )}
           <Grid container>
