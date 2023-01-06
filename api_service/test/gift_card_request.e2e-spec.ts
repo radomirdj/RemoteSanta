@@ -23,7 +23,7 @@ import { GiftCardRequestStatusEnum, LedgerTypeEnum } from '@prisma/client';
 import {
   user1,
   user2,
-  user3,
+  user3Manager,
   giftCardRequest1,
   giftCardRequest2,
   giftCardIntegration1,
@@ -131,7 +131,10 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user3.email, sub: user3.cognitoSub }),
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
         )
         .expect(200);
 
@@ -159,7 +162,10 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user3.email, sub: user3.cognitoSub }),
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
         )
         .send(newGiftCardRequest)
         .expect(201);
@@ -168,7 +174,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
-        userId: user3.id,
+        userId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
       await expectGiftCardRequestInDB(
@@ -176,7 +182,7 @@ describe('/gift-card-requests', () => {
         {
           ...newGiftCardRequest,
           status: GiftCardRequestStatusEnum.PENDING,
-          userId: user3.id,
+          userId: user3Manager.id,
         },
         prisma,
       );
@@ -189,7 +195,7 @@ describe('/gift-card-requests', () => {
         type: LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
       });
 
-      await checkBalance(ledgerService, user3.id, {
+      await checkBalance(ledgerService, user3Manager.id, {
         pointsActive: user3ActivePoints - newGiftCardRequest.amount,
         pointsReserved: user3ReservedPoints + newGiftCardRequest.amount,
       });
@@ -212,7 +218,10 @@ describe('/gift-card-requests', () => {
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user3.email, sub: user3.cognitoSub }),
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
         )
         .send({ ...newGiftCardRequest, amount: 400 })
         .expect(400);

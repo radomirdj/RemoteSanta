@@ -11,7 +11,7 @@ import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cog
 import {
   user1,
   user2,
-  user3,
+  user3Manager,
   user1ActivePoints,
   user1ReservedPoints,
   user2ActivePoints,
@@ -61,8 +61,8 @@ describe('LedgerService', () => {
       });
     });
 
-    it('Get user3 points', async () => {
-      await checkBalance(ledgerService, user3.id, {
+    it('Get user3Manager points', async () => {
+      await checkBalance(ledgerService, user3Manager.id, {
         pointsActive: user3ActivePoints,
         pointsReserved: user3ReservedPoints,
       });

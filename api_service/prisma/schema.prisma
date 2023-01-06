@@ -17,6 +17,7 @@ enum GenderEnum {
 
 enum UserRoleEnum {
   BASIC_USER
+  USER_MANAGER
   ADMIN
 }
 
@@ -74,6 +75,7 @@ model ClaimPointsEvent {
   id             String           @id @default(uuid())
   validTo        DateTime
   description    String
+  title          String
   OrgTransaction OrgTransaction[]
 }
 

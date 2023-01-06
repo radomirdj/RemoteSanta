@@ -15,7 +15,7 @@ import { LedgerModule } from '../src/ledger/ledger.module';
 import {
   user1,
   user2,
-  user3,
+  user3Manager,
   user1ActivePoints,
   user1ReservedPoints,
   user2ActivePoints,
@@ -30,8 +30,10 @@ import {
   org1BalanceSideId,
   platformBalanceSideId,
   org1Points,
+  org2Points,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
+import { expectOrgRsp } from './utils/orgsChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -80,10 +82,10 @@ describe('admin/orgs', () => {
         )
         .expect(200);
       const rspOrg = response.body;
-      expect(rspOrg.name).toEqual(org1.name);
-      expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
-      expect(rspOrg.employeeNumber).toEqual(org1.employeeNumber);
-      expect(rspOrg.totalPointsPerMonth).toEqual(4800);
+      expectOrgRsp(rspOrg, {
+        ...org1,
+        balance: org1Points,
+      });
     });
 
     it('/:id (GET) - get ORG2 details by ADMIN', async () => {
@@ -96,10 +98,10 @@ describe('admin/orgs', () => {
         )
         .expect(200);
       const rspOrg = response.body;
-      expect(rspOrg.name).toEqual(org2.name);
-      expect(rspOrg.pointsPerMonth).toEqual(org2.pointsPerMonth);
-      expect(rspOrg.employeeNumber).toEqual(0);
-      expect(rspOrg.totalPointsPerMonth).toEqual(0);
+      expectOrgRsp(rspOrg, {
+        ...org2,
+        balance: org2Points,
+      });
     });
 
     it('/:id (GET) - NON ADMIN user, get ORG details', async () => {
@@ -132,7 +134,7 @@ describe('admin/orgs', () => {
         .expect(200);
 
       expect(response.body.length).toEqual(2);
-      const rspOrg = response.body[0];
+      const rspOrg = response.body[1];
       expect(rspOrg.name).toEqual(org1.name);
       expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
     });
@@ -378,7 +380,7 @@ describe('admin/orgs', () => {
         ledgerService.getOrgBalance(org1.id),
         ledgerService.getUserBalance(user1.id),
         ledgerService.getUserBalance(user2.id),
-        ledgerService.getUserBalance(user3.id),
+        ledgerService.getUserBalance(user3Manager.id),
         ledgerService.getUserBalance(admin.id),
       ]);
       expect(orgBalance).toEqual(org1Points - totalAmount);
