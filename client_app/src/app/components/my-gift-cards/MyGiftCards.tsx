@@ -43,10 +43,10 @@ const MyGiftCards = () => {
           </Grid>
           <Grid item xs={12} className="grid-item">
             <Typography className="my-gift-cards-text">
-              <b className="my-gift-card-points">
+              <span className="my-gift-card-points">
                 {" "}
                 {user.userBalance?.pointsActive} PTS
-              </b>
+              </span>
               - Use your points
               <u
                 className="my-gift-cards-link"
