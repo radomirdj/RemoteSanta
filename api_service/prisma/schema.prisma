@@ -74,6 +74,7 @@ model ClaimPointsEvent {
   id             String           @id @default(uuid())
   validTo        DateTime
   description    String
+  title          String
   OrgTransaction OrgTransaction[]
 }
 

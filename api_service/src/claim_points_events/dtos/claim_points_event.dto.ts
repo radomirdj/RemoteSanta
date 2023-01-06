@@ -13,6 +13,9 @@ export class ClaimPointsEventDto {
   description: string;
 
   @Expose()
+  title: string;
+
+  @Expose()
   amount?: number;
 
   @ValidateNested()
