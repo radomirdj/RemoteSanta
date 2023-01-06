@@ -15,6 +15,7 @@ export interface IClaimPointEvent {
   amount?:number;
   description:string;
   claimPointsEventFulfillment?: IClaimPointsEventFullFillment;
+  title:string;
 }
 
 export interface ClaimPointsEventState {

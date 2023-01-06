@@ -7,16 +7,16 @@ const ClaimPointsEventItem = (claimPointsEventItem: IClaimPointEvent) => {
   return (
     <Card sx={{ maxWidth: 944 }} className="card-item">
       <Grid container>
-        <Grid item xs={2} className="card-grid-item">
+        <Grid item xs={1} className="card-grid-item">
           <img
             src={DollarIllustration}
             alt=""
             className="card-illustration-style"
           />
         </Grid>
-        <Grid item xs={6} className="grid-description-style">
+        <Grid item xs={7} className="grid-description-style">
           <Typography className="card-description">
-            {claimPointsEventItem.description}
+            {claimPointsEventItem.title} - {claimPointsEventItem.description}
           </Typography>
         </Grid>
         <Grid item xs={3} className="grid-points-style">
