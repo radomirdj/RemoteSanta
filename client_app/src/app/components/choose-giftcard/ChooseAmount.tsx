@@ -9,6 +9,7 @@ import {
   setGiftCardRequestStepBack,
 } from "../../store/gift-card-request/actions";
 import {
+  getErrorSelector,
   getGiftCardRequestIntegrationSelector,
   getStepperPagetSelector,
 } from "../../store/gift-card-request/selectors";
@@ -27,6 +28,7 @@ const ChooseAmount = () => {
   );
   const constraintString = JSON.stringify(giftCardIntegration?.constraintJson);
   const constraintJson = JSON.parse(constraintString);
+  const error = useSelector(getErrorSelector);
 
   const onSubmit = (data: any) => {
     dispatch(setGiftCardRequestAmount({ amount: Number(data.amount) }));
@@ -34,6 +36,15 @@ const ChooseAmount = () => {
 
   const onBack = () => {
     dispatch(setGiftCardRequestStepBack({ currentStep: activeStep }));
+  };
+
+  const enoughBalance = (amount: number) => {
+    if (user.userBalance?.pointsActive) {
+      if (amount < user.userBalance?.pointsActive) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return (
@@ -63,6 +74,7 @@ const ChooseAmount = () => {
               required: true,
               min: constraintJson["MIN"],
               max: constraintJson["MAX"],
+              validate: enoughBalance,
             })}
           />
           {/*LABELS */}
@@ -81,6 +93,13 @@ const ChooseAmount = () => {
           {errors.amount?.type === "max" && (
             <Typography className="choose-amount-error-fe">
               The maximum amount is 100000 PTS.
+            </Typography>
+          )}
+          {/*LABELS */}
+          {errors.amount?.type === "validate" && (
+            <Typography className="choose-amount-error-fe">
+              The amount you specified is greater then the amount you have.
+              Allowed amount is {user.userBalance?.pointsActive} PTS.
             </Typography>
           )}
           <Grid container>
