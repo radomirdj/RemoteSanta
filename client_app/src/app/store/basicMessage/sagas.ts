@@ -16,14 +16,14 @@ function* fetchMessageSaga() {
     const response: AxiosResponse<string> = yield call(getMessage);
     yield put(
       fetchMessageSuccess({
-        message: response.data
+        message: response.data,
       })
     );
   } catch (e) {
     console.log("function*fetchMessageSaga -> e", e);
     yield put(
       fetchMessageFailure({
-        error: e.message
+        error: e.message,
       })
     );
   }

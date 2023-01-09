@@ -1,9 +1,39 @@
 import axios from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 
-import { changePasswordFailure, changePasswordSuccess, forgotPasswordFailure, forgotPasswordSuccess, getSelfFailure, getSelfSuccess, loginFailure, loginSuccess, logout, signUpFailure, signUpSuccess } from "./actions";
-import { CHANGE_PASSWORD_REQUEST, FORGOT_PASSWORD_REQUEST, GET_SELF_REQUEST, LOGIN_REQUEST, LOGOUT, SIGN_UP_REQUEST } from "./actionTypes";
-import { ChangePasswordRequest, ChangePasswordRequestPayload, ForgotPasswordRequest, ForgotPasswordRequestPayload, GetSelfRequest, LoginRequest, LoginRequestPayload, LoginSuccessPayload, Logout, SignUpRequest, SignUpRequestPayload } from "./types";
+import {
+  changePasswordFailure,
+  changePasswordSuccess,
+  forgotPasswordFailure,
+  forgotPasswordSuccess,
+  getSelfFailure,
+  getSelfSuccess,
+  loginFailure,
+  loginSuccess,
+  signUpFailure,
+  signUpSuccess,
+} from "./actions";
+import {
+  CHANGE_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_REQUEST,
+  GET_SELF_REQUEST,
+  LOGIN_REQUEST,
+  LOGOUT,
+  SIGN_UP_REQUEST,
+} from "./actionTypes";
+import {
+  ChangePasswordRequest,
+  ChangePasswordRequestPayload,
+  ForgotPasswordRequest,
+  ForgotPasswordRequestPayload,
+  GetSelfRequest,
+  LoginRequest,
+  LoginRequestPayload,
+  LoginSuccessPayload,
+  Logout,
+  SignUpRequest,
+  SignUpRequestPayload,
+} from "./types";
 
 const signUp = (payload: SignUpRequestPayload) => {
   return axios.post<string>("api/users/signup", payload);
@@ -15,7 +45,11 @@ const login = async (payload: LoginRequestPayload) => {
 };
 
 const getUserSelf = async (token: string) => {
-  const response = await axios.get<string>("api/users/self", { headers: { Authorization: `Bearer ${token}` } });
+  const response = await axios.get<string>("api/users/self", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return { authUser: response.data };
 };
 
@@ -33,34 +67,32 @@ const changePassword = async (payload: ChangePasswordRequestPayload) => {
 function* signUpSaga(action: SignUpRequest) {
   try {
     yield call(signUp, action.payload);
-    yield put(
-      signUpSuccess()
-    );
+    yield put(signUpSuccess());
     action.navigate("/verify-email");
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(
       signUpFailure({
-        error: e.response.data.message
+        error: e.response.data.message,
       })
     );
   }
 }
 
-
 function* loginSaga(action: LoginRequest) {
   try {
-    const loginSuccessPayload: LoginSuccessPayload = yield call(login, action.payload);
-    yield put(
-      loginSuccess(loginSuccessPayload)
+    const loginSuccessPayload: LoginSuccessPayload = yield call(
+      login,
+      action.payload
     );
+    yield put(loginSuccess(loginSuccessPayload));
     localStorage.setItem("token", loginSuccessPayload.authUser.accessToken);
     localStorage.setItem("userRole", loginSuccessPayload.authUser.userRole);
   } catch (e) {
     console.log("function*loginSaga -> e", e);
     yield put(
       loginFailure({
-        error: e.response.data.message
+        error: e.response.data.message,
       })
     );
   }
@@ -72,20 +104,21 @@ function* getSelfSaga(action: GetSelfRequest) {
     if (!token) {
       yield put(
         getSelfFailure({
-          error: "no token"
+          error: "no token",
         })
       );
     } else {
-      const getSelfSuccessPayload: LoginSuccessPayload = yield call(getUserSelf, token);
-      yield put(
-        getSelfSuccess(getSelfSuccessPayload)
+      const getSelfSuccessPayload: LoginSuccessPayload = yield call(
+        getUserSelf,
+        token
       );
+      yield put(getSelfSuccess(getSelfSuccessPayload));
     }
   } catch (e) {
     console.log("function*getSelfSaga -> e", e);
     yield put(
       getSelfFailure({
-        error: e.response.data.message
+        error: e.response.data.message,
       })
     );
   }
@@ -100,15 +133,13 @@ function* logoutSaga(action: Logout) {
 function* forgotPasswordSaga(action: ForgotPasswordRequest) {
   try {
     yield call(forgotPassword, action.payload);
-    yield put(
-      forgotPasswordSuccess()
-    );
+    yield put(forgotPasswordSuccess());
     action.navigate("/change-password");
   } catch (e) {
     console.log("function*forgotPasswordSaga -> e", e);
     yield put(
       forgotPasswordFailure({
-        error: e.response.data.message
+        error: e.response.data.message,
       })
     );
   }
@@ -117,15 +148,13 @@ function* forgotPasswordSaga(action: ForgotPasswordRequest) {
 function* changePasswordSaga(action: ChangePasswordRequest) {
   try {
     yield call(changePassword, action.payload);
-    yield put(
-      changePasswordSuccess()
-    );
-    action.navigate("/change-password-success")
+    yield put(changePasswordSuccess());
+    action.navigate("/change-password-success");
   } catch (e) {
     console.log("function*changePasswordSaga -> e", e);
     yield put(
       changePasswordFailure({
-        error: e.response.data.message
+        error: e.response.data.message,
       })
     );
   }
