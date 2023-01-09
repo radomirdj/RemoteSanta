@@ -8,7 +8,11 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
-import { OrgTransactionTypeEnum, LedgerTypeEnum } from '@prisma/client';
+import {
+  OrgTransactionTypeEnum,
+  LedgerTypeEnum,
+  UserRoleEnum,
+} from '@prisma/client';
 import { LedgerService } from '../src/ledger/ledger.service';
 import { LedgerModule } from '../src/ledger/ledger.module';
 
@@ -31,9 +35,11 @@ import {
   platformBalanceSideId,
   org1Points,
   org2Points,
+  org2Manager,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { expectOrgRsp } from './utils/orgsChecks';
+import { expectUserRsp } from './utils/userChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -469,6 +475,78 @@ describe('admin/orgs', () => {
         )
         .send(newOrgToEmployeeTransaction)
         .expect(403);
+    });
+  });
+
+  describe('/:id/users (GET)', () => {
+    it('/ (GET) - get ORG USERS by ADMIN', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/orgs/${org1.id}/users/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .expect(200);
+
+      expect(response.body.length).toEqual(org1.employeeNumber);
+      const userRsp1 = response.body.find((userRsp) => userRsp.id === user1.id);
+      expect(userRsp1).toBeDefined();
+      expectUserRsp(userRsp1, {
+        ...user1,
+        userRole: UserRoleEnum.BASIC_USER,
+        orgName: org1.name,
+      });
+    });
+
+    it('/ (GET) - get ORG2 USERS by ADMIN', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/orgs/${org2.id}/users/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .expect(200);
+
+      expect(response.body.length).toEqual(org2.employeeNumber);
+      const userRsp1 = response.body.find(
+        (userRsp) => userRsp.id === org2Manager.id,
+      );
+      expect(userRsp1).toBeDefined();
+      expectUserRsp(userRsp1, {
+        ...org2Manager,
+        userRole: UserRoleEnum.USER_MANAGER,
+        orgName: org2.name,
+      });
+    });
+
+    it('/ (GET) - ADMIN user, get WRONG ORG USERS', async () => {
+      await request(app.getHttpServer())
+        .get(`/admin/orgs/${user1.id}/users/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .expect(404);
+    });
+
+    it('/ (GET) - NON ADMIN user, get ORG  USERS', async () => {
+      await request(app.getHttpServer())
+        .get(`/admin/orgs/${org1.id}/users/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .expect(403);
+    });
+
+    it('/ (GET) - try to get ORG  USERS without token', async () => {
+      await request(app.getHttpServer())
+        .get(`/admin/orgs/${org1.id}/users/`)
+        .expect(401);
     });
   });
 });

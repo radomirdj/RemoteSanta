@@ -12,7 +12,7 @@ export class AdminUsersController {
   constructor(private adminUsersService: AdminUsersService) {}
 
   @Get('/:id')
-  async getOrgDetails(@Param('id') id: string) {
+  async getUserDetails(@Param('id') id: string) {
     return this.adminUsersService.getUserDetailsById(id);
   }
 }
