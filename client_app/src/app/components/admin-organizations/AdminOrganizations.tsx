@@ -21,6 +21,7 @@ const AdminOrganizations = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const adminOrganizationList = useSelector(getAdminOrganizationListSelector);
+  const rowsPerPage = 7;
 
   useEffect(() => {
     dispatch(fetchAdminOrganizationList());
@@ -91,12 +92,12 @@ const AdminOrganizations = () => {
               Organizations
             </Typography>
           </Grid>
-          <Box sx={{ height: 525, width: 1 }}>
+          <Box className="box-style">
             <StripedDataGrid
               rows={rows}
               pagination
-              pageSize={7}
-              rowsPerPageOptions={[7]}
+              pageSize={rowsPerPage}
+              rowsPerPageOptions={[rowsPerPage]}
               columns={columns}
               disableDensitySelector
               disableColumnSelector
