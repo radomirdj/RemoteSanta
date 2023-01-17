@@ -15,7 +15,7 @@ import {
 import CustomPagination from "../custom-pagination/CustomPagination";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import { styled } from "@mui/material/styles";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminOrganizations = () => {
   const dispatch = useDispatch();
@@ -99,6 +99,7 @@ const AdminOrganizations = () => {
               pageSize={rowsPerPage}
               rowsPerPageOptions={[rowsPerPage]}
               columns={columns}
+              getRowId={(row: any) => row.id}
               disableDensitySelector
               disableColumnSelector
               disableColumnFilter

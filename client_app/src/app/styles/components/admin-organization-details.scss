@@ -1,3 +1,73 @@
+@use "./../variables.scss";
+
+$content-width:1000px;
+
 .admin-organization-details{
     background-image: url("./../../assets/home-image.svg");
+
+    .grid-style{
+        max-width: $content-width;
+        justify-content: center;
+        padding-top: variables.$base-unit * 3;
+
+        .organization-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            width: max-content;
+            margin-left: variables.$base-unit;
+        }
+
+        .balance-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-large;
+            float: left;
+            margin-top: variables.$base-unit;
+            margin-left: variables.$base-unit;
+            width: max-content;
+        }
+
+        .add-button,
+        & .add-button:hover {
+            float: right;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 30%;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 2;
+            margin-right: variables.$base-unit ;
+            margin-left: variables.$base-unit;
+  }
+    }
+
+    .box-style{
+        height: 525px;
+        width: 100%;
+    }
+
+    .data-grid{
+        width: $content-width;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: variables.$base-unit * 3;
+        background-color: white;
+        font-family: "Montserrat";
+        border: none;
+        overflow: hidden;
+    }
+}
+
+.MuiDataGrid-cell:focus{
+    outline: none !important;
+}
+
+.MuiDataGrid-cell:focus-within{
+    outline: none !important;
+}
+
+.MuiDataGrid-columnHeader:focus{
+    outline: none !important;
 }

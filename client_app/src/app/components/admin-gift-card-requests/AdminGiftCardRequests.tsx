@@ -107,6 +107,7 @@ const AdminGiftCardRequests = () => {
               rows={rows}
               pagination
               pageSize={rowsPerPage}
+              getRowId={(row: any) => row.id}
               rowsPerPageOptions={[rowsPerPage]}
               columns={columns}
               disableDensitySelector

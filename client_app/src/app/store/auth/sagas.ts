@@ -1,5 +1,6 @@
 import axios from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { getUserSelf } from "../../services/api-service";
 
 import {
   changePasswordFailure,
@@ -41,15 +42,6 @@ const signUp = (payload: SignUpRequestPayload) => {
 
 const login = async (payload: LoginRequestPayload) => {
   const response = await axios.post<string>("api/users/login", payload);
-  return { authUser: response.data };
-};
-
-const getUserSelf = async (token: string) => {
-  const response = await axios.get<string>("api/users/self", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
   return { authUser: response.data };
 };
 
