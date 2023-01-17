@@ -30,8 +30,6 @@ const AdminOrganizationDetails = () => {
   const orgId = params.id as string;
   const rowsPerPage = 7;
 
-  console.log(organization);
-
   useEffect(() => {
     dispatch(fetchAdminOrganizationTransactionList({ organizationId: orgId }));
     dispatch(fetchAdminOrganization({ organizationId: orgId }));
