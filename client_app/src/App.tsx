@@ -144,7 +144,7 @@ const App = () => {
           }
         />
         <Route
-          path="admin-organization-details"
+          path="admin-organization-details/:id"
           element={
             <AdminRoute>
               <AdminOrganizationDetails />

@@ -27,15 +27,15 @@ const AdminOrganizations = () => {
     dispatch(fetchAdminOrganizationList());
   }, [dispatch]);
 
-  const orgDetails = () => {
-    navigate("/admin-organization-details");
+  const orgDetails = (orgId: string) => {
+    navigate(`/admin-organization-details/${orgId}`);
   };
 
   const detailsButton = (params: GridRenderCellParams) => {
     return (
       <Button
         variant="contained"
-        onClick={orgDetails}
+        onClick={() => orgDetails(params.id as string)}
         className="button-details"
         disableRipple
       >
