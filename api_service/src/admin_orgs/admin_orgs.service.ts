@@ -11,7 +11,9 @@ import { OrgTransactionTypeEnum, User, Org } from '@prisma/client';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 import { UsersService } from '../users/users.service';
+import { UserInvitesService } from '../user_invites/user_invites.service';
 import { UserDto } from 'src/users/dtos/user.dto';
+import { UserInviteDto } from 'src/user_invites/dtos/user-invite.dto';
 
 @Injectable()
 export class AdminOrgsService {
@@ -19,6 +21,7 @@ export class AdminOrgsService {
     private prisma: PrismaService,
     private ledgerService: LedgerService,
     private usersService: UsersService,
+    private usersInvitesService: UserInvitesService,
   ) {}
 
   async getDetails(id: string): Promise<OrgDto> {
@@ -75,6 +78,14 @@ export class AdminOrgsService {
     if (!org) throw new NotFoundException('Org Not Found');
 
     return org;
+  }
+
+  async getUserInviteListByOrg(orgId: string): Promise<UserInviteDto[]> {
+    const [org, rsp] = await Promise.all([
+      this.getById(orgId),
+      this.usersInvitesService.getOrgInviteList(orgId),
+    ]);
+    return rsp;
   }
 
   async getUserListByOrg(orgId: string): Promise<UserDto[]> {
