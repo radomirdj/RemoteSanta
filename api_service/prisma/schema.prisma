@@ -41,9 +41,29 @@ model User {
   claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
   OrgTransaction                  OrgTransaction[]
   BalanceSide                     BalanceSide[]
+  UserInvite                      UserInvite[]
 
   @@index([email])
   @@index([cognitoSub])
+}
+
+enum UserInviteStatusEnum {
+  ACTIVE
+  COMPLETED
+  CANCELED
+}
+
+model UserInvite {
+  id          String               @id @default(uuid())
+  code        String               @unique
+  email       String
+  status      UserInviteStatusEnum @default(ACTIVE)
+  createdBy   User                 @relation(fields: [createdById], references: [id])
+  createdById String
+  org         Org                  @relation(fields: [orgId], references: [id])
+  orgId     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum GiftDateTypeEnum {
@@ -116,6 +136,7 @@ model Org {
   User           User[]
   OrgTransaction OrgTransaction[]
   BalanceSide    BalanceSide[]
+  UserInvite     UserInvite[]
 }
 
 enum IntegrationConsraintTypeEnum {

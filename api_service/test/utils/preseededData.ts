@@ -79,6 +79,33 @@ export const org2Manager = users[4];
 export const org2ActivePoints = 0;
 export const org2ReservedPoints = 0;
 
+export const userInvite1 = {
+  id: '51f87502-14b9-4b13-b892-7b9dc122e9d3',
+  code: 'ABCDEF',
+  email: 'email@invite.com',
+  status: 'ACTIVE',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+};
+
+export const userInviteCompleted = {
+  id: 'd693784f-a2db-4e45-84b3-bfd696643fc2',
+  code: 'ABCDEG',
+  email: 'email2@invite.com',
+  status: 'COMPLETED',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+};
+
+export const userInviteCanceled = {
+  id: '6a357870-d513-4fa1-a804-f9f961cfe7c1',
+  code: 'ABCDEA',
+  email: 'email3@invite.com',
+  status: 'CANCELED',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+};
+
 export const giftDates = [
   {
     id: '4b948270-696a-4a32-9c59-ffac4d7aa186',

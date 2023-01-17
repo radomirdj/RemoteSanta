@@ -17,6 +17,14 @@ async function main() {
   );
   await seedTable(
     prisma,
+    'UserInvite',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
+    ]),
+  );
+  await seedTable(
+    prisma,
     'Report',
     createForeignKeyListTransformer([
       { foreignKeyName: 'userId', foreignRecordName: 'user' },
