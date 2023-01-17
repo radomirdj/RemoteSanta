@@ -17,6 +17,8 @@ import { AdminOrgsModule } from './admin_orgs/admin_orgs.module';
 import { LedgerModule } from './ledger/ledger.module';
 import { AdminUsersModule } from './admin_users/admin_users.module';
 import { OrgsModule } from './orgs/orgs.module';
+import { UserInvitesModule } from './user_invites/user_invites.module';
+import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.module';
 
 @Module({
   imports: [
@@ -36,6 +38,8 @@ import { OrgsModule } from './orgs/orgs.module';
     LedgerModule,
     AdminUsersModule,
     OrgsModule,
+    UserInvitesModule,
+    AdminUserInvitesModule,
   ],
   controllers: [AppController],
   providers: [
