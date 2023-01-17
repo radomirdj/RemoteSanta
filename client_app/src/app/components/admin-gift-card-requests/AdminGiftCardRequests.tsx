@@ -1,29 +1,25 @@
-import {
-  Button,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  tableCellClasses,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdminGiftCardRequestList } from "../../store/admin-gift-card-requests/actions";
 import { getAdminGiftCardRequestListSelector } from "../../store/admin-gift-card-requests/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
-import { styled } from "@mui/material/styles";
+import {
+  DataGrid,
+  GridColDef,
+  GridRowsProp,
+  gridClasses,
+  GridRenderCellParams,
+} from "@mui/x-data-grid";
+import CustomPagination from "../custom-pagination/CustomPagination";
+import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
+import { useNavigate } from "react-router-dom";
 
 const AdminGiftCardRequests = () => {
   const dispatch = useDispatch();
-  const rowsPerPage: number = 6;
-  const [page, setPage] = React.useState(0);
+  const rowsPerPage = 7;
+  const navigate = useNavigate();
   const adminGiftCardRequestList = useSelector(
     getAdminGiftCardRequestListSelector
   );
@@ -32,27 +28,67 @@ const AdminGiftCardRequests = () => {
     dispatch(fetchAdminGiftCardRequestList());
   }, [dispatch]);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+  const giftCardRequestDetails = () => {
+    navigate("/admin-gift-card-request-details");
   };
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
+  const detailsButton = (params: GridRenderCellParams) => {
+    return (
+      <Button
+        variant="contained"
+        onClick={giftCardRequestDetails}
+        className="button-details"
+        disableRipple
+      >
+        Details
+      </Button>
+    );
+  };
 
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(even)": {
-      backgroundColor: "#EDEEC4",
+  const columns: GridColDef[] = [
+    { field: "id", headerName: "ID", width: 400 },
+    { field: "integration", headerName: "Integration", width: 200 },
+    { field: "amount", headerName: "Amount", width: 200 },
+    { field: "createdAt", headerName: "Created At", width: 200 },
+    {
+      field: "details",
+      headerName: "Details",
+      width: 200,
+      sortable: false,
+      renderCell: detailsButton,
     },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
+  ];
+
+  const rows: GridRowsProp = adminGiftCardRequestList.map(
+    (adminGiftCardRequest) => {
+      return {
+        id: adminGiftCardRequest.id,
+        integration: adminGiftCardRequest.giftCardIntegration.title,
+        amount: adminGiftCardRequest.amount + " PTS",
+        createdAt: new Date(adminGiftCardRequest.createdAt)
+          .toLocaleDateString()
+          .replaceAll("/", "."),
+        details: "",
+      };
+    }
+  );
+
+  const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
+    [`& .${gridClasses.row}.even`]: {
+      backgroundColor: "#EDEEC4",
+      "&:hover:none, &.Mui-hovered": {
+        "@media (hover: none)": {
+          backgroundColor: "#EDEEC4",
+        },
+      },
+    },
+    [`& .${gridClasses.row}.odd`]: {
+      backgroundColor: "#ffffff",
+      "&:hover:none, &.Mui-hovered": {
+        "@media (hover: none)": {
+          backgroundColor: "#ffffff",
+        },
+      },
     },
   }));
 
@@ -60,83 +96,40 @@ const AdminGiftCardRequests = () => {
     <>
       <AppHeaderAdmin />
       <div className="background admin-gift-card-requests">
-        {/*LABELS */}
         <Grid container className="grid-style">
           <Grid item xs={12}>
-            <Typography className="admin-title">Gift Card Requests</Typography>
+            <Typography className="gift-card-requests-title">
+              Gift Card Requests
+            </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <TableContainer
-              component={Paper}
-              sx={{ maxWidth: 1200 }}
-              className="table-style"
-            >
-              <Table aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="left" className="admin-table-cell-title">
-                      ID
-                    </TableCell>
-                    <TableCell align="left" className="admin-table-cell-title">
-                      Integration
-                    </TableCell>
-                    <TableCell align="left" className="admin-table-cell-title">
-                      Amount
-                    </TableCell>
-                    <TableCell align="left" className="admin-table-cell-title">
-                      Created at
-                    </TableCell>
-                    <TableCell align="left" className="admin-table-cell-title">
-                      Details
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {adminGiftCardRequestList
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((giftCardRequest) => (
-                      <StyledTableRow key={giftCardRequest.id}>
-                        <StyledTableCell align="left">
-                          {giftCardRequest.id}
-                        </StyledTableCell>
-                        <StyledTableCell
-                          component="th"
-                          scope="row"
-                          align="left"
-                        >
-                          {giftCardRequest.giftCardIntegration.title}
-                        </StyledTableCell>
-                        <StyledTableCell align="left">
-                          {giftCardRequest.amount} PTS
-                        </StyledTableCell>
-                        <StyledTableCell align="left">
-                          {new Date(giftCardRequest.createdAt)
-                            .toLocaleDateString()
-                            .replaceAll("/", ".")}
-                        </StyledTableCell>
-                        <StyledTableCell align="left">
-                          <Button
-                            variant="contained"
-                            disableRipple
-                            className="button-details"
-                          >
-                            Details
-                          </Button>
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
+          <Box className="box-style">
+            <StripedDataGrid
+              rows={rows}
+              pagination
+              pageSize={rowsPerPage}
               rowsPerPageOptions={[rowsPerPage]}
-              component="div"
-              count={adminGiftCardRequestList.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
+              columns={columns}
+              disableDensitySelector
+              disableColumnSelector
+              disableColumnFilter
+              disableColumnMenu
+              disableSelectionOnClick
+              components={{
+                Toolbar: ToolbarQuickFilter,
+                Pagination: CustomPagination,
+              }}
+              componentsProps={{
+                toolbar: {
+                  showQuickFilter: true,
+                  quickFilterProps: { debounceMs: 500 },
+                },
+              }}
+              className="data-grid"
+              getRowClassName={(params) =>
+                params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+              }
             />
-          </Grid>
+          </Box>
         </Grid>
       </div>
       <AppFooter />

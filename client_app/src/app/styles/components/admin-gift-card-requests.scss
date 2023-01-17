@@ -1,45 +1,63 @@
 @use "./../variables.scss";
 
-$grid-max-width: 1200px;
-$row-green:#EDEEC4;
-$th-height:36px;
+$button-details-height: 36px;
+$content-width:1200px;
 
 .admin-gift-card-requests{
     background-image: url("./../../assets/home-image.svg");
 
     .grid-style{
-        max-width: $grid-max-width;
+        max-width: $content-width;
+        justify-content: center;
+        padding-top: variables.$base-unit * 4;
+
+        .gift-card-requests-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            margin-bottom: variables.$base-unit * 2;
+            width: max-content;
+        }
     }
 
-    .admin-title{
-        font-family: "Montserrat";
-        font-size: variables.$font-size-title;
-        margin-bottom: variables.$base-unit *3;
-        width: max-content;
-        padding-top: variables.$base-unit * 7;
-    } 
-
-    .admin-table-cell-title{
-        font-weight: bold;
-        background-color: $row-green;
-        height: $th-height;
+    .box-style{
+        height: 525px;
+        width: 100%;
     }
 
-    .table-style{
+    .data-grid{
+        width: $content-width;
         margin-left: auto;
         margin-right: auto;
         border-radius: variables.$base-unit * 3;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    }
+        background-color: white;
+        font-family: "Montserrat";
+        border: none;
+        overflow: hidden;
 
-    .button-details, .button-details:hover{
-        float: left;
-        background-color: variables.$color-dark-yellow;
-        border-radius: variables.$base-unit;
-        box-shadow: none;
-        color: variables.$color-neutral-black;
-        text-transform: none;
-        width: 40%;
-        font-weight: bold;
+        .button-details{
+            float: right;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 30%;
+            height: $button-details-height;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
     }
+}
+
+.MuiDataGrid-cell:focus{
+    outline: none !important;
+}
+
+.MuiDataGrid-cell:focus-within{
+    outline: none !important;
+}
+
+.MuiDataGrid-columnHeader:focus{
+    outline: none !important;
 }
