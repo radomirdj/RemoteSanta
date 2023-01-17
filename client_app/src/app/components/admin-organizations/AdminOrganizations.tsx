@@ -15,7 +15,7 @@ import {
 import CustomPagination from "../custom-pagination/CustomPagination";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AdminOrganizations = () => {
   const dispatch = useDispatch();

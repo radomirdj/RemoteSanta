@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import { getAdminOrganizationTransactionList } from "../../services/api-service";
 import {
   fetchAdminOrganizationTransactionListFailure,
   fetchAdminOrganizationTransactionListSuccess,
@@ -7,20 +8,8 @@ import {
 import { FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST } from "./actionTypes";
 import {
   FetchAdminOrganizationTransactionList,
-  FetchAdminOrganizationTransactionListPayload,
   IAdminOrganizationTransaction,
 } from "./types";
-
-const getAdminOrganizationTransactionList = (
-  payload: FetchAdminOrganizationTransactionListPayload,
-  token: string
-) =>
-  axios.get<IAdminOrganizationTransaction[]>(
-    `api/admin/orgs/${payload.organizationId}/transactions/`,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  );
 
 /*
   Worker Saga: Fired on FETCH_TODO_REQUEST action

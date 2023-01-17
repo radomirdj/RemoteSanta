@@ -1,12 +1,12 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { fetchAdminOrganizationListFailure, fetchAdminOrganizationListSuccess } from "./actions";
-import {  FETCH_ADMIN_ORGANIZATION_LIST } from "./actionTypes";
+import { getAdminOrganizationList } from "../../services/api-service";
+import {
+  fetchAdminOrganizationListFailure,
+  fetchAdminOrganizationListSuccess,
+} from "./actions";
+import { FETCH_ADMIN_ORGANIZATION_LIST } from "./actionTypes";
 import { IAdminOrganization } from "./types";
-
-
-const getAdminOrganizationList = (token:string) =>
-  axios.get<IAdminOrganization[]>("api/admin/orgs/",{ headers: { Authorization: `Bearer ${token}` } });
 
 /*
   Worker Saga: Fired on FETCH_TODO_REQUEST action
@@ -14,16 +14,19 @@ const getAdminOrganizationList = (token:string) =>
 function* fetchAdminOrganizationListSaga() {
   try {
     const token: string = localStorage.getItem("token") || "";
-    const response: AxiosResponse<IAdminOrganization[]> = yield call(getAdminOrganizationList, token);
+    const response: AxiosResponse<IAdminOrganization[]> = yield call(
+      getAdminOrganizationList,
+      token
+    );
     yield put(
       fetchAdminOrganizationListSuccess({
-        adminOrganizationList: response.data
+        adminOrganizationList: response.data,
       })
     );
   } catch (e) {
     yield put(
       fetchAdminOrganizationListFailure({
-        error: e.message
+        error: e.message,
       })
     );
   }
@@ -34,7 +37,9 @@ function* fetchAdminOrganizationListSaga() {
   Allows concurrent increments.
 */
 function* AdminOrganizationSaga() {
-  yield all([takeLatest(FETCH_ADMIN_ORGANIZATION_LIST, fetchAdminOrganizationListSaga)]);
+  yield all([
+    takeLatest(FETCH_ADMIN_ORGANIZATION_LIST, fetchAdminOrganizationListSaga),
+  ]);
 }
 
 export default AdminOrganizationSaga;
