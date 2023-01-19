@@ -36,11 +36,11 @@ const AdminOrganizationDetails = () => {
   }, [dispatch]);
 
   const adminToOrgRedirect = () => {
-    navigate(`/admin-to-org-transaction/${orgId}`);
+    navigate("/admin-to-org-transaction");
   };
 
   const orgToEmployeeRedirect = () => {
-    navigate(`/org-to-employee-transaction/${orgId}`);
+    navigate("/org-to-employee-transaction");
   };
 
   const columns: GridColDef[] = [

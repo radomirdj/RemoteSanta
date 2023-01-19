@@ -1,23 +1,27 @@
 import { Button, Card, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postAdminToOrgTransaction } from "../../store/admin-organization-transaction/actions";
+import { getAdminOrganizationSelector } from "../../store/admin-organization/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 
-const AdminToOrgTransaction = (props: any) => {
+const AdminToOrgTransaction = () => {
   const dispatch = useDispatch();
+  const organization = useSelector(getAdminOrganizationSelector);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  console.log(organization);
+
   const onSubmit = (data: any) => {
     dispatch(
       postAdminToOrgTransaction({
-        organizationId: props.orgId,
+        organizationId: organization?.id || "",
         adminToOrg: { amount: Number(data.amount) },
       })
     );

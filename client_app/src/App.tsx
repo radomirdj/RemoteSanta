@@ -154,7 +154,7 @@ const App = () => {
           }
         />
         <Route
-          path="admin-to-org-transaction/:id"
+          path="admin-to-org-transaction"
           element={
             <AdminRoute>
               <AdminToOrgTransaction />
@@ -162,7 +162,7 @@ const App = () => {
           }
         />
         <Route
-          path="org-to-employee-transaction/:id"
+          path="org-to-employee-transaction"
           element={
             <AdminRoute>
               <OrgToEmployeeTransaction />
