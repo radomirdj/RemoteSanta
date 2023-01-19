@@ -5,6 +5,9 @@ import {
   POST_ADMIN_TO_ORG_TRANSACTION,
   POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS,
   POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION_SUCCESS,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationTransactionList,
@@ -18,6 +21,11 @@ import {
   PostAdminToOrgTransactionFailure,
   PostAdminToOrgTransactionPayload,
   PostAdminToOrgTransactionFailurePayload,
+  PostOrgToEmployeesTransactionPayload,
+  PostOrgToEmployeesTransaction,
+  PostOrgToEmployeesTransactionSuccess,
+  PostOrgToEmployeesTransactionFailure,
+  PostOrgToEmployeesTransactionFailurePayload,
 } from "./types";
 
 export const fetchAdminOrganizationTransactionList = (
@@ -59,5 +67,26 @@ export const postAdminToOrgTransactionFailure = (
   payload: PostAdminToOrgTransactionFailurePayload
 ): PostAdminToOrgTransactionFailure => ({
   type: POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
+  payload,
+});
+
+export const postOrgToEmployeesTransaction = (
+  payload: PostOrgToEmployeesTransactionPayload,
+  navigate: Function
+): PostOrgToEmployeesTransaction => ({
+  type: POST_ORG_TO_EMPLOYEES_TRANSACTION,
+  payload,
+  navigate,
+});
+
+export const postOrgToEmployeesTransactionSuccess =
+  (): PostOrgToEmployeesTransactionSuccess => ({
+    type: POST_ORG_TO_EMPLOYEES_TRANSACTION_SUCCESS,
+  });
+
+export const postOrgToEmployeesTransactionFailure = (
+  payload: PostOrgToEmployeesTransactionFailurePayload
+): PostOrgToEmployeesTransactionFailure => ({
+  type: POST_ORG_TO_EMPLOYEES_TRANSACTION_FAILURE,
   payload,
 });

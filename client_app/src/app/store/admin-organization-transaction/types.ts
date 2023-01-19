@@ -6,10 +6,18 @@ import {
   POST_ADMIN_TO_ORG_TRANSACTION,
   POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS,
   POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION_SUCCESS,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminToOrgTransaction {
   amount: number;
+}
+
+export interface IOrgToEmployeesTransaction {
+  eventId: string;
+  employeeNumber: number;
 }
 
 export interface IAdminOrganizationTransaction {
@@ -48,6 +56,15 @@ export interface PostAdminToOrgTransactionFailurePayload {
   error: string;
 }
 
+export interface PostOrgToEmployeesTransactionPayload {
+  organizationId: string;
+  orgToEmployees: IOrgToEmployeesTransaction;
+}
+
+export interface PostOrgToEmployeesTransactionFailurePayload {
+  error: string;
+}
+
 export interface FetchAdminOrganizationTransactionList {
   type: typeof FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST;
   payload: FetchAdminOrganizationTransactionListPayload;
@@ -78,10 +95,28 @@ export interface PostAdminToOrgTransactionFailure {
   payload: PostAdminToOrgTransactionFailurePayload;
 }
 
+export interface PostOrgToEmployeesTransaction {
+  type: typeof POST_ORG_TO_EMPLOYEES_TRANSACTION;
+  payload: PostOrgToEmployeesTransactionPayload;
+  navigate: Function;
+}
+
+export interface PostOrgToEmployeesTransactionSuccess {
+  type: typeof POST_ORG_TO_EMPLOYEES_TRANSACTION_SUCCESS;
+}
+
+export interface PostOrgToEmployeesTransactionFailure {
+  type: typeof POST_ORG_TO_EMPLOYEES_TRANSACTION_FAILURE;
+  payload: PostOrgToEmployeesTransactionFailurePayload;
+}
+
 export type AdminOrganizationTransactionActions =
   | FetchAdminOrganizationTransactionList
   | FetchAdminOrganizationTransactionListSuccess
   | FetchAdminOrganizationTransactionListFailure
   | PostAdminToOrgTransaction
   | PostAdminToOrgTransactionSuccess
-  | PostAdminToOrgTransactionFailure;
+  | PostAdminToOrgTransactionFailure
+  | PostOrgToEmployeesTransaction
+  | PostOrgToEmployeesTransactionSuccess
+  | PostOrgToEmployeesTransactionFailure;

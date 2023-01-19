@@ -3,6 +3,7 @@ import {
   FetchAdminOrganizationTransactionListPayload,
   IAdminOrganizationTransaction,
   PostAdminToOrgTransactionPayload,
+  PostOrgToEmployeesTransactionPayload,
 } from "../store/admin-organization-transaction/types";
 import {
   FetchAdminOrganizationPayload,
@@ -53,6 +54,19 @@ export const postAdminToOrganizationTransaction = (
   return api.post<string>(
     `admin/orgs/${payload.organizationId}/transactions/admin-to-org/`,
     payload.adminToOrg,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postOrganizationToEmployeesTransaction = (
+  token: string,
+  payload: PostOrgToEmployeesTransactionPayload
+) => {
+  return api.post<string>(
+    `admin/orgs/${payload.organizationId}/transactions/org-to-employees/`,
+    payload.orgToEmployees,
     {
       headers: { Authorization: `Bearer ${token}` },
     }

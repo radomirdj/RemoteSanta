@@ -3,6 +3,7 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
   getAdminOrganizationTransactionList,
   postAdminToOrganizationTransaction,
+  postOrganizationToEmployeesTransaction,
 } from "../../services/api-service";
 import { fetchAdminOrganization } from "../admin-organization/actions";
 import {
@@ -10,15 +11,19 @@ import {
   fetchAdminOrganizationTransactionListSuccess,
   postAdminToOrgTransactionFailure,
   postAdminToOrgTransactionSuccess,
+  postOrgToEmployeesTransactionFailure,
+  postOrgToEmployeesTransactionSuccess,
 } from "./actions";
 import {
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST,
   POST_ADMIN_TO_ORG_TRANSACTION,
+  POST_ORG_TO_EMPLOYEES_TRANSACTION,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationTransactionList,
   IAdminOrganizationTransaction,
   PostAdminToOrgTransaction,
+  PostOrgToEmployeesTransaction,
 } from "./types";
 
 /*
@@ -42,6 +47,28 @@ function* fetchAdminOrganizationTransactionListSaga(
   } catch (e) {
     yield put(
       fetchAdminOrganizationTransactionListFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
+function* postOrgToEmployeesTransactionSaga(
+  action: PostOrgToEmployeesTransaction
+) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postOrganizationToEmployeesTransaction, token, action.payload);
+    yield put(postOrgToEmployeesTransactionSuccess());
+    action.navigate(
+      `/admin-organization-details/${action.payload.organizationId}`
+    );
+    yield put(
+      fetchAdminOrganization({ organizationId: action.payload.organizationId })
+    );
+  } catch (e) {
+    yield put(
+      postOrgToEmployeesTransactionFailure({
         error: e.message,
       })
     );
@@ -79,6 +106,10 @@ function* AdminOrganizationTransactionSaga() {
       fetchAdminOrganizationTransactionListSaga
     ),
     takeLatest(POST_ADMIN_TO_ORG_TRANSACTION, postAdminToOrgTransactionSaga),
+    takeLatest(
+      POST_ORG_TO_EMPLOYEES_TRANSACTION,
+      postOrgToEmployeesTransactionSaga
+    ),
   ]);
 }
 
