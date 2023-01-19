@@ -42,10 +42,12 @@ export const fetchAdminOrganizationTransactionListFailure = (
 });
 
 export const postAdminToOrgTransaction = (
-  payload: PostAdminToOrgTransactionPayload
+  payload: PostAdminToOrgTransactionPayload,
+  navigate: Function
 ): PostAdminToOrgTransaction => ({
   type: POST_ADMIN_TO_ORG_TRANSACTION,
   payload,
+  navigate,
 });
 
 export const postAdminToOrgTransactionSuccess =

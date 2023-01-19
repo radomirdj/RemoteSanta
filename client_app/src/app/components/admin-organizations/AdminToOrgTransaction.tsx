@@ -1,29 +1,39 @@
-import { Button, Card, TextField, Typography } from "@mui/material";
+import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { postAdminToOrgTransaction } from "../../store/admin-organization-transaction/actions";
+import { getErrorSelector } from "../../store/admin-organization-transaction/selectors";
 import { getAdminOrganizationSelector } from "../../store/admin-organization/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const AdminToOrgTransaction = () => {
   const dispatch = useDispatch();
   const organization = useSelector(getAdminOrganizationSelector);
+  const navigate = useNavigate();
+  const error = useSelector(getErrorSelector);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  console.log(organization);
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const onSubmit = (data: any) => {
     dispatch(
-      postAdminToOrgTransaction({
-        organizationId: organization?.id || "",
-        adminToOrg: { amount: Number(data.amount) },
-      })
+      postAdminToOrgTransaction(
+        {
+          organizationId: organization?.id || "",
+          adminToOrg: { amount: Number(data.amount) },
+        },
+        navigate
+      )
     );
   };
 
@@ -34,6 +44,15 @@ const AdminToOrgTransaction = () => {
         <Card className="card-style">
           <Typography className="title-style">Admin to Organization</Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
+            {/*LABELS */}
+            {error && (
+              <div className="amount-error">
+                <ErrorIcon className="amount-error-icon" />
+                <Typography className="amount-error-message">
+                  {error}
+                </Typography>
+              </div>
+            )}
             <TextField
               error={errors.amount ? true : false}
               id="outlined-basic"
@@ -53,14 +72,28 @@ const AdminToOrgTransaction = () => {
                 Amount is required.
               </Typography>
             )}
-            <Button
-              variant="contained"
-              className="submit-button"
-              disableRipple
-              type="submit"
-            >
-              Confirm
-            </Button>
+            <Grid container>
+              <Grid item xs={6}>
+                <Button
+                  variant="contained"
+                  className="back-button"
+                  disableRipple
+                  onClick={goBack}
+                >
+                  Back
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  variant="contained"
+                  className="confirm-button"
+                  disableRipple
+                  type="submit"
+                >
+                  Confirm
+                </Button>
+              </Grid>
+            </Grid>
           </form>
         </Card>
       </div>

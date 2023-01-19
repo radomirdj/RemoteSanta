@@ -19,7 +19,7 @@ $card-width: 440px;
     .title-style{
         font-family: "Montserrat";
         font-size: variables.$font-size-larger;
-        margin-bottom: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 4;
     }
 
     .amount-error-fe {
@@ -61,5 +61,55 @@ $card-width: 440px;
         .MuiSelect-select {
           text-align: start;
         }
+    }
+
+    .confirm-button, 
+    & .confirm-button:hover{
+      float: right;
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      width: 80%;
+      height: variables.$base-unit * 6;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit ;
+      margin-top: variables.$base-unit *3;
+    }
+
+    .back-button, 
+    & .back-button:hover{
+      float: left;
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      width: 80%;
+      height: variables.$base-unit * 6;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit ;
+      margin-top: variables.$base-unit *3;
+    }
+
+    .amount-error {
+      color: variables.$error-color;
+      text-align: start;
+      margin-bottom: variables.$base-unit * 3;
+      display: inline-flex;
+      width: 100%;
+  
+      .amount-error-icon {
+        width: $login-error-icon-width !important;
+        height: $login-error-icon-height;
+        width: 10%;
+        margin-right: variables.$base-unit;
+      }
+  
+      .amount-error-message {
+        width: 90%;
+        font-size: variables.$font-size-small;
+      }
     }
 }

@@ -66,6 +66,7 @@ export interface FetchAdminOrganizationTransactionListFailure {
 export interface PostAdminToOrgTransaction {
   type: typeof POST_ADMIN_TO_ORG_TRANSACTION;
   payload: PostAdminToOrgTransactionPayload;
+  navigate: Function;
 }
 
 export interface PostAdminToOrgTransactionSuccess {

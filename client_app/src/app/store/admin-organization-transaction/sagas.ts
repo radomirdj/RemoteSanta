@@ -53,6 +53,9 @@ function* postAdminToOrgTransactionSaga(action: PostAdminToOrgTransaction) {
     const token: string = localStorage.getItem("token") || "";
     yield call(postAdminToOrganizationTransaction, token, action.payload);
     yield put(postAdminToOrgTransactionSuccess());
+    action.navigate(
+      `/admin-organization-details/${action.payload.organizationId}`
+    );
     yield put(
       fetchAdminOrganization({ organizationId: action.payload.organizationId })
     );
