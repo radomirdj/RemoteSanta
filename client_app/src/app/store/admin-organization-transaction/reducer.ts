@@ -3,6 +3,9 @@ import {
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST,
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_FAILURE,
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_SUCCESS,
+  POST_ADMIN_TO_ORG_TRANSACTION,
+  POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS,
+  POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
 } from "./actionTypes";
 
 import {
@@ -39,6 +42,23 @@ export default (
         ...state,
         pending: false,
         adminOrganizationTransactionList: [],
+        error: action.payload.error,
+      };
+    case POST_ADMIN_TO_ORG_TRANSACTION:
+      return {
+        ...state,
+        pending: true,
+      };
+    case POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case POST_ADMIN_TO_ORG_TRANSACTION_FAILURE:
+      return {
+        ...state,
+        pending: false,
         error: action.payload.error,
       };
     default:

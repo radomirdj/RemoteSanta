@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   FetchAdminOrganizationTransactionListPayload,
   IAdminOrganizationTransaction,
+  PostAdminToOrgTransactionPayload,
 } from "../store/admin-organization-transaction/types";
 import {
   FetchAdminOrganizationPayload,
@@ -37,10 +38,23 @@ export const getAdminOrganization = (
   });
 
 export const getUserSelf = async (token: string) => {
-  const response = await axios.get<string>("api/users/self", {
+  const response = await api.get<string>("api/users/self", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
   return { authUser: response.data };
+};
+
+export const postAdminToOrganizationTransaction = (
+  token: string,
+  payload: PostAdminToOrgTransactionPayload
+) => {
+  return api.post<string>(
+    `admin/orgs/${payload.organizationId}/transactions/admin-to-org/`,
+    payload.adminToOrg,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
 };

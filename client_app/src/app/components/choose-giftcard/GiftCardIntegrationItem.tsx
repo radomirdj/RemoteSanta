@@ -1,7 +1,5 @@
 import {
-  Box,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Grid,
@@ -9,11 +7,10 @@ import {
   Modal,
   Typography,
 } from "@mui/material";
-import AlarmIcon from "@mui/icons-material/Alarm";
 import React from "react";
 import { IGiftCardIntegration } from "../../store/gift-card-request/types";
 import { ChevronRight } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setGiftCardRequestIntegration } from "../../store/gift-card-request/actions";
 
 const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {

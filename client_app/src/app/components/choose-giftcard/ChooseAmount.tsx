@@ -9,7 +9,6 @@ import {
   setGiftCardRequestStepBack,
 } from "../../store/gift-card-request/actions";
 import {
-  getErrorSelector,
   getGiftCardRequestIntegrationSelector,
   getStepperPagetSelector,
 } from "../../store/gift-card-request/selectors";
@@ -28,7 +27,6 @@ const ChooseAmount = () => {
   );
   const constraintString = JSON.stringify(giftCardIntegration?.constraintJson);
   const constraintJson = JSON.parse(constraintString);
-  const error = useSelector(getErrorSelector);
 
   const onSubmit = (data: any) => {
     dispatch(setGiftCardRequestAmount({ amount: Number(data.amount) }));

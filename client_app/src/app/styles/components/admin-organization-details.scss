@@ -8,7 +8,7 @@ $content-width:1000px;
     .grid-style{
         max-width: $content-width;
         justify-content: center;
-        padding-top: variables.$base-unit * 3;
+        padding-top: variables.$base-unit * 7;
 
         .organization-title{
             font-family: "Montserrat";
@@ -40,7 +40,7 @@ $content-width:1000px;
             margin-bottom: variables.$base-unit * 2;
             margin-right: variables.$base-unit ;
             margin-left: variables.$base-unit;
-  }
+        }
     }
 
     .box-style{
@@ -71,3 +71,4 @@ $content-width:1000px;
 .MuiDataGrid-columnHeader:focus{
     outline: none !important;
 }
+

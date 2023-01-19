@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchAdminOrganizationTransactionList } from "../../store/admin-organization-transaction/actions";
 import { getAdminOrganizationTransactionListSelector } from "../../store/admin-organization-transaction/selectors";
 import AppFooter from "../app-footer/AppFooter";
@@ -17,7 +17,6 @@ import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import { fetchAdminOrganization } from "../../store/admin-organization/actions";
 import { getAdminOrganizationSelector } from "../../store/admin-organization/selectors";
-import AddIcon from "@mui/icons-material/Add";
 import { Add } from "@mui/icons-material";
 
 const AdminOrganizationDetails = () => {
@@ -26,6 +25,7 @@ const AdminOrganizationDetails = () => {
   const adminOrganizationTransactionList = useSelector(
     getAdminOrganizationTransactionListSelector
   );
+  const navigate = useNavigate();
   const organization = useSelector(getAdminOrganizationSelector);
   const orgId = params.id as string;
   const rowsPerPage = 7;
@@ -34,6 +34,14 @@ const AdminOrganizationDetails = () => {
     dispatch(fetchAdminOrganizationTransactionList({ organizationId: orgId }));
     dispatch(fetchAdminOrganization({ organizationId: orgId }));
   }, [dispatch]);
+
+  const adminToOrgRedirect = () => {
+    navigate(`/admin-to-org-transaction/${orgId}`);
+  };
+
+  const orgToEmployeeRedirect = () => {
+    navigate(`/org-to-employee-transaction/${orgId}`);
+  };
 
   const columns: GridColDef[] = [
     { field: "type", headerName: "Type", width: 300 },
@@ -108,6 +116,7 @@ const AdminOrganizationDetails = () => {
               disableRipple
               startIcon={<Add />}
               className="add-button"
+              onClick={adminToOrgRedirect}
             >
               Admin to Org
             </Button>
@@ -116,6 +125,7 @@ const AdminOrganizationDetails = () => {
               disableRipple
               startIcon={<Add />}
               className="add-button"
+              onClick={orgToEmployeeRedirect}
             >
               Org to Employees
             </Button>

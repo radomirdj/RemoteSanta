@@ -2,6 +2,9 @@ import {
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST,
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_SUCCESS,
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_FAILURE,
+  POST_ADMIN_TO_ORG_TRANSACTION,
+  POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS,
+  POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationTransactionList,
@@ -10,6 +13,11 @@ import {
   FetchAdminOrganizationTransactionListFailurePayload,
   FetchAdminOrganizationTransactionListFailure,
   FetchAdminOrganizationTransactionListPayload,
+  PostAdminToOrgTransaction,
+  PostAdminToOrgTransactionSuccess,
+  PostAdminToOrgTransactionFailure,
+  PostAdminToOrgTransactionPayload,
+  PostAdminToOrgTransactionFailurePayload,
 } from "./types";
 
 export const fetchAdminOrganizationTransactionList = (
@@ -30,5 +38,24 @@ export const fetchAdminOrganizationTransactionListFailure = (
   payload: FetchAdminOrganizationTransactionListFailurePayload
 ): FetchAdminOrganizationTransactionListFailure => ({
   type: FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_FAILURE,
+  payload,
+});
+
+export const postAdminToOrgTransaction = (
+  payload: PostAdminToOrgTransactionPayload
+): PostAdminToOrgTransaction => ({
+  type: POST_ADMIN_TO_ORG_TRANSACTION,
+  payload,
+});
+
+export const postAdminToOrgTransactionSuccess =
+  (): PostAdminToOrgTransactionSuccess => ({
+    type: POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS,
+  });
+
+export const postAdminToOrgTransactionFailure = (
+  payload: PostAdminToOrgTransactionFailurePayload
+): PostAdminToOrgTransactionFailure => ({
+  type: POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
   payload,
 });

@@ -3,7 +3,14 @@ import {
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST,
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_SUCCESS,
   FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST_FAILURE,
+  POST_ADMIN_TO_ORG_TRANSACTION,
+  POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS,
+  POST_ADMIN_TO_ORG_TRANSACTION_FAILURE,
 } from "./actionTypes";
+
+export interface IAdminToOrgTransaction {
+  amount: number;
+}
 
 export interface IAdminOrganizationTransaction {
   id: string;
@@ -32,6 +39,15 @@ export interface FetchAdminOrganizationTransactionListFailurePayload {
   error: string;
 }
 
+export interface PostAdminToOrgTransactionPayload {
+  organizationId: string;
+  adminToOrg: IAdminToOrgTransaction;
+}
+
+export interface PostAdminToOrgTransactionFailurePayload {
+  error: string;
+}
+
 export interface FetchAdminOrganizationTransactionList {
   type: typeof FETCH_ADMIN_ORGANIZATION_TRANSACTION_LIST;
   payload: FetchAdminOrganizationTransactionListPayload;
@@ -47,7 +63,24 @@ export interface FetchAdminOrganizationTransactionListFailure {
   payload: FetchAdminOrganizationTransactionListFailurePayload;
 }
 
+export interface PostAdminToOrgTransaction {
+  type: typeof POST_ADMIN_TO_ORG_TRANSACTION;
+  payload: PostAdminToOrgTransactionPayload;
+}
+
+export interface PostAdminToOrgTransactionSuccess {
+  type: typeof POST_ADMIN_TO_ORG_TRANSACTION_SUCCESS;
+}
+
+export interface PostAdminToOrgTransactionFailure {
+  type: typeof POST_ADMIN_TO_ORG_TRANSACTION_FAILURE;
+  payload: PostAdminToOrgTransactionFailurePayload;
+}
+
 export type AdminOrganizationTransactionActions =
   | FetchAdminOrganizationTransactionList
   | FetchAdminOrganizationTransactionListSuccess
-  | FetchAdminOrganizationTransactionListFailure;
+  | FetchAdminOrganizationTransactionListFailure
+  | PostAdminToOrgTransaction
+  | PostAdminToOrgTransactionSuccess
+  | PostAdminToOrgTransactionFailure;
