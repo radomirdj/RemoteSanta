@@ -6,20 +6,15 @@ import { AdminOrgsService } from './admin_orgs.service';
 import { OrgDto } from './dtos/org.dto';
 import { OrgTransactionDto } from './dtos/org_transaction.dto';
 import { UserDto } from '../users/dtos/user.dto';
-import { UserInviteDto } from '../user_invites/dtos/user-invite.dto';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
-import { UsersService } from '../users/users.service';
 import { User } from '@prisma/client';
 
 @Controller('admin/orgs')
 @UseGuards(AuthGuard('jwt'), AdminGuard)
 export class AdminOrgsController {
-  constructor(
-    private adminOrgsService: AdminOrgsService,
-    private usersService: UsersService,
-  ) {}
+  constructor(private adminOrgsService: AdminOrgsService) {}
 
   @Serialize(OrgDto)
   @Get('/:id')
@@ -31,12 +26,6 @@ export class AdminOrgsController {
   @Get('/')
   async getOrgList() {
     return this.adminOrgsService.getList();
-  }
-
-  @Serialize(UserInviteDto)
-  @Get('/:id/user-invites/')
-  async getOrgUserInvutes(@Param('id') id: string) {
-    return this.adminOrgsService.getUserInviteListByOrg(id);
   }
 
   @Serialize(UserDto)
