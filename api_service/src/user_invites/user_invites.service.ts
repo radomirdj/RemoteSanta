@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import * as randomstring from 'randomstring';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserInviteDto } from './dtos/user-invite.dto';
@@ -6,6 +6,7 @@ import { UserInvite, UserInviteStatusEnum } from '@prisma/client';
 import { EmailInUseException } from '../errors/emailInUseException';
 import { EmailInActiveInviteException } from '../errors/emailInActiveInviteException';
 import { UsersService } from '../users/users.service';
+import { InviteNotActiveException } from '../errors/inviteNotActiveException';
 
 @Injectable()
 export class UserInvitesService {
@@ -73,6 +74,25 @@ export class UserInvitesService {
             id: orgId,
           },
         },
+      },
+    });
+  }
+
+  async cancelUserInvite(id: string, orgId: string) {
+    const userInvite = await this.prisma.userInvite.findUnique({
+      where: { id },
+    });
+    if (!userInvite || userInvite.orgId !== orgId)
+      throw new NotFoundException('UserInvite not found');
+
+    if (userInvite.status !== UserInviteStatusEnum.ACTIVE) {
+      throw new InviteNotActiveException();
+    }
+
+    return this.prisma.userInvite.update({
+      where: { id },
+      data: {
+        status: UserInviteStatusEnum.CANCELED,
       },
     });
   }

@@ -11,6 +11,7 @@ import { createToken } from './utils/tokenService';
 import { EmailInUseException } from '../src/errors/emailInUseException';
 import { EmailInActiveInviteException } from '../src/errors/emailInActiveInviteException';
 import { UserInviteStatusEnum } from '@prisma/client';
+import { InviteNotActiveException } from '../src/errors/inviteNotActiveException';
 
 import {
   user2,
@@ -182,6 +183,89 @@ describe('user-invites', () => {
       await request(app.getHttpServer())
         .post('/user-invites/')
         .send(newUserInvite)
+        .expect(401);
+    });
+  });
+
+  describe('/:id/cancel (POST)', () => {
+    it('/:id/cancel (POST) - USER_INVITE by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/user-invites/${userInvite1.id}/cancel`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(201);
+
+      const inviteRsp = response.body;
+      const id = inviteRsp.id;
+
+      await expectUserInviteDB(prisma, id, {
+        email: userInvite1.email,
+        status: UserInviteStatusEnum.CANCELED,
+        orgId: org1.id,
+        createdById: user3Manager.id,
+      });
+
+      await prisma.userInvite.update({
+        where: { id },
+        data: {
+          status: UserInviteStatusEnum.ACTIVE,
+        },
+      });
+    });
+
+    it('/:id/cancel (POST) - USER_INVITE by USER_MANAGER from other ORG', async () => {
+      await request(app.getHttpServer())
+        .post(`/user-invites/${userInvite1.id}/cancel`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .send({ email: userInvite1.email })
+        .expect(404);
+    });
+
+    it('/:id/cancel (POST) - USER_INVITE by USER_MANAGER, invite  COMPLETED', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/user-invites/${userInviteCompleted.id}/cancel`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({ email: userInvite1.email })
+        .expect(400);
+      expect(response.body.message).toEqual(
+        InviteNotActiveException.defaultMessage,
+      );
+    });
+
+    it('/:id/cancel (POST) - NON USER_MANAGER user, cancel USER_INVITE', async () => {
+      await request(app.getHttpServer())
+        .post(`/user-invites/${userInviteCompleted.id}/cancel`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .expect(403);
+    });
+
+    it('/:id/cancel (POST) - try to cancel USER_INVITE', async () => {
+      await request(app.getHttpServer())
+        .post(`/user-invites/${userInviteCompleted.id}/cancel`)
         .expect(401);
     });
   });

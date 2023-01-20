@@ -1,5 +1,5 @@
 import { AuthGuard } from '@nestjs/passport';
-import { Controller, UseGuards, Get, Post, Body } from '@nestjs/common';
+import { Controller, UseGuards, Get, Post, Body, Param } from '@nestjs/common';
 import { UserInvitesService } from './user_invites.service';
 import { UserManagerGuard } from '../guards/user_manager.guard';
 import { Serialize } from '../interceptors/serialize.interceptor';
@@ -28,5 +28,10 @@ export class UserInvitesController {
       user.orgId,
       createUserInviteDto.email,
     );
+  }
+
+  @Post('/:id/cancel')
+  async cancelUserInvite(@CurrentUser() user: User, @Param('id') id: string) {
+    return this.userInvitesService.cancelUserInvite(id, user.orgId);
   }
 }
