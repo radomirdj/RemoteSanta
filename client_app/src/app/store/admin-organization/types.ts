@@ -5,6 +5,9 @@ import {
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_SUCCESS,
   FETCH_ADMIN_ORGANIZATION_FAILURE,
+  FETCH_ADMIN_USER_LIST,
+  FETCH_ADMIN_USER_LIST_SUCCESS,
+  FETCH_ADMIN_USER_LIST_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -16,10 +19,18 @@ export interface IAdminOrganization {
   balance: number;
 }
 
+export interface IAdminUser {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface AdminOrganizationState {
   pending: boolean;
   adminOrganizationList: IAdminOrganization[];
   adminOrganization: IAdminOrganization | null;
+  adminUserList: IAdminUser[];
   error: string | null;
 }
 
@@ -40,6 +51,18 @@ export interface FetchAdminOrganizationSuccessPayload {
 }
 
 export interface FetchAdminOrganizationFailurePayload {
+  error: string;
+}
+
+export interface FetchAdminUserListPayload {
+  organizationId: string;
+}
+
+export interface FetchAdminUserListSuccessPayload {
+  adminUserList: IAdminUser[];
+}
+
+export interface FetchAdminUserListFailurePayload {
   error: string;
 }
 
@@ -72,10 +95,28 @@ export interface FetchAdminOrganizationFailure {
   payload: FetchAdminOrganizationFailurePayload;
 }
 
+export interface FetchAdminUserList {
+  type: typeof FETCH_ADMIN_USER_LIST;
+  payload: FetchAdminUserListPayload;
+}
+
+export interface FetchAdminUserListSuccess {
+  type: typeof FETCH_ADMIN_USER_LIST_SUCCESS;
+  payload: FetchAdminUserListSuccessPayload;
+}
+
+export interface FetchAdminUserListFailure {
+  type: typeof FETCH_ADMIN_USER_LIST_FAILURE;
+  payload: FetchAdminUserListFailurePayload;
+}
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
   | FetchAdminOrganizationListFailure
   | FetchAdminOrganization
   | FetchAdminOrganizationSuccess
-  | FetchAdminOrganizationFailure;
+  | FetchAdminOrganizationFailure
+  | FetchAdminUserList
+  | FetchAdminUserListSuccess
+  | FetchAdminUserListFailure;

@@ -6,6 +6,9 @@ import {
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_FAILURE,
   FETCH_ADMIN_ORGANIZATION_SUCCESS,
+  FETCH_ADMIN_USER_LIST,
+  FETCH_ADMIN_USER_LIST_SUCCESS,
+  FETCH_ADMIN_USER_LIST_FAILURE,
 } from "./actionTypes";
 
 import { AdminOrganizationActions, AdminOrganizationState } from "./types";
@@ -14,6 +17,7 @@ const initialState: AdminOrganizationState = {
   pending: false,
   adminOrganizationList: [],
   adminOrganization: null,
+  adminUserList: [],
   error: null,
 };
 
@@ -55,6 +59,25 @@ export default (state = initialState, action: AdminOrganizationActions) => {
         ...state,
         pending: false,
         adminOrganization: null,
+        error: action.payload.error,
+      };
+    case FETCH_ADMIN_USER_LIST:
+      return {
+        ...state,
+        pending: true,
+      };
+    case FETCH_ADMIN_USER_LIST_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        adminUserList: action.payload.adminUserList,
+        error: null,
+      };
+    case FETCH_ADMIN_USER_LIST_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        adminUserList: [],
         error: action.payload.error,
       };
     default:

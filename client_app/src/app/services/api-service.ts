@@ -7,7 +7,9 @@ import {
 } from "../store/admin-organization-transaction/types";
 import {
   FetchAdminOrganizationPayload,
+  FetchAdminUserListPayload,
   IAdminOrganization,
+  IAdminUser,
 } from "../store/admin-organization/types";
 
 const api = axios.create({
@@ -27,6 +29,14 @@ export const getAdminOrganizationTransactionList = (
 
 export const getAdminOrganizationList = (token: string) =>
   api.get<IAdminOrganization[]>("admin/orgs/", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getAdminUserList = (
+  payload: FetchAdminUserListPayload,
+  token: string
+) =>
+  api.get<IAdminUser[]>(`admin/orgs/${payload.organizationId}/users/`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 

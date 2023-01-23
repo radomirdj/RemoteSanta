@@ -6,6 +6,9 @@ export const getPendingSelector = (state: AppState) =>
 export const getAdminOrganizationListSelector = (state: AppState) =>
   state.adminOrganization.adminOrganizationList;
 
+export const getAdminUserListSelector = (state: AppState) =>
+  state.adminOrganization.adminUserList;
+
 export const getAdminOrganizationSelector = (state: AppState) =>
   state.adminOrganization.adminOrganization;
 

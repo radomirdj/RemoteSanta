@@ -3,18 +3,27 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
   getAdminOrganization,
   getAdminOrganizationList,
+  getAdminUserList,
 } from "../../services/api-service";
 import {
   fetchAdminOrganizationFailure,
   fetchAdminOrganizationListFailure,
   fetchAdminOrganizationListSuccess,
   fetchAdminOrganizationSuccess,
+  fetchAdminUserListFailure,
+  fetchAdminUserListSuccess,
 } from "./actions";
 import {
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_LIST,
+  FETCH_ADMIN_USER_LIST,
 } from "./actionTypes";
-import { FetchAdminOrganization, IAdminOrganization } from "./types";
+import {
+  FetchAdminOrganization,
+  FetchAdminUserList,
+  IAdminOrganization,
+  IAdminUser,
+} from "./types";
 
 /*
   Worker Saga: Fired on FETCH_TODO_REQUEST action
@@ -62,6 +71,28 @@ function* fetchAdminOrganizationSaga(action: FetchAdminOrganization) {
   }
 }
 
+function* fetchAdminUserListSaga(action: FetchAdminUserList) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<IAdminUser[]> = yield call(
+      getAdminUserList,
+      action.payload,
+      token
+    );
+    yield put(
+      fetchAdminUserListSuccess({
+        adminUserList: response.data,
+      })
+    );
+  } catch (e) {
+    yield put(
+      fetchAdminUserListFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -70,6 +101,7 @@ function* AdminOrganizationSaga() {
   yield all([
     takeLatest(FETCH_ADMIN_ORGANIZATION_LIST, fetchAdminOrganizationListSaga),
     takeLatest(FETCH_ADMIN_ORGANIZATION, fetchAdminOrganizationSaga),
+    takeLatest(FETCH_ADMIN_USER_LIST, fetchAdminUserListSaga),
   ]);
 }
 
