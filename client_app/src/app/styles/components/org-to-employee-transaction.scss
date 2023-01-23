@@ -1,5 +1,136 @@
 @use "./../variables.scss";
 
+$card-width: 440px;
+
 .org-to-employee-transaction{
     background-image: url("./../../assets/home-image.svg");
+
+    .card-style{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        border-radius: variables.$base-unit * 3;
+        padding: variables.$base-unit * 5;
+        width: $card-width;
+    }
+
+    .title-style{
+        font-family: "Montserrat";
+        font-size: variables.$font-size-larger;
+        margin-bottom: variables.$base-unit * 4;
+    }
+
+    .details-style{
+        font-family: "Montserrat";
+        font-size: variables.$font-size-small;
+        margin-top: variables.$base-unit * 4;
+    }
+
+    .divider-info-style{
+        margin-top: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 3;
+    }
+
+    .divider-style{
+        margin-top: variables.$base-unit;
+        margin-bottom: variables.$base-unit * 3;
+    }
+
+    .info-style{
+        font-family: "Montserrat";
+        font-size: variables.$font-size-medium;
+        margin-bottom: variables.$base-unit;
+    }
+
+    .confirm-button, 
+    & .confirm-button:hover{
+      float: right;
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      width: 70%;
+      height: variables.$base-unit * 6;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit ;
+      margin-top: variables.$base-unit *3;
+    }
+
+    .back-button, 
+    & .back-button:hover{
+      float: left;
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      width: 70%;
+      height: variables.$base-unit * 6;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit ;
+      margin-top: variables.$base-unit *3;
+    }
+
+    .event-error-fe {
+        font-size: variables.$font-size-small;
+        color: variables.$error-color;
+        text-align: start;
+        margin-bottom: variables.$base-unit;
+        margin-top:variables.$base-unit;
+        display: inline-flex;
+        width: 100%;
+      }
+
+      .event-with-error {
+        .MuiOutlinedInput-notchedOutline {
+            border-color: variables.$error-color;
+        }
+      }
+
+      .MuiFormControl-root {
+        margin: 0px;
+        width: 100%;
+        border-radius: variables.$base-unit;
+    
+        .MuiOutlinedInput-root {
+          border-radius: variables.$base-unit;
+        }
+    
+        .MuiOutlinedInput-root.Mui-error {
+          .MuiOutlinedInput-notchedOutline {
+            border-color: variables.$error-color;
+          }
+        }
+    
+        .MuiFormLabel-root.Mui-error {
+          color: $registration-error-label-color;
+        }
+    
+        .MuiSelect-select {
+          text-align: start;
+        }
+      }
+
+      .event-error {
+        color: variables.$error-color;
+        text-align: start;
+        margin-bottom: variables.$base-unit * 3;
+        display: inline-flex;
+        width: 100%;
+    
+        .event-error-icon {
+          width: $login-error-icon-width !important;
+          height: $login-error-icon-height;
+          width: 10%;
+          margin-right: variables.$base-unit;
+        }
+    
+        .event-error-message {
+          width: 90%;
+          font-size: variables.$font-size-small;
+        }
+      }
 }

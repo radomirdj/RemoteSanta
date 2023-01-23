@@ -46,11 +46,9 @@ const AdminToOrgTransaction = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             {/*LABELS */}
             {error && (
-              <div className="amount-error">
-                <ErrorIcon className="amount-error-icon" />
-                <Typography className="amount-error-message">
-                  {error}
-                </Typography>
+              <div className="event-error">
+                <ErrorIcon className="event-error-icon" />
+                <Typography className="event-error-message">{error}</Typography>
               </div>
             )}
             <TextField
