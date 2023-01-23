@@ -28,15 +28,15 @@ const AdminGiftCardRequests = () => {
     dispatch(fetchAdminGiftCardRequestList());
   }, [dispatch]);
 
-  const giftCardRequestDetails = () => {
-    navigate("/admin-gift-card-request-details");
+  const giftCardRequestDetails = (giftCardRequestId: string) => {
+    navigate(`/admin-gift-card-request-details/${giftCardRequestId}`);
   };
 
   const detailsButton = (params: GridRenderCellParams) => {
     return (
       <Button
         variant="contained"
-        onClick={giftCardRequestDetails}
+        onClick={() => giftCardRequestDetails(params.id as string)}
         className="button-details"
         disableRipple
       >
