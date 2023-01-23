@@ -17,7 +17,10 @@ import {
   org1Points,
   org2Points,
   org2Manager,
+  user1,
 } from './utils/preseededData';
+import { expectUserRsp } from './utils/userChecks';
+import { UserRoleEnum } from '.prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -152,6 +155,73 @@ describe('orgs', () => {
             }),
         )
         .expect(403);
+    });
+  });
+
+  describe('/current_org/users (GET)', () => {
+    it('/ (GET) - get ORG USERS by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/orgs/current_org/users/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+
+      expect(response.body.length).toEqual(org1.employeeNumber);
+      const userRsp1 = response.body.find((userRsp) => userRsp.id === user1.id);
+      expect(userRsp1).toBeDefined();
+      expectUserRsp(userRsp1, {
+        ...user1,
+        userRole: UserRoleEnum.BASIC_USER,
+        orgName: org1.name,
+      });
+    });
+
+    it('/ (GET) - get ORG2 USERS by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/orgs/current_org/users/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+
+      expect(response.body.length).toEqual(org2.employeeNumber);
+      const userRsp1 = response.body.find(
+        (userRsp) => userRsp.id === org2Manager.id,
+      );
+      expect(userRsp1).toBeDefined();
+      expectUserRsp(userRsp1, {
+        ...org2Manager,
+        userRole: UserRoleEnum.USER_MANAGER,
+        orgName: org2.name,
+      });
+    });
+
+    it('/ (GET) - NON ADMIN user, get ORG  USERS', async () => {
+      await request(app.getHttpServer())
+        .get('/orgs/current_org/users/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .expect(403);
+    });
+
+    it('/ (GET) - try to get ORG  USERS without token', async () => {
+      await request(app.getHttpServer())
+        .get('/orgs/current_org/users/')
+        .expect(401);
     });
   });
 });

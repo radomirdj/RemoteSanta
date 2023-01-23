@@ -62,6 +62,13 @@ export class UsersService {
     return userList[0];
   }
 
+  async findByOrg(orgId: string): Promise<UserDto[]> {
+    return this.prisma.user.findMany({
+      where: { orgId },
+      include: userDefaultJoin,
+    });
+  }
+
   async update(id: string, attrs: Prisma.UserUpdateInput) {
     const user = await this.findById(id);
     if (!user) throw new NotFoundException('User Not Found');
