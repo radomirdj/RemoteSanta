@@ -8,6 +8,9 @@ import {
   FETCH_ADMIN_USER_LIST,
   FETCH_ADMIN_USER_LIST_SUCCESS,
   FETCH_ADMIN_USER_LIST_FAILURE,
+  FETCH_ADMIN_INVITE_LIST,
+  FETCH_ADMIN_INVITE_LIST_SUCCESS,
+  FETCH_ADMIN_INVITE_LIST_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -26,11 +29,19 @@ export interface IAdminUser {
   lastName: string;
 }
 
+export interface IAdminInvite {
+  id: string;
+  email: string;
+  status: string;
+  createdAt: Date;
+}
+
 export interface AdminOrganizationState {
   pending: boolean;
   adminOrganizationList: IAdminOrganization[];
   adminOrganization: IAdminOrganization | null;
   adminUserList: IAdminUser[];
+  adminInviteList: IAdminInvite[];
   error: string | null;
 }
 
@@ -63,6 +74,18 @@ export interface FetchAdminUserListSuccessPayload {
 }
 
 export interface FetchAdminUserListFailurePayload {
+  error: string;
+}
+
+export interface FetchAdminInviteListPayload {
+  organizationId: string;
+}
+
+export interface FetchAdminInviteListSuccessPayload {
+  adminInviteList: IAdminInvite[];
+}
+
+export interface FetchAdminInviteListFailurePayload {
   error: string;
 }
 
@@ -110,6 +133,21 @@ export interface FetchAdminUserListFailure {
   payload: FetchAdminUserListFailurePayload;
 }
 
+export interface FetchAdminInviteList {
+  type: typeof FETCH_ADMIN_INVITE_LIST;
+  payload: FetchAdminInviteListPayload;
+}
+
+export interface FetchAdminInviteListSuccess {
+  type: typeof FETCH_ADMIN_INVITE_LIST_SUCCESS;
+  payload: FetchAdminInviteListSuccessPayload;
+}
+
+export interface FetchAdminInviteListFailure {
+  type: typeof FETCH_ADMIN_INVITE_LIST_FAILURE;
+  payload: FetchAdminInviteListFailurePayload;
+}
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
@@ -119,4 +157,7 @@ export type AdminOrganizationActions =
   | FetchAdminOrganizationFailure
   | FetchAdminUserList
   | FetchAdminUserListSuccess
-  | FetchAdminUserListFailure;
+  | FetchAdminUserListFailure
+  | FetchAdminInviteList
+  | FetchAdminInviteListSuccess
+  | FetchAdminInviteListFailure;

@@ -9,6 +9,9 @@ export const getAdminOrganizationListSelector = (state: AppState) =>
 export const getAdminUserListSelector = (state: AppState) =>
   state.adminOrganization.adminUserList;
 
+export const getAdminInviteListSelector = (state: AppState) =>
+  state.adminOrganization.adminInviteList;
+
 export const getAdminOrganizationSelector = (state: AppState) =>
   state.adminOrganization.adminOrganization;
 

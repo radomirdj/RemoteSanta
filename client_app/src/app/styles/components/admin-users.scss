@@ -2,6 +2,7 @@
 
 $button-details-height: 36px;
 $content-width:1000px;
+$back-icon-margin-bottom:3px;
 
 .admin-users{
     background-image: url("./../../assets/home-image.svg");
@@ -14,8 +15,22 @@ $content-width:1000px;
         .users-title{
             font-family: "Montserrat";
             font-size: variables.$font-size-title;
-            margin-bottom: variables.$base-unit * 3;
+            margin-bottom: variables.$base-unit *2;
             width: max-content;
+        }
+
+        .back-button,
+        & .back-button:hover {
+            float: left;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height: $button-details-height;
+            font-weight: bold;
+            background-color: variables.$main-yellow;
+
+            .back-icon{
+                margin-bottom: $back-icon-margin-bottom;
+            }
         }
     }
 
@@ -23,6 +38,20 @@ $content-width:1000px;
         height: 525px;
         width: 100%;
     }
+
+    .button-details{
+            float: right;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 30%;
+            height: $button-details-height;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
 
     .data-grid{
         width: $content-width;

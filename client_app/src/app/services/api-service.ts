@@ -6,8 +6,10 @@ import {
   PostOrgToEmployeesTransactionPayload,
 } from "../store/admin-organization-transaction/types";
 import {
+  FetchAdminInviteListPayload,
   FetchAdminOrganizationPayload,
   FetchAdminUserListPayload,
+  IAdminInvite,
   IAdminOrganization,
   IAdminUser,
 } from "../store/admin-organization/types";
@@ -39,6 +41,17 @@ export const getAdminUserList = (
   api.get<IAdminUser[]>(`admin/orgs/${payload.organizationId}/users/`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const getAdminInviteList = (
+  payload: FetchAdminInviteListPayload,
+  token: string
+) =>
+  api.get<IAdminInvite[]>(
+    `admin/orgs/${payload.organizationId}/user-invites/`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
 
 export const getAdminOrganization = (
   payload: FetchAdminOrganizationPayload,

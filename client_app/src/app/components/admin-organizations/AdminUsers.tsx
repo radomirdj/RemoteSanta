@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchAdminUserList } from "../../store/admin-organization/actions";
 import { getAdminUserListSelector } from "../../store/admin-organization/selectors";
 import AppFooter from "../app-footer/AppFooter";
@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const AdminUsers = () => {
   const params = useParams();
@@ -23,10 +24,15 @@ const AdminUsers = () => {
   const dispatch = useDispatch();
   const adminUserList = useSelector(getAdminUserListSelector);
   const rowsPerPage = 7;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchAdminUserList({ organizationId: orgId }));
   }, [dispatch, orgId]);
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const detailsButton = (params: GridRenderCellParams) => {
     return (
@@ -115,6 +121,17 @@ const AdminUsers = () => {
               }
             />
           </Box>
+          <Grid item xs={12}>
+            <Button
+              disableRipple
+              variant="text"
+              className="back-button"
+              startIcon={<ChevronLeftIcon className="back-icon" />}
+              onClick={goBack}
+            >
+              Back
+            </Button>
+          </Grid>
         </Grid>
       </div>
       <AppFooter />

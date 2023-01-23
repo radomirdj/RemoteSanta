@@ -8,6 +8,9 @@ import {
   FETCH_ADMIN_USER_LIST,
   FETCH_ADMIN_USER_LIST_SUCCESS,
   FETCH_ADMIN_USER_LIST_FAILURE,
+  FETCH_ADMIN_INVITE_LIST,
+  FETCH_ADMIN_INVITE_LIST_SUCCESS,
+  FETCH_ADMIN_INVITE_LIST_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationList,
@@ -27,6 +30,12 @@ import {
   FetchAdminUserListFailurePayload,
   FetchAdminUserListFailure,
   FetchAdminUserListPayload,
+  FetchAdminInviteListPayload,
+  FetchAdminInviteList,
+  FetchAdminInviteListSuccessPayload,
+  FetchAdminInviteListSuccess,
+  FetchAdminInviteListFailure,
+  FetchAdminInviteListFailurePayload,
 } from "./types";
 
 export const fetchAdminOrganizationList = (): FetchAdminOrganizationList => ({
@@ -86,5 +95,26 @@ export const fetchAdminUserListFailure = (
   payload: FetchAdminUserListFailurePayload
 ): FetchAdminUserListFailure => ({
   type: FETCH_ADMIN_USER_LIST_FAILURE,
+  payload,
+});
+
+export const fetchAdminInviteList = (
+  payload: FetchAdminInviteListPayload
+): FetchAdminInviteList => ({
+  type: FETCH_ADMIN_INVITE_LIST,
+  payload,
+});
+
+export const fetchAdminInviteListSuccess = (
+  payload: FetchAdminInviteListSuccessPayload
+): FetchAdminInviteListSuccess => ({
+  type: FETCH_ADMIN_INVITE_LIST_SUCCESS,
+  payload,
+});
+
+export const fetchAdminInviteListFailure = (
+  payload: FetchAdminInviteListFailurePayload
+): FetchAdminInviteListFailure => ({
+  type: FETCH_ADMIN_INVITE_LIST_FAILURE,
   payload,
 });

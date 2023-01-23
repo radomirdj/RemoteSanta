@@ -1,11 +1,14 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
+  getAdminInviteList,
   getAdminOrganization,
   getAdminOrganizationList,
   getAdminUserList,
 } from "../../services/api-service";
 import {
+  fetchAdminInviteListFailure,
+  fetchAdminInviteListSuccess,
   fetchAdminOrganizationFailure,
   fetchAdminOrganizationListFailure,
   fetchAdminOrganizationListSuccess,
@@ -14,13 +17,16 @@ import {
   fetchAdminUserListSuccess,
 } from "./actions";
 import {
+  FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_LIST,
   FETCH_ADMIN_USER_LIST,
 } from "./actionTypes";
 import {
+  FetchAdminInviteList,
   FetchAdminOrganization,
   FetchAdminUserList,
+  IAdminInvite,
   IAdminOrganization,
   IAdminUser,
 } from "./types";
@@ -93,6 +99,28 @@ function* fetchAdminUserListSaga(action: FetchAdminUserList) {
   }
 }
 
+function* fetchAdminInviteListSaga(action: FetchAdminInviteList) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<IAdminInvite[]> = yield call(
+      getAdminInviteList,
+      action.payload,
+      token
+    );
+    yield put(
+      fetchAdminInviteListSuccess({
+        adminInviteList: response.data,
+      })
+    );
+  } catch (e) {
+    yield put(
+      fetchAdminInviteListFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -102,6 +130,7 @@ function* AdminOrganizationSaga() {
     takeLatest(FETCH_ADMIN_ORGANIZATION_LIST, fetchAdminOrganizationListSaga),
     takeLatest(FETCH_ADMIN_ORGANIZATION, fetchAdminOrganizationSaga),
     takeLatest(FETCH_ADMIN_USER_LIST, fetchAdminUserListSaga),
+    takeLatest(FETCH_ADMIN_INVITE_LIST, fetchAdminInviteListSaga),
   ]);
 }
 
