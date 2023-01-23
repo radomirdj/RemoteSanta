@@ -35,7 +35,23 @@ $content-width:1000px;
             color: variables.$color-neutral-black;
             text-transform: none;
             width: 30%;
-            height: variables.$base-unit * 6;
+            height: variables.$base-unit * 5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 2;
+            margin-right: variables.$base-unit ;
+            margin-left: variables.$base-unit;
+        }
+
+        .users-button,
+        & .users-button:hover {
+            float: right;
+            background-color: variables.$main-green;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 20%;
+            height: variables.$base-unit * 5;
             font-weight: bold;
             margin-bottom: variables.$base-unit * 2;
             margin-right: variables.$base-unit ;

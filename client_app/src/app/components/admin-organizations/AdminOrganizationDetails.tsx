@@ -43,6 +43,14 @@ const AdminOrganizationDetails = () => {
     navigate("/org-to-employee-transaction");
   };
 
+  const adminInvitesRedirect = () => {
+    navigate(`/admin-invites/${orgId}`);
+  };
+
+  const adminUsersRedirect = () => {
+    navigate(`/admin-users/${orgId}`);
+  };
+
   const columns: GridColDef[] = [
     { field: "type", headerName: "Type", width: 300 },
     { field: "createdAt", headerName: "Created At", width: 200 },
@@ -100,10 +108,28 @@ const AdminOrganizationDetails = () => {
       <AppHeaderAdmin />
       <div className="background admin-organization-details">
         <Grid container className="grid-style">
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Typography className="organization-title">
               {organization?.name}
             </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              variant="contained"
+              disableRipple
+              className="users-button"
+              onClick={adminInvitesRedirect}
+            >
+              Invites
+            </Button>
+            <Button
+              variant="contained"
+              disableRipple
+              className="users-button"
+              onClick={adminUsersRedirect}
+            >
+              Users
+            </Button>
           </Grid>
           <Grid item xs={4}>
             <Typography className="balance-title">

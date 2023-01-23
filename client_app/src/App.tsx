@@ -27,6 +27,8 @@ import AdminOrganizationDetails from "./app/components/admin-organizations/Admin
 import AdminGiftCardRequestDetails from "./app/components/admin-gift-card-requests/AdminGiftCardRequestDetails";
 import AdminToOrgTransaction from "./app/components/admin-organizations/AdminToOrgTransaction";
 import OrgToEmployeeTransaction from "./app/components/admin-organizations/OrgToEmployeeTransaction";
+import AdminUsers from "./app/components/admin-organizations/AdminInvites";
+import AdminInvites from "./app/components/admin-organizations/AdminInvites";
 
 const App = () => {
   return (
@@ -158,6 +160,22 @@ const App = () => {
           element={
             <AdminRoute>
               <AdminToOrgTransaction />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="admin-users/:id"
+          element={
+            <AdminRoute>
+              <AdminUsers />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="admin-invites/:id"
+          element={
+            <AdminRoute>
+              <AdminInvites />
             </AdminRoute>
           }
         />
