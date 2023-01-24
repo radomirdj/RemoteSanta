@@ -12,7 +12,15 @@ import {
   gridClasses,
   GridRenderCellParams,
 } from "@mui/x-data-grid";
-import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Grid,
+  IconButton,
+  Modal,
+  Typography,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
@@ -28,6 +36,13 @@ const AdminInvites = () => {
   const adminInviteList = useSelector(getAdminInviteListSelector);
   const rowsPerPage = 7;
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    dispatch(fetchAdminInviteList({ organizationId: orgId }));
+  }, [dispatch, orgId]);
 
   const resendButton = (params: GridRenderCellParams) => {
     return (
@@ -95,9 +110,18 @@ const AdminInvites = () => {
     },
   }));
 
-  useEffect(() => {
-    dispatch(fetchAdminInviteList({ organizationId: orgId }));
-  }, [dispatch, orgId]);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #ffffff",
+    borderRadius: "24px",
+    p: 4,
+  };
+
   return (
     <>
       <AppHeaderAdmin />
@@ -111,10 +135,23 @@ const AdminInvites = () => {
               disableRipple
               variant="contained"
               className="add-button"
+              onClick={handleOpen}
               startIcon={<AddIcon className="add-icon" />}
             >
               Add new invite
             </Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Card sx={style}>
+                <Typography className="send-invite-title" variant="h5">
+                  Send an invite
+                </Typography>
+              </Card>
+            </Modal>
           </Grid>
           <Box className="box-style">
             <StripedDataGrid
