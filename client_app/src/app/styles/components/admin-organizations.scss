@@ -9,12 +9,12 @@ $content-width:800px;
     .grid-style{
         max-width: $content-width;
         justify-content: center;
-        padding-top: variables.$base-unit * 3;
+        padding-top: variables.$base-unit * 5;
 
         .organizations-title{
             font-family: "Montserrat";
             font-size: variables.$font-size-title;
-            margin-bottom: variables.$base-unit * 3;
+            margin-bottom: variables.$base-unit ;
             width: max-content;
         }
     }
