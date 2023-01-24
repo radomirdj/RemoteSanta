@@ -1,6 +1,7 @@
 @use "./../variables.scss";
 
 $content-width:1000px;
+$back-icon-margin-bottom:3px;
 
 .admin-organization-details{
     background-image: url("./../../assets/home-image.svg");
@@ -8,7 +9,7 @@ $content-width:1000px;
     .grid-style{
         max-width: $content-width;
         justify-content: center;
-        padding-top: variables.$base-unit * 7;
+        padding-top: variables.$base-unit * 10;
 
         .organization-title{
             font-family: "Montserrat";
@@ -56,6 +57,20 @@ $content-width:1000px;
             margin-bottom: variables.$base-unit * 2;
             margin-right: variables.$base-unit ;
             margin-left: variables.$base-unit;
+        }
+
+        .back-button,
+        & .back-button:hover {
+            float: left;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height: $button-details-height;
+            font-weight: bold;
+            background-color: variables.$main-yellow;
+
+            .back-icon{
+                margin-bottom: $back-icon-margin-bottom;
+            }
         }
     }
 

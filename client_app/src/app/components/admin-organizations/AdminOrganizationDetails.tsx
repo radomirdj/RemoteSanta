@@ -18,6 +18,7 @@ import CustomPagination from "../custom-pagination/CustomPagination";
 import { fetchAdminOrganization } from "../../store/admin-organization/actions";
 import { getAdminOrganizationSelector } from "../../store/admin-organization/selectors";
 import { Add } from "@mui/icons-material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const AdminOrganizationDetails = () => {
   const params = useParams();
@@ -34,6 +35,10 @@ const AdminOrganizationDetails = () => {
     dispatch(fetchAdminOrganizationTransactionList({ organizationId: orgId }));
     dispatch(fetchAdminOrganization({ organizationId: orgId }));
   }, [dispatch]);
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const adminToOrgRedirect = () => {
     navigate("/admin-to-org-transaction");
@@ -185,6 +190,17 @@ const AdminOrganizationDetails = () => {
               }
             />
           </Box>
+          <Grid item xs={12}>
+            <Button
+              disableRipple
+              variant="text"
+              className="back-button"
+              startIcon={<ChevronLeftIcon className="back-icon" />}
+              onClick={goBack}
+            >
+              Back
+            </Button>
+          </Grid>
         </Grid>
       </div>
       <AppFooter />
