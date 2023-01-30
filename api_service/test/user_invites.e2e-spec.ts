@@ -82,7 +82,7 @@ describe('user-invites', () => {
         )
         .expect(200);
       const rspInvites = response.body;
-      expect(rspInvites.length).toEqual(0);
+      expect(rspInvites.length).toEqual(1);
     });
 
     it('/ (GET) - NON USER_MANAGER user, get USER_INVITE list', async () => {
