@@ -241,6 +241,16 @@ export const userInviteCanceled = {
   orgName: org1.name,
 };
 
+export const userInviteOrg2 = {
+  id: 'd4435ad3-35f7-47b6-ba8b-5f7e5e4db3d9',
+  code: 'BBCDEF',
+  email: 'email@2invite.com',
+  status: 'ACTIVE',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: '62b1828e-0b0f-4123-af61-531e7967134c',
+  orgName: org1.name,
+};
+
 export const claimPointsEvent10Id = 'e545e477-d10a-48da-9c1f-919cb456e64a';
 
 export const lastClaimPointsEvent = {

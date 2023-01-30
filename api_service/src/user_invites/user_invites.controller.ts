@@ -32,6 +32,6 @@ export class UserInvitesController {
 
   @Post('/:id/cancel')
   async cancelUserInvite(@CurrentUser() user: User, @Param('id') id: string) {
-    return this.userInvitesService.cancelUserInvite(id, user.orgId);
+    return this.userInvitesService.cancelUserInvite(id, user.orgId, false);
   }
 }
