@@ -78,11 +78,15 @@ export class UserInvitesService {
     });
   }
 
-  async cancelUserInvite(id: string, orgId: string) {
+  async cancelUserInvite(
+    id: string,
+    orgId: string | null,
+    isAdmin: boolean | null,
+  ) {
     const userInvite = await this.prisma.userInvite.findUnique({
       where: { id },
     });
-    if (!userInvite || userInvite.orgId !== orgId)
+    if (!userInvite || (!isAdmin && userInvite.orgId !== orgId))
       throw new NotFoundException('UserInvite not found');
 
     if (userInvite.status !== UserInviteStatusEnum.ACTIVE) {
