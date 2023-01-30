@@ -1,5 +1,10 @@
 import axios from "axios";
 import {
+  FetchAdminGiftCardRequestPayload,
+  FetchAdminGiftCardRequestUserPayload,
+  IAdminGiftCardRequest,
+} from "../store/admin-gift-card-requests/types";
+import {
   FetchAdminOrganizationTransactionListPayload,
   IAdminOrganizationTransaction,
   PostAdminToOrgTransactionPayload,
@@ -13,6 +18,7 @@ import {
   IAdminOrganization,
   IAdminUser,
 } from "../store/admin-organization/types";
+import { AuthUser } from "../store/auth/types";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -95,3 +101,22 @@ export const postOrganizationToEmployeesTransaction = (
     }
   );
 };
+
+export const getAdminGiftCardRequest = (
+  payload: FetchAdminGiftCardRequestPayload,
+  token: string
+) =>
+  api.get<IAdminGiftCardRequest>(
+    `admin/gift-card-requests/${payload.giftCardRequestId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+
+export const getAdminGiftCardRequestUser = (
+  payload: FetchAdminGiftCardRequestUserPayload,
+  token: string
+) =>
+  api.get<AuthUser>(`admin/users/${payload.userId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
