@@ -8,7 +8,7 @@ import {
 import { getSelfRequest } from "../../store/auth/actions";
 import { UserRole } from "../../enums/UserRole";
 
-function AdminRoute({ children }: { children: ReactNode }) {
+function UserManagerRoute({ children }: { children: ReactNode }) {
   const stateToken = useSelector(getAuthUserTokenSelector);
   const stateUserRole = useSelector(getAuthUserRoleSelector);
   let token = localStorage.getItem("token");
@@ -26,10 +26,13 @@ function AdminRoute({ children }: { children: ReactNode }) {
   if (!token) {
     return <Navigate to="/login" replace />;
   }
-  if (userRole !== UserRole.ADMIN) {
+  if (userRole === UserRole.ADMIN) {
+    return <Navigate to="/admin-home" replace />;
+  }
+  if (userRole === UserRole.BASIC_USER) {
     return <Navigate to="/" replace />;
   }
   return <div>{children}</div>;
 }
 
-export default AdminRoute;
+export default UserManagerRoute;
