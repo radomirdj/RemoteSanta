@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  declineAdminGiftCardRequest,
   fetchAdminGiftCardRequest,
   fulfillAdminGiftCardRequest,
 } from "../../store/admin-gift-card-requests/actions";
@@ -34,6 +35,13 @@ const AdminGiftCardRequestDetails = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const {
+    register: registerDecline,
+    formState: { errors: errorsDecline },
+    handleSubmit: handleSubmitDecline,
+  } = useForm();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,6 +54,18 @@ const AdminGiftCardRequestDetails = () => {
         {
           giftCardRequestId: giftCardRequestId,
           fulfillData: { url: data.url, description: data.desctiption },
+        },
+        navigate
+      )
+    );
+  };
+
+  const onSubmitDecline = (data: any) => {
+    dispatch(
+      declineAdminGiftCardRequest(
+        {
+          giftCardRequestId: giftCardRequestId,
+          declineData: { adminComment: data.comment },
         },
         navigate
       )
@@ -102,9 +122,11 @@ const AdminGiftCardRequestDetails = () => {
                 Company name: {adminGiftCardRequestUser?.org?.name}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <Typography className="details-style-full">Actions</Typography>
-              <Divider className="divider-style" />
+            <Grid item xs={6}>
+              <Typography className="details-style-full">
+                Fulfill Gift Card Request
+              </Typography>
+              <Divider className="divider-style-not-full" />
               <form onSubmit={handleSubmit(onSubmit)}>
                 <TextField
                   error={errors.url ? true : false}
@@ -128,6 +150,7 @@ const AdminGiftCardRequestDetails = () => {
                   multiline
                   rows={2}
                   variant="outlined"
+                  className="description-input"
                   {...register("description")}
                 />
                 <Button
@@ -137,6 +160,38 @@ const AdminGiftCardRequestDetails = () => {
                   type="submit"
                 >
                   Fulfill
+                </Button>
+              </form>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography className="details-style-full">
+                Decline Gift Card Request
+              </Typography>
+              <Divider className="divider-style" />
+              <form onSubmit={handleSubmitDecline(onSubmitDecline)}>
+                <TextField
+                  id="standard-multiline-static"
+                  label="Comment"
+                  multiline
+                  rows={2}
+                  variant="outlined"
+                  {...registerDecline("comment", {
+                    required: true,
+                  })}
+                />
+                {/*LABELS */}
+                {errorsDecline.comment?.type === "required" && (
+                  <Typography className="details-error-fe">
+                    Comment is required.
+                  </Typography>
+                )}
+                <Button
+                  variant="contained"
+                  className="decline-button"
+                  disableRipple
+                  type="submit"
+                >
+                  Decline
                 </Button>
               </form>
             </Grid>

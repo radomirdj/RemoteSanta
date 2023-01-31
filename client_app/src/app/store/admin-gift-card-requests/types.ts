@@ -99,7 +99,7 @@ export interface FulfillAdminGiftCardRequestFailurePayload {
 }
 
 export interface DeclineAdminGiftCardRequestPayload {
-  giftCardRequestId: number;
+  giftCardRequestId: string;
   declineData: IDeclinePayload;
 }
 
