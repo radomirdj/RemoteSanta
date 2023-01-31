@@ -1,12 +1,16 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
+  cancelInviteAdmin,
   getAdminInviteList,
   getAdminOrganization,
   getAdminOrganizationList,
   getAdminUserList,
+  postInviteAdmin,
 } from "../../services/api-service";
 import {
+  cancelAdminInviteFailure,
+  cancelAdminInviteSuccess,
   fetchAdminInviteListFailure,
   fetchAdminInviteListSuccess,
   fetchAdminOrganizationFailure,
@@ -15,20 +19,26 @@ import {
   fetchAdminOrganizationSuccess,
   fetchAdminUserListFailure,
   fetchAdminUserListSuccess,
+  postAdminInviteFailure,
+  postAdminInviteSuccess,
 } from "./actions";
 import {
+  CANCEL_ADMIN_INVITE,
   FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_LIST,
   FETCH_ADMIN_USER_LIST,
+  POST_ADMIN_INVITE,
 } from "./actionTypes";
 import {
+  CancelAdminInvite,
   FetchAdminInviteList,
   FetchAdminOrganization,
   FetchAdminUserList,
   IAdminInvite,
   IAdminOrganization,
   IAdminUser,
+  PostAdminInvite,
 } from "./types";
 
 /*
@@ -121,6 +131,36 @@ function* fetchAdminInviteListSaga(action: FetchAdminInviteList) {
   }
 }
 
+function* postAdminInviteSaga(action: PostAdminInvite) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postInviteAdmin, action.payload, token);
+    yield put(postAdminInviteSuccess());
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      postAdminInviteFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+function* cancelAdminInviteSaga(action: CancelAdminInvite) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(cancelInviteAdmin, action.payload, token);
+    yield put(cancelAdminInviteSuccess());
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      cancelAdminInviteFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -131,6 +171,8 @@ function* AdminOrganizationSaga() {
     takeLatest(FETCH_ADMIN_ORGANIZATION, fetchAdminOrganizationSaga),
     takeLatest(FETCH_ADMIN_USER_LIST, fetchAdminUserListSaga),
     takeLatest(FETCH_ADMIN_INVITE_LIST, fetchAdminInviteListSaga),
+    takeLatest(POST_ADMIN_INVITE, postAdminInviteSaga),
+    takeLatest(CANCEL_ADMIN_INVITE, cancelAdminInviteSaga),
   ]);
 }
 

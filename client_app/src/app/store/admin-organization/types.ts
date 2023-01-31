@@ -11,6 +11,12 @@ import {
   FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_INVITE_LIST_SUCCESS,
   FETCH_ADMIN_INVITE_LIST_FAILURE,
+  POST_ADMIN_INVITE,
+  POST_ADMIN_INVITE_SUCCESS,
+  POST_ADMIN_INVITE_FAILURE,
+  CANCEL_ADMIN_INVITE,
+  CANCEL_ADMIN_INVITE_SUCCESS,
+  CANCEL_ADMIN_INVITE_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -43,6 +49,10 @@ export interface AdminOrganizationState {
   adminUserList: IAdminUser[];
   adminInviteList: IAdminInvite[];
   error: string | null;
+}
+
+export interface IAdminInvite {
+  email: string;
 }
 
 export interface FetchAdminOrganizationListSuccessPayload {
@@ -86,6 +96,23 @@ export interface FetchAdminInviteListSuccessPayload {
 }
 
 export interface FetchAdminInviteListFailurePayload {
+  error: string;
+}
+
+export interface PostAdminInvitePayload {
+  orgId: string;
+  inviteData: IAdminInvite;
+}
+
+export interface PostAdminInviteFailurePayload {
+  error: string;
+}
+
+export interface CancelAdminInvitePayload {
+  inviteId: string;
+}
+
+export interface CancelAdminInviteFailurePayload {
   error: string;
 }
 
@@ -148,6 +175,34 @@ export interface FetchAdminInviteListFailure {
   payload: FetchAdminInviteListFailurePayload;
 }
 
+export interface PostAdminInvite {
+  type: typeof POST_ADMIN_INVITE;
+  payload: PostAdminInvitePayload;
+}
+
+export type PostAdminInviteSuccess = {
+  type: typeof POST_ADMIN_INVITE_SUCCESS;
+};
+
+export type PostAdminInviteFailure = {
+  type: typeof POST_ADMIN_INVITE_FAILURE;
+  payload: PostAdminInviteFailurePayload;
+};
+
+export interface CancelAdminInvite {
+  type: typeof CANCEL_ADMIN_INVITE;
+  payload: CancelAdminInvitePayload;
+}
+
+export type CancelAdminInviteSuccess = {
+  type: typeof CANCEL_ADMIN_INVITE_SUCCESS;
+};
+
+export type CancelAdminInviteFailure = {
+  type: typeof CANCEL_ADMIN_INVITE_FAILURE;
+  payload: CancelAdminInviteFailurePayload;
+};
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
@@ -160,4 +215,10 @@ export type AdminOrganizationActions =
   | FetchAdminUserListFailure
   | FetchAdminInviteList
   | FetchAdminInviteListSuccess
-  | FetchAdminInviteListFailure;
+  | FetchAdminInviteListFailure
+  | PostAdminInvite
+  | PostAdminInviteSuccess
+  | PostAdminInviteFailure
+  | CancelAdminInvite
+  | CancelAdminInviteSuccess
+  | CancelAdminInviteFailure;

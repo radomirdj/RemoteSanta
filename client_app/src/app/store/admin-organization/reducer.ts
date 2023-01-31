@@ -12,6 +12,12 @@ import {
   FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_INVITE_LIST_SUCCESS,
   FETCH_ADMIN_INVITE_LIST_FAILURE,
+  POST_ADMIN_INVITE,
+  POST_ADMIN_INVITE_SUCCESS,
+  POST_ADMIN_INVITE_FAILURE,
+  CANCEL_ADMIN_INVITE,
+  CANCEL_ADMIN_INVITE_SUCCESS,
+  CANCEL_ADMIN_INVITE_FAILURE,
 } from "./actionTypes";
 
 import { AdminOrganizationActions, AdminOrganizationState } from "./types";
@@ -101,6 +107,40 @@ export default (state = initialState, action: AdminOrganizationActions) => {
         ...state,
         pending: false,
         adminInviteList: [],
+        error: action.payload.error,
+      };
+    case POST_ADMIN_INVITE:
+      return {
+        ...state,
+        pending: true,
+      };
+    case POST_ADMIN_INVITE_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case POST_ADMIN_INVITE_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case CANCEL_ADMIN_INVITE:
+      return {
+        ...state,
+        pending: true,
+      };
+    case CANCEL_ADMIN_INVITE_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case CANCEL_ADMIN_INVITE_FAILURE:
+      return {
+        ...state,
+        pending: false,
         error: action.payload.error,
       };
     default:

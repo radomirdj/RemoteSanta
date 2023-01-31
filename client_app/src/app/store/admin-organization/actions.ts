@@ -11,6 +11,12 @@ import {
   FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_INVITE_LIST_SUCCESS,
   FETCH_ADMIN_INVITE_LIST_FAILURE,
+  POST_ADMIN_INVITE,
+  POST_ADMIN_INVITE_SUCCESS,
+  POST_ADMIN_INVITE_FAILURE,
+  CANCEL_ADMIN_INVITE,
+  CANCEL_ADMIN_INVITE_SUCCESS,
+  CANCEL_ADMIN_INVITE_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationList,
@@ -36,6 +42,16 @@ import {
   FetchAdminInviteListSuccess,
   FetchAdminInviteListFailure,
   FetchAdminInviteListFailurePayload,
+  PostAdminInvitePayload,
+  PostAdminInvite,
+  PostAdminInviteSuccess,
+  PostAdminInviteFailurePayload,
+  PostAdminInviteFailure,
+  CancelAdminInvitePayload,
+  CancelAdminInvite,
+  CancelAdminInviteSuccess,
+  CancelAdminInviteFailurePayload,
+  CancelAdminInviteFailure,
 } from "./types";
 
 export const fetchAdminOrganizationList = (): FetchAdminOrganizationList => ({
@@ -116,5 +132,41 @@ export const fetchAdminInviteListFailure = (
   payload: FetchAdminInviteListFailurePayload
 ): FetchAdminInviteListFailure => ({
   type: FETCH_ADMIN_INVITE_LIST_FAILURE,
+  payload,
+});
+
+export const postAdminInvite = (
+  payload: PostAdminInvitePayload
+): PostAdminInvite => ({
+  type: POST_ADMIN_INVITE,
+  payload,
+});
+
+export const postAdminInviteSuccess = (): PostAdminInviteSuccess => ({
+  type: POST_ADMIN_INVITE_SUCCESS,
+});
+
+export const postAdminInviteFailure = (
+  payload: PostAdminInviteFailurePayload
+): PostAdminInviteFailure => ({
+  type: POST_ADMIN_INVITE_FAILURE,
+  payload,
+});
+
+export const cancelAdminInvite = (
+  payload: CancelAdminInvitePayload
+): CancelAdminInvite => ({
+  type: CANCEL_ADMIN_INVITE,
+  payload,
+});
+
+export const cancelAdminInviteSuccess = (): CancelAdminInviteSuccess => ({
+  type: CANCEL_ADMIN_INVITE_SUCCESS,
+});
+
+export const cancelAdminInviteFailure = (
+  payload: CancelAdminInviteFailurePayload
+): CancelAdminInviteFailure => ({
+  type: CANCEL_ADMIN_INVITE_FAILURE,
   payload,
 });

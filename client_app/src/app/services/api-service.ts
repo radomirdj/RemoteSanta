@@ -13,12 +13,14 @@ import {
   PostOrgToEmployeesTransactionPayload,
 } from "../store/admin-organization-transaction/types";
 import {
+  CancelAdminInvitePayload,
   FetchAdminInviteListPayload,
   FetchAdminOrganizationPayload,
   FetchAdminUserListPayload,
   IAdminInvite,
   IAdminOrganization,
   IAdminUser,
+  PostAdminInvitePayload,
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
 
@@ -147,4 +149,26 @@ export const declineGiftCardRequest = (
       headers: { Authorization: `Bearer ${token}` },
     }
   );
+};
+
+export const postInviteAdmin = (
+  payload: PostAdminInvitePayload,
+  token: string
+) => {
+  return api.post<string>(
+    `admin/orgs/${payload.orgId}/user-invites/`,
+    payload.inviteData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const cancelInviteAdmin = (
+  payload: CancelAdminInvitePayload,
+  token: string
+) => {
+  return api.post<string>(`admin/user-invites/${payload.inviteId}/cancel`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
