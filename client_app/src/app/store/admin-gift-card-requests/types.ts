@@ -9,6 +9,12 @@ import {
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER,
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER_SUCCESS,
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER_FAILURE,
+  FULFILL_ADMIN_GIFT_CARD_REQUEST,
+  FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS,
+  FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE,
+  DECLINE_ADMIN_GIFT_CARD_REQUEST,
+  DECLINE_ADMIN_GIFT_CARD_REQUEST_SUCCESS,
+  DECLINE_ADMIN_GIFT_CARD_REQUEST_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminGiftCardIntegration {
@@ -42,6 +48,15 @@ export interface AdminGiftCardRequestState {
   error: string | null;
 }
 
+export interface IFulfillPayload {
+  description?: string;
+  url: string;
+}
+
+export interface IDeclinePayload {
+  adminComment: string;
+}
+
 export interface FetchAdminGiftCardRequestListSuccessPayload {
   adminGiftCardRequestList: IAdminGiftCardRequest[];
 }
@@ -71,6 +86,24 @@ export interface FetchAdminGiftCardRequestUserSuccessPayload {
 }
 
 export interface FetchAdminGiftCardRequestUserFailurePayload {
+  error: string;
+}
+
+export interface FulfillAdminGiftCardRequestPayload {
+  giftCardRequestId: string;
+  fulfillData: IFulfillPayload;
+}
+
+export interface FulfillAdminGiftCardRequestFailurePayload {
+  error: string;
+}
+
+export interface DeclineAdminGiftCardRequestPayload {
+  giftCardRequestId: number;
+  declineData: IDeclinePayload;
+}
+
+export interface DeclineAdminGiftCardRequestFailurePayload {
   error: string;
 }
 
@@ -118,6 +151,36 @@ export interface FetchAdminGiftCardRequestUserFailure {
   payload: FetchAdminGiftCardRequestUserFailurePayload;
 }
 
+export interface FulfillAdminGiftCardRequest {
+  type: typeof FULFILL_ADMIN_GIFT_CARD_REQUEST;
+  payload: FulfillAdminGiftCardRequestPayload;
+  navigate: Function;
+}
+
+export type FulfillAdminGiftCardRequestSuccess = {
+  type: typeof FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS;
+};
+
+export type FulfillAdminGiftCardRequestFailure = {
+  type: typeof FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE;
+  payload: FulfillAdminGiftCardRequestFailurePayload;
+};
+
+export interface DeclineAdminGiftCardRequest {
+  type: typeof DECLINE_ADMIN_GIFT_CARD_REQUEST;
+  payload: DeclineAdminGiftCardRequestPayload;
+  navigate: Function;
+}
+
+export type DeclineAdminGiftCardRequestSuccess = {
+  type: typeof DECLINE_ADMIN_GIFT_CARD_REQUEST_SUCCESS;
+};
+
+export type DeclineAdminGiftCardRequestFailure = {
+  type: typeof DECLINE_ADMIN_GIFT_CARD_REQUEST_FAILURE;
+  payload: DeclineAdminGiftCardRequestFailurePayload;
+};
+
 export type AdminGiftCardRequestActions =
   | FetchAdminGiftCardRequestList
   | FetchAdminGiftCardRequestListSuccess
@@ -127,4 +190,10 @@ export type AdminGiftCardRequestActions =
   | FetchAdminGiftCardRequestFailure
   | FetchAdminGiftCardRequestUser
   | FetchAdminGiftCardRequestUserSuccess
-  | FetchAdminGiftCardRequestUserFailure;
+  | FetchAdminGiftCardRequestUserFailure
+  | FulfillAdminGiftCardRequest
+  | FulfillAdminGiftCardRequestSuccess
+  | FulfillAdminGiftCardRequestFailure
+  | DeclineAdminGiftCardRequest
+  | DeclineAdminGiftCardRequestSuccess
+  | DeclineAdminGiftCardRequestFailure;

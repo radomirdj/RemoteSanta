@@ -29,6 +29,8 @@ import AdminToOrgTransaction from "./app/components/admin-organizations/AdminToO
 import OrgToEmployeeTransaction from "./app/components/admin-organizations/OrgToEmployeeTransaction";
 import AdminInvites from "./app/components/admin-organizations/AdminInvites";
 import AdminUsers from "./app/components/admin-organizations/AdminUsers";
+import FulFillGiftCardRequestSuccess from "./app/components/admin-gift-card-requests/FulfillGiftCardRequestSuccess";
+import DeclineGiftCardRequestSuccess from "./app/components/admin-gift-card-requests/DeclineGiftCardRequestSuccess";
 
 const App = () => {
   return (
@@ -192,6 +194,22 @@ const App = () => {
           element={
             <AdminRoute>
               <AdminGiftCardRequestDetails />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="fulfill-gift-card-request-sucess"
+          element={
+            <AdminRoute>
+              <FulFillGiftCardRequestSuccess />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="decline-gift-card-request-sucess"
+          element={
+            <AdminRoute>
+              <DeclineGiftCardRequestSuccess />
             </AdminRoute>
           }
         />
