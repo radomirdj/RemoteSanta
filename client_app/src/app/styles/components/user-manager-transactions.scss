@@ -1,3 +1,57 @@
+@use "./../variables.scss";
+
+$content-width:1000px;
+
 .user-manager-transactions{
     background-image: url("./../../assets/home-image.svg");
+
+    .grid-style{
+        max-width: $content-width;
+        justify-content: center;
+        padding-top: variables.$base-unit * 10;
+
+        .organization-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            width: max-content;
+            margin-left: variables.$base-unit;
+        }
+
+        .balance-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-large;
+            float: right;
+            margin-top: variables.$base-unit;
+            margin-right: variables.$base-unit;
+            width: max-content;
+        }
+    }
+
+    .box-style{
+        height: 525px;
+        width: 100%;
+    }
+
+    .data-grid{
+        width: $content-width;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: variables.$base-unit * 3;
+        background-color: white;
+        font-family: "Montserrat";
+        border: none;
+        overflow: hidden;
+    }
+}
+
+.MuiDataGrid-cell:focus{
+    outline: none !important;
+}
+
+.MuiDataGrid-cell:focus-within{
+    outline: none !important;
+}
+
+.MuiDataGrid-columnHeader:focus{
+    outline: none !important;
 }
