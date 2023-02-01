@@ -1,3 +1,63 @@
+@use "./../variables.scss";
+
+$button-details-height: 36px;
+$content-width:1000px;
+
 .user-manager-users{
     background-image: url("./../../assets/home-image.svg");
+
+    .grid-style{
+        max-width: $content-width;
+        justify-content: center;
+        padding-top: variables.$base-unit * 5;
+
+        .users-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            margin-bottom: variables.$base-unit;
+            width: max-content;
+        }
+    }
+
+    .box-style{
+        height: 525px;
+        width: 100%;
+    }
+
+    .data-grid{
+        width: $content-width;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: variables.$base-unit * 3;
+        background-color: white;
+        font-family: "Montserrat";
+        border: none;
+        overflow: hidden;
+
+        .button-details{
+            float: right;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 30%;
+            height: $button-details-height;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
+    }
+}
+
+.MuiDataGrid-cell:focus{
+    outline: none !important;
+}
+
+.MuiDataGrid-cell:focus-within{
+    outline: none !important;
+}
+
+.MuiDataGrid-columnHeader:focus{
+    outline: none !important;
 }
