@@ -5,6 +5,9 @@ import {
   FETCH_ORG_TRANSACTION_LIST,
   FETCH_ORG_TRANSACTION_LIST_SUCCESS,
   FETCH_ORG_TRANSACTION_LIST_FAILURE,
+  FETCH_ORG_USER_LIST,
+  FETCH_ORG_USER_LIST_SUCCESS,
+  FETCH_ORG_USER_LIST_FAILURE,
 } from "./actionTypes";
 import {
   FetchOrganization,
@@ -17,6 +20,11 @@ import {
   FetchOrganizationTransactionListSuccess,
   FetchOrganizationTransactionListFailurePayload,
   FetchOrganizationTransactionListFailure,
+  FetchOrganizationUserList,
+  FetchOrganizationUserListSuccessPayload,
+  FetchOrganizationUserListSuccess,
+  FetchOrganizationUserListFailurePayload,
+  FetchOrganizationUserListFailure,
 } from "./types";
 
 export const fetchOrganization = (): FetchOrganization => ({
@@ -53,5 +61,23 @@ export const fetchOrganizationTransactionListFailure = (
   payload: FetchOrganizationTransactionListFailurePayload
 ): FetchOrganizationTransactionListFailure => ({
   type: FETCH_ORG_TRANSACTION_LIST_FAILURE,
+  payload,
+});
+
+export const fetchOrganizationUserList = (): FetchOrganizationUserList => ({
+  type: FETCH_ORG_USER_LIST,
+});
+
+export const fetchOrganizationUserListSuccess = (
+  payload: FetchOrganizationUserListSuccessPayload
+): FetchOrganizationUserListSuccess => ({
+  type: FETCH_ORG_USER_LIST_SUCCESS,
+  payload,
+});
+
+export const fetchOrganizationUserListFailure = (
+  payload: FetchOrganizationUserListFailurePayload
+): FetchOrganizationUserListFailure => ({
+  type: FETCH_ORG_USER_LIST_FAILURE,
   payload,
 });

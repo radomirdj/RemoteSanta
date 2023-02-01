@@ -9,4 +9,7 @@ export const getOrganizationSelector = (state: AppState) =>
 export const getOrganizationTransactionListSelector = (state: AppState) =>
   state.organization.orgTransactionList;
 
+export const getOrganizationUserListSelector = (state: AppState) =>
+  state.organization.orgUserList;
+
 export const getErrorSelector = (state: AppState) => state.organization.error;

@@ -6,6 +6,9 @@ import {
   FETCH_ORG_TRANSACTION_LIST,
   FETCH_ORG_TRANSACTION_LIST_SUCCESS,
   FETCH_ORG_TRANSACTION_LIST_FAILURE,
+  FETCH_ORG_USER_LIST,
+  FETCH_ORG_USER_LIST_SUCCESS,
+  FETCH_ORG_USER_LIST_FAILURE,
 } from "./actionTypes";
 
 export interface IOrganization {
@@ -26,10 +29,18 @@ export interface IOrgTransaction {
   event?: IClaimPointEvent;
 }
 
+export interface IOrgUser {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface OrganizationState {
   pending: boolean;
   organization: IOrganization | null;
   orgTransactionList: IOrgTransaction[];
+  orgUserList: IOrgUser[];
   error: string | null;
 }
 
@@ -46,6 +57,14 @@ export interface FetchOrganizationTransactionListSuccessPayload {
 }
 
 export interface FetchOrganizationTransactionListFailurePayload {
+  error: string;
+}
+
+export interface FetchOrganizationUserListSuccessPayload {
+  orgUserList: IOrgUser[];
+}
+
+export interface FetchOrganizationUserListFailurePayload {
   error: string;
 }
 
@@ -77,10 +96,27 @@ export interface FetchOrganizationTransactionListFailure {
   payload: FetchOrganizationTransactionListFailurePayload;
 }
 
+export interface FetchOrganizationUserList {
+  type: typeof FETCH_ORG_USER_LIST;
+}
+
+export interface FetchOrganizationUserListSuccess {
+  type: typeof FETCH_ORG_USER_LIST_SUCCESS;
+  payload: FetchOrganizationUserListSuccessPayload;
+}
+
+export interface FetchOrganizationUserListFailure {
+  type: typeof FETCH_ORG_USER_LIST_FAILURE;
+  payload: FetchOrganizationUserListFailurePayload;
+}
+
 export type OrganizationActions =
   | FetchOrganization
   | FetchOrganizationSuccess
   | FetchOrganizationFailure
   | FetchOrganizationTransactionList
   | FetchOrganizationTransactionListSuccess
-  | FetchOrganizationTransactionListFailure;
+  | FetchOrganizationTransactionListFailure
+  | FetchOrganizationUserList
+  | FetchOrganizationUserListSuccess
+  | FetchOrganizationUserListFailure;
