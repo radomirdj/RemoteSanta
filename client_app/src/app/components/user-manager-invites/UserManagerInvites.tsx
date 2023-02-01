@@ -21,6 +21,7 @@ import {
   Grid,
   IconButton,
   Modal,
+  TextField,
   Typography,
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -28,6 +29,8 @@ import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import AddIcon from "@mui/icons-material/Add";
+import { useForm } from "react-hook-form";
+import { getEmailRegex } from "../../utils/Utils";
 
 const UserManagerInvites = () => {
   const dispatch = useDispatch();
@@ -35,15 +38,22 @@ const UserManagerInvites = () => {
   const userInviteList = useSelector(getUserInviteListSelector);
   const rowsPerPage = 7;
   const [open, setOpen] = React.useState(false);
-
   const handleOpen = () => setOpen(true);
-
   const handleClose = () => setOpen(false);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   useEffect(() => {
     dispatch(fetchOrganization());
     dispatch(fetchUserInviteList({ organizationId: organization?.id || "" }));
   }, [dispatch]);
+
+  const onSubmitInvite = (data: any) => {
+    //dispatch(loginRequest(data));
+  };
 
   const resendButton = (params: GridRenderCellParams) => {
     return (
@@ -145,6 +155,33 @@ const UserManagerInvites = () => {
             >
               <Card sx={style}>
                 <Typography variant="h5">Send an invite</Typography>
+                <form onSubmit={handleSubmit(onSubmitInvite)}>
+                  <TextField
+                    error={errors.email ? true : false}
+                    id="outlined-basic"
+                    label="Email"
+                    variant="outlined"
+                    className={
+                      errors.email ? "email-input-with-error" : "email-input"
+                    }
+                    {...register("email", {
+                      required: true,
+                      pattern: getEmailRegex(),
+                    })}
+                  />
+                  {/*LABELS */}
+                  {errors.email?.type === "required" && (
+                    <Typography className="invite-error-fe">
+                      Email is required.
+                    </Typography>
+                  )}
+                  {/*LABELS */}
+                  {errors.email?.type === "pattern" && (
+                    <Typography className="invite-error-fe">
+                      Email should be an email.
+                    </Typography>
+                  )}
+                </form>
               </Card>
             </Modal>
           </Grid>

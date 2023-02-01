@@ -73,6 +73,27 @@ $content-width:800px;
             }
         }
     }
+
+    .MuiFormControl-root {
+        margin: 0px;
+        width: 100%;
+        border-radius: variables.$base-unit;
+        margin-bottom: variables.$base-unit;
+    
+        .MuiOutlinedInput-root {
+          border-radius: variables.$base-unit;
+        }
+    
+        .MuiOutlinedInput-root.Mui-error {
+          .MuiOutlinedInput-notchedOutline {
+            border-color: variables.$error-color;
+          }
+        }
+    
+        .MuiFormLabel-root.Mui-error {
+          color: $login-error-label-color;
+        }
+      }
 }
 
 .MuiModal-root{
@@ -85,5 +106,25 @@ $content-width:800px;
             margin-bottom: variables.$base-unit * 4;
             width: max-content;
         }
+
+        .invite-error-fe {
+            font-size: variables.$font-size-small;
+            color: variables.$error-color;
+            text-align: start;
+            margin-bottom: variables.$base-unit * 2;
+            display: inline-flex;
+            width: 100%;
+          }
+          .email-input {
+            margin-bottom: variables.$base-unit * 3 !important;
+            margin-left:variables.$base-unit * 3;
+            width: 88%;
+          }
+        
+          .email-input-with-error {
+            margin-bottom: 0px !important;
+            margin-left:variables.$base-unit * 3;
+            width: 88%;
+          }
     }
 }

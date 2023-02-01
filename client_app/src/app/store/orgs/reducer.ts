@@ -21,6 +21,7 @@ const initialState: OrganizationState = {
   error: null,
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action: OrganizationActions) => {
   switch (action.type) {
     case FETCH_ORGANIZATION:
@@ -51,7 +52,7 @@ export default (state = initialState, action: OrganizationActions) => {
       return {
         ...state,
         pending: false,
-        orgTansactionList: action.payload.organizationTransactionList,
+        orgTransactionList: action.payload.organizationTransactionList,
         error: null,
       };
     case FETCH_ORG_TRANSACTION_LIST_FAILURE:
