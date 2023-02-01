@@ -31,6 +31,10 @@ import AdminInvites from "./app/components/admin-organizations/AdminInvites";
 import AdminUsers from "./app/components/admin-organizations/AdminUsers";
 import FulFillGiftCardRequestSuccess from "./app/components/admin-gift-card-requests/FulfillGiftCardRequestSuccess";
 import DeclineGiftCardRequestSuccess from "./app/components/admin-gift-card-requests/DeclineGiftCardRequestSuccess";
+import UserManagerRoute from "./app/components/userManagerRoute/UserManagerRoute";
+import UserManagerTransactions from "./app/components/user-manager-transactions/UserManagerTransactions";
+import UserManagerInvites from "./app/components/user-manager-invites/UserManagerInvites";
+import UserManagerUsers from "./app/components/user-manager-users/UserManagerUsers";
 
 const App = () => {
   return (
@@ -211,6 +215,30 @@ const App = () => {
             <AdminRoute>
               <DeclineGiftCardRequestSuccess />
             </AdminRoute>
+          }
+        />
+        <Route
+          path="user-manager-transactions"
+          element={
+            <UserManagerRoute>
+              <UserManagerTransactions />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-invites"
+          element={
+            <UserManagerRoute>
+              <UserManagerInvites />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-users"
+          element={
+            <UserManagerRoute>
+              <UserManagerUsers />
+            </UserManagerRoute>
           }
         />
         <Route

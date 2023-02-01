@@ -11,12 +11,14 @@ import {
 } from "@mui/material";
 import Logo from "./../../assets/logo.svg";
 import LogoSmall from "./../../assets/logo-small.svg";
+import UserManager from "./../../assets/icons/user-manager.svg";
 import AvatarMale from "./../../assets/avatars/avatar-male.svg";
 import AvatarFemale from "./../../assets/avatars/avatar-female.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { logout } from "../../store/auth/actions";
+import { UserRole } from "../../enums/UserRole";
 
 const AppHeaderPrivate = () => {
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ const AppHeaderPrivate = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const [anchorElManager, setAnchorElManager] =
+    React.useState<null | HTMLElement>(null);
 
   const userLogout = () => {
     dispatch(logout(navigate));
@@ -36,6 +40,14 @@ const AppHeaderPrivate = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleOpenManagerMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElManager(event.currentTarget);
+  };
+
+  const handleCloseManagerMenu = () => {
+    setAnchorElManager(null);
   };
 
   const homeRedirect = () => {
@@ -58,13 +70,25 @@ const AppHeaderPrivate = () => {
     navigate("/history");
   };
 
+  const userManagerTransactionsRedirect = () => {
+    navigate("/user-manager-transactions");
+  };
+
+  const userManagerInvitesRedirect = () => {
+    navigate("/user-manager-invites");
+  };
+
+  const userManagerUsersRedirect = () => {
+    navigate("/user-manager-users");
+  };
+
   return (
     <AppBar className="app-header-private">
       <Toolbar disableGutters className="toolbar-style">
         <Grid container className="grid-style">
           <Grid
             item
-            md={7}
+            md={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
             <img src={Logo} alt="" />
@@ -72,7 +96,7 @@ const AppHeaderPrivate = () => {
           <Grid
             item
             xs={3}
-            sm={4}
+            sm={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
             sx={{
               display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
             }}
@@ -118,6 +142,59 @@ const AppHeaderPrivate = () => {
               Demo
             </Typography>
           </Grid>
+          {user.userRole === UserRole.USER_MANAGER && (
+            <Grid item xs={2} sm={2} md={1} className="align-left">
+              <IconButton
+                onClick={handleOpenManagerMenu}
+                sx={{ p: 0 }}
+                disableRipple
+              >
+                <img src={UserManager} alt="" className="user-manager-icon" />
+              </IconButton>
+              <Menu
+                sx={{ mt: "45px", width: "600px" }}
+                id="menu-appbar"
+                anchorEl={anchorElManager}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElManager)}
+                onClose={handleCloseManagerMenu}
+              >
+                {/*LABELS*/}
+                <MenuItem onClick={handleCloseManagerMenu}>
+                  <Typography
+                    textAlign="center"
+                    onClick={userManagerTransactionsRedirect}
+                  >
+                    Transactions
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    textAlign="center"
+                    onClick={userManagerInvitesRedirect}
+                  >
+                    Invites
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    textAlign="center"
+                    onClick={userManagerUsersRedirect}
+                  >
+                    Users
+                  </Typography>
+                </MenuItem>
+              </Menu>
+            </Grid>
+          )}
           <Grid item xs={2} sm={2} md={1} className="align-left">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
