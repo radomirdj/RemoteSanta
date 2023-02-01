@@ -8,6 +8,7 @@ import claimPointsEventSaga from "./claim-points-event/sagas";
 import adminGiftCardRequestSaga from "./admin-gift-card-requests/sagas";
 import adminOrganizationSaga from "./admin-organization/sagas";
 import adminOrganizationTransactionSaga from "./admin-organization-transaction/sagas";
+import organizationSaga from "./orgs/sagas";
 
 export function* rootSaga() {
   yield all([
@@ -19,5 +20,6 @@ export function* rootSaga() {
     fork(adminGiftCardRequestSaga),
     fork(adminOrganizationSaga),
     fork(adminOrganizationTransactionSaga),
+    fork(organizationSaga),
   ]);
 }

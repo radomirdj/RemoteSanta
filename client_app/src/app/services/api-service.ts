@@ -23,6 +23,7 @@ import {
   PostAdminInvitePayload,
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
+import { IOrganization, IOrgTransaction } from "../store/orgs/types";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -172,3 +173,13 @@ export const cancelInviteAdmin = (
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const getOrganization = (token: string) =>
+  api.get<IOrganization>(`orgs/current_org`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getOrganizationTransactionList = (token: string) =>
+  api.get<IOrgTransaction[]>(`orgs/current_org/transactions/`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
