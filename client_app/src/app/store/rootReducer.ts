@@ -9,6 +9,7 @@ import adminGiftCardRequestReducer from "./admin-gift-card-requests/reducer";
 import adminOrganizationReducer from "./admin-organization/reducer";
 import adminOrganizationTransactionReducer from "./admin-organization-transaction/reducer";
 import organizationReducer from "./orgs/reducer";
+import userInviteReducer from "./user-invites/reducer";
 
 const rootReducer = combineReducers({
   todo: todoReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   adminOrganization: adminOrganizationReducer,
   adminOrganizationTransaction: adminOrganizationTransactionReducer,
   organization: organizationReducer,
+  userInvite: userInviteReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -24,6 +24,12 @@ import {
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
 import { IOrganization, IOrgTransaction, IOrgUser } from "../store/orgs/types";
+import {
+  CancelUserInvitePayload,
+  FetchUserInviteListPayload,
+  IUserInvite,
+  PostUserInvitePayload,
+} from "../store/user-invites/types";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -186,5 +192,31 @@ export const getOrganizationTransactionList = (token: string) =>
 
 export const getOrganizationUserList = (token: string) =>
   api.get<IOrgUser[]>(`orgs/current_org/users/`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const cancelInviteUser = (
+  payload: CancelUserInvitePayload,
+  token: string
+) => {
+  return api.post<string>(`user-invites/${payload.inviteId}/cancel`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const postInviteUser = (
+  payload: PostUserInvitePayload,
+  token: string
+) => {
+  return api.post<string>(`user-invites/`, payload.inviteData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const getUserInviteList = (
+  payload: FetchUserInviteListPayload,
+  token: string
+) =>
+  api.get<IUserInvite[]>(`user-invites/`, {
     headers: { Authorization: `Bearer ${token}` },
   });
