@@ -1,3 +1,89 @@
+@use "./../variables.scss";
+
+$content-width:800px;
+
 .user-manager-invites{
     background-image: url("./../../assets/home-image.svg");
+
+    .grid-style{
+        max-width: $content-width;
+        justify-content: center;
+        padding-top: variables.$base-unit * 7;
+
+        .invites-title{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-title;
+            margin-bottom: variables.$base-unit;
+            width: max-content;
+        }
+
+        .add-button{
+            float: right;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 50%;
+            height: variables.$base-unit * 5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
+    }
+
+    .box-style{
+        height: 525px;
+        width: 100%;
+    }
+
+    .data-grid{
+        width: $content-width;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: variables.$base-unit * 3;
+        background-color: white;
+        font-family: "Montserrat";
+        border: none;
+        overflow: hidden;
+
+        .cancel-button,
+        & .cancel-button:hover{
+            background-color: variables.$error-color;
+            width: variables.$base-unit * 5;
+            height: variables.$base-unit * 5;
+         
+            .cancel-icon{
+                color: white;
+                width: variables.$base-unit *3;
+                height: variables.$base-unit *3;
+            }
+        }
+
+        .resend-button,
+        & .resend-button:hover{
+            background-color: variables.$color-dark-yellow;
+            width: variables.$base-unit * 5;
+            height: variables.$base-unit * 5;
+         
+            .resend-icon{
+                color: black;
+                width: variables.$base-unit *3;
+                height: variables.$base-unit *3;
+            }
+        }
+    }
+}
+
+.MuiModal-root{
+    .MuiCard-root{
+        padding-bottom: variables.$base-unit * 6;
+        .MuiTypography-h5{
+            font-family: "Montserrat";
+            margin-left:variables.$base-unit * 3;
+            font-size: variables.$font-size-larger;
+            margin-bottom: variables.$base-unit * 4;
+            width: max-content;
+        }
+    }
 }

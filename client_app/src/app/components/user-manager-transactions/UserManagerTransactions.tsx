@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthUserSelector } from "../../store/auth/selectors";
 import {
   fetchOrganization,
   fetchOrganizationTransactionList,
@@ -23,7 +22,6 @@ import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 
 const UserManagerTransactions = () => {
-  const user = useSelector(getAuthUserSelector);
   const dispatch = useDispatch();
   const organization = useSelector(getOrganizationSelector);
   const organizationTransactionList = useSelector(
