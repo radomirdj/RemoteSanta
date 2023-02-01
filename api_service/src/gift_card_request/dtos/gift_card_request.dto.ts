@@ -22,6 +22,9 @@ export class GiftCardRequestDto {
   amount: string;
 
   @Expose()
+  adminComment?: string;
+
+  @Expose()
   createdAt: Date;
 
   @Expose()

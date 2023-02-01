@@ -48,19 +48,7 @@ const UserManagerTransactions = () => {
         createdAt: new Date(organizationTransaction.createdAt)
           .toLocaleDateString()
           .replaceAll("/", "."),
-        event:
-          organizationTransaction.event?.title &&
-          organizationTransaction.event?.title
-            ? organizationTransaction.event?.title +
-              " - validTo: " +
-              new Date(
-                organizationTransaction.event?.validTo
-                  ? organizationTransaction.event?.validTo
-                  : ""
-              )
-                .toLocaleDateString()
-                .replaceAll("/", ".")
-            : "",
+        event: organizationTransaction.event?.title,
         amount: organizationTransaction.totalAmount + " PTS",
         id: organizationTransaction.id,
       };

@@ -118,6 +118,7 @@ $grid-max-width: 1200px;
         .card-declined-text{
             color: variables.$error-color;
             font-family: "Montserrat";
+            margin-top: variables.$base-unit;
         }
       
         .pending-text{

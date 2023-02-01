@@ -153,7 +153,7 @@ const AppHeaderPrivate = () => {
               </IconButton>
               <Menu
                 sx={{ mt: "45px", width: "600px" }}
-                id="menu-appbar"
+                id="menu-appbar-manager"
                 anchorEl={anchorElManager}
                 anchorOrigin={{
                   vertical: "top",
@@ -168,7 +168,7 @@ const AppHeaderPrivate = () => {
                 onClose={handleCloseManagerMenu}
               >
                 {/*LABELS*/}
-                <MenuItem onClick={handleCloseManagerMenu}>
+                <MenuItem>
                   <Typography
                     textAlign="center"
                     onClick={userManagerTransactionsRedirect}
@@ -176,7 +176,7 @@ const AppHeaderPrivate = () => {
                     Transactions
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem>
                   <Typography
                     textAlign="center"
                     onClick={userManagerInvitesRedirect}
@@ -184,7 +184,7 @@ const AppHeaderPrivate = () => {
                     Invites
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
+                <MenuItem>
                   <Typography
                     textAlign="center"
                     onClick={userManagerUsersRedirect}
@@ -204,7 +204,7 @@ const AppHeaderPrivate = () => {
             </IconButton>
             <Menu
               sx={{ mt: "45px" }}
-              id="menu-appbar"
+              id="menu-appbar-user"
               anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: "top",
@@ -219,20 +219,20 @@ const AppHeaderPrivate = () => {
               onClose={handleCloseUserMenu}
             >
               {/*LABELS*/}
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem>
                 <Typography textAlign="center" onClick={userProfileRedirect}>
                   Profile
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem>
                 <Typography textAlign="center" onClick={historyRedirect}>
                   History
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem>
                 <Typography textAlign="center">Language</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem>
                 <Typography textAlign="center" onClick={userLogout}>
                   Logout
                 </Typography>
