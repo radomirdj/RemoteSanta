@@ -8,4 +8,7 @@ export const getUserInviteListSelector = (state: AppState) =>
 export const getOpenModalSelector = (state: AppState) =>
   state.userInvite.openModal;
 
+export const getOpenDialogSelector = (state: AppState) =>
+  state.userInvite.openDialog;
+
 export const getErrorSelector = (state: AppState) => state.userInvite.error;

@@ -76,7 +76,6 @@ $content-width:800px;
 
     .MuiFormControl-root {
         margin: 0px;
-        width: 100%;
         border-radius: variables.$base-unit;
         margin-bottom: variables.$base-unit;
     
@@ -141,4 +140,34 @@ $content-width:800px;
               margin-bottom: variables.$base-unit * 2;
             }
     }
+}
+
+.MuiDialog-root{
+  .MuiDialog-container{
+    .dialog-back-button{
+      border-color: variables.$color-neutral-black;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      margin-right:variables.$base-unit;
+      width: variables.$base-unit * 10;
+      height: variables.$base-unit * 5;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit * 2;
+    }
+
+    .dialog-confirm-button{
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      margin-right:variables.$base-unit * 2;
+      width: variables.$base-unit * 10;
+      height: variables.$base-unit * 5;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit * 2;
+    }
+  }
 }

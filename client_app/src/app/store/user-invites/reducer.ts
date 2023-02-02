@@ -11,6 +11,8 @@ import {
   CANCEL_USER_INVITE_FAILURE,
   SET_OPEN_MODAL,
   SET_CLOSE_MODAL,
+  SET_OPEN_DIALOG,
+  SET_CLOSE_DIALOG,
 } from "./actionTypes";
 
 import { UserInviteActions, UserInviteState } from "./types";
@@ -19,6 +21,7 @@ const initialState: UserInviteState = {
   pending: false,
   userInviteList: [],
   openModal: false,
+  openDialog: false,
   error: null,
 };
 
@@ -87,6 +90,18 @@ export default (state = initialState, action: UserInviteActions) => {
       return {
         ...state,
         openModal: false,
+        pending: true,
+      };
+    case SET_OPEN_DIALOG:
+      return {
+        ...state,
+        openDialog: true,
+        pending: true,
+      };
+    case SET_CLOSE_DIALOG:
+      return {
+        ...state,
+        openDialog: false,
         pending: true,
       };
     default:

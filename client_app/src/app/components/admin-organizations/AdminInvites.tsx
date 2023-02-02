@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  cancelAdminInvite,
   fetchAdminInviteList,
   fetchAdminOrganization,
   postAdminInvite,
@@ -23,6 +24,11 @@ import {
   Box,
   Button,
   Card,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Grid,
   IconButton,
   Modal,
@@ -38,8 +44,16 @@ import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
-import { setCloseModal, setOpenModal } from "../../store/user-invites/actions";
-import { getOpenModalSelector } from "../../store/user-invites/selectors";
+import {
+  setCloseDialog,
+  setCloseModal,
+  setOpenDialog,
+  setOpenModal,
+} from "../../store/user-invites/actions";
+import {
+  getOpenDialogSelector,
+  getOpenModalSelector,
+} from "../../store/user-invites/selectors";
 
 const AdminInvites = () => {
   const params = useParams();
@@ -57,6 +71,13 @@ const AdminInvites = () => {
     handleSubmit,
   } = useForm();
   const organization = useSelector(getAdminOrganizationSelector);
+  const openDialog = useSelector(getOpenDialogSelector);
+  const [idToCancel, setIdToCancel] = React.useState("");
+  const handleOpenDialog = (id: string) => {
+    setIdToCancel(id);
+    dispatch(setOpenDialog());
+  };
+  const handleCloseDialog = () => dispatch(setCloseDialog());
 
   useEffect(() => {
     dispatch(fetchAdminInviteList({ organizationId: orgId }));
@@ -66,6 +87,14 @@ const AdminInvites = () => {
   const onSubmitInvite = (data: any) => {
     dispatch(
       postAdminInvite({ orgId: orgId, inviteData: { email: data.email } })
+    );
+  };
+
+  const onCancelInvite = () => {
+    dispatch(
+      cancelAdminInvite({
+        inviteId: idToCancel,
+      })
     );
   };
 
@@ -83,7 +112,11 @@ const AdminInvites = () => {
 
   const cancelButton = (params: GridRenderCellParams) => {
     return (
-      <IconButton className="cancel-button" disableRipple>
+      <IconButton
+        className="cancel-button"
+        disableRipple
+        onClick={() => handleOpenDialog(params.id as string)}
+      >
         <DeleteOutlineIcon className="cancel-icon" />
       </IconButton>
     );
@@ -256,6 +289,36 @@ const AdminInvites = () => {
             </Button>
           </Grid>
         </Grid>
+        <Dialog
+          open={openDialog}
+          onClose={handleCloseDialog}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">Cancel invite</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to cancel the invite?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleCloseDialog}
+              className="dialog-back-button"
+              variant="outlined"
+            >
+              Back
+            </Button>
+            <Button
+              onClick={onCancelInvite}
+              autoFocus
+              className="dialog-confirm-button"
+              variant="contained"
+            >
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
       <AppFooter />
     </>

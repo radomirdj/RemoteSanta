@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrganization } from "../../store/orgs/actions";
 import { getOrganizationSelector } from "../../store/orgs/selectors";
 import {
+  cancelUserInvite,
   fetchUserInviteList,
   postUserInvite,
+  setCloseDialog,
   setCloseModal,
+  setOpenDialog,
   setOpenModal,
 } from "../../store/user-invites/actions";
 import {
+  getOpenDialogSelector,
   getOpenModalSelector,
   getUserInviteListSelector,
 } from "../../store/user-invites/selectors";
@@ -26,6 +30,11 @@ import {
   Box,
   Button,
   Card,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Grid,
   IconButton,
   Modal,
@@ -53,6 +62,13 @@ const UserManagerInvites = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const openDialog = useSelector(getOpenDialogSelector);
+  const [idToCancel, setIdToCancel] = React.useState("");
+  const handleOpenDialog = (id: string) => {
+    setIdToCancel(id);
+    dispatch(setOpenDialog());
+  };
+  const handleCloseDialog = () => dispatch(setCloseDialog());
 
   useEffect(() => {
     dispatch(fetchOrganization());
@@ -68,6 +84,14 @@ const UserManagerInvites = () => {
     );
   };
 
+  const onCancelInvite = () => {
+    dispatch(
+      cancelUserInvite({
+        inviteId: idToCancel,
+      })
+    );
+  };
+
   const resendButton = (params: GridRenderCellParams) => {
     return (
       <IconButton className="resend-button" disableRipple>
@@ -78,7 +102,11 @@ const UserManagerInvites = () => {
 
   const cancelButton = (params: GridRenderCellParams) => {
     return (
-      <IconButton className="cancel-button" disableRipple>
+      <IconButton
+        className="cancel-button"
+        disableRipple
+        onClick={() => handleOpenDialog(params.id as string)}
+      >
         <DeleteOutlineIcon className="cancel-icon" />
       </IconButton>
     );
@@ -236,6 +264,36 @@ const UserManagerInvites = () => {
             />
           </Box>
         </Grid>
+        <Dialog
+          open={openDialog}
+          onClose={handleCloseDialog}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">Cancel invite</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Are you sure you want to cancel the invite?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleCloseDialog}
+              className="dialog-back-button"
+              variant="outlined"
+            >
+              Back
+            </Button>
+            <Button
+              onClick={onCancelInvite}
+              autoFocus
+              className="dialog-confirm-button"
+              variant="contained"
+            >
+              Confirm
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
       <AppFooter />
     </>

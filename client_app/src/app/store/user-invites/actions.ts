@@ -10,6 +10,8 @@ import {
   CANCEL_USER_INVITE_FAILURE,
   SET_OPEN_MODAL,
   SET_CLOSE_MODAL,
+  SET_OPEN_DIALOG,
+  SET_CLOSE_DIALOG,
 } from "./actionTypes";
 import {
   CancelUserInvite,
@@ -28,7 +30,9 @@ import {
   PostUserInviteFailurePayload,
   PostUserInvitePayload,
   PostUserInviteSuccess,
+  SetCloseDialog,
   SetCloseModal,
+  SetOpenDialog,
   SetOpenModal,
 } from "./types";
 
@@ -95,4 +99,12 @@ export const setOpenModal = (): SetOpenModal => ({
 
 export const setCloseModal = (): SetCloseModal => ({
   type: SET_CLOSE_MODAL,
+});
+
+export const setOpenDialog = (): SetOpenDialog => ({
+  type: SET_OPEN_DIALOG,
+});
+
+export const setCloseDialog = (): SetCloseDialog => ({
+  type: SET_CLOSE_DIALOG,
 });

@@ -8,7 +8,7 @@ import {
   getAdminUserList,
   postInviteAdmin,
 } from "../../services/api-service";
-import { setCloseModal } from "../user-invites/actions";
+import { setCloseDialog, setCloseModal } from "../user-invites/actions";
 import {
   cancelAdminInviteFailure,
   cancelAdminInviteSuccess,
@@ -153,6 +153,7 @@ function* cancelAdminInviteSaga(action: CancelAdminInvite) {
     const token: string = localStorage.getItem("token") || "";
     yield call(cancelInviteAdmin, action.payload, token);
     yield put(cancelAdminInviteSuccess());
+    yield put(setCloseDialog());
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(

@@ -175,9 +175,13 @@ export const cancelInviteAdmin = (
   payload: CancelAdminInvitePayload,
   token: string
 ) => {
-  return api.post<string>(`admin/user-invites/${payload.inviteId}/cancel`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  return api.post<string>(
+    `admin/user-invites/${payload.inviteId}/cancel`,
+    {},
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
 };
 
 export const getOrganization = (token: string) =>
@@ -199,9 +203,13 @@ export const cancelInviteUser = (
   payload: CancelUserInvitePayload,
   token: string
 ) => {
-  return api.post<string>(`user-invites/${payload.inviteId}/cancel`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  return api.post<string>(
+    `user-invites/${payload.inviteId}/cancel`,
+    {},
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
 };
 
 export const postInviteUser = (
