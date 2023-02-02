@@ -9,6 +9,8 @@ import {
   CANCEL_USER_INVITE,
   CANCEL_USER_INVITE_SUCCESS,
   CANCEL_USER_INVITE_FAILURE,
+  SET_OPEN_MODAL,
+  SET_CLOSE_MODAL,
 } from "./actionTypes";
 
 import { UserInviteActions, UserInviteState } from "./types";
@@ -16,6 +18,7 @@ import { UserInviteActions, UserInviteState } from "./types";
 const initialState: UserInviteState = {
   pending: false,
   userInviteList: [],
+  openModal: false,
   error: null,
 };
 
@@ -73,6 +76,18 @@ export default (state = initialState, action: UserInviteActions) => {
         ...state,
         pending: false,
         error: action.payload.error,
+      };
+    case SET_OPEN_MODAL:
+      return {
+        ...state,
+        openModal: true,
+        pending: true,
+      };
+    case SET_CLOSE_MODAL:
+      return {
+        ...state,
+        openModal: false,
+        pending: true,
       };
     default:
       return {

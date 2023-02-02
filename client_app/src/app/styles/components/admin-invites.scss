@@ -140,5 +140,19 @@ $back-icon-margin-bottom:3px;
             margin-left:variables.$base-unit * 3;
             width: 88%;
           }
+          
+          .send-invite-button,
+          & .send-invite-button:hover {
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            margin-left:variables.$base-unit * 3;
+            width: 88%;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 2;
+          }
     }
 }

@@ -12,6 +12,7 @@ import {
   fetchUserInviteListSuccess,
   postUserInviteFailure,
   postUserInviteSuccess,
+  setCloseModal,
 } from "./actions";
 import {
   CANCEL_USER_INVITE,
@@ -56,6 +57,7 @@ function* postUserInviteSaga(action: PostUserInvite) {
     const token: string = localStorage.getItem("token") || "";
     yield call(postInviteUser, action.payload, token);
     yield put(postUserInviteSuccess());
+    yield put(setCloseModal());
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(

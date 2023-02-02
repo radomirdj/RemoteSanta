@@ -8,6 +8,8 @@ import {
   CANCEL_USER_INVITE,
   CANCEL_USER_INVITE_SUCCESS,
   CANCEL_USER_INVITE_FAILURE,
+  SET_OPEN_MODAL,
+  SET_CLOSE_MODAL,
 } from "./actionTypes";
 import {
   CancelUserInvite,
@@ -26,6 +28,8 @@ import {
   PostUserInviteFailurePayload,
   PostUserInvitePayload,
   PostUserInviteSuccess,
+  SetCloseModal,
+  SetOpenModal,
 } from "./types";
 
 export const fetchUserInviteList = (
@@ -83,4 +87,12 @@ export const cancelUserInviteFailure = (
 ): CancelUserInviteFailure => ({
   type: CANCEL_USER_INVITE_FAILURE,
   payload,
+});
+
+export const setOpenModal = (): SetOpenModal => ({
+  type: SET_OPEN_MODAL,
+});
+
+export const setCloseModal = (): SetCloseModal => ({
+  type: SET_CLOSE_MODAL,
 });

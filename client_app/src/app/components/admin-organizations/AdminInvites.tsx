@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   fetchAdminInviteList,
   fetchAdminOrganization,
+  postAdminInvite,
 } from "../../store/admin-organization/actions";
 import {
   getAdminInviteListSelector,
@@ -37,6 +38,8 @@ import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
+import { setCloseModal, setOpenModal } from "../../store/user-invites/actions";
+import { getOpenModalSelector } from "../../store/user-invites/selectors";
 
 const AdminInvites = () => {
   const params = useParams();
@@ -45,9 +48,9 @@ const AdminInvites = () => {
   const adminInviteList = useSelector(getAdminInviteListSelector);
   const rowsPerPage = 7;
   const navigate = useNavigate();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const open = useSelector(getOpenModalSelector);
+  const handleOpen = () => dispatch(setOpenModal());
+  const handleClose = () => dispatch(setCloseModal());
   const {
     register,
     formState: { errors },
@@ -61,7 +64,9 @@ const AdminInvites = () => {
   }, [dispatch, orgId]);
 
   const onSubmitInvite = (data: any) => {
-    //dispatch(loginRequest(data));
+    dispatch(
+      postAdminInvite({ orgId: orgId, inviteData: { email: data.email } })
+    );
   };
 
   const resendButton = (params: GridRenderCellParams) => {
@@ -198,6 +203,14 @@ const AdminInvites = () => {
                       Email should be an email.
                     </Typography>
                   )}
+                  <Button
+                    variant="contained"
+                    className="send-invite-button"
+                    disableRipple
+                    type="submit"
+                  >
+                    Send invite
+                  </Button>
                 </form>
               </Card>
             </Modal>

@@ -51,7 +51,7 @@ export interface AdminOrganizationState {
   error: string | null;
 }
 
-export interface IAdminInvite {
+export interface IInvite {
   email: string;
 }
 
@@ -101,7 +101,7 @@ export interface FetchAdminInviteListFailurePayload {
 
 export interface PostAdminInvitePayload {
   orgId: string;
-  inviteData: IAdminInvite;
+  inviteData: IInvite;
 }
 
 export interface PostAdminInviteFailurePayload {

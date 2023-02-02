@@ -8,6 +8,8 @@ import {
   CANCEL_USER_INVITE,
   CANCEL_USER_INVITE_SUCCESS,
   CANCEL_USER_INVITE_FAILURE,
+  SET_OPEN_MODAL,
+  SET_CLOSE_MODAL,
 } from "./actionTypes";
 
 export interface IUserInvite {
@@ -20,6 +22,7 @@ export interface IUserInvite {
 export interface UserInviteState {
   pending: boolean;
   userInviteList: IUserInvite[];
+  openModal: boolean;
   error: string | null;
 }
 
@@ -99,6 +102,14 @@ export type CancelUserInviteFailure = {
   payload: CancelUserInviteFailurePayload;
 };
 
+export interface SetOpenModal {
+  type: typeof SET_OPEN_MODAL;
+}
+
+export interface SetCloseModal {
+  type: typeof SET_CLOSE_MODAL;
+}
+
 export type UserInviteActions =
   | FetchUserInviteList
   | FetchUserInviteListSuccess
@@ -108,4 +119,6 @@ export type UserInviteActions =
   | PostUserInviteFailure
   | CancelUserInvite
   | CancelUserInviteSuccess
-  | CancelUserInviteFailure;
+  | CancelUserInviteFailure
+  | SetOpenModal
+  | SetCloseModal;

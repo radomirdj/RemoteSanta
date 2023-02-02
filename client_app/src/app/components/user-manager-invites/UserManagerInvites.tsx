@@ -2,8 +2,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrganization } from "../../store/orgs/actions";
 import { getOrganizationSelector } from "../../store/orgs/selectors";
-import { fetchUserInviteList } from "../../store/user-invites/actions";
-import { getUserInviteListSelector } from "../../store/user-invites/selectors";
+import {
+  fetchUserInviteList,
+  postUserInvite,
+  setCloseModal,
+  setOpenModal,
+} from "../../store/user-invites/actions";
+import {
+  getOpenModalSelector,
+  getUserInviteListSelector,
+} from "../../store/user-invites/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import {
@@ -37,9 +45,9 @@ const UserManagerInvites = () => {
   const organization = useSelector(getOrganizationSelector);
   const userInviteList = useSelector(getUserInviteListSelector);
   const rowsPerPage = 7;
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const open = useSelector(getOpenModalSelector);
+  const handleOpen = () => dispatch(setOpenModal());
+  const handleClose = () => dispatch(setCloseModal());
   const {
     register,
     formState: { errors },
@@ -52,7 +60,12 @@ const UserManagerInvites = () => {
   }, [dispatch]);
 
   const onSubmitInvite = (data: any) => {
-    //dispatch(loginRequest(data));
+    dispatch(
+      postUserInvite({
+        orgId: organization?.id || "",
+        inviteData: { email: data.email },
+      })
+    );
   };
 
   const resendButton = (params: GridRenderCellParams) => {
@@ -181,6 +194,14 @@ const UserManagerInvites = () => {
                       Email should be an email.
                     </Typography>
                   )}
+                  <Button
+                    variant="contained"
+                    className="send-invite-button"
+                    disableRipple
+                    type="submit"
+                  >
+                    Send invite
+                  </Button>
                 </form>
               </Card>
             </Modal>
