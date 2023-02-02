@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchAdminInviteList } from "../../store/admin-organization/actions";
-import { getAdminInviteListSelector } from "../../store/admin-organization/selectors";
+import {
+  fetchAdminInviteList,
+  fetchAdminOrganization,
+} from "../../store/admin-organization/actions";
+import {
+  getAdminInviteListSelector,
+  getAdminOrganizationSelector,
+} from "../../store/admin-organization/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 import {
@@ -47,9 +53,11 @@ const AdminInvites = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const organization = useSelector(getAdminOrganizationSelector);
 
   useEffect(() => {
     dispatch(fetchAdminInviteList({ organizationId: orgId }));
+    dispatch(fetchAdminOrganization({ organizationId: orgId }));
   }, [dispatch, orgId]);
 
   const onSubmitInvite = (data: any) => {
@@ -140,7 +148,9 @@ const AdminInvites = () => {
       <div className="background admin-invites">
         <Grid container className="grid-style">
           <Grid item xs={6}>
-            <Typography className="invites-title">Invites</Typography>
+            <Typography className="invites-title">
+              Invites - {organization?.name}
+            </Typography>
           </Grid>
           <Grid item xs={6}>
             <Button

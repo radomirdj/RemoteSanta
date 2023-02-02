@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchAdminUserList } from "../../store/admin-organization/actions";
-import { getAdminUserListSelector } from "../../store/admin-organization/selectors";
+import {
+  fetchAdminOrganization,
+  fetchAdminUserList,
+} from "../../store/admin-organization/actions";
+import {
+  getAdminOrganizationSelector,
+  getAdminUserListSelector,
+} from "../../store/admin-organization/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 import {
@@ -25,9 +31,11 @@ const AdminUsers = () => {
   const adminUserList = useSelector(getAdminUserListSelector);
   const rowsPerPage = 7;
   const navigate = useNavigate();
+  const organization = useSelector(getAdminOrganizationSelector);
 
   useEffect(() => {
     dispatch(fetchAdminUserList({ organizationId: orgId }));
+    dispatch(fetchAdminOrganization({ organizationId: orgId }));
   }, [dispatch, orgId]);
 
   const goBack = () => {
@@ -90,7 +98,9 @@ const AdminUsers = () => {
       <div className="background admin-users">
         <Grid container className="grid-style">
           <Grid item xs={12}>
-            <Typography className="users-title">Users</Typography>
+            <Typography className="users-title">
+              Users - {organization?.name}
+            </Typography>
           </Grid>
           <Box className="box-style">
             <StripedDataGrid
