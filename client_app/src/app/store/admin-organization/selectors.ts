@@ -15,5 +15,8 @@ export const getAdminInviteListSelector = (state: AppState) =>
 export const getAdminOrganizationSelector = (state: AppState) =>
   state.adminOrganization.adminOrganization;
 
+export const getAdminUserSelector = (state: AppState) =>
+  state.adminOrganization.adminUser;
+
 export const getErrorSelector = (state: AppState) =>
   state.adminOrganization.error;
