@@ -9,6 +9,7 @@ import {
   getAdminUserList,
   postInviteAdmin,
 } from "../../services/api-service";
+import { AuthUser } from "../auth/types";
 import { setCloseDialog, setCloseModal } from "../user-invites/actions";
 import {
   cancelAdminInviteFailure,
@@ -172,7 +173,7 @@ function* cancelAdminInviteSaga(action: CancelAdminInvite) {
 function* fetchAdminUserSaga(action: FetchAdminUser) {
   try {
     const token: string = localStorage.getItem("token") || "";
-    const response: AxiosResponse<IAdminUser> = yield call(
+    const response: AxiosResponse<AuthUser> = yield call(
       getAdminUser,
       action.payload,
       token

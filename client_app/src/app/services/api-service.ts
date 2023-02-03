@@ -231,6 +231,6 @@ export const getUserInviteList = (
   });
 
 export const getAdminUser = (payload: FetchAdminUserPayload, token: string) =>
-  api.get<IAdminUser>(`admin/users/${payload.userId}`, {
+  api.get<AuthUser>(`admin/users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });

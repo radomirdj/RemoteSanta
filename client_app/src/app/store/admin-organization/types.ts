@@ -1,3 +1,4 @@
+import { AuthUser } from "../auth/types";
 import {
   FETCH_ADMIN_ORGANIZATION_LIST,
   FETCH_ADMIN_ORGANIZATION_LIST_SUCCESS,
@@ -50,7 +51,7 @@ export interface AdminOrganizationState {
   adminOrganizationList: IAdminOrganization[];
   adminOrganization: IAdminOrganization | null;
   adminUserList: IAdminUser[];
-  adminUser: IAdminUser | null;
+  adminUser: AuthUser | null;
   adminInviteList: IAdminInvite[];
   error: string | null;
 }
@@ -125,7 +126,7 @@ export interface FetchAdminUserPayload {
 }
 
 export interface FetchAdminUserSuccessPayload {
-  adminUser: IAdminUser;
+  adminUser: AuthUser;
 }
 
 export interface FetchAdminUserFailurePayload {
