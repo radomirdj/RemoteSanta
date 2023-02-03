@@ -130,14 +130,16 @@ const UserManagerInvites = () => {
     },
   ];
 
-  const rows: GridRowsProp = userInviteList.map((userInvite) => {
-    return {
-      email: userInvite.email,
-      resend: "",
-      cancel: "",
-      id: userInvite.id,
-    };
-  });
+  const rows: GridRowsProp = userInviteList
+    .filter((userInvite) => userInvite.status === "ACTIVE")
+    .map((userInvite) => {
+      return {
+        email: userInvite.email,
+        resend: "",
+        cancel: "",
+        id: userInvite.id,
+      };
+    });
 
   const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
     [`& .${gridClasses.row}.even`]: {

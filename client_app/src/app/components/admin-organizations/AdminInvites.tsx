@@ -140,14 +140,16 @@ const AdminInvites = () => {
     },
   ];
 
-  const rows: GridRowsProp = adminInviteList.map((adminInvite) => {
-    return {
-      email: adminInvite.email,
-      resend: "",
-      cancel: "",
-      id: adminInvite.id,
-    };
-  });
+  const rows: GridRowsProp = adminInviteList
+    .filter((adminInvite) => adminInvite.status === "ACTIVE")
+    .map((adminInvite) => {
+      return {
+        email: adminInvite.email,
+        resend: "",
+        cancel: "",
+        id: adminInvite.id,
+      };
+    });
 
   const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
     [`& .${gridClasses.row}.even`]: {
