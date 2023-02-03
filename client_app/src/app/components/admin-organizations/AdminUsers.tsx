@@ -42,9 +42,18 @@ const AdminUsers = () => {
     navigate(-1);
   };
 
+  const adminUserDetailsRedirect = (userId: string) => {
+    navigate(`/admin-user-details/${userId}`);
+  };
+
   const detailsButton = (params: GridRenderCellParams) => {
     return (
-      <Button variant="contained" className="button-details" disableRipple>
+      <Button
+        variant="contained"
+        className="button-details"
+        disableRipple
+        onClick={() => adminUserDetailsRedirect(params.id as string)}
+      >
         Details
       </Button>
     );

@@ -1,0 +1,18 @@
+@use "./../variables.scss";
+
+$card-width: 440px;
+
+.user-manager-user-details{
+    background-image: url("./../../assets/home-image.svg");
+
+    .card-style{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        border-radius: variables.$base-unit * 3;
+        padding: variables.$base-unit * 5;
+        width: $card-width;
+    }
+}
