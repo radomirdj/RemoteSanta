@@ -1,9 +1,9 @@
 - id: 469cf71d-86a5-450e-afc7-76bc6996a3ad
   priority: 10
-  website: https://giftoncard.eu
+  website: https://giftoncard.eu/listing/multibrand-poklon-kartica/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png
   title: Multibrand
-  description: Jedna e kartica, na preko 500 lokacija širom Srbije.
+  description: Multibrand karticu moguće je iskoristiti na preko 500 lokacija širom Srbije. Moguće je iskoristiti u naznačenim radnjama raznovrsnog tipa i zato kao takva predstavlja pravi spoj zabave, mode, sporta, tehnike.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -12,7 +12,7 @@
   website: https://www.sportvision.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/SportVision.png
   title: Sport Vision
-  description: U odlično opremljenim prodavnicama čekaju vas odlična usluga i najkvalitetniji brendovi (Nike, Adidas,Champion,Umbro,Ellesse,Lonsdale,Slayenger,SergioTacchini,Converse,Karrimor,Slazenger and others).Lokacije u celoj Srbiji.
+  description: Vodeći multibrend koncept na Balkanu. Više od 40 najpoznatijih sportskih brendova, za najbolje performanse,na jednom mestu- patike, kopačke, cipele, jakne, majice, trenerke, duksevi, oprema za fudbal, mali fudbal, košarku, trčanje i trening.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -21,7 +21,7 @@
   website: https://www.n-sport.net
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png
   title: N Sport
-  description: Od sportske opreme i obuće do elegantne garderobe i cipela, sve na jednom mestu. Karticu je moguće koristiti u svim prodajnim objektima N sport-a, N fashion-a, N selection-a i Lacoste Srbija.
+  description: Jedan od vodećih distributera najpoznatijih sportskih i modnih brendova.Prepoznatljiv po svoja tri osnovna prodajna multibrend koncepta - N Sport, N Fashion i N Selection, koji odgovaraju aktivnom životu savremenih muškaraca i žena.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -30,7 +30,7 @@
   website: https://www.soliver.eu
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/sOliver.png
   title: s. Oliver
-  description: Jedan od vodećih evropskih brendova na polju mode, kako za svakodnevne tako i za specijalne prilike.
+  description: Nemački brend za celu porodicu. Nudi savršeno rešenje kada su u pitanju stil, kvalitet, udobnost i cena. Pored odeće i obuće S Oliver nudi i dodatne linije proizvoda kao što su donji veš, pidžame, kupaći kostimi, torbe, akcesoari i parfemi.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -39,7 +39,7 @@
   website: https://www.thebodyshop.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/TheBodyShop.png
   title: The Body Shop
-  description: Sve šta vam treba iz sveta kozmetike na jednom mestu - The Body Shop!
+  description: Engleski brend kozmetičkih preparata za negu lica, tela, kose i proizvoda za šminku sa sastojcima na prirodnoj bazi u posebnom pakovanju koje lako možete da dopunite i koji čine da se žene dobro osećaju u svojoj koži.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -48,7 +48,7 @@
   website: https://toyzzz.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Toyzzz.png
   title: Toyzzz
-  description: Poklon kartica za mališane svih uzrasta. U Toyzzz-u mogu pronaći sve što im treba od igračaka
+  description: Toyzzz više od 20 godina plasira na naše tržište igračke svih tipova, bicikle i trotinete, bazene, školski probor, knjige, slikovnice... Uvoznik je preko 8000 artikla i velikog broja poznatih brendova npr Barbie, Cars, Disney, Kiki, Lol, Monopoly.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -57,7 +57,7 @@
   website: https://www.underarmour.com/en-us/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/UnderArmour.png
   title: Under Armour
-  description: Vodeći brend kada je u pitanju sportska odeća, obuća, aksesoari i rekviziti.
+  description: Proizvodi ove američke kompanije namenjeni su svima koji žele da poboljšaju svoje sportske rezultate - sportska obuća, majice,jakne, duksevi, trenerke, helanke, sportski grudnjaci, atletske torbe, rukavice, kape i zaštitna oprema.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -66,16 +66,16 @@
   website: https://www.adidas.com/us
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Adidas.png
   title: Adidas
-  description: Jedan od najpoznatijih svetski brendova sportske odeće i obuće.
+  description: Adidas je najveći evropski proizvođač sportske opreme sa fabrikama i prodavnicama širom sveta. Ovaj nemački brend osim sportske obuće i fudbalskih lopti proizvodi i drugu sportsku opremu kao i kozmetiku.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
 - id: 5b7843e4-110f-40f9-b438-408fd9b3597f
   priority: 90
-  website: ''
+  website: https://petklub.rs/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/PetKlub.png
   title: Pet Klub
-  description: Kartica stvorena da se pobrine za sve potrebe kućnih ljubimaca, od hrane, kupanja i šišanja pa sve do veterinarskih usluga.
+  description: Maloprodajni lanac gde se vlasnici kućnih ljubimaca mogu snabdeti hranom, lekovima i opremom  za pse, mačke, male životinje, ptice, ribice, kornjače... Brend koji  želi da učini kupovinu emotivnom i zbližavajućom.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -84,25 +84,25 @@
   website: https://rs.proteini.si
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Proteini.png
   title: PROTEINI.SI
-  description: Poklon kartica za sve ljubitelje fitnesa, treninga i teretane kao i za profesionalne sportiste.
+  description: U misiji zdravog i sportskog načina života brend Proteini SI bavi se prodajom sportske ishrane i dodatka ishrani. Već deceniju Proteini SI na naše tržište plasiraju najpoznatije američke i evropske proizvode.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
 - id: d789db6b-a555-4ff7-97da-270cf8f0aba9
   priority: 110
-  website: tehnomedia.rs
+  website: https://www.tehnomedia.rs/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomedia.png
   title: Tehnomedia
-  description: Sve što vam je potrebno od tehnike! 38+ objekata u Srbiji i on line proadaja !
+  description: Tehnomedija centar zastupljen je na srpskom tržištu preko dvadeset godina. U maloprodajnim objektima bavi se trgovinom belom tehnikom, audio i video uređajima, IT opremom, uređajima za grejanje i klimatizaciju, kao i malim kućnim aparatima.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
 - id: d9f1c8d0-59a1-45c5-bb8d-be0e5d4fc99b
   priority: 120
-  website: ''
+  website: https://www.carpisa.it/hr_en/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Carpisa.png
   title: Carpisa
-  description: Tašne, torbe, rančevi i koferi. Sve na jednom mestu!
+  description: Italijanski modni brend koji je namenjen svim generacijama žena i muškaraca koji prate aktuelne trendove. Asortiman brenda se sastoji od torbi, novčanika, akcesoara, kofera, kutija za nakit i putnog programa.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -111,7 +111,7 @@
   website: https://www.comma-store.eu
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Comma.png
   title: Comma
-  description: Idealna poklon kartica za žene i devojke koje vole glamur!
+  description: Comma odeća, evropske proizvodnje, poznata je po modernom dizajnu, elegantnim i ženstvenim krojevima kao i kvalitetnim materijalima, a može se nositi u svim prilikama svakodnevno, 24h,  jer je i fleksibilna i svestrana.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -120,25 +120,25 @@
   website: https://univerexport.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Univerexport.png
   title: Univer Export
-  description: Najveći domaći trgovinski lanac sa gotovo 160 maloprodajnih objekata
+  description: Domaći trgovinski lanac zastupljen sa preko 180 maloprodaja i onlajn servisom eLakolije sa besplatnom dostavom robe. Domaći artikli su najzastupljeniji, meso stiže sa farme Bačka a organski proizvodi sa sopstvenog poljoprivrednog domaćinstva. 
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
 - id: ba868c93-f5d8-4825-8c4f-a6dc832a20ea
   priority: 150
-  website: ''
+  website: https://www.skolajahanjabeograd.com/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BelaGriva.png
   title: Bela Griva
-  description: Poklon kartica skrojena za ljubitelje jahanja ali i za one koji bi da probaju nešto novo.
+  description: Jahanje je lek za dušu i telo. Udruženje Bela griva za sve ljubitelje najlepših životinja pruža usluge jahanja za sve uzraste, pansion za konje, trening konja za razna takmičenja, terensko jahanje, kao i iznajmljivanje konja za različite svrhe.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
 - id: f9b20424-255f-4ac0-98d3-e8ef7514455b
   priority: 160
-  website: ''
+  website: https://www.biospajz.rs/
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BioSpajz.png
   title: Bio Špajz
-  description: Poklon kartica idealna za sve ljubitelje zdrave hrane!
+  description: Misija Bio Špajza je da populariše zdrav način života, uz odgovarajuću ishranu, ali i zdrav odnos prema telu i duhu, kao i prema prirodi, prodajom zdrave hrane, napitaka i prirodne kozmetike. Porcijom zdravih ukusa obezbeđujete detoks tela i uma.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -147,7 +147,7 @@
   website: https://www.tehnomanija.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomanija.png
   title: Tehnomanija
-  description: Jedan od najvecih retail lanaca elektricnih i elektronskih uredjaja u Srbiji. 43 maloprodajna objekata širom Srbije i odlična online prodavnica. Zajedno nude širok asortiman od 20.000 različitih proizvoda renomiranih proizvođača. Plaćanje poklon karticom se primenjuje na redovne i akcijske cene za odlozeno placanje, a ne vazi na cene za gotovinsko placanje.
+  description: Kompanija je lider na tržištu Srbije u oblasti trgovine električnim i elektronskim uređajima za domaćinstvo. U bogatoj ponudi nalaze se prozvodi renomiranih proizvođača bele tehnike, malih kućnih aparata ,televizora, IT uređaja i dodatne opreme.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -156,7 +156,7 @@
   website: https://ekspedicija.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Ekspedicija.png
   title: Ekspedicija
-  description: Gomila kreativnih i šašavih poklona na jednom mestu.
+  description: Kreativni pokloni razvrstani po kategorijama ili brendovima (Zippo, Forchino,Victorinox, Bicycle, Space Penn, Hinz&Kunst). Maloprodajni objekti mogu se naći u najvećim tržnim centrima u Beogradu, Novom Sadu i Kragujevcu.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -165,7 +165,7 @@
   website: https://katrin.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Katrin.png
   title: Katrin
-  description: Poklon kartica domaćeg modnog brenda koja će obradovati svaku damu i devojku.
+  description: Modni brend Katrin je nastao u Srbiji 2005. godine i do danas uspeo da se uzdigne i stane uz svetske brendove kada je u pitanju ženska moda. Spoj topline i elegancije u njihovim modelima čine da se svaka žena oseća jedinstveno i posebno.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -174,6 +174,6 @@
   website: https://www.fashion-luna.com
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Luna.png
   title: Luna
-  description: Garderoba i aksesoari za dame koje u svakoj prilici biraju stil, udobnost i kvalitet.
+  description: Modna kuća Luna već tri decenije dizajnira i stvara garderobu i aksesoare za dame, prateći duh i ritam savremene žene, njen senzibilitet i potrebe. Ovo je modni brend za dame koje biraju jedinstven stil, udobnost i kvalitet u svakoj prilici.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
