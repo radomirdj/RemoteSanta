@@ -27,6 +27,7 @@
     "nest:generate": "nest generate"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
@@ -43,9 +44,11 @@
     "cookie-session": "^2.0.0",
     "cross-env": "^7.0.3",
     "jwks-rsa": "^3.0.0",
+    "nodemailer": "^6.9.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "prisma": "^4.7.0",
+    "pug": "^3.0.2",
     "randomstring": "^1.2.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

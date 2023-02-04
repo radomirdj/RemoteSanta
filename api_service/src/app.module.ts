@@ -19,6 +19,7 @@ import { AdminUsersModule } from './admin_users/admin_users.module';
 import { OrgsModule } from './orgs/orgs.module';
 import { UserInvitesModule } from './user_invites/user_invites.module';
 import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.module';
+import { EmailsModule } from './emails/emails.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.
     OrgsModule,
     UserInvitesModule,
     AdminUserInvitesModule,
+    EmailsModule,
   ],
   controllers: [AppController],
   providers: [

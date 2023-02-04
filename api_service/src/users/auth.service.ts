@@ -15,6 +15,7 @@ import { LoginCredentialsWrongException } from '../errors/loginCredentialsWrongE
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 import { LedgerService } from '../ledger/ledger.service';
+import { EmailsService } from '../emails/emails.service';
 
 const scrypt = promisify(_scrypt);
 
@@ -22,6 +23,7 @@ const scrypt = promisify(_scrypt);
 export class AuthService {
   constructor(
     private usersService: UsersService,
+    private emailsService: EmailsService,
     private cognitoService: AwsCognitoService,
     private prisma: PrismaService,
     private ledgerService: LedgerService,
@@ -71,6 +73,11 @@ export class AuthService {
       if (!sub) throw new LoginCredentialsWrongException();
       const user = await this.usersService.findBySub(sub);
       response = { accessToken, ...user };
+      // await this.emailsService.sendEmail(
+      //   'hi',
+      //   'radomir.m.djokovic@gmail.com',
+      //   user,
+      // );
     } catch (err) {
       throw new CognitoException(err.message);
     }

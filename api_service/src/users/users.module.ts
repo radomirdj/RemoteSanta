@@ -5,7 +5,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
 import { PrismaModule } from '../prisma/prisma.module';
-
+import { EmailsModule } from '../emails/emails.module';
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 import { JwtStrategy } from './jwt.strategy';
 import { LedgerModule } from '../ledger/ledger.module';
@@ -14,6 +14,7 @@ import { LedgerModule } from '../ledger/ledger.module';
   imports: [
     PrismaModule,
     LedgerModule,
+    EmailsModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [UsersController],
