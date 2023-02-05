@@ -17,13 +17,6 @@ import { join } from 'path';
       defaults: {
         from: process.env.EMAIL_FROM,
       },
-      template: {
-        dir: join(__dirname, 'templates'),
-        adapter: new PugAdapter(),
-        options: {
-          strict: true,
-        },
-      },
     }),
   ],
   providers: [EmailsService],
