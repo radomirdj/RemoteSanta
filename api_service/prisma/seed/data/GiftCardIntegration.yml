@@ -21,7 +21,7 @@
   website: https://www.n-sport.net
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png
   title: N Sport
-  description: Jedan od vodećih distributera najpoznatijih sportskih i modnih brendova.Prepoznatljiv po svoja tri osnovna prodajna multibrend koncepta - N Sport, N Fashion i N Selection, koji odgovaraju aktivnom životu savremenih muškaraca i žena.
+  description: Jedan od vodećih distributera najpoznatijih sportskih i modnih brendova. Prepoznatljiv po svoja tri osnovna prodajna multibrend koncepta - N Sport, N Fashion i N Selection, koji odgovaraju aktivnom životu savremenih muškaraca i žena.
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
