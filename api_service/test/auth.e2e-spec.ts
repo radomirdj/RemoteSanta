@@ -6,10 +6,11 @@ import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { EmailInUseException } from '../src/errors/emailInUseException';
-import { LoginCredentialsWrongException } from '../src/errors/loginCredentialsWrongException';
 
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 import { createToken } from './utils/tokenService';
 import {
   user1,
@@ -32,6 +33,8 @@ describe('Authentication system', () => {
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
+      .overrideProvider(MailerService)
+      .useValue(MailerServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
