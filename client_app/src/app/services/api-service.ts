@@ -17,6 +17,7 @@ import {
   FetchAdminInviteListPayload,
   FetchAdminOrganizationPayload,
   FetchAdminUserListPayload,
+  FetchAdminUserPayload,
   IAdminInvite,
   IAdminOrganization,
   IAdminUser,
@@ -226,5 +227,10 @@ export const getUserInviteList = (
   token: string
 ) =>
   api.get<IUserInvite[]>(`user-invites/`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getAdminUser = (payload: FetchAdminUserPayload, token: string) =>
+  api.get<AuthUser>(`admin/users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });

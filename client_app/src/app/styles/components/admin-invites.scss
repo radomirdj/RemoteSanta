@@ -112,7 +112,9 @@ $back-icon-margin-bottom:3px;
 
 .MuiModal-root{
     .MuiCard-root{
+      padding-top: variables.$base-unit * 6;
         padding-bottom: variables.$base-unit * 6;
+        background-color: white;
         .MuiTypography-h5{
             font-family: "Montserrat";
             margin-left:variables.$base-unit * 3;

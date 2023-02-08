@@ -18,6 +18,9 @@ import {
   CANCEL_ADMIN_INVITE,
   CANCEL_ADMIN_INVITE_SUCCESS,
   CANCEL_ADMIN_INVITE_FAILURE,
+  FETCH_ADMIN_USER,
+  FETCH_ADMIN_USER_SUCCESS,
+  FETCH_ADMIN_USER_FAILURE,
 } from "./actionTypes";
 
 import { AdminOrganizationActions, AdminOrganizationState } from "./types";
@@ -27,6 +30,7 @@ const initialState: AdminOrganizationState = {
   adminOrganizationList: [],
   adminOrganization: null,
   adminUserList: [],
+  adminUser: null,
   adminInviteList: [],
   error: null,
 };
@@ -141,6 +145,25 @@ export default (state = initialState, action: AdminOrganizationActions) => {
       return {
         ...state,
         pending: false,
+        error: action.payload.error,
+      };
+    case FETCH_ADMIN_USER:
+      return {
+        ...state,
+        pending: true,
+      };
+    case FETCH_ADMIN_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        adminUser: action.payload.adminUser,
+        error: null,
+      };
+    case FETCH_ADMIN_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        adminUser: null,
         error: action.payload.error,
       };
     default:

@@ -15,19 +15,30 @@ import { styled } from "@mui/material/styles";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
+import { useNavigate } from "react-router-dom";
 
 const UserManagerUsers = () => {
   const dispatch = useDispatch();
   const orgUserList = useSelector(getOrganizationUserListSelector);
   const rowsPerPage = 7;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchOrganizationUserList());
   }, [dispatch]);
 
+  const userManagerUserDetailsRedirect = (userId: string) => {
+    navigate(`/user-manager-user-details/${userId}`);
+  };
+
   const detailsButton = (params: GridRenderCellParams) => {
     return (
-      <Button variant="contained" className="button-details" disableRipple>
+      <Button
+        variant="contained"
+        className="button-details"
+        disableRipple
+        onClick={() => userManagerUserDetailsRedirect(params.id as string)}
+      >
         Details
       </Button>
     );

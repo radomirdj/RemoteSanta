@@ -5,9 +5,11 @@ import {
   getAdminInviteList,
   getAdminOrganization,
   getAdminOrganizationList,
+  getAdminUser,
   getAdminUserList,
   postInviteAdmin,
 } from "../../services/api-service";
+import { AuthUser } from "../auth/types";
 import { setCloseDialog, setCloseModal } from "../user-invites/actions";
 import {
   cancelAdminInviteFailure,
@@ -18,8 +20,10 @@ import {
   fetchAdminOrganizationListFailure,
   fetchAdminOrganizationListSuccess,
   fetchAdminOrganizationSuccess,
+  fetchAdminUserFailure,
   fetchAdminUserListFailure,
   fetchAdminUserListSuccess,
+  fetchAdminUserSuccess,
   postAdminInviteFailure,
   postAdminInviteSuccess,
 } from "./actions";
@@ -28,6 +32,7 @@ import {
   FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_LIST,
+  FETCH_ADMIN_USER,
   FETCH_ADMIN_USER_LIST,
   POST_ADMIN_INVITE,
 } from "./actionTypes";
@@ -35,6 +40,7 @@ import {
   CancelAdminInvite,
   FetchAdminInviteList,
   FetchAdminOrganization,
+  FetchAdminUser,
   FetchAdminUserList,
   IAdminInvite,
   IAdminOrganization,
@@ -164,6 +170,28 @@ function* cancelAdminInviteSaga(action: CancelAdminInvite) {
   }
 }
 
+function* fetchAdminUserSaga(action: FetchAdminUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<AuthUser> = yield call(
+      getAdminUser,
+      action.payload,
+      token
+    );
+    yield put(
+      fetchAdminUserSuccess({
+        adminUser: response.data,
+      })
+    );
+  } catch (e) {
+    yield put(
+      fetchAdminUserFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -176,6 +204,7 @@ function* AdminOrganizationSaga() {
     takeLatest(FETCH_ADMIN_INVITE_LIST, fetchAdminInviteListSaga),
     takeLatest(POST_ADMIN_INVITE, postAdminInviteSaga),
     takeLatest(CANCEL_ADMIN_INVITE, cancelAdminInviteSaga),
+    takeLatest(FETCH_ADMIN_USER, fetchAdminUserSaga),
   ]);
 }
 

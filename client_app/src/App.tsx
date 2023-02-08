@@ -35,6 +35,8 @@ import UserManagerRoute from "./app/components/userManagerRoute/UserManagerRoute
 import UserManagerTransactions from "./app/components/user-manager-transactions/UserManagerTransactions";
 import UserManagerInvites from "./app/components/user-manager-invites/UserManagerInvites";
 import UserManagerUsers from "./app/components/user-manager-users/UserManagerUsers";
+import AdminUserDetails from "./app/components/admin-organizations/AdminUserDetails";
+import UserManagerUserDetails from "./app/components/user-manager-users/UserManagerUserDetails";
 
 const App = () => {
   return (
@@ -178,6 +180,14 @@ const App = () => {
           }
         />
         <Route
+          path="admin-user-details/:id"
+          element={
+            <AdminRoute>
+              <AdminUserDetails />
+            </AdminRoute>
+          }
+        />
+        <Route
           path="admin-invites/:id"
           element={
             <AdminRoute>
@@ -238,6 +248,14 @@ const App = () => {
           element={
             <UserManagerRoute>
               <UserManagerUsers />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-user-details/:id"
+          element={
+            <UserManagerRoute>
+              <UserManagerUserDetails />
             </UserManagerRoute>
           }
         />

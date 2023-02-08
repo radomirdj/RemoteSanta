@@ -1,0 +1,42 @@
+@use "./../variables.scss";
+
+$main-text-width: 55%;
+
+.no-gift-cards{
+    background-color: variables.$main-yellow;
+
+    .no-gift-cards-content{
+        width: 100%;
+        text-align: center;
+        padding-top: variables.$base-unit * 8;
+    }
+
+    .no-gift-cards-title{
+        font-family: "Montserrat";
+        font-size: variables.$font-size-title;
+        margin-bottom: variables.$base-unit * 3;
+        text-align: center;
+        width: $main-text-width;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .no-gift-cards-link{
+        font-family: "Montserrat";
+        cursor: pointer;
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .no-gift-cards-points{
+        font-family: "Montserrat";
+    }
+
+    .no-gift-cards-illustration{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: variables.$base-unit *4;
+        width: variables.$base-unit * 44;
+    }
+}

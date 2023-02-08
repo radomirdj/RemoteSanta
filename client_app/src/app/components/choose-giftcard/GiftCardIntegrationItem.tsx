@@ -4,6 +4,7 @@ import {
   CardMedia,
   Grid,
   IconButton,
+  Link,
   Modal,
   Typography,
 } from "@mui/material";
@@ -73,18 +74,35 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
                 aria-describedby="modal-modal-description"
               >
                 <Card sx={style}>
-                  <CardMedia
-                    component="img"
-                    image={giftCardIntegration.image}
-                    alt=""
-                    className="modal-card-image"
-                  />
-                  <Typography id="modal-modal-title" variant="h6">
-                    {giftCardIntegration.title}
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <Grid container>
+                    <Grid item xs={7}>
+                      <Typography id="modal-modal-title" variant="h6">
+                        {giftCardIntegration.title}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={5}>
+                      <CardMedia
+                        sx={{ mr: 2 }}
+                        component="img"
+                        image={giftCardIntegration.image}
+                        alt=""
+                        className="modal-card-image"
+                      />
+                    </Grid>
+                  </Grid>
+                  <Typography
+                    id="modal-modal-description"
+                    sx={{ mt: 2, mb: 2 }}
+                  >
                     {giftCardIntegration.description}
                   </Typography>
+                  <Link
+                    href={giftCardIntegration.website}
+                    target="_blank"
+                    className="modal-website-link"
+                  >
+                    {giftCardIntegration.website}
+                  </Link>
                 </Card>
               </Modal>
             </div>

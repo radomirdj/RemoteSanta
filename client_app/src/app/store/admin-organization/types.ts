@@ -1,3 +1,4 @@
+import { AuthUser } from "../auth/types";
 import {
   FETCH_ADMIN_ORGANIZATION_LIST,
   FETCH_ADMIN_ORGANIZATION_LIST_SUCCESS,
@@ -17,6 +18,9 @@ import {
   CANCEL_ADMIN_INVITE,
   CANCEL_ADMIN_INVITE_SUCCESS,
   CANCEL_ADMIN_INVITE_FAILURE,
+  FETCH_ADMIN_USER,
+  FETCH_ADMIN_USER_SUCCESS,
+  FETCH_ADMIN_USER_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -47,6 +51,7 @@ export interface AdminOrganizationState {
   adminOrganizationList: IAdminOrganization[];
   adminOrganization: IAdminOrganization | null;
   adminUserList: IAdminUser[];
+  adminUser: AuthUser | null;
   adminInviteList: IAdminInvite[];
   error: string | null;
 }
@@ -113,6 +118,18 @@ export interface CancelAdminInvitePayload {
 }
 
 export interface CancelAdminInviteFailurePayload {
+  error: string;
+}
+
+export interface FetchAdminUserPayload {
+  userId: string;
+}
+
+export interface FetchAdminUserSuccessPayload {
+  adminUser: AuthUser;
+}
+
+export interface FetchAdminUserFailurePayload {
   error: string;
 }
 
@@ -203,6 +220,21 @@ export type CancelAdminInviteFailure = {
   payload: CancelAdminInviteFailurePayload;
 };
 
+export interface FetchAdminUser {
+  type: typeof FETCH_ADMIN_USER;
+  payload: FetchAdminUserPayload;
+}
+
+export interface FetchAdminUserSuccess {
+  type: typeof FETCH_ADMIN_USER_SUCCESS;
+  payload: FetchAdminUserSuccessPayload;
+}
+
+export interface FetchAdminUserFailure {
+  type: typeof FETCH_ADMIN_USER_FAILURE;
+  payload: FetchAdminUserFailurePayload;
+}
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
@@ -221,4 +253,7 @@ export type AdminOrganizationActions =
   | PostAdminInviteFailure
   | CancelAdminInvite
   | CancelAdminInviteSuccess
-  | CancelAdminInviteFailure;
+  | CancelAdminInviteFailure
+  | FetchAdminUser
+  | FetchAdminUserSuccess
+  | FetchAdminUserFailure;

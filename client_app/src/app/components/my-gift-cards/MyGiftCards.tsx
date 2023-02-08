@@ -9,6 +9,7 @@ import { getGiftCardRequestListSelector } from "../../store/gift-card-request/se
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import MyGiftCardItem from "./MyGiftCardItem";
+import NoGiftCards from "./NoGiftCards";
 
 const MyGiftCards = () => {
   const dispatch = useDispatch();
@@ -27,45 +28,48 @@ const MyGiftCards = () => {
   return (
     <>
       <AppHeaderPrivate />
-      <div
-        className={
-          giftCardRequestList.length > 4
-            ? "background my-gift-cards"
-            : "background my-gift-cards-small-list"
-        }
-      >
-        {/*LABELS */}
-        <Grid container spacing={4} className="grid-style">
-          <Grid item xs={12} className="grid-title">
-            <Typography className="my-gift-cards-title">
-              My Gift Cards
-            </Typography>
+      {giftCardRequestList.length === 0 && <NoGiftCards />}
+      {giftCardRequestList.length > 0 && (
+        <div
+          className={
+            giftCardRequestList.length > 4
+              ? "background my-gift-cards"
+              : "background my-gift-cards-small-list"
+          }
+        >
+          {/*LABELS */}
+          <Grid container spacing={4} className="grid-style">
+            <Grid item xs={12} className="grid-title">
+              <Typography className="my-gift-cards-title">
+                My Gift Cards
+              </Typography>
+            </Grid>
+            <Grid item xs={12} className="grid-item">
+              <Typography className="my-gift-cards-text">
+                <span className="my-gift-card-points">
+                  {" "}
+                  {user.userBalance?.pointsActive} PTS
+                </span>
+                - Use your points
+                <u
+                  className="my-gift-cards-link"
+                  onClick={chooseGiftCardRedirect}
+                >
+                  now
+                </u>
+                .
+              </Typography>
+            </Grid>
+            {giftCardRequestList.map((element, i) => {
+              return (
+                <Grid item xs={12} sm={6} md={3} key={i}>
+                  <MyGiftCardItem {...element} />
+                </Grid>
+              );
+            })}
           </Grid>
-          <Grid item xs={12} className="grid-item">
-            <Typography className="my-gift-cards-text">
-              <span className="my-gift-card-points">
-                {" "}
-                {user.userBalance?.pointsActive} PTS
-              </span>
-              - Use your points
-              <u
-                className="my-gift-cards-link"
-                onClick={chooseGiftCardRedirect}
-              >
-                now
-              </u>
-              .
-            </Typography>
-          </Grid>
-          {giftCardRequestList.map((element, i) => {
-            return (
-              <Grid item xs={12} sm={6} md={3} key={i}>
-                <MyGiftCardItem {...element} />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </div>
+        </div>
+      )}
       <AppFooter />
     </>
   );

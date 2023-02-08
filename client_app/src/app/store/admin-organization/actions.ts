@@ -17,6 +17,9 @@ import {
   CANCEL_ADMIN_INVITE,
   CANCEL_ADMIN_INVITE_SUCCESS,
   CANCEL_ADMIN_INVITE_FAILURE,
+  FETCH_ADMIN_USER,
+  FETCH_ADMIN_USER_SUCCESS,
+  FETCH_ADMIN_USER_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationList,
@@ -52,6 +55,12 @@ import {
   CancelAdminInviteSuccess,
   CancelAdminInviteFailurePayload,
   CancelAdminInviteFailure,
+  FetchAdminUserPayload,
+  FetchAdminUser,
+  FetchAdminUserSuccessPayload,
+  FetchAdminUserSuccess,
+  FetchAdminUserFailurePayload,
+  FetchAdminUserFailure,
 } from "./types";
 
 export const fetchAdminOrganizationList = (): FetchAdminOrganizationList => ({
@@ -168,5 +177,26 @@ export const cancelAdminInviteFailure = (
   payload: CancelAdminInviteFailurePayload
 ): CancelAdminInviteFailure => ({
   type: CANCEL_ADMIN_INVITE_FAILURE,
+  payload,
+});
+
+export const fetchAdminUser = (
+  payload: FetchAdminUserPayload
+): FetchAdminUser => ({
+  type: FETCH_ADMIN_USER,
+  payload,
+});
+
+export const fetchAdminUserSuccess = (
+  payload: FetchAdminUserSuccessPayload
+): FetchAdminUserSuccess => ({
+  type: FETCH_ADMIN_USER_SUCCESS,
+  payload,
+});
+
+export const fetchAdminUserFailure = (
+  payload: FetchAdminUserFailurePayload
+): FetchAdminUserFailure => ({
+  type: FETCH_ADMIN_USER_FAILURE,
   payload,
 });
