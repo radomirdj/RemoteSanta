@@ -1,5 +1,7 @@
 @use "./../variables.scss";
 
+$logo-height:42px;
+
 .app-header-private{
     background-color: variables.$main-yellow !important;
     box-shadow: none !important;
@@ -51,6 +53,11 @@
     .user-manager-icon{
         width: variables.$base-unit *5;
         height: variables.$base-unit *5;
+    }
+
+    .logo-style{
+        height: $logo-height;
+        margin-top: variables.$base-unit;
     }
 }
 

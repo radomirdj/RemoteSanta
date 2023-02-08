@@ -66,10 +66,6 @@ const AppHeaderPrivate = () => {
     navigate("/user-profile");
   };
 
-  const historyRedirect = () => {
-    navigate("/history");
-  };
-
   const userManagerTransactionsRedirect = () => {
     navigate("/user-manager-transactions");
   };
@@ -91,7 +87,7 @@ const AppHeaderPrivate = () => {
             md={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="" className="logo-style" />
           </Grid>
           <Grid
             item
@@ -206,12 +202,6 @@ const AppHeaderPrivate = () => {
               {/*LABELS*/}
               <MenuItem onClick={userProfileRedirect}>
                 <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={historyRedirect}>
-                <Typography textAlign="center">History</Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">Language</Typography>
               </MenuItem>
               <MenuItem onClick={userLogout}>
                 <Typography textAlign="center">Logout</Typography>

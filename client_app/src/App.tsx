@@ -16,7 +16,6 @@ import ChangePasswordSuccess from "./app/components/change-password-success/Chan
 import ErrorPage from "./app/components/error-page/ErrorPage";
 import MyGiftCards from "./app/components/my-gift-cards/MyGiftCards";
 import Demo from "./app/components/demo/Demo";
-import History from "./app/components/history/History";
 import UserProfile from "./app/components/user-profile/UserProfile";
 import ChooseGiftCard from "./app/components/choose-giftcard/ChooseGiftCard";
 import GiftCardRequestSuccess from "./app/components/gift-card-request-success/GiftCardRequestSuccess";
@@ -104,14 +103,6 @@ const App = () => {
           element={
             <PrivateRoute>
               <Demo />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="history"
-          element={
-            <PrivateRoute>
-              <History />
             </PrivateRoute>
           }
         />

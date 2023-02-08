@@ -31,7 +31,7 @@ const AppHeaderAdmin = () => {
             md={6}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="" className="logo-style" />
           </Grid>
           <Grid
             item
