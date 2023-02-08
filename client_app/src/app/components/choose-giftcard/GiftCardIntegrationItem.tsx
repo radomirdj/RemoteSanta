@@ -55,7 +55,7 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
         >
           {giftCardIntegration.title}
         </Typography>
-        {/*LABELS */}
+
         <Grid container>
           <Grid item xs={8} className="grid-vertical-align">
             <div>

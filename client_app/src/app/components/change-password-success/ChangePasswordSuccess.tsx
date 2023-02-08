@@ -15,7 +15,6 @@ const ChangePasswordSuccess = () => {
     <>
       <AppHeaderPublic />
       <div className="background change-password-success">
-        {/*LABELS */}
         <div className="change-password-success-content">
           <Typography className="change-password-success-title">
             Your password is successfully changed

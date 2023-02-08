@@ -43,7 +43,6 @@ const GiftCardRequestOverview = () => {
   return (
     <>
       <Card className="overview-card">
-        {/*LABELS */}
         <Typography className="overview-title">Overview</Typography>
         <Card className="overview-child-card">
           <Grid container className="grid-style">

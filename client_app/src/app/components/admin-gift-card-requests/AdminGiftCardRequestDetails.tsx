@@ -138,7 +138,7 @@ const AdminGiftCardRequestDetails = () => {
                     required: true,
                   })}
                 />
-                {/*LABELS */}
+
                 {errors.url?.type === "required" && (
                   <Typography className="details-error-fe">
                     Gift Card Url is required.
@@ -179,7 +179,7 @@ const AdminGiftCardRequestDetails = () => {
                     required: true,
                   })}
                 />
-                {/*LABELS */}
+
                 {errorsDecline.comment?.type === "required" && (
                   <Typography className="details-error-fe">
                     Comment is required.

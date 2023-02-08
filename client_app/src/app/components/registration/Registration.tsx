@@ -85,7 +85,6 @@ const Registration = () => {
           <Grid item xs={10} sm={6} md={4}>
             <Card className="registration-card">
               <form onSubmit={handleSubmit(onSubmit)}>
-                {/*LABELS */}
                 <Typography
                   className={
                     error
@@ -103,7 +102,7 @@ const Registration = () => {
                     </Typography>
                   </div>
                 )}
-                {/*LABELS */}
+
                 <TextField
                   id="outlined-basic"
                   error={errors.firstName ? true : false}
@@ -116,13 +115,13 @@ const Registration = () => {
                   }
                   {...register("firstName", { required: true })}
                 />
-                {/*LABELS */}
+
                 {errors.firstName?.type === "required" && (
                   <Typography className="registration-error-fe">
                     Firstname is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 <TextField
                   id="outlined-basic"
                   error={errors.lastName ? true : false}
@@ -135,13 +134,13 @@ const Registration = () => {
                   }
                   {...register("lastName", { required: true })}
                 />
-                {/*LABELS */}
+
                 {errors.lastName?.type === "required" && (
                   <Typography className="registration-error-fe">
                     Lastname is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <Controller
                     control={control}
@@ -164,13 +163,13 @@ const Registration = () => {
                     )}
                   />
                 </LocalizationProvider>
-                {/*LABELS */}
+
                 {errors.birthDate?.type === "required" && (
                   <Typography className="registration-error-fe">
                     Date of birth is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 <FormControl variant="outlined">
                   <InputLabel id="genderLabel">Gender</InputLabel>
                   <Select
@@ -189,13 +188,13 @@ const Registration = () => {
                     <MenuItem value={"OTHER"}>Other</MenuItem>
                   </Select>
                 </FormControl>
-                {/*LABELS */}
+
                 {errors.gender?.type === "required" && (
                   <Typography className="registration-error-fe">
                     Gender is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 <TextField
                   error={errors.email ? true : false}
                   id="outlined-basic"
@@ -211,20 +210,19 @@ const Registration = () => {
                     pattern: getEmailRegex(),
                   })}
                 />
-                {/*LABELS */}
+
                 {errors.email?.type === "required" && (
                   <Typography className="registration-error-fe">
                     Email is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 {errors.email?.type === "pattern" && (
                   <Typography className="registration-error-fe">
                     Email should be an email.
                   </Typography>
                 )}
                 <FormControl variant="outlined">
-                  {/*LABELS */}
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
                   <OutlinedInput
                     error={errors.password ? true : false}
@@ -253,13 +251,13 @@ const Registration = () => {
                       pattern: getPasswordRegex(),
                     })}
                   />
-                  {/*LABELS */}
+
                   {errors.password?.type === "required" && (
                     <Typography className="registration-error-fe">
                       Password is required.
                     </Typography>
                   )}
-                  {/*LABELS */}
+
                   {errors.password?.type === "pattern" && (
                     <Typography className="registration-error-fe">
                       Password must contain at least 8 characters and at least 1

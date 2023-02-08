@@ -15,7 +15,6 @@ const ErrorPage = () => {
     <>
       <AppHeaderPublic />
       <div className="background error-page">
-        {/*LABELS */}
         <div className="error-page-content">
           <Typography className="error-page-title">
             Oops! 404 Page not found

@@ -38,7 +38,6 @@ const Home = () => {
     <>
       <AppHeaderPrivate />
       <div className="background home">
-        {/*LABELS */}
         <Grid container spacing={4} className="grid-style">
           <Grid item xs={6}>
             <Typography className="home-title">

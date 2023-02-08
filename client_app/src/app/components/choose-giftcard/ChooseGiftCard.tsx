@@ -23,7 +23,6 @@ const ChooseGiftCard = () => {
     getGiftCardIntegrationListSelector
   );
   const activeStep = useSelector(getStepperPagetSelector);
-  //LABELS
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
 
   useEffect(() => {

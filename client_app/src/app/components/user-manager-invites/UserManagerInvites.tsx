@@ -212,13 +212,13 @@ const UserManagerInvites = () => {
                       pattern: getEmailRegex(),
                     })}
                   />
-                  {/*LABELS */}
+
                   {errors.email?.type === "required" && (
                     <Typography className="invite-error-fe">
                       Email is required.
                     </Typography>
                   )}
-                  {/*LABELS */}
+
                   {errors.email?.type === "pattern" && (
                     <Typography className="invite-error-fe">
                       Email should be an email.

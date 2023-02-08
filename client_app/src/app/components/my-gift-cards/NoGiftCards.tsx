@@ -18,7 +18,6 @@ const NoGiftCards = () => {
     <>
       <AppHeaderPrivate />
       <div className="background no-gift-cards">
-        {/*LABELS */}
         <div className="no-gift-cards-content">
           <Typography className="no-gift-cards-title">
             You don't have any gift cards yet. Use your points and grab the

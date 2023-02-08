@@ -100,7 +100,6 @@ const AppHeaderPrivate = () => {
             <img src={LogoSmall} alt="" className="logo-small" />
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-right">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/"
@@ -113,7 +112,6 @@ const AppHeaderPrivate = () => {
             </Typography>
           </Grid>
           <Grid item xs={3} sm={2} md={2} className="align-center">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/my-gift-cards"
@@ -126,7 +124,6 @@ const AppHeaderPrivate = () => {
             </Typography>
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-left">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/demo"
@@ -163,7 +160,6 @@ const AppHeaderPrivate = () => {
                 open={Boolean(anchorElManager)}
                 onClose={handleCloseManagerMenu}
               >
-                {/*LABELS*/}
                 <MenuItem onClick={userManagerTransactionsRedirect}>
                   <Typography textAlign="center">Transactions</Typography>
                 </MenuItem>
@@ -199,7 +195,6 @@ const AppHeaderPrivate = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/*LABELS*/}
               <MenuItem onClick={userProfileRedirect}>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>

@@ -81,7 +81,7 @@ const OrgToEmployeeTransaction = () => {
         <Card className="card-style">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Typography className="title-style">Org To Employees</Typography>
-            {/*LABELS */}
+
             {error && (
               <div className="amount-error">
                 <ErrorIcon className="amount-error-icon" />
@@ -105,7 +105,7 @@ const OrgToEmployeeTransaction = () => {
                 })}
               </Select>
             </FormControl>
-            {/*LABELS */}
+
             {errors.event?.type === "required" && (
               <Typography className="event-error-fe">
                 Event is required.

@@ -57,9 +57,8 @@ const Login = () => {
           <Grid item xs={10} sm={6} md={4}>
             <Card className="login-card">
               <form onSubmit={handleSubmit(onSubmit)}>
-                {/*LABELS */}
                 <Typography className="login-title">Sign in</Typography>
-                {/*LABELS */}
+
                 {error && (
                   <div className="login-error">
                     <ErrorIcon className="login-error-icon" />
@@ -81,20 +80,19 @@ const Login = () => {
                     pattern: getEmailRegex(),
                   })}
                 />
-                {/*LABELS */}
+
                 {errors.email?.type === "required" && (
                   <Typography className="login-error-fe">
                     Email is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 {errors.email?.type === "pattern" && (
                   <Typography className="login-error-fe">
                     Email should be an email.
                   </Typography>
                 )}
                 <FormControl variant="outlined">
-                  {/*LABELS */}
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
                   <OutlinedInput
                     error={errors.password ? true : false}
@@ -115,21 +113,21 @@ const Login = () => {
                     label="Password"
                     {...register("password", { required: true })}
                   />
-                  {/*LABELS */}
+
                   {errors.password?.type === "required" && (
                     <Typography className="login-error-fe">
                       Password is required.
                     </Typography>
                   )}
                 </FormControl>
-                {/*LABELS */}
+
                 <Typography
                   className="login-forgot-password"
                   onClick={forgotPasswordRedirect}
                 >
                   Forgot Password?
                 </Typography>
-                {/*LABELS */}
+
                 <Button
                   variant="contained"
                   className="login-button"
