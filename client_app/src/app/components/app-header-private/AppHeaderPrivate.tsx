@@ -168,29 +168,14 @@ const AppHeaderPrivate = () => {
                 onClose={handleCloseManagerMenu}
               >
                 {/*LABELS*/}
-                <MenuItem>
-                  <Typography
-                    textAlign="center"
-                    onClick={userManagerTransactionsRedirect}
-                  >
-                    Transactions
-                  </Typography>
+                <MenuItem onClick={userManagerTransactionsRedirect}>
+                  <Typography textAlign="center">Transactions</Typography>
                 </MenuItem>
-                <MenuItem>
-                  <Typography
-                    textAlign="center"
-                    onClick={userManagerInvitesRedirect}
-                  >
-                    Invites
-                  </Typography>
+                <MenuItem onClick={userManagerInvitesRedirect}>
+                  <Typography textAlign="center">Invites</Typography>
                 </MenuItem>
-                <MenuItem>
-                  <Typography
-                    textAlign="center"
-                    onClick={userManagerUsersRedirect}
-                  >
-                    Users
-                  </Typography>
+                <MenuItem onClick={userManagerUsersRedirect}>
+                  <Typography textAlign="center">Users</Typography>
                 </MenuItem>
               </Menu>
             </Grid>
@@ -219,23 +204,17 @@ const AppHeaderPrivate = () => {
               onClose={handleCloseUserMenu}
             >
               {/*LABELS*/}
-              <MenuItem>
-                <Typography textAlign="center" onClick={userProfileRedirect}>
-                  Profile
-                </Typography>
+              <MenuItem onClick={userProfileRedirect}>
+                <Typography textAlign="center">Profile</Typography>
               </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center" onClick={historyRedirect}>
-                  History
-                </Typography>
+              <MenuItem onClick={historyRedirect}>
+                <Typography textAlign="center">History</Typography>
               </MenuItem>
               <MenuItem>
                 <Typography textAlign="center">Language</Typography>
               </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center" onClick={userLogout}>
-                  Logout
-                </Typography>
+              <MenuItem onClick={userLogout}>
+                <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
           </Grid>

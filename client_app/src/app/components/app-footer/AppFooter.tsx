@@ -6,8 +6,6 @@ const AppFooter = () => {
     <div className="app-footer">
       {/*LABELS */}
       <Typography className="footer-text">© 2022 Remote Santa </Typography>
-      <Typography className="footer-text">|</Typography>
-      <Typography className="footer-text">Privacy Policy </Typography>
     </div>
   );
 };
