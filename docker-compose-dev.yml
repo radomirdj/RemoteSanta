@@ -14,16 +14,40 @@ services:
     ports:
       - "5432:5432"
 
-  # minio:
-  #   image: minio/minio
-  #     command: server /data/
-  #     environment:
-  #       MINIO_ACCESS_KEY: my_access_key
-  #       MINIO_SECRET_KEY: my_secret_key
-  #     ports:
-  #       - 9000:9000
-  #     volumes:
-  #       - .docker/volumes/minio/:/data/
+  minio:
+    image: minio/minio
+    command: server /data/
+    environment:
+      - MINIO_ACCESS_KEY=my_access_key
+      - MINIO_SECRET_KEY=my_secret_key
+    ports:
+      - 9000:9000
+    volumes:
+      - .docker/volumes/minio/:/data/
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 my_access_key my_secret_key;
+      /usr/bin/mc mb myminio/giftcardfiles;
+      /usr/bin/mc policy set public myminio/giftcardfiles;
+      exit 0;
+      "
+
+  createbucketstest:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 my_access_key my_secret_key;
+      /usr/bin/mc mb myminio/giftcardfilestest;
+      /usr/bin/mc policy set public myminio/giftcardfilestest;
+      exit 0;
+      "
 
   pgtest:
     image: postgres:13.5
@@ -52,6 +76,10 @@ services:
       AWS_SES_SMTP_HOST: ${AWS_SES_SMTP_HOST}
       AWS_SES_SMTP_USERNAME: ${AWS_SES_SMTP_USERNAME}
       AWS_SES_SMTP_PASSWORD: ${AWS_SES_SMTP_PASSWORD}
+      AWS_S3_ACCESS_KEY: my_access_key
+      AWS_S3_SECRET_KEY: my_secret_key
+      AWS_S3_BUCKET_GIFT_CARDS: ${AWS_S3_BUCKET_GIFT_CARDS}
+      AWS_S3_ENDPOINT: http://minio:9000
       EMAIL_FROM: ${EMAIL_FROM}
 
   api_full:
@@ -60,10 +88,11 @@ services:
       - 8090:8090
     depends_on:
       - pg
-      # - minio
+      - minio
+      - createbuckets
     links:
       - pg
-      # - minio
+      - minio
 
   client_app_bare: &fe_app # image: node:16.15.1
     working_dir: /app
@@ -104,9 +133,14 @@ services:
       - 8800:8800
     environment:
       DATABASE_URL: postgres://test:test@pgtest:5432/reward-service-test
+      AWS_S3_ACCESS_KEY: my_access_key
+      AWS_S3_SECRET_KEY: my_secret_key
+      AWS_S3_ENDPOINT: http://minio:9000
+      AWS_S3_BUCKET_GIFT_CARDS: giftcardfilestest
     depends_on:
       - pgtest
-      # - minio
+      - minio
+      - createbucketstest
 
   unit_test:
     image: node:16.15.1

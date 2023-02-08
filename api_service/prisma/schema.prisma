@@ -61,9 +61,9 @@ model UserInvite {
   createdBy   User                 @relation(fields: [createdById], references: [id])
   createdById String
   org         Org                  @relation(fields: [orgId], references: [id])
-  orgId     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  orgId       String
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
 }
 
 enum GiftDateTypeEnum {
@@ -183,8 +183,7 @@ model GiftCard {
   createdById       String
   giftCardRequest   GiftCardRequest @relation(fields: [giftCardRequestId], references: [id])
   giftCardRequestId String          @unique
-  description       String?
-  url               String
+  fileName          String          @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

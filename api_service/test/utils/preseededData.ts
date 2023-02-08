@@ -257,7 +257,7 @@ export const lastClaimPointsEvent = {
   id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',
   validTo: '2054-01-01T00:00:00.000Z',
   description: 'Make December to remember.',
-  title: 'December-2053.',
+  title: 'December 2053',
   claimPointsEventFulfillment: {
     id: 'b6b47e55-5213-441f-87db-c7e32bd5b70e',
     amount: 1200,
