@@ -1,9 +1,18 @@
-import { Controller, UseGuards, Body, Post, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Body,
+  Post,
+  Get,
+  Param,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthGuard } from '@nestjs/passport';
 import { AdminGiftCardRequestsService } from './admin_gift_card_requests.service';
 import { AdminGuard } from '../guards/admin.guard';
 import { Serialize } from '../interceptors/serialize.interceptor';
-import { FulfillGiftCardRequestDto } from './dtos/fulfill_giift_card_request.dto';
 import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
 import { GiftCardRequestDto } from '../gift_card_request/dtos/gift_card_request.dto';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
@@ -18,12 +27,13 @@ export class AdminGiftCardRequestsController {
   ) {}
 
   @Post('/:id/fulfill')
-  createGiftCardRequest(
+  @UseInterceptors(FileInterceptor('file'))
+  fulfillGiftCardRequest(
     @Param('id') id: string,
-    @Body() body: FulfillGiftCardRequestDto,
     @CurrentUser() user: User,
+    @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.adminGiftCardRequestsService.fulfillRequest(id, body, user);
+    return this.adminGiftCardRequestsService.fulfillRequest(id, user, file);
   }
 
   @Post('/:id/decline')

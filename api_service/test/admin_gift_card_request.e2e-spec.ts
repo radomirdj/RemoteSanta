@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
+import { join } from 'path';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
@@ -140,10 +141,6 @@ describe('admin/gift-card-requests', () => {
   });
 
   describe('/:id/fulfill (POST)', () => {
-    const newGiftCard = {
-      url: 'url',
-      description: 'description',
-    };
     it('/:id/fulfill (POST) -  Admin fulfill gift card request', async () => {
       const response = await request(app.getHttpServer())
         .post(`/admin/gift-card-requests/${giftCardRequest1.id}/fulfill`)
@@ -152,7 +149,7 @@ describe('admin/gift-card-requests', () => {
           'bearer ' +
             createToken({ email: admin.email, sub: admin.cognitoSub }),
         )
-        .send(newGiftCard)
+        .attach('file', join(__dirname, 'files/gift_card_image.png'))
         .expect(201);
 
       const id = response.body.id;
@@ -177,79 +174,6 @@ describe('admin/gift-card-requests', () => {
       });
       expect(giftCard.createdById).toEqual(admin.id);
       expect(giftCard.giftCardRequestId).toEqual(id);
-      expect(giftCard.description).toEqual(newGiftCard.description);
-      expect(giftCard.url).toEqual(newGiftCard.url);
-
-      // Check Ledger
-      await checkOneAddedLedger(prisma, testStartTime, {
-        fromId: user1ReservedBalanceSideId,
-        toId: platformBalanceSideId,
-        amount: giftCardRequest1.amount,
-        type: LedgerTypeEnum.GIFT_CARD_REQUEST_COMPLETED,
-      });
-
-      await checkBalance(ledgerService, user1.id, {
-        pointsActive: user1ActivePoints,
-        pointsReserved: user1ReservedPoints - giftCardRequest1.amount,
-      });
-
-      // Clean DB
-      await prisma.ledger.deleteMany({
-        where: {
-          createdAt: {
-            gte: testStartTime,
-          },
-        },
-      });
-
-      await prisma.giftCardRequest.update({
-        where: { id },
-        data: { status: GiftCardRequestStatusEnum.PENDING },
-      });
-
-      await prisma.giftCard.deleteMany({
-        where: { giftCardRequestId: id },
-      });
-    });
-
-    it('/:id/fulfill (POST) -  Admin fulfill gift card request without description', async () => {
-      const newGiftCard2 = {
-        url: 'url',
-      };
-      const response = await request(app.getHttpServer())
-        .post(`/admin/gift-card-requests/${giftCardRequest1.id}/fulfill`)
-        .set(
-          'Authorization',
-          'bearer ' +
-            createToken({ email: admin.email, sub: admin.cognitoSub }),
-        )
-        .send(newGiftCard2)
-        .expect(201);
-
-      const id = response.body.id;
-      expect(id).toEqual(giftCardRequest1.id);
-
-      expectGiftCardRequestRsp(response.body, {
-        ...giftCardRequest1,
-        status: GiftCardRequestStatusEnum.COMPLETED,
-      });
-
-      await expectGiftCardRequestInDB(
-        id,
-        {
-          ...giftCardRequest1,
-          status: GiftCardRequestStatusEnum.COMPLETED,
-        },
-        prisma,
-      );
-
-      const giftCard = await prisma.giftCard.findUnique({
-        where: { giftCardRequestId: id },
-      });
-      expect(giftCard.createdById).toEqual(admin.id);
-      expect(giftCard.giftCardRequestId).toEqual(id);
-      expect(giftCard.description).toBeFalsy();
-      expect(giftCard.url).toEqual(newGiftCard2.url);
 
       // Check Ledger
       await checkOneAddedLedger(prisma, testStartTime, {
@@ -293,7 +217,7 @@ describe('admin/gift-card-requests', () => {
           'bearer ' +
             createToken({ email: admin.email, sub: admin.cognitoSub }),
         )
-        .send(newGiftCard)
+        .attach('file', join(__dirname, 'files/gift_card_image.png'))
         .expect(405);
     });
 
@@ -305,14 +229,14 @@ describe('admin/gift-card-requests', () => {
           'bearer ' +
             createToken({ email: user2.email, sub: user2.cognitoSub }),
         )
-        .send(newGiftCard)
+        .attach('file', join(__dirname, 'files/gift_card_image.png'))
         .expect(403);
     });
 
     it('/:id (GET) - ADMIN try to fulfill gift card request without token', async () => {
       await request(app.getHttpServer())
         .post(`/admin/gift-card-requests/${giftCardRequest1.id}/fulfill`)
-        .send(newGiftCard)
+        .attach('file', join(__dirname, 'files/gift_card_image.png'))
         .expect(401);
     });
   });

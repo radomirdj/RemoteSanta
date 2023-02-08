@@ -3,27 +3,29 @@ import {
   NotFoundException,
   MethodNotAllowedException,
 } from '@nestjs/common';
+import * as randomstring from 'randomstring';
 import { PrismaService } from '../prisma/prisma.service';
 import {
   User,
   GiftCardRequest,
   GiftCardRequestStatusEnum,
 } from '@prisma/client';
-import { FulfillGiftCardRequestDto } from './dtos/fulfill_giift_card_request.dto';
 import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
 import { LedgerService } from '../ledger/ledger.service';
+import { InjectS3, S3 } from 'nestjs-s3';
 
 @Injectable()
 export class AdminGiftCardRequestsService {
   constructor(
     private prisma: PrismaService,
     private ledgerService: LedgerService,
+    @InjectS3() private readonly s3: S3,
   ) {}
 
   async fulfillRequest(
     id: string,
-    data: FulfillGiftCardRequestDto,
     admin: User,
+    file: Express.Multer.File,
   ): Promise<GiftCardRequest> {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
@@ -38,10 +40,19 @@ export class AdminGiftCardRequestsService {
     }
 
     return this.prisma.$transaction(async (tx) => {
+      const fileName = `gift-card-${randomstring.generate(7)}`;
+      await this.s3
+        .putObject({
+          Body: file.buffer,
+          Bucket: process.env.AWS_S3_BUCKET_GIFT_CARDS,
+          Key: fileName,
+        })
+        .promise();
+
       const [rsp1, rsp2, giftCardRequestRsp] = await Promise.all([
         tx.giftCard.create({
           data: {
-            ...data,
+            fileName,
             giftCardRequest: {
               connect: {
                 id,
