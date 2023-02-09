@@ -135,7 +135,7 @@ export const giftDate5 = giftDates[4];
 export const giftCardIntegration1 = {
   id: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
   priority: 10,
-  website: 'https://giftoncard.eu',
+  website: 'https://giftoncard.eu/listing/multibrand-poklon-kartica/',
   image:
     'https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png',
   title: 'Multibrand',
