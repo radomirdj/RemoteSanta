@@ -40,7 +40,9 @@ export class AdminGiftCardRequestsService {
     }
 
     return this.prisma.$transaction(async (tx) => {
-      const fileName = `gift-card-${randomstring.generate(7)}`;
+      const fileExt = file.originalname.split('.').pop();
+
+      const fileName = `gift-card-${randomstring.generate(7)}.${fileExt}`;
       await this.s3
         .putObject({
           Body: file.buffer,
