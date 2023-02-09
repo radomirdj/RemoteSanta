@@ -139,7 +139,8 @@ export const giftCardIntegration1 = {
   image:
     'https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png',
   title: 'Multibrand',
-  description: 'Jedna e kartica, na preko 500 lokacija širom Srbije.',
+  description:
+    'Multibrand karticu moguće je iskoristiti na preko 500 lokacija širom Srbije. Moguće je iskoristiti u naznačenim radnjama raznovrsnog tipa i zato kao takva predstavlja pravi spoj zabave, mode, sporta, tehnike.',
   constraintType: 'MIN_MAX',
   constraintJson: { MIN: 500, MAX: 100000 },
 };
