@@ -31,8 +31,8 @@ import { EmailsModule } from './emails/emails.module';
     S3Module.forRootAsync({
       useFactory: () => ({
         config: {
-          accessKeyId: process.env.AWS_S3_ACCESS_KEY,
-          secretAccessKey: process.env.AWS_S3_SECRET_KEY,
+          accessKeyId: process.env.AWS_S3_ACCESS_KEY || '',
+          secretAccessKey: process.env.AWS_S3_SECRET_KEY || '',
           endpoint: process.env.AWS_S3_ENDPOINT,
           s3ForcePathStyle: true,
           signatureVersion: 'v4',
