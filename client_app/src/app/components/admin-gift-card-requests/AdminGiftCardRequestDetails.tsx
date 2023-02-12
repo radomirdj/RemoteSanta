@@ -13,14 +13,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   declineAdminGiftCardRequest,
   fetchAdminGiftCardRequest,
+  fulfillAdminGiftCardRequest,
 } from "../../store/admin-gift-card-requests/actions";
 import {
   getAdminGiftCardRequestSelector,
   getAdminGiftCardRequestUserSelector,
+  getErrorSelector,
 } from "../../store/admin-gift-card-requests/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
-import { fulfillGiftCardRequest2 } from "../../services/api-service";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const AdminGiftCardRequestDetails = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const AdminGiftCardRequestDetails = () => {
   const adminGiftCardRequestUser = useSelector(
     getAdminGiftCardRequestUserSelector
   );
+  const error = useSelector(getErrorSelector);
   const {
     register,
     formState: { errors },
@@ -49,15 +52,15 @@ const AdminGiftCardRequestDetails = () => {
   }, [dispatch]);
 
   const onSubmit = (data: any) => {
-    // dispatch(
-    //   fulfillAdminGiftCardRequest(
-    //     {
-    //       giftCardRequestId: giftCardRequestId,
-    //       fulfillData: { url: data.url, description: data.desctiption },
-    //     },
-    //     navigate
-    //   )
-    // );
+    dispatch(
+      fulfillAdminGiftCardRequest(
+        {
+          giftCardRequestId: giftCardRequestId,
+          file: data.file[0],
+        },
+        navigate
+      )
+    );
   };
 
   const onSubmitDecline = (data: any) => {
@@ -70,14 +73,6 @@ const AdminGiftCardRequestDetails = () => {
         navigate
       )
     );
-  };
-
-  const toBase64 = async (e: any) => {
-    try {
-      await fulfillGiftCardRequest2(giftCardRequestId, e.target.files[0]);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   return (
@@ -138,10 +133,20 @@ const AdminGiftCardRequestDetails = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container>
                   <Grid item xs={12}>
+                    {error && (
+                      <div className="error-fulfill">
+                        <ErrorIcon className="error-fulfill-icon" />
+                        <Typography className="error-fulfill-message">
+                          {error}
+                        </Typography>
+                      </div>
+                    )}
                     <input
                       accept="application/pdf"
                       type="file"
-                      onChange={(e) => toBase64(e)}
+                      {...register("file", {
+                        required: true,
+                      })}
                     />
                   </Grid>
                   <Grid item xs={12}>

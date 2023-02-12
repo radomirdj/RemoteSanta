@@ -11,6 +11,9 @@ import {
   DECLINE_ADMIN_GIFT_CARD_REQUEST,
   DECLINE_ADMIN_GIFT_CARD_REQUEST_SUCCESS,
   DECLINE_ADMIN_GIFT_CARD_REQUEST_FAILURE,
+  FULFILL_ADMIN_GIFT_CARD_REQUEST,
+  FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS,
+  FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminGiftCardRequestList,
@@ -35,6 +38,11 @@ import {
   DeclineAdminGiftCardRequestSuccess,
   DeclineAdminGiftCardRequestFailurePayload,
   DeclineAdminGiftCardRequestFailure,
+  FulfillAdminGiftCardRequestPayload,
+  FulfillAdminGiftCardRequest,
+  FulfillAdminGiftCardRequestSuccess,
+  FulfillAdminGiftCardRequestFailurePayload,
+  FulfillAdminGiftCardRequestFailure,
 } from "./types";
 
 export const fetchAdminGiftCardRequestList =
@@ -116,5 +124,26 @@ export const declineAdminGiftCardRequestFailure = (
   payload: DeclineAdminGiftCardRequestFailurePayload
 ): DeclineAdminGiftCardRequestFailure => ({
   type: DECLINE_ADMIN_GIFT_CARD_REQUEST_FAILURE,
+  payload,
+});
+
+export const fulfillAdminGiftCardRequest = (
+  payload: FulfillAdminGiftCardRequestPayload,
+  navigate: Function
+): FulfillAdminGiftCardRequest => ({
+  type: FULFILL_ADMIN_GIFT_CARD_REQUEST,
+  payload,
+  navigate,
+});
+
+export const fulfillAdminGiftCardRequestSuccess =
+  (): FulfillAdminGiftCardRequestSuccess => ({
+    type: FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS,
+  });
+
+export const fulfillAdminGiftCardRequestFailure = (
+  payload: FulfillAdminGiftCardRequestFailurePayload
+): FulfillAdminGiftCardRequestFailure => ({
+  type: FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE,
   payload,
 });

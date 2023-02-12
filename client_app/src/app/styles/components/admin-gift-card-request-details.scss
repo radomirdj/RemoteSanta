@@ -121,4 +121,24 @@ $card-width: 800px;
         margin-bottom: variables.$base-unit * 2;
         margin-top: variables.$base-unit * 2;
     }
+
+    .error-fulfill {
+        color: variables.$error-color;
+        text-align: start;
+        margin-bottom: variables.$base-unit * 3;
+        display: inline-flex;
+        width: 100%;
+    
+        .error-fulfill-icon {
+          width: $login-error-icon-width !important;
+          height: $login-error-icon-height;
+          width: 10%;
+          margin-right: variables.$base-unit;
+        }
+    
+        .error-fulfill-message {
+          width: 90%;
+          font-size: variables.$font-size-small;
+        }
+      }
 }
