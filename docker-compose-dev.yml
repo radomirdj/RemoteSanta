@@ -80,6 +80,7 @@ services:
       AWS_S3_SECRET_KEY: my_secret_key
       AWS_S3_BUCKET_GIFT_CARDS: ${AWS_S3_BUCKET_GIFT_CARDS}
       AWS_S3_ENDPOINT: http://minio:9000
+      AWS_REGION: ${AWS_REGION}
       EMAIL_FROM: ${EMAIL_FROM}
 
   api_full:

@@ -34,6 +34,7 @@ import { EmailsModule } from './emails/emails.module';
           accessKeyId: process.env.AWS_S3_ACCESS_KEY || '',
           secretAccessKey: process.env.AWS_S3_SECRET_KEY || '',
           endpoint: process.env.AWS_S3_ENDPOINT,
+          region: process.env.AWS_REGION,
           s3ForcePathStyle: true,
           signatureVersion: 'v4',
         },
