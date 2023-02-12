@@ -21,6 +21,7 @@ import {
 } from "../../store/admin-gift-card-requests/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 const AdminGiftCardRequestDetails = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,21 @@ const AdminGiftCardRequestDetails = () => {
     );
   };
 
+  const toBase64 = (e: any) => {
+    const file = e.target.files[0];
+
+    // Encode the file using the FileReader API
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // Use a regex to remove data url part
+      const base64String = reader.result;
+
+      console.log(base64String);
+      // Logs wL2dvYWwgbW9yZ...
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <>
       <AppHeaderAdmin />
@@ -95,7 +111,7 @@ const AdminGiftCardRequestDetails = () => {
               <Typography className="info-style">
                 Created At:{" "}
                 {new Date(adminGiftCardRequest?.createdAt || "")
-                  .toLocaleDateString()
+                  .toLocaleDateString("en-GB")
                   .replaceAll("/", ".")}
               </Typography>
             </Grid>
@@ -128,22 +144,20 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Divider className="divider-style-not-full" />
               <form onSubmit={handleSubmit(onSubmit)}>
-                <TextField
-                  error={errors.url ? true : false}
-                  id="outlined-basic"
-                  label="Gift Card Url"
-                  variant="outlined"
-                  className={errors.url ? "url-input-with-error" : "url-input"}
-                  {...register("url", {
-                    required: true,
-                  })}
-                />
-
-                {errors.url?.type === "required" && (
-                  <Typography className="details-error-fe">
-                    Gift Card Url is required.
-                  </Typography>
-                )}
+                <Button
+                  variant="contained"
+                  component="label"
+                  className="upload-button"
+                  startIcon={<UploadFileIcon />}
+                >
+                  Upload
+                  <input
+                    hidden
+                    accept="application/pdf"
+                    type="file"
+                    onChange={(e) => toBase64(e)}
+                  />
+                </Button>
                 <TextField
                   id="standard-multiline-static"
                   label="Description"
