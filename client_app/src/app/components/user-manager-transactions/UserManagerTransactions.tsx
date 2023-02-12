@@ -46,7 +46,7 @@ const UserManagerTransactions = () => {
       return {
         type: organizationTransaction.type,
         createdAt: new Date(organizationTransaction.createdAt)
-          .toLocaleDateString()
+          .toLocaleDateString("en-GB")
           .replaceAll("/", "."),
         event: organizationTransaction.event?.title,
         amount: organizationTransaction.totalAmount + " PTS",

@@ -68,7 +68,7 @@ const AdminOrganizationDetails = () => {
       return {
         type: adminOrganizationTransaction.type,
         createdAt: new Date(adminOrganizationTransaction.createdAt)
-          .toLocaleDateString()
+          .toLocaleDateString("en-GB")
           .replaceAll("/", "."),
         event:
           adminOrganizationTransaction.event?.title &&
@@ -80,7 +80,7 @@ const AdminOrganizationDetails = () => {
                   ? adminOrganizationTransaction.event?.validTo
                   : ""
               )
-                .toLocaleDateString()
+                .toLocaleDateString("en-GB")
                 .replaceAll("/", ".")
             : "",
         amount: adminOrganizationTransaction.totalAmount + " PTS",

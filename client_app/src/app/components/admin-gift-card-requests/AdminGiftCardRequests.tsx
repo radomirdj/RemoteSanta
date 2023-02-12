@@ -66,7 +66,7 @@ const AdminGiftCardRequests = () => {
         integration: adminGiftCardRequest.giftCardIntegration.title,
         amount: adminGiftCardRequest.amount + " PTS",
         createdAt: new Date(adminGiftCardRequest.createdAt)
-          .toLocaleDateString()
+          .toLocaleDateString("en-GB")
           .replaceAll("/", "."),
         details: "",
       };
