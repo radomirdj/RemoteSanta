@@ -1,7 +1,5 @@
 FROM node:16-alpine AS builder
 WORKDIR /app
-ARG REACT_APP_BASE_URL
-ENV REACT_APP_BASE_URL $REACT_APP_BASE_URL
 COPY package.json ./
 COPY yarn.lock ./
 COPY tsconfig.json ./
