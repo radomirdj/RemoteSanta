@@ -32,12 +32,12 @@ import {
   PostUserInvitePayload
 } from "../store/user-invites/types";
 
-const baseURL =
-  process.env.REACT_APP_BASE_URL ||
-  "http://ec2-3-145-156-72.us-east-2.compute.amazonaws.com/api/";
-
+console.log(
+  "-------process.env.REACT_APP_BASE_URL",
+  process.env.REACT_APP_BASE_URL
+);
 const api = axios.create({
-  baseURL
+  baseURL: `${process.env.REACT_APP_BASE_URL}api`
 });
 
 export const getAdminOrganizationTransactionList = (
