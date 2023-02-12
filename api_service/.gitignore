@@ -2,9 +2,6 @@
 .env.test
 .env
 
-# sqlite storage
-*.sqlite
-
 # compiled output
 /dist
 /node_modules

@@ -2,6 +2,7 @@ import { Module, ValidationPipe, MiddlewareConsumer } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { consumers } from 'stream';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { S3Module } from 'nestjs-s3';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -26,6 +27,17 @@ import { EmailsModule } from './emails/emails.module';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
+    }),
+    S3Module.forRootAsync({
+      useFactory: () => ({
+        config: {
+          accessKeyId: process.env.AWS_S3_ACCESS_KEY || '',
+          secretAccessKey: process.env.AWS_S3_SECRET_KEY || '',
+          endpoint: process.env.AWS_S3_ENDPOINT,
+          s3ForcePathStyle: true,
+          signatureVersion: 'v4',
+        },
+      }),
     }),
     UsersModule,
     ReportsModule,

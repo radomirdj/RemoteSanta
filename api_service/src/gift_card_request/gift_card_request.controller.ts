@@ -6,13 +6,14 @@ import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '@prisma/client';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { GiftCardRequestDto } from './dtos/gift_card_request.dto';
+import { GiftCardFileDto } from './dtos/gift_card_file.dto';
 
-@Serialize(GiftCardRequestDto)
 @Controller('gift-card-requests')
 @UseGuards(AuthGuard('jwt'))
 export class GiftCardRequestController {
   constructor(private giftCardRequestService: GiftCardRequestService) {}
 
+  @Serialize(GiftCardRequestDto)
   @Post()
   createGiftCardRequest(
     @Body() body: CreateGiftCardRequestDto,
@@ -21,11 +22,25 @@ export class GiftCardRequestController {
     return this.giftCardRequestService.create(body, user);
   }
 
+  @Serialize(GiftCardRequestDto)
   @Get('/:id')
   async getGiftCardRequest(@Param('id') id: string, @CurrentUser() user: User) {
     return this.giftCardRequestService.getOneByUser(id, user.id);
   }
 
+  @Serialize(GiftCardFileDto)
+  @Get('/:id/file')
+  async getGiftCardFile(@Param('id') id: string, @CurrentUser() user: User) {
+    const url = await this.giftCardRequestService.getGiftCardRequestFile(
+      id,
+      user.id,
+    );
+    return {
+      url,
+    } as GiftCardFileDto;
+  }
+
+  @Serialize(GiftCardRequestDto)
   @Get('/')
   async getGiftCardRequestList(@CurrentUser() user: User) {
     return this.giftCardRequestService.getByUser(user.id);

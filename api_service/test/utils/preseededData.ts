@@ -135,11 +135,12 @@ export const giftDate5 = giftDates[4];
 export const giftCardIntegration1 = {
   id: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
   priority: 10,
-  website: 'https://giftoncard.eu',
+  website: 'https://giftoncard.eu/listing/multibrand-poklon-kartica/',
   image:
     'https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png',
   title: 'Multibrand',
-  description: 'Jedna e kartica, na preko 500 lokacija širom Srbije.',
+  description:
+    'Multibrand karticu moguće je iskoristiti na preko 500 lokacija širom Srbije. Moguće je iskoristiti u naznačenim radnjama raznovrsnog tipa i zato kao takva predstavlja pravi spoj zabave, mode, sporta, tehnike.',
   constraintType: 'MIN_MAX',
   constraintJson: { MIN: 500, MAX: 100000 },
 };
@@ -257,7 +258,7 @@ export const lastClaimPointsEvent = {
   id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',
   validTo: '2054-01-01T00:00:00.000Z',
   description: 'Make December to remember.',
-  title: 'December-2053.',
+  title: 'December 2053',
   claimPointsEventFulfillment: {
     id: 'b6b47e55-5213-441f-87db-c7e32bd5b70e',
     amount: 1200,

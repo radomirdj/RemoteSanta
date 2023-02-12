@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectS3, S3 } from 'nestjs-s3';
 import { PrismaService } from '../prisma/prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { GiftCardIntegrationsService } from '../gift_card_integrations/gift_card_integrations.service';
@@ -15,6 +16,7 @@ export class GiftCardRequestService {
     private prisma: PrismaService,
     private giftCardIntegrationsService: GiftCardIntegrationsService,
     private ledgerService: LedgerService,
+    @InjectS3() private readonly s3: S3,
   ) {}
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
@@ -65,6 +67,22 @@ export class GiftCardRequestService {
     if (!giftCardRequest || giftCardRequest.userId !== userId)
       throw new NotFoundException('GiftCardRequest Not Found');
     return giftCardRequest;
+  }
+
+  getGiftCardSignedUrl(filename: string): string {
+    return this.s3.getSignedUrl('getObject', {
+      Bucket: process.env.AWS_S3_BUCKET_GIFT_CARDS,
+      Key: filename,
+    });
+  }
+
+  async getGiftCardRequestFile(id: string, userId: string): Promise<string> {
+    await this.getOneByUser(id, userId);
+    const giftCard = await this.prisma.giftCard.findUnique({
+      where: { giftCardRequestId: id },
+    });
+    if (!giftCard) throw new NotFoundException('GiftCard Not Found');
+    return this.getGiftCardSignedUrl(giftCard.fileName);
   }
 
   getByUser(userId: string): Promise<GiftCardRequest[]> {

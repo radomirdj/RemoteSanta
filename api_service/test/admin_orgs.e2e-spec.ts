@@ -143,8 +143,8 @@ describe('admin/orgs', () => {
         )
         .expect(200);
 
-      expect(response.body.length).toEqual(2);
-      const rspOrg = response.body[1];
+      expect(response.body.length).toEqual(12);
+      const rspOrg = response.body[11];
       expect(rspOrg.name).toEqual(org1.name);
       expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
     });
