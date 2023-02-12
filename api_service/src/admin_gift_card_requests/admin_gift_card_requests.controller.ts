@@ -33,7 +33,6 @@ export class AdminGiftCardRequestsController {
     @CurrentUser() user: User,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log('AdminGiftCardRequestsController -> file', file);
     return this.adminGiftCardRequestsService.fulfillRequest(id, user, file);
   }
 
