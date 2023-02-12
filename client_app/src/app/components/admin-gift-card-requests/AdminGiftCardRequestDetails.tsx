@@ -13,7 +13,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   declineAdminGiftCardRequest,
   fetchAdminGiftCardRequest,
-  fulfillAdminGiftCardRequest,
 } from "../../store/admin-gift-card-requests/actions";
 import {
   getAdminGiftCardRequestSelector,
@@ -21,8 +20,6 @@ import {
 } from "../../store/admin-gift-card-requests/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import axios from "axios";
 import { fulfillGiftCardRequest2 } from "../../services/api-service";
 
 const AdminGiftCardRequestDetails = () => {
@@ -52,15 +49,15 @@ const AdminGiftCardRequestDetails = () => {
   }, [dispatch]);
 
   const onSubmit = (data: any) => {
-    dispatch(
-      fulfillAdminGiftCardRequest(
-        {
-          giftCardRequestId: giftCardRequestId,
-          fulfillData: { url: data.url, description: data.desctiption },
-        },
-        navigate
-      )
-    );
+    // dispatch(
+    //   fulfillAdminGiftCardRequest(
+    //     {
+    //       giftCardRequestId: giftCardRequestId,
+    //       fulfillData: { url: data.url, description: data.desctiption },
+    //     },
+    //     navigate
+    //   )
+    // );
   };
 
   const onSubmitDecline = (data: any) => {
@@ -139,29 +136,25 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Divider className="divider-style-not-full" />
               <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                  accept="application/pdf"
-                  type="file"
-                  onChange={(e) => toBase64(e)}
-                />
-
-                <TextField
-                  id="standard-multiline-static"
-                  label="Description"
-                  multiline
-                  rows={2}
-                  variant="outlined"
-                  className="description-input"
-                  {...register("description")}
-                />
-                <Button
-                  variant="contained"
-                  className="fulfill-button"
-                  disableRipple
-                  type="submit"
-                >
-                  Fulfill
-                </Button>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <input
+                      accept="application/pdf"
+                      type="file"
+                      onChange={(e) => toBase64(e)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      variant="contained"
+                      className="fulfill-button"
+                      disableRipple
+                      type="submit"
+                    >
+                      Fulfill
+                    </Button>
+                  </Grid>
+                </Grid>
               </form>
             </Grid>
             <Grid item xs={6}>

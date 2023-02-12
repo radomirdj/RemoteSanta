@@ -3,7 +3,6 @@ import {
   DeclineAdminGiftCardRequestPayload,
   FetchAdminGiftCardRequestPayload,
   FetchAdminGiftCardRequestUserPayload,
-  FulfillAdminGiftCardRequestPayload,
   IAdminGiftCardRequest,
 } from "../store/admin-gift-card-requests/types";
 import {
@@ -136,19 +135,6 @@ export const getAdminGiftCardRequestUser = (
   api.get<AuthUser>(`admin/users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-
-export const fulfillGiftCardRequest = (
-  payload: FulfillAdminGiftCardRequestPayload,
-  token: string
-) => {
-  return api.post<string>(
-    `admin/gift-card-requests/${payload.giftCardRequestId}/fulfill`,
-    payload.fulfillData,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  );
-};
 
 export const fulfillGiftCardRequest2 = (id: string, file: any) => {
   const token: string = localStorage.getItem("token") || "";

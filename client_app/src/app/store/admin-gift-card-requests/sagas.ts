@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
   declineGiftCardRequest,
-  fulfillGiftCardRequest,
   getAdminGiftCardRequest,
   getAdminGiftCardRequestUser,
 } from "../../services/api-service";
@@ -17,21 +16,17 @@ import {
   fetchAdminGiftCardRequestUser,
   fetchAdminGiftCardRequestUserFailure,
   fetchAdminGiftCardRequestUserSuccess,
-  fulfillAdminGiftCardRequestFailure,
-  fulfillAdminGiftCardRequestSuccess,
 } from "./actions";
 import {
   DECLINE_ADMIN_GIFT_CARD_REQUEST,
   FETCH_ADMIN_GIFT_CARD_REQUEST,
   FETCH_ADMIN_GIFT_CARD_REQUEST_LIST,
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER,
-  FULFILL_ADMIN_GIFT_CARD_REQUEST,
 } from "./actionTypes";
 import {
   DeclineAdminGiftCardRequest,
   FetchAdminGiftCardRequest,
   FetchAdminGiftCardRequestUser,
-  FulfillAdminGiftCardRequest,
   IAdminGiftCardRequest,
 } from "./types";
 
@@ -111,22 +106,6 @@ function* fetchAdminGiftCardRequestUserSaga(
   }
 }
 
-function* fulfillAdminGiftCardRequestSaga(action: FulfillAdminGiftCardRequest) {
-  try {
-    const token: string = localStorage.getItem("token") || "";
-    yield call(fulfillGiftCardRequest, action.payload, token);
-    yield put(fulfillAdminGiftCardRequestSuccess());
-    action.navigate("/fulfill-gift-card-request-sucess");
-  } catch (e) {
-    console.log("function*signUpSaga -> e", e);
-    yield put(
-      fulfillAdminGiftCardRequestFailure({
-        error: e.response.data.message,
-      })
-    );
-  }
-}
-
 function* declineAdminGiftCardRequestSaga(action: DeclineAdminGiftCardRequest) {
   try {
     const token: string = localStorage.getItem("token") || "";
@@ -157,10 +136,6 @@ function* AdminGiftCardRequestSaga() {
     takeLatest(
       FETCH_ADMIN_GIFT_CARD_REQUEST_USER,
       fetchAdminGiftCardRequestUserSaga
-    ),
-    takeLatest(
-      FULFILL_ADMIN_GIFT_CARD_REQUEST,
-      fulfillAdminGiftCardRequestSaga
     ),
     takeLatest(
       DECLINE_ADMIN_GIFT_CARD_REQUEST,

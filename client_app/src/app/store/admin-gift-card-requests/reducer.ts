@@ -12,9 +12,6 @@ import {
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER,
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER_FAILURE,
   FETCH_ADMIN_GIFT_CARD_REQUEST_USER_SUCCESS,
-  FULFILL_ADMIN_GIFT_CARD_REQUEST,
-  FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE,
-  FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS,
 } from "./actionTypes";
 
 import {
@@ -87,23 +84,6 @@ export default (state = initialState, action: AdminGiftCardRequestActions) => {
         ...state,
         pending: false,
         adminGiftCardRequestUser: null,
-        error: action.payload.error,
-      };
-    case FULFILL_ADMIN_GIFT_CARD_REQUEST:
-      return {
-        ...state,
-        pending: true,
-      };
-    case FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS:
-      return {
-        ...state,
-        pending: false,
-        error: null,
-      };
-    case FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE:
-      return {
-        ...state,
-        pending: false,
         error: action.payload.error,
       };
     case DECLINE_ADMIN_GIFT_CARD_REQUEST:
