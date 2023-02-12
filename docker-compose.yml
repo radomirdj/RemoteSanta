@@ -2,8 +2,6 @@ version: "3"
 services:
   client_app_full:
     image: "raso354/remotesanta_client_app"
-      environment:
-        - REACT_APP_BASE_URL: http://ec2-3-145-156-72.us-east-2.compute.amazonaws.com/api/
     ports:
       - "3000:3000"
   api_full:
