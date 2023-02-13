@@ -44,7 +44,6 @@ const AdminToOrgTransaction = () => {
         <Card className="card-style">
           <Typography className="title-style">Admin to Organization</Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/*LABELS */}
             {error && (
               <div className="event-error">
                 <ErrorIcon className="event-error-icon" />
@@ -64,7 +63,7 @@ const AdminToOrgTransaction = () => {
                 required: true,
               })}
             />
-            {/*LABELS */}
+
             {errors.amount?.type === "required" && (
               <Typography className="amount-error-fe">
                 Amount is required.

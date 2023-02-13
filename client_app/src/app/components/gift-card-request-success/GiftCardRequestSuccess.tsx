@@ -16,7 +16,6 @@ const GiftCardRequestSuccess = () => {
     <>
       <AppHeaderPrivate />
       <div className="background gift-card-request-success">
-        {/*LABELS */}
         <div className="gift-card-request-success-content">
           <Typography className="gift-card-request-success-title">
             You have successfully created a gift card request. Your gift card

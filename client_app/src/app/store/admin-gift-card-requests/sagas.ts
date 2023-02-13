@@ -111,22 +111,6 @@ function* fetchAdminGiftCardRequestUserSaga(
   }
 }
 
-function* fulfillAdminGiftCardRequestSaga(action: FulfillAdminGiftCardRequest) {
-  try {
-    const token: string = localStorage.getItem("token") || "";
-    yield call(fulfillGiftCardRequest, action.payload, token);
-    yield put(fulfillAdminGiftCardRequestSuccess());
-    action.navigate("/fulfill-gift-card-request-sucess");
-  } catch (e) {
-    console.log("function*signUpSaga -> e", e);
-    yield put(
-      fulfillAdminGiftCardRequestFailure({
-        error: e.response.data.message,
-      })
-    );
-  }
-}
-
 function* declineAdminGiftCardRequestSaga(action: DeclineAdminGiftCardRequest) {
   try {
     const token: string = localStorage.getItem("token") || "";
@@ -137,6 +121,22 @@ function* declineAdminGiftCardRequestSaga(action: DeclineAdminGiftCardRequest) {
     console.log("function*signUpSaga -> e", e);
     yield put(
       declineAdminGiftCardRequestFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+function* fulfillAdminGiftCardRequestSaga(action: FulfillAdminGiftCardRequest) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(fulfillGiftCardRequest, action.payload, token);
+    yield put(fulfillAdminGiftCardRequestSuccess());
+    action.navigate("/fulfill-gift-card-request-sucess");
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      fulfillAdminGiftCardRequestFailure({
         error: e.response.data.message,
       })
     );
@@ -159,12 +159,12 @@ function* AdminGiftCardRequestSaga() {
       fetchAdminGiftCardRequestUserSaga
     ),
     takeLatest(
-      FULFILL_ADMIN_GIFT_CARD_REQUEST,
-      fulfillAdminGiftCardRequestSaga
-    ),
-    takeLatest(
       DECLINE_ADMIN_GIFT_CARD_REQUEST,
       declineAdminGiftCardRequestSaga
+    ),
+    takeLatest(
+      FULFILL_ADMIN_GIFT_CARD_REQUEST,
+      fulfillAdminGiftCardRequestSaga
     ),
   ]);
 }

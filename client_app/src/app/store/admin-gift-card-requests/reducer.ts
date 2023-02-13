@@ -89,23 +89,6 @@ export default (state = initialState, action: AdminGiftCardRequestActions) => {
         adminGiftCardRequestUser: null,
         error: action.payload.error,
       };
-    case FULFILL_ADMIN_GIFT_CARD_REQUEST:
-      return {
-        ...state,
-        pending: true,
-      };
-    case FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS:
-      return {
-        ...state,
-        pending: false,
-        error: null,
-      };
-    case FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE:
-      return {
-        ...state,
-        pending: false,
-        error: action.payload.error,
-      };
     case DECLINE_ADMIN_GIFT_CARD_REQUEST:
       return {
         ...state,
@@ -118,6 +101,23 @@ export default (state = initialState, action: AdminGiftCardRequestActions) => {
         error: null,
       };
     case DECLINE_ADMIN_GIFT_CARD_REQUEST_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case FULFILL_ADMIN_GIFT_CARD_REQUEST:
+      return {
+        ...state,
+        pending: true,
+      };
+    case FULFILL_ADMIN_GIFT_CARD_REQUEST_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case FULFILL_ADMIN_GIFT_CARD_REQUEST_FAILURE:
       return {
         ...state,
         pending: false,

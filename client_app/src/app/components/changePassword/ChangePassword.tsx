@@ -8,14 +8,14 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getEmailToResetPasswordSelector,
-  getErrorSelector
+  getErrorSelector,
 } from "../../store/auth/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
@@ -24,7 +24,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { getPasswordRegex } from "../../utils/Utils";
 import {
   changePasswordRequest,
-  forgotPasswordRequest
+  forgotPasswordRequest,
 } from "../../store/auth/actions";
 import { useNavigate } from "react-router-dom";
 
@@ -37,7 +37,7 @@ const ChangePassword = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm();
 
   const resetPassword = (data: any) => {
@@ -46,14 +46,14 @@ const ChangePassword = () => {
         {
           email: emailToResetPassword || "",
           confirmationCode: data.confirmationCode,
-          newPassword: data.newPassword
+          newPassword: data.newPassword,
         },
         navigate
       )
     );
   };
 
-  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -75,7 +75,6 @@ const ChangePassword = () => {
           <Grid item xs={10} sm={6} md={4}>
             <Card className="change-password-card">
               <form onSubmit={handleSubmit(resetPassword)}>
-                {/*LABELS */}
                 <Typography
                   className={
                     error
@@ -110,17 +109,16 @@ const ChangePassword = () => {
                       : "change-password-input"
                   }
                   {...register("confirmationCode", {
-                    required: true
+                    required: true,
                   })}
                 />
-                {/*LABELS */}
+
                 {errors.confirmationCode?.type === "required" && (
                   <Typography className="change-password-error-fe">
                     Confirmation code is required.
                   </Typography>
                 )}
                 <FormControl variant="outlined">
-                  {/*LABELS */}
                   <InputLabel htmlFor="outlined-password">
                     New Password
                   </InputLabel>
@@ -148,16 +146,16 @@ const ChangePassword = () => {
                     label="New Password"
                     {...register("newPassword", {
                       required: true,
-                      pattern: getPasswordRegex()
+                      pattern: getPasswordRegex(),
                     })}
                   />
-                  {/*LABELS */}
+
                   {errors.newPassword?.type === "required" && (
                     <Typography className="change-password-error-fe">
                       Password is required.
                     </Typography>
                   )}
-                  {/*LABELS */}
+
                   {errors.newPassword?.type === "pattern" && (
                     <Typography className="change-password-error-fe">
                       Password must contain at least 8 characters and at least 1

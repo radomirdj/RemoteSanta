@@ -17,7 +17,7 @@ const ForgotPassword = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm();
 
   const getConfirmationCode = (data: any) => {
@@ -36,7 +36,6 @@ const ForgotPassword = () => {
           <Grid item xs={10} sm={6} md={4}>
             <Card className="forgot-password-card">
               <form onSubmit={handleSubmit(getConfirmationCode)}>
-                {/*LABELS */}
                 <Typography
                   className={
                     error
@@ -66,16 +65,16 @@ const ForgotPassword = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex()
+                    pattern: getEmailRegex(),
                   })}
                 />
-                {/*LABELS */}
+
                 {errors.email?.type === "required" && (
                   <Typography className="forgot-password-error-fe">
                     Email is required.
                   </Typography>
                 )}
-                {/*LABELS */}
+
                 {errors.email?.type === "pattern" && (
                   <Typography className="forgot-password-error-fe">
                     Email should be an email.

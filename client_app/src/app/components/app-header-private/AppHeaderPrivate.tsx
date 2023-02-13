@@ -66,10 +66,6 @@ const AppHeaderPrivate = () => {
     navigate("/user-profile");
   };
 
-  const historyRedirect = () => {
-    navigate("/history");
-  };
-
   const userManagerTransactionsRedirect = () => {
     navigate("/user-manager-transactions");
   };
@@ -91,7 +87,7 @@ const AppHeaderPrivate = () => {
             md={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="" className="logo-style" />
           </Grid>
           <Grid
             item
@@ -104,7 +100,6 @@ const AppHeaderPrivate = () => {
             <img src={LogoSmall} alt="" className="logo-small" />
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-right">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/"
@@ -117,7 +112,6 @@ const AppHeaderPrivate = () => {
             </Typography>
           </Grid>
           <Grid item xs={3} sm={2} md={2} className="align-center">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/my-gift-cards"
@@ -130,7 +124,6 @@ const AppHeaderPrivate = () => {
             </Typography>
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-left">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/demo"
@@ -167,7 +160,6 @@ const AppHeaderPrivate = () => {
                 open={Boolean(anchorElManager)}
                 onClose={handleCloseManagerMenu}
               >
-                {/*LABELS*/}
                 <MenuItem onClick={userManagerTransactionsRedirect}>
                   <Typography textAlign="center">Transactions</Typography>
                 </MenuItem>
@@ -203,15 +195,8 @@ const AppHeaderPrivate = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/*LABELS*/}
               <MenuItem onClick={userProfileRedirect}>
                 <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={historyRedirect}>
-                <Typography textAlign="center">History</Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography textAlign="center">Language</Typography>
               </MenuItem>
               <MenuItem onClick={userLogout}>
                 <Typography textAlign="center">Logout</Typography>

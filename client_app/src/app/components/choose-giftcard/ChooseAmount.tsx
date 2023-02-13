@@ -49,7 +49,6 @@ const ChooseAmount = () => {
     <>
       <Card className="choose-amount-card">
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/*LABELS */}
           <Typography className="choose-amount-title">Choose Amount</Typography>
           <Typography className="choose-amount-active-points">
             Your balance is {user.userBalance?.pointsActive} PTS.
@@ -78,25 +77,25 @@ const ChooseAmount = () => {
               validate: enoughBalance,
             })}
           />
-          {/*LABELS */}
+
           {errors.amount?.type === "required" && (
             <Typography className="choose-amount-error-fe">
               Amount is required.
             </Typography>
           )}
-          {/*LABELS */}
+
           {errors.amount?.type === "min" && (
             <Typography className="choose-amount-error-fe">
               The minimum amount is 500 PTS.
             </Typography>
           )}
-          {/*LABELS */}
+
           {errors.amount?.type === "max" && (
             <Typography className="choose-amount-error-fe">
               The maximum amount is 100000 PTS.
             </Typography>
           )}
-          {/*LABELS */}
+
           {errors.amount?.type === "validate" && (
             <Typography className="choose-amount-error-fe">
               The amount you specified is greater then the amount you have.

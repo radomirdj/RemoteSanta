@@ -1,5 +1,7 @@
 @use "./../variables.scss";
 
+$logo-height:42px;
+
 .app-header-admin{
     background-color: variables.$main-yellow !important;
     box-shadow: none !important;
@@ -46,6 +48,11 @@
     .align-left{
         text-align: left;
         margin-top: variables.$base-unit * 2;
+    }
+
+    .logo-style{
+        height: $logo-height;
+        margin-top: variables.$base-unit;
     }
 
 }

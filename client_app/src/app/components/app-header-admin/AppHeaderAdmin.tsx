@@ -31,7 +31,7 @@ const AppHeaderAdmin = () => {
             md={6}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="" className="logo-style" />
           </Grid>
           <Grid
             item
@@ -44,7 +44,6 @@ const AppHeaderAdmin = () => {
             <img src={LogoSmall} alt="" className="logo-small" />
           </Grid>
           <Grid item xs={4} sm={4} md={2} className="align-right">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/admin-home"
@@ -57,7 +56,6 @@ const AppHeaderAdmin = () => {
             </Typography>
           </Grid>
           <Grid item xs={5} sm={2} md={2} className="align-center">
-            {/*LABELS*/}
             <Typography
               className={
                 window.location.pathname === "/admin-organizations"
@@ -70,7 +68,6 @@ const AppHeaderAdmin = () => {
             </Typography>
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-left">
-            {/*LABELS*/}
             <Typography className="header-item" onClick={userLogout}>
               Logout
             </Typography>

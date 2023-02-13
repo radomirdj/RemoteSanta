@@ -15,7 +15,6 @@ const VerifyEmail = () => {
     <>
       <AppHeaderPublic />
       <div className="background verify-email">
-        {/*LABELS */}
         <div className="verify-email-content">
           <Typography className="verify-email-small-text">
             Thank you for registering!

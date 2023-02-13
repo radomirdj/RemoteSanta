@@ -18,9 +18,11 @@ import {
 import {
   getAdminGiftCardRequestSelector,
   getAdminGiftCardRequestUserSelector,
+  getErrorSelector,
 } from "../../store/admin-gift-card-requests/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const AdminGiftCardRequestDetails = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ const AdminGiftCardRequestDetails = () => {
   const adminGiftCardRequestUser = useSelector(
     getAdminGiftCardRequestUserSelector
   );
+  const error = useSelector(getErrorSelector);
   const {
     register,
     formState: { errors },
@@ -53,7 +56,7 @@ const AdminGiftCardRequestDetails = () => {
       fulfillAdminGiftCardRequest(
         {
           giftCardRequestId: giftCardRequestId,
-          fulfillData: { url: data.url, description: data.desctiption },
+          file: data.file[0],
         },
         navigate
       )
@@ -95,7 +98,7 @@ const AdminGiftCardRequestDetails = () => {
               <Typography className="info-style">
                 Created At:{" "}
                 {new Date(adminGiftCardRequest?.createdAt || "")
-                  .toLocaleDateString()
+                  .toLocaleDateString("en-GB")
                   .replaceAll("/", ".")}
               </Typography>
             </Grid>
@@ -128,39 +131,35 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Divider className="divider-style-not-full" />
               <form onSubmit={handleSubmit(onSubmit)}>
-                <TextField
-                  error={errors.url ? true : false}
-                  id="outlined-basic"
-                  label="Gift Card Url"
-                  variant="outlined"
-                  className={errors.url ? "url-input-with-error" : "url-input"}
-                  {...register("url", {
-                    required: true,
-                  })}
-                />
-                {/*LABELS */}
-                {errors.url?.type === "required" && (
-                  <Typography className="details-error-fe">
-                    Gift Card Url is required.
-                  </Typography>
-                )}
-                <TextField
-                  id="standard-multiline-static"
-                  label="Description"
-                  multiline
-                  rows={2}
-                  variant="outlined"
-                  className="description-input"
-                  {...register("description")}
-                />
-                <Button
-                  variant="contained"
-                  className="fulfill-button"
-                  disableRipple
-                  type="submit"
-                >
-                  Fulfill
-                </Button>
+                <Grid container>
+                  <Grid item xs={12}>
+                    {error && (
+                      <div className="error-fulfill">
+                        <ErrorIcon className="error-fulfill-icon" />
+                        <Typography className="error-fulfill-message">
+                          {error}
+                        </Typography>
+                      </div>
+                    )}
+                    <input
+                      accept="application/pdf"
+                      type="file"
+                      {...register("file", {
+                        required: true,
+                      })}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button
+                      variant="contained"
+                      className="fulfill-button"
+                      disableRipple
+                      type="submit"
+                    >
+                      Fulfill
+                    </Button>
+                  </Grid>
+                </Grid>
               </form>
             </Grid>
             <Grid item xs={6}>
@@ -179,7 +178,7 @@ const AdminGiftCardRequestDetails = () => {
                     required: true,
                   })}
                 />
-                {/*LABELS */}
+
                 {errorsDecline.comment?.type === "required" && (
                   <Typography className="details-error-fe">
                     Comment is required.

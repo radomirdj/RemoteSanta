@@ -37,7 +37,6 @@ const MyGiftCards = () => {
               : "background my-gift-cards-small-list"
           }
         >
-          {/*LABELS */}
           <Grid container spacing={4} className="grid-style">
             <Grid item xs={12} className="grid-title">
               <Typography className="my-gift-cards-title">
