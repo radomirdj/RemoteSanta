@@ -257,7 +257,7 @@ export const claimPointsEvent10Id = 'e545e477-d10a-48da-9c1f-919cb456e64a';
 export const lastClaimPointsEvent = {
   id: 'ec8dc7a8-0ed3-4815-bd0d-d2073005625e',
   validTo: '2054-01-01T00:00:00.000Z',
-  description: 'Make December to remember.',
+  description: 'Make December to remember!',
   title: 'December 2053',
   claimPointsEventFulfillment: {
     id: 'b6b47e55-5213-441f-87db-c7e32bd5b70e',
@@ -274,7 +274,7 @@ export const org1Transactions = [
     type: 'ORG_TO_EMPLOYEES',
     totalAmount: 2400,
     event: {
-      description: 'Make December to remember.',
+      description: 'Make December to remember!',
     },
   },
   {

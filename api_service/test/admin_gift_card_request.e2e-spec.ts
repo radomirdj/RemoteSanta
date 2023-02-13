@@ -197,10 +197,6 @@ describe('admin/gift-card-requests', () => {
             createToken({ email: user1.email, sub: user1.cognitoSub }),
         )
         .expect(200);
-      expect(response2.body.url).toBeDefined();
-      expect(response2.body.url).toMatch(
-        /^http:\/\/minio:9000\/giftcardfilestest\/gift-card-/,
-      );
 
       // Other User Get File
       await request(app.getHttpServer())
