@@ -12,6 +12,8 @@ import { EmailInUseException } from '../src/errors/emailInUseException';
 import { EmailInActiveInviteException } from '../src/errors/emailInActiveInviteException';
 import { UserInviteStatusEnum } from '@prisma/client';
 import { InviteNotActiveException } from '../src/errors/inviteNotActiveException';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 import {
   user2,
@@ -40,6 +42,8 @@ describe('user-invites', () => {
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
+      .overrideProvider(MailerService)
+      .useValue(MailerServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();

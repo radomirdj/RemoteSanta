@@ -24,7 +24,7 @@ export class UserInvitesController {
     @Body() createUserInviteDto: CreateUserInviteDto,
   ) {
     return this.userInvitesService.createUserInvite(
-      user.id,
+      user,
       user.orgId,
       createUserInviteDto.email,
     );

@@ -31,6 +31,8 @@ import {
   expectUserInviteDB,
 } from './utils/userInviteChecks';
 import { UserInviteStatusEnum } from '@prisma/client';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -59,6 +61,8 @@ describe('admin user invites', () => {
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
+      .overrideProvider(MailerService)
+      .useValue(MailerServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();

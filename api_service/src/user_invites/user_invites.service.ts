@@ -2,17 +2,21 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import * as randomstring from 'randomstring';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserInviteDto } from './dtos/user-invite.dto';
-import { UserInvite, UserInviteStatusEnum } from '@prisma/client';
+import { UserInvite, UserInviteStatusEnum, User, Org } from '@prisma/client';
 import { EmailInUseException } from '../errors/emailInUseException';
 import { EmailInActiveInviteException } from '../errors/emailInActiveInviteException';
 import { UsersService } from '../users/users.service';
 import { InviteNotActiveException } from '../errors/inviteNotActiveException';
+import { EmailsService } from '../emails/emails.service';
+import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 
 @Injectable()
 export class UserInvitesService {
   constructor(
     private prisma: PrismaService,
     private usersService: UsersService,
+    private emailsService: EmailsService,
+    private adminOrgsService: AdminOrgsService,
   ) {}
 
   getOrgInviteList(orgId: string): Promise<UserInviteDto[]> {
@@ -41,13 +45,14 @@ export class UserInvitesService {
   }
 
   async createUserInvite(
-    userId: string,
+    user: User,
     orgId: string,
     email: string,
   ): Promise<UserInvite> {
-    const [existingInvite, existingUser] = await Promise.all([
+    const [existingInvite, existingUser, org] = await Promise.all([
       this.findActiveByEmail(email),
       this.usersService.findByEmail(email),
+      this.adminOrgsService.getById(orgId),
     ]);
 
     if (existingInvite) {
@@ -57,7 +62,13 @@ export class UserInvitesService {
       throw new EmailInUseException();
     }
 
-    const code = randomstring.generate(7);
+    const code = randomstring.generate(15);
+    await this.emailsService.sendInviteEmail(
+      email,
+      code,
+      org.name,
+      `${user.firstName} ${user.lastName}`,
+    );
 
     return this.prisma.userInvite.create({
       data: {
@@ -66,12 +77,12 @@ export class UserInvitesService {
         code,
         createdBy: {
           connect: {
-            id: userId,
+            id: user.id,
           },
         },
         org: {
           connect: {
-            id: orgId,
+            id: org.id,
           },
         },
       },

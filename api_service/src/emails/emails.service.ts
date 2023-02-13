@@ -26,4 +26,19 @@ export class EmailsService {
       context: data,
     });
   }
+
+  async sendInviteEmail(
+    to: string,
+    code: string,
+    companyName: string,
+    senderName: string,
+  ) {
+    const registrationUrl = `${process.env.FE_BASE_URL}signup?code=${code}`;
+
+    return this.sendEmail('invite', to, {
+      companyName,
+      senderName,
+      registrationUrl,
+    });
+  }
 }

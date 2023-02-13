@@ -30,7 +30,7 @@ export class AdminUserInvitesController {
     @Body() createUserInviteDto: CreateUserInviteDto,
   ) {
     return this.userInvitesService.createUserInvite(
-      user.id,
+      user,
       id,
       createUserInviteDto.email,
     );

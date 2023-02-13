@@ -19,6 +19,7 @@ services:
       AWS_S3_BUCKET_GIFT_CARDS: ${AWS_S3_BUCKET_GIFT_CARDS}
       AWS_S3_ENDPOINT: ${AWS_S3_ENDPOINT}
       AWS_REGION: ${AWS_REGION}
+      FE_BASE_URL: ${FE_BASE_URL}
     ports:
       - "8090:8090"
   nginx:
