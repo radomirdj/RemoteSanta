@@ -1,4 +1,13 @@
-import { Controller, UseGuards, Body, Post, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Body,
+  Post,
+  Get,
+  Param,
+  Res,
+  StreamableFile,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GiftCardRequestService } from './gift_card_request.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
@@ -28,16 +37,14 @@ export class GiftCardRequestController {
     return this.giftCardRequestService.getOneByUser(id, user.id);
   }
 
-  @Serialize(GiftCardFileDto)
   @Get('/:id/file')
   async getGiftCardFile(@Param('id') id: string, @CurrentUser() user: User) {
-    const url = await this.giftCardRequestService.getGiftCardRequestFile(
-      id,
-      user.id,
+    const filename =
+      await this.giftCardRequestService.getGiftCardRequestFileName(id, user.id);
+    const filestream = await this.giftCardRequestService.getGiftCardFileStream(
+      filename,
     );
-    return {
-      url,
-    } as GiftCardFileDto;
+    return new StreamableFile(filestream);
   }
 
   @Serialize(GiftCardRequestDto)

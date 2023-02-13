@@ -69,20 +69,29 @@ export class GiftCardRequestService {
     return giftCardRequest;
   }
 
-  getGiftCardSignedUrl(filename: string): string {
-    return this.s3.getSignedUrl('getObject', {
-      Bucket: process.env.AWS_S3_BUCKET_GIFT_CARDS,
-      Key: filename,
-    });
+  // getGiftCardSignedUrl(filename: string): string {
+  //   return this.s3.getSignedUrl('getObject', {
+  //     Bucket: process.env.AWS_S3_BUCKET_GIFT_CARDS,
+  //     Key: filename,
+  //   });
+  // }
+
+  getGiftCardFileStream(filename: string) {
+    return this.s3
+      .getObject({
+        Bucket: process.env.AWS_S3_BUCKET_GIFT_CARDS,
+        Key: filename,
+      })
+      .createReadStream();
   }
 
-  async getGiftCardRequestFile(id: string, userId: string): Promise<string> {
+  async getGiftCardRequestFileName(id: string, userId: string) {
     await this.getOneByUser(id, userId);
     const giftCard = await this.prisma.giftCard.findUnique({
       where: { giftCardRequestId: id },
     });
     if (!giftCard) throw new NotFoundException('GiftCard Not Found');
-    return this.getGiftCardSignedUrl(giftCard.fileName);
+    return giftCard.fileName;
   }
 
   getByUser(userId: string): Promise<GiftCardRequest[]> {
