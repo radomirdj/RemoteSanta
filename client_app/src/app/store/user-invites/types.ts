@@ -56,6 +56,7 @@ export interface PostUserInviteFailurePayload {
 
 export interface CancelUserInvitePayload {
   inviteId: string;
+  organizationId: string;
 }
 
 export interface CancelUserInviteFailurePayload {

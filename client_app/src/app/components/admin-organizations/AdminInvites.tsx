@@ -94,6 +94,7 @@ const AdminInvites = () => {
     dispatch(
       cancelAdminInvite({
         inviteId: idToCancel,
+        orgId: orgId,
       })
     );
   };

@@ -115,6 +115,7 @@ export interface PostAdminInviteFailurePayload {
 
 export interface CancelAdminInvitePayload {
   inviteId: string;
+  orgId: string;
 }
 
 export interface CancelAdminInviteFailurePayload {

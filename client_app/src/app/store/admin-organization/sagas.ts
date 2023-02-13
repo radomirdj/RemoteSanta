@@ -14,6 +14,7 @@ import { setCloseDialog, setCloseModal } from "../user-invites/actions";
 import {
   cancelAdminInviteFailure,
   cancelAdminInviteSuccess,
+  fetchAdminInviteList,
   fetchAdminInviteListFailure,
   fetchAdminInviteListSuccess,
   fetchAdminOrganizationFailure,
@@ -144,6 +145,7 @@ function* postAdminInviteSaga(action: PostAdminInvite) {
     yield call(postInviteAdmin, action.payload, token);
     yield put(postAdminInviteSuccess());
     yield put(setCloseModal());
+    yield put(fetchAdminInviteList({ organizationId: action.payload.orgId }));
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(
@@ -160,6 +162,7 @@ function* cancelAdminInviteSaga(action: CancelAdminInvite) {
     yield call(cancelInviteAdmin, action.payload, token);
     yield put(cancelAdminInviteSuccess());
     yield put(setCloseDialog());
+    yield put(fetchAdminInviteList({ organizationId: action.payload.orgId }));
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(

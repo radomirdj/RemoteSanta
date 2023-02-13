@@ -88,6 +88,7 @@ const UserManagerInvites = () => {
     dispatch(
       cancelUserInvite({
         inviteId: idToCancel,
+        organizationId: organization?.id || "",
       })
     );
   };
