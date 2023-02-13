@@ -62,12 +62,13 @@ $card-width: 440px;
     .back-button, 
     & .back-button:hover{
       float: left;
-      background-color: variables.$color-dark-yellow;
+      border-color: black;
+      background-color: white;
       border-radius: variables.$base-unit;
       box-shadow: none;
       color: variables.$color-neutral-black;
       text-transform: none;
-      width: 70%;
+      width: 50%;
       height: variables.$base-unit * 6;
       font-weight: bold;
       margin-bottom: variables.$base-unit ;

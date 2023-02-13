@@ -9,6 +9,7 @@ import { getAdminOrganizationSelector } from "../../store/admin-organization/sel
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 import ErrorIcon from "@mui/icons-material/Error";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const AdminToOrgTransaction = () => {
   const dispatch = useDispatch();
@@ -72,10 +73,11 @@ const AdminToOrgTransaction = () => {
             <Grid container>
               <Grid item xs={6}>
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   className="back-button"
                   disableRipple
                   onClick={goBack}
+                  startIcon={<ChevronLeftIcon />}
                 >
                   Back
                 </Button>
