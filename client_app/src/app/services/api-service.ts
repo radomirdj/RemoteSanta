@@ -24,6 +24,10 @@ import {
   PostAdminInvitePayload,
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
+import {
+  FetchGiftCardUrlPayload,
+  IGiftCardFile,
+} from "../store/gift-card-request/types";
 import { IOrganization, IOrgTransaction, IOrgUser } from "../store/orgs/types";
 import {
   CancelUserInvitePayload,
@@ -240,3 +244,14 @@ export const getAdminUser = (payload: FetchAdminUserPayload, token: string) =>
   api.get<AuthUser>(`admin/users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const getGiftCardFile = (
+  payload: FetchGiftCardUrlPayload,
+  token: string
+) =>
+  api.get<IGiftCardFile>(
+    `gift-card-requests/${payload.giftCardRequestId}/file`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );

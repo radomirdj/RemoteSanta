@@ -6,6 +6,9 @@ import {
   FETCH_GIFT_CARD_REQUEST_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST_FAILURE,
   FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
+  FETCH_GIFT_CARD_URL,
+  FETCH_GIFT_CARD_URL_FAILURE,
+  FETCH_GIFT_CARD_URL_SUCCESS,
   POST_GIFT_CARD_REQUEST,
   POST_GIFT_CARD_REQUEST_FAILURE,
   POST_GIFT_CARD_REQUEST_SUCCESS,
@@ -23,6 +26,7 @@ const initialState: GiftCardRequestState = {
   giftCardIntegrationList: [],
   giftCardRequestIntegration: null,
   stepperPage: 0,
+  giftCardFile: null,
   giftCardRequestAmount: 0,
   error: null,
 };
@@ -121,6 +125,25 @@ export default (state = initialState, action: GiftCardRequestActions) => {
       return {
         ...state,
         pending: false,
+        error: action.payload.error,
+      };
+    case FETCH_GIFT_CARD_URL:
+      return {
+        ...state,
+        pending: true,
+      };
+    case FETCH_GIFT_CARD_URL_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        giftCardFile: action.payload.giftCardFile,
+        error: null,
+      };
+    case FETCH_GIFT_CARD_URL_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        giftCardFile: null,
         error: action.payload.error,
       };
     default:

@@ -12,6 +12,9 @@ import {
   POST_GIFT_CARD_REQUEST,
   POST_GIFT_CARD_REQUEST_SUCCESS,
   POST_GIFT_CARD_REQUEST_FAILURE,
+  FETCH_GIFT_CARD_URL,
+  FETCH_GIFT_CARD_URL_SUCCESS,
+  FETCH_GIFT_CARD_URL_FAILURE,
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
@@ -23,6 +26,10 @@ export interface IGiftCardIntegration {
   constraintType: string;
   priority: number;
   constraintJson: string;
+}
+
+export interface IGiftCardFile {
+  url: string;
 }
 
 export interface IGiftCardRequest {
@@ -43,6 +50,7 @@ export interface GiftCardRequestState {
   giftCardIntegrationList: IGiftCardIntegration[];
   giftCardRequestIntegration: IGiftCardIntegration | null;
   stepperPage: number;
+  giftCardFile: IGiftCardFile | null;
   giftCardRequestAmount: number;
   error: string | null;
 }
@@ -81,6 +89,18 @@ export interface PostGiftCardRequestPayload {
 }
 
 export interface PostGiftCardRequestFailurePayload {
+  error: string;
+}
+
+export interface FetchGiftCardUrlPayload {
+  giftCardRequestId: string;
+}
+
+export interface FetchGiftCardUrlSuccessPayload {
+  giftCardFile: IGiftCardFile;
+}
+
+export interface FetchGiftCardUrlFailurePayload {
   error: string;
 }
 
@@ -146,6 +166,21 @@ export interface PostGiftCardRequestFailure {
   payload: PostGiftCardRequestFailurePayload;
 }
 
+export interface FetchGiftCardUrl {
+  type: typeof FETCH_GIFT_CARD_URL;
+  payload: FetchGiftCardUrlPayload;
+}
+
+export interface FetchGiftCardUrlSuccess {
+  type: typeof FETCH_GIFT_CARD_URL_SUCCESS;
+  payload: FetchGiftCardUrlSuccessPayload;
+}
+
+export interface FetchGiftCardUrlFailure {
+  type: typeof FETCH_GIFT_CARD_URL_FAILURE;
+  payload: FetchGiftCardUrlFailurePayload;
+}
+
 export type GiftCardRequestActions =
   | FetchGiftCardRequestListFailure
   | FetchGiftCardRequestListSuccess
@@ -159,4 +194,7 @@ export type GiftCardRequestActions =
   | SetGiftCardRequestResetData
   | PostGiftCardRequest
   | PostGiftCardRequestSuccess
-  | PostGiftCardRequestFailure;
+  | PostGiftCardRequestFailure
+  | FetchGiftCardUrl
+  | FetchGiftCardUrlSuccess
+  | FetchGiftCardUrlFailure;

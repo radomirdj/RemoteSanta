@@ -1,11 +1,14 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, take, takeLatest } from "redux-saga/effects";
+import { getGiftCardFile } from "../../services/api-service";
 import { getSelfRequest } from "../auth/actions";
 import {
   fetchGiftCardIntegrationListFailure,
   fetchGiftCardIntegrationListSuccess,
   fetchGiftCardRequestListFailure,
   fetchGiftCardRequestListSuccess,
+  fetchGiftCardUrlFailure,
+  fetchGiftCardUrlSuccess,
   postGiftCardRequestFailure,
   postGiftCardRequestSuccess,
   setGiftCardRequestAmount,
@@ -16,6 +19,7 @@ import {
 import {
   FETCH_GIFT_CARD_INTEGRATION_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST,
+  FETCH_GIFT_CARD_URL,
   POST_GIFT_CARD_REQUEST,
   SET_GIFT_CARD_REQUEST_AMOUNT,
   SET_GIFT_CARD_REQUEST_INTEGRATION,
@@ -23,6 +27,8 @@ import {
   SET_GIFT_CARD_REQUEST_STEP_BACK,
 } from "./actionTypes";
 import {
+  FetchGiftCardUrl,
+  IGiftCardFile,
   IGiftCardIntegration,
   IGiftCardRequest,
   PostGiftCardRequest,
@@ -131,6 +137,28 @@ function* postGiftCardRequestSaga(action: PostGiftCardRequest) {
   }
 }
 
+function* fetchGiftCardUrlSaga(action: FetchGiftCardUrl) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<IGiftCardFile> = yield call(
+      getGiftCardFile,
+      action.payload,
+      token
+    );
+    yield put(
+      fetchGiftCardUrlSuccess({
+        giftCardFile: response.data,
+      })
+    );
+  } catch (e) {
+    yield put(
+      fetchGiftCardUrlFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -164,6 +192,7 @@ function* giftCardRequestSaga() {
     ),
   ]);
   yield all([takeLatest(POST_GIFT_CARD_REQUEST, postGiftCardRequestSaga)]);
+  yield all([takeLatest(FETCH_GIFT_CARD_URL, fetchGiftCardUrlSaga)]);
 }
 
 export default giftCardRequestSaga;

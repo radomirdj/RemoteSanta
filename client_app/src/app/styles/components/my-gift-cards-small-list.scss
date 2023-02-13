@@ -98,6 +98,21 @@ $card-button-width: 83%;
           margin-bottom: variables.$base-unit * 4;
         }
 
+        .card-link {
+            background-color: variables.$color-neutral-white;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: $card-button-width;
+            margin-left: auto;
+            margin-right: auto;
+            height: variables.$base-unit * 5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 4;
+            text-align: center;
+          }
+
         .card-pending-icon{
             margin-left: variables.$base-unit * 3;
             width: variables.$base-unit * 2;
