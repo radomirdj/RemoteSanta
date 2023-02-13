@@ -8,6 +8,7 @@ import {
 import {
   cancelUserInviteFailure,
   cancelUserInviteSuccess,
+  fetchUserInviteList,
   fetchUserInviteListFailure,
   fetchUserInviteListSuccess,
   postUserInviteFailure,
@@ -59,6 +60,7 @@ function* postUserInviteSaga(action: PostUserInvite) {
     yield call(postInviteUser, action.payload, token);
     yield put(postUserInviteSuccess());
     yield put(setCloseModal());
+    yield put(fetchUserInviteList({ organizationId: action.payload.orgId }));
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(
@@ -75,6 +77,9 @@ function* cancelUserInviteSaga(action: CancelUserInvite) {
     yield call(cancelInviteUser, action.payload, token);
     yield put(cancelUserInviteSuccess());
     yield put(setCloseDialog());
+    yield put(
+      fetchUserInviteList({ organizationId: action.payload.organizationId })
+    );
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(
