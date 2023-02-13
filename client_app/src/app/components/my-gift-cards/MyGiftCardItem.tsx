@@ -52,11 +52,9 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
       </CardContent>
       <CardActions>
         {giftCardRequest.status === "COMPLETED" && (
-          <a href={giftCardRequestFile?.url} className="card-link">
-            <Button variant="contained" className="card-button">
-              Show My Gift Card
-            </Button>
-          </a>
+          <Button variant="contained" className="card-button">
+            Show My Gift Card
+          </Button>
         )}
         {giftCardRequest.status === "PENDING" && (
           <Grid container>
