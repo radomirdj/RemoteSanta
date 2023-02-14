@@ -16,14 +16,14 @@ export class EmailsService {
 
   async sendEmail(
     templateName: string,
-    to: string,
+    to: string | string[],
     data: any,
     attachment: { filename: string; buffer } = null,
   ) {
     let parsedData = await this.email.renderAll(templateName, data);
 
     const emailParams = {
-      to,
+      bcc: to,
       from: process.env.EMAIL_FROM,
       subject: parsedData.subject,
       text: parsedData.text,
@@ -40,6 +40,12 @@ export class EmailsService {
       ];
     }
     return this.mailService.sendMail(emailParams);
+  }
+
+  sendClaimPointsEmail(to: string[], claimPointsEventDescription: string) {
+    return this.sendEmail('claim-points', to, {
+      claimPointsEventDescription,
+    });
   }
 
   async sendGiftCardDeclinedEmail(

@@ -11,7 +11,8 @@ import { OrgTransactionTypeEnum, User, Org } from '@prisma/client';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 import { UsersService } from '../users/users.service';
-import { UserDto } from 'src/users/dtos/user.dto';
+import { UserDto } from '../users/dtos/user.dto';
+import { EmailsService } from '../emails/emails.service';
 
 @Injectable()
 export class AdminOrgsService {
@@ -19,6 +20,7 @@ export class AdminOrgsService {
     private prisma: PrismaService,
     private ledgerService: LedgerService,
     private usersService: UsersService,
+    private emailsService: EmailsService,
   ) {}
 
   async getDetails(id: string): Promise<OrgDto> {
@@ -130,9 +132,12 @@ export class AdminOrgsService {
     createOrgToUserDto: CreateOrgToEmployeesDto,
     admin: User,
   ): Promise<OrgTransactionDto> {
-    const [org, employeeList] = await Promise.all([
+    const [org, employeeList, claimPointsEvent] = await Promise.all([
       this.getById(orgId),
       this.getEmployeeBasicsListByOrg(orgId),
+      this.prisma.claimPointsEvent.findUnique({
+        where: { id: createOrgToUserDto.eventId },
+      }),
     ]);
     if (employeeList.length !== createOrgToUserDto.employeeNumber)
       throw new ConflictException("Employee Number doesn't match DB.");
@@ -177,6 +182,12 @@ export class AdminOrgsService {
         employeeList.map((employee) => employee.id),
         org.pointsPerMonth,
         orgTransaction.id,
+      );
+
+      const to = employeeList.map((employee) => employee.email);
+      await this.emailsService.sendClaimPointsEmail(
+        to.slice(0, 50),
+        claimPointsEvent.description,
       );
 
       return orgTransaction;

@@ -4,9 +4,9 @@ import { LedgerModule } from '../ledger/ledger.module';
 import { AdminOrgsController } from './admin_orgs.controller';
 import { AdminOrgsService } from './admin_orgs.service';
 import { UsersModule } from '../users/users.module';
-
+import { EmailsModule } from '../emails/emails.module';
 @Module({
-  imports: [PrismaModule, LedgerModule, UsersModule],
+  imports: [PrismaModule, LedgerModule, UsersModule, EmailsModule],
   controllers: [AdminOrgsController],
   providers: [AdminOrgsService],
   exports: [AdminOrgsService],

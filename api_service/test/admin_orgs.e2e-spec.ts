@@ -44,6 +44,8 @@ import { expectUserInviteRsp } from './utils/userInviteChecks';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { expectOrgRsp } from './utils/orgsChecks';
 import { expectUserRsp } from './utils/userChecks';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -73,6 +75,8 @@ describe('admin/orgs', () => {
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
+      .overrideProvider(MailerService)
+      .useValue(MailerServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
