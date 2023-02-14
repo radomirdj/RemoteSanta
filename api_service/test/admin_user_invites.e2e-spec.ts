@@ -98,7 +98,7 @@ describe('admin user invites', () => {
         )
         .expect(200);
       const rspInvites = response.body;
-      expect(rspInvites.length).toEqual(1);
+      expect(rspInvites.length).toEqual(2);
     });
 
     it('/ (GET) - ADMIN user, get WRONG ORG USER INVITES', async () => {

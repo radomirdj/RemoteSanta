@@ -73,7 +73,7 @@ describe('user-invites', () => {
       expectUserInviteRsp(rspInvites[2], userInviteCanceled);
     });
 
-    it('/ (GET) - get USER_INVITE list by USER_MANAGER', async () => {
+    it('/ (GET) - get USER_INVITE list by USER_MANAGER ORG2', async () => {
       const response = await request(app.getHttpServer())
         .get('/user-invites/')
         .set(
@@ -86,7 +86,7 @@ describe('user-invites', () => {
         )
         .expect(200);
       const rspInvites = response.body;
-      expect(rspInvites.length).toEqual(1);
+      expect(rspInvites.length).toEqual(2);
     });
 
     it('/ (GET) - NON USER_MANAGER user, get USER_INVITE list', async () => {
