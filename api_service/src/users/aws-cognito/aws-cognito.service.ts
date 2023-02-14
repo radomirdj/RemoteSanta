@@ -22,8 +22,8 @@ export class AwsCognitoService {
     });
   }
 
-  async registerUser(authRegisterUserDto: CreateUserDto) {
-    const { email, password } = authRegisterUserDto;
+  async registerUser(authRegisterUserDto: CreateUserDto, email: string) {
+    const { password } = authRegisterUserDto;
 
     return new Promise((resolve, reject) => {
       this.userPool.signUp(

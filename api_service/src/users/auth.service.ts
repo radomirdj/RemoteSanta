@@ -3,7 +3,7 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, UserInvite, UserInviteStatusEnum } from '@prisma/client';
 import { UsersService } from './users.service';
 import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
 import { CreateUserDto } from './dtos/create-user.dto';
@@ -16,6 +16,7 @@ import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 import { LedgerService } from '../ledger/ledger.service';
 import { EmailsService } from '../emails/emails.service';
+import { UserInvitesService } from '../user_invites/user_invites.service';
 
 const scrypt = promisify(_scrypt);
 
@@ -29,27 +30,47 @@ export class AuthService {
     private ledgerService: LedgerService,
   ) {}
 
-  async signUp(data: CreateUserDto) {
-    const { password: string, ...userDbData } = data;
+  async findActiveInviteByCode(code: string): Promise<UserInvite | null> {
+    const userInviteList = await this.prisma.userInvite.findMany({
+      where: { code, status: UserInviteStatusEnum.ACTIVE },
+    });
+    if (!userInviteList.length) return null;
+    return userInviteList[0];
+  }
 
-    const userInDb = await this.usersService.findByEmail(userDbData.email);
+  async signUp(data: CreateUserDto) {
+    const { password: string, code, ...userDbData } = data;
+    const userInvite = await this.findActiveInviteByCode(code);
+    if (!userInvite) throw new NotFoundException('Active Invite Not Found');
+
+    const userInDb = await this.usersService.findByEmail(userInvite.email);
     if (userInDb) throw new EmailInUseException();
     const dbUser = await this.prisma.$transaction(async (tx) => {
       const dbUser = await this.usersService.createUserTransactional(tx, {
         ...userDbData,
-        // TODO move to orgId from Invite
+        email: userInvite.email,
         org: {
           connect: {
-            id: '752e05ce-4a81-4148-87c5-30832406d48c',
+            id: userInvite.orgId,
           },
         },
       });
       let userSub;
       try {
-        userSub = await this.cognitoService.registerUser(data);
+        userSub = await this.cognitoService.registerUser(
+          data,
+          userInvite.email,
+        );
       } catch (err) {
         throw new CognitoException(err.message);
       }
+      const invitePromise = tx.userInvite.update({
+        where: { id: userInvite.id },
+        data: {
+          status: UserInviteStatusEnum.COMPLETED,
+        },
+      });
+
       const ledgerPromise = this.ledgerService.createUserSides(tx, dbUser.id);
       const cognitoUpdatePromise = this.usersService.setCognitoSubTransactional(
         tx,
@@ -57,7 +78,7 @@ export class AuthService {
         userSub,
       );
 
-      await Promise.all([ledgerPromise, cognitoUpdatePromise]);
+      await Promise.all([ledgerPromise, cognitoUpdatePromise, invitePromise]);
       return dbUser;
     });
 

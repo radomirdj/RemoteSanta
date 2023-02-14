@@ -252,6 +252,16 @@ export const userInviteOrg2 = {
   orgName: org1.name,
 };
 
+export const userInviteDoubleEmail = {
+  id: '48fca279-ad29-4bc2-99a1-f8bff742a743',
+  code: 'BBCAEF',
+  email: 'abc2@example.com',
+  status: 'ACTIVE',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: '62b1828e-0b0f-4123-af61-531e7967134c',
+  orgName: org1.name,
+};
+
 export const claimPointsEvent10Id = 'e545e477-d10a-48da-9c1f-919cb456e64a';
 
 export const lastClaimPointsEvent = {

@@ -17,9 +17,19 @@ import {
   org1,
   user1ActivePoints,
   user1ReservedPoints,
+  userInvite1,
+  userInviteCanceled,
+  userInviteCompleted,
+  userInviteDoubleEmail,
+  userInviteOrg2,
+  org2,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
-import { UserRoleEnum, BalanceSideTypeEnum } from '@prisma/client';
+import {
+  UserRoleEnum,
+  BalanceSideTypeEnum,
+  UserInviteStatusEnum,
+} from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -44,7 +54,7 @@ describe('Authentication system', () => {
 
   describe('/signup (POST)', () => {
     const newUser = {
-      email: 'abs@abc3.com',
+      code: userInviteOrg2.code,
       firstName: 'Peter',
       lastName: 'Pan',
       password: '123456',
@@ -61,10 +71,15 @@ describe('Authentication system', () => {
       expectUserRsp(response.body, {
         ...newUser,
         userRole: UserRoleEnum.BASIC_USER,
-        orgName: org1.name,
+        email: userInviteOrg2.email,
+        orgName: org2.name,
       });
       await expectUserInDB(
-        { ...newUser, userRole: UserRoleEnum.BASIC_USER },
+        {
+          ...newUser,
+          email: userInviteOrg2.email,
+          userRole: UserRoleEnum.BASIC_USER,
+        },
         prisma,
       );
 
@@ -87,13 +102,39 @@ describe('Authentication system', () => {
       await prisma.balanceSide.deleteMany({
         where: { userId: response.body.id },
       });
-      await prisma.user.delete({ where: { email: newUser.email } });
+
+      const invite = await prisma.userInvite.findUnique({
+        where: { id: userInviteOrg2.id },
+      });
+      expect(invite.status).toEqual(UserInviteStatusEnum.COMPLETED);
+
+      await prisma.userInvite.update({
+        where: { id: userInviteOrg2.id },
+        data: {
+          status: UserInviteStatusEnum.ACTIVE,
+        },
+      });
+      await prisma.user.delete({ where: { email: userInviteOrg2.email } });
+    });
+
+    it('/signup (POST) - try to signup with canceled invite', async () => {
+      await request(app.getHttpServer())
+        .post('/users/signup')
+        .send({ ...newUser, code: userInviteCanceled.code })
+        .expect(404);
+    });
+
+    it('/signup (POST) - try to signup with completed invite', async () => {
+      await request(app.getHttpServer())
+        .post('/users/signup')
+        .send({ ...newUser, code: userInviteCompleted.code })
+        .expect(404);
     });
 
     it('/signup (POST) - try to signup existing email', async () => {
       const response = await request(app.getHttpServer())
         .post('/users/signup')
-        .send({ ...newUser, email: user1.email })
+        .send({ ...newUser, code: userInviteDoubleEmail.code })
         .expect(400);
 
       expect(response.body.message).toEqual(EmailInUseException.defaultMessage);
