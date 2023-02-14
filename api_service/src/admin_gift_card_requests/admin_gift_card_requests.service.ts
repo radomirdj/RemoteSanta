@@ -12,6 +12,7 @@ import {
 } from '@prisma/client';
 import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
 import { LedgerService } from '../ledger/ledger.service';
+import { EmailsService } from '../emails/emails.service';
 import { InjectS3, S3 } from 'nestjs-s3';
 
 @Injectable()
@@ -19,6 +20,7 @@ export class AdminGiftCardRequestsService {
   constructor(
     private prisma: PrismaService,
     private ledgerService: LedgerService,
+    private emailsService: EmailsService,
     @InjectS3() private readonly s3: S3,
   ) {}
 
@@ -29,6 +31,10 @@ export class AdminGiftCardRequestsService {
   ): Promise<GiftCardRequest> {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
+      include: {
+        user: true,
+        giftCardIntegration: true,
+      },
     });
     if (!giftCardRequest)
       throw new NotFoundException('GiftCardRequest Not Found');
@@ -78,6 +84,16 @@ export class AdminGiftCardRequestsService {
           data: { status: GiftCardRequestStatusEnum.COMPLETED },
         }),
       ]);
+      await this.emailsService.sendGiftCardFullfiledEmail(
+        giftCardRequest.user.email,
+        giftCardRequest.user.firstName,
+        giftCardRequest.user.lastName,
+        giftCardRequest.giftCardIntegration.title,
+        {
+          filename: fileName,
+          buffer: file.buffer,
+        },
+      );
       return giftCardRequestRsp;
     });
   }
@@ -87,6 +103,10 @@ export class AdminGiftCardRequestsService {
   ): Promise<GiftCardRequest> {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
+      include: {
+        user: true,
+        giftCardIntegration: true,
+      },
     });
     if (!giftCardRequest)
       throw new NotFoundException('GiftCardRequest Not Found');
@@ -113,6 +133,13 @@ export class AdminGiftCardRequestsService {
           },
         }),
       ]);
+      await this.emailsService.sendGiftCardDeclinedEmail(
+        giftCardRequest.user.email,
+        giftCardRequest.user.firstName,
+        giftCardRequest.user.lastName,
+        giftCardRequest.giftCardIntegration.title,
+        data.adminComment,
+      );
       return giftCardRequestRsp;
     });
   }

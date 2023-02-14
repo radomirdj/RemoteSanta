@@ -15,6 +15,8 @@ import {
   expectGiftCardRequestRsp,
 } from './utils/giftCardRequestChecks';
 import { LedgerService } from '../src/ledger/ledger.service';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 import { GiftCardRequestStatusEnum, LedgerTypeEnum } from '@prisma/client';
 
@@ -50,6 +52,8 @@ describe('admin/gift-card-requests', () => {
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
+      .overrideProvider(MailerService)
+      .useValue(MailerServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
