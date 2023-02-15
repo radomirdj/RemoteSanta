@@ -190,6 +190,7 @@ export const org1 = {
   id: '752e05ce-4a81-4148-87c5-30832406d48c',
   name: 'Winterfell Inc.',
   pointsPerMonth: 1200,
+  signupPoints: 2400,
   employeeNumber: 4,
 };
 
@@ -201,6 +202,7 @@ export const org2 = {
   id: '62b1828e-0b0f-4123-af61-531e7967134c',
   name: 'Casterly Rock Inc.',
   pointsPerMonth: 600,
+  signupPoints: 2400,
   employeeNumber: 1,
 };
 

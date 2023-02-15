@@ -9,4 +9,7 @@ export class OrgDto {
 
   @Expose()
   pointsPerMonth: number;
+
+  @Expose()
+  signupPoints: number;
 }

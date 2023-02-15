@@ -151,6 +151,7 @@ describe('admin/orgs', () => {
       const rspOrg = response.body[11];
       expect(rspOrg.name).toEqual(org1.name);
       expect(rspOrg.pointsPerMonth).toEqual(org1.pointsPerMonth);
+      expect(rspOrg.signupPoints).toEqual(org1.signupPoints);
     });
 
     it('/ (GET) - NON ADMIN user, get ORGS', async () => {

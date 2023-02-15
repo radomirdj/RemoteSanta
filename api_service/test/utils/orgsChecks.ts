@@ -1,6 +1,7 @@
 export const expectOrgRsp = (responseBody, expectedValue) => {
   expect(responseBody.name).toEqual(expectedValue.name);
   expect(responseBody.pointsPerMonth).toEqual(expectedValue.pointsPerMonth);
+  expect(responseBody.signupPoints).toEqual(expectedValue.signupPoints);
   expect(responseBody.employeeNumber).toEqual(expectedValue.employeeNumber);
   expect(responseBody.totalPointsPerMonth).toEqual(
     expectedValue.employeeNumber * expectedValue.pointsPerMonth,
