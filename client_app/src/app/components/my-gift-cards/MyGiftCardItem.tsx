@@ -7,23 +7,19 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { IGiftCardRequest } from "../../store/gift-card-request/types";
 import WatchGlass from "./../../assets/icons/watchglass.svg";
 import DeclinedIcon from "./../../assets/icons/declined-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGiftCardUrl } from "../../store/gift-card-request/actions";
-import { getGiftCardFileSelector } from "../../store/gift-card-request/selectors";
+import { fetchGiftCardFile } from "../../store/gift-card-request/actions";
 
 const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
   const dispatch = useDispatch();
-  const giftCardRequestFile = useSelector(getGiftCardFileSelector);
 
-  console.log(giftCardRequestFile);
-
-  useEffect(() => {
-    dispatch(fetchGiftCardUrl({ giftCardRequestId: giftCardRequest.id }));
-  }, [dispatch]);
+  const showMyGiftCard = () => {
+    dispatch(fetchGiftCardFile({ giftCardRequestId: giftCardRequest.id }));
+  };
 
   return (
     <Card sx={{ maxWidth: 270 }} className="card-item">
@@ -52,7 +48,11 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
       </CardContent>
       <CardActions>
         {giftCardRequest.status === "COMPLETED" && (
-          <Button variant="contained" className="card-button">
+          <Button
+            variant="contained"
+            className="card-button"
+            onClick={showMyGiftCard}
+          >
             Show My Gift Card
           </Button>
         )}

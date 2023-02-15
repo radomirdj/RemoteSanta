@@ -15,6 +15,7 @@ import {
   fetchAdminGiftCardRequest,
   fulfillAdminGiftCardRequest,
 } from "../../store/admin-gift-card-requests/actions";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import {
   getAdminGiftCardRequestSelector,
   getAdminGiftCardRequestUserSelector,
@@ -38,6 +39,10 @@ const AdminGiftCardRequestDetails = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const {
     register: registerDecline,
@@ -195,6 +200,15 @@ const AdminGiftCardRequestDetails = () => {
               </form>
             </Grid>
           </Grid>
+          <Button
+            disableRipple
+            variant="text"
+            className="back-button"
+            startIcon={<ChevronLeftIcon className="back-icon" />}
+            onClick={goBack}
+          >
+            Back
+          </Button>
         </Card>
       </div>
       <AppFooter />

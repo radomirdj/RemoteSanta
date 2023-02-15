@@ -12,9 +12,9 @@ import {
   POST_GIFT_CARD_REQUEST,
   POST_GIFT_CARD_REQUEST_SUCCESS,
   POST_GIFT_CARD_REQUEST_FAILURE,
-  FETCH_GIFT_CARD_URL,
-  FETCH_GIFT_CARD_URL_SUCCESS,
-  FETCH_GIFT_CARD_URL_FAILURE,
+  FETCH_GIFT_CARD_FILE,
+  FETCH_GIFT_CARD_FILE_SUCCESS,
+  FETCH_GIFT_CARD_FILE_FAILURE,
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
@@ -50,7 +50,6 @@ export interface GiftCardRequestState {
   giftCardIntegrationList: IGiftCardIntegration[];
   giftCardRequestIntegration: IGiftCardIntegration | null;
   stepperPage: number;
-  giftCardFile: IGiftCardFile | null;
   giftCardRequestAmount: number;
   error: string | null;
 }
@@ -92,15 +91,11 @@ export interface PostGiftCardRequestFailurePayload {
   error: string;
 }
 
-export interface FetchGiftCardUrlPayload {
+export interface FetchGiftCardFilePayload {
   giftCardRequestId: string;
 }
 
-export interface FetchGiftCardUrlSuccessPayload {
-  giftCardFile: IGiftCardFile;
-}
-
-export interface FetchGiftCardUrlFailurePayload {
+export interface FetchGiftCardFileFailurePayload {
   error: string;
 }
 
@@ -166,19 +161,18 @@ export interface PostGiftCardRequestFailure {
   payload: PostGiftCardRequestFailurePayload;
 }
 
-export interface FetchGiftCardUrl {
-  type: typeof FETCH_GIFT_CARD_URL;
-  payload: FetchGiftCardUrlPayload;
+export interface FetchGiftCardFile {
+  type: typeof FETCH_GIFT_CARD_FILE;
+  payload: FetchGiftCardFilePayload;
 }
 
-export interface FetchGiftCardUrlSuccess {
-  type: typeof FETCH_GIFT_CARD_URL_SUCCESS;
-  payload: FetchGiftCardUrlSuccessPayload;
+export interface FetchGiftCardFileSuccess {
+  type: typeof FETCH_GIFT_CARD_FILE_SUCCESS;
 }
 
-export interface FetchGiftCardUrlFailure {
-  type: typeof FETCH_GIFT_CARD_URL_FAILURE;
-  payload: FetchGiftCardUrlFailurePayload;
+export interface FetchGiftCardFileFailure {
+  type: typeof FETCH_GIFT_CARD_FILE_FAILURE;
+  payload: FetchGiftCardFileFailurePayload;
 }
 
 export type GiftCardRequestActions =
@@ -195,6 +189,6 @@ export type GiftCardRequestActions =
   | PostGiftCardRequest
   | PostGiftCardRequestSuccess
   | PostGiftCardRequestFailure
-  | FetchGiftCardUrl
-  | FetchGiftCardUrlSuccess
-  | FetchGiftCardUrlFailure;
+  | FetchGiftCardFile
+  | FetchGiftCardFileSuccess
+  | FetchGiftCardFileFailure;
