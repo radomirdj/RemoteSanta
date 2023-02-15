@@ -7,7 +7,7 @@
 
 - id: 4a49457a-774d-4443-8da5-692748000beb
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   eventId: ec8dc7a8-0ed3-4815-bd0d-d2073005625e
   totalAmount: 2400
   createdById: 71bed16a-98d9-479b-b5f4-f934a2278aae
@@ -15,7 +15,7 @@
 
 - id: 7a7b9497-66f8-4307-a7ea-f79af93d30cf
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   eventId: e0c01322-f499-4f84-baac-af230e238d07
   totalAmount: 2400
   createdById: 71bed16a-98d9-479b-b5f4-f934a2278aae
@@ -23,7 +23,7 @@
 
 - id: 27838d62-9fd0-408f-8af7-a57ae3af974a
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   eventId: 16328f34-4abb-478b-8b38-64d851a594e5
   totalAmount: 10000
   createdById: 71bed16a-98d9-479b-b5f4-f934a2278aae

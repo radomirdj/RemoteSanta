@@ -55,7 +55,7 @@ export class AdminOrgsController {
     @Body() body: CreateOrgToEmployeesDto,
     @CurrentUser() user: User,
   ) {
-    return this.adminOrgsService.createTransactionOrgToEmployees(
+    return this.adminOrgsService.createTransactionOrgToEmployeesMonthly(
       id,
       body,
       user,

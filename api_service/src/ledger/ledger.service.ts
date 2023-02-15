@@ -122,7 +122,7 @@ export class LedgerService {
     ]);
 
     const data = activeList.map((activeBalanceSide) => ({
-      type: LedgerTypeEnum.ORG_TO_EMPLOYEES,
+      type: LedgerTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
       amount,
       fromId: orgSide.id,
       toId: activeBalanceSide.id,

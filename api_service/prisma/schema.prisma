@@ -106,7 +106,7 @@ model ClaimPointsEvent {
 }
 
 enum OrgTransactionTypeEnum {
-  ORG_TO_EMPLOYEES
+  ORG_TO_EMPLOYEES_BY_EVENT
   ADMIN_TO_ORG
 }
 
@@ -215,7 +215,7 @@ model BalanceSide {
 }
 
 enum LedgerTypeEnum {
-  ORG_TO_EMPLOYEES
+  ORG_TO_EMPLOYEES_BY_EVENT
   ADMIN_TO_ORG
   GIFT_CARD_REQUEST_CREATED
   GIFT_CARD_REQUEST_COMPLETED

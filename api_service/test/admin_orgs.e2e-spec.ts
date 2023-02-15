@@ -324,7 +324,7 @@ describe('admin/orgs', () => {
         newOrgToEmployeeTransaction.eventId,
       );
       expect(response.body.type).toEqual(
-        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
+        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
       );
       expect(response.body.orgId).toEqual(org1.id);
       expect(response.body.createdById).toEqual(admin.id);
@@ -365,7 +365,7 @@ describe('admin/orgs', () => {
         newOrgToEmployeeTransaction.eventId,
       );
       expect(dbOrgToEmployee.type).toEqual(
-        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
+        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
       );
       expect(dbOrgToEmployee.orgId).toEqual(org1.id);
 
@@ -381,7 +381,7 @@ describe('admin/orgs', () => {
       addedLadger.forEach((addedLadgerEntity) => {
         expect(addedLadgerEntity.fromId).toEqual(org1BalanceSideId);
         expect(addedLadgerEntity.amount).toEqual(org1.pointsPerMonth);
-        expect(addedLadgerEntity.type).toEqual(LedgerTypeEnum.ORG_TO_EMPLOYEES);
+        expect(addedLadgerEntity.type).toEqual(LedgerTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT);
       });
 
       // Check User And Org balance

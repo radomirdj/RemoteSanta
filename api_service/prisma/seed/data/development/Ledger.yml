@@ -6,35 +6,35 @@
   detailsJson: { 'transactionId': 'ca16d572-9640-4470-8c8a-af3bb3fd42b6' }
 
 - id: 96ef0480-494e-4c76-be1d-c1f6eae9b1c4
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   amount: 1200
   fromId: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   toId: 2d1b6de0-e182-43f8-b8ce-96baccb4ecd4
   detailsJson: { 'transactionId': '4a49457a-774d-4443-8da5-692748000beb' }
 
 - id: d61ede03-4d88-4e96-b095-fba198aca1d8
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   amount: 1200
   fromId: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   toId: a6490a6e-253b-4aa0-810c-f7e5b3790138
   detailsJson: { 'transactionId': '4a49457a-774d-4443-8da5-692748000beb' }
 
 - id: 84f44da6-ee71-4f5b-a7ef-7c6e9b1341f2
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   amount: 1200
   fromId: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   toId: 2d1b6de0-e182-43f8-b8ce-96baccb4ecd4
   detailsJson: { 'transactionId': '7a7b9497-66f8-4307-a7ea-f79af93d30cf' }
 
 - id: c08ed58c-580e-4556-bd1b-4b019069c2d8
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   amount: 1200
   fromId: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   toId: a6490a6e-253b-4aa0-810c-f7e5b3790138
   detailsJson: { 'transactionId': '7a7b9497-66f8-4307-a7ea-f79af93d30cf' }
 
 - id: 593391d9-ac04-4755-b10e-1278528b6df7
-  type: ORG_TO_EMPLOYEES
+  type: ORG_TO_EMPLOYEES_BY_EVENT
   amount: 10000
   fromId: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   toId: 2d1b6de0-e182-43f8-b8ce-96baccb4ecd4

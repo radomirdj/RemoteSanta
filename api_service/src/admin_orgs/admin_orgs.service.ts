@@ -127,7 +127,62 @@ export class AdminOrgsService {
     });
   }
 
-  async createTransactionOrgToEmployees(
+  async createOrgTransactionToEmployees(
+    orgId: string,
+    eventId: string,
+    employeeList: User[],
+    pointsPerEmployee: number,
+    createdById: string,
+    finalFunc,
+  ): Promise<OrgTransactionDto> {
+    return this.prisma.$transaction(async (tx) => {
+      const orgTransaction = await tx.orgTransaction.create({
+        data: {
+          totalAmount: employeeList.length * pointsPerEmployee,
+          type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+          org: {
+            connect: {
+              id: orgId,
+            },
+          },
+          createdBy: {
+            connect: {
+              id: createdById,
+            },
+          },
+          event: {
+            connect: {
+              id: eventId,
+            },
+          },
+        },
+      });
+      const eventFulfillmentData = employeeList.map((employee: User) => ({
+        amount: pointsPerEmployee,
+        orgTransactionId: orgTransaction.id,
+        userId: employee.id,
+      }));
+      const { count } = await tx.claimPointsEventFulfillment.createMany({
+        data: eventFulfillmentData,
+      });
+
+      if (count !== employeeList.length)
+        throw new ConflictException("Employee Number doesn't match DB.");
+
+      await this.ledgerService.createOrgToEmployesTransaction(
+        tx,
+        orgId,
+        employeeList.map((employee) => employee.id),
+        pointsPerEmployee,
+        orgTransaction.id,
+      );
+
+      await finalFunc();
+      return orgTransaction;
+    });
+  }
+
+  async createTransactionOrgToEmployeesMonthly(
     orgId: string,
     createOrgToUserDto: CreateOrgToEmployeesDto,
     admin: User,
@@ -142,55 +197,19 @@ export class AdminOrgsService {
     if (employeeList.length !== createOrgToUserDto.employeeNumber)
       throw new ConflictException("Employee Number doesn't match DB.");
 
-    return this.prisma.$transaction(async (tx) => {
-      const orgTransaction = await tx.orgTransaction.create({
-        data: {
-          totalAmount: createOrgToUserDto.employeeNumber * org.pointsPerMonth,
-          type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES,
-          org: {
-            connect: {
-              id: orgId,
-            },
-          },
-          createdBy: {
-            connect: {
-              id: admin.id,
-            },
-          },
-          event: {
-            connect: {
-              id: createOrgToUserDto.eventId,
-            },
-          },
-        },
-      });
-      const eventFulfillmentData = employeeList.map((employee: User) => ({
-        amount: org.pointsPerMonth,
-        orgTransactionId: orgTransaction.id,
-        userId: employee.id,
-      }));
-      const { count } = await tx.claimPointsEventFulfillment.createMany({
-        data: eventFulfillmentData,
-      });
-
-      if (count !== createOrgToUserDto.employeeNumber)
-        throw new ConflictException("Employee Number doesn't match DB.");
-
-      await this.ledgerService.createOrgToEmployesTransaction(
-        tx,
-        orgId,
-        employeeList.map((employee) => employee.id),
-        org.pointsPerMonth,
-        orgTransaction.id,
-      );
-
-      const to = employeeList.map((employee) => employee.email);
-      await this.emailsService.sendClaimPointsEmail(
-        to.slice(0, 50),
-        claimPointsEvent.description,
-      );
-
-      return orgTransaction;
-    });
+    return this.createOrgTransactionToEmployees(
+      orgId,
+      claimPointsEvent.id,
+      employeeList,
+      org.pointsPerMonth,
+      admin.id,
+      async () => {
+        const to = employeeList.map((employee) => employee.email);
+        await this.emailsService.sendClaimPointsEmail(
+          to.slice(0, 50),
+          claimPointsEvent.description,
+        );
+      },
+    );
   }
 }
