@@ -1,6 +1,6 @@
 - id: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
   cognitoSub: 821fc4f216c9
-  email: abc@example.com
+  email: jovanadjeko@gmail.com
   firstName: Jon
   lastName: Snow
   gender: MALE
@@ -11,7 +11,7 @@
 
 - id: d95d6e01-9fb8-4116-ae70-276aca88694a
   cognitoSub: 276aca88694a
-  email: abc2@example.com
+  email: jovanadjeko+1@gmail.com
   firstName: Eddard
   lastName: Stark
   gender: MALE
@@ -22,7 +22,7 @@
 
 - id: 25752f92-defd-4bb5-9553-154fc5ce9d8b
   cognitoSub: 154fc5ce9d8b
-  email: abc3@example.com
+  email: jovanadjeko+2@gmail.com
   firstName: Sansa
   lastName: Stark
   gender: FEMALE
@@ -34,7 +34,7 @@
 
 - id: 71bed16a-98d9-479b-b5f4-f934a2278aae
   cognitoSub: f934a2278aae
-  email: abc4@example.com
+  email: jovanadjeko+3@gmail.com
   firstName: Arya
   lastName: Stark
   gender: FEMALE
@@ -46,7 +46,7 @@
 
 - id: c7f44075-8888-44a8-a897-f4a4db0d3050
   cognitoSub: f4a4db0d3050
-  email: abc5@example.com
+  email: jovanadjeko+4@gmail.com
   firstName: Tywin
   lastName: Lannister
   gender: MALE
