@@ -8,6 +8,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { createToken } from './utils/tokenService';
+import { ClaimPointsEventTypeEnum } from '@prisma/client';
 
 import {
   user1,
@@ -49,6 +50,11 @@ describe('/claim-points-events', () => {
       expect(new Date(eventList[0].validTo).getTime()).toBeGreaterThan(
         new Date().getTime(),
       );
+      eventList.forEach((event) =>
+        expect(event.type).toEqual(
+          ClaimPointsEventTypeEnum.MONTHLY_ORG_TO_EMPLOYEE,
+        ),
+      );
       const lastEvent = eventList[eventList.length - 1];
       expect(lastEvent.description).toEqual(lastClaimPointsEvent.description);
       expect(lastEvent.claimPointsEventFulfillment).toBeDefined();
@@ -70,6 +76,11 @@ describe('/claim-points-events', () => {
       const eventList = response.body;
       expect(new Date(eventList[0].validTo).getTime()).toBeGreaterThan(
         new Date().getTime(),
+      );
+      eventList.forEach((event) =>
+        expect(event.type).toEqual(
+          ClaimPointsEventTypeEnum.MONTHLY_ORG_TO_EMPLOYEE,
+        ),
       );
       const lastEvent = eventList[eventList.length - 1];
       expect(lastEvent.description).toEqual(lastClaimPointsEvent.description);

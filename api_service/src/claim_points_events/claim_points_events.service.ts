@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { ClaimPointsEvent } from '@prisma/client';
+import { ClaimPointsEventTypeEnum } from '@prisma/client';
 import { ClaimPointsEventDto } from './dtos/claim_points_event.dto';
 @Injectable()
 export class ClaimPointsEventsService {
@@ -18,6 +18,7 @@ export class ClaimPointsEventsService {
         validTo: {
           gte: new Date(),
         },
+        type: ClaimPointsEventTypeEnum.MONTHLY_ORG_TO_EMPLOYEE,
       },
       include: {
         OrgTransaction: {

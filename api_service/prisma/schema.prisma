@@ -91,11 +91,17 @@ model GiftDate {
   firstAccuranceDate DateTime                   @db.Date
 }
 
+enum ClaimPointsEventTypeEnum {
+  MONTHLY_ORG_TO_EMPLOYEE
+  SIGN_UP_EVENT
+}
+
 model ClaimPointsEvent {
-  id             String           @id @default(uuid())
+  id             String                   @id @default(uuid())
   validTo        DateTime
   description    String
   title          String
+  type           ClaimPointsEventTypeEnum @default(MONTHLY_ORG_TO_EMPLOYEE)
   OrgTransaction OrgTransaction[]
 }
 
