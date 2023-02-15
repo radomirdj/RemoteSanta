@@ -126,13 +126,6 @@ const AdminInvites = () => {
   const columns: GridColDef[] = [
     { field: "email", headerName: "Email", width: 550 },
     {
-      field: "resend",
-      headerName: "Resend",
-      width: 125,
-      sortable: false,
-      renderCell: resendButton,
-    },
-    {
       field: "cancel",
       headerName: "Cancel",
       width: 125,
@@ -146,7 +139,6 @@ const AdminInvites = () => {
     .map((adminInvite) => {
       return {
         email: adminInvite.email,
-        resend: "",
         cancel: "",
         id: adminInvite.id,
       };

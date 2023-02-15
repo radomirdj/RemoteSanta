@@ -1,6 +1,7 @@
 @use "./../variables.scss";
 
 $card-width: 800px;
+$back-icon-margin-bottom:3px;
 
 .admin-gift-card-request-details{
     background-image: url("./../../assets/home-image.svg");
@@ -141,4 +142,19 @@ $card-width: 800px;
           font-size: variables.$font-size-small;
         }
       }
+
+      .back-button,
+        & .back-button:hover {
+            float: left;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height: $button-details-height;
+            font-weight: bold;
+            background-color: white;
+            margin-left: -8px;
+
+            .back-icon{
+                margin-bottom: $back-icon-margin-bottom;
+            }
+        }
 }
