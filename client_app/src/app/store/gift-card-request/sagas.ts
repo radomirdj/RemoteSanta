@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { all, call, put, take, takeLatest } from "redux-saga/effects";
+import * as FileSaver from "file-saver";
 import { getGiftCardFile } from "../../services/api-service";
 import { getSelfRequest } from "../auth/actions";
 import {
@@ -7,8 +8,8 @@ import {
   fetchGiftCardIntegrationListSuccess,
   fetchGiftCardRequestListFailure,
   fetchGiftCardRequestListSuccess,
-  fetchGiftCardUrlFailure,
-  fetchGiftCardUrlSuccess,
+  fetchGiftCardFileFailure,
+  fetchGiftCardFileSuccess,
   postGiftCardRequestFailure,
   postGiftCardRequestSuccess,
   setGiftCardRequestAmount,
@@ -17,9 +18,9 @@ import {
   setGiftCardRequestStepBack,
 } from "./actions";
 import {
+  FETCH_GIFT_CARD_FILE,
   FETCH_GIFT_CARD_INTEGRATION_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST,
-  FETCH_GIFT_CARD_URL,
   POST_GIFT_CARD_REQUEST,
   SET_GIFT_CARD_REQUEST_AMOUNT,
   SET_GIFT_CARD_REQUEST_INTEGRATION,
@@ -27,8 +28,7 @@ import {
   SET_GIFT_CARD_REQUEST_STEP_BACK,
 } from "./actionTypes";
 import {
-  FetchGiftCardUrl,
-  IGiftCardFile,
+  FetchGiftCardFile,
   IGiftCardIntegration,
   IGiftCardRequest,
   PostGiftCardRequest,
@@ -137,22 +137,20 @@ function* postGiftCardRequestSaga(action: PostGiftCardRequest) {
   }
 }
 
-function* fetchGiftCardUrlSaga(action: FetchGiftCardUrl) {
+function* fetchGiftCardFileSaga(action: FetchGiftCardFile) {
   try {
     const token: string = localStorage.getItem("token") || "";
-    const response: AxiosResponse<IGiftCardFile> = yield call(
+    const response: AxiosResponse<any> = yield call(
       getGiftCardFile,
       action.payload,
       token
     );
-    yield put(
-      fetchGiftCardUrlSuccess({
-        giftCardFile: response.data,
-      })
-    );
+    const blob = new Blob([response.data], { type: "application/pdf" });
+    FileSaver.saveAs(blob, "gift-card");
+    yield put(fetchGiftCardFileSuccess());
   } catch (e) {
     yield put(
-      fetchGiftCardUrlFailure({
+      fetchGiftCardFileFailure({
         error: e.message,
       })
     );
@@ -192,7 +190,7 @@ function* giftCardRequestSaga() {
     ),
   ]);
   yield all([takeLatest(POST_GIFT_CARD_REQUEST, postGiftCardRequestSaga)]);
-  yield all([takeLatest(FETCH_GIFT_CARD_URL, fetchGiftCardUrlSaga)]);
+  yield all([takeLatest(FETCH_GIFT_CARD_FILE, fetchGiftCardFileSaga)]);
 }
 
 export default giftCardRequestSaga;

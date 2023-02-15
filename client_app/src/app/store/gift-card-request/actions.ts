@@ -12,9 +12,9 @@ import {
   POST_GIFT_CARD_REQUEST,
   POST_GIFT_CARD_REQUEST_SUCCESS,
   POST_GIFT_CARD_REQUEST_FAILURE,
-  FETCH_GIFT_CARD_URL,
-  FETCH_GIFT_CARD_URL_SUCCESS,
-  FETCH_GIFT_CARD_URL_FAILURE,
+  FETCH_GIFT_CARD_FILE,
+  FETCH_GIFT_CARD_FILE_SUCCESS,
+  FETCH_GIFT_CARD_FILE_FAILURE,
 } from "./actionTypes";
 import {
   FetchGiftCardRequestList,
@@ -39,12 +39,11 @@ import {
   PostGiftCardRequestPayload,
   PostGiftCardRequestSuccess,
   PostGiftCardRequestFailure,
-  FetchGiftCardUrlPayload,
-  FetchGiftCardUrl,
-  FetchGiftCardUrlSuccessPayload,
-  FetchGiftCardUrlSuccess,
-  FetchGiftCardUrlFailure,
-  FetchGiftCardUrlFailurePayload,
+  FetchGiftCardFilePayload,
+  FetchGiftCardFile,
+  FetchGiftCardFileSuccess,
+  FetchGiftCardFileFailure,
+  FetchGiftCardFileFailurePayload,
 } from "./types";
 
 export const fetchGiftCardRequestList = (): FetchGiftCardRequestList => ({
@@ -129,23 +128,20 @@ export const postGiftCardRequestFailure = (
   payload,
 });
 
-export const fetchGiftCardUrl = (
-  payload: FetchGiftCardUrlPayload
-): FetchGiftCardUrl => ({
-  type: FETCH_GIFT_CARD_URL,
+export const fetchGiftCardFile = (
+  payload: FetchGiftCardFilePayload
+): FetchGiftCardFile => ({
+  type: FETCH_GIFT_CARD_FILE,
   payload,
 });
 
-export const fetchGiftCardUrlSuccess = (
-  payload: FetchGiftCardUrlSuccessPayload
-): FetchGiftCardUrlSuccess => ({
-  type: FETCH_GIFT_CARD_URL_SUCCESS,
-  payload,
+export const fetchGiftCardFileSuccess = (): FetchGiftCardFileSuccess => ({
+  type: FETCH_GIFT_CARD_FILE_SUCCESS,
 });
 
-export const fetchGiftCardUrlFailure = (
-  payload: FetchGiftCardUrlFailurePayload
-): FetchGiftCardUrlFailure => ({
-  type: FETCH_GIFT_CARD_URL_FAILURE,
+export const fetchGiftCardFileFailure = (
+  payload: FetchGiftCardFileFailurePayload
+): FetchGiftCardFileFailure => ({
+  type: FETCH_GIFT_CARD_FILE_FAILURE,
   payload,
 });

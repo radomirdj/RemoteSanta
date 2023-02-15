@@ -6,9 +6,6 @@ export const getPendingSelector = (state: AppState) =>
 export const getGiftCardRequestListSelector = (state: AppState) =>
   state.giftCardRequest.giftCardRequestList;
 
-export const getGiftCardFileSelector = (state: AppState) =>
-  state.giftCardRequest.giftCardFile;
-
 export const getGiftCardIntegrationListSelector = (state: AppState) =>
   state.giftCardRequest.giftCardIntegrationList;
 
