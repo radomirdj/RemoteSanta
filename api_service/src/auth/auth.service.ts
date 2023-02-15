@@ -80,7 +80,11 @@ export class AuthService {
       );
 
       await Promise.all([ledgerPromise, cognitoUpdatePromise, invitePromise]);
-
+      await this.adminOrgsService.createTransactionOrgToEmployeeSignup(
+        tx,
+        userInvite.orgId,
+        dbUser,
+      );
       return dbUser;
     });
 

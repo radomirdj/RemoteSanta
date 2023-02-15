@@ -36,8 +36,9 @@ export class LedgerService {
 
   async getUserListLedgerSide(
     userIdList: string[],
+    tx = this.prisma,
   ): Promise<LedgerUserSideLists> {
-    const balanceSideDBList = await this.prisma.balanceSide.findMany({
+    const balanceSideDBList = await tx.balanceSide.findMany({
       where: {
         userId: {
           in: userIdList,
@@ -117,7 +118,7 @@ export class LedgerService {
     transactionId: string,
   ) {
     const [{ activeList }, orgSide] = await Promise.all([
-      this.getUserListLedgerSide(employeeIdList),
+      this.getUserListLedgerSide(employeeIdList, tx),
       this.getOrgLedgerSide(orgId),
     ]);
 

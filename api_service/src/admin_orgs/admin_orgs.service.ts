@@ -7,7 +7,12 @@ import { PrismaService } from '../prisma/prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { OrgDto } from './dtos/org.dto';
 import { OrgTransactionDto } from './dtos/org_transaction.dto';
-import { OrgTransactionTypeEnum, User, Org } from '@prisma/client';
+import {
+  OrgTransactionTypeEnum,
+  User,
+  Org,
+  ClaimPointsEventTypeEnum,
+} from '@prisma/client';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 import { UsersService } from '../users/users.service';
@@ -128,58 +133,81 @@ export class AdminOrgsService {
   }
 
   async createOrgTransactionToEmployees(
+    tx,
     orgId: string,
     eventId: string,
     employeeList: User[],
     pointsPerEmployee: number,
     createdById: string,
-    finalFunc,
+    finalFunc = null,
   ): Promise<OrgTransactionDto> {
-    return this.prisma.$transaction(async (tx) => {
-      const orgTransaction = await tx.orgTransaction.create({
-        data: {
-          totalAmount: employeeList.length * pointsPerEmployee,
-          type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
-          org: {
-            connect: {
-              id: orgId,
-            },
-          },
-          createdBy: {
-            connect: {
-              id: createdById,
-            },
-          },
-          event: {
-            connect: {
-              id: eventId,
-            },
+    const orgTransaction = await tx.orgTransaction.create({
+      data: {
+        totalAmount: employeeList.length * pointsPerEmployee,
+        type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+        org: {
+          connect: {
+            id: orgId,
           },
         },
-      });
-      const eventFulfillmentData = employeeList.map((employee: User) => ({
-        amount: pointsPerEmployee,
-        orgTransactionId: orgTransaction.id,
-        userId: employee.id,
-      }));
-      const { count } = await tx.claimPointsEventFulfillment.createMany({
-        data: eventFulfillmentData,
-      });
-
-      if (count !== employeeList.length)
-        throw new ConflictException("Employee Number doesn't match DB.");
-
-      await this.ledgerService.createOrgToEmployesTransaction(
-        tx,
-        orgId,
-        employeeList.map((employee) => employee.id),
-        pointsPerEmployee,
-        orgTransaction.id,
-      );
-
-      await finalFunc();
-      return orgTransaction;
+        createdBy: {
+          connect: {
+            id: createdById,
+          },
+        },
+        event: {
+          connect: {
+            id: eventId,
+          },
+        },
+      },
     });
+    const eventFulfillmentData = employeeList.map((employee: User) => ({
+      amount: pointsPerEmployee,
+      orgTransactionId: orgTransaction.id,
+      userId: employee.id,
+    }));
+    const { count } = await tx.claimPointsEventFulfillment.createMany({
+      data: eventFulfillmentData,
+    });
+
+    if (count !== employeeList.length)
+      throw new ConflictException("Employee Number doesn't match DB.");
+
+    await this.ledgerService.createOrgToEmployesTransaction(
+      tx,
+      orgId,
+      employeeList.map((employee) => employee.id),
+      pointsPerEmployee,
+      orgTransaction.id,
+    );
+
+    if (finalFunc) await finalFunc();
+    return orgTransaction;
+  }
+
+  async createTransactionOrgToEmployeeSignup(
+    tx,
+    orgId: string,
+    user: User,
+  ): Promise<OrgTransactionDto | null> {
+    const [org, claimPointsEventList] = await Promise.all([
+      this.getById(orgId),
+      this.prisma.claimPointsEvent.findMany({
+        where: { type: ClaimPointsEventTypeEnum.SIGN_UP_EVENT },
+      }),
+    ]);
+    if (org.signupPoints <= 0) return null;
+    const claimPointsEvent = claimPointsEventList[0];
+
+    return this.createOrgTransactionToEmployees(
+      tx,
+      orgId,
+      claimPointsEvent.id,
+      [user],
+      org.signupPoints,
+      user.id,
+    );
   }
 
   async createTransactionOrgToEmployeesMonthly(
@@ -197,19 +225,22 @@ export class AdminOrgsService {
     if (employeeList.length !== createOrgToUserDto.employeeNumber)
       throw new ConflictException("Employee Number doesn't match DB.");
 
-    return this.createOrgTransactionToEmployees(
-      orgId,
-      claimPointsEvent.id,
-      employeeList,
-      org.pointsPerMonth,
-      admin.id,
-      async () => {
-        const to = employeeList.map((employee) => employee.email);
-        await this.emailsService.sendClaimPointsEmail(
-          to.slice(0, 50),
-          claimPointsEvent.description,
-        );
-      },
-    );
+    return this.prisma.$transaction(async (tx) => {
+      return this.createOrgTransactionToEmployees(
+        tx,
+        orgId,
+        claimPointsEvent.id,
+        employeeList,
+        org.pointsPerMonth,
+        admin.id,
+        async () => {
+          const to = employeeList.map((employee) => employee.email);
+          await this.emailsService.sendClaimPointsEmail(
+            to.slice(0, 50),
+            claimPointsEvent.description,
+          );
+        },
+      );
+    });
   }
 }

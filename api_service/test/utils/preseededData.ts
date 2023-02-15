@@ -207,11 +207,18 @@ export const org2 = {
 };
 
 export const org2Points = 0;
+export const org2BalanceSideId = '1c80baff-e523-4787-a94d-7edcf35216aa';
 
 export const claimPointsEvent1 = {
   id: 'e0c01322-f499-4f84-baac-af230e238d07',
   validTo: '2022-11-01T00:00:00.000Z',
   description: 'You don’t waste October sunshine.',
+};
+
+export const signupEvent = {
+  id: '8cff81f0-44b0-4b32-bbac-c8c0be63521c',
+  validTo: '2030-01-01T00:00:00.000Z',
+  description: 'SIGN UP',
 };
 
 export const userInvite1 = {
