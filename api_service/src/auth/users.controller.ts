@@ -14,10 +14,10 @@ import {
 import { User } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
 
-import { CreateUserDto } from './dtos/create-user.dto';
-import { UpdateUserDto } from './dtos/update-user.dto';
-import { LoginUserDto } from './dtos/login-user.dto';
-import { UsersService } from './users.service';
+import { CreateUserDto } from '../users/dtos/create-user.dto';
+import { UpdateUserDto } from '../users/dtos/update-user.dto';
+import { LoginUserDto } from '../users/dtos/login-user.dto';
+import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
@@ -25,8 +25,8 @@ import { UserDto } from '../users/dtos/user.dto';
 import { ChangePasswordUserDto } from '../users/dtos/change-password.dto';
 import { ForgotPasswordUserDto } from '../users/dtos/forgot-password-user.dto';
 import { ConfirmPasswordUserDto } from '../users/dtos/confirm-password-user.dto';
-import { CurrentUser } from './decorators/current-user.decorator';
-import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
 import { CognitoException } from '../errors/cognitoException';
 
 @Serialize(UserDto)
@@ -95,14 +95,4 @@ export class UsersController {
       userBalance,
     };
   }
-
-  //   @Post('/signout')
-  //   async signOut(@Session() session: any) {
-  //     session.userId = null;
-  //   }
-
-  //   @Patch('/:id')
-  //   updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
-  //     return this.usersService.update(id, body);
-  //   }
 }

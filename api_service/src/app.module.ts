@@ -21,6 +21,7 @@ import { OrgsModule } from './orgs/orgs.module';
 import { UserInvitesModule } from './user_invites/user_invites.module';
 import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.module';
 import { EmailsModule } from './emails/emails.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { EmailsModule } from './emails/emails.module';
     UserInvitesModule,
     AdminUserInvitesModule,
     EmailsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

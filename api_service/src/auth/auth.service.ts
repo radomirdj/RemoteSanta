@@ -4,10 +4,10 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { Prisma, UserInvite, UserInviteStatusEnum } from '@prisma/client';
-import { UsersService } from './users.service';
-import { AwsCognitoService } from './aws-cognito/aws-cognito.service';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { LoginUserDto } from './dtos/login-user.dto';
+import { UsersService } from '../users/users.service';
+import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
+import { CreateUserDto } from '../users/dtos/create-user.dto';
+import { LoginUserDto } from '../users/dtos/login-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { EmailInUseException } from '../errors/emailInUseException';
 import { CognitoException } from '../errors/cognitoException';
@@ -16,7 +16,7 @@ import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 import { LedgerService } from '../ledger/ledger.service';
 import { EmailsService } from '../emails/emails.service';
-import { UserInvitesService } from '../user_invites/user_invites.service';
+import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 
 const scrypt = promisify(_scrypt);
 
@@ -28,6 +28,7 @@ export class AuthService {
     private cognitoService: AwsCognitoService,
     private prisma: PrismaService,
     private ledgerService: LedgerService,
+    private adminOrgsService: AdminOrgsService,
   ) {}
 
   async findActiveInviteByCode(code: string): Promise<UserInvite | null> {
@@ -79,6 +80,7 @@ export class AuthService {
       );
 
       await Promise.all([ledgerPromise, cognitoUpdatePromise, invitePromise]);
+
       return dbUser;
     });
 
