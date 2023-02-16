@@ -136,8 +136,22 @@ $registration-error-label-color: #666666;
     margin-left: auto;
     margin-right: auto;
     font-size: variables.$font-size-small;
-    cursor: pointer;
     color: variables.$color-neutral-black;
     width: max-content;
+    margin-top: variables.$base-unit *2;
+  }
+
+  .registration-terms {
+    font-family: "Montserrat";
+    margin-left: auto;
+    margin-right: auto;
+    font-size: variables.$font-size-small;
+    color: variables.$color-neutral-black;
+    width: max-content;
+    margin-bottom: variables.$base-unit *2;
+  }
+
+  .registration-link{
+    cursor: pointer;
   }
 }

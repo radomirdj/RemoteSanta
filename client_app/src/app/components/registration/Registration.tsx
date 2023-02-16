@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/auth/selectors";
 import {
   Card,
+  Divider,
   FormControl,
   Grid,
   IconButton,
@@ -19,17 +20,15 @@ import {
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
 import { useForm, Controller } from "react-hook-form";
-import {
-  createUTCDate,
-  getEmailRegex,
-  getPasswordRegex,
-} from "./../../utils/Utils";
+import { createUTCDate, getPasswordRegex } from "./../../utils/Utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ErrorIcon from "@mui/icons-material/Error";
+import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
+import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -42,6 +41,8 @@ const Registration = () => {
     control,
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
+  const queryParameters = new URLSearchParams(window.location.search);
+  const code = queryParameters.get("code");
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -63,7 +64,7 @@ const Registration = () => {
         {
           firstName: data.firstName,
           lastName: data.lastName,
-          email: data.email,
+          code: code || "",
           password: data.password,
           birthDate,
           gender: data.gender,
@@ -194,34 +195,6 @@ const Registration = () => {
                     Gender is required.
                   </Typography>
                 )}
-
-                <TextField
-                  error={errors.email ? true : false}
-                  id="outlined-basic"
-                  label="Email"
-                  variant="outlined"
-                  className={
-                    errors.email
-                      ? "registration-input-with-error"
-                      : "registration-input"
-                  }
-                  {...register("email", {
-                    required: true,
-                    pattern: getEmailRegex(),
-                  })}
-                />
-
-                {errors.email?.type === "required" && (
-                  <Typography className="registration-error-fe">
-                    Email is required.
-                  </Typography>
-                )}
-
-                {errors.email?.type === "pattern" && (
-                  <Typography className="registration-error-fe">
-                    Email should be an email.
-                  </Typography>
-                )}
                 <FormControl variant="outlined">
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
                   <OutlinedInput
@@ -273,11 +246,23 @@ const Registration = () => {
                 >
                   Sign up
                 </Button>
-                <Typography
-                  className="registration-have-account"
-                  onClick={loginRedirect}
-                >
-                  Already have an account? <u>Login</u>
+                <Typography className="registration-terms">
+                  By signing up, you agree to our{" "}
+                  <a href={TermsOfUse} target="_blank">
+                    Terms of Use
+                  </a>{" "}
+                  and{" "}
+                  <a href={PrivacyPolicy} target="_blank">
+                    Privacy Policy
+                  </a>
+                  .
+                </Typography>
+                <Divider />
+                <Typography className="registration-have-account">
+                  Already have an account?{" "}
+                  <u className="registration-link" onClick={loginRedirect}>
+                    Login
+                  </u>
                 </Typography>
               </form>
             </Card>

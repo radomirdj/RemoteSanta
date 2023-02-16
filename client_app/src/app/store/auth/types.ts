@@ -14,18 +14,18 @@ import {
   FORGOT_PASSWORD_FAILURE,
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
-  CHANGE_PASSWORD_FAILURE
+  CHANGE_PASSWORD_FAILURE,
 } from "./actionTypes";
 
-export interface IOrg{
-  id:string;
-  name:string;
-  pointsPerMonth:number;
+export interface IOrg {
+  id: string;
+  name: string;
+  pointsPerMonth: number;
 }
 
-export interface IUserBalance{
-  pointsActive:number;
-  pointsReserved:number;
+export interface IUserBalance {
+  pointsActive: number;
+  pointsReserved: number;
 }
 
 export interface AuthUser {
@@ -37,8 +37,8 @@ export interface AuthUser {
   gender: string;
   accessToken: string;
   userRole: string;
-  org?:IOrg;
-  userBalance?:IUserBalance;
+  org?: IOrg;
+  userBalance?: IUserBalance;
 }
 
 export interface AuthState {
@@ -55,7 +55,7 @@ export interface SignUpFailurePayload {
 export interface SignUpRequestPayload {
   firstName: string;
   lastName: string;
-  email: string;
+  code: string;
   password: string;
   birthDate: Date;
   gender: string;
@@ -102,8 +102,8 @@ export interface ChangePasswordFailurePayload {
 
 export interface SignUpRequest {
   type: typeof SIGN_UP_REQUEST;
-  payload: SignUpRequestPayload
-  navigate:Function
+  payload: SignUpRequestPayload;
+  navigate: Function;
 }
 
 export type SignUpSuccess = {
@@ -117,7 +117,7 @@ export type SignUpFailure = {
 
 export interface LoginRequest {
   type: typeof LOGIN_REQUEST;
-  payload: LoginRequestPayload
+  payload: LoginRequestPayload;
 }
 
 export type LoginSuccess = {
@@ -146,13 +146,13 @@ export type GetSelfFailure = {
 
 export type Logout = {
   type: typeof LOGOUT;
-  navigate:Function
+  navigate: Function;
 };
 
 export interface ForgotPasswordRequest {
   type: typeof FORGOT_PASSWORD_REQUEST;
-  payload: ForgotPasswordRequestPayload
-  navigate:Function
+  payload: ForgotPasswordRequestPayload;
+  navigate: Function;
 }
 
 export type ForgotPasswordSuccess = {
@@ -166,8 +166,8 @@ export type ForgotPasswordFailure = {
 
 export interface ChangePasswordRequest {
   type: typeof CHANGE_PASSWORD_REQUEST;
-  payload: ChangePasswordRequestPayload
-  navigate:Function
+  payload: ChangePasswordRequestPayload;
+  navigate: Function;
 }
 
 export type ChangePasswordSuccess = {

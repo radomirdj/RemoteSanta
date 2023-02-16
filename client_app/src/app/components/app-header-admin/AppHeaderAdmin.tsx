@@ -22,6 +22,10 @@ const AppHeaderAdmin = () => {
     navigate("/admin-organizations");
   };
 
+  const homeRedirect = () => {
+    navigate("/admin-home");
+  };
+
   return (
     <AppBar className="app-header-admin">
       <Toolbar disableGutters className="toolbar-style">
@@ -31,7 +35,12 @@ const AppHeaderAdmin = () => {
             md={6}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
-            <img src={Logo} alt="" className="logo-style" />
+            <img
+              src={Logo}
+              alt=""
+              className="logo-style"
+              onClick={homeRedirect}
+            />
           </Grid>
           <Grid
             item
@@ -41,7 +50,12 @@ const AppHeaderAdmin = () => {
               display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
             }}
           >
-            <img src={LogoSmall} alt="" className="logo-small" />
+            <img
+              src={LogoSmall}
+              alt=""
+              className="logo-small"
+              onClick={homeRedirect}
+            />
           </Grid>
           <Grid item xs={4} sm={4} md={2} className="align-right">
             <Typography

@@ -87,7 +87,12 @@ const AppHeaderPrivate = () => {
             md={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
-            <img src={Logo} alt="" className="logo-style" />
+            <img
+              src={Logo}
+              alt=""
+              className="logo-style"
+              onClick={homeRedirect}
+            />
           </Grid>
           <Grid
             item
@@ -97,7 +102,12 @@ const AppHeaderPrivate = () => {
               display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
             }}
           >
-            <img src={LogoSmall} alt="" className="logo-small" />
+            <img
+              src={LogoSmall}
+              alt=""
+              className="logo-small"
+              onClick={homeRedirect}
+            />
           </Grid>
           <Grid item xs={2} sm={2} md={1} className="align-right">
             <Typography
