@@ -9,7 +9,7 @@ const Demo = () => {
       <AppHeaderPrivate />
       <div className="background demo">
         <ReactPlayer
-          url="https://www.youtube.com/watch?v=dXpdelI34BU"
+          url="https://www.youtube.com/watch?v=Fz3UN4Dajrs"
           controls={true}
         />
       </div>
