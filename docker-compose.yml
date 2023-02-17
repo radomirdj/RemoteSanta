@@ -30,5 +30,9 @@ services:
       - api_full
       - client_app_full
     image: "raso354/remotesanta_santa_nginx"
+    restart: always
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - ./certbot/www:/var/www/certbot/:ro
