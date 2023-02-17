@@ -39,6 +39,10 @@ services:
       - ./certbot/conf/:/etc/nginx/ssl/:ro
   certbot:
     image: certbot/certbot:latest
+    command: >-
+      certonly --manual --preferred-challenges dns-01 --agree-tos 
+      -d "test.remotesantapp.com" -d "*.test.remotesantapp.com" 
+      --server https://acme-v02.api.letsencrypt.org/directory
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw
       - ./certbot/conf/:/etc/letsencrypt/:rw
