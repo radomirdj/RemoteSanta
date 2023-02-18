@@ -138,7 +138,7 @@ const AdminOrganizationDetails = () => {
           </Grid>
           <Grid item xs={4}>
             <Typography className="balance-title">
-              Balance - {organization?.balance} PTS
+              Balance: {organization?.balance} PTS
             </Typography>
           </Grid>
           <Grid item xs={8}>
