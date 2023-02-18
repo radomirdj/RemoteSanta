@@ -1,13 +1,13 @@
 - id: 16c3b04b-f3d7-4ce3-98fa-1f398e8ef517
   code: ABCDEF
-  email: radomir@remtesanta.io
-  status: COMPLETED
+  email: jovana@remotesanta.io
+  status: ACTIVE
   createdAt: 2022-09-14T21:59:43.10-05:00
   orgId: f040c93b-ad1b-4ddd-8df4-562faed4f98b
 
 - id: 89a6a803-cb87-4fa9-af6f-0c3ddc66465e
   code: BBCDEF
-  email: radomir@remtesanta.io
-  status: COMPLETED
+  email: radomir@remotesanta.io
+  status: ACTIVE
   createdAt: 2022-09-14T21:59:43.10-05:00
   orgId: f040c93b-ad1b-4ddd-8df4-562faed4f98b
