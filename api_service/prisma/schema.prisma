@@ -58,8 +58,8 @@ model UserInvite {
   code        String               @unique
   email       String
   status      UserInviteStatusEnum @default(ACTIVE)
-  createdBy   User                 @relation(fields: [createdById], references: [id])
-  createdById String
+  createdBy   User?                @relation(fields: [createdById], references: [id])
+  createdById String?
   org         Org                  @relation(fields: [orgId], references: [id])
   orgId       String
   createdAt   DateTime             @default(now())
