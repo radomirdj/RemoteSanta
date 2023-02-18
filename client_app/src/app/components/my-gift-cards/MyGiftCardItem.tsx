@@ -52,6 +52,7 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
             variant="contained"
             className="card-button"
             onClick={showMyGiftCard}
+            disableRipple
           >
             Show My Gift Card
           </Button>

@@ -86,7 +86,7 @@ const UserManagerTransactions = () => {
           </Grid>
           <Grid item xs={6}>
             <Typography className="balance-title">
-              Company Balance - {organization?.balance} PTS
+              Company Balance: {organization?.balance} PTS
             </Typography>
           </Grid>
           <Box className="box-style">
