@@ -2,9 +2,15 @@
 
 $registration-error-label-color: #666666;
 
-.user-profile{
-    background-image: url("./../../assets/user-profile-image.svg");
 
+.user-profile{
+  @media screen and (max-width: variables.$breakpoint-sm) {
+    background-color: variables.$main-yellow;
+  }
+
+  @media screen and (min-width: variables.$breakpoint-sm) {
+    background-image: url("./../../assets/user-profile-image.svg");
+  }
     .grid-style {
         justify-content: center;
         z-index: 1200;
@@ -18,6 +24,13 @@ $registration-error-label-color: #666666;
         border-radius: variables.$base-unit * 4;
         text-align: center;
 
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          margin-top: variables.$base-unit * 8;
+        }
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          margin-top: variables.$base-unit;
+        }
+      
         @media screen and (min-width: variables.$breakpoint-xl) {
             width: 400px;
             margin-left: auto;

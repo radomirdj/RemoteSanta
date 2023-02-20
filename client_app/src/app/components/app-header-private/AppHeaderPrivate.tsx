@@ -94,22 +94,8 @@ const AppHeaderPrivate = () => {
               onClick={homeRedirect}
             />
           </Grid>
-          <Grid
-            item
-            xs={3}
-            sm={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
-            sx={{
-              display: { xs: "inline-flex", sm: "inline-flex", md: "none" },
-            }}
-          >
-            <img
-              src={LogoSmall}
-              alt=""
-              className="logo-small"
-              onClick={homeRedirect}
-            />
-          </Grid>
-          <Grid item xs={2} sm={2} md={1} className="align-right">
+
+          <Grid item xs={3} sm={2} md={1} className="align-right">
             <Typography
               className={
                 window.location.pathname === "/"
@@ -133,7 +119,7 @@ const AppHeaderPrivate = () => {
               My Gift Cards
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={2} md={1} className="align-left">
+          <Grid item xs={3} sm={2} md={1} className="align-left">
             <Typography
               className={
                 window.location.pathname === "/demo"
@@ -146,7 +132,13 @@ const AppHeaderPrivate = () => {
             </Typography>
           </Grid>
           {user.userRole === UserRole.USER_MANAGER && (
-            <Grid item xs={2} sm={2} md={1} className="align-left">
+            <Grid
+              item
+              sm={2}
+              md={1}
+              className="align-left"
+              sx={{ display: { xs: "none", sm: "inline-flex" } }}
+            >
               <IconButton
                 onClick={handleOpenManagerMenu}
                 sx={{ p: 0 }}
@@ -182,7 +174,7 @@ const AppHeaderPrivate = () => {
               </Menu>
             </Grid>
           )}
-          <Grid item xs={2} sm={2} md={1} className="align-left">
+          <Grid item xs={3} sm={2} md={1} className="align-left">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
                 alt="Remy Sharp"
