@@ -3,7 +3,7 @@ export const getEmailRegex = () => {
 };
 
 export const getPasswordRegex = () => {
-  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 };
 
 export const createUTCDate = (y: number, m: number, d: number) => {
