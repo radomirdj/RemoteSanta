@@ -1,0 +1,1 @@
+docker build -t raso354/remotesanta_client_app ./client_app --build-arg REACT_APP_BASE_URL=https://remotesantapp.com/api/
