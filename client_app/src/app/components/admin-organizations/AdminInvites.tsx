@@ -63,21 +63,27 @@ const AdminInvites = () => {
   const rowsPerPage = 7;
   const navigate = useNavigate();
   const open = useSelector(getOpenModalSelector);
-  const handleOpen = () => dispatch(setOpenModal());
-  const handleClose = () => dispatch(setCloseModal());
+  const handleOpenSendInvite = () => dispatch(setOpenModal());
+  const handleCloseSendInvite = () => {
+    resetField("email");
+    dispatch(setCloseModal());
+  };
   const {
     register,
     formState: { errors },
     handleSubmit,
+    resetField,
   } = useForm();
   const organization = useSelector(getAdminOrganizationSelector);
   const openDialog = useSelector(getOpenDialogSelector);
   const [idToCancel, setIdToCancel] = React.useState("");
-  const handleOpenDialog = (id: string) => {
+  const handleOpenCancelInvite = (id: string) => {
     setIdToCancel(id);
     dispatch(setOpenDialog());
   };
-  const handleCloseDialog = () => dispatch(setCloseDialog());
+  const handleCloseCancelInivte = () => {
+    dispatch(setCloseDialog());
+  };
 
   useEffect(() => {
     dispatch(fetchAdminInviteList({ organizationId: orgId }));
@@ -116,7 +122,7 @@ const AdminInvites = () => {
       <IconButton
         className="cancel-button"
         disableRipple
-        onClick={() => handleOpenDialog(params.id as string)}
+        onClick={() => handleOpenCancelInvite(params.id as string)}
       >
         <DeleteOutlineIcon className="cancel-icon" />
       </IconButton>
@@ -190,14 +196,14 @@ const AdminInvites = () => {
               disableRipple
               variant="contained"
               className="add-button"
-              onClick={handleOpen}
+              onClick={handleOpenSendInvite}
               startIcon={<AddIcon className="add-icon" />}
             >
               Add new invite
             </Button>
             <Modal
               open={open}
-              onClose={handleClose}
+              onClose={handleCloseSendInvite}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
@@ -286,7 +292,7 @@ const AdminInvites = () => {
         </Grid>
         <Dialog
           open={openDialog}
-          onClose={handleCloseDialog}
+          onClose={handleCloseCancelInivte}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
@@ -298,7 +304,7 @@ const AdminInvites = () => {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={handleCloseDialog}
+              onClick={handleCloseCancelInivte}
               className="dialog-back-button"
               variant="outlined"
             >
