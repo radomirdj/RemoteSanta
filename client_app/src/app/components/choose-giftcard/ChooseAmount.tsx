@@ -38,7 +38,7 @@ const ChooseAmount = () => {
 
   const enoughBalance = (amount: number) => {
     if (user.userBalance?.pointsActive) {
-      if (amount < user.userBalance?.pointsActive) {
+      if (amount <= user.userBalance?.pointsActive) {
         return true;
       }
     }
