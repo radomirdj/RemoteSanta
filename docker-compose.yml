@@ -20,6 +20,7 @@ services:
       AWS_S3_ENDPOINT: ${AWS_S3_ENDPOINT}
       AWS_REGION: ${AWS_REGION}
       FE_BASE_URL: ${FE_BASE_URL}
+      NODE_ENV: production
     ports:
       - "8090:8090"
   nginx:

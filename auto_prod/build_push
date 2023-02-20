@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+./auto_prod/nginx/build_push_image
+./auto_prod/client_app/build_push_image
+./auto_prod/api/build_push_image

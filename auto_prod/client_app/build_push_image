@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+./auto_prod/client_app/build_image
+./auto_prod/client_app/push_image
