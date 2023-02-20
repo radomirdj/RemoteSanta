@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getSelfRequest } from "../../store/auth/actions";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { fetchGiftCardRequestList } from "../../store/gift-card-request/actions";
 import { getGiftCardRequestListSelector } from "../../store/gift-card-request/selectors";
@@ -19,6 +20,7 @@ const MyGiftCards = () => {
 
   useEffect(() => {
     dispatch(fetchGiftCardRequestList());
+    dispatch(getSelfRequest(navigate));
   }, [dispatch]);
 
   const chooseGiftCardRedirect = () => {

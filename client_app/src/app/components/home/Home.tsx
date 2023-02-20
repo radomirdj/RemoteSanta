@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getSelfRequest } from "../../store/auth/actions";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { fetchClaimPointsEventList } from "../../store/claim-points-event/actions";
 import { getClaimPointsEventListSelector } from "../../store/claim-points-event/selectors";
@@ -17,6 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchClaimPointsEventList());
+    dispatch(getSelfRequest(navigate));
   }, [dispatch]);
 
   const currentDate = new Date();

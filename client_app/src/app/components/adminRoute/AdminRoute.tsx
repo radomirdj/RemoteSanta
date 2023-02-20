@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,9 +14,10 @@ function AdminRoute({ children }: { children: ReactNode }) {
   let token = localStorage.getItem("token");
   let userRole = localStorage.getItem("userRole");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getSelfRequest());
+    dispatch(getSelfRequest(navigate));
   }, [dispatch]);
 
   useEffect(() => {

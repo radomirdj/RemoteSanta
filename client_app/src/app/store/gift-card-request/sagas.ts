@@ -126,7 +126,7 @@ function* postGiftCardRequestSaga(action: PostGiftCardRequest) {
     const token: string = localStorage.getItem("token") || "";
     yield call(postGiftCardRequest, token, action.payload);
     yield put(postGiftCardRequestSuccess());
-    yield put(getSelfRequest());
+    yield put(getSelfRequest(action.navigate));
     action.navigate("/gift-card-request-success");
   } catch (e) {
     yield put(

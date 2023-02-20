@@ -5,8 +5,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./app/components/login/Login";
 import Registration from "./app/components/registration/Registration";
 import Home from "./app/components/home/Home";
-// import { getSelfRequest } from "./app/store/auth/actions";
-// import { getAuthUserSelector } from "./app/store/auth/selectors";
 import ChangePassword from "./app/components/changePassword/ChangePassword";
 import ForgotPassword from "./app/components/forgotPassword/ForgotPassword";
 import PrivateRoute from "./app/components/privateRoute/PrivateRoute";

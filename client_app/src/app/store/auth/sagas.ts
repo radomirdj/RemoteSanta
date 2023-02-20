@@ -107,6 +107,9 @@ function* getSelfSaga(action: GetSelfRequest) {
       yield put(getSelfSuccess(getSelfSuccessPayload));
     }
   } catch (e) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    action.navigate("/login");
     console.log("function*getSelfSaga -> e", e);
     yield put(
       getSelfFailure({

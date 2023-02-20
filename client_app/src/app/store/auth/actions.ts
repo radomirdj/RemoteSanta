@@ -14,7 +14,7 @@ import {
   FORGOT_PASSWORD_FAILURE,
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
-  CHANGE_PASSWORD_FAILURE
+  CHANGE_PASSWORD_FAILURE,
 } from "./actionTypes";
 import {
   SignUpRequest,
@@ -43,67 +43,75 @@ import {
   ChangePasswordRequest,
   ChangePasswordSuccess,
   ChangePasswordFailurePayload,
-  ChangePasswordFailure
+  ChangePasswordFailure,
 } from "./types";
 
-export const signUpRequest = (payload: SignUpRequestPayload, navigate:Function): SignUpRequest => ({
+export const signUpRequest = (
+  payload: SignUpRequestPayload,
+  navigate: Function
+): SignUpRequest => ({
   type: SIGN_UP_REQUEST,
-  payload, navigate
+  payload,
+  navigate,
 });
 
-export const signUpSuccess = (
-): SignUpSuccess => ({
-  type: SIGN_UP_SUCCESS
+export const signUpSuccess = (): SignUpSuccess => ({
+  type: SIGN_UP_SUCCESS,
 });
 
 export const signUpFailure = (
   payload: SignUpFailurePayload
 ): SignUpFailure => ({
   type: SIGN_UP_FAILURE,
-  payload
+  payload,
 });
 
 export const loginRequest = (payload: LoginRequestPayload): LoginRequest => ({
   type: LOGIN_REQUEST,
-  payload
+  payload,
 });
 
 export const loginSuccess = (payload: LoginSuccessPayload): LoginSuccess => ({
   type: LOGIN_SUCCESS,
-  payload
+  payload,
 });
 
-export const loginFailure = (
-  payload: LoginFailurePayload
-): LoginFailure => ({
+export const loginFailure = (payload: LoginFailurePayload): LoginFailure => ({
   type: LOGIN_FAILURE,
-  payload
+  payload,
 });
 
-export const getSelfRequest = (): GetSelfRequest => ({
+export const getSelfRequest = (navigate: Function): GetSelfRequest => ({
   type: GET_SELF_REQUEST,
+  navigate,
 });
 
-export const getSelfSuccess = (payload: GetSelfSuccessPayload): GetSelfSuccess => ({
+export const getSelfSuccess = (
+  payload: GetSelfSuccessPayload
+): GetSelfSuccess => ({
   type: GET_SELF_SUCCESS,
-  payload
+  payload,
 });
 
 export const getSelfFailure = (
   payload: GetSelfFailurePayload
 ): GetSelfFailure => ({
   type: GET_SELF_FAILURE,
-  payload
+  payload,
 });
 
-export const logout = (navigate:Function): Logout => ({
-  type: LOGOUT, 
-  navigate
+export const logout = (navigate: Function): Logout => ({
+  type: LOGOUT,
+  navigate,
 });
 
-export const forgotPasswordRequest = (payload: ForgotPasswordRequestPayload, navigate:Function): ForgotPasswordRequest => ({
+export const forgotPasswordRequest = (
+  payload: ForgotPasswordRequestPayload,
+  navigate: Function
+): ForgotPasswordRequest => ({
   type: FORGOT_PASSWORD_REQUEST,
-  payload, navigate
+  payload,
+  navigate,
 });
 
 export const forgotPasswordSuccess = (): ForgotPasswordSuccess => ({
@@ -114,12 +122,16 @@ export const forgotPasswordFailure = (
   payload: ForgotPasswordFailurePayload
 ): ForgotPasswordFailure => ({
   type: FORGOT_PASSWORD_FAILURE,
-  payload
+  payload,
 });
 
-export const changePasswordRequest = (payload: ChangePasswordRequestPayload, navigate:Function): ChangePasswordRequest => ({
+export const changePasswordRequest = (
+  payload: ChangePasswordRequestPayload,
+  navigate: Function
+): ChangePasswordRequest => ({
   type: CHANGE_PASSWORD_REQUEST,
-  payload, navigate
+  payload,
+  navigate,
 });
 
 export const changePasswordSuccess = (): ChangePasswordSuccess => ({
@@ -130,5 +142,5 @@ export const changePasswordFailure = (
   payload: ChangePasswordFailurePayload
 ): ChangePasswordFailure => ({
   type: CHANGE_PASSWORD_FAILURE,
-  payload
+  payload,
 });

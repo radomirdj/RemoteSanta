@@ -132,6 +132,7 @@ export type LoginFailure = {
 
 export interface GetSelfRequest {
   type: typeof GET_SELF_REQUEST;
+  navigate: Function;
 }
 
 export type GetSelfSuccess = {
