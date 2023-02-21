@@ -18,6 +18,7 @@ const ClaimPointsEventItem = (claimPointsEventItem: IClaimPointEvent) => {
           <Typography className="card-description">
             {claimPointsEventItem.title}
             <span className="card-description-text">
+              {" "}
               - {claimPointsEventItem.description}
             </span>
           </Typography>

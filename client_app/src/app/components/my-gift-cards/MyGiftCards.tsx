@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import userEvent from "@testing-library/user-event";
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -32,13 +32,7 @@ const MyGiftCards = () => {
       <AppHeaderPrivate />
       {giftCardRequestList.length === 0 && <NoGiftCards />}
       {giftCardRequestList.length > 0 && (
-        <div
-          className={
-            giftCardRequestList.length > 4
-              ? "background my-gift-cards"
-              : "background my-gift-cards-small-list"
-          }
-        >
+        <div className="background my-gift-cards">
           <Grid container spacing={4} className="grid-style">
             <Grid item xs={12} className="grid-title">
               <Typography className="my-gift-cards-title">
