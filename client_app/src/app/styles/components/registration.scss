@@ -1,9 +1,16 @@
 @use "./../variables.scss";
 
 $registration-error-label-color: #666666;
+$terms-margin-bottom: 10px;
 
 .registration {
-  background-image: url("./../../assets/registration-image.svg");
+  @media screen and (max-width: variables.$breakpoint-md) {
+    background-color: variables.$main-yellow;
+  }
+
+  @media screen and (min-width: variables.$breakpoint-md) {
+    background-image: url("./../../assets/registration-image.svg");
+  }
 
   .grid-style {
     justify-content: center;
@@ -31,8 +38,8 @@ $registration-error-label-color: #666666;
   }
 
   .registration-card {
-    padding-top: variables.$base-unit * 3;
-    padding-bottom: variables.$base-unit * 3;
+    padding-top: variables.$base-unit * 2;
+    padding-bottom: variables.$base-unit * 2;
     padding-left: variables.$base-unit * 8;
     padding-right: variables.$base-unit * 8;
     border-radius: variables.$base-unit * 4;
@@ -48,7 +55,7 @@ $registration-error-label-color: #666666;
   .registration-title {
     font-family: "Montserrat";
     font-size: variables.$font-size-title;
-    margin-bottom: variables.$base-unit * 3;
+    margin-bottom: variables.$base-unit *2;
     text-align: start;
     color: variables.$color-neutral-black;
     width: 100%;
@@ -138,7 +145,7 @@ $registration-error-label-color: #666666;
     font-size: variables.$font-size-small;
     color: variables.$color-neutral-black;
     width: max-content;
-    margin-top: variables.$base-unit *2;
+    margin-top: $terms-margin-bottom;
   }
 
   .registration-terms {
@@ -147,7 +154,7 @@ $registration-error-label-color: #666666;
     margin-right: auto;
     font-size: variables.$font-size-small;
     color: variables.$color-neutral-black;
-    margin-bottom: variables.$base-unit *2;
+    margin-bottom: $terms-margin-bottom;
   }
 
   .registration-link{
