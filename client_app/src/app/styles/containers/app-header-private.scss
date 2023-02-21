@@ -25,7 +25,7 @@ $logo-height:42px;
         text-align: right;
         margin-top: variables.$base-unit * 2;
 
-        @media screen and (max-width: variables.$breakpoint-sm) {
+        @media screen and (max-width: variables.$breakpoint-md) {
             text-align: left;
           }
     }
@@ -34,7 +34,7 @@ $logo-height:42px;
         text-align: center;
         margin-top: variables.$base-unit * 2;
 
-        @media screen and (max-width: variables.$breakpoint-sm) {
+        @media screen and (max-width: variables.$breakpoint-md) {
             text-align: left;
           }
          

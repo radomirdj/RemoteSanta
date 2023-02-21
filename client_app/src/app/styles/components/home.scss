@@ -20,17 +20,36 @@ $points-margin-bottom:36px;
         max-width: $grid-max-width;
 
         .home-title{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-title;
-            width: max-content;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-family: "Montserrat";
+                font-size: variables.$font-size-larger;
+                width: max-content;
+                margin-left: variables.$base-unit * 3;
+              }
+            
+              @media screen and (min-width: variables.$breakpoint-md) {
+                font-family: "Montserrat";
+                font-size: variables.$font-size-title;
+                width: max-content;
+              }
         } 
 
         .home-title-right{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-title;
-            width: max-content;
-            float: right;
-            margin-right: $margin-right;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-family: "Montserrat";
+                font-size: variables.$font-size-larger;
+                width: max-content;
+                float: right;
+                margin-right: variables.$base-unit * 2;
+              }
+            
+              @media screen and (min-width: variables.$breakpoint-md) {
+                font-family: "Montserrat";
+                font-size: variables.$font-size-title;
+                width: max-content;
+                float: right;
+                margin-right: $margin-right;
+              }
         } 
 
         .home-text{
@@ -40,6 +59,9 @@ $points-margin-bottom:36px;
             width: max-content;
             color: variables.$color-neutral-gray;
             padding-bottom: variables.$base-unit ;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                margin-left: variables.$base-unit * 3;
+            }
         }
 
         .home-link{
@@ -72,12 +94,29 @@ $points-margin-bottom:36px;
             .card-illustration-style{
                 width: $dollar-illustration-width;
                 height: $dollar-illustration-height;
+                @media screen and (max-width: variables.$breakpoint-md) {
+                    width: variables.$base-unit * 7;
+                }
             }
 
             .card-description{
-                font-family: "Montserrat";
-                margin-bottom: auto;
-                margin-top: auto;
+                @media screen and (max-width: variables.$breakpoint-md) {
+                    margin-top: variables.$base-unit * 3;
+                    font-family: "Montserrat";
+                    margin-left: variables.$base-unit * 3;
+                }
+                
+                @media screen and (min-width: variables.$breakpoint-md) {
+                    font-family: "Montserrat";
+                    margin-bottom: auto;
+                    margin-top: auto;
+                }
+            }
+
+            .card-description-text{
+                @media screen and (max-width: variables.$breakpoint-md) {
+                    visibility: hidden;
+                }
             }
 
             .grid-description-style{
@@ -86,15 +125,28 @@ $points-margin-bottom:36px;
             }
 
             .card-points{
-                font-size: variables.$font-size-large;
-                font-family: "Montserrat";
-                float: right;
-                margin-right: variables.$base-unit * 5;
+                @media screen and (max-width: variables.$breakpoint-md) {
+                    font-size: variables.$font-size-medium;
+                    margin-right: variables.$base-unit;
+                    font-family: "Montserrat";
+                }
+                @media screen and (min-width: variables.$breakpoint-md) {
+                    font-size: variables.$font-size-large;
+                    font-family: "Montserrat";
+                    float: right;
+                    margin-right: variables.$base-unit * 5;
+                  }
             }
 
             .grid-points-style{
-                margin-top: auto;
-                margin-bottom: $points-margin-bottom;
+                @media screen and (max-width: variables.$breakpoint-md) {
+                    margin-top: variables.$base-unit * 3;
+                }
+                
+                @media screen and (min-width: variables.$breakpoint-md) {
+                    margin-top: auto;
+                    margin-bottom: $points-margin-bottom;
+                }
             }
         }
     }
@@ -102,8 +154,14 @@ $points-margin-bottom:36px;
     .MuiGrid-root{
         justify-content: center;
         .MuiGrid-item{
-            padding-top: 8px;
-            padding-left: 16px;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                padding-top: 8px;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-md) {
+                padding-top: 8px;
+                padding-left: 16px;
+            }
         }
     }
 }
