@@ -15,6 +15,7 @@ import {
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAILURE,
+  CLEAR_ERROR,
 } from "./actionTypes";
 
 export interface IOrg {
@@ -180,6 +181,10 @@ export type ChangePasswordFailure = {
   payload: ChangePasswordFailurePayload;
 };
 
+export type ClearError = {
+  type: typeof CLEAR_ERROR;
+};
+
 export type AuthActions =
   | SignUpRequest
   | SignUpSuccess
@@ -196,4 +201,5 @@ export type AuthActions =
   | ChangePasswordRequest
   | ChangePasswordSuccess
   | ChangePasswordFailure
-  | Logout;
+  | Logout
+  | ClearError;

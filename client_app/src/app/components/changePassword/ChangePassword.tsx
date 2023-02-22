@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -24,6 +24,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { getPasswordRegex } from "../../utils/Utils";
 import {
   changePasswordRequest,
+  clearError,
   forgotPasswordRequest,
 } from "../../store/auth/actions";
 import { useNavigate } from "react-router-dom";
@@ -39,6 +40,10 @@ const ChangePassword = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const resetPassword = (data: any) => {
     dispatch(

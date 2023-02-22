@@ -15,14 +15,26 @@ import {
   FORGOT_PASSWORD_FAILURE,
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
-  CHANGE_PASSWORD_FAILURE
+  CHANGE_PASSWORD_FAILURE,
+  CLEAR_ERROR,
 } from "./actionTypes";
 
 import { AuthState, AuthActions } from "./types";
 
 const initialState: AuthState = {
   pending: false,
-  authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate:undefined, gender:"", userRole:"", org:undefined, userBalance:undefined},
+  authUser: {
+    id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    accessToken: "",
+    birthDate: undefined,
+    gender: "",
+    userRole: "",
+    org: undefined,
+    userBalance: undefined,
+  },
   error: null,
   emailToResetPassword: null,
 };
@@ -32,67 +44,89 @@ export default (state = initialState, action: AuthActions) => {
     case SIGN_UP_REQUEST:
       return {
         ...state,
-        pending: true
+        pending: true,
       };
     case SIGN_UP_SUCCESS:
       return {
         ...state,
         pending: false,
-        error: null
+        error: null,
       };
     case SIGN_UP_FAILURE:
       return {
         ...state,
         pending: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
     case LOGIN_REQUEST:
       return {
         ...state,
-        pending: true
+        pending: true,
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         pending: false,
         authUser: action.payload.authUser,
-        error: null
+        error: null,
       };
     case LOGIN_FAILURE:
       return {
         ...state,
         pending: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
     case GET_SELF_REQUEST:
       return {
         ...state,
-        pending: true
+        pending: true,
       };
     case GET_SELF_SUCCESS:
       return {
         ...state,
         pending: false,
         authUser: action.payload.authUser,
-        error: null
+        error: null,
       };
     case GET_SELF_FAILURE:
       return {
         ...state,
         pending: false,
-        authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"", userRole:"", org:undefined, userBalance:undefined },
+        authUser: {
+          id: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          accessToken: "",
+          birthDate: undefined,
+          gender: "",
+          userRole: "",
+          org: undefined,
+          userBalance: undefined,
+        },
       };
     case LOGOUT:
       return {
         ...state,
         pending: false,
-      authUser: { id: "", firstName: "", lastName: "", email: "", accessToken: "", birthDate: undefined, gender:"", userRole:"", org:undefined, userBalance:undefined },
+        authUser: {
+          id: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          accessToken: "",
+          birthDate: undefined,
+          gender: "",
+          userRole: "",
+          org: undefined,
+          userBalance: undefined,
+        },
       };
     case FORGOT_PASSWORD_REQUEST:
       return {
         ...state,
         pending: true,
-        emailToResetPassword: action.payload.email
+        emailToResetPassword: action.payload.email,
       };
     case FORGOT_PASSWORD_SUCCESS:
       return {
@@ -104,28 +138,33 @@ export default (state = initialState, action: AuthActions) => {
       return {
         ...state,
         pending: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
     case CHANGE_PASSWORD_REQUEST:
       return {
         ...state,
-        pending: true
+        pending: true,
       };
     case CHANGE_PASSWORD_SUCCESS:
       return {
         ...state,
         pending: false,
-        error: null
+        error: null,
       };
     case CHANGE_PASSWORD_FAILURE:
       return {
         ...state,
         pending: false,
-        error: action.payload.error
+        error: action.payload.error,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       };
     default:
       return {
-        ...state
+        ...state,
       };
   }
 };

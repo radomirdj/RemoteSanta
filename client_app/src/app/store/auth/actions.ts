@@ -15,6 +15,7 @@ import {
   CHANGE_PASSWORD_REQUEST,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAILURE,
+  CLEAR_ERROR,
 } from "./actionTypes";
 import {
   SignUpRequest,
@@ -44,6 +45,7 @@ import {
   ChangePasswordSuccess,
   ChangePasswordFailurePayload,
   ChangePasswordFailure,
+  ClearError,
 } from "./types";
 
 export const signUpRequest = (
@@ -143,4 +145,8 @@ export const changePasswordFailure = (
 ): ChangePasswordFailure => ({
   type: CHANGE_PASSWORD_FAILURE,
   payload,
+});
+
+export const clearError = (): ClearError => ({
+  type: CLEAR_ERROR,
 });

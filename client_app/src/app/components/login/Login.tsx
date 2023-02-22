@@ -1,5 +1,5 @@
-import React from "react";
-import { loginRequest } from "../../store/auth/actions";
+import React, { useEffect } from "react";
+import { clearError, loginRequest } from "../../store/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/auth/selectors";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
@@ -32,6 +32,10 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 

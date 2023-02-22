@@ -5,6 +5,7 @@ import { getUserSelf } from "../../services/api-service";
 import {
   changePasswordFailure,
   changePasswordSuccess,
+  clearError,
   forgotPasswordFailure,
   forgotPasswordSuccess,
   getSelfFailure,
@@ -16,6 +17,7 @@ import {
 } from "./actions";
 import {
   CHANGE_PASSWORD_REQUEST,
+  CLEAR_ERROR,
   FORGOT_PASSWORD_REQUEST,
   GET_SELF_REQUEST,
   LOGIN_REQUEST,
@@ -25,6 +27,7 @@ import {
 import {
   ChangePasswordRequest,
   ChangePasswordRequestPayload,
+  ClearError,
   ForgotPasswordRequest,
   ForgotPasswordRequestPayload,
   GetSelfRequest,
@@ -155,6 +158,10 @@ function* changePasswordSaga(action: ChangePasswordRequest) {
   }
 }
 
+function* clearErrorSaga(action: ClearError) {
+  yield call(clearError);
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_MESSAGE_REQUEST` action.
   Allows concurrent increments.
@@ -166,6 +173,7 @@ function* authSaga() {
   yield all([takeLatest(LOGOUT, logoutSaga)]);
   yield all([takeLatest(FORGOT_PASSWORD_REQUEST, forgotPasswordSaga)]);
   yield all([takeLatest(CHANGE_PASSWORD_REQUEST, changePasswordSaga)]);
+  yield all([takeLatest(CLEAR_ERROR, clearErrorSaga)]);
 }
 
 export default authSaga;

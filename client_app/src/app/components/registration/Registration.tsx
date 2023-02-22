@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { signUpRequest } from "../../store/auth/actions";
+import { clearError, signUpRequest } from "../../store/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/auth/selectors";
 import {
@@ -43,6 +43,10 @@ const Registration = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const queryParameters = new URLSearchParams(window.location.search);
   const code = queryParameters.get("code");
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
