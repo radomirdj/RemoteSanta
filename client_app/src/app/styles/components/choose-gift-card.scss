@@ -345,7 +345,7 @@ $modal-phone-phone-size-text:15px;
 .MuiModal-root{
     .MuiCard-root{
       @media screen and (max-width: variables.$breakpoint-sm) {
-        width: variables.$base-unit * 37;
+        width: variables.$base-unit * 35;
       }
         .MuiTypography-h6{
           font-family: "Montserrat";
