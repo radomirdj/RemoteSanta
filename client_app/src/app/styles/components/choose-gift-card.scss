@@ -5,10 +5,13 @@ $card-title-margin-left: 4px;
 $chevron-right-margin-right: 4px;
 $grid-margin-top: 10px;
 $modal-image-width:90%;
+$modal-phone-image-width:75%;
 $modal-title-margin-top: 28px;
 $modal-card-image-width:128px;
 $modal-card-height: 96px;
 $choose-amount-margin-left:12px;
+$modal-title-size: 20px;
+$modal-phone-phone-size-text:15px;
 
 .choose-gift-card {
     background-image: url("./../../assets/home-image.svg");
@@ -341,26 +344,52 @@ $choose-amount-margin-left:12px;
 
 .MuiModal-root{
     .MuiCard-root{
+      @media screen and (max-width: variables.$breakpoint-sm) {
+        width: variables.$base-unit * 37;
+      }
         .MuiTypography-h6{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-large;
-            margin-top:$modal-title-margin-top;
-            margin-left:variables.$base-unit * 2;
-        }
+          font-family: "Montserrat";
+          font-size: $modal-title-size;
+          margin-left:variables.$base-unit * 2;
 
-        .MuiTypography-body1{
-            font-family: "Montserrat" ;
-            margin-left: variables.$base-unit * 2;
-            margin-right: variables.$base-unit * 2;
-            text-align: justify;
+          @media screen and (max-width: variables.$breakpoint-sm) {
+            font-size: $modal-title-size;
+            margin-top:variables.$base-unit;
+          }
+
+          @media screen and (min-width: variables.$breakpoint-sm) {
+            margin-top:$modal-title-margin-top;
+            font-size: variables.$font-size-large;
+          }
         }
+        
+        .MuiTypography-body1{
+          font-family: "Montserrat" ;
+          margin-left: variables.$base-unit * 2;
+          margin-right: variables.$base-unit * 2;
+          text-align: justify;
+
+          @media screen and (max-width: variables.$breakpoint-sm) {
+            margin-top:variables.$base-unit * 3;
+            font-size:$modal-phone-phone-size-text;
+          }
+      }
+      
     }
 
     .modal-card-image{  
-      float: right;
+        float: right;
         border-radius: variables.$base-unit * 2;
-        width: $modal-image-width;
-        height: $modal-card-height;
+      
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          width: $modal-phone-image-width;
+          height: variables.$base-unit * 8;
+        }
+
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          width: $modal-image-width;
+          height: $modal-card-height;
+        }
     }
 
     .modal-website-link{

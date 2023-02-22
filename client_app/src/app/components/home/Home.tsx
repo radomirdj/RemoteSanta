@@ -41,12 +41,12 @@ const Home = () => {
       <AppHeaderPrivate />
       <div className="background home">
         <Grid container spacing={4} className="grid-style">
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Typography className="home-title">
               Hello {user.firstName}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Typography className="home-title-right">
               {user.userBalance?.pointsActive} PTS
             </Typography>

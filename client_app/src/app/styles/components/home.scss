@@ -5,6 +5,7 @@ $margin-right:4px;
 $dollar-illustration-width:76px;
 $dollar-illustration-height:86px;
 $points-margin-bottom:36px;
+$points-font-size:20px;
 
 .home {
     background-image: url("./../../assets/home-image.svg");
@@ -24,7 +25,7 @@ $points-margin-bottom:36px;
                 font-family: "Montserrat";
                 font-size: variables.$font-size-larger;
                 width: max-content;
-                margin-left: variables.$base-unit * 3;
+                margin-left: variables.$base-unit * 2;
               }
             
               @media screen and (min-width: variables.$breakpoint-md) {
@@ -37,10 +38,9 @@ $points-margin-bottom:36px;
         .home-title-right{
             @media screen and (max-width: variables.$breakpoint-md) {
                 font-family: "Montserrat";
-                font-size: variables.$font-size-larger;
+                font-size: $points-font-size;
                 width: max-content;
-                float: right;
-                margin-right: variables.$base-unit * 2;
+                margin-left: variables.$base-unit * 2;
               }
             
               @media screen and (min-width: variables.$breakpoint-md) {
@@ -60,7 +60,7 @@ $points-margin-bottom:36px;
             color: variables.$color-neutral-gray;
             padding-bottom: variables.$base-unit ;
             @media screen and (max-width: variables.$breakpoint-md) {
-                margin-left: variables.$base-unit * 3;
+                margin-left: variables.$base-unit * 2;
             }
         }
 
