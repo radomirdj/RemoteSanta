@@ -2,22 +2,30 @@
 
 $registration-error-label-color: #666666;
 
-.user-profile{
-    background-image: url("./../../assets/user-profile-image.svg");
 
+.user-profile{
+  @media screen and (max-width: variables.$breakpoint-md) {
+    background-color: variables.$main-yellow;
+  }
+
+  @media screen and (min-width: variables.$breakpoint-md) {
+    background-image: url("./../../assets/user-profile-image.svg");
+  }
     .grid-style {
         justify-content: center;
-        z-index: 1200;
+     
       }
     
     .user-profile-card {
-        padding-top: variables.$base-unit * 4;
+        padding-top: variables.$base-unit * 7;
         padding-bottom: variables.$base-unit * 7;
         padding-left: variables.$base-unit * 8;
         padding-right: variables.$base-unit * 8;
         border-radius: variables.$base-unit * 4;
+        margin-top: variables.$base-unit * 7;
         text-align: center;
 
+      
         @media screen and (min-width: variables.$breakpoint-xl) {
             width: 400px;
             margin-left: auto;
@@ -27,12 +35,6 @@ $registration-error-label-color: #666666;
 
       .user-profile-input {
         margin-bottom: variables.$base-unit * 3 !important;
-      }
-
-      .user-profile-avatar{
-        width:variables.$base-unit * 14;
-        height:variables.$base-unit * 14;
-        margin-bottom: variables.$base-unit * 3;
       }
 
       .MuiFormControl-root {

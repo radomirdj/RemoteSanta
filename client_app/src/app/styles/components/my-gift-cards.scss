@@ -6,7 +6,7 @@ $card-button-width: 83%;
 $grid-max-width: 1200px;
 
 .my-gift-cards {
-    background-image: url("./../../assets/home-image.svg");
+    background-color: variables.$main-yellow;
     height: 100% !important;
     background-repeat:  repeat !important;
     background-size: contain !important;
@@ -20,17 +20,30 @@ $grid-max-width: 1200px;
 
         .my-gift-cards-title{
             font-family: "Montserrat";
-            font-size: variables.$font-size-title;
-            margin-left: variables.$base-unit ;
-            margin-bottom: variables.$base-unit;
             width: max-content;
+            margin-bottom: variables.$base-unit;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-larger;
+                margin-left: variables.$base-unit *3;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-title;
+                margin-left: variables.$base-unit ;
+            }
         } 
 
         .my-gift-cards-text{
             font-family: "Montserrat";
-            font-size: variables.$font-size-medium;
-            margin-left: variables.$base-unit ;
             width: max-content;
+            font-size: variables.$font-size-medium;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                margin-left: variables.$base-unit * 3;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-md) {
+                margin-left: variables.$base-unit ;
+            }
         } 
 
         .my-gift-cards-link{

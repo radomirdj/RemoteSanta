@@ -24,11 +24,20 @@ $logo-height:42px;
     .align-right {
         text-align: right;
         margin-top: variables.$base-unit * 2;
+
+        @media screen and (max-width: variables.$breakpoint-md) {
+            text-align: left;
+          }
     }
 
     .align-center {
         text-align: center;
         margin-top: variables.$base-unit * 2;
+
+        @media screen and (max-width: variables.$breakpoint-md) {
+            text-align: left;
+          }
+         
     }
 
     .align-left{

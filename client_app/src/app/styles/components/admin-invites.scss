@@ -127,8 +127,9 @@ $back-icon-margin-bottom:3px;
             color: variables.$error-color;
             text-align: start;
             margin-bottom: variables.$base-unit * 2;
+            margin-left: variables.$base-unit * 3;
             display: inline-flex;
-            width: 100%;
+            width: 88%;
           }
           .email-input {
             margin-bottom: variables.$base-unit * 3 !important;

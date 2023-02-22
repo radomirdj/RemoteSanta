@@ -6,7 +6,13 @@ $login-error-label-color: #666666;
 $login-form-width:400px;
 
 .login {
-  background-image: url("./../../assets/login-image.svg");
+  @media screen and (max-width: variables.$breakpoint-md) {
+    background-color: variables.$main-yellow;
+  }
+
+  @media screen and (min-width: variables.$breakpoint-md) {
+    background-image: url("./../../assets/login-image.svg");
+  }
 
   .grid-style {
     justify-content: center;

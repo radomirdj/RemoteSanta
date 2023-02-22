@@ -45,8 +45,8 @@ const GiftCardRequestOverview = () => {
       <Card className="overview-card">
         <Typography className="overview-title">Overview</Typography>
         <Card className="overview-child-card">
-          <Grid container className="grid-style">
-            <Grid item xs={12} sm={7} className="grid-item">
+          <Grid container className="grid-style-overview">
+            <Grid item xs={7} className="grid-item">
               <Typography className="overview-brand-title">
                 {giftCardIntegration?.title}
               </Typography>
@@ -55,7 +55,7 @@ const GiftCardRequestOverview = () => {
               </Typography>
               <Typography className="overview-amount">{user.email}</Typography>
             </Grid>
-            <Grid item xs={12} sm={5} className="grid-item">
+            <Grid item xs={5} className="grid-item">
               <img
                 src={giftCardIntegration?.image}
                 alt=""

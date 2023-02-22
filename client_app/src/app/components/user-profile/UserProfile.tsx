@@ -28,11 +28,6 @@ const UserProfile = () => {
           <Grid item xs={10} sm={6} md={4}>
             <Card className="user-profile-card">
               <form>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={user.gender === "FEMALE" ? AvatarFemale : AvatarMale}
-                  className="user-profile-avatar"
-                />
                 <TextField
                   id="outlined-basic"
                   label="Firstname"

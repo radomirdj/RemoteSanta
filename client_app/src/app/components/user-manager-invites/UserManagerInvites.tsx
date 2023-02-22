@@ -55,9 +55,11 @@ const UserManagerInvites = () => {
   const userInviteList = useSelector(getUserInviteListSelector);
   const rowsPerPage = 7;
   const open = useSelector(getOpenModalSelector);
-  const handleOpenSendInvite = () => dispatch(setOpenModal());
-  const handleCloseSendInvite = () => {
+  const handleOpenSendInvite = () => {
     resetField("email");
+    dispatch(setOpenModal());
+  };
+  const handleCloseSendInvite = () => {
     dispatch(setCloseModal());
   };
   const {
@@ -94,14 +96,6 @@ const UserManagerInvites = () => {
         inviteId: idToCancel,
         organizationId: organization?.id || "",
       })
-    );
-  };
-
-  const resendButton = (params: GridRenderCellParams) => {
-    return (
-      <IconButton className="resend-button" disableRipple>
-        <ForwardToInboxIcon className="resend-icon" />
-      </IconButton>
     );
   };
 

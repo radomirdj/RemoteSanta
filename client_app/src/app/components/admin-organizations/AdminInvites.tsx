@@ -63,7 +63,10 @@ const AdminInvites = () => {
   const rowsPerPage = 7;
   const navigate = useNavigate();
   const open = useSelector(getOpenModalSelector);
-  const handleOpenSendInvite = () => dispatch(setOpenModal());
+  const handleOpenSendInvite = () => {
+    resetField("email");
+    dispatch(setOpenModal());
+  };
   const handleCloseSendInvite = () => {
     resetField("email");
     dispatch(setCloseModal());
@@ -102,14 +105,6 @@ const AdminInvites = () => {
         inviteId: idToCancel,
         orgId: orgId,
       })
-    );
-  };
-
-  const resendButton = (params: GridRenderCellParams) => {
-    return (
-      <IconButton className="resend-button" disableRipple>
-        <ForwardToInboxIcon className="resend-icon" />
-      </IconButton>
     );
   };
 

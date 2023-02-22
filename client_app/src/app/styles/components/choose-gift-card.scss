@@ -8,8 +8,9 @@ $modal-image-width:90%;
 $modal-title-margin-top: 28px;
 $modal-card-image-width:128px;
 $modal-card-height: 96px;
+$choose-amount-margin-left:12px;
 
-.choose-gift-card-step-1 {
+.choose-gift-card {
     background-image: url("./../../assets/home-image.svg");
     height: 100% !important;
     background-repeat:  repeat !important;
@@ -88,6 +89,254 @@ $modal-card-height: 96px;
           padding-left: 16px;
       }
   }
+
+  .choose-amount-card{
+    padding-top: variables.$base-unit * 5;
+    padding-bottom: variables.$base-unit * 5;
+    padding-left: variables.$base-unit * 8;
+    padding-right: variables.$base-unit * 8;
+    border-radius: variables.$base-unit * 4;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      margin-left: $choose-amount-margin-left;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      width: variables.$base-unit * 50;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+  .choose-amount-title{
+      font-family: "Montserrat";
+      font-size: variables.$font-size-title;
+      margin-bottom: variables.$base-unit ;
+      text-align: start;
+      color: variables.$color-neutral-black;
+      width: 100%;
+  }
+
+  .choose-amount-active-points{
+      font-family: "Montserrat";
+      font-size: variables.$font-size-medium;
+      margin-bottom: variables.$base-unit * 5;
+      text-align: start;
+      color: variables.$color-neutral-gray;
+      width: 100%;
+    }
+
+    .email-input {
+      margin-bottom: variables.$base-unit * 3 !important;
+    }
+    .MuiFormControl-root {
+      margin: 0px;
+      width: 100%;
+      border-radius: variables.$base-unit;
+      margin-bottom: variables.$base-unit;
+  
+      .MuiOutlinedInput-root {
+        border-radius: variables.$base-unit;
+      }
+  
+      .MuiOutlinedInput-root.Mui-error {
+        .MuiOutlinedInput-notchedOutline {
+          border-color: variables.$error-color;
+        }
+      }
+  
+      .MuiFormLabel-root.Mui-error {
+        color: $login-error-label-color;
+      }
+    }
+    .choose-amount-error-fe {
+      font-size: variables.$font-size-small;
+      color: variables.$error-color;
+      text-align: start;
+      margin-bottom: variables.$base-unit * 2;
+      display: inline-flex;
+      width: 100%;
+    }
+
+    .choose-amount-back-button{
+      float: left;
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      width: 55%;
+      height: variables.$base-unit * 6;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit ;
+      margin-top: variables.$base-unit ;
+    }
+
+    .choose-amount-next-button{
+      float: right;
+      background-color: variables.$color-dark-yellow;
+      border-radius: variables.$base-unit;
+      box-shadow: none;
+      color: variables.$color-neutral-black;
+      text-transform: none;
+      width: 55%;
+      height: variables.$base-unit * 6;
+      font-weight: bold;
+      margin-bottom: variables.$base-unit ;
+      margin-top: variables.$base-unit ;
+    }
+
+    .choose-amount-error-fe {
+      font-size: variables.$font-size-small;
+      color: variables.$error-color;
+      text-align: start;
+      margin-bottom: variables.$base-unit * 2;
+      display: inline-flex;
+      width: 100%;
+    }
+
+    .back-button-icon{
+      margin-left: -8px;
+    }
+
+    .next-button-icon{
+      margin-right: -8px;
+    }
+
+    .amount-input-with-error {
+      margin-bottom: 0px !important;
+    }
+  }
+  .overview-card{
+    padding-top: variables.$base-unit * 5;
+    padding-bottom: variables.$base-unit * 5;
+    padding-left: variables.$base-unit * 8;
+    padding-right: variables.$base-unit * 8;
+    border-radius: variables.$base-unit * 4;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      margin-left: $choose-amount-margin-left;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      width: variables.$base-unit * 52;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+  .overview-title{
+      font-family: "Montserrat";
+      font-size: variables.$font-size-title;
+      margin-bottom: variables.$base-unit * 3;
+      text-align: start;
+      color: variables.$color-neutral-black;
+      width: 100%;
+  }
+
+  .overview-child-card{
+    background-color: rgb(207, 209, 129, 0.5);
+    height: variables.$base-unit * 22;
+    border-radius: variables.$base-unit * 3;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  }
+
+  .overview-brand-title{
+      font-family: "Montserrat";
+      font-size: variables.$font-size-large;
+      margin-left: variables.$base-unit * 4;
+      text-align: start;
+      color: variables.$color-neutral-black;
+   
+  }
+
+  .overview-points{
+      font-family: "Montserrat";
+      font-size: variables.$font-size-medium;
+      margin-top: variables.$base-unit;
+      margin-left: variables.$base-unit * 4;
+      text-align: start;
+      color: variables.$color-neutral-gray;
+  }
+
+  .overview-amount{
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
+    margin-top: variables.$base-unit;
+    margin-left: variables.$base-unit * 4;
+    text-align: start;
+    color: variables.$color-neutral-gray;
+}
+
+  .image-style{
+    float: right;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      height: variables.$base-unit * 6;
+      width:  variables.$base-unit * 8;
+      margin-bottom: variables.$base-unit * 4;
+      margin-left: variables.$base-unit * 2;
+      margin-right: variables.$base-unit * 2;
+      border-radius: variables.$base-unit;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      height: variables.$base-unit * 12;
+      width:  variables.$base-unit * 16;
+      margin-right: variables.$base-unit * 4;
+      border-radius: variables.$base-unit * 2;
+    }
+
+  }
+
+  .grid-style-overview{
+    height: 100%;
+  }
+
+  .grid-item{
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .overview-back-button{
+    float: left;
+    background-color: variables.$color-dark-yellow;
+    border-radius: variables.$base-unit;
+    box-shadow: none;
+    color: variables.$color-neutral-black;
+    text-transform: none;
+    width: 55%;
+    height: variables.$base-unit * 6;
+    font-weight: bold;
+    margin-bottom: variables.$base-unit ;
+    margin-top: variables.$base-unit ;
+  }
+
+  .overview-confirm-button{
+    float: right;
+    background-color: variables.$color-dark-yellow;
+    border-radius: variables.$base-unit;
+    box-shadow: none;
+    color: variables.$color-neutral-black;
+    text-transform: none;
+    width: 55%;
+    height: variables.$base-unit * 6;
+    font-weight: bold;
+    margin-bottom: variables.$base-unit ;
+    margin-top: variables.$base-unit ;
+  }
+
+  .back-button-icon{
+    margin-left: -8px;
+  }
+
+  .button-container{
+    margin-top: variables.$base-unit * 4;
+  }
+
+  }
 }
 
 .MuiModal-root{
@@ -121,250 +370,5 @@ $modal-card-height: 96px;
         margin-top: variables.$base-unit * 3;
         font-size: variables.$font-size-small;
         cursor: pointer;
-    }
-}
-
-.choose-gift-card-step-2{
-    background-image: url("./../../assets/home-image.svg");
-
-    .MuiStepLabel-label{
-      font-family: "Montserrat";
-    }
-  
-    .MuiStepper-root{
-      @media screen and (min-width: variables.$breakpoint-md){
-        width: variables.$base-unit * 100;
-      }
-      margin-left: auto;
-      margin-right: auto;
-    } 
-
-    .choose-amount-card{
-        padding-top: variables.$base-unit * 5;
-        padding-bottom: variables.$base-unit * 5;
-        padding-left: variables.$base-unit * 8;
-        padding-right: variables.$base-unit * 8;
-        border-radius: variables.$base-unit * 4;
-        text-align: center;
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-
-        @media screen and (min-width: variables.$breakpoint-sm) {
-            width: variables.$base-unit * 50;
-            margin-right: auto;
-            margin-left: auto;
-          }
-
-        .choose-amount-title{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-title;
-            margin-bottom: variables.$base-unit ;
-            text-align: start;
-            color: variables.$color-neutral-black;
-            width: 100%;
-        }
-
-        .choose-amount-active-points{
-          font-family: "Montserrat";
-          font-size: variables.$font-size-medium;
-          margin-bottom: variables.$base-unit * 5;
-          text-align: start;
-          color: variables.$color-neutral-gray;
-          width: 100%;
-      }
-
-
-        .email-input {
-            margin-bottom: variables.$base-unit * 3 !important;
-          }
-
-          .MuiFormControl-root {
-            margin: 0px;
-            width: 100%;
-            border-radius: variables.$base-unit;
-            margin-bottom: variables.$base-unit;
-        
-            .MuiOutlinedInput-root {
-              border-radius: variables.$base-unit;
-            }
-        
-            .MuiOutlinedInput-root.Mui-error {
-              .MuiOutlinedInput-notchedOutline {
-                border-color: variables.$error-color;
-              }
-            }
-        
-            .MuiFormLabel-root.Mui-error {
-              color: $login-error-label-color;
-            }
-          }
-
-          .choose-amount-error-fe {
-            font-size: variables.$font-size-small;
-            color: variables.$error-color;
-            text-align: start;
-            margin-bottom: variables.$base-unit * 2;
-            display: inline-flex;
-            width: 100%;
-          }
-
-          .choose-amount-back-button{
-            float: left;
-            background-color: variables.$color-dark-yellow;
-            border-radius: variables.$base-unit;
-            box-shadow: none;
-            color: variables.$color-neutral-black;
-            text-transform: none;
-            width: 55%;
-            height: variables.$base-unit * 6;
-            font-weight: bold;
-            margin-bottom: variables.$base-unit ;
-            margin-top: variables.$base-unit ;
-          }
-
-          .choose-amount-next-button{
-            float: right;
-            background-color: variables.$color-dark-yellow;
-            border-radius: variables.$base-unit;
-            box-shadow: none;
-            color: variables.$color-neutral-black;
-            text-transform: none;
-            width: 55%;
-            height: variables.$base-unit * 6;
-            font-weight: bold;
-            margin-bottom: variables.$base-unit ;
-            margin-top: variables.$base-unit ;
-          }
-
-          .choose-amount-error-fe {
-            font-size: variables.$font-size-small;
-            color: variables.$error-color;
-            text-align: start;
-            margin-bottom: variables.$base-unit * 2;
-            display: inline-flex;
-            width: 100%;
-          }
-
-          .back-button-icon{
-            margin-left: -8px;
-          }
-
-          .next-button-icon{
-            margin-right: -8px;
-          }
-
-          .amount-input-with-error {
-            margin-bottom: 0px !important;
-          }
-    }
-    .overview-card{
-      padding-top: variables.$base-unit * 5;
-      padding-bottom: variables.$base-unit * 5;
-      padding-left: variables.$base-unit * 8;
-      padding-right: variables.$base-unit * 8;
-      border-radius: variables.$base-unit * 4;
-      text-align: center;
-      box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-
-      @media screen and (min-width: variables.$breakpoint-sm) {
-          width: variables.$base-unit * 52;
-          margin-right: auto;
-          margin-left: auto;
-        }
-
-      .overview-title{
-          font-family: "Montserrat";
-          font-size: variables.$font-size-title;
-          margin-bottom: variables.$base-unit * 3;
-          text-align: start;
-          color: variables.$color-neutral-black;
-          width: 100%;
-      }
-
-      .overview-child-card{
-        background-color: rgb(207, 209, 129, 0.5);
-        height: variables.$base-unit * 22;
-        border-radius: variables.$base-unit * 3;
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-      }
-
-      .overview-brand-title{
-          font-family: "Montserrat";
-          font-size: variables.$font-size-large;
-          margin-left: variables.$base-unit * 4;
-          text-align: start;
-          color: variables.$color-neutral-black;
-       
-      }
-
-      .overview-points{
-          font-family: "Montserrat";
-          font-size: variables.$font-size-medium;
-          margin-top: variables.$base-unit;
-          margin-left: variables.$base-unit * 4;
-          text-align: start;
-          color: variables.$color-neutral-gray;
-      }
-
-      .overview-amount{
-        font-family: "Montserrat";
-        font-size: variables.$font-size-small;
-        margin-top: variables.$base-unit;
-        margin-left: variables.$base-unit * 4;
-        text-align: start;
-        color: variables.$color-neutral-gray;
-    }
-
-      .image-style{
-        height: variables.$base-unit * 12;
-        width:  variables.$base-unit * 16;
-        border-radius: variables.$base-unit * 2;
-        float: right;
-        margin-right: variables.$base-unit * 4;
-      }
-
-      .grid-style{
-        height: 100%;
-      }
-
-      .grid-item{
-        margin-top: auto;
-        margin-bottom: auto;
-      }
-
-      .overview-back-button{
-        float: left;
-        background-color: variables.$color-dark-yellow;
-        border-radius: variables.$base-unit;
-        box-shadow: none;
-        color: variables.$color-neutral-black;
-        text-transform: none;
-        width: 55%;
-        height: variables.$base-unit * 6;
-        font-weight: bold;
-        margin-bottom: variables.$base-unit ;
-        margin-top: variables.$base-unit ;
-      }
-
-      .overview-confirm-button{
-        float: right;
-        background-color: variables.$color-dark-yellow;
-        border-radius: variables.$base-unit;
-        box-shadow: none;
-        color: variables.$color-neutral-black;
-        text-transform: none;
-        width: 55%;
-        height: variables.$base-unit * 6;
-        font-weight: bold;
-        margin-bottom: variables.$base-unit ;
-        margin-top: variables.$base-unit ;
-      }
-
-      .back-button-icon{
-        margin-left: -8px;
-      }
-
-      .button-container{
-        margin-top: variables.$base-unit * 4;
-      }
     }
 }

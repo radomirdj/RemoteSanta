@@ -7,11 +7,7 @@ const AppHeaderPublic = () => {
     <AppBar className="app-header-public">
       <Toolbar disableGutters className="toolbar-style">
         <Grid container className="grid-style">
-          <Grid
-            item
-            md={8}
-            sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
-          >
+          <Grid item md={8} sx={{ display: { xs: "inline-flex" } }}>
             <img src={Logo} alt="" className="logo-style" />
           </Grid>
         </Grid>
