@@ -33,13 +33,7 @@ const ChooseGiftCard = () => {
   return (
     <>
       <AppHeaderPrivate />
-      <div
-        className={
-          activeStep === 0
-            ? "background choose-gift-card-step-1"
-            : "background choose-gift-card-step-2"
-        }
-      >
+      <div className="background choose-gift-card">
         <Grid container spacing={4} className="grid-style">
           <Grid item xs={12}>
             <Stepper
