@@ -29,6 +29,9 @@ import {
   org1Points,
   org2Points,
   org2BalanceSideId,
+  user3Manager,
+  org2Manager,
+  user2,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
 import {
@@ -276,6 +279,62 @@ describe('Authentication system', () => {
         userRole: UserRoleEnum.BASIC_USER,
         orgName: org1.name,
       });
+    });
+  });
+
+  describe('/:id (GET)', () => {
+    it('/:id (GET) - get USER1 details by USER MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/users/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+
+      expect(response.body.userBalance.pointsActive).toEqual(user1ActivePoints);
+      expect(response.body.userBalance.pointsReserved).toEqual(
+        user1ReservedPoints,
+      );
+
+      expectUserRsp(response.body, {
+        ...user1,
+        userRole: UserRoleEnum.BASIC_USER,
+        orgName: org1.name,
+      });
+    });
+
+    it('/:id (GET) - get USER details by USER MANAGER of Org2 - error', async () => {
+      await request(app.getHttpServer())
+        .get(`/users/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/:id (GET) - get USER details by basic user of Org2 - error', async () => {
+      await request(app.getHttpServer())
+        .get(`/users/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .expect(403);
+    });
+
+    it('/:id (GET) - get USER details - Non AAuthorised error', async () => {
+      await request(app.getHttpServer()).get(`/users/${user1.id}`).expect(401);
     });
   });
 });

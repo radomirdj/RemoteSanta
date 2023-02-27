@@ -9,5 +9,6 @@ import { LedgerModule } from '../ledger/ledger.module';
   imports: [PrismaModule, UsersModule, LedgerModule],
   controllers: [AdminUsersController],
   providers: [AdminUsersService],
+  exports: [AdminUsersService],
 })
 export class AdminUsersModule {}

@@ -6,6 +6,7 @@ import { PrismaModule } from '../prisma/prisma.module';
 import { EmailsModule } from '../emails/emails.module';
 import { LedgerModule } from '../ledger/ledger.module';
 import { UsersModule } from '../users/users.module';
+import { AdminUsersModule } from '../admin_users/admin_users.module';
 import { AdminOrgsModule } from '../admin_orgs/admin_orgs.module';
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { AdminOrgsModule } from '../admin_orgs/admin_orgs.module';
     LedgerModule,
     EmailsModule,
     UsersModule,
+    AdminUsersModule,
     AdminOrgsModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],

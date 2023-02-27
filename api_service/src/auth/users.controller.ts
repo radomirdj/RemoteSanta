@@ -15,9 +15,8 @@ import { User } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
 
 import { CreateUserDto } from '../users/dtos/create-user.dto';
-import { UpdateUserDto } from '../users/dtos/update-user.dto';
 import { LoginUserDto } from '../users/dtos/login-user.dto';
-import { UsersService } from '../users/users.service';
+import { AdminUsersService } from '../admin_users/admin_users.service';
 import { AuthService } from './auth.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
@@ -28,12 +27,13 @@ import { ConfirmPasswordUserDto } from '../users/dtos/confirm-password-user.dto'
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
 import { CognitoException } from '../errors/cognitoException';
+import { UserManagerGuard } from '../guards/user_manager.guard';
 
 @Serialize(UserDto)
 @Controller('users')
 export class UsersController {
   constructor(
-    private usersService: UsersService,
+    private adminUsersService: AdminUsersService,
     private authService: AuthService,
     private awsCognitoService: AwsCognitoService,
     private ledgerService: LedgerService,
@@ -94,5 +94,11 @@ export class UsersController {
       ...user,
       userBalance,
     };
+  }
+
+  @Get('/:id')
+  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  async getUserDetails(@Param('id') id: string, @CurrentUser() user: User) {
+    return this.adminUsersService.getUserDetailsById(id, true, user.orgId);
   }
 }
