@@ -119,7 +119,7 @@
   priority: 140
   website: https://univerexport.rs
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Univerexport.png
-  title: Univer Export
+  title: Univerexport
   description: Domaći trgovinski lanac zastupljen sa preko 180 maloprodaja i onlajn servisom eLakolije sa besplatnom dostavom robe. Domaći artikli su najzastupljeniji, meso stiže sa farme Bačka a organski proizvodi sa sopstvenog poljoprivrednog domaćinstva. 
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
