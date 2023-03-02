@@ -75,6 +75,28 @@ export const user3ReservedPoints = 0;
 
 export const admin = users[3];
 
+export const userDeleted1 = {
+  id: '80629be5-c1f7-4fb8-90b7-c030194617e6',
+  cognitoSub: 'c030194617e6',
+  password: 'abcABC123',
+  email: 'jovanadjeko+d1@gmail.com',
+  firstName: 'NameDeleted',
+  lastName: 'LastnameDeleted',
+  gender: 'FEMALE',
+  birthDate: new Date('1992-04-22T00:00:00.000Z'),
+};
+
+export const userDeleted2 = {
+  id: '710e4200-4d11-4d53-b41f-647c7320f5a2',
+  cognitoSub: '647c7320f5a2',
+  password: 'abcABC123',
+  email: 'jovanadjeko+d2@gmail.com',
+  firstName: 'NameDeleted2',
+  lastName: 'LastnameDeleted2',
+  gender: 'MALE',
+  birthDate: new Date('1955-04-19T00:00:00.000Z'),
+};
+
 export const org2Manager = users[4];
 export const org2ActivePoints = 0;
 export const org2ReservedPoints = 0;

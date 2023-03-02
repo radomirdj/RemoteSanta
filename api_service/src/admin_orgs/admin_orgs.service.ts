@@ -29,23 +29,26 @@ export class AdminOrgsService {
   ) {}
 
   async getDetails(id: string): Promise<OrgDto> {
-    const org = await this.prisma.org.findUnique({
-      include: {
-        _count: {
-          select: { User: true },
-        },
-      },
+    // Soft delete won't work if we add count into same query
+    const employeeCountPromise = this.prisma.user.count({
+      where: { orgId: id },
+    });
+    const orgPromise = this.prisma.org.findUnique({
       where: { id },
     });
+    const [employeeCount, org] = await Promise.all([
+      employeeCountPromise,
+      orgPromise,
+    ]);
+
     if (!org) throw new NotFoundException('Org Not Found');
-    const { _count, ...otherData } = org;
 
     const balance = await this.ledgerService.getOrgBalance(id);
     return {
-      employeeNumber: _count.User,
+      employeeNumber: employeeCount,
       balance,
-      totalPointsPerMonth: _count.User * otherData.pointsPerMonth,
-      ...otherData,
+      totalPointsPerMonth: employeeCount * org.pointsPerMonth,
+      ...org,
     };
   }
 

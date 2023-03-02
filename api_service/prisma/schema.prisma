@@ -36,6 +36,7 @@ model User {
   userRole                        UserRoleEnum                  @default(BASIC_USER)
   org                             Org                           @relation(fields: [orgId], references: [id])
   orgId                           String
+  deleted                         Boolean                       @default(false)
   GiftCardRequest                 GiftCardRequest[]
   GiftCard                        GiftCard[]
   claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
