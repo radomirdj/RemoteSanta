@@ -16,7 +16,7 @@ const ClaimPointsEventItem = (claimPointsEventItem: IClaimPointEvent) => {
         </Grid>
         <Grid item xs={7} className="grid-description-style">
           <Typography className="card-description">
-            {claimPointsEventItem.title}
+            <b>{claimPointsEventItem.title}</b>
             <span className="card-description-text">
               {" "}
               - {claimPointsEventItem.description}

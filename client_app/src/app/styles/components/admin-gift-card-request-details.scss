@@ -12,10 +12,10 @@ $back-icon-margin-bottom:3px;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 400;
-        border-radius: variables.$base-unit * 3;
+        border-radius: variables.$base-unit * 4;
         padding-left: variables.$base-unit * 5;
         padding-right: variables.$base-unit * 5;
-        padding-top: variables.$base-unit *3;
+        padding-top: variables.$base-unit * 4;
         padding-bottom: variables.$base-unit ;
         width: $card-width;
         z-index:1200;
@@ -24,8 +24,9 @@ $back-icon-margin-bottom:3px;
 
     .details-title{
         font-family: "Montserrat";
-        font-size: variables.$font-size-title;
+        font-size: variables.$font-size-larger;
         margin-bottom: variables.$base-unit * 3;
+        font-weight: 500;
     }
 
     .divider-style{
@@ -143,6 +144,10 @@ $back-icon-margin-bottom:3px;
         }
       }
 
+      .column-name{
+        font-weight: 600;
+      }
+
       .back-button,
         & .back-button:hover {
             float: left;
@@ -152,6 +157,7 @@ $back-icon-margin-bottom:3px;
             font-weight: bold;
             background-color: white;
             margin-left: -8px;
+            margin-bottom: 8px;
 
             .back-icon{
                 margin-bottom: $back-icon-margin-bottom;

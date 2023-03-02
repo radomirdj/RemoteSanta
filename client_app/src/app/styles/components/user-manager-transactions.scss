@@ -15,6 +15,7 @@ $content-width:1000px;
             font-size: variables.$font-size-title;
             width: max-content;
             margin-left: variables.$base-unit;
+            font-weight: 500;
         }
 
         .balance-title{
@@ -24,6 +25,7 @@ $content-width:1000px;
             margin-top: variables.$base-unit;
             margin-right: variables.$base-unit;
             width: max-content;
+            font-weight: 500;
         }
     }
 
@@ -54,4 +56,8 @@ $content-width:1000px;
 
 .MuiDataGrid-columnHeader:focus{
     outline: none !important;
+}
+
+.MuiDataGrid-columnHeaderTitle{
+    font-weight: 600 !important;
 }

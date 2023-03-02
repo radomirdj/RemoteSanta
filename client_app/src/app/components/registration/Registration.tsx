@@ -264,9 +264,9 @@ const Registration = () => {
                 <Divider />
                 <Typography className="registration-have-account">
                   Already have an account?{" "}
-                  <u className="registration-link" onClick={loginRedirect}>
+                  <b className="registration-link" onClick={loginRedirect}>
                     Login
-                  </u>
+                  </b>
                 </Typography>
               </form>
             </Card>

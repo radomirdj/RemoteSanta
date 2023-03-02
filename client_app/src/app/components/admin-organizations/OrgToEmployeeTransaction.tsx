@@ -115,20 +115,47 @@ const OrgToEmployeeTransaction = () => {
             <Typography className="details-style">Details</Typography>
             <Divider className="divider-style" />
             <Typography className="info-style">
-              Number of employees: {organization?.employeeNumber}
+              <Grid container>
+                <Grid item xs={7}>
+                  <span className="column-name">Number of employees</span>
+                </Grid>
+                <Grid item xs={5}>
+                  {organization?.employeeNumber}
+                </Grid>
+              </Grid>
             </Typography>
             <Typography className="info-style">
-              Amount per employee: {organization?.pointsPerMonth}
+              <Grid container>
+                <Grid item xs={7}>
+                  <span className="column-name">Amount per employee</span>
+                </Grid>
+                <Grid item xs={5}>
+                  {organization?.pointsPerMonth}
+                </Grid>
+              </Grid>
             </Typography>
             <Typography className="info-style">
-              Total amount: {organization?.totalPointsPerMonth}
+              <Grid container>
+                <Grid item xs={7}>
+                  <span className="column-name">Total amount</span>
+                </Grid>
+                <Grid item xs={5}>
+                  {organization?.totalPointsPerMonth}
+                </Grid>
+              </Grid>
             </Typography>
             <Typography className="info-style">
-              New balance:{" "}
-              {Number(
-                Number(organization?.balance) -
-                  Number(organization?.totalPointsPerMonth)
-              )}
+              <Grid container>
+                <Grid item xs={7}>
+                  <span className="column-name">New balance</span>
+                </Grid>
+                <Grid item xs={5}>
+                  {Number(
+                    Number(organization?.balance) -
+                      Number(organization?.totalPointsPerMonth)
+                  )}
+                </Grid>
+              </Grid>
             </Typography>
             <Divider className="divider-info-style" />
             <Grid container>

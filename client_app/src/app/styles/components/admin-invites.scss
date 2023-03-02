@@ -16,6 +16,7 @@ $back-icon-margin-bottom:3px;
             font-size: variables.$font-size-title;
             margin-bottom: variables.$base-unit;
             width: max-content;
+            font-weight: 500;
         }
 
         .back-button,
@@ -121,6 +122,7 @@ $back-icon-margin-bottom:3px;
             font-size: variables.$font-size-larger;
             margin-bottom: variables.$base-unit * 4;
             width: max-content;
+            font-weight: 500;
         }
         .invite-error-fe {
             font-size: variables.$font-size-small;

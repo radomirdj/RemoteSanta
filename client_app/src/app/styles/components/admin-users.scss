@@ -1,7 +1,8 @@
 @use "./../variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 $button-details-height: 36px;
-$content-width:800px;
+$content-width:1000px;
 $back-icon-margin-bottom:3px;
 
 .admin-users{
@@ -17,6 +18,7 @@ $back-icon-margin-bottom:3px;
             font-size: variables.$font-size-title;
             margin-bottom: variables.$base-unit;
             width: max-content;
+            font-weight: 500;
         }
 
         .back-button,
@@ -75,4 +77,8 @@ $back-icon-margin-bottom:3px;
 
 .MuiDataGrid-columnHeader:focus{
     outline: none !important;
+}
+
+.MuiDataGrid-columnHeaderTitle{
+    font-weight: 600 !important;
 }

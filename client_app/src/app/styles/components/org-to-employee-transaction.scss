@@ -20,6 +20,7 @@ $card-width: 440px;
         font-family: "Montserrat";
         font-size: variables.$font-size-larger;
         margin-bottom: variables.$base-unit * 4;
+        font-weight: 500;
     }
 
     .details-style{
@@ -57,6 +58,10 @@ $card-width: 440px;
       font-weight: bold;
       margin-bottom: variables.$base-unit ;
       margin-top: variables.$base-unit *3;
+    }
+
+    .column-name{
+      font-weight: 600;
     }
 
     .back-button, 

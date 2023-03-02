@@ -65,7 +65,7 @@
   validTo: 2023-09-01T00:00:00.000Z
 
 - id: e545e477-d10a-48da-9c1f-919cb456e64a
-  description: 'September is the month of wonderful weather!'
+  description: 'Month of wonderful weather!'
   title: 'September 2023'
   type: MONTHLY_ORG_TO_EMPLOYEE
   validTo: 2023-10-01T00:00:00.000Z

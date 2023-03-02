@@ -95,39 +95,92 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Divider className="divider-style-not-full" />
               <Typography className="info-style">
-                Integration: {adminGiftCardRequest?.giftCardIntegration.title}
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Integration</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.giftCardIntegration.title}
+                  </Grid>
+                </Grid>
               </Typography>
               <Typography className="info-style">
-                Amount: {adminGiftCardRequest?.amount} PTS
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Amount</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.amount} PTS
+                  </Grid>
+                </Grid>
               </Typography>
               <Typography className="info-style">
-                Created At:{" "}
-                {new Date(adminGiftCardRequest?.createdAt || "")
-                  .toLocaleDateString("en-GB")
-                  .replaceAll("/", ".")}
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Created At</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {new Date(adminGiftCardRequest?.createdAt || "")
+                      .toLocaleDateString("en-GB")
+                      .replaceAll("/", ".")}
+                  </Grid>
+                </Grid>
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography className="details-style">User Details</Typography>
               <Divider className="divider-style" />
               <Typography className="info-style">
-                Full name: {adminGiftCardRequestUser?.firstName}{" "}
-                {adminGiftCardRequestUser?.lastName}
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Full name</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequestUser?.firstName}{" "}
+                    {adminGiftCardRequestUser?.lastName}
+                  </Grid>
+                </Grid>
               </Typography>
               <Typography className="info-style">
-                Active points:{" "}
-                {adminGiftCardRequestUser?.userBalance?.pointsActive}
-                PTS
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name"> Active points</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequestUser?.userBalance?.pointsActive}
+                    PTS
+                  </Grid>
+                </Grid>
               </Typography>
               <Typography className="info-style">
-                Reserved points:{" "}
-                {adminGiftCardRequestUser?.userBalance?.pointsReserved} PTS
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name"> Reserved points</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequestUser?.userBalance?.pointsReserved} PTS
+                  </Grid>
+                </Grid>
               </Typography>
               <Typography className="info-style">
-                Email: {adminGiftCardRequestUser?.email}
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Email</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequestUser?.email}
+                  </Grid>
+                </Grid>
               </Typography>
               <Typography className="info-style">
-                Company name: {adminGiftCardRequestUser?.org?.name}
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Company name</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequestUser?.org?.name}
+                  </Grid>
+                </Grid>
               </Typography>
             </Grid>
             <Grid item xs={6}>

@@ -16,6 +16,7 @@ $content-width:800px;
             font-size: variables.$font-size-title;
             margin-bottom: variables.$base-unit ;
             width: max-content;
+            font-weight: 500;
         }
     }
 
@@ -60,4 +61,8 @@ $content-width:800px;
 
 .MuiDataGrid-columnHeader:focus{
     outline: none !important;
+}
+
+.MuiDataGrid-columnHeaderTitle{
+    font-weight: 600 !important;
 }

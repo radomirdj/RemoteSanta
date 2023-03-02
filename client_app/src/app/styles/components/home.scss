@@ -21,6 +21,7 @@ $points-font-size:20px;
         max-width: $grid-max-width;
 
         .home-title{
+            font-weight: 500;
             @media screen and (max-width: variables.$breakpoint-md) {
                 font-family: "Montserrat";
                 font-size: variables.$font-size-larger;
@@ -36,6 +37,7 @@ $points-font-size:20px;
         } 
 
         .home-title-right{
+            font-weight: 500;
             @media screen and (max-width: variables.$breakpoint-md) {
                 font-family: "Montserrat";
                 font-size: $points-font-size;
@@ -129,12 +131,14 @@ $points-font-size:20px;
                     font-size: variables.$font-size-medium;
                     margin-right: variables.$base-unit;
                     font-family: "Montserrat";
+                    font-weight: 500;
                 }
                 @media screen and (min-width: variables.$breakpoint-md) {
                     font-size: variables.$font-size-large;
                     font-family: "Montserrat";
                     float: right;
                     margin-right: variables.$base-unit * 5;
+                    font-weight: 500;
                   }
             }
 
