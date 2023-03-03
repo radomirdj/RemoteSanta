@@ -33,6 +33,12 @@ export class UsersService {
     });
   }
 
+  findDbBasicUserById(id: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
+
   async findBySub(cognitoSub: string): Promise<User | null> {
     const userList = await this.prisma.user.findMany({
       where: { cognitoSub },

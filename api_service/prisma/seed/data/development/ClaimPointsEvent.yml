@@ -99,3 +99,9 @@
   title: 'SIGN UP'
   type: SIGN_UP_EVENT
   validTo: 2030-01-01T00:00:00.000Z
+
+- id: 08c1eb0b-94d9-456c-b6b0-6fa908d17a18
+  description: 'DELETE USER'
+  title: 'DELETE USER'
+  type: DELETE_USER_EVENT
+  validTo: 2000-01-01T00:00:00.000Z

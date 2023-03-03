@@ -135,7 +135,7 @@ export class AdminOrgsService {
     });
   }
 
-  async createOrgTransactionToEmployees(
+  async createOrgEmployeesTransaction(
     tx,
     orgId: string,
     eventId: string,
@@ -143,11 +143,13 @@ export class AdminOrgsService {
     pointsPerEmployee: number,
     createdById: string,
     finalFunc = null,
+    type: OrgTransactionTypeEnum = OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+    orgToEmployees = true,
   ): Promise<OrgTransactionDto> {
     const orgTransaction = await tx.orgTransaction.create({
       data: {
         totalAmount: employeeList.length * pointsPerEmployee,
-        type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+        type,
         org: {
           connect: {
             id: orgId,
@@ -177,16 +179,47 @@ export class AdminOrgsService {
     if (count !== employeeList.length)
       throw new ConflictException("Employee Number doesn't match DB.");
 
-    await this.ledgerService.createOrgToEmployesTransaction(
+    await this.ledgerService.createOrgEmployesTransaction(
       tx,
       orgId,
       employeeList.map((employee) => employee.id),
       pointsPerEmployee,
       orgTransaction.id,
+      type,
+      orgToEmployees,
     );
 
     if (finalFunc) await finalFunc();
     return orgTransaction;
+  }
+
+  async createTransactionEmployeeToOrgUserDelete(
+    tx,
+    orgId: string,
+    user: User,
+    userPoints: number,
+    actionByUserId: string,
+  ): Promise<OrgTransactionDto | null> {
+    const [org, claimPointsEventList] = await Promise.all([
+      this.getById(orgId),
+      this.prisma.claimPointsEvent.findMany({
+        where: { type: ClaimPointsEventTypeEnum.DELETE_USER_EVENT },
+      }),
+    ]);
+    if (userPoints === 0) return null;
+    const claimPointsEvent = claimPointsEventList[0];
+
+    return this.createOrgEmployeesTransaction(
+      tx,
+      orgId,
+      claimPointsEvent.id,
+      [user],
+      userPoints,
+      actionByUserId,
+      null,
+      OrgTransactionTypeEnum.EMPLOYEES_TO_ORG_BY_EVENT,
+      false,
+    );
   }
 
   async createTransactionOrgToEmployeeSignup(
@@ -203,7 +236,7 @@ export class AdminOrgsService {
     if (org.signupPoints <= 0) return null;
     const claimPointsEvent = claimPointsEventList[0];
 
-    return this.createOrgTransactionToEmployees(
+    return this.createOrgEmployeesTransaction(
       tx,
       orgId,
       claimPointsEvent.id,
@@ -229,7 +262,7 @@ export class AdminOrgsService {
       throw new ConflictException("Employee Number doesn't match DB.");
 
     return this.prisma.$transaction(async (tx) => {
-      return this.createOrgTransactionToEmployees(
+      return this.createOrgEmployeesTransaction(
         tx,
         orgId,
         claimPointsEvent.id,

@@ -95,6 +95,7 @@ model GiftDate {
 enum ClaimPointsEventTypeEnum {
   MONTHLY_ORG_TO_EMPLOYEE
   SIGN_UP_EVENT
+  DELETE_USER_EVENT
 }
 
 model ClaimPointsEvent {
@@ -108,6 +109,7 @@ model ClaimPointsEvent {
 
 enum OrgTransactionTypeEnum {
   ORG_TO_EMPLOYEES_BY_EVENT
+  EMPLOYEES_TO_ORG_BY_EVENT
   ADMIN_TO_ORG
 }
 
@@ -217,6 +219,7 @@ model BalanceSide {
 
 enum LedgerTypeEnum {
   ORG_TO_EMPLOYEES_BY_EVENT
+  EMPLOYEES_TO_ORG_BY_EVENT
   ADMIN_TO_ORG
   GIFT_CARD_REQUEST_CREATED
   GIFT_CARD_REQUEST_COMPLETED

@@ -243,6 +243,12 @@ export const signupEvent = {
   description: 'SIGN UP',
 };
 
+export const deleteUserEvent = {
+  id: '08c1eb0b-94d9-456c-b6b0-6fa908d17a18',
+  validTo: '2000-01-01T00:00:00.000Z',
+  description: 'DELETE USER',
+};
+
 export const userInvite1 = {
   id: '51f87502-14b9-4b13-b892-7b9dc122e9d3',
   code: 'ABCDEF',
