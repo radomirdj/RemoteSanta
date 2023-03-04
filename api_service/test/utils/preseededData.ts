@@ -86,6 +86,9 @@ export const userDeleted1 = {
   birthDate: new Date('1992-04-22T00:00:00.000Z'),
 };
 
+export const userDeleted1ActivePoints = 0;
+export const userDeleted1ReservedPoints = 1200;
+
 export const userDeleted2 = {
   id: '710e4200-4d11-4d53-b41f-647c7320f5a2',
   cognitoSub: '647c7320f5a2',
@@ -202,11 +205,19 @@ export const giftCardRequestList = [
     amount: 3000,
     status: 'COMPLETED',
   },
+  {
+    id: '1804569e-6112-4519-82c3-6d40e754e035',
+    userId: userDeleted1.id,
+    giftCardIntegrationId: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
+    amount: 1200,
+    status: 'PENDING',
+  },
 ];
 
 export const giftCardRequest1 = giftCardRequestList[0];
 export const giftCardRequest2 = giftCardRequestList[1];
 export const giftCardRequestFulfilled = giftCardRequestList[2];
+export const giftCardRequest3 = giftCardRequestList[3];
 
 export const org1 = {
   id: '752e05ce-4a81-4148-87c5-30832406d48c',
@@ -328,6 +339,6 @@ export const org1Transactions = [
     id: 'ca16d572-9640-4470-8c8a-af3bb3fd42b6',
     orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
     type: 'ADMIN_TO_ORG',
-    totalAmount: 24000,
+    totalAmount: 25200,
   },
 ];

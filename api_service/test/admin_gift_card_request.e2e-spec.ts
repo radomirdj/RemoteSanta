@@ -35,6 +35,10 @@ import {
   user1,
   user1ActivePoints,
   user1ReservedPoints,
+  giftCardRequest3,
+  userDeleted1,
+  userDeleted1ActivePoints,
+  userDeleted1ReservedPoints,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
@@ -82,6 +86,32 @@ describe('admin/gift-card-requests', () => {
       });
     });
 
+    it('/:id (GET) -  Admin get gift card request from deleted user', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/gift-card-requests/${giftCardRequest3.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .expect(200);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest3.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest3,
+        integrationTitle: giftCardIntegration1.title,
+      });
+      expect(response.body.user.email).toEqual(userDeleted1.email);
+      expect(response.body.user.userBalance.pointsActive).toEqual(
+        userDeleted1ActivePoints,
+      );
+      expect(response.body.user.userBalance.pointsReserved).toEqual(
+        userDeleted1ReservedPoints,
+      );
+    });
+
     it('/:id (GET) - user (NOT ADMIN) try to get gift card request', async () => {
       await request(app.getHttpServer())
         .get(`/admin/gift-card-requests/${giftCardRequest1.id}`)
@@ -110,9 +140,10 @@ describe('admin/gift-card-requests', () => {
             createToken({ email: admin.email, sub: admin.cognitoSub }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(2);
+      expect(response.body.length).toEqual(3);
       const giftDateRsp1 = response.body[0];
       const giftDateRsp2 = response.body[1];
+      const giftDateRsp3 = response.body[2];
 
       expect(giftDateRsp1.id).toEqual(giftCardRequest2.id);
       expectGiftCardRequestRsp(giftDateRsp1, {
@@ -122,6 +153,11 @@ describe('admin/gift-card-requests', () => {
       expect(giftDateRsp2.id).toEqual(giftCardRequest1.id);
       expectGiftCardRequestRsp(giftDateRsp2, {
         ...giftCardRequest1,
+        integrationTitle: giftCardIntegration1.title,
+      });
+      expect(giftDateRsp3.id).toEqual(giftCardRequest3.id);
+      expectGiftCardRequestRsp(giftDateRsp3, {
+        ...giftCardRequest3,
         integrationTitle: giftCardIntegration1.title,
       });
     });

@@ -21,3 +21,11 @@
   status: 'COMPLETED'
   createdAt: 2022-08-14T21:59:43.10-05:00
   updatedAt: 2022-08-14T21:59:43.10-05:00
+
+- id: 1804569e-6112-4519-82c3-6d40e754e035
+  userId: 80629be5-c1f7-4fb8-90b7-c030194617e6
+  giftCardIntegrationId: 469cf71d-86a5-450e-afc7-76bc6996a3ad
+  amount: 1200
+  status: 'PENDING'
+  createdAt: 2022-09-13T21:59:43.10-05:00
+  updatedAt: 2022-09-13T21:59:43.10-05:00

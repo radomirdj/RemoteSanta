@@ -13,7 +13,9 @@ import {
 import { DeclineGiftCardRequestDto } from './dtos/decline_giift_card_request.dto';
 import { LedgerService } from '../ledger/ledger.service';
 import { EmailsService } from '../emails/emails.service';
+import { userDefaultJoin } from '../users/users.service';
 import { InjectS3, S3 } from 'nestjs-s3';
+import { GiftCardRequestDto } from 'src/gift_card_request/dtos/gift_card_request.dto';
 
 @Injectable()
 export class AdminGiftCardRequestsService {
@@ -144,16 +146,29 @@ export class AdminGiftCardRequestsService {
     });
   }
 
-  async getOne(id: string): Promise<GiftCardRequest> {
+  async getOne(id: string) {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
       include: {
         giftCardIntegration: true,
+        user: {
+          include: userDefaultJoin,
+        },
       },
     });
     if (!giftCardRequest)
       throw new NotFoundException('GiftCardRequest Not Found');
-    return giftCardRequest;
+    const userBalance = await this.ledgerService.getUserBalance(
+      giftCardRequest.user.id,
+    );
+
+    return {
+      ...giftCardRequest,
+      user: {
+        ...giftCardRequest.user,
+        userBalance,
+      },
+    };
   }
 
   getPendingList(): Promise<GiftCardRequest[]> {

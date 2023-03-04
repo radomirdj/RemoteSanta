@@ -25,6 +25,14 @@
   type: USER_RESERVED
   userId: 25752f92-defd-4bb5-9553-154fc5ce9d8b
 
+- id: 9b4e11c9-d57c-4b20-a689-706000479691
+  type: USER_ACTIVE
+  userId: 80629be5-c1f7-4fb8-90b7-c030194617e6
+
+- id: de836447-8b92-4dfd-b1df-00e716fb6f39
+  type: USER_RESERVED
+  userId: 80629be5-c1f7-4fb8-90b7-c030194617e6
+
 - id: da727ca7-af9b-4fd3-b317-52e2e9acf0a6
   type: USER_ACTIVE
   userId: 71bed16a-98d9-479b-b5f4-f934a2278aae
