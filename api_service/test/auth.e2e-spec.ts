@@ -32,6 +32,8 @@ import {
   user3Manager,
   org2Manager,
   user2,
+  user1ActiveBalanceSideId,
+  deleteUserEvent,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
 import {
@@ -40,7 +42,9 @@ import {
   UserInviteStatusEnum,
   OrgTransactionTypeEnum,
   LedgerTypeEnum,
+  Prisma,
 } from '@prisma/client';
+import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -333,8 +337,136 @@ describe('Authentication system', () => {
         .expect(403);
     });
 
-    it('/:id (GET) - get USER details - Non AAuthorised error', async () => {
+    it('/:id (GET) - get USER details - Non Authorised error', async () => {
       await request(app.getHttpServer()).get(`/users/${user1.id}`).expect(401);
+    });
+  });
+
+  describe('/:id (DELETE)', () => {
+    it('/:id (DELETE) - delete USER1 by ADMIN', async () => {
+      await request(app.getHttpServer())
+        .delete(`/users/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+
+      const userList = await prisma.user.findMany({
+        where: { id: user1.id },
+      });
+      expect(userList.length).toEqual(0);
+
+      // Check Ledger and balance
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user1ActiveBalanceSideId,
+        toId: org1BalanceSideId,
+        amount: user1ActivePoints,
+        type: LedgerTypeEnum.EMPLOYEES_TO_ORG_BY_EVENT,
+      });
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: 0,
+        pointsReserved: user1ReservedPoints,
+      });
+
+      const orgBalance = await ledgerService.getOrgBalance(org1.id);
+      expect(orgBalance).toEqual(org1Points + user1ActivePoints);
+
+      // Check Org Transaction
+      const orgTransactionList = await prisma.orgTransaction.findMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      expect(orgTransactionList.length).toEqual(1);
+      const orgTransaction = orgTransactionList[0];
+      expect(orgTransaction.totalAmount).toEqual(user1ActivePoints);
+      expect(orgTransaction.createdById).toEqual(user3Manager.id);
+      expect(orgTransaction.eventId).toEqual(deleteUserEvent.id);
+      expect(orgTransaction.type).toEqual(
+        OrgTransactionTypeEnum.EMPLOYEES_TO_ORG_BY_EVENT,
+      );
+      expect(orgTransaction.orgId).toEqual(org1.id);
+
+      // Check Org Transaction Fulfillment
+      const dbClaimPointsEventFulfillmentList =
+        await prisma.claimPointsEventFulfillment.findMany({
+          where: {
+            orgTransactionId: orgTransaction.id,
+          },
+        });
+
+      expect(dbClaimPointsEventFulfillmentList.length).toEqual(1);
+      expect(dbClaimPointsEventFulfillmentList[0].amount).toEqual(
+        user1ActivePoints,
+      );
+      expect(dbClaimPointsEventFulfillmentList[0].orgTransactionId).toEqual(
+        orgTransaction.id,
+      );
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.claimPointsEventFulfillment.deleteMany({
+        where: {
+          orgTransactionId: orgTransaction.id,
+        },
+      });
+
+      await prisma.orgTransaction.deleteMany({
+        where: {
+          id: orgTransaction.id,
+        },
+      });
+
+      await prisma.$queryRaw(
+        Prisma.sql`UPDATE  public."User" set deleted = false WHERE id = ${user1.id}`,
+      );
+    });
+
+    it('/:id (DELETE) - delete USER by USER MANAGER of Org2 - error', async () => {
+      await request(app.getHttpServer())
+        .delete(`/users/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/:id (DELETE) - delete USER by basic user - error', async () => {
+      await request(app.getHttpServer())
+        .delete(`/users/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .expect(403);
+    });
+
+    it('/:id (DELETE) - delete USER - Non Authorised error', async () => {
+      await request(app.getHttpServer())
+        .delete(`/users/${user1.id}`)
+        .expect(401);
     });
   });
 });

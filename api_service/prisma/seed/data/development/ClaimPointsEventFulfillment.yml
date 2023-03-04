@@ -18,6 +18,11 @@
   orgTransactionId: 7a7b9497-66f8-4307-a7ea-f79af93d30cf
   userId: 25752f92-defd-4bb5-9553-154fc5ce9d8b
 
+- id: dba8e646-58e4-411d-b5da-fb113266303c
+  amount: 1200
+  orgTransactionId: 7a7b9497-66f8-4307-a7ea-f79af93d30cf
+  userId: 80629be5-c1f7-4fb8-90b7-c030194617e6
+
 - id: 7aee1ec5-8c4f-44e2-a102-26269ab63e90
   amount: 10000
   orgTransactionId: 27838d62-9fd0-408f-8af7-a57ae3af974a

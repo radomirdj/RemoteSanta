@@ -5,6 +5,7 @@ import {
   BalanceSide,
   LedgerTypeEnum,
   Ledger,
+  User,
 } from '@prisma/client';
 import { UserBalanceDto } from './dtos/user_balance.dto';
 import consts from '../utils/consts';
@@ -110,32 +111,42 @@ export class LedgerService {
     });
   }
 
-  async createOrgToEmployesTransaction(
+  async createOrgEmployesTransaction(
     tx,
     orgId: string,
     employeeIdList: string[],
     amount: number,
     transactionId: string,
+    type,
+    orgToEmployees = true,
   ) {
     const [{ activeList }, orgSide] = await Promise.all([
       this.getUserListLedgerSide(employeeIdList, tx),
       this.getOrgLedgerSide(orgId),
     ]);
 
-    const data = activeList.map((activeBalanceSide) => ({
-      type: LedgerTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
-      amount,
-      fromId: orgSide.id,
-      toId: activeBalanceSide.id,
-      detailsJson: { transactionId },
-    }));
+    const data = orgToEmployees
+      ? // org to employee
+        activeList.map((activeBalanceSide) => ({
+          type,
+          amount,
+          fromId: orgSide.id,
+          toId: activeBalanceSide.id,
+          detailsJson: { transactionId },
+        }))
+      : // employee to org
+        activeList.map((activeBalanceSide) => ({
+          type,
+          amount,
+          fromId: activeBalanceSide.id,
+          toId: orgSide.id,
+          detailsJson: { transactionId },
+        }));
     const rsp = await tx.ledger.createMany({
       data,
     });
     if (rsp.count !== employeeIdList.length) {
-      throw new Error(
-        'createOrgToEmployesTransaction fails Transaction Count.',
-      );
+      throw new Error('createOrgEmployesTransaction fails Transaction Count.');
     }
     return rsp;
   }
@@ -210,19 +221,30 @@ export class LedgerService {
     userId: string,
     amount: number,
     requestId: string,
+    user: User,
   ) {
     const { activeList, reservedList } = await this.getUserListLedgerSide([
       userId,
     ]);
 
-    return this.createGiftCardRequestTransaction(
-      tx,
-      LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED,
-      reservedList[0].id,
-      activeList[0].id,
-      amount,
-      requestId,
-    );
+    return !user.deleted
+      ? this.createGiftCardRequestTransaction(
+          tx,
+          LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED,
+          reservedList[0].id,
+          activeList[0].id,
+          amount,
+          requestId,
+        )
+      : // In case user is deleted puts points back to Platform and admin will continue steps with deleted user
+        this.createGiftCardRequestTransaction(
+          tx,
+          LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED_DELETED_USER,
+          reservedList[0].id,
+          consts.platformBalanceSideId,
+          amount,
+          requestId,
+        );
   }
 
   async aggregateLadgerSum(idList: string[], field): Promise<number[]> {

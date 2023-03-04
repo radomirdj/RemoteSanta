@@ -65,6 +65,11 @@ export const user3ActiveBalanceSideId = 'a6490a6e-253b-4aa0-810c-f7e5b3790138';
 export const user3ReservedBalanceSideId =
   '7ed49c43-db63-4631-84ae-d07bc461bbbb';
 
+export const userDeleted1ActiveBalanceSideId =
+  '9b4e11c9-d57c-4b20-a689-706000479691';
+export const userDeleted1ReservedBalanceSideId =
+  'de836447-8b92-4dfd-b1df-00e716fb6f39';
+
 export const user2 = users[1];
 export const user2ActivePoints = 0;
 export const user2ReservedPoints = 0;
@@ -74,6 +79,31 @@ export const user3ActivePoints = 2400;
 export const user3ReservedPoints = 0;
 
 export const admin = users[3];
+
+export const userDeleted1 = {
+  id: '80629be5-c1f7-4fb8-90b7-c030194617e6',
+  cognitoSub: 'c030194617e6',
+  password: 'abcABC123',
+  email: 'jovanadjeko+d1@gmail.com',
+  firstName: 'NameDeleted',
+  lastName: 'LastnameDeleted',
+  gender: 'FEMALE',
+  birthDate: new Date('1992-04-22T00:00:00.000Z'),
+};
+
+export const userDeleted1ActivePoints = 0;
+export const userDeleted1ReservedPoints = 1200;
+
+export const userDeleted2 = {
+  id: '710e4200-4d11-4d53-b41f-647c7320f5a2',
+  cognitoSub: '647c7320f5a2',
+  password: 'abcABC123',
+  email: 'jovanadjeko+d2@gmail.com',
+  firstName: 'NameDeleted2',
+  lastName: 'LastnameDeleted2',
+  gender: 'MALE',
+  birthDate: new Date('1955-04-19T00:00:00.000Z'),
+};
 
 export const org2Manager = users[4];
 export const org2ActivePoints = 0;
@@ -180,11 +210,19 @@ export const giftCardRequestList = [
     amount: 3000,
     status: 'COMPLETED',
   },
+  {
+    id: '1804569e-6112-4519-82c3-6d40e754e035',
+    userId: userDeleted1.id,
+    giftCardIntegrationId: '469cf71d-86a5-450e-afc7-76bc6996a3ad',
+    amount: 1200,
+    status: 'PENDING',
+  },
 ];
 
 export const giftCardRequest1 = giftCardRequestList[0];
 export const giftCardRequest2 = giftCardRequestList[1];
 export const giftCardRequestFulfilled = giftCardRequestList[2];
+export const giftCardRequest3 = giftCardRequestList[3];
 
 export const org1 = {
   id: '752e05ce-4a81-4148-87c5-30832406d48c',
@@ -219,6 +257,12 @@ export const signupEvent = {
   id: '8cff81f0-44b0-4b32-bbac-c8c0be63521c',
   validTo: '2030-01-01T00:00:00.000Z',
   description: 'SIGN UP',
+};
+
+export const deleteUserEvent = {
+  id: '08c1eb0b-94d9-456c-b6b0-6fa908d17a18',
+  validTo: '2000-01-01T00:00:00.000Z',
+  description: 'DELETE USER',
 };
 
 export const userInvite1 = {
@@ -291,7 +335,7 @@ export const org1Transactions = [
     id: '4a49457a-774d-4443-8da5-692748000beb',
     orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
     type: 'ORG_TO_EMPLOYEES_BY_EVENT',
-    totalAmount: 2400,
+    totalAmount: -2400,
     event: {
       description: 'Make December to remember!',
     },
@@ -300,6 +344,6 @@ export const org1Transactions = [
     id: 'ca16d572-9640-4470-8c8a-af3bb3fd42b6',
     orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
     type: 'ADMIN_TO_ORG',
-    totalAmount: 24000,
+    totalAmount: 25200,
   },
 ];

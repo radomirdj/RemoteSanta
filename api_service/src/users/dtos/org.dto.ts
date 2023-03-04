@@ -2,7 +2,7 @@ import { Expose } from 'class-transformer';
 
 export class OrgDto {
   @Expose()
-  id: String;
+  id: string;
 
   @Expose()
   name: string;

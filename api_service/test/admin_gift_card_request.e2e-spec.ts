@@ -35,6 +35,12 @@ import {
   user1,
   user1ActivePoints,
   user1ReservedPoints,
+  giftCardRequest3,
+  userDeleted1,
+  userDeleted1ActivePoints,
+  userDeleted1ReservedPoints,
+  user3ReservedBalanceSideId,
+  userDeleted1ReservedBalanceSideId,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
@@ -80,6 +86,34 @@ describe('admin/gift-card-requests', () => {
         ...giftCardRequest1,
         integrationTitle: giftCardIntegration1.title,
       });
+      expect(response.body.user.deleted).toEqual(false);
+    });
+
+    it('/:id (GET) -  Admin get gift card request from deleted user', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/gift-card-requests/${giftCardRequest3.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .expect(200);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest3.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest3,
+        integrationTitle: giftCardIntegration1.title,
+      });
+      expect(response.body.user.email).toEqual(userDeleted1.email);
+      expect(response.body.user.userBalance.pointsActive).toEqual(
+        userDeleted1ActivePoints,
+      );
+      expect(response.body.user.userBalance.pointsReserved).toEqual(
+        userDeleted1ReservedPoints,
+      );
+      expect(response.body.user.deleted).toEqual(true);
     });
 
     it('/:id (GET) - user (NOT ADMIN) try to get gift card request', async () => {
@@ -110,9 +144,10 @@ describe('admin/gift-card-requests', () => {
             createToken({ email: admin.email, sub: admin.cognitoSub }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(2);
+      expect(response.body.length).toEqual(3);
       const giftDateRsp1 = response.body[0];
       const giftDateRsp2 = response.body[1];
+      const giftDateRsp3 = response.body[2];
 
       expect(giftDateRsp1.id).toEqual(giftCardRequest2.id);
       expectGiftCardRequestRsp(giftDateRsp1, {
@@ -122,6 +157,11 @@ describe('admin/gift-card-requests', () => {
       expect(giftDateRsp2.id).toEqual(giftCardRequest1.id);
       expectGiftCardRequestRsp(giftDateRsp2, {
         ...giftCardRequest1,
+        integrationTitle: giftCardIntegration1.title,
+      });
+      expect(giftDateRsp3.id).toEqual(giftCardRequest3.id);
+      expectGiftCardRequestRsp(giftDateRsp3, {
+        ...giftCardRequest3,
         integrationTitle: giftCardIntegration1.title,
       });
     });
@@ -231,6 +271,72 @@ describe('admin/gift-card-requests', () => {
       });
     });
 
+    it('/:id/fulfill (POST) -  Admin fulfill gift card request', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/gift-card-requests/${giftCardRequest3.id}/fulfill`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .attach('file', join(__dirname, 'files/gift_card_image.png'))
+        .expect(201);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest3.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest3,
+        status: GiftCardRequestStatusEnum.COMPLETED,
+      });
+
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...giftCardRequest3,
+          status: GiftCardRequestStatusEnum.COMPLETED,
+        },
+        prisma,
+      );
+
+      const giftCard = await prisma.giftCard.findUnique({
+        where: { giftCardRequestId: id },
+      });
+      expect(giftCard.createdById).toEqual(admin.id);
+      expect(giftCard.giftCardRequestId).toEqual(id);
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: userDeleted1ReservedBalanceSideId,
+        toId: platformBalanceSideId,
+        amount: giftCardRequest3.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_COMPLETED,
+      });
+
+      await checkBalance(ledgerService, userDeleted1.id, {
+        pointsActive: 0,
+        pointsReserved: 0,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.update({
+        where: { id },
+        data: { status: GiftCardRequestStatusEnum.PENDING },
+      });
+
+      await prisma.giftCard.deleteMany({
+        where: { giftCardRequestId: id },
+      });
+    });
+
     it('/:id/fulfill (POST) -  (ADMIN) try to fulfill gift card request which is already fulfilled', async () => {
       await request(app.getHttpServer())
         .post(
@@ -308,6 +414,62 @@ describe('admin/gift-card-requests', () => {
       await checkBalance(ledgerService, user1.id, {
         pointsActive: user1ActivePoints + giftCardRequest1.amount,
         pointsReserved: user1ReservedPoints - giftCardRequest1.amount,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.update({
+        where: { id },
+        data: { status: GiftCardRequestStatusEnum.PENDING },
+      });
+    });
+
+    it('/:id/decline (POST) -  Admin decline gift card request of deleted user', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/gift-card-requests/${giftCardRequest3.id}/decline`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(declineRequest)
+        .expect(201);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest3.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest3,
+        status: GiftCardRequestStatusEnum.DECLINED,
+      });
+
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...giftCardRequest3,
+          status: GiftCardRequestStatusEnum.DECLINED,
+        },
+        prisma,
+      );
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: userDeleted1ReservedBalanceSideId,
+        toId: platformBalanceSideId,
+        amount: giftCardRequest3.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED_DELETED_USER,
+      });
+
+      await checkBalance(ledgerService, userDeleted1.id, {
+        pointsActive: 0,
+        pointsReserved: 0,
       });
 
       // Clean DB

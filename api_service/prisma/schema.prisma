@@ -36,6 +36,7 @@ model User {
   userRole                        UserRoleEnum                  @default(BASIC_USER)
   org                             Org                           @relation(fields: [orgId], references: [id])
   orgId                           String
+  deleted                         Boolean                       @default(false)
   GiftCardRequest                 GiftCardRequest[]
   GiftCard                        GiftCard[]
   claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
@@ -94,6 +95,7 @@ model GiftDate {
 enum ClaimPointsEventTypeEnum {
   MONTHLY_ORG_TO_EMPLOYEE
   SIGN_UP_EVENT
+  DELETE_USER_EVENT
 }
 
 model ClaimPointsEvent {
@@ -107,6 +109,7 @@ model ClaimPointsEvent {
 
 enum OrgTransactionTypeEnum {
   ORG_TO_EMPLOYEES_BY_EVENT
+  EMPLOYEES_TO_ORG_BY_EVENT
   ADMIN_TO_ORG
 }
 
@@ -216,10 +219,12 @@ model BalanceSide {
 
 enum LedgerTypeEnum {
   ORG_TO_EMPLOYEES_BY_EVENT
+  EMPLOYEES_TO_ORG_BY_EVENT
   ADMIN_TO_ORG
   GIFT_CARD_REQUEST_CREATED
   GIFT_CARD_REQUEST_COMPLETED
   GIFT_CARD_REQUEST_DECLINED
+  GIFT_CARD_REQUEST_DECLINED_DELETED_USER
 }
 
 model Ledger {

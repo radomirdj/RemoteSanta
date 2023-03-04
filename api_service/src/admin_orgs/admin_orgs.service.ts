@@ -18,6 +18,7 @@ import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 import { UsersService } from '../users/users.service';
 import { UserDto } from '../users/dtos/user.dto';
 import { EmailsService } from '../emails/emails.service';
+import consts from '../utils/consts';
 
 @Injectable()
 export class AdminOrgsService {
@@ -29,23 +30,26 @@ export class AdminOrgsService {
   ) {}
 
   async getDetails(id: string): Promise<OrgDto> {
-    const org = await this.prisma.org.findUnique({
-      include: {
-        _count: {
-          select: { User: true },
-        },
-      },
+    // Soft delete won't work if we add count into same query
+    const employeeCountPromise = this.prisma.user.count({
+      where: { orgId: id },
+    });
+    const orgPromise = this.prisma.org.findUnique({
       where: { id },
     });
+    const [employeeCount, org] = await Promise.all([
+      employeeCountPromise,
+      orgPromise,
+    ]);
+
     if (!org) throw new NotFoundException('Org Not Found');
-    const { _count, ...otherData } = org;
 
     const balance = await this.ledgerService.getOrgBalance(id);
     return {
-      employeeNumber: _count.User,
+      employeeNumber: employeeCount,
       balance,
-      totalPointsPerMonth: _count.User * otherData.pointsPerMonth,
-      ...otherData,
+      totalPointsPerMonth: employeeCount * org.pointsPerMonth,
+      ...org,
     };
   }
 
@@ -59,8 +63,8 @@ export class AdminOrgsService {
     });
   }
 
-  getOrgTransactionList(orgId: string): Promise<OrgTransactionDto[]> {
-    return this.prisma.orgTransaction.findMany({
+  async getOrgTransactionList(orgId: string): Promise<OrgTransactionDto[]> {
+    const orgTransactionList = await this.prisma.orgTransaction.findMany({
       include: {
         event: true,
       },
@@ -73,6 +77,13 @@ export class AdminOrgsService {
         },
       ],
     });
+    const orgTransactionListFinal = orgTransactionList.map((orgTransaction) => {
+      if (consts.orgNegativeTransactions.includes(orgTransaction.type))
+        return { ...orgTransaction, totalAmount: -orgTransaction.totalAmount };
+      return orgTransaction;
+    });
+
+    return orgTransactionListFinal;
   }
 
   async getById(orgId: string): Promise<Org> {
@@ -132,7 +143,7 @@ export class AdminOrgsService {
     });
   }
 
-  async createOrgTransactionToEmployees(
+  async createOrgEmployeesTransaction(
     tx,
     orgId: string,
     eventId: string,
@@ -140,11 +151,13 @@ export class AdminOrgsService {
     pointsPerEmployee: number,
     createdById: string,
     finalFunc = null,
+    type: OrgTransactionTypeEnum = OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+    orgToEmployees = true,
   ): Promise<OrgTransactionDto> {
     const orgTransaction = await tx.orgTransaction.create({
       data: {
         totalAmount: employeeList.length * pointsPerEmployee,
-        type: OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+        type,
         org: {
           connect: {
             id: orgId,
@@ -174,16 +187,47 @@ export class AdminOrgsService {
     if (count !== employeeList.length)
       throw new ConflictException("Employee Number doesn't match DB.");
 
-    await this.ledgerService.createOrgToEmployesTransaction(
+    await this.ledgerService.createOrgEmployesTransaction(
       tx,
       orgId,
       employeeList.map((employee) => employee.id),
       pointsPerEmployee,
       orgTransaction.id,
+      type,
+      orgToEmployees,
     );
 
     if (finalFunc) await finalFunc();
     return orgTransaction;
+  }
+
+  async createTransactionEmployeeToOrgUserDelete(
+    tx,
+    orgId: string,
+    user: User,
+    userPoints: number,
+    actionByUserId: string,
+  ): Promise<OrgTransactionDto | null> {
+    const [org, claimPointsEventList] = await Promise.all([
+      this.getById(orgId),
+      this.prisma.claimPointsEvent.findMany({
+        where: { type: ClaimPointsEventTypeEnum.DELETE_USER_EVENT },
+      }),
+    ]);
+    if (userPoints === 0) return null;
+    const claimPointsEvent = claimPointsEventList[0];
+
+    return this.createOrgEmployeesTransaction(
+      tx,
+      orgId,
+      claimPointsEvent.id,
+      [user],
+      userPoints,
+      actionByUserId,
+      null,
+      OrgTransactionTypeEnum.EMPLOYEES_TO_ORG_BY_EVENT,
+      false,
+    );
   }
 
   async createTransactionOrgToEmployeeSignup(
@@ -200,7 +244,7 @@ export class AdminOrgsService {
     if (org.signupPoints <= 0) return null;
     const claimPointsEvent = claimPointsEventList[0];
 
-    return this.createOrgTransactionToEmployees(
+    return this.createOrgEmployeesTransaction(
       tx,
       orgId,
       claimPointsEvent.id,
@@ -226,7 +270,7 @@ export class AdminOrgsService {
       throw new ConflictException("Employee Number doesn't match DB.");
 
     return this.prisma.$transaction(async (tx) => {
-      return this.createOrgTransactionToEmployees(
+      return this.createOrgEmployeesTransaction(
         tx,
         orgId,
         claimPointsEvent.id,

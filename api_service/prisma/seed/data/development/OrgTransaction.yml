@@ -1,7 +1,7 @@
 - id: ca16d572-9640-4470-8c8a-af3bb3fd42b6
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   type: ADMIN_TO_ORG
-  totalAmount: 24000
+  totalAmount: 25200
   createdById: 71bed16a-98d9-479b-b5f4-f934a2278aae
   createdAt: 2022-11-14T21:59:43.10-05:00
 
@@ -17,7 +17,7 @@
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   type: ORG_TO_EMPLOYEES_BY_EVENT
   eventId: e0c01322-f499-4f84-baac-af230e238d07
-  totalAmount: 2400
+  totalAmount: 3600
   createdById: 71bed16a-98d9-479b-b5f4-f934a2278aae
   createdAt: 2022-11-13T21:59:43.10-05:00
 
