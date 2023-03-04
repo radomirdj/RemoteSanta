@@ -18,6 +18,7 @@ import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
 import { UsersService } from '../users/users.service';
 import { UserDto } from '../users/dtos/user.dto';
 import { EmailsService } from '../emails/emails.service';
+import consts from '../utils/consts';
 
 @Injectable()
 export class AdminOrgsService {
@@ -62,8 +63,8 @@ export class AdminOrgsService {
     });
   }
 
-  getOrgTransactionList(orgId: string): Promise<OrgTransactionDto[]> {
-    return this.prisma.orgTransaction.findMany({
+  async getOrgTransactionList(orgId: string): Promise<OrgTransactionDto[]> {
+    const orgTransactionList = await this.prisma.orgTransaction.findMany({
       include: {
         event: true,
       },
@@ -76,6 +77,13 @@ export class AdminOrgsService {
         },
       ],
     });
+    const orgTransactionListFinal = orgTransactionList.map((orgTransaction) => {
+      if (consts.orgNegativeTransactions.includes(orgTransaction.type))
+        return { ...orgTransaction, totalAmount: -orgTransaction.totalAmount };
+      return orgTransaction;
+    });
+
+    return orgTransactionListFinal;
   }
 
   async getById(orgId: string): Promise<Org> {
