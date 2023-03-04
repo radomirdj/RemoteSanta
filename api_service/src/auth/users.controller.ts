@@ -101,4 +101,10 @@ export class UsersController {
   async getUserDetails(@Param('id') id: string, @CurrentUser() user: User) {
     return this.adminUsersService.getUserDetailsById(id, true, user.orgId);
   }
+
+  @Delete('/:id')
+  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  async deleteUser(@Param('id') id: string, @CurrentUser() user: User) {
+    return this.adminUsersService.deleteUser(id, user.id, true, user.orgId);
+  }
 }
