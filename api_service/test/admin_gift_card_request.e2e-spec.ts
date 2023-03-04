@@ -429,6 +429,62 @@ describe('admin/gift-card-requests', () => {
       });
     });
 
+    it('/:id/decline (POST) -  Admin decline gift card request of deleted user', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/gift-card-requests/${giftCardRequest3.id}/decline`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send(declineRequest)
+        .expect(201);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest3.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest3,
+        status: GiftCardRequestStatusEnum.DECLINED,
+      });
+
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...giftCardRequest3,
+          status: GiftCardRequestStatusEnum.DECLINED,
+        },
+        prisma,
+      );
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: userDeleted1ReservedBalanceSideId,
+        toId: platformBalanceSideId,
+        amount: giftCardRequest3.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_DECLINED_DELETED_USER,
+      });
+
+      await checkBalance(ledgerService, userDeleted1.id, {
+        pointsActive: 0,
+        pointsReserved: 0,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.update({
+        where: { id },
+        data: { status: GiftCardRequestStatusEnum.PENDING },
+      });
+    });
+
     it('/:id/decline (POST) -  (ADMIN) try to decline gift card request which is already fulfilled', async () => {
       await request(app.getHttpServer())
         .post(

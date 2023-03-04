@@ -126,6 +126,7 @@ export class AdminGiftCardRequestsService {
           giftCardRequest.userId,
           giftCardRequest.amount,
           giftCardRequest.id,
+          giftCardRequest.user,
         ),
         tx.giftCardRequest.update({
           where: { id },
