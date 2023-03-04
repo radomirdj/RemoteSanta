@@ -86,6 +86,7 @@ describe('admin/gift-card-requests', () => {
         ...giftCardRequest1,
         integrationTitle: giftCardIntegration1.title,
       });
+      expect(response.body.user.deleted).toEqual(false);
     });
 
     it('/:id (GET) -  Admin get gift card request from deleted user', async () => {
@@ -112,6 +113,7 @@ describe('admin/gift-card-requests', () => {
       expect(response.body.user.userBalance.pointsReserved).toEqual(
         userDeleted1ReservedPoints,
       );
+      expect(response.body.user.deleted).toEqual(true);
     });
 
     it('/:id (GET) - user (NOT ADMIN) try to get gift card request', async () => {

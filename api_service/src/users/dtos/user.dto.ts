@@ -17,6 +17,9 @@ export class UserDto {
   lastName: string;
 
   @Expose()
+  deleted: boolean;
+
+  @Expose()
   accessToken?: string;
 
   @Expose()
