@@ -39,6 +39,8 @@ import {
   userDeleted1,
   userDeleted1ActivePoints,
   userDeleted1ReservedPoints,
+  user3ReservedBalanceSideId,
+  userDeleted1ReservedBalanceSideId,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
@@ -247,6 +249,72 @@ describe('admin/gift-card-requests', () => {
             createToken({ email: user2.email, sub: user2.cognitoSub }),
         )
         .expect(404);
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.update({
+        where: { id },
+        data: { status: GiftCardRequestStatusEnum.PENDING },
+      });
+
+      await prisma.giftCard.deleteMany({
+        where: { giftCardRequestId: id },
+      });
+    });
+
+    it('/:id/fulfill (POST) -  Admin fulfill gift card request', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/gift-card-requests/${giftCardRequest3.id}/fulfill`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .attach('file', join(__dirname, 'files/gift_card_image.png'))
+        .expect(201);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest3.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest3,
+        status: GiftCardRequestStatusEnum.COMPLETED,
+      });
+
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...giftCardRequest3,
+          status: GiftCardRequestStatusEnum.COMPLETED,
+        },
+        prisma,
+      );
+
+      const giftCard = await prisma.giftCard.findUnique({
+        where: { giftCardRequestId: id },
+      });
+      expect(giftCard.createdById).toEqual(admin.id);
+      expect(giftCard.giftCardRequestId).toEqual(id);
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: userDeleted1ReservedBalanceSideId,
+        toId: platformBalanceSideId,
+        amount: giftCardRequest3.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_COMPLETED,
+      });
+
+      await checkBalance(ledgerService, userDeleted1.id, {
+        pointsActive: 0,
+        pointsReserved: 0,
+      });
 
       // Clean DB
       await prisma.ledger.deleteMany({

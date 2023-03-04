@@ -65,6 +65,11 @@ export const user3ActiveBalanceSideId = 'a6490a6e-253b-4aa0-810c-f7e5b3790138';
 export const user3ReservedBalanceSideId =
   '7ed49c43-db63-4631-84ae-d07bc461bbbb';
 
+export const userDeleted1ActiveBalanceSideId =
+  '9b4e11c9-d57c-4b20-a689-706000479691';
+export const userDeleted1ReservedBalanceSideId =
+  'de836447-8b92-4dfd-b1df-00e716fb6f39';
+
 export const user2 = users[1];
 export const user2ActivePoints = 0;
 export const user2ReservedPoints = 0;
