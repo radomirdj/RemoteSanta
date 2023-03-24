@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
+  adminDeleteUser,
   cancelInviteAdmin,
   getAdminInviteList,
   getAdminOrganization,
@@ -14,6 +15,8 @@ import { setCloseDialog, setCloseModal } from "../user-invites/actions";
 import {
   cancelAdminInviteFailure,
   cancelAdminInviteSuccess,
+  deleteAdminUserFailure,
+  deleteAdminUserSuccess,
   fetchAdminInviteList,
   fetchAdminInviteListFailure,
   fetchAdminInviteListSuccess,
@@ -30,6 +33,7 @@ import {
 } from "./actions";
 import {
   CANCEL_ADMIN_INVITE,
+  DELETE_ADMIN_USER,
   FETCH_ADMIN_INVITE_LIST,
   FETCH_ADMIN_ORGANIZATION,
   FETCH_ADMIN_ORGANIZATION_LIST,
@@ -39,6 +43,7 @@ import {
 } from "./actionTypes";
 import {
   CancelAdminInvite,
+  DeleteAdminUser,
   FetchAdminInviteList,
   FetchAdminOrganization,
   FetchAdminUser,
@@ -195,6 +200,25 @@ function* fetchAdminUserSaga(action: FetchAdminUser) {
   }
 }
 
+function* deleteAdminUserSaga(action: DeleteAdminUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<string> = yield call(
+      adminDeleteUser,
+      action.payload,
+      token
+    );
+    yield put(deleteAdminUserSuccess());
+    action.navigate(`/admin-users/${action.payload.organizationId}`);
+  } catch (e) {
+    yield put(
+      deleteAdminUserFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -208,6 +232,7 @@ function* AdminOrganizationSaga() {
     takeLatest(POST_ADMIN_INVITE, postAdminInviteSaga),
     takeLatest(CANCEL_ADMIN_INVITE, cancelAdminInviteSaga),
     takeLatest(FETCH_ADMIN_USER, fetchAdminUserSaga),
+    takeLatest(DELETE_ADMIN_USER, deleteAdminUserSaga),
   ]);
 }
 

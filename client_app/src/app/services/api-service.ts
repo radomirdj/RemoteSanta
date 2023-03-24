@@ -14,6 +14,7 @@ import {
 } from "../store/admin-organization-transaction/types";
 import {
   CancelAdminInvitePayload,
+  DeleteAdminUserPayload,
   FetchAdminInviteListPayload,
   FetchAdminOrganizationPayload,
   FetchAdminUserListPayload,
@@ -248,5 +249,13 @@ export const getGiftCardFile = (
 ) =>
   api.get<any>(`gift-card-requests/${payload.giftCardRequestId}/file`, {
     responseType: "arraybuffer",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const adminDeleteUser = (
+  payload: DeleteAdminUserPayload,
+  token: string
+) =>
+  api.delete<string>(`admin/users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });

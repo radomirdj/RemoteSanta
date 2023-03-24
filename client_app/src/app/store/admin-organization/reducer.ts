@@ -21,6 +21,9 @@ import {
   FETCH_ADMIN_USER,
   FETCH_ADMIN_USER_SUCCESS,
   FETCH_ADMIN_USER_FAILURE,
+  DELETE_ADMIN_USER,
+  DELETE_ADMIN_USER_SUCCESS,
+  DELETE_ADMIN_USER_FAILURE,
 } from "./actionTypes";
 
 import { AdminOrganizationActions, AdminOrganizationState } from "./types";
@@ -164,6 +167,23 @@ export default (state = initialState, action: AdminOrganizationActions) => {
         ...state,
         pending: false,
         adminUser: null,
+        error: action.payload.error,
+      };
+    case DELETE_ADMIN_USER:
+      return {
+        ...state,
+        pending: true,
+      };
+    case DELETE_ADMIN_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case DELETE_ADMIN_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
         error: action.payload.error,
       };
     default:

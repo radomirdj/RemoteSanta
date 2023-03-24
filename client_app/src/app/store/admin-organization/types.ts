@@ -21,6 +21,9 @@ import {
   FETCH_ADMIN_USER,
   FETCH_ADMIN_USER_SUCCESS,
   FETCH_ADMIN_USER_FAILURE,
+  DELETE_ADMIN_USER,
+  DELETE_ADMIN_USER_SUCCESS,
+  DELETE_ADMIN_USER_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -134,6 +137,15 @@ export interface FetchAdminUserFailurePayload {
   error: string;
 }
 
+export interface DeleteAdminUserPayload {
+  userId: string;
+  organizationId: string;
+}
+
+export interface DeleteAdminUserFailurePayload {
+  error: string;
+}
+
 export interface FetchAdminOrganizationList {
   type: typeof FETCH_ADMIN_ORGANIZATION_LIST;
 }
@@ -236,6 +248,21 @@ export interface FetchAdminUserFailure {
   payload: FetchAdminUserFailurePayload;
 }
 
+export interface DeleteAdminUser {
+  type: typeof DELETE_ADMIN_USER;
+  payload: DeleteAdminUserPayload;
+  navigate: Function;
+}
+
+export interface DeleteAdminUserSuccess {
+  type: typeof DELETE_ADMIN_USER_SUCCESS;
+}
+
+export interface DeleteAdminUserFailure {
+  type: typeof DELETE_ADMIN_USER_FAILURE;
+  payload: DeleteAdminUserFailurePayload;
+}
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
@@ -257,4 +284,7 @@ export type AdminOrganizationActions =
   | CancelAdminInviteFailure
   | FetchAdminUser
   | FetchAdminUserSuccess
-  | FetchAdminUserFailure;
+  | FetchAdminUserFailure
+  | DeleteAdminUser
+  | DeleteAdminUserSuccess
+  | DeleteAdminUserFailure;
