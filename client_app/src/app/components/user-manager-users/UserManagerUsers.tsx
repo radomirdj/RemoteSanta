@@ -48,6 +48,13 @@ const UserManagerUsers = () => {
     { field: "firstName", headerName: "Firstname", width: 250 },
     { field: "lastName", headerName: "Lastname", width: 250 },
     { field: "email", headerName: "Email", width: 300 },
+    {
+      field: "details",
+      headerName: "Details",
+      width: 200,
+      sortable: false,
+      renderCell: detailsButton,
+    },
   ];
 
   const rows: GridRowsProp = orgUserList.map((orgUser) => {
@@ -55,6 +62,7 @@ const UserManagerUsers = () => {
       firstName: orgUser.firstName,
       lastName: orgUser.lastName,
       email: orgUser.email,
+      details: "",
       id: orgUser.id,
     };
   });

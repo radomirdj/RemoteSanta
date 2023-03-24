@@ -1,9 +1,11 @@
 @use "./../variables.scss";
 
 $card-width: 440px;
+$back-icon-margin-bottom:3px;
+$button-height: 44px;
 
 .user-manager-user-details{
-    background-image: url("./../../assets/home-image.svg");
+    background-image: url("./../../assets/admin-user-details.svg");
 
     .card-style{
         position: absolute;
@@ -15,4 +17,65 @@ $card-width: 440px;
         padding: variables.$base-unit * 5;
         width: $card-width;
     }
+    .title-style{
+        font-family: "Montserrat";
+        font-weight: 500;
+        font-size: variables.$font-size-title;
+        margin-bottom: variables.$base-unit * 4;
+    }
+
+    .child-card{
+        background-color: rgb(207, 209, 129, 0.5);
+        height: variables.$base-unit * 17;
+        border-radius: variables.$base-unit * 3;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+        font-family: "Montserrat";
+        padding: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 5;
+
+        .column-name{
+            font-weight: 600;
+        }
+
+        .grid-container{
+            margin-bottom: variables.$base-unit *2;
+        }
+    }
+
+    .info-style{
+        font-family: "Montserrat";
+        font-size: variables.$font-size-medium;
+        margin-bottom: variables.$base-unit;
+    }
+   
+    .back-button,
+        & .back-button:hover {
+            float: left;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height: $button-height;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+
+            .back-icon{
+                margin-bottom: $back-icon-margin-bottom;
+            }
+        }
+     
+        .delete-button,
+        & .delete-button:hover {
+            background-color: variables.$error-color;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: white;
+            text-transform: none;
+            height: $button-height;
+            float: right;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
 }

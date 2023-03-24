@@ -149,6 +149,16 @@ $content-width:675px;
 
 .MuiDialog-root{
   .MuiDialog-container{
+    .dialog-title{
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: variables.$font-size-large;
+    }
+
+    .dialog-text{
+      font-family: "Montserrat";
+    }
+    
     .dialog-back-button{
       border-color: variables.$color-neutral-black;
       border-radius: variables.$base-unit;

@@ -26,7 +26,13 @@ import {
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
 import { FetchGiftCardFilePayload } from "../store/gift-card-request/types";
-import { IOrganization, IOrgTransaction, IOrgUser } from "../store/orgs/types";
+import {
+  DeleteOrgUserPayload,
+  FetchOrgUserPayload,
+  IOrganization,
+  IOrgTransaction,
+  IOrgUser,
+} from "../store/orgs/types";
 import {
   CancelUserInvitePayload,
   FetchUserInviteListPayload,
@@ -257,5 +263,15 @@ export const adminDeleteUser = (
   token: string
 ) =>
   api.delete<string>(`admin/users/${payload.userId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const getOrgUser = (payload: FetchOrgUserPayload, token: string) =>
+  api.get<IOrgUser>(`users/${payload.userId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const orgDeleteUser = (payload: DeleteOrgUserPayload, token: string) =>
+  api.delete<string>(`users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });

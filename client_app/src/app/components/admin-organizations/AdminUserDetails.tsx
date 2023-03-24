@@ -51,8 +51,6 @@ const AdminUserDetails = () => {
     );
   };
 
-  console.log(user);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
