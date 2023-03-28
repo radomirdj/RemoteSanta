@@ -244,7 +244,7 @@ export const org2 = {
   employeeNumber: 1,
 };
 
-export const org2Points = 0;
+export const org2Points = 25200;
 export const org2BalanceSideId = '1c80baff-e523-4787-a94d-7edcf35216aa';
 
 export const claimPointsEvent1 = {

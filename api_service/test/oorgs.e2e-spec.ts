@@ -140,7 +140,7 @@ describe('orgs', () => {
         )
         .expect(200);
 
-      expect(response.body.length).toEqual(0);
+      expect(response.body.length).toEqual(1);
     });
 
     it('/ (GET) - NON USER_MANAGER try to get ORGS TRANSACTIONS', async () => {

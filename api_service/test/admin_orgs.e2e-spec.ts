@@ -196,7 +196,7 @@ describe('admin/orgs', () => {
         )
         .expect(200);
 
-      expect(response.body.length).toEqual(0);
+      expect(response.body.length).toEqual(1);
     });
 
     it('/ (GET) - NON ADMIN user, try to get ORGS TRANSACTIONS', async () => {
@@ -381,7 +381,9 @@ describe('admin/orgs', () => {
       addedLadger.forEach((addedLadgerEntity) => {
         expect(addedLadgerEntity.fromId).toEqual(org1BalanceSideId);
         expect(addedLadgerEntity.amount).toEqual(org1.pointsPerMonth);
-        expect(addedLadgerEntity.type).toEqual(LedgerTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT);
+        expect(addedLadgerEntity.type).toEqual(
+          LedgerTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+        );
       });
 
       // Check User And Org balance

@@ -5,6 +5,13 @@
   toId: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   detailsJson: { 'transactionId': 'ca16d572-9640-4470-8c8a-af3bb3fd42b6' }
 
+- id: cd3b7eb5-c3a5-4e9c-81b5-e14609544352
+  type: ADMIN_TO_ORG
+  amount: 25200
+  fromId: 4b7e82dd-2f71-4be4-a55f-cc20b60c6eae
+  toId: 1c80baff-e523-4787-a94d-7edcf35216aa
+  detailsJson: { 'transactionId': 'b496b73a-9ad4-46c6-87d2-36ee4aa52f9c' }
+
 - id: 96ef0480-494e-4c76-be1d-c1f6eae9b1c4
   type: ORG_TO_EMPLOYEES_BY_EVENT
   amount: 1200
