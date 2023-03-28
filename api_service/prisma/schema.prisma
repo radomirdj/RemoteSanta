@@ -96,6 +96,7 @@ enum ClaimPointsEventTypeEnum {
   MONTHLY_ORG_TO_EMPLOYEE
   SIGN_UP_EVENT
   DELETE_USER_EVENT
+  ORG_SEND_POINTS_EVENT
 }
 
 model ClaimPointsEvent {
@@ -116,6 +117,7 @@ enum OrgTransactionTypeEnum {
 model OrgTransaction {
   id                          String                        @id @default(uuid())
   createdAt                   DateTime                      @default(now())
+  message                     String?
   type                        OrgTransactionTypeEnum
   totalAmount                 Int
   org                         Org                           @relation(fields: [orgId], references: [id])

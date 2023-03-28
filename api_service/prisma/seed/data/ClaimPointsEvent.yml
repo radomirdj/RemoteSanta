@@ -98,3 +98,9 @@
   title: 'DELETE USER'
   type: DELETE_USER_EVENT
   validTo: 2000-01-01T00:00:00.000Z
+
+- id: 1b3a930b-adb4-4ffb-b6b4-0859c15903fc
+  description: 'ORG SEND POINTS TO EMPLOYEE'
+  title: 'SEND POINTS TO EMPLOYEE'
+  type: ORG_SEND_POINTS_EVENT
+  validTo: 2000-01-01T00:00:00.000Z

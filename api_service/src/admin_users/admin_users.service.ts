@@ -67,4 +67,28 @@ export class AdminUsersService {
       });
     });
   }
+
+  async sendPointsToEmployee(
+    id: string,
+    actionByUserId,
+    amount: number,
+    message: string,
+    checkOrgConstraint: boolean = false,
+    orgIdConstraint?: string,
+  ) {
+    const user = await this.usersService.findDbBasicUserById(id);
+    if (!user || (checkOrgConstraint && orgIdConstraint !== user.orgId))
+      throw new NotFoundException('User Not Found');
+
+    return this.prisma.$transaction(async (tx) => {
+      return this.adminOrgsService.createTransactionOrgToEmployeeSend(
+        tx,
+        user.orgId,
+        user,
+        actionByUserId,
+        amount,
+        message,
+      );
+    });
+  }
 }

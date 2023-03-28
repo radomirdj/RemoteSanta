@@ -265,6 +265,12 @@ export const deleteUserEvent = {
   description: 'DELETE USER',
 };
 
+export const orgSendToUserEvent = {
+  id: '1b3a930b-adb4-4ffb-b6b4-0859c15903fc',
+  validTo: '2000-01-01T00:00:00.000Z',
+  description: 'ORG SEND POINTS TO EMPLOYEE',
+};
+
 export const userInvite1 = {
   id: '51f87502-14b9-4b13-b892-7b9dc122e9d3',
   code: 'ABCDEF',

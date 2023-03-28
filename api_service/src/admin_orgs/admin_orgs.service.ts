@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   ConflictException,
+  BadRequestException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
@@ -153,11 +154,13 @@ export class AdminOrgsService {
     finalFunc = null,
     type: OrgTransactionTypeEnum = OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
     orgToEmployees = true,
+    message = null,
   ): Promise<OrgTransactionDto> {
     const orgTransaction = await tx.orgTransaction.create({
       data: {
         totalAmount: employeeList.length * pointsPerEmployee,
         type,
+        message,
         org: {
           connect: {
             id: orgId,
@@ -230,18 +233,51 @@ export class AdminOrgsService {
     );
   }
 
+  async createTransactionOrgToEmployeeSend(
+    tx,
+    orgId: string,
+    user: User,
+    actionByUserId: string,
+    amount: number,
+    message: string,
+  ): Promise<OrgTransactionDto | null> {
+    const [orgBalance, claimPointsEventList] = await Promise.all([
+      this.ledgerService.getOrgBalance(orgId),
+      this.prisma.claimPointsEvent.findMany({
+        where: { type: ClaimPointsEventTypeEnum.ORG_SEND_POINTS_EVENT },
+      }),
+    ]);
+    if (orgBalance < amount)
+      throw new BadRequestException('Not Enough Balance');
+    const claimPointsEvent = claimPointsEventList[0];
+
+    return this.createOrgEmployeesTransaction(
+      tx,
+      orgId,
+      claimPointsEvent.id,
+      [user],
+      amount,
+      actionByUserId,
+      null,
+      OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+      true,
+      message,
+    );
+  }
+
   async createTransactionOrgToEmployeeSignup(
     tx,
     orgId: string,
     user: User,
   ): Promise<OrgTransactionDto | null> {
-    const [org, claimPointsEventList] = await Promise.all([
+    const [org, claimPointsEventList, orgBalance] = await Promise.all([
       this.getById(orgId),
       this.prisma.claimPointsEvent.findMany({
         where: { type: ClaimPointsEventTypeEnum.SIGN_UP_EVENT },
       }),
+      this.ledgerService.getOrgBalance(orgId),
     ]);
-    if (org.signupPoints <= 0) return null;
+    if (org.signupPoints <= 0 || orgBalance < org.signupPoints) return null;
     const claimPointsEvent = claimPointsEventList[0];
 
     return this.createOrgEmployeesTransaction(
