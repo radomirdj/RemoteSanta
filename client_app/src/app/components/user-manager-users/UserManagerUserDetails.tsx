@@ -169,6 +169,3 @@ const UserManagerUserDetails = () => {
 };
 
 export default UserManagerUserDetails;
-function getOrgUserSelector(state: unknown): unknown {
-  throw new Error("Function not implemented.");
-}

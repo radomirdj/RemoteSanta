@@ -1,0 +1,43 @@
+@use "./../variables.scss";
+
+$grid-margin-bottom:10px;
+
+.user-manager-send-points{
+    background-image: url("./../../assets/single-employee-transaction.svg");
+
+    .card-style{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        border-radius: variables.$base-unit * 3;
+        padding: variables.$base-unit * 5;
+        width: $card-width;
+    }
+
+    .title-style{
+        font-family: "Montserrat";
+        font-weight: 500;
+        font-size: variables.$font-size-title;
+        margin-bottom: variables.$base-unit * 4;
+    }
+
+    .child-card{
+        background-color: rgb(207, 209, 129, 0.5);
+        height: variables.$base-unit * 11;
+        border-radius: variables.$base-unit * 3;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+        font-family: "Montserrat";
+        padding: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 5;
+
+        .column-name{
+            font-weight: 600;
+        }
+
+        .grid-container{
+            margin-bottom: $grid-margin-bottom;
+        }
+    }
+}
