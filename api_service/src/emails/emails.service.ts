@@ -97,4 +97,17 @@ export class EmailsService {
       registrationUrl,
     });
   }
+
+  async sendPointsEmail(
+    to: string,
+    message: string,
+    companyName: string,
+    firstName: string,
+  ) {
+    return this.sendEmail('send-points', to, {
+      message,
+      companyName,
+      firstName,
+    });
+  }
 }
