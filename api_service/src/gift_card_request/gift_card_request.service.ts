@@ -4,6 +4,9 @@ import { PrismaService } from '../prisma/prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { GiftCardIntegrationsService } from '../gift_card_integrations/gift_card_integrations.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
+import { EmailsService } from '../emails/emails.service';
+import consts from '../utils/consts';
+
 import {
   User,
   GiftCardRequest,
@@ -16,17 +19,21 @@ export class GiftCardRequestService {
     private prisma: PrismaService,
     private giftCardIntegrationsService: GiftCardIntegrationsService,
     private ledgerService: LedgerService,
+    private emailsService: EmailsService,
     @InjectS3() private readonly s3: S3,
   ) {}
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
-    await Promise.all([
+    const [_, __, org] = await Promise.all([
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
         data.amount,
       ),
       this.ledgerService.validateUserActiveBalance(user.id, data.amount),
+      this.prisma.org.findUnique({
+        where: { id: user.orgId },
+      }),
     ]);
 
     return this.prisma.$transaction(async (tx) => {
@@ -52,6 +59,11 @@ export class GiftCardRequestService {
         user.id,
         data.amount,
         giftCardRequest.id,
+      );
+      await this.emailsService.giftCardRequestCreatedEmail(
+        consts.adminRecepients,
+        `${user.firstName} ${user.lastName}`,
+        org.name,
       );
       return giftCardRequest;
     });

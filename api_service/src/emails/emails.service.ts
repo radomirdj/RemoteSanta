@@ -110,4 +110,15 @@ export class EmailsService {
       firstName,
     });
   }
+
+  async giftCardRequestCreatedEmail(
+    to: string[],
+    name: string,
+    companyName: string,
+  ) {
+    return this.sendEmail('gift-card-request-created', to, {
+      companyName,
+      name,
+    });
+  }
 }

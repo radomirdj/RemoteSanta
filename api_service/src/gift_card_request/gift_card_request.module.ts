@@ -4,9 +4,15 @@ import { GiftCardRequestService } from './gift_card_request.service';
 import { PrismaModule } from '../prisma/prisma.module';
 import { LedgerModule } from '../ledger/ledger.module';
 import { GiftCardIntegrationsModule } from '../gift_card_integrations/gift_card_integrations.module';
+import { EmailsModule } from '../emails/emails.module';
 
 @Module({
-  imports: [PrismaModule, GiftCardIntegrationsModule, LedgerModule],
+  imports: [
+    PrismaModule,
+    GiftCardIntegrationsModule,
+    LedgerModule,
+    EmailsModule,
+  ],
   controllers: [GiftCardRequestController],
   providers: [GiftCardRequestService],
 })
