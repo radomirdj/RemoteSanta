@@ -2,6 +2,7 @@
 
 $content-width:675px;
 $back-icon-margin-bottom:3px;
+$warning-font-size:13px;
 
 .admin-invites{
     background-image: url("./../../assets/home-image.svg");
@@ -187,6 +188,40 @@ $back-icon-margin-bottom:3px;
       height: variables.$base-unit * 5;
       font-weight: bold;
       margin-bottom: variables.$base-unit * 2;
+    }
+
+    .dialog-title{
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: variables.$font-size-large;
+    }
+
+    .dialog-text{
+      font-family: "Montserrat";
+    }
+
+    .warning {
+      color: variables.$error-color;
+      text-align: start;
+      margin-top:variables.$base-unit;
+      display: inline-flex;
+      width: 100%;
+  
+      .warning-icon {
+        width: $login-error-icon-width !important;
+        height: $login-error-icon-height;
+        width: 10%;
+        margin-right: variables.$base-unit;
+        margin-bottom: 2px;
+        color: variables.$color-dark-yellow;
+      }
+  
+      .warning-message {
+        font-weight: 500;
+        font-size: $warning-font-size;
+        color: variables.$color-dark-yellow;
+        font-family: "Montserrat";
+      }
     }
   }
 }

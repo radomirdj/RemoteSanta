@@ -4,24 +4,34 @@ import {
   getOrganization,
   getOrganizationTransactionList,
   getOrganizationUserList,
+  getOrgUser,
+  orgDeleteUser,
 } from "../../services/api-service";
 import {
+  deleteOrgUserFailure,
+  deleteOrgUserSuccess,
   fetchOrganizationFailure,
   fetchOrganizationSuccess,
   fetchOrganizationTransactionListFailure,
   fetchOrganizationTransactionListSuccess,
   fetchOrganizationUserListFailure,
   fetchOrganizationUserListSuccess,
+  fetchOrgUserFailure,
+  fetchOrgUserSuccess,
 } from "./actions";
 import {
+  DELETE_ORG_USER,
   FETCH_ORGANIZATION,
   FETCH_ORG_TRANSACTION_LIST,
+  FETCH_ORG_USER,
   FETCH_ORG_USER_LIST,
 } from "./actionTypes";
 import {
+  DeleteOrgUser,
   FetchOrganization,
   FetchOrganizationTransactionList,
   FetchOrganizationUserList,
+  FetchOrgUser,
   IOrganization,
   IOrgTransaction,
   IOrgUser,
@@ -92,6 +102,47 @@ function* fetchOrganizationUserListSaga(action: FetchOrganizationUserList) {
   }
 }
 
+function* fetchOrgUserSaga(action: FetchOrgUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<IOrgUser> = yield call(
+      getOrgUser,
+      action.payload,
+      token
+    );
+    yield put(
+      fetchOrgUserSuccess({
+        user: response.data,
+      })
+    );
+  } catch (e) {
+    yield put(
+      fetchOrgUserFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
+function* deleteOrgUserSaga(action: DeleteOrgUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<string> = yield call(
+      orgDeleteUser,
+      action.payload,
+      token
+    );
+    yield put(deleteOrgUserSuccess());
+    action.navigate("/user-manager-users");
+  } catch (e) {
+    yield put(
+      deleteOrgUserFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -104,6 +155,8 @@ function* OrganizationSaga() {
       fetchOrganizationTransactionListSaga
     ),
     takeLatest(FETCH_ORG_USER_LIST, fetchOrganizationUserListSaga),
+    takeLatest(FETCH_ORG_USER, fetchOrgUserSaga),
+    takeLatest(DELETE_ORG_USER, deleteOrgUserSaga),
   ]);
 }
 

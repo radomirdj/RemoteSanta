@@ -263,9 +263,14 @@ const UserManagerInvites = () => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Cancel invite</DialogTitle>
+          <DialogTitle id="alert-dialog-title" className="dialog-title">
+            Cancel invite
+          </DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+            <DialogContentText
+              id="alert-dialog-description"
+              className="dialog-text"
+            >
               Are you sure you want to cancel the invite?
             </DialogContentText>
           </DialogContent>

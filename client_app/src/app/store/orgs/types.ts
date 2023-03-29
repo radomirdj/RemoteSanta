@@ -1,3 +1,4 @@
+import { AuthUser, IUserBalance } from "../auth/types";
 import { IClaimPointEvent } from "../claim-points-event/types";
 import {
   FETCH_ORGANIZATION,
@@ -9,6 +10,12 @@ import {
   FETCH_ORG_USER_LIST,
   FETCH_ORG_USER_LIST_SUCCESS,
   FETCH_ORG_USER_LIST_FAILURE,
+  FETCH_ORG_USER,
+  FETCH_ORG_USER_SUCCESS,
+  FETCH_ORG_USER_FAILURE,
+  DELETE_ORG_USER,
+  DELETE_ORG_USER_SUCCESS,
+  DELETE_ORG_USER_FAILURE,
 } from "./actionTypes";
 
 export interface IOrganization {
@@ -34,6 +41,7 @@ export interface IOrgUser {
   email: string;
   firstName: string;
   lastName: string;
+  userBalance?: IUserBalance;
 }
 
 export interface OrganizationState {
@@ -41,6 +49,7 @@ export interface OrganizationState {
   organization: IOrganization | null;
   orgTransactionList: IOrgTransaction[];
   orgUserList: IOrgUser[];
+  orgUser: IOrgUser | null;
   error: string | null;
 }
 
@@ -65,6 +74,26 @@ export interface FetchOrganizationUserListSuccessPayload {
 }
 
 export interface FetchOrganizationUserListFailurePayload {
+  error: string;
+}
+
+export interface FetchOrgUserPayload {
+  userId: string;
+}
+
+export interface FetchOrgUserSuccessPayload {
+  user: IOrgUser;
+}
+
+export interface FetchOrgUserFailurePayload {
+  error: string;
+}
+
+export interface DeleteOrgUserPayload {
+  userId: string;
+}
+
+export interface DeleteOrgUserFailurePayload {
   error: string;
 }
 
@@ -110,6 +139,36 @@ export interface FetchOrganizationUserListFailure {
   payload: FetchOrganizationUserListFailurePayload;
 }
 
+export interface FetchOrgUser {
+  type: typeof FETCH_ORG_USER;
+  payload: FetchOrgUserPayload;
+}
+
+export interface FetchOrgUserSuccess {
+  type: typeof FETCH_ORG_USER_SUCCESS;
+  payload: FetchOrgUserSuccessPayload;
+}
+
+export interface FetchOrgUserFailure {
+  type: typeof FETCH_ORG_USER_FAILURE;
+  payload: FetchOrgUserFailurePayload;
+}
+
+export interface DeleteOrgUser {
+  type: typeof DELETE_ORG_USER;
+  payload: DeleteOrgUserPayload;
+  navigate: Function;
+}
+
+export interface DeleteOrgUserSuccess {
+  type: typeof DELETE_ORG_USER_SUCCESS;
+}
+
+export interface DeleteOrgUserFailure {
+  type: typeof DELETE_ORG_USER_FAILURE;
+  payload: DeleteOrgUserFailurePayload;
+}
+
 export type OrganizationActions =
   | FetchOrganization
   | FetchOrganizationSuccess
@@ -119,4 +178,10 @@ export type OrganizationActions =
   | FetchOrganizationTransactionListFailure
   | FetchOrganizationUserList
   | FetchOrganizationUserListSuccess
-  | FetchOrganizationUserListFailure;
+  | FetchOrganizationUserListFailure
+  | FetchOrgUser
+  | FetchOrgUserSuccess
+  | FetchOrgUserFailure
+  | DeleteOrgUser
+  | DeleteOrgUserSuccess
+  | DeleteOrgUserFailure;

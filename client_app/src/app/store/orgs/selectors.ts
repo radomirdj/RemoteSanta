@@ -13,3 +13,6 @@ export const getOrganizationUserListSelector = (state: AppState) =>
   state.organization.orgUserList;
 
 export const getErrorSelector = (state: AppState) => state.organization.error;
+
+export const getOrganizationUserSelector = (state: AppState) =>
+  state.organization.orgUser;

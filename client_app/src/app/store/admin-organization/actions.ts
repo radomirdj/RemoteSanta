@@ -20,6 +20,9 @@ import {
   FETCH_ADMIN_USER,
   FETCH_ADMIN_USER_SUCCESS,
   FETCH_ADMIN_USER_FAILURE,
+  DELETE_ADMIN_USER,
+  DELETE_ADMIN_USER_SUCCESS,
+  DELETE_ADMIN_USER_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationList,
@@ -61,6 +64,11 @@ import {
   FetchAdminUserSuccess,
   FetchAdminUserFailurePayload,
   FetchAdminUserFailure,
+  DeleteAdminUser,
+  DeleteAdminUserPayload,
+  DeleteAdminUserSuccess,
+  DeleteAdminUserFailurePayload,
+  DeleteAdminUserFailure,
 } from "./types";
 
 export const fetchAdminOrganizationList = (): FetchAdminOrganizationList => ({
@@ -198,5 +206,25 @@ export const fetchAdminUserFailure = (
   payload: FetchAdminUserFailurePayload
 ): FetchAdminUserFailure => ({
   type: FETCH_ADMIN_USER_FAILURE,
+  payload,
+});
+
+export const deleteAdminUser = (
+  payload: DeleteAdminUserPayload,
+  navigate: Function
+): DeleteAdminUser => ({
+  type: DELETE_ADMIN_USER,
+  payload,
+  navigate,
+});
+
+export const deleteAdminUserSuccess = (): DeleteAdminUserSuccess => ({
+  type: DELETE_ADMIN_USER_SUCCESS,
+});
+
+export const deleteAdminUserFailure = (
+  payload: DeleteAdminUserFailurePayload
+): DeleteAdminUserFailure => ({
+  type: DELETE_ADMIN_USER_FAILURE,
   payload,
 });

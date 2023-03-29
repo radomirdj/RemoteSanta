@@ -9,6 +9,12 @@ import {
   FETCH_ORG_USER_LIST,
   FETCH_ORG_USER_LIST_SUCCESS,
   FETCH_ORG_USER_LIST_FAILURE,
+  FETCH_ORG_USER,
+  FETCH_ORG_USER_SUCCESS,
+  FETCH_ORG_USER_FAILURE,
+  DELETE_ORG_USER,
+  DELETE_ORG_USER_SUCCESS,
+  DELETE_ORG_USER_FAILURE,
 } from "./actionTypes";
 
 import { OrganizationActions, OrganizationState } from "./types";
@@ -18,6 +24,7 @@ const initialState: OrganizationState = {
   organization: null,
   orgTransactionList: [],
   orgUserList: [],
+  orgUser: null,
   error: null,
 };
 
@@ -79,6 +86,42 @@ export default (state = initialState, action: OrganizationActions) => {
         ...state,
         pending: false,
         orgUserList: [],
+        error: action.payload.error,
+      };
+    case FETCH_ORG_USER:
+      return {
+        ...state,
+        pending: true,
+      };
+    case FETCH_ORG_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        orgUser: action.payload.user,
+        error: null,
+      };
+    case FETCH_ORG_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        orgUser: null,
+        error: action.payload.error,
+      };
+    case DELETE_ORG_USER:
+      return {
+        ...state,
+        pending: true,
+      };
+    case DELETE_ORG_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case DELETE_ORG_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
         error: action.payload.error,
       };
     default:

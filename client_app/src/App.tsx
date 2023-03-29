@@ -34,6 +34,7 @@ import UserManagerInvites from "./app/components/user-manager-invites/UserManage
 import UserManagerUsers from "./app/components/user-manager-users/UserManagerUsers";
 import AdminUserDetails from "./app/components/admin-organizations/AdminUserDetails";
 import UserManagerUserDetails from "./app/components/user-manager-users/UserManagerUserDetails";
+import UserManagerSendPoints from "./app/components/user-manager-users/UserManagerSendPoints";
 
 const App = () => {
   return (
@@ -245,6 +246,14 @@ const App = () => {
           element={
             <UserManagerRoute>
               <UserManagerUserDetails />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-send-points/:id"
+          element={
+            <UserManagerRoute>
+              <UserManagerSendPoints />
             </UserManagerRoute>
           }
         />

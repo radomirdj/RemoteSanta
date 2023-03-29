@@ -16,6 +16,8 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import { useNavigate } from "react-router-dom";
+import UserDetailsIcon from "../../assets/icons/user-details.svg";
+import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 
 const UserManagerUsers = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,10 @@ const UserManagerUsers = () => {
     navigate(`/user-manager-user-details/${userId}`);
   };
 
+  const userManagerSendPointsRedirect = (userId: string) => {
+    navigate(`/user-manager-send-points/${userId}`);
+  };
+
   const detailsButton = (params: GridRenderCellParams) => {
     return (
       <Button
@@ -39,7 +45,20 @@ const UserManagerUsers = () => {
         disableRipple
         onClick={() => userManagerUserDetailsRedirect(params.id as string)}
       >
-        Details
+        <img src={UserDetailsIcon} alt="" />
+      </Button>
+    );
+  };
+
+  const sendPoints = (params: GridRenderCellParams) => {
+    return (
+      <Button
+        variant="contained"
+        className="button-send-points"
+        disableRipple
+        onClick={() => userManagerSendPointsRedirect(params.id as string)}
+      >
+        <img src={GiftIconBlack} alt="" />
       </Button>
     );
   };
@@ -48,6 +67,20 @@ const UserManagerUsers = () => {
     { field: "firstName", headerName: "Firstname", width: 250 },
     { field: "lastName", headerName: "Lastname", width: 250 },
     { field: "email", headerName: "Email", width: 300 },
+    {
+      field: "sendPoints",
+      headerName: "Send Points",
+      width: 150,
+      sortable: false,
+      renderCell: sendPoints,
+    },
+    {
+      field: "details",
+      headerName: "Details",
+      width: 150,
+      sortable: false,
+      renderCell: detailsButton,
+    },
   ];
 
   const rows: GridRowsProp = orgUserList.map((orgUser) => {
@@ -55,6 +88,7 @@ const UserManagerUsers = () => {
       firstName: orgUser.firstName,
       lastName: orgUser.lastName,
       email: orgUser.email,
+      details: "",
       id: orgUser.id,
     };
   });

@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import Logo from "./../../assets/logo.svg";
-import LogoSmall from "./../../assets/logo-small.svg";
 import UserManager from "./../../assets/icons/user-manager.svg";
 import AvatarMale from "./../../assets/avatars/avatar-male.svg";
 import AvatarFemale from "./../../assets/avatars/avatar-female.svg";
