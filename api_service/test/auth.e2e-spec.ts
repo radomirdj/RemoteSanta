@@ -34,6 +34,7 @@ import {
   user2,
   user1ActiveBalanceSideId,
   deleteUserEvent,
+  orgSendToUserEvent,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
 import {
@@ -339,6 +340,161 @@ describe('Authentication system', () => {
 
     it('/:id (GET) - get USER details - Non Authorised error', async () => {
       await request(app.getHttpServer()).get(`/users/${user1.id}`).expect(401);
+    });
+  });
+
+  describe('/:id/send-points (POST)', () => {
+    const sendPointsBody = {
+      amount: 550,
+      message: 'abcba',
+    };
+
+    it('/:id/send-points (POST) - SEND ORG POINTS to USER1 by MANAGER', async () => {
+      await request(app.getHttpServer())
+        .post(`/users/${user1.id}/send-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(sendPointsBody)
+        .expect(201);
+
+      // Check Ledger and balance
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: org1BalanceSideId,
+        toId: user1ActiveBalanceSideId,
+        amount: sendPointsBody.amount,
+        type: LedgerTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+      });
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints + sendPointsBody.amount,
+        pointsReserved: user1ReservedPoints,
+      });
+
+      const orgBalance = await ledgerService.getOrgBalance(org1.id);
+      expect(orgBalance).toEqual(org1Points - sendPointsBody.amount);
+
+      // Check Org Transaction
+      const orgTransactionList = await prisma.orgTransaction.findMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      expect(orgTransactionList.length).toEqual(1);
+      const orgTransaction = orgTransactionList[0];
+      expect(orgTransaction.totalAmount).toEqual(sendPointsBody.amount);
+      expect(orgTransaction.message).toEqual(sendPointsBody.message);
+      expect(orgTransaction.createdById).toEqual(user3Manager.id);
+      expect(orgTransaction.eventId).toEqual(orgSendToUserEvent.id);
+      expect(orgTransaction.type).toEqual(
+        OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
+      );
+      expect(orgTransaction.orgId).toEqual(org1.id);
+
+      // Check Org Transaction Fulfillment
+      const dbClaimPointsEventFulfillmentList =
+        await prisma.claimPointsEventFulfillment.findMany({
+          where: {
+            orgTransactionId: orgTransaction.id,
+          },
+        });
+
+      expect(dbClaimPointsEventFulfillmentList.length).toEqual(1);
+      expect(dbClaimPointsEventFulfillmentList[0].amount).toEqual(
+        sendPointsBody.amount,
+      );
+
+      expect(dbClaimPointsEventFulfillmentList[0].orgTransactionId).toEqual(
+        orgTransaction.id,
+      );
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.claimPointsEventFulfillment.deleteMany({
+        where: {
+          orgTransactionId: orgTransaction.id,
+        },
+      });
+
+      await prisma.orgTransaction.deleteMany({
+        where: {
+          id: orgTransaction.id,
+        },
+      });
+    });
+
+    it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - OTHER ORG MANAGER', async () => {
+      await request(app.getHttpServer())
+        .post(`/users/${user1.id}/send-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .send(sendPointsBody)
+        .expect(404);
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints,
+        pointsReserved: user1ReservedPoints,
+      });
+
+      const orgBalance = await ledgerService.getOrgBalance(org1.id);
+      expect(orgBalance).toEqual(org1Points);
+    });
+
+    it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - not enough points', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/users/${user1.id}/send-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({ ...sendPointsBody, amount: 50000 })
+        .expect(400);
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints,
+        pointsReserved: user1ReservedPoints,
+      });
+
+      expect(response.body.message).toEqual('Not Enough Balance');
+      const orgBalance = await ledgerService.getOrgBalance(org1.id);
+      expect(orgBalance).toEqual(org1Points);
+    });
+
+    it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - NON MANAGER', async () => {
+      await request(app.getHttpServer())
+        .post(`/users/${user1.id}/send-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .send(sendPointsBody)
+        .expect(403);
     });
   });
 

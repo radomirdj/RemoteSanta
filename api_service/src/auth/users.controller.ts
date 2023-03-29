@@ -28,6 +28,7 @@ import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
 import { CognitoException } from '../errors/cognitoException';
 import { UserManagerGuard } from '../guards/user_manager.guard';
+import { SendPointsToEmployeeDto } from '../admin_users/dtos/send_points _to_employee.dto';
 
 @Serialize(UserDto)
 @Controller('users')
@@ -100,6 +101,23 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'), UserManagerGuard)
   async getUserDetails(@Param('id') id: string, @CurrentUser() user: User) {
     return this.adminUsersService.getUserDetailsById(id, true, user.orgId);
+  }
+
+  @Post('/:id/send-points')
+  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  async sendPointsToUser(
+    @Param('id') id: string,
+    @Body() body: SendPointsToEmployeeDto,
+    @CurrentUser() user: User,
+  ) {
+    return this.adminUsersService.sendPointsToEmployee(
+      id,
+      user.id,
+      body.amount,
+      body.message,
+      true,
+      user.orgId,
+    );
   }
 
   @Delete('/:id')
