@@ -77,6 +77,7 @@ export class AdminUsersService {
     orgIdConstraint?: string,
   ) {
     const user = await this.usersService.findDbBasicUserById(id);
+    const org = await this.adminOrgsService.getById(user.orgId);
     if (!user || (checkOrgConstraint && orgIdConstraint !== user.orgId))
       throw new NotFoundException('User Not Found');
 
@@ -88,6 +89,7 @@ export class AdminUsersService {
         actionByUserId,
         amount,
         message,
+        org.name,
       );
     });
   }

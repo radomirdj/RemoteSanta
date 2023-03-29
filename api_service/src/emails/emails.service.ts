@@ -97,4 +97,28 @@ export class EmailsService {
       registrationUrl,
     });
   }
+
+  async sendPointsEmail(
+    to: string,
+    message: string,
+    companyName: string,
+    firstName: string,
+  ) {
+    return this.sendEmail('send-points', to, {
+      message,
+      companyName,
+      firstName,
+    });
+  }
+
+  async giftCardRequestCreatedEmail(
+    to: string[],
+    name: string,
+    companyName: string,
+  ) {
+    return this.sendEmail('gift-card-request-created', to, {
+      companyName,
+      name,
+    });
+  }
 }

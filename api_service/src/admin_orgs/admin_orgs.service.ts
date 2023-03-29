@@ -240,6 +240,7 @@ export class AdminOrgsService {
     actionByUserId: string,
     amount: number,
     message: string,
+    orgName: string,
   ): Promise<OrgTransactionDto | null> {
     const [orgBalance, claimPointsEventList] = await Promise.all([
       this.ledgerService.getOrgBalance(orgId),
@@ -251,7 +252,7 @@ export class AdminOrgsService {
       throw new BadRequestException('Not Enough Balance');
     const claimPointsEvent = claimPointsEventList[0];
 
-    return this.createOrgEmployeesTransaction(
+    const orgToEmployeeTransaction = await this.createOrgEmployeesTransaction(
       tx,
       orgId,
       claimPointsEvent.id,
@@ -263,6 +264,14 @@ export class AdminOrgsService {
       true,
       message,
     );
+    await this.emailsService.sendPointsEmail(
+      user.email,
+      message,
+      orgName,
+      user.firstName,
+    );
+
+    return orgToEmployeeTransaction;
   }
 
   async createTransactionOrgToEmployeeSignup(
