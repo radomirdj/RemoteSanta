@@ -37,3 +37,11 @@
   createdAt: 2022-09-14T21:59:43.10-05:00
   createdById: 25752f92-defd-4bb5-9553-154fc5ce9d8b
   orgId: 62b1828e-0b0f-4123-af61-531e7967134c
+
+- id: 0c73fd19-b4e8-4abc-b0af-48eed8c62309
+  code: BBFDEF
+  email: email@brokeorg.com
+  status: ACTIVE
+  createdAt: 2022-09-14T21:59:43.10-05:00
+  createdById: 25752f92-defd-4bb5-9553-154fc5ce9d8b
+  orgId: d5d4d9a2-7d77-43ba-bacd-b87504e5fae1

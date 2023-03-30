@@ -247,6 +247,8 @@ export const org2 = {
 export const org2Points = 25200;
 export const org2BalanceSideId = '1c80baff-e523-4787-a94d-7edcf35216aa';
 
+export const brokeOrgId = 'd5d4d9a2-7d77-43ba-bacd-b87504e5fae1';
+
 export const claimPointsEvent1 = {
   id: 'e0c01322-f499-4f84-baac-af230e238d07',
   validTo: '2022-11-01T00:00:00.000Z',
@@ -309,6 +311,16 @@ export const userInviteOrg2 = {
   createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
   orgId: '62b1828e-0b0f-4123-af61-531e7967134c',
   orgName: org1.name,
+};
+
+export const userInviteBrokeOrg = {
+  id: '0c73fd19-b4e8-4abc-b0af-48eed8c62309',
+  code: 'BBFDEF',
+  email: 'email@brokeorg.com',
+  status: 'ACTIVE',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: 'd5d4d9a2-7d77-43ba-bacd-b87504e5fae1',
+  orgName: 'Broke Org - With No Points',
 };
 
 export const userInviteDoubleEmail = {

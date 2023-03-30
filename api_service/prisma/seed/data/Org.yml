@@ -7,3 +7,8 @@
   name: 'Admin Org.'
   pointsPerMonth: 0
   signupPoints: 0
+
+- id: 4b603e66-efdb-4b9a-ab1f-f6567af51d8f
+  name: 'Y Combinator'
+  pointsPerMonth: 1000
+  signupPoints: 2000
