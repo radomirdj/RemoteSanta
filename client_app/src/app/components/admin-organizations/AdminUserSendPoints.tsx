@@ -149,21 +149,21 @@ const AdminUserSendPoints = () => {
               </Typography>
             )}
             <TextField
-              error={errors.comment ? true : false}
+              error={errors.message ? true : false}
               id="standard-multiline-static"
               label="Message"
               multiline
               rows={2}
               className={
-                errors.comment ? "comment-input-with-error" : "comment-input"
+                errors.message ? "comment-input-with-error" : "comment-input"
               }
               variant="outlined"
-              {...register("comment", {
+              {...register("message", {
                 required: true,
               })}
             />
 
-            {errors.comment?.type === "required" && (
+            {errors.message?.type === "required" && (
               <Typography className="comment-error-fe">
                 Message is required.
               </Typography>
