@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 $button-details-height: 36px;
-$content-width:1000px;
+$content-width:1100px;
 $back-icon-margin-bottom:3px;
 
 .admin-users{
@@ -59,7 +59,19 @@ $back-icon-margin-bottom:3px;
             color: variables.$color-neutral-black;
             text-transform: none;
             width: 30%;
-            height: $button-details-height;
+            height: variables.$base-unit * 5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
+
+        .button-send-points{
+            float: right;
+            background-color:variables.$main-blue;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            text-transform: none;
+            height: variables.$base-unit *5;
             font-weight: bold;
             margin-bottom: variables.$base-unit ;
             margin-top: variables.$base-unit ;

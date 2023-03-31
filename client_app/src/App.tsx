@@ -35,6 +35,7 @@ import UserManagerUsers from "./app/components/user-manager-users/UserManagerUse
 import AdminUserDetails from "./app/components/admin-organizations/AdminUserDetails";
 import UserManagerUserDetails from "./app/components/user-manager-users/UserManagerUserDetails";
 import UserManagerSendPoints from "./app/components/user-manager-users/UserManagerSendPoints";
+import AdminUserSendPoints from "./app/components/admin-organizations/AdminUserSendPoints";
 
 const App = () => {
   return (
@@ -174,6 +175,14 @@ const App = () => {
           element={
             <AdminRoute>
               <AdminUserDetails />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="admin-user-send-points/:id"
+          element={
+            <AdminRoute>
+              <AdminUserSendPoints />
             </AdminRoute>
           }
         />

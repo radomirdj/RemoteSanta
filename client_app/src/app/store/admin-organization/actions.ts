@@ -23,6 +23,9 @@ import {
   DELETE_ADMIN_USER,
   DELETE_ADMIN_USER_SUCCESS,
   DELETE_ADMIN_USER_FAILURE,
+  ADMIN_SEND_POINTS_TO_USER,
+  ADMIN_SEND_POINTS_TO_USER_SUCCESS,
+  ADMIN_SEND_POINTS_TO_USER_FAILURE,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationList,
@@ -69,6 +72,11 @@ import {
   DeleteAdminUserSuccess,
   DeleteAdminUserFailurePayload,
   DeleteAdminUserFailure,
+  AdminSendPointsToUser,
+  AdminSendPointsToUserPayload,
+  AdminSendPointsToUserSuccess,
+  AdminSendPointsToUserFailurePayload,
+  AdminSendPointsToUserFailure,
 } from "./types";
 
 export const fetchAdminOrganizationList = (): FetchAdminOrganizationList => ({
@@ -226,5 +234,26 @@ export const deleteAdminUserFailure = (
   payload: DeleteAdminUserFailurePayload
 ): DeleteAdminUserFailure => ({
   type: DELETE_ADMIN_USER_FAILURE,
+  payload,
+});
+
+export const adminSendPointsToUser = (
+  payload: AdminSendPointsToUserPayload,
+  navigate: Function
+): AdminSendPointsToUser => ({
+  type: ADMIN_SEND_POINTS_TO_USER,
+  payload,
+  navigate,
+});
+
+export const adminSendPointsToUserSuccess =
+  (): AdminSendPointsToUserSuccess => ({
+    type: ADMIN_SEND_POINTS_TO_USER_SUCCESS,
+  });
+
+export const adminSendPointsToUserFailure = (
+  payload: AdminSendPointsToUserFailurePayload
+): AdminSendPointsToUserFailure => ({
+  type: ADMIN_SEND_POINTS_TO_USER_FAILURE,
   payload,
 });

@@ -9,10 +9,14 @@ import {
   getAdminUser,
   getAdminUserList,
   postInviteAdmin,
+  sendPointsToUserAdmin,
 } from "../../services/api-service";
 import { AuthUser } from "../auth/types";
+import { setCloseDialogSendPoints } from "../orgs/actions";
 import { setCloseDialog, setCloseModal } from "../user-invites/actions";
 import {
+  adminSendPointsToUserFailure,
+  adminSendPointsToUserSuccess,
   cancelAdminInviteFailure,
   cancelAdminInviteSuccess,
   deleteAdminUserFailure,
@@ -32,6 +36,7 @@ import {
   postAdminInviteSuccess,
 } from "./actions";
 import {
+  ADMIN_SEND_POINTS_TO_USER,
   CANCEL_ADMIN_INVITE,
   DELETE_ADMIN_USER,
   FETCH_ADMIN_INVITE_LIST,
@@ -42,6 +47,7 @@ import {
   POST_ADMIN_INVITE,
 } from "./actionTypes";
 import {
+  AdminSendPointsToUser,
   CancelAdminInvite,
   DeleteAdminUser,
   FetchAdminInviteList,
@@ -219,6 +225,23 @@ function* deleteAdminUserSaga(action: DeleteAdminUser) {
   }
 }
 
+function* adminSendPointsToUserSaga(action: AdminSendPointsToUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(sendPointsToUserAdmin, action.payload, token);
+    yield put(adminSendPointsToUserSuccess());
+    yield put(setCloseDialogSendPoints());
+    action.navigate(`/admin-users/${action.payload.orgId}`);
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      adminSendPointsToUserFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -233,6 +256,7 @@ function* AdminOrganizationSaga() {
     takeLatest(CANCEL_ADMIN_INVITE, cancelAdminInviteSaga),
     takeLatest(FETCH_ADMIN_USER, fetchAdminUserSaga),
     takeLatest(DELETE_ADMIN_USER, deleteAdminUserSaga),
+    takeLatest(ADMIN_SEND_POINTS_TO_USER, adminSendPointsToUserSaga),
   ]);
 }
 

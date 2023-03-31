@@ -2,18 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import AppFooter from "../app-footer/AppFooter";
-import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
+import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 import {
-  fetchOrgUser,
-  sendPointsToUser,
-  setCloseDialogSendPoints,
-  setOpenDialogSendPoints,
-} from "../../store/orgs/actions";
+  adminSendPointsToUser,
+  fetchAdminUser,
+} from "../../store/admin-organization/actions";
 import {
+  getAdminUserSelector,
   getErrorSelector,
-  getOpenDialogSendPointsSelector,
-  getOrganizationUserSelector,
-} from "../../store/orgs/selectors";
+} from "../../store/admin-organization/selectors";
 import {
   Button,
   Card,
@@ -29,34 +26,32 @@ import {
 import { useForm } from "react-hook-form";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
-import ErrorIcon from "@mui/icons-material/Error";
+import { getOpenDialogSendPointsSelector } from "../../store/orgs/selectors";
+import {
+  setCloseDialogSendPoints,
+  setOpenDialogSendPoints,
+} from "../../store/orgs/actions";
 import { ISendPointsData } from "../../store/admin-organization/types";
+import ErrorIcon from "@mui/icons-material/Error";
 
-const UserManagerSendPoints = () => {
+const AdminUserSendPoints = () => {
   const params = useParams();
   const userId = params.id as string;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(getOrganizationUserSelector);
-  const open = useSelector(getOpenDialogSendPointsSelector);
+  const user = useSelector(getAdminUserSelector);
   const error = useSelector(getErrorSelector);
   const [sendPointsData, setSendPointsData] = React.useState<ISendPointsData>();
+  const open = useSelector(getOpenDialogSendPointsSelector);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  useEffect(() => {
-    dispatch(fetchOrgUser({ userId: userId }));
-  }, [dispatch, userId]);
-
   const goBack = () => {
     navigate(-1);
-  };
-
-  const handleClose = () => {
-    dispatch(setCloseDialogSendPoints());
   };
 
   const onSubmit = (data: any) => {
@@ -66,9 +61,10 @@ const UserManagerSendPoints = () => {
 
   const onConfirm = () => {
     dispatch(
-      sendPointsToUser(
+      adminSendPointsToUser(
         {
           userId: user?.id || "",
+          orgId: user?.org?.id || "",
           sendPointsData: {
             amount: Number(sendPointsData?.amount) || 0,
             message: sendPointsData?.message || "",
@@ -79,10 +75,18 @@ const UserManagerSendPoints = () => {
     );
   };
 
+  useEffect(() => {
+    dispatch(fetchAdminUser({ userId: userId }));
+  }, [dispatch, userId]);
+
+  const handleClose = () => {
+    dispatch(setCloseDialogSendPoints());
+  };
+
   return (
     <>
-      <AppHeaderPrivate />
-      <div className="background user-manager-send-points">
+      <AppHeaderAdmin />
+      <div className="background admin-user-send-points">
         <Card className="card-style">
           <Typography className="title-style">Send some points</Typography>
           <Card className="child-card">
@@ -134,7 +138,6 @@ const UserManagerSendPoints = () => {
                 min: 1,
               })}
             />
-
             {errors.amount?.type === "required" && (
               <Typography className="amount-error-fe">
                 Amount is required.
@@ -187,44 +190,44 @@ const UserManagerSendPoints = () => {
                   <img src={GiftIconBlack} alt="" className="gift-icon-style" />{" "}
                   Send Points
                 </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle id="alert-dialog-title" className="dialog-title">
-                    Send Points Confirmation
-                  </DialogTitle>
-                  <DialogContent>
-                    <DialogContentText
-                      id="alert-dialog-description"
-                      className="dialog-text"
-                    >
-                      Please confirm sending points to user.
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleClose}
-                      className="dialog-back-button"
-                      variant="outlined"
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      onClick={onConfirm}
-                      autoFocus
-                      className="dialog-confirm-button"
-                      variant="contained"
-                    >
-                      Confirm
-                    </Button>
-                  </DialogActions>
-                </Dialog>
               </Grid>
             </Grid>
           </form>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title" className="dialog-title">
+              Send Points Confirmation
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText
+                id="alert-dialog-description"
+                className="dialog-text"
+              >
+                Please confirm sending points to user.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleClose}
+                className="dialog-back-button"
+                variant="outlined"
+              >
+                Back
+              </Button>
+              <Button
+                onClick={onConfirm}
+                autoFocus
+                className="dialog-confirm-button"
+                variant="contained"
+              >
+                Confirm
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Card>
       </div>
       <AppFooter />
@@ -232,4 +235,4 @@ const UserManagerSendPoints = () => {
   );
 };
 
-export default UserManagerSendPoints;
+export default AdminUserSendPoints;

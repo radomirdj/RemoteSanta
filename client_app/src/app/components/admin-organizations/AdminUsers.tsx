@@ -23,6 +23,8 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import UserDetailsIcon from "../../assets/icons/user-details.svg";
+import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 
 const AdminUsers = () => {
   const params = useParams();
@@ -46,6 +48,10 @@ const AdminUsers = () => {
     navigate(`/admin-user-details/${userId}`);
   };
 
+  const adminSendPointsRedirect = (userId: string) => {
+    navigate(`/admin-user-send-points/${userId}`);
+  };
+
   const detailsButton = (params: GridRenderCellParams) => {
     return (
       <Button
@@ -54,7 +60,20 @@ const AdminUsers = () => {
         disableRipple
         onClick={() => adminUserDetailsRedirect(params.id as string)}
       >
-        Details
+        <img src={UserDetailsIcon} alt="" />
+      </Button>
+    );
+  };
+
+  const sendPoints = (params: GridRenderCellParams) => {
+    return (
+      <Button
+        variant="contained"
+        className="button-send-points"
+        disableRipple
+        onClick={() => adminSendPointsRedirect(params.id as string)}
+      >
+        <img src={GiftIconBlack} alt="" />
       </Button>
     );
   };
@@ -64,9 +83,16 @@ const AdminUsers = () => {
     { field: "lastName", headerName: "Lastname", width: 250 },
     { field: "email", headerName: "Email", width: 300 },
     {
+      field: "sendPoints",
+      headerName: "Send Points",
+      width: 150,
+      sortable: false,
+      renderCell: sendPoints,
+    },
+    {
       field: "details",
       headerName: "Details",
-      width: 200,
+      width: 150,
       sortable: false,
       renderCell: detailsButton,
     },

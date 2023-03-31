@@ -24,6 +24,9 @@ import {
   DELETE_ADMIN_USER,
   DELETE_ADMIN_USER_SUCCESS,
   DELETE_ADMIN_USER_FAILURE,
+  ADMIN_SEND_POINTS_TO_USER,
+  ADMIN_SEND_POINTS_TO_USER_SUCCESS,
+  ADMIN_SEND_POINTS_TO_USER_FAILURE,
 } from "./actionTypes";
 
 import { AdminOrganizationActions, AdminOrganizationState } from "./types";
@@ -181,6 +184,23 @@ export default (state = initialState, action: AdminOrganizationActions) => {
         error: null,
       };
     case DELETE_ADMIN_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case ADMIN_SEND_POINTS_TO_USER:
+      return {
+        ...state,
+        pending: true,
+      };
+    case ADMIN_SEND_POINTS_TO_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case ADMIN_SEND_POINTS_TO_USER_FAILURE:
       return {
         ...state,
         pending: false,

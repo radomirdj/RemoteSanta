@@ -16,3 +16,6 @@ export const getErrorSelector = (state: AppState) => state.organization.error;
 
 export const getOrganizationUserSelector = (state: AppState) =>
   state.organization.orgUser;
+
+export const getOpenDialogSendPointsSelector = (state: AppState) =>
+  state.organization.openDialog;
