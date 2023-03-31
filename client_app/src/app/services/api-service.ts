@@ -13,6 +13,7 @@ import {
   PostOrgToEmployeesTransactionPayload,
 } from "../store/admin-organization-transaction/types";
 import {
+  AdminSendPointsToUserPayload,
   CancelAdminInvitePayload,
   DeleteAdminUserPayload,
   FetchAdminInviteListPayload,
@@ -32,6 +33,7 @@ import {
   IOrganization,
   IOrgTransaction,
   IOrgUser,
+  SendPointsToUserPayload,
 } from "../store/orgs/types";
 import {
   CancelUserInvitePayload,
@@ -275,3 +277,29 @@ export const orgDeleteUser = (payload: DeleteOrgUserPayload, token: string) =>
   api.delete<string>(`users/${payload.userId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+
+export const sendPointsToUserAdmin = (
+  payload: AdminSendPointsToUserPayload,
+  token: string
+) => {
+  return api.post<string>(
+    `/admin/users/${payload.userId}/send-points`,
+    payload.sendPointsData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const sendPointsToUserUserManager = (
+  payload: SendPointsToUserPayload,
+  token: string
+) => {
+  return api.post<string>(
+    `/users/${payload.userId}/send-points`,
+    payload.sendPointsData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};

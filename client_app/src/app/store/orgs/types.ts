@@ -1,3 +1,4 @@
+import { ISendPointsData } from "../admin-organization/types";
 import { AuthUser, IUserBalance } from "../auth/types";
 import { IClaimPointEvent } from "../claim-points-event/types";
 import {
@@ -16,6 +17,11 @@ import {
   DELETE_ORG_USER,
   DELETE_ORG_USER_SUCCESS,
   DELETE_ORG_USER_FAILURE,
+  SEND_POINTS_TO_USER,
+  SEND_POINTS_TO_USER_SUCCESS,
+  SEND_POINTS_TO_USER_FAILURE,
+  SET_OPEN_DIALOG_SEND_POINTS,
+  SET_CLOSE_DIALOG_SEND_POINTS,
 } from "./actionTypes";
 
 export interface IOrganization {
@@ -49,6 +55,7 @@ export interface OrganizationState {
   organization: IOrganization | null;
   orgTransactionList: IOrgTransaction[];
   orgUserList: IOrgUser[];
+  openDialog: boolean;
   orgUser: IOrgUser | null;
   error: string | null;
 }
@@ -94,6 +101,15 @@ export interface DeleteOrgUserPayload {
 }
 
 export interface DeleteOrgUserFailurePayload {
+  error: string;
+}
+
+export interface SendPointsToUserPayload {
+  userId: string;
+  sendPointsData: ISendPointsData;
+}
+
+export interface SendPointsToUserFailurePayload {
   error: string;
 }
 
@@ -169,6 +185,29 @@ export interface DeleteOrgUserFailure {
   payload: DeleteOrgUserFailurePayload;
 }
 
+export interface SendPointsToUser {
+  type: typeof SEND_POINTS_TO_USER;
+  payload: SendPointsToUserPayload;
+  navigate: Function;
+}
+
+export type SendPointsToUserSuccess = {
+  type: typeof SEND_POINTS_TO_USER_SUCCESS;
+};
+
+export type SendPointsToUserFailure = {
+  type: typeof SEND_POINTS_TO_USER_FAILURE;
+  payload: SendPointsToUserFailurePayload;
+};
+
+export interface SetOpenDialogSendPoints {
+  type: typeof SET_OPEN_DIALOG_SEND_POINTS;
+}
+
+export interface SetCloseDialogSendPoints {
+  type: typeof SET_CLOSE_DIALOG_SEND_POINTS;
+}
+
 export type OrganizationActions =
   | FetchOrganization
   | FetchOrganizationSuccess
@@ -184,4 +223,9 @@ export type OrganizationActions =
   | FetchOrgUserFailure
   | DeleteOrgUser
   | DeleteOrgUserSuccess
-  | DeleteOrgUserFailure;
+  | DeleteOrgUserFailure
+  | SendPointsToUser
+  | SendPointsToUserSuccess
+  | SendPointsToUserFailure
+  | SetOpenDialogSendPoints
+  | SetCloseDialogSendPoints;

@@ -15,6 +15,11 @@ import {
   DELETE_ORG_USER,
   DELETE_ORG_USER_SUCCESS,
   DELETE_ORG_USER_FAILURE,
+  SEND_POINTS_TO_USER,
+  SEND_POINTS_TO_USER_SUCCESS,
+  SEND_POINTS_TO_USER_FAILURE,
+  SET_OPEN_DIALOG_SEND_POINTS,
+  SET_CLOSE_DIALOG_SEND_POINTS,
 } from "./actionTypes";
 
 import { OrganizationActions, OrganizationState } from "./types";
@@ -24,6 +29,7 @@ const initialState: OrganizationState = {
   organization: null,
   orgTransactionList: [],
   orgUserList: [],
+  openDialog: false,
   orgUser: null,
   error: null,
 };
@@ -123,6 +129,35 @@ export default (state = initialState, action: OrganizationActions) => {
         ...state,
         pending: false,
         error: action.payload.error,
+      };
+    case SEND_POINTS_TO_USER:
+      return {
+        ...state,
+        pending: true,
+      };
+    case SEND_POINTS_TO_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case SEND_POINTS_TO_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case SET_OPEN_DIALOG_SEND_POINTS:
+      return {
+        ...state,
+        openDialog: true,
+        pending: true,
+      };
+    case SET_CLOSE_DIALOG_SEND_POINTS:
+      return {
+        ...state,
+        openDialog: false,
+        pending: true,
       };
     default:
       return {

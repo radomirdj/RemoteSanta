@@ -14,6 +14,11 @@ import {
   DELETE_ORG_USER,
   DELETE_ORG_USER_SUCCESS,
   DELETE_ORG_USER_FAILURE,
+  SEND_POINTS_TO_USER,
+  SEND_POINTS_TO_USER_SUCCESS,
+  SEND_POINTS_TO_USER_FAILURE,
+  SET_OPEN_DIALOG_SEND_POINTS,
+  SET_CLOSE_DIALOG_SEND_POINTS,
 } from "./actionTypes";
 import {
   FetchOrganization,
@@ -42,6 +47,13 @@ import {
   DeleteOrgUserSuccess,
   DeleteOrgUserFailurePayload,
   DeleteOrgUserFailure,
+  SendPointsToUserPayload,
+  SendPointsToUser,
+  SendPointsToUserSuccess,
+  SendPointsToUserFailurePayload,
+  SendPointsToUserFailure,
+  SetOpenDialogSendPoints,
+  SetCloseDialogSendPoints,
 } from "./types";
 
 export const fetchOrganization = (): FetchOrganization => ({
@@ -136,4 +148,32 @@ export const deleteOrgUserFailure = (
 ): DeleteOrgUserFailure => ({
   type: DELETE_ORG_USER_FAILURE,
   payload,
+});
+
+export const sendPointsToUser = (
+  payload: SendPointsToUserPayload,
+  navigate: Function
+): SendPointsToUser => ({
+  type: SEND_POINTS_TO_USER,
+  payload,
+  navigate,
+});
+
+export const sendPointsToUserSuccess = (): SendPointsToUserSuccess => ({
+  type: SEND_POINTS_TO_USER_SUCCESS,
+});
+
+export const sendPointsToUserFailure = (
+  payload: SendPointsToUserFailurePayload
+): SendPointsToUserFailure => ({
+  type: SEND_POINTS_TO_USER_FAILURE,
+  payload,
+});
+
+export const setOpenDialogSendPoints = (): SetOpenDialogSendPoints => ({
+  type: SET_OPEN_DIALOG_SEND_POINTS,
+});
+
+export const setCloseDialogSendPoints = (): SetCloseDialogSendPoints => ({
+  type: SET_CLOSE_DIALOG_SEND_POINTS,
 });

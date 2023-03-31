@@ -6,6 +6,7 @@ import {
   getOrganizationUserList,
   getOrgUser,
   orgDeleteUser,
+  sendPointsToUserUserManager,
 } from "../../services/api-service";
 import {
   deleteOrgUserFailure,
@@ -18,6 +19,9 @@ import {
   fetchOrganizationUserListSuccess,
   fetchOrgUserFailure,
   fetchOrgUserSuccess,
+  sendPointsToUserFailure,
+  sendPointsToUserSuccess,
+  setCloseDialogSendPoints,
 } from "./actions";
 import {
   DELETE_ORG_USER,
@@ -25,6 +29,7 @@ import {
   FETCH_ORG_TRANSACTION_LIST,
   FETCH_ORG_USER,
   FETCH_ORG_USER_LIST,
+  SEND_POINTS_TO_USER,
 } from "./actionTypes";
 import {
   DeleteOrgUser,
@@ -35,6 +40,7 @@ import {
   IOrganization,
   IOrgTransaction,
   IOrgUser,
+  SendPointsToUser,
 } from "./types";
 
 function* fetchOrganizationSaga(action: FetchOrganization) {
@@ -143,6 +149,23 @@ function* deleteOrgUserSaga(action: DeleteOrgUser) {
   }
 }
 
+function* sendPointsToUserSaga(action: SendPointsToUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(sendPointsToUserUserManager, action.payload, token);
+    yield put(sendPointsToUserSuccess());
+    yield put(setCloseDialogSendPoints());
+    action.navigate(`/user-manager-users`);
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      sendPointsToUserFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -157,6 +180,7 @@ function* OrganizationSaga() {
     takeLatest(FETCH_ORG_USER_LIST, fetchOrganizationUserListSaga),
     takeLatest(FETCH_ORG_USER, fetchOrgUserSaga),
     takeLatest(DELETE_ORG_USER, deleteOrgUserSaga),
+    takeLatest(SEND_POINTS_TO_USER, sendPointsToUserSaga),
   ]);
 }
 

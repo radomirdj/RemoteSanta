@@ -24,6 +24,9 @@ import {
   DELETE_ADMIN_USER,
   DELETE_ADMIN_USER_SUCCESS,
   DELETE_ADMIN_USER_FAILURE,
+  ADMIN_SEND_POINTS_TO_USER,
+  ADMIN_SEND_POINTS_TO_USER_SUCCESS,
+  ADMIN_SEND_POINTS_TO_USER_FAILURE,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -61,6 +64,11 @@ export interface AdminOrganizationState {
 
 export interface IInvite {
   email: string;
+}
+
+export interface ISendPointsData {
+  amount: number;
+  message: string;
 }
 
 export interface FetchAdminOrganizationListSuccessPayload {
@@ -143,6 +151,16 @@ export interface DeleteAdminUserPayload {
 }
 
 export interface DeleteAdminUserFailurePayload {
+  error: string;
+}
+
+export interface AdminSendPointsToUserPayload {
+  userId: string;
+  orgId: string;
+  sendPointsData: ISendPointsData;
+}
+
+export interface AdminSendPointsToUserFailurePayload {
   error: string;
 }
 
@@ -263,6 +281,21 @@ export interface DeleteAdminUserFailure {
   payload: DeleteAdminUserFailurePayload;
 }
 
+export interface AdminSendPointsToUser {
+  type: typeof ADMIN_SEND_POINTS_TO_USER;
+  payload: AdminSendPointsToUserPayload;
+  navigate: Function;
+}
+
+export type AdminSendPointsToUserSuccess = {
+  type: typeof ADMIN_SEND_POINTS_TO_USER_SUCCESS;
+};
+
+export type AdminSendPointsToUserFailure = {
+  type: typeof ADMIN_SEND_POINTS_TO_USER_FAILURE;
+  payload: AdminSendPointsToUserFailurePayload;
+};
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
@@ -287,4 +320,7 @@ export type AdminOrganizationActions =
   | FetchAdminUserFailure
   | DeleteAdminUser
   | DeleteAdminUserSuccess
-  | DeleteAdminUserFailure;
+  | DeleteAdminUserFailure
+  | AdminSendPointsToUser
+  | AdminSendPointsToUserSuccess
+  | AdminSendPointsToUserFailure;

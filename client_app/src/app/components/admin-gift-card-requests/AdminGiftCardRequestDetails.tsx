@@ -136,8 +136,8 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name">Full name</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequestUser?.firstName}{" "}
-                    {adminGiftCardRequestUser?.lastName}
+                    {adminGiftCardRequest?.user.firstName}{" "}
+                    {adminGiftCardRequest?.user.lastName}
                   </Grid>
                 </Grid>
               </Typography>
@@ -147,7 +147,7 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name"> Active points</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequestUser?.userBalance?.pointsActive}
+                    {adminGiftCardRequest?.user?.userBalance?.pointsActive}
                     PTS
                   </Grid>
                 </Grid>
@@ -158,7 +158,8 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name"> Reserved points</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequestUser?.userBalance?.pointsReserved} PTS
+                    {adminGiftCardRequest?.user?.userBalance?.pointsReserved}{" "}
+                    PTS
                   </Grid>
                 </Grid>
               </Typography>
@@ -168,7 +169,7 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name">Email</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequestUser?.email}
+                    {adminGiftCardRequest?.user?.email}
                   </Grid>
                 </Grid>
               </Typography>
@@ -178,7 +179,7 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name">Company name</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequestUser?.org?.name}
+                    {adminGiftCardRequest?.user?.org?.name}
                   </Grid>
                 </Grid>
               </Typography>
