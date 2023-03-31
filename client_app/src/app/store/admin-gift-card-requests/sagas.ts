@@ -77,34 +77,9 @@ function* fetchAdminGiftCardRequestSaga(action: FetchAdminGiftCardRequest) {
         adminGiftCardRequest: response.data,
       })
     );
-    yield put(fetchAdminGiftCardRequestUser({ userId: response.data.userId }));
   } catch (e) {
     yield put(
       fetchAdminGiftCardRequestFailure({
-        error: e.message,
-      })
-    );
-  }
-}
-
-function* fetchAdminGiftCardRequestUserSaga(
-  action: FetchAdminGiftCardRequestUser
-) {
-  try {
-    const token: string = localStorage.getItem("token") || "";
-    const response: AxiosResponse<AuthUser> = yield call(
-      getAdminGiftCardRequestUser,
-      action.payload,
-      token
-    );
-    yield put(
-      fetchAdminGiftCardRequestUserSuccess({
-        adminGiftCardRequestUser: response.data,
-      })
-    );
-  } catch (e) {
-    yield put(
-      fetchAdminGiftCardRequestUserFailure({
         error: e.message,
       })
     );
@@ -154,10 +129,6 @@ function* AdminGiftCardRequestSaga() {
       fetchAdminGiftCardRequestListSaga
     ),
     takeLatest(FETCH_ADMIN_GIFT_CARD_REQUEST, fetchAdminGiftCardRequestSaga),
-    takeLatest(
-      FETCH_ADMIN_GIFT_CARD_REQUEST_USER,
-      fetchAdminGiftCardRequestUserSaga
-    ),
     takeLatest(
       DECLINE_ADMIN_GIFT_CARD_REQUEST,
       declineAdminGiftCardRequestSaga

@@ -38,6 +38,7 @@ export interface IAdminGiftCardRequest {
   giftCardIntegration: IAdminGiftCardIntegration;
   createdAt: Date;
   updatedAt: Date;
+  user: AuthUser;
 }
 
 export interface AdminGiftCardRequestState {
