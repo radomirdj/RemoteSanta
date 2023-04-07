@@ -79,9 +79,10 @@ const AdminUsers = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "firstName", headerName: "Firstname", width: 250 },
-    { field: "lastName", headerName: "Lastname", width: 250 },
+    { field: "firstName", headerName: "Firstname", width: 200 },
+    { field: "lastName", headerName: "Lastname", width: 200 },
     { field: "email", headerName: "Email", width: 300 },
+    { field: "userRole", headerName: "Role", width: 200 },
     {
       field: "sendPoints",
       headerName: "Send Points",
@@ -103,6 +104,7 @@ const AdminUsers = () => {
       firstName: adminUser.firstName,
       lastName: adminUser.lastName,
       email: adminUser.email,
+      userRole: adminUser.userRole,
       details: "",
       id: adminUser.id,
     };

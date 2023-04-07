@@ -25,6 +25,8 @@ const UserManagerUsers = () => {
   const rowsPerPage = 7;
   const navigate = useNavigate();
 
+  console.log(orgUserList);
+
   useEffect(() => {
     dispatch(fetchOrganizationUserList());
   }, [dispatch]);
@@ -64,9 +66,10 @@ const UserManagerUsers = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "firstName", headerName: "Firstname", width: 250 },
-    { field: "lastName", headerName: "Lastname", width: 250 },
+    { field: "firstName", headerName: "Firstname", width: 200 },
+    { field: "lastName", headerName: "Lastname", width: 200 },
     { field: "email", headerName: "Email", width: 300 },
+    { field: "userRole", headerName: "Role", width: 200 },
     {
       field: "sendPoints",
       headerName: "Send Points",
@@ -88,6 +91,7 @@ const UserManagerUsers = () => {
       firstName: orgUser.firstName,
       lastName: orgUser.lastName,
       email: orgUser.email,
+      userRole: orgUser.userRole,
       details: "",
       id: orgUser.id,
     };
