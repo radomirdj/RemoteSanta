@@ -145,6 +145,8 @@ model Org {
   name           String
   pointsPerMonth Int
   signupPoints   Int              @default(0)
+  country        Country          @relation(fields: [countryId], references: [id])
+  countryId      String
   User           User[]
   OrgTransaction OrgTransaction[]
   BalanceSide    BalanceSide[]
@@ -166,6 +168,8 @@ model GiftCardIntegration {
   constraintType  IntegrationConsraintTypeEnum
   priority        Int                          @default(1000000)
   constraintJson  Json
+  country         Country                      @relation(fields: [countryId], references: [id])
+  countryId       String
   GiftCardRequest GiftCardRequest[]
 }
 
@@ -239,6 +243,16 @@ model Ledger {
   to          BalanceSide    @relation("Ledger_to", fields: [toId], references: [id])
   toId        String
   createdAt   DateTime       @default(now())
+}
+
+model Country {
+  id                     String                @id @default(uuid())
+  currencyString         String
+  conversionRateToPoints Int
+  countryCode            String
+  countryName            String
+  Org                    Org[]
+  GiftCardIntegration    GiftCardIntegration[]
 }
 
 model Report {

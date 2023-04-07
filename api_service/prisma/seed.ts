@@ -7,7 +7,14 @@ import { createForeignKeyListTransformer } from './seed/lib/transformers';
 const prisma = new PrismaClient();
 
 async function main() {
-  await seedTable(prisma, 'Org');
+  await seedTable(prisma, 'Country');
+  await seedTable(
+    prisma,
+    'Org',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'countryId', foreignRecordName: 'country' },
+    ]),
+  );
   await seedTable(
     prisma,
     'User',
@@ -37,7 +44,13 @@ async function main() {
       { foreignKeyName: 'userId', foreignRecordName: 'user' },
     ]),
   );
-  await seedTable(prisma, 'GiftCardIntegration');
+  await seedTable(
+    prisma,
+    'GiftCardIntegration',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'countryId', foreignRecordName: 'country' },
+    ]),
+  );
   await seedTable(
     prisma,
     'GiftCardRequest',

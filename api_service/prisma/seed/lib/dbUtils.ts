@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import util from 'util';
 
-import { flatMap, uniq } from 'lodash';
+import { flatMap, uniq, chunk } from 'lodash';
 
 import fromyaml from './fromyml';
 
@@ -23,15 +23,18 @@ export const seedTable = async (
   const records = fromyaml(path);
   console.log(`*** seeding ${records.length} to ${modelName} table ***`);
 
-  return insertRecords(
-    prisma,
-    records,
-    recordTransformer,
-    excludeFields,
-    ignoreRecordFunc,
-    modelName,
-    onConflictFields,
-  );
+  const recordChunkList = chunk(records, 20);
+  for (let i = 0; i < recordChunkList.length; i++) {
+    await insertRecords(
+      prisma,
+      recordChunkList[i],
+      recordTransformer,
+      excludeFields,
+      ignoreRecordFunc,
+      modelName,
+      onConflictFields,
+    );
+  }
 };
 
 export const getPath = (modelName) => {
