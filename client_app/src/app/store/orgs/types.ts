@@ -48,6 +48,7 @@ export interface IOrgUser {
   firstName: string;
   lastName: string;
   userBalance?: IUserBalance;
+  userRole?: string;
 }
 
 export interface OrganizationState {

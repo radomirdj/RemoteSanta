@@ -43,6 +43,7 @@ export interface IAdminUser {
   email: string;
   firstName: string;
   lastName: string;
+  userRole?: string;
 }
 
 export interface IAdminInvite {
