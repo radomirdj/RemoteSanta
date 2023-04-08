@@ -29,6 +29,22 @@ $modal-phone-phone-size-text:15px;
         .MuiStepLabel-label{
           font-family: "Montserrat";
         }
+
+    .search-item{
+      justify-content: center;
+      display: flex;
+      .search-field{
+        background-color: white;
+        border-radius: variables.$base-unit *6;
+        width: 50%;
+        height: variables.$base-unit *6;
+        font-family: "Montserrat";
+      }
+      .search-icon-style{
+        margin-left:variables.$base-unit *2;
+        margin-right:variables.$base-unit *2;
+      }
+    }
       
       .MuiStepper-root{
         @media screen and (min-width: variables.$breakpoint-md){
