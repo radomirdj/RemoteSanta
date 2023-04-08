@@ -3,8 +3,14 @@ import { User, Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserDto } from './dtos/user.dto';
 
+export const orgDefaultJoin = {
+  country: true,
+};
+
 export const userDefaultJoin = {
-  org: true,
+  org: {
+    include: orgDefaultJoin,
+  },
 };
 @Injectable()
 export class UsersService {

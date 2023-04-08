@@ -19,11 +19,11 @@ export class GiftCardIntegrationsController {
     @Param('id') id: string,
     @CurrentUser() user: UserDto,
   ) {
-    return this.giftCardIntegrationsService.getOne(id, user.org.countryId);
+    return this.giftCardIntegrationsService.getOne(id, user.org.country.id);
   }
 
   @Get('/')
   async getGiftCardIntegrationList(@CurrentUser() user: UserDto) {
-    return this.giftCardIntegrationsService.getAll(user.org.countryId);
+    return this.giftCardIntegrationsService.getAll(user.org.country.id);
   }
 }

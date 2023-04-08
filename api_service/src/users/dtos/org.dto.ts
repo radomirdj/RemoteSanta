@@ -1,11 +1,10 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
+import { CountryDto } from './country.dto';
 
 export class OrgDto {
   @Expose()
   id: string;
-
-  @Expose()
-  countryId: string;
 
   @Expose()
   name: string;
@@ -15,4 +14,9 @@ export class OrgDto {
 
   @Expose()
   signupPoints: number;
+
+  @ValidateNested()
+  @Expose()
+  @Type(() => CountryDto)
+  country: CountryDto;
 }

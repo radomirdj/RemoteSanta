@@ -353,6 +353,13 @@ describe('Authentication system', () => {
         userRole: UserRoleEnum.BASIC_USER,
         orgName: org1.name,
       });
+
+      expect(response.body.org.country.currencyString).toEqual('USD');
+      expect(response.body.org.country.countryCode).toEqual('USA');
+      expect(response.body.org.country.countryName).toEqual(
+        'United States of America',
+      );
+      expect(response.body.org.country.conversionRateToPoints).toEqual(100);
     });
   });
 

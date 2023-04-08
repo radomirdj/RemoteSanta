@@ -16,7 +16,7 @@ import {
 } from '@prisma/client';
 import { CreateAdminToOrgDto } from './dtos/create_admin_to_org.dto';
 import { CreateOrgToEmployeesDto } from './dtos/create_org_to_employees.dto';
-import { UsersService } from '../users/users.service';
+import { UsersService, orgDefaultJoin } from '../users/users.service';
 import { UserDto } from '../users/dtos/user.dto';
 import { EmailsService } from '../emails/emails.service';
 import consts from '../utils/consts';
@@ -36,6 +36,7 @@ export class AdminOrgsService {
       where: { orgId: id },
     });
     const orgPromise = this.prisma.org.findUnique({
+      include: orgDefaultJoin,
       where: { id },
     });
     const [employeeCount, org] = await Promise.all([
@@ -56,6 +57,7 @@ export class AdminOrgsService {
 
   getList(): Promise<OrgDto[]> {
     return this.prisma.org.findMany({
+      include: orgDefaultJoin,
       orderBy: [
         {
           name: 'asc',

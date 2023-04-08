@@ -5,7 +5,7 @@ import { UserInviteDto } from './dtos/user-invite.dto';
 import { UserInvite, UserInviteStatusEnum, User, Org } from '@prisma/client';
 import { EmailInUseException } from '../errors/emailInUseException';
 import { EmailInActiveInviteException } from '../errors/emailInActiveInviteException';
-import { UsersService } from '../users/users.service';
+import { UsersService, orgDefaultJoin } from '../users/users.service';
 import { InviteNotActiveException } from '../errors/inviteNotActiveException';
 import { EmailsService } from '../emails/emails.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
@@ -23,7 +23,9 @@ export class UserInvitesService {
     return this.prisma.userInvite.findMany({
       include: {
         createdBy: true,
-        org: true,
+        org: {
+          include: orgDefaultJoin,
+        },
       },
       where: {
         orgId,
