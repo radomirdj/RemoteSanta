@@ -36,6 +36,7 @@ import {
   user3ReservedPoints,
   user3ActiveBalanceSideId,
   user3ReservedBalanceSideId,
+  giftCardIntegrationSrb,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { MailerService } from '@nestjs-modules/mailer';
@@ -214,6 +215,26 @@ describe('/gift-card-requests', () => {
       });
 
       await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
+    it('/ (POST) - try to create gift card request with gift card integration from other country', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({
+          ...newGiftCardRequest,
+          giftCardIntegrationId: giftCardIntegrationSrb.id,
+        })
+        .expect(404);
+
+      expect(response.body.message).toEqual('GiftCardIntegration Not Found');
     });
 
     it('/ (POST) - try to create gift card request with wrong amount', async () => {
