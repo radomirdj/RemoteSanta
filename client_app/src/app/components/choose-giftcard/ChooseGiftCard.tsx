@@ -1,5 +1,13 @@
-import { Card, Grid, Step, StepLabel, Stepper } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import {
+  Grid,
+  InputAdornment,
+  InputBase,
+  Step,
+  StepLabel,
+  Stepper,
+  TextField,
+} from "@mui/material";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchGiftCardIntegrationList,
@@ -16,6 +24,7 @@ import ColorlibConnector from "./ColorlibConnector";
 import GiftCardIntegrationItem from "./GiftCardIntegrationItem";
 import ChooseAmount from "./ChooseAmount";
 import GiftCardRequestOverview from "./GiftCardRequestOverview";
+import SearchIcon from "@mui/icons-material/Search";
 
 const ChooseGiftCard = () => {
   const dispatch = useDispatch();
@@ -50,6 +59,15 @@ const ChooseGiftCard = () => {
               ))}
             </Stepper>
           </Grid>
+          {activeStep === 0 && (
+            <Grid item xs={12} className="search-item">
+              <InputBase
+                placeholder="Search for your favorite gift card..."
+                className="search-field"
+                startAdornment={<SearchIcon className="search-icon-style" />}
+              />
+            </Grid>
+          )}
           {activeStep === 0 &&
             giftCardIntegrationList.map((element, i) => {
               return (
