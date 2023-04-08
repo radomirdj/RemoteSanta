@@ -98,7 +98,7 @@
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
-- id: d789db6b-a555-4ff7-97da-270cf8f0aba9
+- id: 409ef8c2-c270-4c91-9253-ebb30c10f19c
   priority: 110
   countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
   website: https://www.tehnomedia.rs/

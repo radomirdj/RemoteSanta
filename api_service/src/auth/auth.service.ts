@@ -100,11 +100,6 @@ export class AuthService {
       if (!sub) throw new LoginCredentialsWrongException();
       const user = await this.usersService.findBySub(sub);
       response = { accessToken, ...user };
-      // await this.emailsService.sendEmail(
-      //   'hi',
-      //   'radomir.m.djokovic@gmail.com',
-      //   user,
-      // );
     } catch (err) {
       throw new CognitoException(err.message);
     }

@@ -16,6 +16,7 @@ import { User } from '@prisma/client';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { GiftCardRequestDto } from './dtos/gift_card_request.dto';
 import { GiftCardFileDto } from './dtos/gift_card_file.dto';
+import { UserDto } from '../users/dtos/user.dto';
 
 @Controller('gift-card-requests')
 @UseGuards(AuthGuard('jwt'))
@@ -26,7 +27,7 @@ export class GiftCardRequestController {
   @Post()
   createGiftCardRequest(
     @Body() body: CreateGiftCardRequestDto,
-    @CurrentUser() user: User,
+    @CurrentUser() user: UserDto,
   ) {
     return this.giftCardRequestService.create(body, user);
   }

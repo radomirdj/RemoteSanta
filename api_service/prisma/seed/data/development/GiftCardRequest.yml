@@ -1,31 +1,31 @@
 - id: 9794fc09-68ee-4f3d-ac3f-b5ea759021ca
   userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
-  giftCardIntegrationId: 469cf71d-86a5-450e-afc7-76bc6996a3ad
-  amount: 1000
+  giftCardIntegrationId: 973dbf26-b6e3-4141-9357-7c479c102d14
+  amount: 3000
   status: 'PENDING'
   createdAt: 2022-09-14T21:59:43.10-05:00
   updatedAt: 2022-09-14T21:59:43.10-05:00
 
 - id: 17dd40fa-dff8-4b53-bdf1-a83ba1475e44
   userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
-  giftCardIntegrationId: 3ada6b27-f579-4297-9042-2d46b89b594e
-  amount: 2000
+  giftCardIntegrationId: f607eac9-3bed-4c4b-9118-2ea72eb5a9f8
+  amount: 6000
   status: 'PENDING'
   createdAt: 2022-10-14T21:59:43.10-05:00
   updatedAt: 2022-10-14T21:59:43.10-05:00
 
 - id: 4098665d-b252-43d7-b40e-3d8444ab4567
   userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
-  giftCardIntegrationId: df7d81e9-d70f-4d0c-8f99-6db378c6f89c
-  amount: 3000
+  giftCardIntegrationId: 632fedde-10b8-41d5-a16b-b1f3f61923c8
+  amount: 9000
   status: 'COMPLETED'
   createdAt: 2022-08-14T21:59:43.10-05:00
   updatedAt: 2022-08-14T21:59:43.10-05:00
 
 - id: 1804569e-6112-4519-82c3-6d40e754e035
   userId: 80629be5-c1f7-4fb8-90b7-c030194617e6
-  giftCardIntegrationId: 469cf71d-86a5-450e-afc7-76bc6996a3ad
-  amount: 1200
+  giftCardIntegrationId: 973dbf26-b6e3-4141-9357-7c479c102d14
+  amount: 3600
   status: 'PENDING'
   createdAt: 2022-09-13T21:59:43.10-05:00
   updatedAt: 2022-09-13T21:59:43.10-05:00

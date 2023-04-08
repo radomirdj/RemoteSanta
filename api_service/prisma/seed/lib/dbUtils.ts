@@ -25,6 +25,15 @@ export const seedTable = async (
 
   const recordChunkList = chunk(records, 20);
   for (let i = 0; i < recordChunkList.length; i++) {
+    // const set1 = new Set();
+    // recordChunkList[i].forEach((r: {id: string}) => set1.add(r.id));
+    // console.log(
+    //   'recordChunkList[i]',
+    //   recordChunkList[i].length,
+    //   set1.size,
+    //   recordChunkList[i],
+    // );
+
     await insertRecords(
       prisma,
       recordChunkList[i],

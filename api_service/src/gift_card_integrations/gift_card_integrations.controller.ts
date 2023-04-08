@@ -1,9 +1,13 @@
-import { Controller, Param, Get } from '@nestjs/common';
+import { Controller, Param, Get, UseGuards } from '@nestjs/common';
 import { GiftCardIntegrationsService } from './gift_card_integrations.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { GiftCardIntegrationDto } from './dtos/gift_card_integration.dto';
+import { CurrentUser } from '../users/decorators/current-user.decorator';
+import { AuthGuard } from '@nestjs/passport';
+import { UserDto } from '../users/dtos/user.dto';
 
 @Serialize(GiftCardIntegrationDto)
+@UseGuards(AuthGuard('jwt'))
 @Controller('gift-card-integrations')
 export class GiftCardIntegrationsController {
   constructor(
@@ -11,12 +15,15 @@ export class GiftCardIntegrationsController {
   ) {}
 
   @Get('/:id')
-  async getGiftCardIntegration(@Param('id') id: string) {
-    return this.giftCardIntegrationsService.getOne(id);
+  async getGiftCardIntegration(
+    @Param('id') id: string,
+    @CurrentUser() user: UserDto,
+  ) {
+    return this.giftCardIntegrationsService.getOne(id, user.org.countryId);
   }
 
   @Get('/')
-  async getGiftCardIntegrationList() {
-    return this.giftCardIntegrationsService.getAll();
+  async getGiftCardIntegrationList(@CurrentUser() user: UserDto) {
+    return this.giftCardIntegrationsService.getAll(user.org.countryId);
   }
 }

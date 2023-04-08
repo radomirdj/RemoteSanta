@@ -18,8 +18,9 @@ export class GiftCardIntegrationsService {
   async validateIntegrationRequest(
     giftCardIntegrationId: string,
     amount: number,
+    countryId: string,
   ) {
-    const integration = await this.getOne(giftCardIntegrationId);
+    const integration = await this.getOne(giftCardIntegrationId, countryId);
 
     switch (integration.constraintType) {
       case IntegrationConsraintTypeEnum.MIN_MAX:
@@ -36,17 +37,18 @@ export class GiftCardIntegrationsService {
     }
   }
 
-  async getOne(id: string): Promise<GiftCardIntegration> {
+  async getOne(id: string, countryId: string): Promise<GiftCardIntegration> {
     const integrationDto = await this.prisma.giftCardIntegration.findUnique({
       where: { id },
     });
-    if (!integrationDto)
+    if (!integrationDto || integrationDto.countryId !== countryId)
       throw new NotFoundException('GiftCardIntegration Not Found');
     return integrationDto;
   }
 
-  async getAll(): Promise<GiftCardIntegration[]> {
+  async getAll(countryId: string): Promise<GiftCardIntegration[]> {
     return this.prisma.giftCardIntegration.findMany({
+      where: { countryId },
       orderBy: [
         {
           priority: 'asc',

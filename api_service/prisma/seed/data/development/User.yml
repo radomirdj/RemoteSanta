@@ -79,3 +79,26 @@
   orgId: 62b1828e-0b0f-4123-af61-531e7967134c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: c9c96ed0-6750-401e-aebd-1563c5933467
+  cognitoSub: 1563c5933467
+  email: jovanadjeko+srb@gmail.com
+  firstName: Mita
+  lastName: Bekrija
+  gender: MALE
+  userRole: USER_MANAGER
+  birthDate: 1945-04-19T00:00:00.000Z
+  orgId: 27d432c3-7c7c-455a-9d8d-2de6bc5492c3
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: 644fb0f4-d1d1-462c-81ce-ef025fcde263
+  cognitoSub: ef025fcde263
+  email: jovanadjeko+srb2@gmail.com
+  firstName: Aca
+  lastName: Acic
+  gender: MALE
+  birthDate: 1955-04-19T00:00:00.000Z
+  orgId: 27d432c3-7c7c-455a-9d8d-2de6bc5492c3
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
