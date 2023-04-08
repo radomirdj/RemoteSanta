@@ -1,10 +1,10 @@
 - id: b6b47e55-5213-441f-87db-c7e32bd5b70e
-  amount: 1200
+  amount: 2400
   orgTransactionId: 4a49457a-774d-4443-8da5-692748000beb
   userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9
 
 - id: f645a4dd-03a2-4a5a-b526-afab2079f763
-  amount: 1200
+  amount: 2400
   orgTransactionId: 4a49457a-774d-4443-8da5-692748000beb
   userId: 25752f92-defd-4bb5-9553-154fc5ce9d8b
 
@@ -24,6 +24,6 @@
   userId: 80629be5-c1f7-4fb8-90b7-c030194617e6
 
 - id: 7aee1ec5-8c4f-44e2-a102-26269ab63e90
-  amount: 10000
+  amount: 22000
   orgTransactionId: 27838d62-9fd0-408f-8af7-a57ae3af974a
   userId: 69a89ce4-5f3e-403f-8fa2-821fc4f216c9

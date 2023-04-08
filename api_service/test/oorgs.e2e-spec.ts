@@ -122,7 +122,7 @@ describe('orgs', () => {
         )
         .expect(200);
 
-      expect(response.body.length).toEqual(4);
+      expect(response.body.length).toEqual(5);
       expectOrgTransactionRsp(response.body[0], org1Transactions[0]);
       expectOrgTransactionRsp(response.body[1], org1Transactions[1]);
     });

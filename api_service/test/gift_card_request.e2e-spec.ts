@@ -155,7 +155,7 @@ describe('/gift-card-requests', () => {
   describe('/ (POST)', () => {
     const newGiftCardRequest = {
       giftCardIntegrationId: giftCardIntegration1.id,
-      amount: 700,
+      amount: 2700,
       //   status shouls be ignored
       status: GiftCardRequestStatusEnum.COMPLETED,
     };
