@@ -109,6 +109,17 @@ export const org2Manager = users[4];
 export const org2ActivePoints = 0;
 export const org2ReservedPoints = 0;
 
+export const userSrb = {
+  id: 'c9c96ed0-6750-401e-aebd-1563c5933467',
+  cognitoSub: '1563c5933467',
+  password: 'abcABC123',
+  email: 'jovanadjeko+srb@gmail.com',
+  firstName: 'Mita',
+  lastName: 'Bekrija',
+  gender: 'MALE',
+  birthDate: new Date('1945-04-19T00:00:00.000Z'),
+};
+
 export const giftDates = [
   {
     id: '4b948270-696a-4a32-9c59-ffac4d7aa186',
@@ -184,6 +195,19 @@ export const giftCardIntegration2 = {
     'Camping World offers a wide variety of RVs for sale, including new and used motorhomes, travel trailers, fifth wheels, and toy haulers, as well as pop-up campers and truck campers. It operates over 170 locations in the US, as well as an online store.',
   constraintType: 'MIN_MAX',
   constraintJson: { MIN: 2500, MAX: 10000 },
+};
+
+export const giftCardIntegrationSrb = {
+  id: '023bf681-121d-48a1-a550-da1f9b37abe3',
+  priority: 30,
+  website: 'https://www.n-sport.net',
+  image:
+    'https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png',
+  title: 'N Sport',
+  description:
+    'Jedan od vodećih distributera najpoznatijih sportskih i modnih brendova. Prepoznatljiv po svoja tri osnovna prodajna multibrend koncepta - N Sport, N Fashion i N Selection, koji odgovaraju aktivnom životu savremenih muškaraca i žena.',
+  constraintType: 'MIN_MAX',
+  constraintJson: { MIN: 500, MAX: 100000 },
 };
 
 export const giftCardRequestList = [
