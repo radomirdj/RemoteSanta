@@ -12,6 +12,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { giftCardIntegration1, user1 } from './utils/preseededData';
+import { createToken } from './utils/tokenService';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -53,6 +54,14 @@ describe('/gift-card-integrations', () => {
     it('/:id (GET) - get gift card integration', async () => {
       const response = await request(app.getHttpServer())
         .get(`/gift-card-integrations/${giftCardIntegration1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
         .expect(200);
 
       const id = response.body.id;
@@ -64,6 +73,14 @@ describe('/gift-card-integrations', () => {
     it('/:id (GET) - get gift card integration - wrong id', async () => {
       await request(app.getHttpServer())
         .get(`/gift-card-integrations/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
         .expect(404);
     });
   });
@@ -72,6 +89,14 @@ describe('/gift-card-integrations', () => {
     it('/ (GET) - get gift card integration list', async () => {
       const response = await request(app.getHttpServer())
         .get('/gift-card-integrations/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
         .expect(200);
       expect(response.body.length).toEqual(19);
       const giftCardIntegrationRsp1 = response.body.find(
@@ -100,13 +125,16 @@ describe('/gift-card-integrations', () => {
   });
 
   describe('GiftCardIntegrationsService - CHECK SEED', () => {
-    it('All Preseeded GiftCardIntegrations should accept 1000 points', async () => {
-      const integrationList = await prisma.giftCardIntegration.findMany({});
+    it('All Preseeded GiftCardIntegrations should accept 1000 points - Serbia', async () => {
+      const integrationList = await prisma.giftCardIntegration.findMany({
+        where: { countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d' },
+      });
       const promiseList = integrationList.map(async (integration) => {
         try {
           await giftCardIntegrationsService.validateIntegrationRequest(
             integration.id,
             1000,
+            '76a2e7f6-e202-4c99-95a6-08fb361b112d',
           );
         } catch (err) {
           expect(integration.id).toEqual(

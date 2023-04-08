@@ -5,6 +5,9 @@ export class OrgDto {
   id: string;
 
   @Expose()
+  countryId: string;
+
+  @Expose()
   name: string;
 
   @Expose()

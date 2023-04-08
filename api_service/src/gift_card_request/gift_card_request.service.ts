@@ -12,6 +12,7 @@ import {
   GiftCardRequest,
   GiftCardRequestStatusEnum,
 } from '@prisma/client';
+import { UserDto } from '../users/dtos/user.dto';
 
 @Injectable()
 export class GiftCardRequestService {
@@ -23,16 +24,17 @@ export class GiftCardRequestService {
     @InjectS3() private readonly s3: S3,
   ) {}
 
-  async create(giftCardRequestDto: CreateGiftCardRequestDto, user: User) {
+  async create(giftCardRequestDto: CreateGiftCardRequestDto, user: UserDto) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
     const [_, __, org] = await Promise.all([
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
         data.amount,
+        user.org.countryId,
       ),
       this.ledgerService.validateUserActiveBalance(user.id, data.amount),
       this.prisma.org.findUnique({
-        where: { id: user.orgId },
+        where: { id: user.org.id },
       }),
     ]);
 
