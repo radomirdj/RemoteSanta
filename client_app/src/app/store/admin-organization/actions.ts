@@ -26,6 +26,10 @@ import {
   ADMIN_SEND_POINTS_TO_USER,
   ADMIN_SEND_POINTS_TO_USER_SUCCESS,
   ADMIN_SEND_POINTS_TO_USER_FAILURE,
+  SET_OPEN_MODAL,
+  SET_CLOSE_MODAL,
+  SET_OPEN_DIALOG,
+  SET_CLOSE_DIALOG,
 } from "./actionTypes";
 import {
   FetchAdminOrganizationList,
@@ -77,6 +81,10 @@ import {
   AdminSendPointsToUserSuccess,
   AdminSendPointsToUserFailurePayload,
   AdminSendPointsToUserFailure,
+  SetOpenModal,
+  SetCloseModal,
+  SetOpenDialog,
+  SetCloseDialog,
 } from "./types";
 
 export const fetchAdminOrganizationList = (): FetchAdminOrganizationList => ({
@@ -256,4 +264,20 @@ export const adminSendPointsToUserFailure = (
 ): AdminSendPointsToUserFailure => ({
   type: ADMIN_SEND_POINTS_TO_USER_FAILURE,
   payload,
+});
+
+export const setOpenModal = (): SetOpenModal => ({
+  type: SET_OPEN_MODAL,
+});
+
+export const setCloseModal = (): SetCloseModal => ({
+  type: SET_CLOSE_MODAL,
+});
+
+export const setOpenDialog = (): SetOpenDialog => ({
+  type: SET_OPEN_DIALOG,
+});
+
+export const setCloseDialog = (): SetCloseDialog => ({
+  type: SET_CLOSE_DIALOG,
 });

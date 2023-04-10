@@ -27,6 +27,10 @@ import {
   ADMIN_SEND_POINTS_TO_USER,
   ADMIN_SEND_POINTS_TO_USER_SUCCESS,
   ADMIN_SEND_POINTS_TO_USER_FAILURE,
+  SET_CLOSE_MODAL,
+  SET_OPEN_DIALOG,
+  SET_CLOSE_DIALOG,
+  SET_OPEN_MODAL,
 } from "./actionTypes";
 
 import { AdminOrganizationActions, AdminOrganizationState } from "./types";
@@ -205,6 +209,32 @@ export default (state = initialState, action: AdminOrganizationActions) => {
         ...state,
         pending: false,
         error: action.payload.error,
+      };
+    case SET_OPEN_MODAL:
+      return {
+        ...state,
+        openModal: true,
+        pending: true,
+        error: null,
+      };
+    case SET_CLOSE_MODAL:
+      return {
+        ...state,
+        openModal: false,
+        pending: true,
+        error: null,
+      };
+    case SET_OPEN_DIALOG:
+      return {
+        ...state,
+        openDialog: true,
+        pending: true,
+      };
+    case SET_CLOSE_DIALOG:
+      return {
+        ...state,
+        openDialog: false,
+        pending: true,
       };
     default:
       return {

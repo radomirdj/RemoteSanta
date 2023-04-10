@@ -6,10 +6,15 @@ import {
   fetchAdminInviteList,
   fetchAdminOrganization,
   postAdminInvite,
+  setCloseDialog,
+  setCloseModal,
+  setOpenDialog,
+  setOpenModal,
 } from "../../store/admin-organization/actions";
 import {
   getAdminInviteListSelector,
   getAdminOrganizationSelector,
+  getErrorSelector,
 } from "../../store/admin-organization/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
@@ -48,21 +53,17 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
 import {
-  setCloseDialog,
-  setCloseModal,
-  setOpenDialog,
-  setOpenModal,
-} from "../../store/user-invites/actions";
-import {
   getOpenDialogSelector,
   getOpenModalSelector,
 } from "../../store/user-invites/selectors";
 import { UserRole } from "../../enums/UserRole";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const AdminInvites = () => {
   const params = useParams();
   const orgId = params.id as string;
   const dispatch = useDispatch();
+  const error = useSelector(getErrorSelector);
   const adminInviteList = useSelector(getAdminInviteListSelector);
   const rowsPerPage = 7;
   const navigate = useNavigate();
@@ -226,9 +227,21 @@ const AdminInvites = () => {
               aria-describedby="modal-modal-description"
             >
               <Card sx={style}>
-                <Typography className="send-invite-title" variant="h5">
+                <Typography
+                  className={
+                    error ? "send-invite-title-error" : "send-invite-title"
+                  }
+                >
                   Send an invite
                 </Typography>
+                {error && (
+                  <div className="invite-error">
+                    <ErrorIcon className="invite-error-icon" />
+                    <Typography className="invite-error-message">
+                      {error}
+                    </Typography>
+                  </div>
+                )}
                 <form onSubmit={handleSubmit(onSubmitInvite)}>
                   <TextField
                     error={errors.email ? true : false}

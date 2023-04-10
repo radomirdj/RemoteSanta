@@ -12,6 +12,7 @@ import {
   setOpenModal,
 } from "../../store/user-invites/actions";
 import {
+  getErrorSelector,
   getOpenDialogSelector,
   getOpenModalSelector,
   getUserInviteListSelector,
@@ -52,11 +53,13 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
 import { UserRole } from "../../enums/UserRole";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const UserManagerInvites = () => {
   const dispatch = useDispatch();
   const organization = useSelector(getOrganizationSelector);
   const userInviteList = useSelector(getUserInviteListSelector);
+  const error = useSelector(getErrorSelector);
   const rowsPerPage = 7;
   const open = useSelector(getOpenModalSelector);
   const handleOpenSendInvite = () => {
@@ -208,7 +211,21 @@ const UserManagerInvites = () => {
               aria-describedby="modal-modal-description"
             >
               <Card sx={style}>
-                <Typography variant="h5">Send an invite</Typography>
+                <Typography
+                  className={
+                    error ? "send-invite-title-error" : "send-invite-title"
+                  }
+                >
+                  Send an invite
+                </Typography>
+                {error && (
+                  <div className="invite-error">
+                    <ErrorIcon className="invite-error-icon" />
+                    <Typography className="invite-error-message">
+                      {error}
+                    </Typography>
+                  </div>
+                )}
                 <form onSubmit={handleSubmit(onSubmitInvite)}>
                   <TextField
                     error={errors.email ? true : false}
