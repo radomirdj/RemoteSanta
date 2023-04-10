@@ -65,6 +65,7 @@ export interface AdminOrganizationState {
 
 export interface IInvite {
   email: string;
+  userRole: string;
 }
 
 export interface ISendPointsData {

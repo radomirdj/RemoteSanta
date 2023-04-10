@@ -35,9 +35,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
   Modal,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -47,6 +51,7 @@ import CustomPagination from "../custom-pagination/CustomPagination";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
+import { UserRole } from "../../enums/UserRole";
 
 const UserManagerInvites = () => {
   const dispatch = useDispatch();
@@ -84,7 +89,7 @@ const UserManagerInvites = () => {
     dispatch(
       postUserInvite({
         orgId: organization?.id || "",
-        inviteData: { email: data.email },
+        inviteData: { email: data.email, userRole: data.userRole },
       })
     );
   };
@@ -162,6 +167,22 @@ const UserManagerInvites = () => {
     p: 4,
   };
 
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const userRoles = [
+    { value: UserRole.BASIC_USER, label: "Basic User" },
+    { value: UserRole.USER_MANAGER, label: "User Manager" },
+  ];
+
   return (
     <>
       <AppHeaderPrivate />
@@ -202,16 +223,44 @@ const UserManagerInvites = () => {
                       pattern: getEmailRegex(),
                     })}
                   />
-
                   {errors.email?.type === "required" && (
                     <Typography className="invite-error-fe">
                       Email is required.
                     </Typography>
                   )}
-
                   {errors.email?.type === "pattern" && (
                     <Typography className="invite-error-fe">
                       Email should be an email.
+                    </Typography>
+                  )}
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="userRoleLabel" className="user-role-label">
+                      User Role
+                    </InputLabel>
+                    <Select
+                      labelId="userRoleLabel"
+                      label="User Role"
+                      id="role"
+                      className={
+                        errors.userRole
+                          ? "user-role-input-with-error"
+                          : "user-role-input"
+                      }
+                      {...register("userRole", { required: true })}
+                      MenuProps={MenuProps}
+                    >
+                      {userRoles.map((role, i) => {
+                        return (
+                          <MenuItem value={role.value} key={role.value}>
+                            {role.label}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                  {errors.userRole?.type === "required" && (
+                    <Typography className="invite-error-fe">
+                      User role is required.
                     </Typography>
                   )}
                   <Button

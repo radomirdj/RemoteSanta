@@ -29,9 +29,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
   Modal,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -40,7 +44,6 @@ import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
@@ -54,6 +57,7 @@ import {
   getOpenDialogSelector,
   getOpenModalSelector,
 } from "../../store/user-invites/selectors";
+import { UserRole } from "../../enums/UserRole";
 
 const AdminInvites = () => {
   const params = useParams();
@@ -95,7 +99,10 @@ const AdminInvites = () => {
 
   const onSubmitInvite = (data: any) => {
     dispatch(
-      postAdminInvite({ orgId: orgId, inviteData: { email: data.email } })
+      postAdminInvite({
+        orgId: orgId,
+        inviteData: { email: data.email, userRole: data.userRole },
+      })
     );
   };
 
@@ -176,6 +183,22 @@ const AdminInvites = () => {
     p: 4,
   };
 
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const userRoles = [
+    { value: UserRole.BASIC_USER, label: "Basic User" },
+    { value: UserRole.USER_MANAGER, label: "User Manager" },
+  ];
+
   return (
     <>
       <AppHeaderAdmin />
@@ -220,16 +243,44 @@ const AdminInvites = () => {
                       pattern: getEmailRegex(),
                     })}
                   />
-
                   {errors.email?.type === "required" && (
                     <Typography className="invite-error-fe">
                       Email is required.
                     </Typography>
                   )}
-
                   {errors.email?.type === "pattern" && (
                     <Typography className="invite-error-fe">
                       Email should be an email.
+                    </Typography>
+                  )}
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="userRoleLabel" className="user-role-label">
+                      User Role
+                    </InputLabel>
+                    <Select
+                      labelId="userRoleLabel"
+                      label="User Role"
+                      id="role"
+                      className={
+                        errors.userRole
+                          ? "user-role-input-with-error"
+                          : "user-role-input"
+                      }
+                      {...register("userRole", { required: true })}
+                      MenuProps={MenuProps}
+                    >
+                      {userRoles.map((role, i) => {
+                        return (
+                          <MenuItem value={role.value} key={role.value}>
+                            {role.label}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                  {errors.userRole?.type === "required" && (
+                    <Typography className="invite-error-fe">
+                      User role is required.
                     </Typography>
                   )}
                   <Button

@@ -2,7 +2,6 @@
 
 $login-error-icon-width: 18px;
 $login-error-icon-height: 18px;
-$login-error-label-color: #666666;
 $login-form-width:400px;
 
 .login {
@@ -77,7 +76,7 @@ $login-form-width:400px;
     }
 
     .MuiFormLabel-root.Mui-error {
-      color: $login-error-label-color;
+      color: variables.$color-gray;
     }
   }
 
