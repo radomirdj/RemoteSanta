@@ -12,6 +12,7 @@ $modal-card-height: 96px;
 $choose-amount-margin-left:12px;
 $modal-title-size: 20px;
 $modal-phone-phone-size-text:15px;
+$choose-amount-active-points-font-size:14px;
 
 .choose-gift-card {
     background-image: url("./../../assets/home-image.svg");
@@ -161,12 +162,14 @@ $modal-phone-phone-size-text:15px;
 
   .choose-amount-active-points{
       font-family: "Montserrat";
-      font-size: variables.$font-size-medium;
-      margin-bottom: variables.$base-unit * 5;
+      font-size: $choose-amount-active-points-font-size;
       text-align: start;
       color: variables.$color-neutral-gray;
       width: 100%;
+      margin-bottom: variables.$base-unit * 4;
     }
+
+   
 
     .email-input {
       margin-bottom: variables.$base-unit * 3 !important;

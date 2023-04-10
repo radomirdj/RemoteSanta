@@ -51,7 +51,9 @@ const ChooseAmount = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Typography className="choose-amount-title">Choose Amount</Typography>
           <Typography className="choose-amount-active-points">
-            Your balance is {user.userBalance?.pointsActive} PTS.
+            Your balance is {user.userBalance?.pointsActive} PTS.{" "}
+            {user.org?.country?.conversionRateToPoints} PTS is equal to 1{" "}
+            {user.org?.country?.currencyString}.
           </Typography>
           <TextField
             id="outlined-basic"
@@ -65,6 +67,7 @@ const ChooseAmount = () => {
             error={errors.amount ? true : false}
             id="outlined-basic"
             label="Amount"
+            placeholder="PTS you want to spend"
             variant="outlined"
             className={
               errors.amount ? "amount-input-with-error" : "email-input"

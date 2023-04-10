@@ -51,7 +51,10 @@ const GiftCardRequestOverview = () => {
                 {giftCardIntegration?.title}
               </Typography>
               <Typography className="overview-points">
-                {giftCardRequestAmount} PTS
+                {giftCardRequestAmount /
+                  (user.org?.country?.conversionRateToPoints || 1)}{" "}
+                {user.org?.country?.currencyString} = {giftCardRequestAmount}{" "}
+                PTS
               </Typography>
               <Typography className="overview-amount">{user.email}</Typography>
             </Grid>

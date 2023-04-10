@@ -18,10 +18,20 @@ import {
   CLEAR_ERROR,
 } from "./actionTypes";
 
+export interface ICountry {
+  id: string;
+  currencyString: string;
+  countryCode: string;
+  countryName: string;
+  conversionRateToPoints: number;
+}
+
 export interface IOrg {
   id: string;
   name: string;
   pointsPerMonth: number;
+  signupPoints?: number;
+  country?: ICountry;
 }
 
 export interface IUserBalance {
