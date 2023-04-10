@@ -55,6 +55,7 @@ export interface IAdminInvite {
   email: string;
   status: string;
   createdAt: Date;
+  userRole: string;
 }
 
 export interface AdminOrganizationState {

@@ -2,8 +2,9 @@ import { Expose, Type } from 'class-transformer';
 import { UserInviteStatusEnum } from '@prisma/client';
 import { UserBasicDto } from '../../users/dtos/user_basic.dto';
 import { OrgDto } from '../../users/dtos/org.dto';
-
+import { UserInviteRoleEnum } from '@prisma/client';
 import { ValidateNested } from 'class-validator';
+
 export class UserInviteDto {
   @Expose()
   id: string;
@@ -13,6 +14,9 @@ export class UserInviteDto {
 
   @Expose()
   status: UserInviteStatusEnum;
+
+  @Expose()
+  userRole: UserInviteRoleEnum;
 
   @Expose()
   createdAt: Date;

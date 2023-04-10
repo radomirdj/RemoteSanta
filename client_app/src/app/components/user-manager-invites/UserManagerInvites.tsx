@@ -122,7 +122,8 @@ const UserManagerInvites = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "email", headerName: "Email", width: 550 },
+    { field: "email", headerName: "Email", width: 400 },
+    { field: "userRole", headerName: "User Role", width: 250 },
     {
       field: "cancel",
       headerName: "Cancel",
@@ -137,6 +138,7 @@ const UserManagerInvites = () => {
     .map((userInvite) => {
       return {
         email: userInvite.email,
+        userRole: userInvite.userRole,
         cancel: "",
         id: userInvite.id,
       };
