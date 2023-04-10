@@ -12,6 +12,7 @@ import {
   setOpenModal,
 } from "../../store/user-invites/actions";
 import {
+  getErrorSelector,
   getOpenDialogSelector,
   getOpenModalSelector,
   getUserInviteListSelector,
@@ -35,9 +36,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
   Modal,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -47,18 +52,23 @@ import CustomPagination from "../custom-pagination/CustomPagination";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { getEmailRegex } from "../../utils/Utils";
+import { UserRole } from "../../enums/UserRole";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const UserManagerInvites = () => {
   const dispatch = useDispatch();
   const organization = useSelector(getOrganizationSelector);
   const userInviteList = useSelector(getUserInviteListSelector);
+  const error = useSelector(getErrorSelector);
   const rowsPerPage = 7;
   const open = useSelector(getOpenModalSelector);
   const handleOpenSendInvite = () => {
     resetField("email");
+    clearErrors();
     dispatch(setOpenModal());
   };
   const handleCloseSendInvite = () => {
+    clearErrors();
     dispatch(setCloseModal());
   };
   const {
@@ -66,6 +76,7 @@ const UserManagerInvites = () => {
     formState: { errors },
     handleSubmit,
     resetField,
+    clearErrors,
   } = useForm();
   const openDialog = useSelector(getOpenDialogSelector);
   const [idToCancel, setIdToCancel] = React.useState("");
@@ -84,7 +95,7 @@ const UserManagerInvites = () => {
     dispatch(
       postUserInvite({
         orgId: organization?.id || "",
-        inviteData: { email: data.email },
+        inviteData: { email: data.email, userRole: data.userRole },
       })
     );
   };
@@ -111,7 +122,8 @@ const UserManagerInvites = () => {
   };
 
   const columns: GridColDef[] = [
-    { field: "email", headerName: "Email", width: 550 },
+    { field: "email", headerName: "Email", width: 400 },
+    { field: "userRole", headerName: "User Role", width: 250 },
     {
       field: "cancel",
       headerName: "Cancel",
@@ -126,6 +138,7 @@ const UserManagerInvites = () => {
     .map((userInvite) => {
       return {
         email: userInvite.email,
+        userRole: userInvite.userRole,
         cancel: "",
         id: userInvite.id,
       };
@@ -162,6 +175,22 @@ const UserManagerInvites = () => {
     p: 4,
   };
 
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const userRoles = [
+    { value: UserRole.BASIC_USER, label: "Basic User" },
+    { value: UserRole.USER_MANAGER, label: "User Manager" },
+  ];
+
   return (
     <>
       <AppHeaderPrivate />
@@ -187,7 +216,21 @@ const UserManagerInvites = () => {
               aria-describedby="modal-modal-description"
             >
               <Card sx={style}>
-                <Typography variant="h5">Send an invite</Typography>
+                <Typography
+                  className={
+                    error ? "send-invite-title-error" : "send-invite-title"
+                  }
+                >
+                  Send an invite
+                </Typography>
+                {error && (
+                  <div className="invite-error">
+                    <ErrorIcon className="invite-error-icon" />
+                    <Typography className="invite-error-message">
+                      {error}
+                    </Typography>
+                  </div>
+                )}
                 <form onSubmit={handleSubmit(onSubmitInvite)}>
                   <TextField
                     error={errors.email ? true : false}
@@ -202,16 +245,45 @@ const UserManagerInvites = () => {
                       pattern: getEmailRegex(),
                     })}
                   />
-
                   {errors.email?.type === "required" && (
                     <Typography className="invite-error-fe">
                       Email is required.
                     </Typography>
                   )}
-
                   {errors.email?.type === "pattern" && (
                     <Typography className="invite-error-fe">
                       Email should be an email.
+                    </Typography>
+                  )}
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="userRoleLabel" className="user-role-label">
+                      User Role
+                    </InputLabel>
+                    <Select
+                      labelId="userRoleLabel"
+                      label="User Role"
+                      id="role"
+                      className={
+                        errors.userRole
+                          ? "user-role-input-with-error"
+                          : "user-role-input"
+                      }
+                      {...register("userRole", { required: true })}
+                      MenuProps={MenuProps}
+                      defaultValue={"BASIC_USER"}
+                    >
+                      {userRoles.map((role, i) => {
+                        return (
+                          <MenuItem value={role.value} key={role.value}>
+                            {role.label}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                  {errors.userRole?.type === "required" && (
+                    <Typography className="invite-error-fe">
+                      User role is required.
                     </Typography>
                   )}
                   <Button

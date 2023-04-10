@@ -19,6 +19,7 @@ export interface IUserInvite {
   email: string;
   status: string;
   createdAt: Date;
+  userRole: string;
 }
 
 export interface UserInviteState {
@@ -31,6 +32,7 @@ export interface UserInviteState {
 
 export interface IInvite {
   email: string;
+  userRole: string;
 }
 
 export interface FetchUserInviteListPayload {

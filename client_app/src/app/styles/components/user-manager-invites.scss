@@ -1,6 +1,6 @@
 @use "./../variables.scss";
 
-$content-width:675px;
+$content-width:775px;
 
 .user-manager-invites{
     background-image: url("./../../assets/home-image.svg");
@@ -91,7 +91,7 @@ $content-width:675px;
         }
     
         .MuiFormLabel-root.Mui-error {
-          color: $login-error-label-color;
+          color: variables.$color-gray;
         }
       }
 }
@@ -101,14 +101,23 @@ $content-width:675px;
       padding-top: variables.$base-unit * 6;
         padding-bottom: variables.$base-unit * 6;
         background-color: white;
-        .MuiTypography-h5{
-            font-family: "Montserrat";
-            margin-left:variables.$base-unit * 3;
-            font-size: variables.$font-size-larger;
-            margin-bottom: variables.$base-unit * 4;
-            width: max-content;
-            font-weight: 500;
-        }
+        .send-invite-title{
+          font-family: "Montserrat";
+          margin-left:variables.$base-unit * 3;
+          font-size: variables.$font-size-larger;
+          margin-bottom: variables.$base-unit * 4;
+          width: max-content;
+          font-weight: 500;
+      }
+
+      .send-invite-title-error{
+        font-family: "Montserrat";
+        margin-left:variables.$base-unit * 3;
+        font-size: variables.$font-size-larger;
+        margin-bottom: variables.$base-unit * 2;
+        width: max-content;
+        font-weight: 500;
+    }
 
         .invite-error-fe {
             font-size: variables.$font-size-small;
@@ -131,6 +140,28 @@ $content-width:675px;
             width: 88%;
           }
 
+          .user-role-input {
+            margin-bottom: variables.$base-unit * 3 !important;
+            margin-left:variables.$base-unit * 3;
+            width: 88%;
+          }
+        
+          .user-role-input-with-error {
+            margin-bottom: 0px !important;
+            margin-left:variables.$base-unit * 3;
+            width: 88%;
+          }
+
+          .user-role-input-with-error  {
+            .MuiOutlinedInput-notchedOutline {
+                border-color: variables.$error-color;
+            }
+          }
+
+          .user-role-label{
+            margin-left: 24px;
+          }
+
           .send-invite-button,
             & .send-invite-button:hover {
               background-color: variables.$color-dark-yellow;
@@ -143,6 +174,46 @@ $content-width:675px;
               height: variables.$base-unit * 6;
               font-weight: bold;
               margin-bottom: variables.$base-unit * 2;
+            }
+
+            .MuiFormControl-root {
+              margin: 0px;
+              border-radius: variables.$base-unit;
+              margin-bottom: variables.$base-unit;
+          
+              .MuiOutlinedInput-root {
+                border-radius: variables.$base-unit;
+              }
+          
+              .MuiOutlinedInput-root.Mui-error {
+                .MuiOutlinedInput-notchedOutline {
+                  border-color: variables.$error-color;
+                }
+              }
+      
+              .MuiFormLabel-root.Mui-error {
+                color: variables.$color-gray;
+              }      
+            }
+
+            .invite-error {
+              color: variables.$error-color;
+              text-align: start;
+              margin-bottom: variables.$base-unit * 4;
+              display: inline-flex;
+              width: 100%;
+          
+              .invite-error-icon {
+                margin-left: variables.$base-unit * 3;
+                width: $login-error-icon-width !important;
+                height: $login-error-icon-height;
+                width: 10%;
+              }
+          
+              .invite-error-message {
+                width: 90%;
+                font-size: variables.$font-size-small;
+              }
             }
     }
 }

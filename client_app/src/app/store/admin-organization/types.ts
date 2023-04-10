@@ -27,6 +27,10 @@ import {
   ADMIN_SEND_POINTS_TO_USER,
   ADMIN_SEND_POINTS_TO_USER_SUCCESS,
   ADMIN_SEND_POINTS_TO_USER_FAILURE,
+  SET_OPEN_MODAL,
+  SET_CLOSE_MODAL,
+  SET_OPEN_DIALOG,
+  SET_CLOSE_DIALOG,
 } from "./actionTypes";
 
 export interface IAdminOrganization {
@@ -51,6 +55,7 @@ export interface IAdminInvite {
   email: string;
   status: string;
   createdAt: Date;
+  userRole: string;
 }
 
 export interface AdminOrganizationState {
@@ -65,6 +70,7 @@ export interface AdminOrganizationState {
 
 export interface IInvite {
   email: string;
+  userRole: string;
 }
 
 export interface ISendPointsData {
@@ -297,6 +303,22 @@ export type AdminSendPointsToUserFailure = {
   payload: AdminSendPointsToUserFailurePayload;
 };
 
+export interface SetOpenModal {
+  type: typeof SET_OPEN_MODAL;
+}
+
+export interface SetCloseModal {
+  type: typeof SET_CLOSE_MODAL;
+}
+
+export interface SetOpenDialog {
+  type: typeof SET_OPEN_DIALOG;
+}
+
+export interface SetCloseDialog {
+  type: typeof SET_CLOSE_DIALOG;
+}
+
 export type AdminOrganizationActions =
   | FetchAdminOrganizationList
   | FetchAdminOrganizationListSuccess
@@ -324,4 +346,8 @@ export type AdminOrganizationActions =
   | DeleteAdminUserFailure
   | AdminSendPointsToUser
   | AdminSendPointsToUserSuccess
-  | AdminSendPointsToUserFailure;
+  | AdminSendPointsToUserFailure
+  | SetOpenModal
+  | SetCloseModal
+  | SetOpenDialog
+  | SetCloseDialog;

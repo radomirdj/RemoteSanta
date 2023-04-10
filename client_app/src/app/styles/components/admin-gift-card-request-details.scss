@@ -83,7 +83,7 @@ $back-icon-margin-bottom:3px;
         }
 
         .MuiFormLabel-root.Mui-error {
-            color: $login-error-label-color;
+            color: variables.$color-gray;
             }
     }
 

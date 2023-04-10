@@ -168,9 +168,6 @@ $choose-amount-active-points-font-size:14px;
       width: 100%;
       margin-bottom: variables.$base-unit * 4;
     }
-
-   
-
     .email-input {
       margin-bottom: variables.$base-unit * 3 !important;
     }
@@ -191,7 +188,7 @@ $choose-amount-active-points-font-size:14px;
       }
   
       .MuiFormLabel-root.Mui-error {
-        color: $login-error-label-color;
+        color: variables.$color-gray;
       }
     }
     .choose-amount-error-fe {

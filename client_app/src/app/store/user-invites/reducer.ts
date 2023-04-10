@@ -85,12 +85,14 @@ export default (state = initialState, action: UserInviteActions) => {
         ...state,
         openModal: true,
         pending: true,
+        error: null,
       };
     case SET_CLOSE_MODAL:
       return {
         ...state,
         openModal: false,
         pending: true,
+        error: null,
       };
     case SET_OPEN_DIALOG:
       return {
