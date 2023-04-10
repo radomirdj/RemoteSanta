@@ -30,7 +30,7 @@ import {
   expectUserInviteRsp,
   expectUserInviteDB,
 } from './utils/userInviteChecks';
-import { UserInviteStatusEnum } from '@prisma/client';
+import { UserInviteStatusEnum, UserRoleEnum } from '@prisma/client';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
@@ -155,6 +155,7 @@ describe('admin user invites', () => {
         status: UserInviteStatusEnum.ACTIVE,
         orgId: org1.id,
         createdById: admin.id,
+        userRole: UserRoleEnum.BASIC_USER,
       });
       await prisma.userInvite.delete({ where: { id } });
     });
@@ -179,6 +180,32 @@ describe('admin user invites', () => {
         status: UserInviteStatusEnum.ACTIVE,
         orgId: org2.id,
         createdById: admin.id,
+        userRole: UserRoleEnum.BASIC_USER,
+      });
+      await prisma.userInvite.delete({ where: { id } });
+    });
+
+    it('/ (POST) - create ORG2 USER MANAGER INVITE by ADMIN', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/orgs/${org2.id}/user-invites/`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: admin.email, sub: admin.cognitoSub }),
+        )
+        .send({ ...newUserInvite, userRole: UserRoleEnum.USER_MANAGER })
+        .expect(201);
+
+      const inviteRsp = response.body;
+      expect(inviteRsp.email).toEqual(newUserInvite.email);
+      const id = inviteRsp.id;
+
+      await expectUserInviteDB(prisma, id, {
+        email: newUserInvite.email,
+        status: UserInviteStatusEnum.ACTIVE,
+        orgId: org2.id,
+        createdById: admin.id,
+        userRole: UserRoleEnum.USER_MANAGER,
       });
       await prisma.userInvite.delete({ where: { id } });
     });
@@ -259,6 +286,7 @@ describe('admin user invites', () => {
         status: UserInviteStatusEnum.CANCELED,
         orgId: org2.id,
         createdById: userInviteOrg2.createdById,
+        userRole: UserRoleEnum.BASIC_USER,
       });
 
       await prisma.userInvite.update({

@@ -14,4 +14,5 @@ export const expectUserInviteDB = async (prisma, id, expectedValue) => {
   expect(userInvite.status).toEqual(expectedValue.status);
   expect(userInvite.createdById).toEqual(expectedValue.createdById);
   expect(userInvite.orgId).toEqual(expectedValue.orgId);
+  expect(userInvite.userRole).toEqual(expectedValue.userRole);
 };
