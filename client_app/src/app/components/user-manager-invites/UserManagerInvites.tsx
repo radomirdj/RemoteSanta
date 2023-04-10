@@ -64,9 +64,11 @@ const UserManagerInvites = () => {
   const open = useSelector(getOpenModalSelector);
   const handleOpenSendInvite = () => {
     resetField("email");
+    clearErrors();
     dispatch(setOpenModal());
   };
   const handleCloseSendInvite = () => {
+    clearErrors();
     dispatch(setCloseModal());
   };
   const {
@@ -74,6 +76,7 @@ const UserManagerInvites = () => {
     formState: { errors },
     handleSubmit,
     resetField,
+    clearErrors,
   } = useForm();
   const openDialog = useSelector(getOpenDialogSelector);
   const [idToCancel, setIdToCancel] = React.useState("");

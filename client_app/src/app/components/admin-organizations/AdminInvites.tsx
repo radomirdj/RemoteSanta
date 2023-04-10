@@ -69,10 +69,12 @@ const AdminInvites = () => {
   const navigate = useNavigate();
   const open = useSelector(getOpenModalSelector);
   const handleOpenSendInvite = () => {
+    clearErrors();
     resetField("email");
     dispatch(setOpenModal());
   };
   const handleCloseSendInvite = () => {
+    clearErrors();
     resetField("email");
     dispatch(setCloseModal());
   };
@@ -80,6 +82,7 @@ const AdminInvites = () => {
     register,
     formState: { errors },
     handleSubmit,
+    clearErrors,
     resetField,
   } = useForm();
   const organization = useSelector(getAdminOrganizationSelector);
