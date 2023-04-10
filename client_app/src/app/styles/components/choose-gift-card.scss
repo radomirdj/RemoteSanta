@@ -45,6 +45,27 @@ $modal-phone-phone-size-text:15px;
         margin-right:variables.$base-unit *2;
       }
     }
+
+    .empty-content{
+      margin-left:auto;
+      margin-right: auto;
+      text-align: center;
+
+      .empty-title{
+        margin-top: variables.$base-unit * 3;
+        font-family: "Montserrat";
+        font-size: variables.$font-size-large;
+        font-weight: 500;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: variables.$base-unit *2;
+      }
+
+      .empty-illustration{
+        height: variables.$base-unit * 42;
+      }
+    }
       
       .MuiStepper-root{
         @media screen and (min-width: variables.$breakpoint-md){

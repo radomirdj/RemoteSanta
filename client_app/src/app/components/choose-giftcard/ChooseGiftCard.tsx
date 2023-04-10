@@ -1,11 +1,10 @@
 import {
   Grid,
-  InputAdornment,
   InputBase,
   Step,
   StepLabel,
   Stepper,
-  TextField,
+  Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +24,7 @@ import GiftCardIntegrationItem from "./GiftCardIntegrationItem";
 import ChooseAmount from "./ChooseAmount";
 import GiftCardRequestOverview from "./GiftCardRequestOverview";
 import SearchIcon from "@mui/icons-material/Search";
+import DeclineIllustration from "./../../assets/illustrations/decline-gift-card-request-illustration.svg";
 
 const ChooseGiftCard = () => {
   const dispatch = useDispatch();
@@ -33,11 +33,27 @@ const ChooseGiftCard = () => {
   );
   const activeStep = useSelector(getStepperPagetSelector);
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
-
+  const [searchValue, setSearchValue] = React.useState("");
   useEffect(() => {
     dispatch(setGiftCardRequestResetData());
     dispatch(fetchGiftCardIntegrationList());
   }, [dispatch]);
+
+  const giftCardIntegrationFilteredList = giftCardIntegrationList.filter(
+    (giftCardIntegration) => {
+      if (!searchValue) return true;
+      if (
+        giftCardIntegration.title
+          .toLocaleLowerCase()
+          .includes(searchValue.toLocaleLowerCase()) ||
+        giftCardIntegration.description
+          .toLocaleLowerCase()
+          .includes(searchValue.toLocaleLowerCase())
+      )
+        return true;
+      return false;
+    }
+  );
 
   return (
     <>
@@ -65,11 +81,26 @@ const ChooseGiftCard = () => {
                 placeholder="Search for your favorite gift card..."
                 className="search-field"
                 startAdornment={<SearchIcon className="search-icon-style" />}
+                onChange={(e: any) => setSearchValue(e.target.value)}
               />
             </Grid>
           )}
+          {giftCardIntegrationFilteredList.length === 0 &&
+            searchValue !== "" && (
+              <div className="empty-content">
+                <Typography className="empty-title">
+                  Oh no! We couldn’t find any results for your search. Please,
+                  try a different search.
+                </Typography>
+                <img
+                  src={DeclineIllustration}
+                  alt=""
+                  className="empty-illustration"
+                />
+              </div>
+            )}
           {activeStep === 0 &&
-            giftCardIntegrationList.map((element, i) => {
+            giftCardIntegrationFilteredList.map((element, i) => {
               return (
                 <Grid item xs={12} sm={6} md={3} key={i}>
                   <GiftCardIntegrationItem {...element} />
