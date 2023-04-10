@@ -117,7 +117,13 @@ export class AdminOrgsService {
     createAdminToOrgDto: CreateAdminToOrgDto,
     admin: User,
   ): Promise<OrgTransactionDto> {
-    await this.getById(orgId);
+    const [org, orgUserManagerList] = await Promise.all([
+      this.getById(orgId),
+      this.usersService.findManagersByOrg(orgId),
+    ]);
+    const orgEmailUserManagerList = orgUserManagerList.map(
+      (orgUserManager) => orgUserManager.email,
+    );
 
     return this.prisma.$transaction(async (tx) => {
       const orgTransaction = await tx.orgTransaction.create({
@@ -142,6 +148,12 @@ export class AdminOrgsService {
         createAdminToOrgDto.amount,
         orgTransaction.id,
       );
+      this.emailsService.sendAdminToOrgPointsEmail(
+        orgEmailUserManagerList,
+        createAdminToOrgDto.amount,
+        org.name,
+      );
+
       return orgTransaction;
     });
   }

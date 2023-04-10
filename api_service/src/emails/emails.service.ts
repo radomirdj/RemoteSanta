@@ -111,6 +111,20 @@ export class EmailsService {
     });
   }
 
+  async sendAdminToOrgPointsEmail(
+    to: string[],
+    amount: number,
+    companyName: string,
+  ) {
+    const date = new Date().toJSON().slice(0, 10);
+
+    return this.sendEmail('admin-to-org-pints', to, {
+      amount,
+      companyName,
+      date,
+    });
+  }
+
   async giftCardRequestCreatedEmail(
     to: string[],
     name: string,

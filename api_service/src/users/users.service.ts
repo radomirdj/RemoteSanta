@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { User, Prisma } from '@prisma/client';
+import { User, Prisma, UserRoleEnum } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserDto } from './dtos/user.dto';
 
@@ -74,11 +74,15 @@ export class UsersService {
     return userList[0];
   }
 
-  async findByOrg(orgId: string): Promise<UserDto[]> {
+  async findByOrg(orgId: string, additionaWhere = {}): Promise<UserDto[]> {
     return this.prisma.user.findMany({
-      where: { orgId },
+      where: { orgId, ...additionaWhere },
       include: userDefaultJoin,
     });
+  }
+
+  async findManagersByOrg(orgId: string): Promise<UserDto[]> {
+    return this.findByOrg(orgId, { userRole: UserRoleEnum.USER_MANAGER });
   }
 
   async update(id: string, attrs: Prisma.UserUpdateInput) {
