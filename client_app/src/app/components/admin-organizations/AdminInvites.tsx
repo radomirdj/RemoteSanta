@@ -286,6 +286,7 @@ const AdminInvites = () => {
                       }
                       {...register("userRole", { required: true })}
                       MenuProps={MenuProps}
+                      defaultValue={"BASIC_USER"}
                     >
                       {userRoles.map((role, i) => {
                         return (
