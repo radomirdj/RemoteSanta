@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Tooltip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +36,7 @@ const Home = () => {
     navigate("/choose-gift-card");
   };
 
+  console.log(user.org?.country);
   return (
     <>
       <AppHeaderPrivate />
@@ -47,9 +48,28 @@ const Home = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography className="home-title-right">
-              {user.userBalance?.pointsActive} PTS
-            </Typography>
+            <Tooltip
+              title={`${user.org?.country?.conversionRateToPoints} PTS is equal to 1 ${user.org?.country?.currencyString}`}
+              placement="left"
+              PopperProps={{
+                sx: {
+                  "& .MuiTooltip-tooltip": {
+                    color: "black",
+                    backgroundColor: "white",
+                    fontFamily: "Montserrat",
+                    fontSize: "16px",
+                    height: "40px",
+                    width: "200px",
+                    borderRadius: "16px",
+                    paddingTop: "20px",
+                  },
+                },
+              }}
+            >
+              <Typography className="home-title-right">
+                {user.userBalance?.pointsActive} PTS
+              </Typography>
+            </Tooltip>
           </Grid>
           <Grid item xs={6}>
             <Typography className="home-text">Upcoming events</Typography>
