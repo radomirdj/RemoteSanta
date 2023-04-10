@@ -54,6 +54,11 @@ enum UserInviteStatusEnum {
   CANCELED
 }
 
+enum UserInviteRoleEnum {
+  BASIC_USER
+  USER_MANAGER
+}
+
 model UserInvite {
   id          String               @id @default(uuid())
   code        String               @unique
@@ -65,6 +70,7 @@ model UserInvite {
   orgId       String
   createdAt   DateTime             @default(now())
   updatedAt   DateTime             @updatedAt
+  userRole    UserInviteRoleEnum   @default(BASIC_USER)
 }
 
 enum GiftDateTypeEnum {

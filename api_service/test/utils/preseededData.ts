@@ -345,6 +345,17 @@ export const userInviteBrokeOrg = {
   orgName: 'Broke Org - With No Points',
 };
 
+export const userInviteManager = {
+  id: 'a3755551-f4da-47a5-9643-ff2aa845be1a',
+  code: 'BBCWEF',
+  email: 'manager@brokeorg.com',
+  status: 'ACTIVE',
+  userRole: 'USER_MANAGER',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+  orgId: 'd5d4d9a2-7d77-43ba-bacd-b87504e5fae1',
+  orgName: 'Broke Org - With No Points',
+};
+
 export const userInviteDoubleEmail = {
   id: '48fca279-ad29-4bc2-99a1-f8bff742a743',
   code: 'BBCAEF',

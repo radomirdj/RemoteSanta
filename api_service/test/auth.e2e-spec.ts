@@ -37,6 +37,7 @@ import {
   orgSendToUserEvent,
   userInviteBrokeOrg,
   brokeOrgId,
+  userInviteManager,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
 import {
@@ -286,6 +287,72 @@ describe('Authentication system', () => {
       });
 
       await prisma.user.delete({ where: { email: userInviteBrokeOrg.email } });
+    });
+
+    it('/signup (POST) - with good params to broke org -  USER_MANAGER role', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/signup')
+        .send({ ...newUser, code: userInviteManager.code })
+        .expect(201);
+
+      expectUserRsp(response.body, {
+        ...newUser,
+        userRole: UserRoleEnum.USER_MANAGER,
+        email: userInviteManager.email,
+        orgName: userInviteManager.orgName,
+      });
+      await expectUserInDB(
+        {
+          ...newUser,
+          email: userInviteManager.email,
+          userRole: UserRoleEnum.USER_MANAGER,
+        },
+        prisma,
+      );
+
+      const balanceSideDBList = await prisma.balanceSide.findMany({
+        where: { userId: response.body.id },
+      });
+      expect(balanceSideDBList.length).toEqual(2);
+      const balanceSideActive = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_ACTIVE,
+      );
+      expect(balanceSideActive).toBeDefined();
+      expect(balanceSideActive.userId).toEqual(response.body.id);
+
+      const balanceSideReserved = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_RESERVED,
+      );
+      expect(balanceSideReserved).toBeDefined();
+      expect(balanceSideReserved.userId).toEqual(response.body.id);
+
+      const invite = await prisma.userInvite.findUnique({
+        where: { id: userInviteManager.id },
+      });
+      expect(invite.status).toEqual(UserInviteStatusEnum.COMPLETED);
+
+      // Check User And Org balance - Signup Bonus
+      const [orgBalance, newUserBalance] = await Promise.all([
+        ledgerService.getOrgBalance(brokeOrgId),
+        ledgerService.getUserBalance(response.body.id),
+      ]);
+      expect(orgBalance).toEqual(0);
+
+      expect(newUserBalance.pointsActive).toEqual(0);
+      expect(newUserBalance.pointsReserved).toEqual(0);
+      // Clean DB
+      await prisma.userInvite.update({
+        where: { id: userInviteManager.id },
+        data: {
+          status: UserInviteStatusEnum.ACTIVE,
+        },
+      });
+
+      await prisma.balanceSide.deleteMany({
+        where: { userId: response.body.id },
+      });
+
+      await prisma.user.delete({ where: { email: userInviteManager.email } });
     });
 
     it('/signup (POST) - try to signup with canceled invite', async () => {
