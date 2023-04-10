@@ -33,6 +33,7 @@ export class AdminUserInvitesController {
       user,
       id,
       createUserInviteDto.email,
+      createUserInviteDto.userRole,
     );
   }
 

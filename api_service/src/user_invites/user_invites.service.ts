@@ -9,6 +9,7 @@ import { UsersService, orgDefaultJoin } from '../users/users.service';
 import { InviteNotActiveException } from '../errors/inviteNotActiveException';
 import { EmailsService } from '../emails/emails.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
+import { UserInviteRoleEnum } from '@prisma/client';
 
 @Injectable()
 export class UserInvitesService {
@@ -50,6 +51,7 @@ export class UserInvitesService {
     user: User,
     orgId: string,
     email: string,
+    userRole: UserInviteRoleEnum,
   ): Promise<UserInvite> {
     const [existingInvite, existingUser, org] = await Promise.all([
       this.findActiveByEmail(email),
@@ -76,6 +78,7 @@ export class UserInvitesService {
       data: {
         email,
         status: UserInviteStatusEnum.ACTIVE,
+        userRole,
         code,
         createdBy: {
           connect: {

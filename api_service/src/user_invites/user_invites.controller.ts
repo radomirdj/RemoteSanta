@@ -27,6 +27,7 @@ export class UserInvitesController {
       user,
       user.orgId,
       createUserInviteDto.email,
+      createUserInviteDto.userRole,
     );
   }
 

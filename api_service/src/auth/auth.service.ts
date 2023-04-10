@@ -50,6 +50,7 @@ export class AuthService {
       const dbUser = await this.usersService.createUserTransactional(tx, {
         ...userDbData,
         email: userInvite.email,
+        userRole: userInvite.userRole,
         org: {
           connect: {
             id: userInvite.orgId,
