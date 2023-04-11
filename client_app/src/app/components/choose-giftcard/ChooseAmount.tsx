@@ -89,13 +89,13 @@ const ChooseAmount = () => {
 
           {errors.amount?.type === "min" && (
             <Typography className="choose-amount-error-fe">
-              The minimum amount is 500 PTS.
+              The minimum amount is {constraintJson["MIN"]} PTS.
             </Typography>
           )}
 
           {errors.amount?.type === "max" && (
             <Typography className="choose-amount-error-fe">
-              The maximum amount is 100000 PTS.
+              The maximum amount is {constraintJson["MAX"]} PTS.
             </Typography>
           )}
 
