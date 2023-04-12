@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+./auto_prod/nginx/build_image
+./auto_prod/nginx/push_image

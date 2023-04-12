@@ -1,0 +1,1 @@
+docker build -t raso354/preprod_remotesanta_client_app ./client_app --build-arg REACT_APP_BASE_URL=https://localremotesanta.com/api/
