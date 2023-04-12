@@ -5,6 +5,25 @@ import { flatMap, uniq, chunk } from 'lodash';
 
 import fromyaml from './fromyml';
 
+export const updateToAdminRole = async (prisma) => {
+  console.log('*** updating updateToAdminRole users to admin role ***');
+  const rsp = await prisma.user.updateMany({
+    where: {
+      id: {
+        in: [
+          'c75176ef-fdaf-4b54-a8bb-3e7661451985',
+          '0729ba8f-9e8c-4d23-9be4-f6caac0bedad',
+        ],
+      },
+    },
+    data: {
+      userRole: 'ADMIN',
+    },
+  });
+  console.log(`*** updated ${rsp.count} users to admin role ***`);
+  return rsp;
+};
+
 export const seedTable = async (
   prisma,
   modelName: string,

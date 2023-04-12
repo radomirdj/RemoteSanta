@@ -1,7 +1,7 @@
 // prisma/seed.ts
 
 import { PrismaClient } from '@prisma/client';
-import { seedTable } from './seed/lib/dbUtils';
+import { seedTable, updateToAdminRole } from './seed/lib/dbUtils';
 import { createForeignKeyListTransformer } from './seed/lib/transformers';
 // initialize Prisma Client
 const prisma = new PrismaClient();
@@ -116,6 +116,7 @@ async function main() {
       { foreignKeyName: 'toId', foreignRecordName: 'to' },
     ]),
   );
+  await updateToAdminRole(prisma);
 }
 
 // execute the main function
