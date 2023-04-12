@@ -1,1 +1,1 @@
-docker build -f Dockerfile.preprod -t raso354/preprod_remotesanta_santa_nginx ./nginx/
+docker build -f ./nginx/Dockerfile.preprod -t raso354/preprod_remotesanta_santa_nginx ./nginx/
