@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-./auto_prod/api/build_image
-./auto_prod/api/push_image
+./auto_preprod/api/build_image
+./auto_preprod/api/push_image
