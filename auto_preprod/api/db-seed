@@ -1,1 +1,1 @@
-docker-compose run api_full yarn db:seed
+docker-compose -f docker-compose-preprod.yml run api_full yarn db:seed

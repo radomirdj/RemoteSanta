@@ -1,1 +1,1 @@
-docker-compose logs -f nginx
+docker-compose -f docker-compose-preprod.yml logs -f nginx
