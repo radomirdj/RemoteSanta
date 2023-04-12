@@ -6,7 +6,7 @@
 
 */
 -- AlterTable
-ALTER TABLE "GiftCardIntegration" ADD COLUMN     "countryId" TEXT NOT NULL;
+ALTER TABLE "GiftCardIntegration" ADD COLUMN     "countryId" TEXT;
 UPDATE "GiftCardIntegration" SET "countryId" = '5e738c3a-dd55-476a-ae8f-29c322807da1';
 ALTER TABLE "GiftCardIntegration" ALTER COLUMN "countryId" SET NOT NULL;
 
