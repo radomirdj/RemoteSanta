@@ -148,11 +148,14 @@ export class AdminOrgsService {
         createAdminToOrgDto.amount,
         orgTransaction.id,
       );
-      this.emailsService.sendAdminToOrgPointsEmail(
-        orgEmailUserManagerList,
-        createAdminToOrgDto.amount,
-        org.name,
-      );
+      if (orgEmailUserManagerList.length) {
+        console.log('AdminOrgsService -> org.name', org.name);
+        await this.emailsService.sendAdminToOrgPointsEmail(
+          orgEmailUserManagerList,
+          createAdminToOrgDto.amount,
+          org.name,
+        );
+      }
 
       return orgTransaction;
     });
