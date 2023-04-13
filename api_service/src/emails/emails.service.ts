@@ -86,13 +86,13 @@ export class EmailsService {
   async sendInviteEmail(
     to: string,
     code: string,
-    companyName: string,
+    orgName: string,
     senderName: string,
   ) {
     const registrationUrl = `${process.env.FE_BASE_URL}signup?code=${code}`;
 
     return this.sendEmail('invite', to, {
-      companyName,
+      orgName,
       senderName,
       registrationUrl,
     });
@@ -101,12 +101,12 @@ export class EmailsService {
   async sendPointsEmail(
     to: string,
     message: string,
-    companyName: string,
+    orgName: string,
     firstName: string,
   ) {
     return this.sendEmail('send-points', to, {
       message,
-      companyName,
+      orgName,
       firstName,
     });
   }
@@ -114,13 +114,13 @@ export class EmailsService {
   async sendAdminToOrgPointsEmail(
     to: string[],
     amount: number,
-    companyName: string,
+    orgName: string,
   ) {
     const date = new Date().toJSON().slice(0, 10);
 
     return this.sendEmail('admin-to-org-pints', to, {
       amount,
-      companyName,
+      orgName,
       date,
     });
   }
@@ -128,10 +128,10 @@ export class EmailsService {
   async giftCardRequestCreatedEmail(
     to: string[],
     name: string,
-    companyName: string,
+    orgName: string,
   ) {
     return this.sendEmail('gift-card-request-created', to, {
-      companyName,
+      orgName,
       name,
     });
   }
