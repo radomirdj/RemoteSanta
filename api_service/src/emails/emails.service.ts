@@ -116,12 +116,12 @@ export class EmailsService {
     amount: number,
     orgName: string,
   ) {
-    const date = new Date().toJSON().slice(0, 10);
+    // const date = new Date().toJSON().slice(0, 10);
 
     return this.sendEmail('admin-to-org-pints', to, {
       amount,
       orgName,
-      date,
+      // date,
     });
   }
 
