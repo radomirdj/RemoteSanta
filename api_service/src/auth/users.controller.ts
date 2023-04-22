@@ -29,6 +29,7 @@ import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
 import { CognitoException } from '../errors/cognitoException';
 import { UserManagerGuard } from '../guards/user_manager.guard';
 import { SendPointsToEmployeeDto } from '../admin_users/dtos/send_points _to_employee.dto';
+import { OrgUserSignupDto } from '../users/dtos/org-user-signup.dto';
 
 @Serialize(UserDto)
 @Controller('users')
@@ -43,6 +44,11 @@ export class UsersController {
   @Post('/signup')
   async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.signUp(createUserDto);
+  }
+
+  @Post('/org-signup')
+  async registerOrg(@Body() orgUserSignupDto: OrgUserSignupDto) {
+    return this.authService.signUpOrg(orgUserSignupDto);
   }
 
   @Post('/login')
