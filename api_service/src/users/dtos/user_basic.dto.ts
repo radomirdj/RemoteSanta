@@ -17,10 +17,10 @@ export class UserBasicDto {
   accessToken?: string;
 
   @Expose()
-  birthDate: Date;
+  birthDate?: Date;
 
   @Expose()
-  gender: GenderEnum;
+  gender?: GenderEnum;
 
   @Expose()
   userRole: UserRoleEnum;

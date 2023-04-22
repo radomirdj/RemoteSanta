@@ -31,8 +31,8 @@ model User {
   updatedAt                       DateTime                      @updatedAt
   Report                          Report[]
   GiftDate                        GiftDate[]
-  birthDate                       DateTime                      @db.Date
-  gender                          GenderEnum
+  birthDate                       DateTime?                     @db.Date
+  gender                          GenderEnum?
   userRole                        UserRoleEnum                  @default(BASIC_USER)
   org                             Org                           @relation(fields: [orgId], references: [id])
   orgId                           String

@@ -7,7 +7,7 @@ const userJson = fs.readFileSync(
 const usersCognito = JSON.parse(userJson);
 
 export const AwsCognitoServiceMock = {
-  registerUser: async (authRegisterUserDto, email) => `sub_${email}`,
+  registerUser: async (password, email) => `sub_${email}`,
   authenticateUser: async (loginUserDto) => {
     const foundUser = usersCognito.find(
       (user) => user.email === loginUserDto.email,

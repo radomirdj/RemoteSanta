@@ -60,7 +60,7 @@ export class AuthService {
       let userSub;
       try {
         userSub = await this.cognitoService.registerUser(
-          data,
+          data.password,
           userInvite.email,
         );
       } catch (err) {

@@ -6,7 +6,6 @@ import {
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
 import { LoginUserDto } from '../dtos/login-user.dto';
-import { CreateUserDto } from '../dtos/create-user.dto';
 import { ChangePasswordUserDto } from '../dtos/change-password.dto';
 import { ConfirmPasswordUserDto } from '../dtos/confirm-password-user.dto';
 import { ForgotPasswordUserDto } from '../dtos/forgot-password-user.dto';
@@ -22,9 +21,7 @@ export class AwsCognitoService {
     });
   }
 
-  async registerUser(authRegisterUserDto: CreateUserDto, email: string) {
-    const { password } = authRegisterUserDto;
-
+  async registerUser(password: string, email: string) {
     return new Promise((resolve, reject) => {
       this.userPool.signUp(
         email,
