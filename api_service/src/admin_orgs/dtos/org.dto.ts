@@ -1,5 +1,6 @@
-import { Expose, Transform } from 'class-transformer';
-import { IntegrationConsraintTypeEnum } from '@prisma/client';
+import { Expose, Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
+import { CountryDto } from '../../users/dtos/country.dto';
 
 export class OrgDto {
   @Expose()
@@ -22,4 +23,9 @@ export class OrgDto {
 
   @Expose()
   signupPoints: number;
+
+  @ValidateNested()
+  @Expose()
+  @Type(() => CountryDto)
+  country: CountryDto;
 }
