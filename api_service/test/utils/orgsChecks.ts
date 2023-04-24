@@ -8,3 +8,13 @@ export const expectOrgRsp = (responseBody, expectedValue) => {
   );
   expect(responseBody.balance).toEqual(expectedValue.balance);
 };
+
+export const expectOrgInDB = async (expectedValue, prisma) => {
+  const org = await prisma.org.findUnique({
+    where: { id: expectedValue.id },
+  });
+
+  expect(org.email).toEqual(org.email);
+  expect(org.pointsPerMonth).toEqual(org.pointsPerMonth);
+  expect(org.signupPoints).toEqual(org.signupPoints);
+};

@@ -3,7 +3,12 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
-import { Prisma, UserInvite, UserInviteStatusEnum } from '@prisma/client';
+import {
+  Prisma,
+  UserInvite,
+  UserInviteStatusEnum,
+  UserRoleEnum,
+} from '@prisma/client';
 import { UsersService } from '../users/users.service';
 import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
 import { CreateUserDto } from '../users/dtos/create-user.dto';
@@ -18,6 +23,7 @@ import { LedgerService } from '../ledger/ledger.service';
 import { EmailsService } from '../emails/emails.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 import { OrgUserSignupDto } from '../users/dtos/org-user-signup.dto';
+import consts from '../utils/consts';
 
 const scrypt = promisify(_scrypt);
 
@@ -40,10 +46,9 @@ export class AuthService {
     return userInviteList[0];
   }
 
-  async createUserSignupCore(tx, userDbData, orgId) {
+  async createUserSignupCore(tx, userDbData, orgId, password) {
     const dbUser = await this.usersService.createUserTransactional(tx, {
       ...userDbData,
-      userRole: userDbData.userRole,
       org: {
         connect: {
           id: orgId,
@@ -53,7 +58,7 @@ export class AuthService {
     let userSub;
     try {
       userSub = await this.cognitoService.registerUser(
-        userDbData.password,
+        password,
         userDbData.email,
       );
     } catch (err) {
@@ -73,10 +78,32 @@ export class AuthService {
   async signUpOrg(data: OrgUserSignupDto) {
     const userInDb = await this.usersService.findByEmail(data.email);
     if (userInDb) throw new EmailInUseException();
+
+    const { orgName, password, ...userDbData } = data;
+    const dbUserId = await this.prisma.$transaction(async (tx) => {
+      const orgDb = await this.adminOrgsService.createOrg(
+        tx,
+        data.orgName,
+        consts.usCountryId,
+        0,
+        0,
+      );
+      const dbUser = await this.createUserSignupCore(
+        tx,
+        {
+          ...userDbData,
+          userRole: UserRoleEnum.USER_MANAGER,
+        },
+        orgDb.id,
+        password,
+      );
+      return dbUser.id;
+    });
+    return this.usersService.findById(dbUserId);
   }
 
   async signUp(data: CreateUserDto) {
-    const { password: string, code, ...userDbData } = data;
+    const { password, code, ...userDbData } = data;
     const userInvite = await this.findActiveInviteByCode(code);
     if (!userInvite) throw new NotFoundException('Active Invite Not Found');
 
@@ -91,6 +118,7 @@ export class AuthService {
           userRole: userInvite.userRole,
         },
         userInvite.orgId,
+        password,
       );
 
       await tx.userInvite.update({

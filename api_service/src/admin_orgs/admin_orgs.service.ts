@@ -112,6 +112,29 @@ export class AdminOrgsService {
     });
   }
 
+  async createOrg(
+    tx,
+    orgName: string,
+    countryId: string,
+    pointsPerMonth: number,
+    signupPoints: number,
+  ) {
+    const orgDb = await tx.org.create({
+      data: {
+        name: orgName,
+        pointsPerMonth,
+        signupPoints,
+        country: {
+          connect: {
+            id: countryId,
+          },
+        },
+      },
+    });
+    await this.ledgerService.createOrgSide(tx, orgDb.id);
+    return orgDb;
+  }
+
   async createTransactionAdminToOrg(
     orgId: string,
     createAdminToOrgDto: CreateAdminToOrgDto,

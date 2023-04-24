@@ -17,5 +17,5 @@ export class OrgUserSignupDto {
 
   @IsString()
   @IsNotEmpty()
-  companyName: string;
+  orgName: string;
 }
