@@ -147,16 +147,33 @@ model ClaimPointsEventFulfillment {
 
 // monthlyAmount Decimal @db.Money
 model Org {
-  id             String           @id @default(uuid())
-  name           String
-  pointsPerMonth Int
-  signupPoints   Int              @default(0)
-  country        Country          @relation(fields: [countryId], references: [id])
-  countryId      String
-  User           User[]
-  OrgTransaction OrgTransaction[]
-  BalanceSide    BalanceSide[]
-  UserInvite     UserInvite[]
+  id                        String                      @id @default(uuid())
+  name                      String
+  pointsPerMonth            Int
+  signupPoints              Int                         @default(0)
+  country                   Country                     @relation(fields: [countryId], references: [id])
+  countryId                 String
+  User                      User[]
+  OrgTransaction            OrgTransaction[]
+  BalanceSide               BalanceSide[]
+  UserInvite                UserInvite[]
+  OrgCompletementStepStatus OrgCompletementStepStatus[]
+}
+
+model OrgCompletementStep {
+  id                        String                      @id @default(uuid())
+  name                      String
+  priority                  Int?
+  OrgCompletementStepStatus OrgCompletementStepStatus[]
+}
+
+model OrgCompletementStepStatus {
+  id                    String              @id @default(uuid())
+  completed             Boolean             @default(false)
+  org                   Org                 @relation(fields: [orgId], references: [id])
+  orgId                 String
+  orgCompletementStep   OrgCompletementStep @relation(fields: [orgCompletementStepId], references: [id])
+  orgCompletementStepId String
 }
 
 enum IntegrationConsraintTypeEnum {

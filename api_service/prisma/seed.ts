@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   await seedTable(prisma, 'Country');
+  await seedTable(prisma, 'OrgCompletementStep');
   await seedTable(
     prisma,
     'Org',
@@ -15,6 +16,7 @@ async function main() {
       { foreignKeyName: 'countryId', foreignRecordName: 'country' },
     ]),
   );
+  await seedTable(prisma, 'OrgCompletementStepStatus');
   await seedTable(
     prisma,
     'User',
