@@ -50,6 +50,7 @@ import {
 } from '@prisma/client';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { expectOrgInDB } from './utils/orgsChecks';
+import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
 
 jest.mock('../src/users/jwt-values.service');
 
@@ -57,6 +58,7 @@ describe('Authentication system', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let ledgerService: LedgerService;
+  let completementStepsService: CompletementStepsService;
   const testStartTime = new Date();
 
   beforeAll(async () => {
@@ -72,6 +74,7 @@ describe('Authentication system', () => {
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
     ledgerService = app.get(LedgerService);
+    completementStepsService = app.get(CompletementStepsService);
     await app.init();
   });
 
@@ -439,6 +442,15 @@ describe('Authentication system', () => {
       });
       expect(balanceOrgDBList.length).toEqual(1);
 
+      // orgProgress
+      const progressStepList = await completementStepsService.getListByOrg(
+        response.body.org.id,
+      );
+      expect(progressStepList.length).toEqual(4);
+      progressStepList.forEach((stepStatus) => {
+        expect(stepStatus.completed).toEqual(false);
+      });
+
       // Check User And Org balance - Signup Bonus
       const [orgBalance, newUserBalance] = await Promise.all([
         ledgerService.getOrgBalance(response.body.org.id),
@@ -454,6 +466,10 @@ describe('Authentication system', () => {
       });
 
       await prisma.balanceSide.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.orgCompletementStepStatus.deleteMany({
         where: { orgId: response.body.org.id },
       });
 

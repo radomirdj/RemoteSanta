@@ -5,14 +5,31 @@ import { CompletementStepDto } from './dtos/completement_step.dto';
 @Injectable()
 export class CompletementStepsService {
   constructor(private prisma: PrismaService) {}
-  async getListByOrg(orgId: string): Promise<CompletementStepDto[]> {
-    const stepListPromise = this.prisma.orgCompletementStep.findMany({
+  getCompletementStepFullList() {
+    return this.prisma.orgCompletementStep.findMany({
       orderBy: [
         {
           priority: 'asc',
         },
       ],
     });
+  }
+
+  async setAllStepsNotCompleted(tx, orgId: string) {
+    const stepList = await this.getCompletementStepFullList();
+    const stepIdList = stepList.map((step) => step.id);
+    const data = stepIdList.map((stepId) => ({
+      orgId,
+      orgCompletementStepId: stepId,
+      completed: false,
+    }));
+    return tx.orgCompletementStepStatus.createMany({
+      data,
+    });
+  }
+
+  async getListByOrg(orgId: string): Promise<CompletementStepDto[]> {
+    const stepListPromise = this.getCompletementStepFullList();
     const stepStatusListPromise =
       this.prisma.orgCompletementStepStatus.findMany({
         where: {

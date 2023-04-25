@@ -8,6 +8,8 @@ import { LedgerModule } from '../ledger/ledger.module';
 import { UsersModule } from '../users/users.module';
 import { AdminUsersModule } from '../admin_users/admin_users.module';
 import { AdminOrgsModule } from '../admin_orgs/admin_orgs.module';
+import { CompletementStepsModule } from '../completement_steps/completement_steps.module';
+
 @Module({
   imports: [
     PrismaModule,
@@ -16,6 +18,7 @@ import { AdminOrgsModule } from '../admin_orgs/admin_orgs.module';
     UsersModule,
     AdminUsersModule,
     AdminOrgsModule,
+    CompletementStepsModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [UsersController],

@@ -7,5 +7,6 @@ import { CompletementStepsService } from './completement_steps.service';
   imports: [PrismaModule],
   controllers: [CompletementStepsController],
   providers: [CompletementStepsService],
+  exports: [CompletementStepsService],
 })
 export class CompletementStepsModule {}

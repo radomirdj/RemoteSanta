@@ -21,6 +21,7 @@ import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 import { LedgerService } from '../ledger/ledger.service';
 import { EmailsService } from '../emails/emails.service';
+import { CompletementStepsService } from '../completement_steps/completement_steps.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 import { OrgUserSignupDto } from '../users/dtos/org-user-signup.dto';
 import consts from '../utils/consts';
@@ -36,6 +37,7 @@ export class AuthService {
     private prisma: PrismaService,
     private ledgerService: LedgerService,
     private adminOrgsService: AdminOrgsService,
+    private completementStepsService: CompletementStepsService,
   ) {}
 
   async findActiveInviteByCode(code: string): Promise<UserInvite | null> {
@@ -88,15 +90,18 @@ export class AuthService {
         0,
         0,
       );
-      const dbUser = await this.createUserSignupCore(
-        tx,
-        {
-          ...userDbData,
-          userRole: UserRoleEnum.USER_MANAGER,
-        },
-        orgDb.id,
-        password,
-      );
+      const [dbUser, _notUsed] = await Promise.all([
+        this.createUserSignupCore(
+          tx,
+          {
+            ...userDbData,
+            userRole: UserRoleEnum.USER_MANAGER,
+          },
+          orgDb.id,
+          password,
+        ),
+        this.completementStepsService.setAllStepsNotCompleted(tx, orgDb.id),
+      ]);
       return dbUser.id;
     });
     return this.usersService.findById(dbUserId);
