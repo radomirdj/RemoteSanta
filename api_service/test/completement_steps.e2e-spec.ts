@@ -15,14 +15,18 @@ import {
   user1,
   user3Manager,
   org2Manager,
+  org1,
 } from './utils/preseededData';
 import { createToken } from './utils/tokenService';
+import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
+import consts from '../src/utils/consts';
 
 jest.mock('../src/users/jwt-values.service');
 
 describe('/completement-steps', () => {
   let app: INestApplication;
   let prisma: PrismaService;
+  let completementStepsService: CompletementStepsService;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -39,6 +43,7 @@ describe('/completement-steps', () => {
 
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
+    completementStepsService = app.get(CompletementStepsService);
     await app.init();
   });
 
@@ -100,6 +105,102 @@ describe('/completement-steps', () => {
       await request(app.getHttpServer())
         .get('/completement-steps/')
         .expect(401);
+    });
+  });
+
+  describe('/:id/update-status (POST)', () => {
+    it('/:id/update-status (POST) - update status of completement step - status not in db', async () => {
+      await request(app.getHttpServer())
+        .post(
+          `/completement-steps/${consts.orgCompletementSteps.ADD_PAYMENT.id}/update-status`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({ completed: false })
+        .expect(201);
+
+      const stepStatusList = await completementStepsService.getListByOrg(
+        org1.id,
+      );
+
+      expect(stepStatusList.length).toEqual(4);
+      expect(stepStatusList[0].completed).toEqual(false);
+      //  clear data
+      await prisma.orgCompletementStepStatus.deleteMany({
+        where: {
+          orgCompletementStepId: consts.orgCompletementSteps.ADD_PAYMENT.id,
+          orgId: org1.id,
+        },
+      });
+    });
+    it('/:id/update-status (POST) - update status of completement step - status is in db', async () => {
+      await request(app.getHttpServer())
+        .post(
+          `/completement-steps/${consts.orgCompletementSteps.WATCH_TUTORIAL.id}/update-status`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({ completed: false })
+        .expect(201);
+
+      const stepStatusList = await completementStepsService.getListByOrg(
+        org1.id,
+      );
+
+      expect(stepStatusList.length).toEqual(4);
+      expect(stepStatusList[3].completed).toEqual(false);
+      //  clear data
+      await prisma.orgCompletementStepStatus.updateMany({
+        where: {
+          orgCompletementStepId: consts.orgCompletementSteps.WATCH_TUTORIAL.id,
+          orgId: org1.id,
+        },
+        data: {
+          completed: true,
+        },
+      });
+    });
+    it('/:id/update-status (POST) - update status of completement step - NOT USER MANAGER', async () => {
+      await request(app.getHttpServer())
+        .post(
+          `/completement-steps/${consts.orgCompletementSteps.WATCH_TUTORIAL.id}/update-status`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .send({ completed: false })
+        .expect(403);
+    });
+    it('/:id/update-status (POST) - update status of completement step - WRONG ID', async () => {
+      await request(app.getHttpServer())
+        .post(`/completement-steps/${user1.id}/update-status`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({ completed: false })
+        .expect(404);
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CompletementStepDto } from './dtos/completement_step.dto';
 
@@ -25,6 +25,52 @@ export class CompletementStepsService {
     }));
     return tx.orgCompletementStepStatus.createMany({
       data,
+    });
+  }
+
+  async updateOrgCompletementStatus(
+    orgId: string,
+    stepId: string,
+    completed: boolean,
+  ) {
+    const [completementStepStatusList, completementStep] = await Promise.all([
+      this.prisma.orgCompletementStepStatus.findMany({
+        where: {
+          orgId,
+          orgCompletementStepId: stepId,
+        },
+      }),
+      this.prisma.orgCompletementStep.findUnique({
+        where: {
+          id: stepId,
+        },
+      }),
+    ]);
+    if (!completementStep)
+      throw new NotFoundException('Completement Step Not Found');
+
+    if (!completementStepStatusList.length) {
+      return this.prisma.orgCompletementStepStatus.create({
+        data: {
+          org: {
+            connect: {
+              id: orgId,
+            },
+          },
+          orgCompletementStep: {
+            connect: {
+              id: stepId,
+            },
+          },
+          completed,
+        },
+      });
+    }
+    return this.prisma.orgCompletementStepStatus.update({
+      where: { id: completementStepStatusList[0].id },
+      data: {
+        completed,
+      },
     });
   }
 
