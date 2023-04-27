@@ -23,6 +23,8 @@ import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.
 import { EmailsModule } from './emails/emails.module';
 import { AuthModule } from './auth/auth.module';
 import { CompletementStepsModule } from './completement_steps/completement_steps.module';
+import { SqsUserInvitesModule } from './sqs_user_invites/sqs_user_invites.module';
+import { WorkerUserInvitesModule } from './worker_user_invites/worker_user_invites.module';
 
 @Module({
   imports: [
@@ -58,6 +60,8 @@ import { CompletementStepsModule } from './completement_steps/completement_steps
     EmailsModule,
     AuthModule,
     CompletementStepsModule,
+    SqsUserInvitesModule,
+    WorkerUserInvitesModule,
   ],
   controllers: [AppController],
   providers: [
