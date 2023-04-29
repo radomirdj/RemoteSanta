@@ -53,6 +53,8 @@ import { expectOrgInDB } from './utils/orgsChecks';
 import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock('../src/worker_user_invites/worker_user_invites.service');
 
 describe('Authentication system', () => {
   let app: INestApplication;

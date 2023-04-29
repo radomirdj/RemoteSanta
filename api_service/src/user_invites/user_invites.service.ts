@@ -1,4 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { UserInviteRoleEnum, UserInviteSingleImport } from '@prisma/client';
+
 import * as randomstring from 'randomstring';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserInviteDto } from './dtos/user-invite.dto';
@@ -9,7 +11,7 @@ import { UsersService, orgDefaultJoin } from '../users/users.service';
 import { InviteNotActiveException } from '../errors/inviteNotActiveException';
 import { EmailsService } from '../emails/emails.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
-import { UserInviteRoleEnum } from '@prisma/client';
+import { SqsUserInvitesService } from '../sqs_user_invites/sqs_user_invites.service';
 
 @Injectable()
 export class UserInvitesService {
@@ -18,6 +20,7 @@ export class UserInvitesService {
     private usersService: UsersService,
     private emailsService: EmailsService,
     private adminOrgsService: AdminOrgsService,
+    private readonly sqsUserInvitesService: SqsUserInvitesService,
   ) {}
 
   getOrgInviteList(orgId: string): Promise<UserInviteDto[]> {
@@ -92,6 +95,47 @@ export class UserInvitesService {
         },
       },
     });
+  }
+
+  async bulkCreateUserInvites(user: User, orgId: string, emailList: string[]) {
+    const uniqueEmailList = [...new Set(emailList)];
+    const [org, userInviteImportJob] = await Promise.all([
+      this.adminOrgsService.getById(orgId),
+      this.prisma.userInviteImportJob.create({
+        data: {
+          createdBy: {
+            connect: {
+              id: user.id,
+            },
+          },
+          org: {
+            connect: {
+              id: orgId,
+            },
+          },
+        },
+      }),
+    ]);
+    const userInviteSingleImportData = uniqueEmailList.map((email) => ({
+      email,
+      userInviteImportJobId: userInviteImportJob.id,
+    }));
+
+    await this.prisma.userInviteSingleImport.createMany({
+      data: userInviteSingleImportData,
+    });
+    const userInviteSingleImportList =
+      await this.prisma.userInviteSingleImport.findMany({
+        where: {
+          userInviteImportJobId: userInviteImportJob.id,
+        },
+      });
+    await this.sqsUserInvitesService.inviteByEmailList(
+      userInviteSingleImportList,
+      org,
+      user,
+    );
+    return userInviteImportJob;
   }
 
   async cancelUserInvite(

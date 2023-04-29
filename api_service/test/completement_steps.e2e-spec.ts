@@ -22,6 +22,8 @@ import { CompletementStepsService } from '../src/completement_steps/completement
 import consts from '../src/utils/consts';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock('../src/worker_user_invites/worker_user_invites.service');
 
 describe('/completement-steps', () => {
   let app: INestApplication;

@@ -90,6 +90,10 @@ services:
       AWS_SQS_ENDPOINT: http://sqs:9324
       AWS_ACCESS_KEY: my_access_key
       AWS_SECRET_KEY: my_secret_key
+      AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT: user-invite-bulk-create
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: http://sqs:9324/queue/user-invite-bulk-create
+      AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT_FAILED: user-invite-bulk-create-failed
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/user-invite-bulk-create-failed
       AWS_REGION: ${AWS_REGION}
       EMAIL_FROM: ${EMAIL_FROM}
       FE_BASE_URL: http://localhost:3050/
@@ -153,6 +157,10 @@ services:
       AWS_SQS_ENDPOINT: http://sqs:9324
       AWS_ACCESS_KEY: my_access_key
       AWS_SECRET_KEY: my_secret_key
+      AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT: test-user-invite-bulk-create
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: http://sqs:9324/queue/test-user-invite-bulk-create
+      AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT_FAILED: test-user-invite-bulk-create-failed
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/test-user-invite-bulk-create-failed
       AWS_S3_BUCKET_GIFT_CARDS: giftcardfilestest
     depends_on:
       - pgtest

@@ -43,6 +43,7 @@ model User {
   OrgTransaction                  OrgTransaction[]
   BalanceSide                     BalanceSide[]
   UserInvite                      UserInvite[]
+  UserInviteImportJob             UserInviteImportJob[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -71,6 +72,34 @@ model UserInvite {
   createdAt   DateTime             @default(now())
   updatedAt   DateTime             @updatedAt
   userRole    UserInviteRoleEnum   @default(BASIC_USER)
+}
+
+model UserInviteImportJob {
+  id                     String                   @id @default(uuid())
+  org                    Org                      @relation(fields: [orgId], references: [id])
+  orgId                  String
+  createdBy              User?                    @relation(fields: [createdById], references: [id])
+  createdById            String?
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @updatedAt
+  UserInviteSingleImport UserInviteSingleImport[]
+}
+
+enum UserInviteSingleImportStatusEnum {
+  PENDING
+  SUCCESS
+  FAIL
+}
+
+model UserInviteSingleImport {
+  id                    String                           @id @default(uuid())
+  status                UserInviteSingleImportStatusEnum @default(PENDING)
+  failureReason         String?
+  email                 String
+  userInviteImportJob   UserInviteImportJob              @relation(fields: [userInviteImportJobId], references: [id])
+  userInviteImportJobId String
+  createdAt             DateTime                         @default(now())
+  updatedAt             DateTime                         @updatedAt
 }
 
 enum GiftDateTypeEnum {
@@ -158,6 +187,7 @@ model Org {
   BalanceSide               BalanceSide[]
   UserInvite                UserInvite[]
   OrgCompletementStepStatus OrgCompletementStepStatus[]
+  UserInviteImportJob       UserInviteImportJob[]
 }
 
 model OrgCompletementStep {

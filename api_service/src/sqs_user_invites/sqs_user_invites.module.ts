@@ -6,7 +6,7 @@ import { SqsUserInvitesService } from './sqs_user_invites.service';
 
 if (process.env.AWS_SECRET_KEY && process.env.AWS_ACCESS_KEY)
   AWS.config.update({
-    region: process.env.AWS_REGION,
+    // region: process.env.AWS_REGION,
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
   });
@@ -20,6 +20,11 @@ if (process.env.AWS_SECRET_KEY && process.env.AWS_ACCESS_KEY)
         {
           name: 'first-queue',
           queueUrl: 'http://sqs:9324/queue/first-queue',
+          region: process.env.AWS_REGION,
+        },
+        {
+          name: process.env.AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT,
+          queueUrl: process.env.AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT,
           region: process.env.AWS_REGION,
         },
       ],

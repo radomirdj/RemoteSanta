@@ -1,16 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, Module } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
+import { SqsUserInvitesService } from '../src/sqs_user_invites/sqs_user_invites.service';
+import { SqsUserInvitesServiceMock } from '../src/sqs_user_invites/__mock__/sqs_user_invites.service.mock';
+import { SqsUserInvitesModule } from '../src/sqs_user_invites/sqs_user_invites.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { createToken } from './utils/tokenService';
 import { EmailInUseException } from '../src/errors/emailInUseException';
 import { EmailInActiveInviteException } from '../src/errors/emailInActiveInviteException';
-import { UserInviteStatusEnum, UserRoleEnum } from '@prisma/client';
+import {
+  UserInviteStatusEnum,
+  UserRoleEnum,
+  UserInviteSingleImportStatusEnum,
+} from '@prisma/client';
 import { InviteNotActiveException } from '../src/errors/inviteNotActiveException';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
@@ -31,6 +38,8 @@ import {
 } from './utils/userInviteChecks';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock('../src/worker_user_invites/worker_user_invites.service');
 
 describe('user-invites', () => {
   let app: INestApplication;
@@ -38,12 +47,14 @@ describe('user-invites', () => {
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, PrismaModule, UsersModule],
+      imports: [AppModule, PrismaModule, UsersModule, SqsUserInvitesModule],
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
       .overrideProvider(MailerService)
       .useValue(MailerServiceMock)
+      .overrideProvider(SqsUserInvitesService)
+      .useValue(SqsUserInvitesServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
@@ -217,6 +228,89 @@ describe('user-invites', () => {
         .post('/user-invites/')
         .send(newUserInvite)
         .expect(401);
+    });
+  });
+  describe('/bulk-create (POST)', () => {
+    const emailList = Array.from(
+      { length: 9 },
+      (_, index) => `email+${index % 20}@testemail.com`,
+    );
+    const bulkUserInviteList = {
+      emailList,
+    };
+
+    it('/bulk-create (POST) - USER_INVITE by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/user-invites/bulk-create')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(bulkUserInviteList)
+        .expect(201);
+
+      const userInviteImportJobId = response.body.id;
+      const userInviteImportJob = await prisma.userInviteImportJob.findUnique({
+        where: {
+          id: userInviteImportJobId,
+        },
+      });
+      expect(userInviteImportJob.orgId).toEqual(org1.id);
+      expect(userInviteImportJob.createdById).toEqual(user3Manager.id);
+      const userInviteSingleImportList =
+        await prisma.userInviteSingleImport.findMany({
+          where: {
+            userInviteImportJobId,
+          },
+        });
+
+      expect(userInviteSingleImportList.length).toEqual(9);
+      const sortedUserInviteSingleImportList = userInviteSingleImportList.sort(
+        (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
+      );
+      sortedUserInviteSingleImportList.forEach(
+        (userInviteSingleImport, index) => {
+          expect(userInviteSingleImport.userInviteImportJobId).toEqual(
+            userInviteImportJobId,
+          );
+          expect(userInviteSingleImport.status).toEqual(
+            UserInviteSingleImportStatusEnum.PENDING,
+          );
+
+          expect(userInviteSingleImport.email).toEqual(
+            `email+${index}@testemail.com`,
+          );
+        },
+      );
+
+      // Clean Up
+      await prisma.userInviteSingleImport.deleteMany({
+        where: {
+          userInviteImportJobId,
+        },
+      });
+
+      await prisma.userInviteImportJob.delete({
+        where: {
+          id: userInviteImportJobId,
+        },
+      });
+    });
+
+    it('/ (POST) - NON USER_MANAGER user, bulk create USER_INVITE', async () => {
+      await request(app.getHttpServer())
+        .post('/user-invites/bulk-create')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(emailList)
+        .expect(403);
     });
   });
 
