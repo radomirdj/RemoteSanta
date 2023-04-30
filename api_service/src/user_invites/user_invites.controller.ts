@@ -26,7 +26,8 @@ export class UserInvitesController {
     @Body() createUserInviteDto: CreateUserInviteDto,
   ) {
     return this.userInvitesService.createUserInvite(
-      user,
+      user.id,
+      `${user.firstName} ${user.lastName}`,
       user.orgId,
       createUserInviteDto.email,
       createUserInviteDto.userRole,

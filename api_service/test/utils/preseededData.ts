@@ -366,6 +366,51 @@ export const userInviteDoubleEmail = {
   orgName: org1.name,
 };
 
+export const userInviteImportJob1 = {
+  id: '88976852-9494-4a9c-bd2a-68b700297697',
+  orgId: '752e05ce-4a81-4148-87c5-30832406d48c',
+  createdById: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+};
+
+export const userInviteSingleImportList = [
+  {
+    id: '1c6f5c26-249e-4631-b0e7-f81622cbad8d',
+    status: 'PENDING',
+    email: 'email+1@queued.com',
+    userInviteImportJobId: '88976852-9494-4a9c-bd2a-68b700297697',
+  },
+  {
+    id: '5670d0ba-e2b7-41e9-ba99-c3a57f1b0b09',
+    status: 'PENDING',
+    email: 'email+2@queued.com',
+    userInviteImportJobId: '88976852-9494-4a9c-bd2a-68b700297697',
+  },
+  {
+    id: '27eb82a6-4dd5-48a0-b2e0-e536f2f40253',
+    status: 'SUCCESS',
+    email: 'email+3@queued.com',
+    userInviteImportJobId: '88976852-9494-4a9c-bd2a-68b700297697',
+  },
+  {
+    id: 'bbbab702-b7ec-462d-beef-80c43d77713f',
+    status: 'FAIL',
+    email: 'email+4@queued.com',
+    userInviteImportJobId: '88976852-9494-4a9c-bd2a-68b700297697',
+  },
+  {
+    id: '51792344-0b0f-4748-9738-b909cced3002',
+    status: 'FAIL',
+    failureReason: 'email exists',
+    email: 'email+5@queued.com',
+    userInviteImportJobId: '88976852-9494-4a9c-bd2a-68b700297697',
+  },
+];
+
+export const userInviteSingleImportPedning = userInviteSingleImportList[0];
+export const userInviteSingleImportSuccess = userInviteSingleImportList[2];
+export const userInviteSingleImportFail = userInviteSingleImportList[3];
+export const userInviteSingleImportEmailExists = userInviteSingleImportList[4];
+
 export const claimPointsEvent10Id = 'e545e477-d10a-48da-9c1f-919cb456e64a';
 
 export const lastClaimPointsEvent = {

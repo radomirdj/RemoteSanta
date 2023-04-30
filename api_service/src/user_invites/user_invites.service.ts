@@ -51,7 +51,8 @@ export class UserInvitesService {
   }
 
   async createUserInvite(
-    user: User,
+    userId: string,
+    userFullName: string,
     orgId: string,
     email: string,
     userRole: UserInviteRoleEnum,
@@ -74,7 +75,7 @@ export class UserInvitesService {
       email,
       code,
       org.name,
-      `${user.firstName} ${user.lastName}`,
+      userFullName,
     );
 
     return this.prisma.userInvite.create({
@@ -85,7 +86,7 @@ export class UserInvitesService {
         code,
         createdBy: {
           connect: {
-            id: user.id,
+            id: userId,
           },
         },
         org: {

@@ -34,6 +34,25 @@ async function main() {
   );
   await seedTable(
     prisma,
+    'UserInviteImportJob',
+    createForeignKeyListTransformer([
+      { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
+    ]),
+  );
+
+  await seedTable(
+    prisma,
+    'UserInviteSingleImport',
+    createForeignKeyListTransformer([
+      {
+        foreignKeyName: 'userInviteImportJobId',
+        foreignRecordName: 'userInviteImportJob',
+      },
+    ]),
+  );
+  await seedTable(
+    prisma,
     'Report',
     createForeignKeyListTransformer([
       { foreignKeyName: 'userId', foreignRecordName: 'user' },
