@@ -6,6 +6,9 @@ import {
 
 import { UserInvitesService } from '../user_invites/user_invites.service';
 import { PrismaService } from '../prisma/prisma.service';
+import consts from '../utils/consts';
+import { EmailInActiveInviteException } from '../errors/emailInActiveInviteException';
+import { EmailInUseException } from '../errors/emailInUseException';
 
 @Injectable()
 export class WorkerUserInvitesService {
@@ -41,10 +44,24 @@ export class WorkerUserInvitesService {
         },
       });
     } catch (error) {
-      console.log(
-        'WorkerUserInvitesService -> processUserInviteMessage -> error',
-        error,
-      );
+      if (
+        error instanceof EmailInActiveInviteException ||
+        error instanceof EmailInUseException
+      ) {
+        await this.prisma.userInviteSingleImport.updateMany({
+          where: {
+            id: userInviteSingleImportId,
+            status: UserInviteSingleImportStatusEnum.PENDING,
+          },
+          data: {
+            status: UserInviteSingleImportStatusEnum.FAIL,
+            failureReason: consts.userInviteImpotMessage.EMAIL_EXISTS_FAIL,
+          },
+        });
+      } else {
+        console.log('processUserInviteMessage: ', error);
+        throw error;
+      }
     }
     return userInviteId;
   }
