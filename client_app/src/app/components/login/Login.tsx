@@ -141,6 +141,12 @@ const Login = () => {
                   Sign in
                 </Button>
               </form>
+              <Typography className="no-account">
+                No account?{" "}
+                <a className="no-account-link" href="/company-signup">
+                  Signup your company
+                </a>
+              </Typography>
             </Card>
           </Grid>
         </Grid>

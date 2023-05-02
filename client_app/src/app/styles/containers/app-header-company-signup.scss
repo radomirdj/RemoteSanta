@@ -1,0 +1,58 @@
+@use "./../variables.scss";
+
+$logo-height:42px;
+
+.app-header-company-signup {
+    background-color: variables.$main-yellow !important;
+    box-shadow: none !important;
+    padding-top: variables.$base-unit * 2;
+
+    .grid-style {
+        display: inline-flex;
+        justify-content: space-between;
+    }
+
+    .toolbar-style {
+        margin-left: variables.$base-unit * 6;
+    }
+
+    .logo-style{
+        height: $logo-height;
+    }
+
+    .login-item{
+        justify-content: end;
+        .login-button,
+        & .login-button:hover {
+            background-color: variables.$main-yellow;
+            border-color: black;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 50%;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 2;
+            margin-right: variables.$base-unit * 4;
+        }
+    }
+
+    .demo-item{
+        justify-content: start;
+        .demo-button,
+        & .demo-button:hover {
+            background-color: variables.$color-dark-yellow;
+            border-color: black;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 60%;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 2;
+            margin-right: variables.$base-unit * 4;
+        }
+    }
+}

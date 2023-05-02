@@ -10,6 +10,7 @@ import adminOrganizationReducer from "./admin-organization/reducer";
 import adminOrganizationTransactionReducer from "./admin-organization-transaction/reducer";
 import organizationReducer from "./orgs/reducer";
 import userInviteReducer from "./user-invites/reducer";
+import selfSignupReducer from "./self-signup/reducer";
 
 const rootReducer = combineReducers({
   todo: todoReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   adminOrganizationTransaction: adminOrganizationTransactionReducer,
   organization: organizationReducer,
   userInvite: userInviteReducer,
+  selfSignup: selfSignupReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

@@ -36,6 +36,8 @@ import AdminUserDetails from "./app/components/admin-organizations/AdminUserDeta
 import UserManagerUserDetails from "./app/components/user-manager-users/UserManagerUserDetails";
 import UserManagerSendPoints from "./app/components/user-manager-users/UserManagerSendPoints";
 import AdminUserSendPoints from "./app/components/admin-organizations/AdminUserSendPoints";
+import CompanySignup from "./app/components/company-signup/CompanySignup";
+import CompanySignupVerifyEmail from "./app/components/company-signup/CompanySignupVerifyEmail";
 
 const App = () => {
   return (
@@ -86,6 +88,22 @@ const App = () => {
           element={
             <PublicRoute>
               <VerifyEmail />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="company-signup-verify-email"
+          element={
+            <PublicRoute>
+              <CompanySignupVerifyEmail />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="company-signup"
+          element={
+            <PublicRoute>
+              <CompanySignup />
             </PublicRoute>
           }
         />
