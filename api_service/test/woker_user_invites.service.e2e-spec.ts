@@ -176,4 +176,33 @@ describe('WorkerUserInvitesService', () => {
       expect(singleImport.failureReason).toBeFalsy();
     });
   });
+  describe('processUserInviteFailedMessage', () => {
+    const inviteMessageFailed = {
+      email: 'userInviteSingleImportPedning.email',
+      userInviteSingleImportId: userInviteSingleImportPedning.id,
+      orgId: 'org1.id',
+      inviteSenderId: 'user3Manager.id',
+      inviteSenderName: `${user3Manager.firstName} ${user3Manager.lastName}`,
+    } as SQSUserInviteMessage;
+    it('processUserInviteFailedMessage - process with good params', async () => {
+      await workerUserInvitesService.processUserInviteFailedMessage(
+        inviteMessageFailed,
+      );
+      const singleImport = await prisma.userInviteSingleImport.findUnique({
+        where: { id: userInviteSingleImportPedning.id },
+      });
+      expect(singleImport.status).toEqual(
+        UserInviteSingleImportStatusEnum.FAIL,
+      );
+      expect(singleImport.failureReason).toBeFalsy();
+
+      // Clean Data
+      await prisma.userInviteSingleImport.updateMany({
+        where: { id: userInviteSingleImportPedning.id },
+        data: {
+          status: UserInviteSingleImportStatusEnum.PENDING,
+        },
+      });
+    });
+  });
 });

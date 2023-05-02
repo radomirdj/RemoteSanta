@@ -69,9 +69,14 @@ export class WorkerUserInvitesService {
   async processUserInviteFailedMessage(
     sqsUserInviteMessage: SQSUserInviteMessage,
   ) {
-    console.log(
-      'WorkerUserInvitesService -> processUserInviteFailedMessage -> sqsUserInviteMessage',
-      sqsUserInviteMessage,
-    );
+    await this.prisma.userInviteSingleImport.updateMany({
+      where: {
+        id: sqsUserInviteMessage.userInviteSingleImportId,
+        status: UserInviteSingleImportStatusEnum.PENDING,
+      },
+      data: {
+        status: UserInviteSingleImportStatusEnum.FAIL,
+      },
+    });
   }
 }
