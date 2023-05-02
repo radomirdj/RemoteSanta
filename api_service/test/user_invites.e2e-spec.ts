@@ -31,6 +31,8 @@ import {
   org2Manager,
   user1,
   org1,
+  userInviteImportJob1,
+  userInviteSingleImportList,
 } from './utils/preseededData';
 import {
   expectUserInviteRsp,
@@ -39,7 +41,6 @@ import {
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
- 
 
 describe('user-invites', () => {
   let app: INestApplication;
@@ -230,7 +231,7 @@ describe('user-invites', () => {
         .expect(401);
     });
   });
-  describe('/bulk-create (POST)', () => {
+  describe('/bulk-create-jobs (POST)', () => {
     const emailList = Array.from(
       { length: 9 },
       (_, index) => `email+${index % 20}@testemail.com`,
@@ -239,9 +240,9 @@ describe('user-invites', () => {
       emailList,
     };
 
-    it('/bulk-create (POST) - USER_INVITE by USER_MANAGER', async () => {
+    it('/bulk-create-jobs (POST) - USER_INVITE by USER_MANAGER', async () => {
       const response = await request(app.getHttpServer())
-        .post('/user-invites/bulk-create')
+        .post('/user-invites/bulk-create-jobs')
         .set(
           'Authorization',
           'bearer ' +
@@ -303,13 +304,72 @@ describe('user-invites', () => {
 
     it('/ (POST) - NON USER_MANAGER user, bulk create USER_INVITE', async () => {
       await request(app.getHttpServer())
-        .post('/user-invites/bulk-create')
+        .post('/user-invites/bulk-create-jobs')
         .set(
           'Authorization',
           'bearer ' +
             createToken({ email: user2.email, sub: user2.cognitoSub }),
         )
         .send(emailList)
+        .expect(403);
+    });
+  });
+
+  describe('/bulk-create-jobs/:id (GET)', () => {
+    it('/bulk-create-jobs/:id (GET) - USER_INVITE by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+      expect(response.body.id).toEqual(userInviteImportJob1.id);
+      expect(response.body.orgId).toEqual(org1.id);
+      const singleImportList = response.body.userInviteSingleImportList.sort(
+        (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
+      );
+      userInviteSingleImportList;
+      singleImportList.forEach((singleImport, index) => {
+        expect(singleImport.email).toEqual(
+          userInviteSingleImportList[index].email,
+        );
+        expect(singleImport.status).toEqual(
+          userInviteSingleImportList[index].status,
+        );
+        expect(singleImport.id).toEqual(userInviteSingleImportList[index].id);
+      });
+    });
+
+    it('/bulk-create-jobs/:id (GET) - USER_INVITE by USER_MANAGER from ORG2 - Error', async () => {
+      await request(app.getHttpServer())
+        .get(`/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/bulk-create-jobs/:id (GET) - USER_INVITE by BASIC_USER', async () => {
+      await request(app.getHttpServer())
+        .get(`/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
         .expect(403);
     });
   });

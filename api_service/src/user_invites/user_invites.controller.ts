@@ -8,6 +8,8 @@ import { User } from '@prisma/client';
 import { UserInviteDto } from './dtos/user-invite.dto';
 import { CreateUserInviteDto } from './dtos/create-user-invite.dto';
 import { BulkCreateUserInviteDto } from './dtos/bulk-create-user-invite.dto';
+import { UserDto } from '../users/dtos/user.dto';
+import { BulkCreateUserInviteJobDto } from './dtos/bulk-create-user-invite-job.dto';
 
 @Controller('user-invites')
 @UseGuards(AuthGuard('jwt'), UserManagerGuard)
@@ -34,7 +36,7 @@ export class UserInvitesController {
     );
   }
 
-  @Post('/bulk-create')
+  @Post('/bulk-create-jobs')
   async bulkCreateUserInvites(
     @CurrentUser() user: User,
     @Body() bulkCreateUserInviteDto: BulkCreateUserInviteDto,
@@ -43,6 +45,19 @@ export class UserInvitesController {
       user,
       user.orgId,
       bulkCreateUserInviteDto.emailList,
+    );
+  }
+
+  @Get('/bulk-create-jobs/:id')
+  @Serialize(BulkCreateUserInviteJobDto)
+  async getBulkCreateUserInvitesJob(
+    @CurrentUser() user: UserDto,
+    @Param('id') id: string,
+  ): Promise<BulkCreateUserInviteJobDto> {
+    return this.userInvitesService.getBulkCreateUserInvitesJob(
+      id,
+      user.org.id,
+      false,
     );
   }
 

@@ -12,6 +12,8 @@ import { InviteNotActiveException } from '../errors/inviteNotActiveException';
 import { EmailsService } from '../emails/emails.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 import { SqsUserInvitesService } from '../sqs_user_invites/sqs_user_invites.service';
+import { BulkCreateUserInviteJobDto } from './dtos/bulk-create-user-invite-job.dto';
+import { UserInviteSingleImportDto } from './dtos/user-invite-single-import.dto';
 
 @Injectable()
 export class UserInvitesService {
@@ -137,6 +139,41 @@ export class UserInvitesService {
       user,
     );
     return userInviteImportJob;
+  }
+
+  async getBulkCreateUserInvitesJob(
+    id: string,
+    orgId: string | null,
+    isAdmin: boolean | null,
+  ): Promise<BulkCreateUserInviteJobDto> {
+    const userInviteImportJob =
+      await this.prisma.userInviteImportJob.findUnique({
+        where: {
+          id,
+        },
+        include: {
+          UserInviteSingleImport: true,
+        },
+      });
+
+    if (
+      !userInviteImportJob ||
+      (!isAdmin && userInviteImportJob.orgId !== orgId)
+    )
+      throw new NotFoundException('BulkCreateUserInvitesJob not found');
+    const { UserInviteSingleImport } = userInviteImportJob;
+    const singleImportList: UserInviteSingleImportDto[] =
+      UserInviteSingleImport.map(
+        (userInviteSingleImport) =>
+          ({
+            id: userInviteSingleImport.id,
+            status: userInviteSingleImport.status,
+            failureReason: userInviteSingleImport.failureReason,
+            email: userInviteSingleImport.email,
+          } as UserInviteSingleImportDto),
+      );
+
+    return { id, orgId, userInviteSingleImportList: singleImportList };
   }
 
   async cancelUserInvite(

@@ -16,7 +16,9 @@ export class CompletementStepsController {
 
   @Get('/')
   @UseGuards(AuthGuard('jwt'))
-  async getOrgList(@CurrentUser() user: UserDto) {
+  async getOrgList(
+    @CurrentUser() user: UserDto,
+  ): Promise<CompletementStepDto[]> {
     if (user.userRole !== UserRoleEnum.USER_MANAGER) return [];
     return this.completementStepsService.getListByOrg(user.org.id);
   }
