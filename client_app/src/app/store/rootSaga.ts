@@ -10,6 +10,7 @@ import adminOrganizationSaga from "./admin-organization/sagas";
 import adminOrganizationTransactionSaga from "./admin-organization-transaction/sagas";
 import organizationSaga from "./orgs/sagas";
 import userInviteSaga from "./user-invites/sagas";
+import selfSignupSaga from "./self-signup/sagas";
 
 export function* rootSaga() {
   yield all([
@@ -23,5 +24,6 @@ export function* rootSaga() {
     fork(adminOrganizationTransactionSaga),
     fork(organizationSaga),
     fork(userInviteSaga),
+    fork(selfSignupSaga),
   ]);
 }

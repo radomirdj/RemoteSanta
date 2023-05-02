@@ -35,6 +35,7 @@ import {
   IOrgUser,
   SendPointsToUserPayload,
 } from "../store/orgs/types";
+import { SelfSignUpRequestPayload } from "../store/self-signup/types";
 import {
   CancelUserInvitePayload,
   FetchUserInviteListPayload,
@@ -302,4 +303,9 @@ export const sendPointsToUserUserManager = (
       headers: { Authorization: `Bearer ${token}` },
     }
   );
+};
+
+export const selfSignupOrgUser = (payload: SelfSignUpRequestPayload) => {
+  console.log(payload);
+  return axios.post<string>("api/users/org-signup", payload);
 };
