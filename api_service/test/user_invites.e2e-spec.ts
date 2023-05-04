@@ -334,7 +334,6 @@ describe('user-invites', () => {
       const singleImportList = response.body.userInviteSingleImportList.sort(
         (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
       );
-      userInviteSingleImportList;
       singleImportList.forEach((singleImport, index) => {
         expect(singleImport.email).toEqual(
           userInviteSingleImportList[index].email,

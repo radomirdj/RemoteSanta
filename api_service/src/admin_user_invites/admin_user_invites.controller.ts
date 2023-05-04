@@ -8,6 +8,8 @@ import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '@prisma/client';
 import { CreateUserInviteDto } from '../user_invites/dtos/create-user-invite.dto';
 import { UserInvitesService } from '../user_invites/user_invites.service';
+import { BulkCreateUserInviteJobDto } from '../user_invites/dtos/bulk-create-user-invite-job.dto';
+import { BulkCreateUserInviteJobProgressDto } from '../user_invites/dtos/bulk-create-user-invite-job-progress.dto';
 
 @Controller('admin')
 @UseGuards(AuthGuard('jwt'), AdminGuard)
@@ -41,5 +43,21 @@ export class AdminUserInvitesController {
   @Post('/user-invites/:id/cancel')
   async cancelUserInvite(@Param('id') id: string) {
     return this.userInvitesService.cancelUserInvite(id, null, true);
+  }
+
+  @Get('/user-invites/bulk-create-jobs/:id')
+  @Serialize(BulkCreateUserInviteJobDto)
+  async getBulkCreateUserInvitesJob(
+    @Param('id') id: string,
+  ): Promise<BulkCreateUserInviteJobDto> {
+    return this.userInvitesService.getBulkCreateUserInvitesJob(id, null, true);
+  }
+
+  @Get('/user-invites/bulk-create-jobs/:id/progress')
+  @Serialize(BulkCreateUserInviteJobProgressDto)
+  async getBulkCreateJobProgress(
+    @Param('id') id: string,
+  ): Promise<BulkCreateUserInviteJobProgressDto> {
+    return this.userInvitesService.getBulkCreateJobProgress(id, null, true);
   }
 }

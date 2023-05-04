@@ -178,7 +178,11 @@ export class UserInvitesService {
           } as UserInviteSingleImportDto),
       );
 
-    return { id, orgId, userInviteSingleImportList: singleImportList };
+    return {
+      id,
+      orgId: userInviteImportJob.orgId,
+      userInviteSingleImportList: singleImportList,
+    };
   }
 
   async getBulkCreateJobProgress(

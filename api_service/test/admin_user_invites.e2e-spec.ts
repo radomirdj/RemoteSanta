@@ -24,6 +24,8 @@ import {
   userInviteCompleted,
   userInviteCanceled,
   userInviteOrg2,
+  userInviteImportJob1,
+  userInviteSingleImportList,
 } from './utils/preseededData';
 
 import {
@@ -36,7 +38,6 @@ import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
- 
 
 export const expectOrgTransactionRsp = (responseBody, expectedValue) => {
   expect(responseBody.orgId).toEqual(expectedValue.orgId);
@@ -334,4 +335,111 @@ describe('admin user invites', () => {
         .expect(401);
     });
   });
+
+  describe('/bulk-create-jobs/:id (GET)', () => {
+    it('/bulk-create-jobs/:id (GET) - by ADMIN', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: admin.email,
+              sub: admin.cognitoSub,
+            }),
+        )
+        .expect(200);
+      expect(response.body.id).toEqual(userInviteImportJob1.id);
+      expect(response.body.orgId).toEqual(org2.id);
+      const singleImportList = response.body.userInviteSingleImportList.sort(
+        (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
+      );
+      singleImportList.forEach((singleImport, index) => {
+        expect(singleImport.email).toEqual(
+          userInviteSingleImportList[index].email,
+        );
+        expect(singleImport.status).toEqual(
+          userInviteSingleImportList[index].status,
+        );
+        expect(singleImport.id).toEqual(userInviteSingleImportList[index].id);
+      });
+    });
+
+    it('/bulk-create-jobs/:id (GET) - by ADMIN,wrong ID', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/user-invites/bulk-create-jobs/${user1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: admin.email,
+              sub: admin.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/bulk-create-jobs/:id (GET) - NON ADMIN user', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user2.email,
+              sub: user2.cognitoSub,
+            }),
+        )
+        .expect(403);
+    });
+  });
+
+  describe('/bulk-create-jobs/:id/progress (GET)', () => {
+    it('/bulk-create-jobs/:id/progress (GET) - by ADMIN', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: admin.email,
+              sub: admin.cognitoSub,
+            }),
+        )
+        .expect(200);
+        expect(response.body.id).toEqual(userInviteImportJob1.id);
+        expect(response.body.pendingCount).toEqual(2);
+        expect(response.body.successCount).toEqual(1);
+        expect(response.body.failCount).toEqual(2);
+    });
+
+    it('/bulk-create-jobs/:id/progress (GET) - by ADMIN,wrong ID', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/user-invites/bulk-create-jobs/${user1.id}/progress`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: admin.email,
+              sub: admin.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/bulk-create-jobs/:id/progress (GET) - NON ADMIN user', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user2.email,
+              sub: user2.cognitoSub,
+            }),
+        )
+        .expect(403);
+    });
+  });
+
 });
