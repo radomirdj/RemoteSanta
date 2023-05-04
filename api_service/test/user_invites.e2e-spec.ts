@@ -33,6 +33,7 @@ import {
   org1,
   userInviteImportJob1,
   userInviteSingleImportList,
+  org2,
 } from './utils/preseededData';
 import {
   expectUserInviteRsp,
@@ -323,13 +324,13 @@ describe('user-invites', () => {
           'Authorization',
           'bearer ' +
             createToken({
-              email: user3Manager.email,
-              sub: user3Manager.cognitoSub,
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
             }),
         )
         .expect(200);
       expect(response.body.id).toEqual(userInviteImportJob1.id);
-      expect(response.body.orgId).toEqual(org1.id);
+      expect(response.body.orgId).toEqual(org2.id);
       const singleImportList = response.body.userInviteSingleImportList.sort(
         (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
       );
@@ -352,8 +353,8 @@ describe('user-invites', () => {
           'Authorization',
           'bearer ' +
             createToken({
-              email: org2Manager.email,
-              sub: org2Manager.cognitoSub,
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
             }),
         )
         .expect(404);
@@ -384,8 +385,8 @@ describe('user-invites', () => {
           'Authorization',
           'bearer ' +
             createToken({
-              email: user3Manager.email,
-              sub: user3Manager.cognitoSub,
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
             }),
         )
         .expect(200);
@@ -404,8 +405,8 @@ describe('user-invites', () => {
           'Authorization',
           'bearer ' +
             createToken({
-              email: org2Manager.email,
-              sub: org2Manager.cognitoSub,
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
             }),
         )
         .expect(404);
