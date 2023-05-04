@@ -10,6 +10,7 @@ import { CreateUserInviteDto } from './dtos/create-user-invite.dto';
 import { BulkCreateUserInviteDto } from './dtos/bulk-create-user-invite.dto';
 import { UserDto } from '../users/dtos/user.dto';
 import { BulkCreateUserInviteJobDto } from './dtos/bulk-create-user-invite-job.dto';
+import { BulkCreateUserInviteJobProgressDto } from './dtos/bulk-create-user-invite-job-progress.dto';
 
 @Controller('user-invites')
 @UseGuards(AuthGuard('jwt'), UserManagerGuard)
@@ -55,6 +56,19 @@ export class UserInvitesController {
     @Param('id') id: string,
   ): Promise<BulkCreateUserInviteJobDto> {
     return this.userInvitesService.getBulkCreateUserInvitesJob(
+      id,
+      user.org.id,
+      false,
+    );
+  }
+
+  @Get('/bulk-create-jobs/:id/progress')
+  @Serialize(BulkCreateUserInviteJobProgressDto)
+  async getBulkCreateJobProgress(
+    @CurrentUser() user: UserDto,
+    @Param('id') id: string,
+  ): Promise<BulkCreateUserInviteJobProgressDto> {
+    return this.userInvitesService.getBulkCreateJobProgress(
       id,
       user.org.id,
       false,

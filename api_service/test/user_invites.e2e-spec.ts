@@ -374,6 +374,60 @@ describe('user-invites', () => {
     });
   });
 
+  describe('/bulk-create-jobs/:id/progress (GET)', () => {
+    it('/bulk-create-jobs/:id/progress (GET) - USER_INVITE progress by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get(
+          `/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+      expect(response.body.id).toEqual(userInviteImportJob1.id);
+      expect(response.body.pendingCount).toEqual(2);
+      expect(response.body.successCount).toEqual(1);
+      expect(response.body.failCount).toEqual(2);
+    });
+
+    it('/bulk-create-jobs/:id/progress (GET) - USER_INVITE by USER_MANAGER from ORG2 - Error', async () => {
+      await request(app.getHttpServer())
+        .get(
+          `/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/bulk-create-jobs/:id/progress (GET) - USER_INVITE by BASIC_USER - Error', async () => {
+      await request(app.getHttpServer())
+        .get(
+          `/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .expect(403);
+    });
+  });
+
   describe('/:id/cancel (POST)', () => {
     it('/:id/cancel (POST) - USER_INVITE by USER_MANAGER', async () => {
       const response = await request(app.getHttpServer())

@@ -1,5 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UserInviteRoleEnum, UserInviteSingleImport } from '@prisma/client';
+import {
+  UserInviteRoleEnum,
+  UserInviteSingleImport,
+  UserInviteSingleImportStatusEnum,
+} from '@prisma/client';
 
 import * as randomstring from 'randomstring';
 import { PrismaService } from '../prisma/prisma.service';
@@ -14,6 +18,7 @@ import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 import { SqsUserInvitesService } from '../sqs_user_invites/sqs_user_invites.service';
 import { BulkCreateUserInviteJobDto } from './dtos/bulk-create-user-invite-job.dto';
 import { UserInviteSingleImportDto } from './dtos/user-invite-single-import.dto';
+import { BulkCreateUserInviteJobProgressDto } from './dtos/bulk-create-user-invite-job-progress.dto';
 
 @Injectable()
 export class UserInvitesService {
@@ -174,6 +179,54 @@ export class UserInvitesService {
       );
 
     return { id, orgId, userInviteSingleImportList: singleImportList };
+  }
+
+  async getBulkCreateJobProgress(
+    id: string,
+    orgId: string | null,
+    isAdmin: boolean | null,
+  ): Promise<BulkCreateUserInviteJobProgressDto> {
+    const [userInviteImportJob, userInviteSingleImportStatusList] =
+      await Promise.all([
+        this.prisma.userInviteImportJob.findUnique({
+          where: {
+            id,
+          },
+        }),
+
+        await this.prisma.userInviteSingleImport.groupBy({
+          by: ['status'],
+          where: {
+            userInviteImportJobId: id,
+          },
+          _count: {
+            id: true,
+          },
+        }),
+      ]);
+
+    let statusMap = new Map<string, number>();
+    userInviteSingleImportStatusList.forEach((userInviteSingleImportStatus) => {
+      statusMap.set(
+        userInviteSingleImportStatus.status,
+        userInviteSingleImportStatus._count.id,
+      );
+    });
+
+    if (
+      !userInviteImportJob ||
+      (!isAdmin && userInviteImportJob.orgId !== orgId)
+    )
+      throw new NotFoundException('BulkCreateUserInvitesJob not found');
+
+    return {
+      id,
+      pendingCount:
+        statusMap.get(UserInviteSingleImportStatusEnum.PENDING) || 0,
+      successCount:
+        statusMap.get(UserInviteSingleImportStatusEnum.SUCCESS) || 0,
+      failCount: statusMap.get(UserInviteSingleImportStatusEnum.FAIL) || 0,
+    };
   }
 
   async cancelUserInvite(
