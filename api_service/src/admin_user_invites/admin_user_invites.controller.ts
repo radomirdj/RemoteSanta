@@ -10,6 +10,7 @@ import { CreateUserInviteDto } from '../user_invites/dtos/create-user-invite.dto
 import { UserInvitesService } from '../user_invites/user_invites.service';
 import { BulkCreateUserInviteJobDto } from '../user_invites/dtos/bulk-create-user-invite-job.dto';
 import { BulkCreateUserInviteJobProgressDto } from '../user_invites/dtos/bulk-create-user-invite-job-progress.dto';
+import { BulkCreateUserInviteDto } from '../user_invites/dtos/bulk-create-user-invite.dto';
 
 @Controller('admin')
 @UseGuards(AuthGuard('jwt'), AdminGuard)
@@ -43,6 +44,19 @@ export class AdminUserInvitesController {
   @Post('/user-invites/:id/cancel')
   async cancelUserInvite(@Param('id') id: string) {
     return this.userInvitesService.cancelUserInvite(id, null, true);
+  }
+
+  @Post('/orgs/:id/user-invites/bulk-create-jobs/')
+  async bulkCreateUserInvitesJob(
+    @Param('id') id: string,
+    @CurrentUser() user: User,
+    @Body() bulkCreateUserInviteDto: BulkCreateUserInviteDto,
+  ) {
+    return this.userInvitesService.bulkCreateUserInvites(
+      user,
+      id,
+      bulkCreateUserInviteDto.emailList,
+    );
   }
 
   @Get('/user-invites/bulk-create-jobs/:id')

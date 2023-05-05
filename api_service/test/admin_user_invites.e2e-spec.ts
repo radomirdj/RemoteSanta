@@ -17,6 +17,7 @@ import { LedgerModule } from '../src/ledger/ledger.module';
 import {
   user1,
   user2,
+  user3Manager,
   admin,
   org1,
   org2,
@@ -32,7 +33,11 @@ import {
   expectUserInviteRsp,
   expectUserInviteDB,
 } from './utils/userInviteChecks';
-import { UserInviteStatusEnum, UserRoleEnum } from '@prisma/client';
+import {
+  UserInviteStatusEnum,
+  UserRoleEnum,
+  UserInviteSingleImportStatusEnum,
+} from '@prisma/client';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
@@ -336,6 +341,93 @@ describe('admin user invites', () => {
     });
   });
 
+  describe('/bulk-create-jobs (POST)', () => {
+    const emailList = Array.from(
+      { length: 9 },
+      (_, index) => `email+${index % 20}@testemail.com`,
+    );
+    const bulkUserInviteList = {
+      emailList,
+    };
+
+    it('/bulk-create-jobs (POST) - by ADMIN', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/orgs/${org2.id}/user-invites/bulk-create-jobs`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: admin.email,
+              sub: admin.cognitoSub,
+            }),
+        )
+        .send(bulkUserInviteList)
+        .expect(201);
+
+      const userInviteImportJobId = response.body.id;
+      const userInviteImportJob = await prisma.userInviteImportJob.findUnique({
+        where: {
+          id: userInviteImportJobId,
+        },
+      });
+      expect(userInviteImportJob.orgId).toEqual(org2.id);
+      expect(userInviteImportJob.createdById).toEqual(admin.id);
+      const userInviteSingleImportList =
+        await prisma.userInviteSingleImport.findMany({
+          where: {
+            userInviteImportJobId,
+          },
+        });
+
+      expect(userInviteSingleImportList.length).toEqual(9);
+      const sortedUserInviteSingleImportList = userInviteSingleImportList.sort(
+        (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
+      );
+      sortedUserInviteSingleImportList.forEach(
+        (userInviteSingleImport, index) => {
+          expect(userInviteSingleImport.userInviteImportJobId).toEqual(
+            userInviteImportJobId,
+          );
+          expect(userInviteSingleImport.status).toEqual(
+            UserInviteSingleImportStatusEnum.PENDING,
+          );
+
+          expect(userInviteSingleImport.email).toEqual(
+            `email+${index}@testemail.com`,
+          );
+        },
+      );
+
+      // Clean Up
+      await prisma.userInviteSingleImport.deleteMany({
+        where: {
+          userInviteImportJobId,
+        },
+      });
+
+      await prisma.userInviteImportJob.delete({
+        where: {
+          id: userInviteImportJobId,
+        },
+      });
+    });
+
+    it('/bulk-create-jobs (POST) - by NON ADMIN ERROR', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/admin/orgs/${org2.id}/user-invites/bulk-create-jobs`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(bulkUserInviteList)
+        .expect(403);
+    });
+  });
+
   describe('/bulk-create-jobs/:id (GET)', () => {
     it('/bulk-create-jobs/:id (GET) - by ADMIN', async () => {
       const response = await request(app.getHttpServer())
@@ -397,7 +489,9 @@ describe('admin user invites', () => {
   describe('/bulk-create-jobs/:id/progress (GET)', () => {
     it('/bulk-create-jobs/:id/progress (GET) - by ADMIN', async () => {
       const response = await request(app.getHttpServer())
-        .get(`/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`)
+        .get(
+          `/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
         .set(
           'Authorization',
           'bearer ' +
@@ -407,10 +501,10 @@ describe('admin user invites', () => {
             }),
         )
         .expect(200);
-        expect(response.body.id).toEqual(userInviteImportJob1.id);
-        expect(response.body.pendingCount).toEqual(2);
-        expect(response.body.successCount).toEqual(1);
-        expect(response.body.failCount).toEqual(2);
+      expect(response.body.id).toEqual(userInviteImportJob1.id);
+      expect(response.body.pendingCount).toEqual(2);
+      expect(response.body.successCount).toEqual(1);
+      expect(response.body.failCount).toEqual(2);
     });
 
     it('/bulk-create-jobs/:id/progress (GET) - by ADMIN,wrong ID', async () => {
@@ -429,7 +523,9 @@ describe('admin user invites', () => {
 
     it('/bulk-create-jobs/:id/progress (GET) - NON ADMIN user', async () => {
       const response = await request(app.getHttpServer())
-        .get(`/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`)
+        .get(
+          `/admin/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
         .set(
           'Authorization',
           'bearer ' +
@@ -441,5 +537,4 @@ describe('admin user invites', () => {
         .expect(403);
     });
   });
-
 });
