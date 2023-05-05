@@ -4,12 +4,12 @@ function getSqsConsumerList(
   return [
     {
       name: 'first-queue',
-      queueUrl: 'http://sqs:9324/queue/first-queue',
+      queueUrl: process.env.AWS_SQS_QUEUE_URL_FIRST,
       region: process.env.AWS_REGION,
     },
     {
       name: 'dead-first-queue',
-      queueUrl: 'http://sqs:9324/queue/dead-first-queue',
+      queueUrl: process.env.AWS_SQS_QUEUE_URL_FIRST_FAILED,
       region: process.env.AWS_REGION,
     },
     {

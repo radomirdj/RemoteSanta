@@ -19,7 +19,7 @@ if (process.env.AWS_SECRET_KEY && process.env.AWS_ACCESS_KEY)
       producers: [
         {
           name: 'first-queue',
-          queueUrl: 'http://sqs:9324/queue/first-queue',
+          queueUrl: process.env.AWS_SQS_QUEUE_URL_FIRST,
           region: process.env.AWS_REGION,
         },
         {
