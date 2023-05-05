@@ -15,7 +15,7 @@ export class AppController {
       { length: 20 },
       (_, index) => `email+${index}@email.com`,
     );
-    await this.sqsUserInvitesService.inviteByEmailList(emailArray);
+    await this.sqsUserInvitesService.inviteByEmailList2(emailArray);
     return this.appService.getHello();
   }
 }
