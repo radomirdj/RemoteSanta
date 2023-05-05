@@ -20,6 +20,8 @@ import {
 import { createToken } from './utils/tokenService';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+ 
 
 export const expectGiftCardIntegrationRsp = (responseBody, expectedValue) => {
   expect(responseBody.priority).toEqual(expectedValue.priority);

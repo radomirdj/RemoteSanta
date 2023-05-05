@@ -48,6 +48,8 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+ 
 
 export const expectOrgTransactionRsp = (responseBody, expectedValue) => {
   expect(responseBody.orgId).toEqual(expectedValue.orgId);

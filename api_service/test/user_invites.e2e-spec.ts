@@ -1,16 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, Module } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
 import { UsersModule } from '../src/users/users.module';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
+import { SqsUserInvitesService } from '../src/sqs_user_invites/sqs_user_invites.service';
+import { SqsUserInvitesServiceMock } from '../src/sqs_user_invites/__mock__/sqs_user_invites.service.mock';
+import { SqsUserInvitesModule } from '../src/sqs_user_invites/sqs_user_invites.module';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { createToken } from './utils/tokenService';
 import { EmailInUseException } from '../src/errors/emailInUseException';
 import { EmailInActiveInviteException } from '../src/errors/emailInActiveInviteException';
-import { UserInviteStatusEnum, UserRoleEnum } from '@prisma/client';
+import {
+  UserInviteStatusEnum,
+  UserRoleEnum,
+  UserInviteSingleImportStatusEnum,
+} from '@prisma/client';
 import { InviteNotActiveException } from '../src/errors/inviteNotActiveException';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
@@ -24,6 +31,9 @@ import {
   org2Manager,
   user1,
   org1,
+  userInviteImportJob1,
+  userInviteSingleImportList,
+  org2,
 } from './utils/preseededData';
 import {
   expectUserInviteRsp,
@@ -31,6 +41,7 @@ import {
 } from './utils/userInviteChecks';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
 
 describe('user-invites', () => {
   let app: INestApplication;
@@ -38,12 +49,14 @@ describe('user-invites', () => {
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule, PrismaModule, UsersModule],
+      imports: [AppModule, PrismaModule, UsersModule, SqsUserInvitesModule],
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
       .overrideProvider(MailerService)
       .useValue(MailerServiceMock)
+      .overrideProvider(SqsUserInvitesService)
+      .useValue(SqsUserInvitesServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
@@ -217,6 +230,201 @@ describe('user-invites', () => {
         .post('/user-invites/')
         .send(newUserInvite)
         .expect(401);
+    });
+  });
+  describe('/bulk-create-jobs (POST)', () => {
+    const emailList = Array.from(
+      { length: 9 },
+      (_, index) => `email+${index % 20}@testemail.com`,
+    );
+    const bulkUserInviteList = {
+      emailList,
+    };
+
+    it('/bulk-create-jobs (POST) - USER_INVITE by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/user-invites/bulk-create-jobs')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(bulkUserInviteList)
+        .expect(201);
+
+      const userInviteImportJobId = response.body.id;
+      const userInviteImportJob = await prisma.userInviteImportJob.findUnique({
+        where: {
+          id: userInviteImportJobId,
+        },
+      });
+      expect(userInviteImportJob.orgId).toEqual(org1.id);
+      expect(userInviteImportJob.createdById).toEqual(user3Manager.id);
+      const userInviteSingleImportList =
+        await prisma.userInviteSingleImport.findMany({
+          where: {
+            userInviteImportJobId,
+          },
+        });
+
+      expect(userInviteSingleImportList.length).toEqual(9);
+      const sortedUserInviteSingleImportList = userInviteSingleImportList.sort(
+        (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
+      );
+      sortedUserInviteSingleImportList.forEach(
+        (userInviteSingleImport, index) => {
+          expect(userInviteSingleImport.userInviteImportJobId).toEqual(
+            userInviteImportJobId,
+          );
+          expect(userInviteSingleImport.status).toEqual(
+            UserInviteSingleImportStatusEnum.PENDING,
+          );
+
+          expect(userInviteSingleImport.email).toEqual(
+            `email+${index}@testemail.com`,
+          );
+        },
+      );
+
+      // Clean Up
+      await prisma.userInviteSingleImport.deleteMany({
+        where: {
+          userInviteImportJobId,
+        },
+      });
+
+      await prisma.userInviteImportJob.delete({
+        where: {
+          id: userInviteImportJobId,
+        },
+      });
+    });
+
+    it('/ (POST) - NON USER_MANAGER user, bulk create USER_INVITE', async () => {
+      await request(app.getHttpServer())
+        .post('/user-invites/bulk-create-jobs')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user2.email, sub: user2.cognitoSub }),
+        )
+        .send(emailList)
+        .expect(403);
+    });
+  });
+
+  describe('/bulk-create-jobs/:id (GET)', () => {
+    it('/bulk-create-jobs/:id (GET) - USER_INVITE by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+      expect(response.body.id).toEqual(userInviteImportJob1.id);
+      expect(response.body.orgId).toEqual(org2.id);
+      const singleImportList = response.body.userInviteSingleImportList.sort(
+        (a, b) => (a.email < b.email ? -1 : a.email > b.email ? 1 : 0),
+      );
+      singleImportList.forEach((singleImport, index) => {
+        expect(singleImport.email).toEqual(
+          userInviteSingleImportList[index].email,
+        );
+        expect(singleImport.status).toEqual(
+          userInviteSingleImportList[index].status,
+        );
+        expect(singleImport.id).toEqual(userInviteSingleImportList[index].id);
+      });
+    });
+
+    it('/bulk-create-jobs/:id (GET) - USER_INVITE by USER_MANAGER from ORG2 - Error', async () => {
+      await request(app.getHttpServer())
+        .get(`/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/bulk-create-jobs/:id (GET) - USER_INVITE by BASIC_USER', async () => {
+      await request(app.getHttpServer())
+        .get(`/user-invites/bulk-create-jobs/${userInviteImportJob1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .expect(403);
+    });
+  });
+
+  describe('/bulk-create-jobs/:id/progress (GET)', () => {
+    it('/bulk-create-jobs/:id/progress (GET) - USER_INVITE progress by USER_MANAGER', async () => {
+      const response = await request(app.getHttpServer())
+        .get(
+          `/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: org2Manager.email,
+              sub: org2Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+      expect(response.body.id).toEqual(userInviteImportJob1.id);
+      expect(response.body.pendingCount).toEqual(2);
+      expect(response.body.successCount).toEqual(1);
+      expect(response.body.failCount).toEqual(2);
+    });
+
+    it('/bulk-create-jobs/:id/progress (GET) - USER_INVITE by USER_MANAGER from ORG2 - Error', async () => {
+      await request(app.getHttpServer())
+        .get(
+          `/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(404);
+    });
+
+    it('/bulk-create-jobs/:id/progress (GET) - USER_INVITE by BASIC_USER - Error', async () => {
+      await request(app.getHttpServer())
+        .get(
+          `/user-invites/bulk-create-jobs/${userInviteImportJob1.id}/progress`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .expect(403);
     });
   });
 

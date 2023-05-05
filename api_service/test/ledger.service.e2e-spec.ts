@@ -26,6 +26,8 @@ import {
 import { checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+ 
 
 describe('LedgerService', () => {
   let app: INestApplication;

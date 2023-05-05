@@ -1,4 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  UserInviteRoleEnum,
+  UserInviteSingleImport,
+  UserInviteSingleImportStatusEnum,
+} from '@prisma/client';
+
 import * as randomstring from 'randomstring';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserInviteDto } from './dtos/user-invite.dto';
@@ -9,7 +15,10 @@ import { UsersService, orgDefaultJoin } from '../users/users.service';
 import { InviteNotActiveException } from '../errors/inviteNotActiveException';
 import { EmailsService } from '../emails/emails.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
-import { UserInviteRoleEnum } from '@prisma/client';
+import { SqsUserInvitesService } from '../sqs_user_invites/sqs_user_invites.service';
+import { BulkCreateUserInviteJobDto } from './dtos/bulk-create-user-invite-job.dto';
+import { UserInviteSingleImportDto } from './dtos/user-invite-single-import.dto';
+import { BulkCreateUserInviteJobProgressDto } from './dtos/bulk-create-user-invite-job-progress.dto';
 
 @Injectable()
 export class UserInvitesService {
@@ -18,6 +27,7 @@ export class UserInvitesService {
     private usersService: UsersService,
     private emailsService: EmailsService,
     private adminOrgsService: AdminOrgsService,
+    private readonly sqsUserInvitesService: SqsUserInvitesService,
   ) {}
 
   getOrgInviteList(orgId: string): Promise<UserInviteDto[]> {
@@ -48,7 +58,8 @@ export class UserInvitesService {
   }
 
   async createUserInvite(
-    user: User,
+    userId: string,
+    userFullName: string,
     orgId: string,
     email: string,
     userRole: UserInviteRoleEnum,
@@ -71,7 +82,7 @@ export class UserInvitesService {
       email,
       code,
       org.name,
-      `${user.firstName} ${user.lastName}`,
+      userFullName,
     );
 
     return this.prisma.userInvite.create({
@@ -82,7 +93,7 @@ export class UserInvitesService {
         code,
         createdBy: {
           connect: {
-            id: user.id,
+            id: userId,
           },
         },
         org: {
@@ -92,6 +103,134 @@ export class UserInvitesService {
         },
       },
     });
+  }
+
+  async bulkCreateUserInvites(user: User, orgId: string, emailList: string[]) {
+    const uniqueEmailList = [...new Set(emailList)];
+    const [org, userInviteImportJob] = await Promise.all([
+      this.adminOrgsService.getById(orgId),
+      this.prisma.userInviteImportJob.create({
+        data: {
+          createdBy: {
+            connect: {
+              id: user.id,
+            },
+          },
+          org: {
+            connect: {
+              id: orgId,
+            },
+          },
+        },
+      }),
+    ]);
+    const userInviteSingleImportData = uniqueEmailList.map((email) => ({
+      email,
+      userInviteImportJobId: userInviteImportJob.id,
+    }));
+
+    await this.prisma.userInviteSingleImport.createMany({
+      data: userInviteSingleImportData,
+    });
+    const userInviteSingleImportList =
+      await this.prisma.userInviteSingleImport.findMany({
+        where: {
+          userInviteImportJobId: userInviteImportJob.id,
+        },
+      });
+    await this.sqsUserInvitesService.inviteByEmailList(
+      userInviteSingleImportList,
+      org,
+      user,
+    );
+    return userInviteImportJob;
+  }
+
+  async getBulkCreateUserInvitesJob(
+    id: string,
+    orgId: string | null,
+    isAdmin: boolean | null,
+  ): Promise<BulkCreateUserInviteJobDto> {
+    const userInviteImportJob =
+      await this.prisma.userInviteImportJob.findUnique({
+        where: {
+          id,
+        },
+        include: {
+          UserInviteSingleImport: true,
+        },
+      });
+
+    if (
+      !userInviteImportJob ||
+      (!isAdmin && userInviteImportJob.orgId !== orgId)
+    )
+      throw new NotFoundException('BulkCreateUserInvitesJob not found');
+    const { UserInviteSingleImport } = userInviteImportJob;
+    const singleImportList: UserInviteSingleImportDto[] =
+      UserInviteSingleImport.map(
+        (userInviteSingleImport) =>
+          ({
+            id: userInviteSingleImport.id,
+            status: userInviteSingleImport.status,
+            failureReason: userInviteSingleImport.failureReason,
+            email: userInviteSingleImport.email,
+          } as UserInviteSingleImportDto),
+      );
+
+    return {
+      id,
+      orgId: userInviteImportJob.orgId,
+      userInviteSingleImportList: singleImportList,
+    };
+  }
+
+  async getBulkCreateJobProgress(
+    id: string,
+    orgId: string | null,
+    isAdmin: boolean | null,
+  ): Promise<BulkCreateUserInviteJobProgressDto> {
+    const [userInviteImportJob, userInviteSingleImportStatusList] =
+      await Promise.all([
+        this.prisma.userInviteImportJob.findUnique({
+          where: {
+            id,
+          },
+        }),
+
+        await this.prisma.userInviteSingleImport.groupBy({
+          by: ['status'],
+          where: {
+            userInviteImportJobId: id,
+          },
+          _count: {
+            id: true,
+          },
+        }),
+      ]);
+
+    let statusMap = new Map<string, number>();
+    userInviteSingleImportStatusList.forEach((userInviteSingleImportStatus) => {
+      statusMap.set(
+        userInviteSingleImportStatus.status,
+        userInviteSingleImportStatus._count.id,
+      );
+    });
+
+    if (
+      !userInviteImportJob ||
+      (!isAdmin && userInviteImportJob.orgId !== orgId)
+    )
+      throw new NotFoundException('BulkCreateUserInvitesJob not found');
+
+    return {
+      id,
+      pendingCount:
+        statusMap.get(UserInviteSingleImportStatusEnum.PENDING) || 0,
+      successCount:
+        statusMap.get(UserInviteSingleImportStatusEnum.SUCCESS) || 0,
+      failCount: statusMap.get(UserInviteSingleImportStatusEnum.FAIL) || 0,
+    };
   }
 
   async cancelUserInvite(

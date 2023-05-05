@@ -827,6 +827,11 @@
     handlebars "^4.7.6"
     pug "^3.0.1"
 
+"@nestjs-plus/discovery@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nestjs-plus/discovery/-/discovery-2.0.2.tgz#c29a2d70ddecf58082fa3f2574ef511b916c1e8d"
+  integrity sha512-7cOA00gFFbDj6DgWmCD6gXEOKUHs4fn/qBTB4yq7APkWVXKhF3+92D7MKLfpZstFAlKapdDu25c+Ed0ZUKIoGA==
+
 "@nestjs/cli@^9.0.0":
   version "9.1.5"
   resolved "https://registry.yarnpkg.com/@nestjs/cli/-/cli-9.1.5.tgz#aa150991b209dc2b459c974cc1c43ea10a276ff8"
@@ -983,22 +988,22 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@prisma/client@^4.7.0":
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.7.1.tgz#66fe84aca25de17cb3d9141dec003f34714914b9"
-  integrity sha512-/GbnOwIPtjiveZNUzGXOdp7RxTEkHL4DZP3vBaFNadfr6Sf0RshU5EULFzVaSi9i9PIK9PYd+1Rn7z2B2npb9w==
+"@prisma/client@^4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.13.0.tgz#271d2b9756503ea17bbdb459c7995536cf2a6191"
+  integrity sha512-YaiiICcRB2hatxsbnfB66uWXjcRw3jsZdlAVxmx0cFcTc/Ad/sKdHCcWSnqyDX47vAewkjRFwiLwrOUjswVvmA==
   dependencies:
-    "@prisma/engines-version" "4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c"
+    "@prisma/engines-version" "4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a"
 
-"@prisma/engines-version@4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c":
-  version "4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c"
-  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c.tgz#43ff7d85478e64a1d790e4d53e78768a2acfacfe"
-  integrity sha512-Bd4LZ+WAnUHOq31e9X/ihi5zPlr4SzTRwUZZYxvWOxlerIZ7HJlVa9zXpuKTKLpI9O1l8Ec4OYCKsivWCs5a3Q==
+"@prisma/engines-version@4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a":
+  version "4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a.tgz#ae338908d11685dee50e7683502d75442b955bf9"
+  integrity sha512-fsQlbkhPJf08JOzKoyoD9atdUijuGBekwoOPZC3YOygXEml1MTtgXVpnUNchQlRSY82OQ6pSGQ9PxUe4arcSLQ==
 
-"@prisma/engines@4.7.1":
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.7.1.tgz#d657d4d05724158140022fa00614e143643090c2"
-  integrity sha512-zWabHosTdLpXXlMefHmnouhXMoTB1+SCbUU3t4FCmdrtIOZcarPKU3Alto7gm/pZ9vHlGOXHCfVZ1G7OIrSbog==
+"@prisma/engines@4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.13.0.tgz#582a6b90b6efeb0f465984f1fe0e72a4afaaa5ae"
+  integrity sha512-HrniowHRZXHuGT9XRgoXEaP2gJLXM5RMoItaY2PkjvuZ+iHc0Zjbm/302MB8YsPdWozAPHHn+jpFEcEn71OgPw==
 
 "@selderee/plugin-htmlparser2@^0.10.0":
   version "0.10.0"
@@ -1034,6 +1039,15 @@
   integrity sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@ssut/nestjs-sqs@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@ssut/nestjs-sqs/-/nestjs-sqs-1.3.0.tgz#41b0cdc746344158ae42235dc638c7ddd4468f0b"
+  integrity sha512-OAJzhL9Zriq8a9wVXbg7X0TsbYOhP7T3PxMgTr6b0G8HNd9uq3s8Md6esmRKT9npaPR0Yy8s7KWp7aKT7U98MA==
+  dependencies:
+    "@nestjs-plus/discovery" "^2.0.2"
+    sqs-consumer "^5.7.0"
+    sqs-producer "^2.1.0"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -1830,6 +1844,22 @@ available-typed-arrays@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
+
+aws-sdk@^2.1271.0:
+  version "2.1366.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1366.0.tgz#1c22ac7bde24b980541d1a7145dd59a4bc51ffd8"
+  integrity sha512-tS7y18KHH0eq43I8WJsxVBpwOMY45FSsu6a+A/6k0bMrE4zhd1fzhPN+5coNIODaGxnqVvgw9guLg3AOe4SpaA==
+  dependencies:
+    buffer "4.9.2"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.16.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    util "^0.12.4"
+    uuid "8.0.0"
+    xml2js "0.5.0"
 
 aws-sdk@^2.1309.0:
   version "2.1309.0"
@@ -6309,12 +6339,12 @@ preview-email@^3.0.7:
     pug "^3.0.2"
     uuid "^8.3.2"
 
-prisma@^4.7.0:
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.7.1.tgz#0a1beac26abdc4421e496b75eb50413f3ee3b0ba"
-  integrity sha512-CCQP+m+1qZOGIZlvnL6T3ZwaU0LAleIHYFPN9tFSzjs/KL6vH9rlYbGOkTuG9Q1s6Ki5D0LJlYlW18Z9EBUpGg==
+prisma@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.13.0.tgz#0b83f40acf50cd47d7463a135c4e9b275713e602"
+  integrity sha512-L9mqjnSmvWIRCYJ9mQkwCtj4+JDYYTdhoyo8hlsHNDXaZLh/b4hR0IoKIBbTKxZuyHQzLopb/+0Rvb69uGV7uA==
   dependencies:
-    "@prisma/engines" "4.7.1"
+    "@prisma/engines" "4.13.0"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -7026,6 +7056,21 @@ sqlite3@^5.1.2:
     tar "^6.1.11"
   optionalDependencies:
     node-gyp "8.x"
+
+sqs-consumer@^5.7.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/sqs-consumer/-/sqs-consumer-5.8.0.tgz#eb2796bf17e4f703dd93e534bf949f15e7b1fef9"
+  integrity sha512-pJReMEtDM9/xzQTffb7dxMD5MKagBfOW65m+ITsbpNk0oZmJ38tTC4LPmj0/7ZcKSOqi2LrpA1b0qGYOwxlHJg==
+  dependencies:
+    aws-sdk "^2.1271.0"
+    debug "^4.3.4"
+
+sqs-producer@^2.1.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/sqs-producer/-/sqs-producer-2.2.0.tgz#8354958ee77c6663b2da07c5a282ce1f5c2dedde"
+  integrity sha512-wEpcqH19p/Ee0ZIAJjW9+qHLMT87Pdoz//VOLfpxsEzPEO3ty9r+KXey0BF7tpmc7HzztNrflPItGJhUmlwl9g==
+  dependencies:
+    aws-sdk "^2.1271.0"
 
 ssri@^8.0.0, ssri@^8.0.1:
   version "8.0.1"
@@ -7854,6 +7899,19 @@ xml2js@0.4.19:
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~9.0.1"
+
+xml2js@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.5.0.tgz#d9440631fbb2ed800203fad106f2724f62c493b7"
+  integrity sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "~11.0.0"
+
+xmlbuilder@~11.0.0:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
+  integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
 xmlbuilder@~9.0.1:
   version "9.0.7"

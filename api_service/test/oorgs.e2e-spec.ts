@@ -23,6 +23,8 @@ import { expectUserRsp } from './utils/userChecks';
 import { UserRoleEnum } from '.prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+ 
 
 export const expectOrgTransactionRsp = (responseBody, expectedValue) => {
   expect(responseBody.orgId).toEqual(expectedValue.orgId);

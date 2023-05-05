@@ -30,4 +30,7 @@ export default {
   orgNegativeTransactions: [
     OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
   ] as OrgTransactionTypeEnum[],
+  userInviteImpotMessage: {
+    EMAIL_EXISTS_FAIL: 'email exists',
+  },
 };

@@ -12,6 +12,7 @@ import { user1, user2, giftDate1, giftDate2 } from './utils/preseededData';
 import { expectGiftDateRsp, expectGiftDateInDB } from './utils/giftDateChecks';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
 
 describe('/gift-dates', () => {
   let app: INestApplication;
