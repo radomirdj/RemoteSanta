@@ -95,6 +95,8 @@ services:
       AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/user-invite-bulk-create-failed
       AWS_SQS_QUEUE_URL_FIRST: http://sqs:9324/queue/first-queue
       AWS_SQS_QUEUE_URL_FIRST_FAILED: http://sqs:9324/queue/dead-first-queue
+      AWS_SQS_QUEUE_URL_SEND_EMAIL: http://sqs:9324/queue/email-send
+      AWS_SQS_QUEUE_URL_SEND_EMAIL_FAILED: http://sqs:9324/queue/email-send-failed
       AWS_REGION: ${AWS_REGION}
       EMAIL_FROM: ${EMAIL_FROM}
       FE_BASE_URL: http://localhost:3050/
@@ -162,6 +164,8 @@ services:
       AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: http://sqs:9324/queue/test-user-invite-bulk-create
       AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT_FAILED: test-user-invite-bulk-create-failed
       AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/test-user-invite-bulk-create-failed
+      AWS_SQS_QUEUE_URL_SEND_EMAIL: http://sqs:9324/queue/test-email-send
+      AWS_SQS_QUEUE_URL_SEND_EMAIL_FAILED: http://sqs:9324/queue/test-email-send-failed
       AWS_S3_BUCKET_GIFT_CARDS: giftcardfilestest
     depends_on:
       - pgtest

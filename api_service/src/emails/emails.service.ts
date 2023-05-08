@@ -1,12 +1,19 @@
 import { Injectable, INestApplication, OnModuleInit } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
+import { SqsService } from '@ssut/nestjs-sqs';
 import { MailerService, ISendMailOptions } from '@nestjs-modules/mailer';
 import * as Email from 'email-templates';
 import { join } from 'path';
+import { SqsMessageHandler } from '@ssut/nestjs-sqs';
+import addSQSFifoParams from '../utils/addSQSFifoParams';
 
 @Injectable()
 export class EmailsService {
   private readonly email;
-  constructor(private mailService: MailerService) {
+  constructor(
+    private mailService: MailerService,
+    private readonly sqsService: SqsService,
+  ) {
     this.email = new Email({
       views: {
         root: join(__dirname, 'templates'),
@@ -14,7 +21,7 @@ export class EmailsService {
     });
   }
 
-  async sendEmail(
+  async sendEmailProcess(
     templateName: string,
     to: string | string[],
     data: any,
@@ -42,6 +49,45 @@ export class EmailsService {
     return this.mailService.sendMail(emailParams);
   }
 
+  @SqsMessageHandler('email-send', false)
+  async handleSendEmailMessage(message: AWS.SQS.Message) {
+    const userInviteMessage: any = JSON.parse(message.Body) as SQSEmailMessage;
+    await this.sendEmailProcess(
+      userInviteMessage.templateName,
+      userInviteMessage.to,
+      userInviteMessage.data,
+      userInviteMessage.attachment,
+    );
+  }
+
+  @SqsMessageHandler('email-send-failed', false)
+  async handleSendEmailFailedMessage(message: AWS.SQS.Message) {
+    const userInviteMessage: any = JSON.parse(message.Body) as SQSEmailMessage;
+    console.log(
+      'EmailsService -> handleSendEmailFailedMessage -> userInviteMessage',
+      userInviteMessage,
+    );
+  }
+
+  async sendEmail(
+    templateName: string,
+    to: string | string[],
+    data: any,
+    attachment: { filename: string; buffer } = null,
+  ) {
+    const userInviteMessage = addSQSFifoParams({
+      id: uuidv4(),
+      body: {
+        templateName,
+        to,
+        data,
+        attachment,
+      } as SQSEmailMessage,
+    });
+    const messageList = [userInviteMessage];
+    await this.sqsService.send('email-send', messageList);
+  }
+
   sendClaimPointsEmail(to: string[], claimPointsEventDescription: string) {
     return this.sendEmail('claim-points', to, {
       claimPointsEventDescription,
@@ -63,6 +109,7 @@ export class EmailsService {
     });
   }
 
+  // Doesn't add to queue, send directly
   async sendGiftCardFullfiledEmail(
     to: string,
     firstName: string,
@@ -70,7 +117,7 @@ export class EmailsService {
     giftCardIntegrationTitle: string,
     attachment: { filename: string; buffer },
   ) {
-    return this.sendEmail(
+    return this.sendEmailProcess(
       'gift-card-request-fulfilled',
       to,
       {
