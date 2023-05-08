@@ -35,7 +35,11 @@ import {
   IOrgUser,
   SendPointsToUserPayload,
 } from "../store/orgs/types";
-import { SelfSignUpRequestPayload } from "../store/self-signup/types";
+import {
+  ICompletementStep,
+  PostCompletementStepsPayload,
+  SelfSignUpRequestPayload,
+} from "../store/self-signup/types";
 import {
   CancelUserInvitePayload,
   FetchUserInviteListPayload,
@@ -306,6 +310,23 @@ export const sendPointsToUserUserManager = (
 };
 
 export const selfSignupOrgUser = (payload: SelfSignUpRequestPayload) => {
-  console.log(payload);
   return axios.post<string>("api/users/org-signup", payload);
+};
+
+export const getCompletementStepList = (token: string) =>
+  axios.get<ICompletementStep[]>("api/completement-steps/", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const postCompletementStep = (
+  payload: PostCompletementStepsPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/${payload.stepId}/update-status`,
+    payload.completementStepStatus,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
 };

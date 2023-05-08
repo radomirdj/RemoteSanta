@@ -1,5 +1,5 @@
 import { Grid, Tooltip, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getSelfRequest } from "../../store/auth/actions";
@@ -9,6 +9,7 @@ import { getClaimPointsEventListSelector } from "../../store/claim-points-event/
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import ClaimPointsEventItem from "./ClaimPointsEventItem";
+import CompletementSteps from "./CompletementSteps";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,12 +37,12 @@ const Home = () => {
     navigate("/choose-gift-card");
   };
 
-  console.log(user.org?.country);
   return (
     <>
       <AppHeaderPrivate />
       <div className="background home">
         <Grid container spacing={4} className="grid-style">
+          <CompletementSteps />
           <Grid item xs={12} sm={6}>
             <Typography className="home-title">
               Hello {user.firstName}

@@ -1,3 +1,24 @@
+@use "./../variables.scss";
+
 .demo {
     background-image: url("./../../assets/home-image.svg");
+
+    .grid-style{
+        justify-items: center;
+        display: grid;
+    }
+    
+    .talk-to-a-specialist-button,
+        &  .talk-to-a-specialist-button:hover {
+            background-color: variables.$main-green;
+            border-radius: variables.$base-unit * 2;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: variables.$base-unit * 24;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit * 3;
+            margin-left: variables.$base-unit * 55;
+        }
 }

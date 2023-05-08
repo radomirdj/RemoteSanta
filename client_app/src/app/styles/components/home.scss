@@ -6,6 +6,7 @@ $dollar-illustration-width:76px;
 $dollar-illustration-height:86px;
 $points-margin-bottom:36px;
 $points-font-size:20px;
+$stepper-card-font-size: 14px;
 
 .home {
     background-image: url("./../../assets/home-image.svg");
@@ -13,12 +14,134 @@ $points-font-size:20px;
     background-repeat:  repeat !important;
     background-size: contain !important;
 
+   
+
     .grid-style{
         padding-top: variables.$base-unit * 18;
         overflow-y: auto;
         padding-bottom: variables.$base-unit * 12;
         z-index: 1000;
         max-width: $grid-max-width;
+    
+        .stepper-card{
+            padding-top: variables.$base-unit * 4;
+            padding-bottom: variables.$base-unit * 4;
+            padding-left: variables.$base-unit * 6;
+            padding-right: variables.$base-unit * 6;
+            border-radius: variables.$base-unit * 4;
+            margin-bottom: variables.$base-unit * 4;
+            position: relative;
+            z-index: 1000;
+
+            .react-multi-carousel-list{
+                height: 250px;
+                z-index: 1300;
+              
+            }
+        
+            .react-multi-carousel-item{
+                margin-left: 18px;
+                height: variables.$base-unit * 20 !important;
+                width: 264px !important;
+            }
+
+            .stepper-card-title{
+                font-size: variables.$font-size-larger;
+                font-family: "Montserrat";
+                font-weight: 600;
+                float: left;
+            }
+
+            .stepper-card-text{
+                margin-top: variables.$base-unit;
+                font-size: $stepper-card-font-size;
+                font-family: "Montserrat";
+                float: left;
+                margin-bottom:variables.$base-unit * 2;
+            }
+
+            .talk-to-a-specialist-button,
+                &  .talk-to-a-specialist-button:hover {
+                    background-color: variables.$main-green;
+                    border-radius: variables.$base-unit * 2;
+                    box-shadow: none;
+                    color: variables.$color-neutral-black;
+                    text-transform: none;
+                    width: variables.$base-unit * 24;
+                    height: variables.$base-unit * 6;
+                    font-weight: bold;
+                    float: right;
+                }
+
+            .stepper-card-stepper{
+                width: 100%;
+            }
+
+                .step-card{
+                    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+                    padding-top: variables.$base-unit;
+                    padding-bottom: variables.$base-unit;
+                    padding-left: variables.$base-unit;
+                    padding-right: variables.$base-unit;
+                    border-radius: variables.$base-unit * 2;
+                    height: variables.$base-unit * 20;
+                }
+
+                .step-title{
+                    font-family: "Montserrat";
+                    font-size: variables.$font-size-medium;
+                    font-weight: 700;
+                  
+                }
+
+                .step-text{
+                    font-family: "Montserrat";
+                    font-size: variables.$font-size-small;
+                }
+
+                .step-grid-item{
+                    padding-left: 8px !important;
+                }
+
+                .step-grid-item-button{
+                    padding-left: 0px !important;
+                    padding-top: 0px !important;
+                }
+
+                .step-illustration{
+                    width: variables.$base-unit * 10;
+                    margin-right: 16px;
+                }
+
+                .lets-go-button,
+                & .lets-go-button:hover {
+                    background-color: variables.$color-dark-yellow;
+                    border-radius: variables.$base-unit;
+                    box-shadow: none;
+                    color: variables.$color-neutral-black;
+                    text-transform: none;
+                    width: variables.$base-unit * 12;
+                    height: variables.$base-unit * 4;
+                    font-weight: bold;
+                    margin-top: variables.$base-unit;
+                }
+
+                .skip-button,
+                & .skip-button:hover {
+                    background-color: white;
+                    border-radius: variables.$base-unit;
+                    border-color: black;
+                    box-shadow: none;
+                    color: variables.$color-neutral-black;
+                    text-transform: none;
+                    width: variables.$base-unit * 8;
+                    height: variables.$base-unit * 4;
+                    font-weight: bold;
+                    margin-top: variables.$base-unit;
+                    margin-left: variables.$base-unit * 4;
+                }
+        }
+    
 
         .home-title{
             font-weight: 500;
@@ -167,6 +290,38 @@ $points-font-size:20px;
                 padding-top: 8px;
                 padding-left: 16px;
             }
+        }
+    }
+}
+
+.MuiModal-root{
+    .MuiCard-root{
+        .watch-demo-title{
+            font-family: "Montserrat";
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 3;
+            margin-left: variables.$base-unit * 3;
+            font-size: variables.$font-size-larger;
+        }
+
+        .watch-demo-grid-item{
+            justify-items: center;
+            display: grid;
+        }
+
+        .mark-as-completed-button,
+        & .mark-as-completed:hover {
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: variables.$base-unit * 24;
+            height: variables.$base-unit * 5;
+            font-weight: 600;
+            margin-top: variables.$base-unit;
+            float: right;
+            margin-right: variables.$base-unit * 3;
         }
     }
 }
