@@ -1,2 +1,2 @@
-FROM s12v/elasticmq
-COPY elasticmq.conf /etc/elasticmq/elasticmq.conf
+FROM softwaremill/elasticmq-native
+COPY elasticmq.conf /opt/elasticmq.conf
