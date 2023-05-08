@@ -90,6 +90,7 @@ services:
       AWS_SQS_ENDPOINT: http://sqs:9324
       AWS_ACCESS_KEY: my_access_key
       AWS_SECRET_KEY: my_secret_key
+      AWS_SQS_IGNORE_FIFO: "true"
       AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: http://sqs:9324/queue/user-invite-bulk-create
       AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/user-invite-bulk-create-failed
       AWS_SQS_QUEUE_URL_FIRST: http://sqs:9324/queue/first-queue
