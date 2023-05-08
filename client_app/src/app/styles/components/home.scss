@@ -293,3 +293,35 @@ $stepper-card-font-size: 14px;
         }
     }
 }
+
+.MuiModal-root{
+    .MuiCard-root{
+        .watch-demo-title{
+            font-family: "Montserrat";
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 3;
+            margin-left: variables.$base-unit * 3;
+            font-size: variables.$font-size-larger;
+        }
+
+        .watch-demo-grid-item{
+            justify-items: center;
+            display: grid;
+        }
+
+        .mark-as-completed-button,
+        & .mark-as-completed:hover {
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: variables.$base-unit * 24;
+            height: variables.$base-unit * 5;
+            font-weight: 600;
+            margin-top: variables.$base-unit;
+            float: right;
+            margin-right: variables.$base-unit * 3;
+        }
+    }
+}

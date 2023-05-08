@@ -9,6 +9,8 @@ import {
   POST_COMPLETEMENT_STEPS_REQUEST,
   POST_COMPLETEMENT_STEPS_SUCCESS,
   POST_COMPLETEMENT_STEPS_FAILURE,
+  SET_CLOSE_MODAL_STEP,
+  SET_OPEN_MODAL_STEP,
 } from "./actionTypes";
 
 import { SelfSignupState, SelfSignupActions } from "./types";
@@ -16,6 +18,7 @@ import { SelfSignupState, SelfSignupActions } from "./types";
 const initialState: SelfSignupState = {
   pending: false,
   completementSteps: [],
+  openModalStep: "NONE",
   error: null,
 };
 
@@ -73,6 +76,20 @@ export default (state = initialState, action: SelfSignupActions) => {
         ...state,
         pending: false,
         error: action.payload.error,
+      };
+    case SET_OPEN_MODAL_STEP:
+      return {
+        ...state,
+        openModalStep: action.payload.openModalStep,
+        pending: true,
+        error: null,
+      };
+    case SET_CLOSE_MODAL_STEP:
+      return {
+        ...state,
+        openModalStep: "NONE",
+        pending: true,
+        error: null,
       };
     default:
       return {

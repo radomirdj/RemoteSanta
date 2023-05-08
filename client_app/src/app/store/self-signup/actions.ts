@@ -9,6 +9,8 @@ import {
   POST_COMPLETEMENT_STEPS_REQUEST,
   POST_COMPLETEMENT_STEPS_SUCCESS,
   POST_COMPLETEMENT_STEPS_FAILURE,
+  SET_OPEN_MODAL_STEP,
+  SET_CLOSE_MODAL_STEP,
 } from "./actionTypes";
 import {
   SelfSignUpRequest,
@@ -26,6 +28,9 @@ import {
   PostCompletementStepsSuccess,
   PostCompletementStepsFailurePayload,
   PostCompletementStepsFailure,
+  SetOpenModalStep,
+  SetCloseModalStep,
+  SetOpenModalStepPayload,
 } from "./types";
 
 export const selfSignUpRequest = (
@@ -83,4 +88,15 @@ export const postCompletementStepsFailure = (
 ): PostCompletementStepsFailure => ({
   type: POST_COMPLETEMENT_STEPS_FAILURE,
   payload,
+});
+
+export const setOpenModalStep = (
+  payload: SetOpenModalStepPayload
+): SetOpenModalStep => ({
+  type: SET_OPEN_MODAL_STEP,
+  payload,
+});
+
+export const setCloseModalStep = (): SetCloseModalStep => ({
+  type: SET_CLOSE_MODAL_STEP,
 });

@@ -14,11 +14,13 @@ import {
   postCompletementStepsSuccess,
   selfSignUpFailure,
   selfSignUpSuccess,
+  setCloseModalStep,
 } from "./actions";
 import {
   FETCH_COMPLETEMENT_STEPS_REQUEST,
   POST_COMPLETEMENT_STEPS_REQUEST,
   SELF_SIGN_UP_REQUEST,
+  SET_OPEN_MODAL_STEP,
 } from "./actionTypes";
 import {
   ICompletementStep,
@@ -76,7 +78,7 @@ function* postCompletementStepsSaga(action: PostCompletementSteps) {
     const token: string = localStorage.getItem("token") || "";
     yield call(postCompletementStep, action.payload, token);
     yield put(postCompletementStepsSuccess());
-    //action.navigate("/company-signup-verify-email");
+    yield put(fetchCompletementSteps());
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(

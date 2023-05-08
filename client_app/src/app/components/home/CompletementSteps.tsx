@@ -4,6 +4,7 @@ import {
   Grid,
   LinearProgress,
   linearProgressClasses,
+  Modal,
   styled,
   Typography,
 } from "@mui/material";
@@ -14,17 +15,23 @@ import InviteCoworkersIllustration from "./../../assets/illustrations/invite-cow
 import AddPaymentIllustration from "./../../assets/illustrations/add-payment-illustration.svg";
 import AutomaticPointsDeliveryIllustration from "./../../assets/illustrations/automatic-points-delivery-illustration.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { getCompletementStepsSelector } from "../../store/self-signup/selectors";
+import {
+  getCompletementStepsSelector,
+  getOpenModalStepSelector,
+} from "../../store/self-signup/selectors";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { useNavigate } from "react-router-dom";
 import {
   fetchCompletementSteps,
   postCompletementSteps,
+  setCloseModalStep,
+  setOpenModalStep,
 } from "../../store/self-signup/actions";
 import { getSelfRequest } from "../../store/auth/actions";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
+import WatchDemoStep from "./WatchDemoStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -52,6 +59,11 @@ const CompletementSteps = () => {
   });
   const completedStepsNum = Number(completedStepsList.length);
   const stepperValue = (completedStepsNum * 100) / allStepsNum;
+  const openModalStep = useSelector(getOpenModalStepSelector);
+
+  const handleOpenDemo = () =>
+    dispatch(setOpenModalStep({ openModalStep: "WATCH_TUTORIAL" }));
+  const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
   useEffect(() => {
     dispatch(fetchCompletementSteps());
@@ -93,7 +105,7 @@ const CompletementSteps = () => {
     );
   };
 
-  const markAsCompleted = (stepName: string) => {
+  const markAsCompletedSkip = (stepName: string) => {
     dispatch(
       postCompletementSteps({
         stepId: allStepsIdMap.get(stepName),
@@ -159,7 +171,7 @@ const CompletementSteps = () => {
                               variant="contained"
                               className="lets-go-button"
                               disableRipple
-                              onClick={() => markAsCompleted("WATCH_TUTORIAL")}
+                              onClick={handleOpenDemo}
                             >
                               Let's go
                             </Button>
@@ -169,12 +181,22 @@ const CompletementSteps = () => {
                               variant="outlined"
                               className="skip-button"
                               disableRipple
-                              onClick={() => markAsCompleted("WATCH_TUTORIAL")}
+                              onClick={() =>
+                                markAsCompletedSkip("WATCH_TUTORIAL")
+                              }
                             >
                               Skip
                             </Button>
                           </Grid>
                         </Grid>
+                        <Modal
+                          open={openModalStep === "WATCH_TUTORIAL"}
+                          onClose={handleCloseModalStep}
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                        >
+                          <WatchDemoStep />
+                        </Modal>
                       </Grid>
                       <Grid item xs={4} className="step-grid-item">
                         <img

@@ -8,6 +8,8 @@ import {
   POST_COMPLETEMENT_STEPS_REQUEST,
   POST_COMPLETEMENT_STEPS_SUCCESS,
   POST_COMPLETEMENT_STEPS_FAILURE,
+  SET_OPEN_MODAL_STEP,
+  SET_CLOSE_MODAL_STEP,
 } from "./actionTypes";
 
 export interface ICompletementStep {
@@ -23,6 +25,7 @@ export interface ICompletementStepStatus {
 export interface SelfSignupState {
   pending: boolean;
   error: string | null;
+  openModalStep: string;
   completementSteps: ICompletementStep[];
 }
 
@@ -59,6 +62,10 @@ export interface SelfSignUpRequest {
   type: typeof SELF_SIGN_UP_REQUEST;
   payload: SelfSignUpRequestPayload;
   navigate: Function;
+}
+
+export interface SetOpenModalStepPayload {
+  openModalStep: string;
 }
 
 export type SelfSignUpSuccess = {
@@ -98,6 +105,15 @@ export interface PostCompletementStepsFailure {
   payload: PostCompletementStepsFailurePayload;
 }
 
+export interface SetOpenModalStep {
+  type: typeof SET_OPEN_MODAL_STEP;
+  payload: SetOpenModalStepPayload;
+}
+
+export interface SetCloseModalStep {
+  type: typeof SET_CLOSE_MODAL_STEP;
+}
+
 export type SelfSignupActions =
   | SelfSignUpRequest
   | SelfSignUpSuccess
@@ -107,4 +123,6 @@ export type SelfSignupActions =
   | FetchCompletementStepsFailure
   | PostCompletementSteps
   | PostCompletementStepsSuccess
-  | PostCompletementStepsFailure;
+  | PostCompletementStepsFailure
+  | SetOpenModalStep
+  | SetCloseModalStep;
