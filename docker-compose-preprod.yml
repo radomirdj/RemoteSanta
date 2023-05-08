@@ -16,6 +16,8 @@ services:
       AWS_SES_SMTP_PASSWORD: ${AWS_SES_SMTP_PASSWORD}
       AWS_SQS_QUEUE_URL_FIRST: https://sqs.eu-west-3.amazonaws.com/420116094867/first-queue.fifo
       AWS_SQS_QUEUE_URL_FIRST_FAILED: https://sqs.eu-west-3.amazonaws.com/420116094867/dead-first-queue.fifo
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: https://sqs.eu-west-3.amazonaws.com/420116094867/user-invite-bulk-create.fifo
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: https://sqs.eu-west-3.amazonaws.com/420116094867/dead-user-invite-bulk-create.fifo
       EMAIL_FROM: ${EMAIL_FROM}
       DATABASE_URL: ${DATABASE_URL}
       AWS_S3_BUCKET_GIFT_CARDS: ${AWS_S3_BUCKET_GIFT_CARDS}

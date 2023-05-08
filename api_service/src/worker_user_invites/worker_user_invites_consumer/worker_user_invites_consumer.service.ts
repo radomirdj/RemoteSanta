@@ -5,7 +5,7 @@ import { WorkerUserInvitesService } from '../worker_user_invites.service';
 @Injectable()
 export class WorkerUserInvitesConsumerService {
   constructor(private workerUserInvitesService: WorkerUserInvitesService) {}
-  @SqsMessageHandler(process.env.AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT, false)
+  @SqsMessageHandler('user-invite-bulk-create', false)
   async handleUserInviteMessage(message: AWS.SQS.Message) {
     const userInviteMessage: any = JSON.parse(
       message.Body,
@@ -15,10 +15,7 @@ export class WorkerUserInvitesConsumerService {
     );
   }
 
-  @SqsMessageHandler(
-    process.env.AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT_FAILED,
-    false,
-  )
+  @SqsMessageHandler('dead-user-invite-bulk-create', false)
   async handleUserInviteFailedMessage(message: AWS.SQS.Message) {
     const userInviteMessage: any = JSON.parse(
       message.Body,

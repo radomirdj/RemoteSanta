@@ -23,7 +23,7 @@ if (process.env.AWS_SECRET_KEY && process.env.AWS_ACCESS_KEY)
           region: process.env.AWS_REGION,
         },
         {
-          name: process.env.AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT,
+          name: 'user-invite-bulk-create',
           queueUrl: process.env.AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT,
           region: process.env.AWS_REGION,
         },
