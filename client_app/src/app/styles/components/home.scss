@@ -323,5 +323,62 @@ $stepper-card-font-size: 14px;
             float: right;
             margin-right: variables.$base-unit * 3;
         }
+
+        .invite-coworkers-title{
+            font-family: "Montserrat";
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 2;
+            margin-left: variables.$base-unit * 3;
+            font-size: variables.$font-size-larger;
+        }
+
+        .invite-coworkers-text{
+            font-family: "Montserrat";
+            font-weight: 400;
+            margin-bottom: variables.$base-unit * 3;
+            margin-left: variables.$base-unit * 3;
+            font-size: 14px;
+        }
+
+        .invite-coworkers-illustration{
+            margin-left: variables.$base-unit * 2;
+        }
+
+        .invite-group-coworker-button,
+        & .invite-group-coworker-button:hover {
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 70%;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-top: variables.$base-unit * 2;
+            margin-left: variables.$base-unit * 3;
+            margin-right: variables.$base-unit * 6;
+            margin-bottom: variables.$base-unit;
+        }
+
+        .invite-single-coworker-button,
+        & .invite-single-coworker-button:hover {
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            width: 70%;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-top: variables.$base-unit * 2;
+            margin-right: variables.$base-unit * 3;
+            float: right;
+        }
+
+        .invite-group-coworker-link{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-small;
+            margin-left: variables.$base-unit * 3;
+        }
     }
 }

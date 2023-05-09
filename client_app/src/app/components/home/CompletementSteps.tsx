@@ -32,6 +32,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import WatchDemoStep from "./WatchDemoStep";
+import InviteCoworkersStep from "./InviteCoworkersStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,10 @@ const CompletementSteps = () => {
 
   const handleOpenDemo = () =>
     dispatch(setOpenModalStep({ openModalStep: "WATCH_TUTORIAL" }));
+
+  const handleOpenInvites = () =>
+    dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
+
   const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
   useEffect(() => {
@@ -272,7 +277,7 @@ const CompletementSteps = () => {
                     </Grid>
                   </Card>
                 )}
-                {!completedStepsMap.get("INVITE_EMPLOYEE") && (
+                {!completedStepsMap.get("INVITE_EMPLOYEES") && (
                   <Card className="step-card">
                     <Grid container>
                       <Grid item xs={12}>
@@ -289,10 +294,19 @@ const CompletementSteps = () => {
                           variant="contained"
                           className="lets-go-button"
                           disableRipple
+                          onClick={handleOpenInvites}
                         >
                           Let's go
                         </Button>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "INVITE_EMPLOYEES"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <InviteCoworkersStep />
+                      </Modal>
                       <Grid item xs={4} className="step-grid-item">
                         <img
                           src={InviteCoworkersIllustration}

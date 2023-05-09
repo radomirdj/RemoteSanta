@@ -162,7 +162,7 @@ const AppHeaderPrivate = () => {
                 onClose={handleCloseManagerMenu}
               >
                 <MenuItem onClick={userManagerTransactionsRedirect}>
-                  <Typography textAlign="center">Transactions</Typography>
+                  <Typography textAlign="center">Balance</Typography>
                 </MenuItem>
                 <MenuItem onClick={userManagerInvitesRedirect}>
                   <Typography textAlign="center">Invites</Typography>
