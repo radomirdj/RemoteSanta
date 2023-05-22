@@ -6,7 +6,7 @@ $dollar-illustration-width:76px;
 $dollar-illustration-height:86px;
 $points-margin-bottom:36px;
 $points-font-size:20px;
-$stepper-card-font-size: 14px;
+$stepper-card-font-size: 13px;
 
 .home {
     background-image: url("./../../assets/home-image.svg");
@@ -342,6 +342,25 @@ $stepper-card-font-size: 14px;
             margin-left: variables.$base-unit * 4;
             width: 100px;
             margin-top: variables.$base-unit * 3;
+        }
+
+        .automatic-points-delivery-title{
+            font-family: "Montserrat";
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 3;
+            font-size: variables.$font-size-larger;
+        }
+
+        .automatic-points-delivery-text{
+            font-family: "Montserrat";
+            font-weight: 400;
+            margin-bottom: variables.$base-unit * 3;
+            font-size: $stepper-card-font-size;
+        }
+
+        .automatic-points-delivery-illustration{
+            margin-left: variables.$base-unit;
+            width: 100px;
         }
 
         .invite-coworkers-title{
