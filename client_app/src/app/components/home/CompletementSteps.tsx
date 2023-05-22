@@ -75,6 +75,7 @@ const CompletementSteps = () => {
   const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
   useEffect(() => {
+    handleCloseModalStep();
     dispatch(fetchCompletementSteps());
     dispatch(getSelfRequest(navigate));
   }, [dispatch]);
