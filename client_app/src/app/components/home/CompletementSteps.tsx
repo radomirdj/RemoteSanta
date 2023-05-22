@@ -33,6 +33,7 @@ import "react-multi-carousel/lib/styles.css";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import WatchDemoStep from "./WatchDemoStep";
 import InviteCoworkersStep from "./InviteCoworkersStep";
+import PersonalDetailsStep from "./PersonalDetailsStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,9 @@ const CompletementSteps = () => {
 
   const handleOpenInvites = () =>
     dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
+
+  const handleOpenPersonalDetails = () =>
+    dispatch(setOpenModalStep({ openModalStep: "PERSONAL_DETAILS" }));
 
   const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
@@ -231,10 +235,19 @@ const CompletementSteps = () => {
                           variant="contained"
                           className="lets-go-button"
                           disableRipple
+                          onClick={handleOpenPersonalDetails}
                         >
                           Let's go
                         </Button>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "PERSONAL_DETAILS"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <PersonalDetailsStep />
+                      </Modal>
                       <Grid item xs={4} className="step-grid-item">
                         <img
                           src={PersonalDetailsIllustration}

@@ -324,6 +324,26 @@ $stepper-card-font-size: 14px;
             margin-right: variables.$base-unit * 3;
         }
 
+        .personal-details-title{
+            font-family: "Montserrat";
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 3;
+            font-size: variables.$font-size-larger;
+        }
+
+        .personal-details-text{
+            font-family: "Montserrat";
+            font-weight: 400;
+            margin-bottom: variables.$base-unit * 3;
+            font-size: $stepper-card-font-size;
+        }
+
+        .personal-details-illustration{
+            margin-left: variables.$base-unit * 4;
+            width: 100px;
+            margin-top: variables.$base-unit * 3;
+        }
+
         .invite-coworkers-title{
             font-family: "Montserrat";
             font-weight: 600;
@@ -337,7 +357,7 @@ $stepper-card-font-size: 14px;
             font-weight: 400;
             margin-bottom: variables.$base-unit * 3;
             margin-left: variables.$base-unit * 3;
-            font-size: 14px;
+            font-size: $stepper-card-font-size;
         }
 
         .invite-coworkers-illustration{
