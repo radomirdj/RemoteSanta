@@ -38,6 +38,8 @@ import UserManagerSendPoints from "./app/components/user-manager-users/UserManag
 import AdminUserSendPoints from "./app/components/admin-organizations/AdminUserSendPoints";
 import CompanySignup from "./app/components/company-signup/CompanySignup";
 import CompanySignupVerifyEmail from "./app/components/company-signup/CompanySignupVerifyEmail";
+import InviteSingleCoworker from "./app/components/home/InviteSingleCoworker";
+import InviteGroupCoworker from "./app/components/home/InviteGroupCoworker";
 
 const App = () => {
   return (
@@ -129,6 +131,22 @@ const App = () => {
           element={
             <PrivateRoute>
               <UserProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="invite-single-coworker"
+          element={
+            <PrivateRoute>
+              <InviteSingleCoworker />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="invite-group-coworker"
+          element={
+            <PrivateRoute>
+              <InviteGroupCoworker />
             </PrivateRoute>
           }
         />

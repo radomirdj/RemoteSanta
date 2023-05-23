@@ -32,6 +32,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import WatchDemoStep from "./WatchDemoStep";
+import InviteCoworkersStep from "./InviteCoworkersStep";
+import PersonalDetailsStep from "./PersonalDetailsStep";
+import AutomaticPointsDeliveryStep from "./AutomaticPointsDeliveryStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -63,9 +66,20 @@ const CompletementSteps = () => {
 
   const handleOpenDemo = () =>
     dispatch(setOpenModalStep({ openModalStep: "WATCH_TUTORIAL" }));
+
+  const handleOpenInvites = () =>
+    dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
+
+  const handleOpenAutomaticPoints = () =>
+    dispatch(setOpenModalStep({ openModalStep: "AUTOMATIC_POINTS" }));
+
+  const handleOpenPersonalDetails = () =>
+    dispatch(setOpenModalStep({ openModalStep: "PERSONAL_DETAILS" }));
+
   const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
   useEffect(() => {
+    handleCloseModalStep();
     dispatch(fetchCompletementSteps());
     dispatch(getSelfRequest(navigate));
   }, [dispatch]);
@@ -107,10 +121,13 @@ const CompletementSteps = () => {
 
   const markAsCompletedSkip = (stepName: string) => {
     dispatch(
-      postCompletementSteps({
-        stepId: allStepsIdMap.get(stepName),
-        completementStepStatus: { completed: true },
-      })
+      postCompletementSteps(
+        {
+          stepId: allStepsIdMap.get(stepName),
+          completementStepStatus: { completed: true },
+        },
+        navigate
+      )
     );
   };
 
@@ -226,10 +243,19 @@ const CompletementSteps = () => {
                           variant="contained"
                           className="lets-go-button"
                           disableRipple
+                          onClick={handleOpenPersonalDetails}
                         >
                           Let's go
                         </Button>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "PERSONAL_DETAILS"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <PersonalDetailsStep />
+                      </Modal>
                       <Grid item xs={4} className="step-grid-item">
                         <img
                           src={PersonalDetailsIllustration}
@@ -258,10 +284,19 @@ const CompletementSteps = () => {
                           variant="contained"
                           className="lets-go-button"
                           disableRipple
+                          onClick={handleOpenAutomaticPoints}
                         >
                           Let's go
                         </Button>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "AUTOMATIC_POINTS"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <AutomaticPointsDeliveryStep />
+                      </Modal>
                       <Grid item xs={4} className="step-grid-item">
                         <img
                           src={AutomaticPointsDeliveryIllustration}
@@ -272,7 +307,7 @@ const CompletementSteps = () => {
                     </Grid>
                   </Card>
                 )}
-                {!completedStepsMap.get("INVITE_EMPLOYEE") && (
+                {!completedStepsMap.get("INVITE_EMPLOYEES") && (
                   <Card className="step-card">
                     <Grid container>
                       <Grid item xs={12}>
@@ -289,10 +324,19 @@ const CompletementSteps = () => {
                           variant="contained"
                           className="lets-go-button"
                           disableRipple
+                          onClick={handleOpenInvites}
                         >
                           Let's go
                         </Button>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "INVITE_EMPLOYEES"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <InviteCoworkersStep />
+                      </Modal>
                       <Grid item xs={4} className="step-grid-item">
                         <img
                           src={InviteCoworkersIllustration}

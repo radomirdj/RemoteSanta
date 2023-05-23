@@ -72,10 +72,12 @@ export const fetchCompletementStepsFailure = (
 });
 
 export const postCompletementSteps = (
-  payload: PostCompletementStepsPayload
+  payload: PostCompletementStepsPayload,
+  navigate: Function
 ): PostCompletementSteps => ({
   type: POST_COMPLETEMENT_STEPS_REQUEST,
   payload,
+  navigate,
 });
 
 export const postCompletementStepsSuccess =
