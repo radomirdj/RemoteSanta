@@ -1,13 +1,15 @@
 import { Button, Card, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import InviteCoworkersIllustration from "./../../assets/illustrations/invite-coworkers-illustration.svg";
 import InviteGroupCoworkerIcon from "./../../assets/icons/invite-group-coworker-icon.svg";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { useNavigate } from "react-router-dom";
 import ExampleCSV from "./../../assets/documents/ExampleCSV.csv";
+import Papa from "papaparse";
 
 const InviteCoworkersStep = () => {
   const navigate = useNavigate();
+  const inputRef = useRef<any>(null);
 
   const style = {
     position: "absolute",
@@ -21,12 +23,27 @@ const InviteCoworkersStep = () => {
     p: 4,
   };
 
-  const inviteGroupCoworkerRedirect = () => {
-    navigate("/invite-group-coworker");
-  };
-
   const inviteSingleCoworkerRedirect = () => {
     navigate("/invite-single-coworker");
+  };
+
+  const handleClick = () => {
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (event: any) => {
+    const fileObj = event.target.files && event.target.files[0];
+    if (!fileObj) {
+      return;
+    }
+    event.target.value = null;
+    Papa.parse(fileObj, {
+      header: true,
+      complete: (results) => {
+        console.log(results.data);
+        // navigate("/invite-group-coworker");
+      },
+    });
   };
 
   return (
@@ -62,11 +79,18 @@ const InviteCoworkersStep = () => {
         <Grid item xs={12}>
           <Grid container>
             <Grid item xs={6}>
+              <input
+                style={{ display: "none" }}
+                ref={inputRef}
+                type="file"
+                accept=".csv"
+                onChange={handleFileChange}
+              />
               <Button
                 variant="contained"
                 className="invite-group-coworker-button"
                 disableRipple
-                onClick={inviteGroupCoworkerRedirect}
+                onClick={handleClick}
                 startIcon={<img src={InviteGroupCoworkerIcon} alt="" />}
               >
                 Import List

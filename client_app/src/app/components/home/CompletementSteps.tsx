@@ -34,6 +34,7 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import WatchDemoStep from "./WatchDemoStep";
 import InviteCoworkersStep from "./InviteCoworkersStep";
 import PersonalDetailsStep from "./PersonalDetailsStep";
+import AutomaticPointsDeliveryStep from "./AutomaticPointsDeliveryStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -68,6 +69,9 @@ const CompletementSteps = () => {
 
   const handleOpenInvites = () =>
     dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
+
+  const handleOpenAutomaticPoints = () =>
+    dispatch(setOpenModalStep({ openModalStep: "AUTOMATIC_POINTS" }));
 
   const handleOpenPersonalDetails = () =>
     dispatch(setOpenModalStep({ openModalStep: "PERSONAL_DETAILS" }));
@@ -277,10 +281,19 @@ const CompletementSteps = () => {
                           variant="contained"
                           className="lets-go-button"
                           disableRipple
+                          onClick={handleOpenAutomaticPoints}
                         >
                           Let's go
                         </Button>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "AUTOMATIC_POINTS"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <AutomaticPointsDeliveryStep />
+                      </Modal>
                       <Grid item xs={4} className="step-grid-item">
                         <img
                           src={AutomaticPointsDeliveryIllustration}

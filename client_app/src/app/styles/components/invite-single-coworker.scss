@@ -1,5 +1,174 @@
 @use "./../variables.scss";
 
+$text-style-size:14px;
+
 .invite-single-coworker {
     background-image: url("./../../assets/home-image.svg");
+
+    .card-style{
+        margin-top: variables.$base-unit * 4;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: variables.$base-unit * 3;
+        padding-top: variables.$base-unit * 3;
+        padding-bottom: variables.$base-unit * 3;
+        padding-left: variables.$base-unit * 5;
+        padding-right: variables.$base-unit * 5;
+        width: variables.$base-unit * 61;
+        z-index: 1200;
+    }
+
+    .title-style{
+        font-family: "Montserrat";
+        font-weight: 500;
+        font-size: variables.$font-size-title;
+        margin-bottom: variables.$base-unit * 2;
+    }
+
+    .text-style{
+        font-family: "Montserrat";
+        font-size: $text-style-size;
+        margin-bottom: variables.$base-unit * 3;
+    }
+
+    .email-input {
+        margin-bottom: 0px !important;
+        border-radius: variables.$base-unit;
+        background-color: white;
+        width: 100%;
+    }
+
+    .text-error-fe {
+        font-size: variables.$font-size-small;
+        color: variables.$error-color;
+        text-align: start;
+        display: inline-flex;
+        width: 100%;
+      }
+
+    .child-card{
+        background-color: rgb(207, 209, 129, 0.5);
+        border-radius: variables.$base-unit * 3;
+        box-shadow: rgb(207, 209, 129, 0.5) 0px 1px 3px 0px, rgb(207, 209, 129, 0.5) 0px 0px 0px 1px;
+        font-family: "Montserrat";
+        padding: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 3;
+    }
+
+    .back-button,
+    & .back-button:hover {
+        border-color: variables.$color-neutral-black;
+        border-radius: variables.$base-unit;
+        background-color: white;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        margin-right:variables.$base-unit;
+        height: variables.$base-unit * 5;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit ;
+    }
+
+    .mark-as-completed-button,
+    & .mark-as-completed-button:hover {
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
+        float: right;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        margin-right:variables.$base-unit;
+        height: variables.$base-unit * 5;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit ;
+    }
+
+    .add-coworker-button,
+    & .add-coworker-button:hover {
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        width: variables.$base-unit * 12;
+        height: variables.$base-unit * 6;
+        font-weight: bold;
+        float: right;
+        margin-top: 2px;
+    }
+
+    .invite-email-grid{
+        margin-bottom: variables.$base-unit * 2;
+    }
+     
+    .MuiFormControl-root {
+        margin: 0px;
+        width: 100%;
+        border-radius: variables.$base-unit;
+        margin-bottom: variables.$base-unit;
+    
+        .MuiOutlinedInput-root {
+          border-radius: variables.$base-unit;
+        }
+    
+        .MuiOutlinedInput-root.Mui-error {
+          .MuiOutlinedInput-notchedOutline {
+            border-color: variables.$error-color;
+          }
+        }
+    
+        .MuiFormLabel-root.Mui-error {
+          color: variables.$color-gray;
+        }
+      }
+
+      .box-style{
+        height: 265px;
+        margin-top: variables.$base-unit * 2;
+    }
+
+      .data-grid{
+        width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: variables.$base-unit * 3;
+        background-color: white;
+        font-family: "Montserrat";
+        border: none;
+        overflow: hidden;
+
+        .cancel-button,
+        & .cancel-button:hover{
+            background-color: variables.$error-color;
+            width: variables.$base-unit * 5;
+            height: variables.$base-unit * 5;
+         
+            .cancel-icon{
+                color: white;
+                width: variables.$base-unit *3;
+                height: variables.$base-unit *3;
+            }
+        }
+    }
+
+    .invite-error {
+      color: variables.$error-color;
+      text-align: start;
+      display: inline-flex;
+      width: 100%;
+  
+      .invite-error-icon {
+        margin-right:variables.$base-unit;
+        width: $login-error-icon-width !important;
+        height: $login-error-icon-height;
+        width: 10%;
+      }
+  
+      .invite-error-message {
+        width: 90%;
+        font-size: variables.$font-size-small;
+      }
+    }
 }
