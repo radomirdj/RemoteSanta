@@ -94,6 +94,7 @@ export interface FetchCompletementStepsFailure {
 export interface PostCompletementSteps {
   type: typeof POST_COMPLETEMENT_STEPS_REQUEST;
   payload: PostCompletementStepsPayload;
+  navigate: Function;
 }
 
 export interface PostCompletementStepsSuccess {

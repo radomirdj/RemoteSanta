@@ -170,10 +170,13 @@ const InviteSingleCoworker = () => {
 
   const markAsCompletedSingleInvite = () => {
     dispatch(
-      postCompletementSteps({
-        stepId: allStepsIdMap.get("INVITE_EMPLOYEES"),
-        completementStepStatus: { completed: true },
-      })
+      postCompletementSteps(
+        {
+          stepId: allStepsIdMap.get("INVITE_EMPLOYEES"),
+          completementStepStatus: { completed: true },
+        },
+        navigate
+      )
     );
   };
 

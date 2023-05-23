@@ -79,6 +79,7 @@ function* postCompletementStepsSaga(action: PostCompletementSteps) {
     yield call(postCompletementStep, action.payload, token);
     yield put(postCompletementStepsSuccess());
     yield put(fetchCompletementSteps());
+    action.navigate("/");
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(

@@ -121,10 +121,13 @@ const CompletementSteps = () => {
 
   const markAsCompletedSkip = (stepName: string) => {
     dispatch(
-      postCompletementSteps({
-        stepId: allStepsIdMap.get(stepName),
-        completementStepStatus: { completed: true },
-      })
+      postCompletementSteps(
+        {
+          stepId: allStepsIdMap.get(stepName),
+          completementStepStatus: { completed: true },
+        },
+        navigate
+      )
     );
   };
 

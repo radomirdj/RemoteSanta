@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postCompletementSteps } from "../../store/self-signup/actions";
 import { getCompletementStepsSelector } from "../../store/self-signup/selectors";
 import CheckIcon from "@mui/icons-material/Check";
+import { useNavigate } from "react-router-dom";
 
 const WatchDemoStep = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const WatchDemoStep = () => {
   completementStepList.forEach((completedStep) => {
     allStepsIdMap.set(completedStep.name, completedStep.id);
   });
+  const navigate = useNavigate();
 
   const style = {
     position: "absolute",
@@ -28,10 +30,13 @@ const WatchDemoStep = () => {
 
   const markAsCompletedWatch = () => {
     dispatch(
-      postCompletementSteps({
-        stepId: allStepsIdMap.get("WATCH_TUTORIAL"),
-        completementStepStatus: { completed: true },
-      })
+      postCompletementSteps(
+        {
+          stepId: allStepsIdMap.get("WATCH_TUTORIAL"),
+          completementStepStatus: { completed: true },
+        },
+        navigate
+      )
     );
   };
 

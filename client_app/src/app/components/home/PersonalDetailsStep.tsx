@@ -1,12 +1,14 @@
 import { Card, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { postCompletementSteps } from "../../store/self-signup/actions";
 import { getCompletementStepsSelector } from "../../store/self-signup/selectors";
 import PersonalDetailsIllustration from "./../../assets/illustrations/personal-details-illustration.svg";
 
 const PersonalDetailsStep = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const completementStepList = useSelector(getCompletementStepsSelector);
   const allStepsIdMap = new Map<string, string>();
   completementStepList.forEach((completedStep) => {
@@ -27,10 +29,13 @@ const PersonalDetailsStep = () => {
 
   const markAsCompletedWatch = () => {
     dispatch(
-      postCompletementSteps({
-        stepId: allStepsIdMap.get("WATCH_TUTORIAL"),
-        completementStepStatus: { completed: true },
-      })
+      postCompletementSteps(
+        {
+          stepId: allStepsIdMap.get("WATCH_TUTORIAL"),
+          completementStepStatus: { completed: true },
+        },
+        navigate
+      )
     );
   };
 
