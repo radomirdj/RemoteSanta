@@ -19,6 +19,8 @@ import {
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock('../src/emails/woker_module_config');
+jest.mock('../src/emails/emails.service');
  
 
 describe('/claim-points-events', () => {
