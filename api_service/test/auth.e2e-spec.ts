@@ -77,7 +77,7 @@ describe('Authentication system', () => {
   describe('/signup (POST)', () => {
     const newUser = {
       code: userInviteOrg2.code,
-
+      countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
       firstName: 'Peter',
       lastName: 'Pan',
       password: '123456',

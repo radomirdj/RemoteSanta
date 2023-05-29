@@ -1,9 +1,19 @@
-import { IsString, IsDateString, IsEnum, IsNotEmpty } from 'class-validator';
+import {
+  IsString,
+  IsDateString,
+  IsEnum,
+  IsNotEmpty,
+  IsUUID,
+} from 'class-validator';
 import { GenderEnum } from '@prisma/client';
 
 export class CreateUserDto {
   @IsString()
   code: string;
+
+  @IsString()
+  @IsUUID()
+  countryId: string;
 
   @IsString()
   password: string;

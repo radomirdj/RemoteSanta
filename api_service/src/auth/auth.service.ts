@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   async signUp(data: CreateUserDto) {
-    const { password: string, code, ...userDbData } = data;
+    const { password: string, code, countryId, ...userDbData } = data;
     const userInvite = await this.findActiveInviteByCode(code);
     if (!userInvite) throw new NotFoundException('Active Invite Not Found');
 
@@ -51,6 +51,11 @@ export class AuthService {
         ...userDbData,
         email: userInvite.email,
         userRole: userInvite.userRole,
+        country: {
+          connect: {
+            id: countryId,
+          },
+        },
         org: {
           connect: {
             id: userInvite.orgId,

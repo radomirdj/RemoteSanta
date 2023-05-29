@@ -19,6 +19,7 @@ export const expectUserInDB = async (expectedValue, prisma) => {
   const user = userList[0];
 
   expect(user.email).toEqual(expectedValue.email);
+  expect(user.countryId).toEqual(expectedValue.countryId);
   expect(user.firstName).toEqual(expectedValue.firstName);
   expect(user.lastName).toEqual(expectedValue.lastName);
   expect(user.cognitoSub).toEqual(`sub_${expectedValue.email}`);
