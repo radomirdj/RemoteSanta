@@ -5,6 +5,7 @@
   lastName: Snow
   gender: MALE
   birthDate: 1983-02-05T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -16,6 +17,7 @@
   lastName: Stark
   gender: MALE
   birthDate: 1960-01-25T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -28,6 +30,7 @@
   gender: FEMALE
   userRole: USER_MANAGER
   birthDate: 1993-03-20T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -40,6 +43,7 @@
   gender: FEMALE
   userRole: ADMIN
   birthDate: 1997-04-22T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -52,6 +56,7 @@
   gender: FEMALE
   deleted: true
   birthDate: 1992-04-22T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -64,6 +69,7 @@
   gender: MALE
   userRole: USER_MANAGER
   birthDate: 1945-04-19T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 62b1828e-0b0f-4123-af61-531e7967134c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -76,6 +82,7 @@
   gender: MALE
   deleted: true
   birthDate: 1955-04-19T00:00:00.000Z
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
   orgId: 62b1828e-0b0f-4123-af61-531e7967134c
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -88,6 +95,7 @@
   gender: MALE
   userRole: USER_MANAGER
   birthDate: 1945-04-19T00:00:00.000Z
+  countryId: 76a2e7f6-e202-4c99-95a6-08fb361b112d
   orgId: 27d432c3-7c7c-455a-9d8d-2de6bc5492c3
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
@@ -99,6 +107,7 @@
   lastName: Acic
   gender: MALE
   birthDate: 1955-04-19T00:00:00.000Z
+  countryId: 76a2e7f6-e202-4c99-95a6-08fb361b112d
   orgId: 27d432c3-7c7c-455a-9d8d-2de6bc5492c3
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
