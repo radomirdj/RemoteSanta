@@ -33,6 +33,8 @@ model User {
   GiftDate                        GiftDate[]
   birthDate                       DateTime                      @db.Date
   gender                          GenderEnum
+  country                         Country                       @relation(fields: [countryId], references: [id])
+  countryId                       String
   userRole                        UserRoleEnum                  @default(BASIC_USER)
   org                             Org                           @relation(fields: [orgId], references: [id])
   orgId                           String
@@ -259,6 +261,7 @@ model Country {
   countryName            String
   Org                    Org[]
   GiftCardIntegration    GiftCardIntegration[]
+  User                   User[]
 }
 
 model Report {

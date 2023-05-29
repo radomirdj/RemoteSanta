@@ -9,3 +9,9 @@
   countryCode: 'USA'
   currencyString: 'USD'
   conversionRateToPoints: 100
+
+- id: 7810e53a-048f-4efa-9a1a-1b8042e6fdca
+  countryName: 'Other'
+  countryCode: 'N/A'
+  currencyString: 'N/A'
+  conversionRateToPoints: 1

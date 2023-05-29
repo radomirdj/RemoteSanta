@@ -20,6 +20,7 @@ async function main() {
     'User',
     createForeignKeyListTransformer([
       { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+      { foreignKeyName: 'countryId', foreignRecordName: 'country' },
     ]),
   );
   await seedTable(
