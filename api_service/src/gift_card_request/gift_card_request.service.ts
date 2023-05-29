@@ -30,7 +30,6 @@ export class GiftCardRequestService {
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
         data.amount,
-        user.org.country.id,
       ),
       this.ledgerService.validateUserActiveBalance(user.id, data.amount),
       this.prisma.org.findUnique({

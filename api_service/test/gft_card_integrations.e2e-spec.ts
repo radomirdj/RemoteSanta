@@ -180,7 +180,6 @@ describe('/gift-card-integrations', () => {
           await giftCardIntegrationsService.validateIntegrationRequest(
             integration.id,
             5000,
-            '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
           );
         } catch (err) {
           expect(integration.id).toEqual(
@@ -200,7 +199,6 @@ describe('/gift-card-integrations', () => {
           await giftCardIntegrationsService.validateIntegrationRequest(
             integration.id,
             1000,
-            '76a2e7f6-e202-4c99-95a6-08fb361b112d',
           );
         } catch (err) {
           expect(integration.id).toEqual(

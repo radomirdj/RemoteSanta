@@ -15,11 +15,8 @@ export class GiftCardIntegrationsController {
   ) {}
 
   @Get('/:id')
-  async getGiftCardIntegration(
-    @Param('id') id: string,
-    @CurrentUser() user: UserDto,
-  ) {
-    return this.giftCardIntegrationsService.getOne(id, user.org.country.id);
+  async getGiftCardIntegration(@Param('id') id: string) {
+    return this.giftCardIntegrationsService.getOne(id);
   }
 
   @Get('/')
