@@ -91,15 +91,17 @@ describe('/gift-card-integrations', () => {
   });
 
   describe('/ (GET)', () => {
-    it('/ (GET) - get gift card integration list', async () => {
+    it('/ (GET) - get gift card integration list - Srb user get US list', async () => {
       const response = await request(app.getHttpServer())
-        .get('/gift-card-integrations/')
+        .get(
+          '/gift-card-integrations/?country=90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
+        )
         .set(
           'Authorization',
           'bearer ' +
             createToken({
-              email: user1.email,
-              sub: user1.cognitoSub,
+              email: userSrb.email,
+              sub: userSrb.cognitoSub,
             }),
         )
         .expect(200);
@@ -128,15 +130,17 @@ describe('/gift-card-integrations', () => {
       );
     });
 
-    it('/ (GET) - get gift card integration list - Serbia', async () => {
+    it('/ (GET) - get gift card integration list - US user get Serbia list', async () => {
       const response = await request(app.getHttpServer())
-        .get('/gift-card-integrations/')
+        .get(
+          '/gift-card-integrations/?country=76a2e7f6-e202-4c99-95a6-08fb361b112d',
+        )
         .set(
           'Authorization',
           'bearer ' +
             createToken({
-              email: userSrb.email,
-              sub: userSrb.cognitoSub,
+              email: user1.email,
+              sub: user1.cognitoSub,
             }),
         )
         .expect(200);

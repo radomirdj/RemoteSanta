@@ -1,4 +1,4 @@
-import { Controller, Param, Get, UseGuards } from '@nestjs/common';
+import { Controller, Param, Get, UseGuards, Query } from '@nestjs/common';
 import { GiftCardIntegrationsService } from './gift_card_integrations.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { GiftCardIntegrationDto } from './dtos/gift_card_integration.dto';
@@ -23,7 +23,7 @@ export class GiftCardIntegrationsController {
   }
 
   @Get('/')
-  async getGiftCardIntegrationList(@CurrentUser() user: UserDto) {
-    return this.giftCardIntegrationsService.getAll(user.org.country.id);
+  async getGiftCardIntegrationList(@Query() query) {
+    return this.giftCardIntegrationsService.getAll(query.country);
   }
 }
