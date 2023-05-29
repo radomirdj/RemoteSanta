@@ -1,6 +1,7 @@
 export const users = [
   {
     id: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
     cognitoSub: '821fc4f216c9',
     password: 'abcABC123',
     email: 'jovanadjeko@gmail.com',
@@ -11,6 +12,7 @@ export const users = [
   },
   {
     id: 'd95d6e01-9fb8-4116-ae70-276aca88694a',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
     cognitoSub: '276aca88694a',
     password: 'abcABC123',
     email: 'jovanadjeko+1@gmail.com',
@@ -21,6 +23,7 @@ export const users = [
   },
   {
     id: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
     cognitoSub: '154fc5ce9d8b',
     password: 'abcABC123',
     email: 'jovanadjeko+2@gmail.com',
@@ -32,6 +35,7 @@ export const users = [
   },
   {
     id: '71bed16a-98d9-479b-b5f4-f934a2278aae',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
     cognitoSub: 'f934a2278aae',
     password: 'abcABC123',
     email: 'jovanadjeko+3@gmail.com',
@@ -43,6 +47,7 @@ export const users = [
   },
   {
     id: 'c7f44075-8888-44a8-a897-f4a4db0d3050',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
     cognitoSub: 'f4a4db0d3050',
     password: 'abcABC123',
     email: 'jovanadjeko+4@gmail.com',

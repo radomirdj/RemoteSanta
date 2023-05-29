@@ -1,5 +1,6 @@
 export const expectUserRsp = (responseBody, expectedValue) => {
   expect(responseBody.email).toEqual(expectedValue.email);
+  expect(responseBody.countryId).toEqual(expectedValue.countryId);
   expect(responseBody.firstName).toEqual(expectedValue.firstName);
   expect(responseBody.lastName).toEqual(expectedValue.lastName);
   expect(responseBody.gender).toEqual(expectedValue.gender);
