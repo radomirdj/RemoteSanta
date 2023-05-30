@@ -1,0 +1,509 @@
+- id: 8bb5a64a-b294-4891-ae19-aa33621b2c98
+  priority: 10
+  countryId: 
+  website: https://www.trends.ajio.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_trends.png
+  title: Trends
+  description: The Trends available on the AJIO store may include clothing styles like athleisure, bohemian, streetwear, ethnic wear, or seasonal fashion trends like floral prints, pastel colors, or statement accessories.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500 ]
+
+  - id: 9b1b84a1-58a8-4f3c-995d-5dffbe2d087a
+  priority: 20
+  countryId: 
+  website: https://www.helioswatchstore.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_helios.png
+  title: Helios
+  description: Helios Watch Store is a retail chain in India that specializes in selling a wide range of wristwatches. It is known for offering a diverse selection of branded watches, including luxury, premium, and fashion brands. 
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000 ]
+
+- id: f2fa223a-05fa-42c4-811a-fa7ede4560d7
+  priority: 30
+  countryId: 
+  website: https://us.puma.com/us/en
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_puma.png
+  title: Puma
+  description: Puma offers a wide range of products for men, women and children. This includes athletic shoes, sneakers, cleats, sandals, and slides. Additionally, Puma produces accessories like bags, backpacks, hats, socks, and sports equipment.
+  constraintType: LIST
+  constraintJson: [ 500, 1000 ]
+
+- id: 65c276a8-54d0-4a61-95b0-58027c53dabd
+  priority: 40
+  countryId: 
+  website: https://www.apollopharmacy.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_apollo.png
+  title: Apollo Pharmacy
+  description: Apollo Pharmacy offers a comprehensive range of prescription medicines, over-the-counter drugs, health supplements, personal care products, and medical devices. Here, customers can find a diverse selection of medicines and healthcare products.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000 ]
+
+- id: 0618f276-3890-4877-9cff-d145133c187e
+  priority: 50
+  countryId: 
+  website: https://www.amazon.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 10000 }
+
+- id: e9e69b52-cb10-4111-9a05-dcccf6f4a41f
+  priority: 60
+  countryId: 
+  website: https://play.google.com/store/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/googleplay.png
+  title: Google Play
+  description: Google Play is the official app store for certified devices running on the Android operating system and its derivatives, as well as ChromeOS. It also serves as a digital media store, offering games, music, books, movies, and television programs.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000, 1500 ]
+
+ - id: 6f122377-ced5-4e78-a916-184a137e697c
+  priority: 70
+  countryId: 
+  website: https://www.pvrcinemas.com/
+  image: 
+  title: PVR Cinemas
+  description: PVR Cinemas is one of the largest cinema chains in India and is part of the PVR Limited company. PVR, which stands for Priya Village Roadshow, was founded in 1997 and has since become a prominent name in the Indian film exhibition industry.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000 ]
+
+ - id: 86151b32-b2d3-4b0e-bb80-3a6ec179c42e
+  priority: 80
+  countryId: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_pvr.png
+  website: https://shop.ttkprestige.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_prestige.png
+  title: Prestige
+  description: TTK Prestige is a well-known Indian company that specializes in kitchen appliances and cookware. The company focuses on providing quality products that enhance cooking experiences and make kitchen tasks more efficient.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000 ]
+
+ - id: 95f770e0-5111-495f-b521-51f4806b5bb7
+  priority: 90
+  countryId: 
+  website: https://www.healthians.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_healthians.png
+  title: Healthians
+  description: Healthians is an Indian health technology company that provides a wide range of diagnostic and preventive healthcare services. They offer various health check-up packages and diagnostic tests that can be booked online or through their mobile app. 
+  constraintType: LIST
+  constraintJson: [ 500, 1000 ]
+
+ - id: 5bbcc050-be1f-417f-a9df-2784193c0259
+  priority: 100
+  countryId: 
+  website: https://www.stevemadden.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_steve_madden.png
+  title: Steve Madden
+  description: Steve Madden is a well-known fashion brand that primarily focuses on footwear and accessories. It was established by designer and entrepreneur Steve Madden in 1990 and has since become a prominent name in the fashion industry.
+  constraintType: LIST
+  constraintJson: [ 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000 ]
+
+- id: 5a6d411b-5dba-4a94-a531-961f0cf1852d
+  priority: 110
+  countryId: 
+  website: https://www.fastrack.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_fastrack.png
+  title: Fastrack
+  description: Fastrack is an Indian fashion accessories brand that primarily focuses on watches, sunglasses, bags, and other lifestyle products. It is a subsidiary of Titan Company Limited, which is part of the Tata Group.
+  constraintType: LIST
+  constraintJson: [ 1400 ]
+
+- id: be5e4de7-2a17-4624-a898-ac4aee9455d4
+  priority: 120
+  countryId: 
+  website: https://www.ulric-de-varens.com/english/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_udv.png
+  title: Ulric De Varens
+  description: The brand offers a wide range of fragrances for both men and women, including eau de parfum, eau de toilette, colognes and more. Ulric de Varens is known for its diverse and affordable fragrance offerings, catering to various tastes and preferences.
+  constraintType: LIST
+  constraintJson: [ 1500 ]
+
+- id: 6cb5de19-20ec-4e27-b338-0a7bfd741cd4
+  priority: 130
+  countryId: 
+  website: https://www.yatra.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_yatra.png
+  title: Yatra
+  description: As an online travel agency, Yatra offers a user-friendly platform where customers can search for and compare various travel options, including flights from multiple airlines and accommodations from different hotels. 
+  constraintType: LIST
+  constraintJson: [ 1000 ]
+
+- id: 83328af2-dd90-4ed1-ac21-2b2707014ae7
+  priority: 140
+  countryId: 
+  website: https://www.bata.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_bata.png
+  title: Bata
+  description: Bata offers a wide range of footwear for men, women, and children, including shoes, sandals, boots, and sports shoes. They cater to different styles, preferences, and occasions, providing options for casual and formal wear, sports activities, etc.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000 ]
+
+- id: e9fdedcd-7d9b-428a-8e26-9f4a7cc73136
+  priority: 150
+  countryId: 
+  website: https://www.zomato.com/who-we-are
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_zomato.png
+  title: Zomato
+  description: Zomato is a popular Indian online food delivery and restaurant discovery platform. They provide a user-friendly platform and mobile app that allows users to explore restaurants, read reviews, view menus, and place food orders for delivery or pickup. 
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000 ]
+
+- id: 8b52e2c7-9a9e-46e8-8087-044db1c55b48
+  priority: 160
+  countryId: 
+  website: https://global.kfc.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_kfc.png
+  title: KFC
+  description: KFC is known for its signature fried chicken recipe, which features a blend of herbs, spices, and a crispy coating. The brand has expanded its menu to include various chicken-based products such as chicken sandwiches, tenders, wings, etc.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000]
+
+- id: 09dcf6d0-bab2-492d-970d-3c5ecbec1be6
+  priority: 170
+  countryId: 
+  website: https://global.kfc.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_lifestyle.png
+  title: Lifestyle
+  description: Lifestyle is popular Indian retail chain that offers a wide range of products across various categories such as apparel, accessories, beauty, and home decor. The Lifestyle chain is owned by the Dubai-based retail company, Landmark Group.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 6a3fd030-e04d-49b8-818e-aea27d7edcc8
+  priority: 180
+  countryId: 
+  website: https://www.levi.com/US/en_US/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_levis.png
+  title: Levis
+  description: Levi's is a globally recognized American denim jeans brand. It was founded by Levi Strauss and Jacob Davis in 1853 and has since become one of the most iconic and influential names in the fashion industry.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: cc7a43b8-a3b5-44c9-8262-a04d81135017
+  priority: 190
+  countryId: 
+  website: https://www.westside.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_westside.png
+  title: Westside
+  description: Westside stores provide a modern and contemporary shopping experience with a focus on trendy and fashionable merchandise. The brand offers clothing for men, women, and children, featuring both Western and Indian ethnic wear.
+  constraintType: LIST
+  constraintJson: [ 500, 1000]
+
+- id: 4f910364-e804-41c5-a3f2-b80305a1e4b0
+  priority: 200
+  countryId: 
+  website: https://www.swiggy.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_swiggy.png
+  title: Swiggy
+  description: Swiggy is an Indian online food delivery platform that connects customers with restaurants and facilitates the delivery of food orders. It was founded in 2014 and is headquartered in Bangalore, India.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000]
+
+- id: c480593b-5034-4e9c-89f8-dec088387e59
+  priority: 210
+  countryId: 
+  website: https://www.kalyanjewellers.net/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_kalyan.png
+  title: Kalyan Jewellers
+  description: Kalyan Jewellers is a well-known Indian jewelry brand that specializes in gold, diamond, and other precious stone-studded jewelry. It was founded in 1993 by T. S. Kalyanaraman and is headquartered in Thrissur, Kerala, India.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: a984826e-8aa1-4853-bfed-34e40ee355ac
+  priority: 220
+  countryId: 
+  website: https://www.bluestone.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_bs.png
+  title: BlueStone
+  description: Bluestone is an Indian online jewelry retailer specializing in gold, diamond, and gemstone jewelry. Bluestone offers a wide range of jewelry collections for both men and women, including earrings, rings, necklaces, pendants, bracelets, and bangles.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 24b180eb-29b2-43dd-8128-36e493962bb9
+  priority: 230
+  countryId: 
+  website: https://www.shoppersstop.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_ss.png
+  title: Shoppers Stop
+  description: Shoppers Stop is a prominent Indian retail chain that offers a wide range of products across various categories such as apparel, accessories, beauty, home decor, and more. It was founded in 1991 and is headquartered in Mumbai, India.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 49f410c5-af42-4281-be08-84ea41535e96
+  priority: 240
+  countryId: 
+  website: https://www.biba.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_biba.png
+  title: BIBA
+  description: Biba is known for vibrant and colorful designs, which incorporate traditional Indian craftsmanship with modern silhouettes. The brand offers a variety of ethnic wear options such as salwar suits, kurtas, lehengas, sarees, and mix-and-match separates.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: ee8025a9-a027-4e83-b6fd-cb20df0e50f5
+  priority: 250
+  countryId: 
+  website: https://www.woodlandworldwide.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_woodland.png
+  title: Woodland
+  description: Woodland is known for its rugged and durable products designed to withstand outdoor activities and harsh terrains. The brand offers a wide range of footwear including hiking boots, trekking shoes, casual shoes, sandals, and flip-flops.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000]
+
+- id: c6827e18-3a2d-425d-a482-e162bbcaec02
+  priority: 260
+  countryId: 
+  website: https://www.pantaloons.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_pantaloons.png
+  title: Pantaloons
+  description: Pantaloons stores feature huge collection of apparel, catering to various styles, occasions, and age groups. The brand offers both Western and Indian ethnic wear, including shirts, t-shirts, trousers, jeans, skirts, dresses, sarees, kurtas, and more.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: d7a241b5-b650-47dc-b124-458fe7964f98
+  priority: 270
+  countryId: 
+  website: https://www.reliancedigital.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_reliance.png
+  title: Reliance Digital
+  description: Reliance Digital is a retail chain in India that falls under the umbrella of Reliance Retail, a division of Reliance Industries Limited. They specialize in consumer electronics and appliances, offering a wide range of products from leading brands.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500]
+
+- id: 86daa2f4-af7f-4288-a37f-1a3739c4129d
+  priority: 280
+  countryId: 
+  website: https://bluetokaicoffee.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_bluetokai.png
+  title: Blue Tokai
+  description: Blue Tokai works directly with coffee growers and farms across India and globally to source premium coffee beans. They prioritize traceability, sustainability, and fair trade practices in their sourcing process. 
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: ccb63a60-5955-4a72-99a6-33586d49884a
+  priority: 290
+  countryId: 
+  website: https://www.ray-ban.com/row
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_rayban.png
+  title: Ray Ban
+  description: RayBan sunglasses are renowned for their timeless designs, high-quality materials and superior craftsmanship. The brand is known for its classic styles such as the Aviator, which have achieved iconic status and have been popular for several decades. 
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: eb8e8519-3760-4350-9c44-4a7789897616
+  priority: 300
+  countryId: 
+  website: https://wforwoman.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_w.png
+  title: W for Woman
+  description: W for Woman is an Indian fashion brand that specializes in women's clothing. It is a part of TCNS Clothing Co. Ltd., which is one of India's leading women's apparel companies. They offer a range of contemporary and ethnic wear for women of all ages.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: 2d8f4844-d7ec-4572-b02b-e36111ecd208
+  priority: 310
+  countryId: 
+  website: https://www.naturesbasket.co.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_nature_basket.png
+  title: Natures Basket
+  description: Nature's Basket is an Indian gourmet retail chain. The stores offer a diverse range of groceries, including fresh produce, dairy products, baked goods, snacks, beverages, spices, sauces, condiments, meats, seafood, and more.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 5255a71f-e69c-48d2-b235-5c93156aeb1f
+  priority: 320
+  countryId: 
+  website: https://relianceretail.com/reliance-smart.html
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_smart.png
+  title: Reliance Smart 
+  description: Reliance SMART is a chain of supermarkets operated by Reliance Retail, a subsidiary of Reliance Industries Limited. It is designed to provide customers with a convenient and one-stop shopping experience for their daily grocery and household needs.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500]
+
+- id: 49db3565-c3cb-4ed0-bf9e-dad41b4f5598
+  priority: 330
+  countryId: 
+  website: https://www.croma.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_croma.png
+  title: Croma
+  description: Croma stores provide a comprehensive selection of products, including smartphones, laptops, tablets, televisions, home theaters, cameras, audio equipment, kitchen appliances, home appliances, personal care devices, gaming consoles, and more.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: 2631cc82-be8d-42fd-8762-4415bb6b0e12
+  priority: 340
+  countryId: 
+  website: https://www.ajio.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_ajio.png
+  title: Ajio
+  description: AJIO aims to provide a trendy and fashionable shopping experience, offering a curated selection of clothing, footwear, accessories, and beauty products. The platform features a mix of international and domestic brands.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 5219ecfc-5d6e-49f7-8598-1309c450d823
+  priority: 350
+  countryId: 
+  website: https://www.jackjones.com/en-us
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_jack_jones.png
+  title: Jack & Jones
+  description: Jack & Jones is known for its contemporary and casual fashion offerings, catering to the style-conscious modern man. The brand offers a wide range of clothing items, including jeans, shirts, t-shirts, sweaters, jackets, footwear, and accessories.
+  constraintType: LIST
+  constraintJson: [ 1000, 1500, 2000]
+
+- id: 6373f75f-8d79-44e3-896d-923fc8559124
+  priority: 360
+  countryId: 
+  website: https://www.themancompany.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_man_company.png
+  title: Man Company
+  description: Man Company is an Indian grooming brand that focuses on providing men with a range of high-quality grooming and personal care products. It was founded in 2015 with the goal of offering premium grooming solutions specifically tailored to men's needs.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000]
+
+- id: 8c9bcab9-e62a-4f44-b0d8-70ff16b74486
+  priority: 370
+  countryId: 
+  website: https://www.enrichbeauty.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_enrich.png
+  title: Enrich
+  description: Enrich offers a wide range of salon and beauty services for both men and women. Their services include haircuts, hair styling, hair coloring, hair treatments, facials, skin treatments, waxing, threading, manicures, pedicures, and more. 
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000]
+
+- id: 1b1dc05c-6af6-4ce0-ab1f-acc44671af2f
+  priority: 380
+  countryId: 
+  website: https://www.pepperfry.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_pepperfry.png
+  title: Pepperfry
+  description: Pepperfry is an Indian e-commerce platform that specializes in furniture and home decor products. It was founded in 2011 and has grown to become one of the leading online furniture retailers in India.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: e6d63dad-d09c-4b81-bca0-3c74d6cc57ab
+  priority: 390
+  countryId: 
+  website: https://www.polaroid.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_polaroid.png
+  title: Polaroid
+  description: Polaroid expanded its product range to include various cameras and film formats. They embraced digital technology and now offer a range of digital instant cameras that combine the convenience of digital photography with the charm of instant prints.
+  constraintType: LIST
+  constraintJson: [ 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 6e49f7f3-3e0e-4b9a-b0b5-de684a3805a0
+  priority: 400
+  countryId: 
+  website: https://www.jockey.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_jockey.png
+  title: Jockey
+  description: Jockey is recognized for its high-quality and comfortable undergarments for both men and women. They offer a wide range of underwear styles, including briefs, boxers, and panties, designed to provide support, comfort, and a great fit. 
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: eca18d13-9117-4f95-8377-b6aff0683839
+  priority: 410
+  countryId: 
+  website: https://www.maxfashion.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_max.png
+  title: MAX
+  description: Max aims to provide affordable and fashionable clothing options for the entire family. Their product range includes casual wear, formal wear, ethnic wear, sportswear, footwear, accessories, and more. 
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 9ef939b2-c22e-497d-9dc6-26105133133c
+  priority: 420
+  countryId: 
+  website: https://www.baskinrobbins.com/en
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_baskin_robbins.png
+  title: Baskin Robbins
+  description: Baskin-Robbins is a well-known international ice cream and frozen dessert chain. Baskin-Robbins is known for its extensive variety of ice cream flavors, offering customers a wide range of choices. It was founded in 1945 in California.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000]
+
+- id: f23acec3-eb49-4597-ab34-6287f8761662
+  priority: 430
+  countryId: 
+  website: https://www.speciality.co.in/mainland-china.html
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_mainland.png
+  title: Mainland China
+  description: Mainland China is a popular restaurant chain that specializes in authentic Chinese cuisine. It is known for offering a diverse menu that showcases various regional Chinese dishes. The restaurant chain is operated by Specialty Restaurants Limited.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000]
+
+- id: 2d607b86-55c1-42cc-880a-8baaa6f77802
+  priority: 440
+  countryId: 
+  website: https://giniandjony.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_ginijoy.png
+  title: Gini & Jony
+  description: Gini & Jony is a well-known Indian brand that specializes in children's clothing and accessories. Established in 1980, Gini & Jony has become a trusted name in the children's fashion industry in India.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: 67070c18-078c-48a7-9204-c339a9dc65b3
+  priority: 450
+  countryId: 
+  website: https://www.speedo.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_speedo.png
+  title: Speedo
+  description: Speedo offers a wide range of swimwear options for men, women, and children, including competitive swimwear, training swimsuits, recreational swimwear. Their swimwear is designed to provide comfort, durability, and enhanced performance in the water. 
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000, 1500, 2000, 2500, 3000, 5000]
+
+- id: c0bb7311-277d-45ce-ae04-5379b0e22919
+  priority: 460
+  countryId: 
+  website: http://www.vmart.co.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_vmart.png
+  title: V Mart
+  description: V-Mart is an Indian retail chain that specializes in value fashion and lifestyle products. It was founded in 2003 and has since grown to become a prominent retail brand in India, particularly in Tier II and Tier III cities.
+  constraintType: LIST
+  constraintJson: [ 100, 250, 500, 1000, 1500, 2000, 2500, 3000 ]
+
+- id: 3b65faea-5318-44a7-bd7f-1b6fc5a5258b
+  priority: 470
+  countryId: 
+  website: https://www.dominos.com
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/dominos.png
+  title: Domino's
+  description: Domino's Pizza is known for fast and efficient delivery service and its wide variety of pizza toppings and options. They offer a range of pizza crusts, including thin crust, hand-tossed, and deep dish, as well as a selection of sauces and toppings.
+  constraintType: LIST
+  constraintJson: [ 250, 500, 1000]
+
+- id: 23896418-7544-404b-8c24-dea41443c0e8
+  priority: 480
+  countryId: 
+  website: https://www.simoncarter.net/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_simon_carter.png
+  title: Simon Carter
+  description: Simon Carter is a British fashion designer known for his menswear and accessories. He founded his eponymous brand, Simon Carter, in 1985, and it has since gained recognition for its distinctive style and attention to detail.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 6a58cdc0-decf-4e87-953d-2b69a96a9796
+  priority: 490
+  countryId: 
+  website: https://www.nykaa.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_nykaa.png
+  title: Nykaa
+  description: Nykaa is an  e-commerce platform that specializes in beauty and wellness products. It offers a wide range of beauty and personal care products, including makeup, skincare, haircare, fragrances, bath and body products, wellness supplements, and more. 
+  constraintType: LIST
+  constraintJson: [ 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: 566d991b-c798-41e8-93ba-157b808a95cc
+  priority: 500
+  countryId: 
+  website: https://allensolly.abfrl.in/ 
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_allen_solly.png
+  title: Allen Solly
+  description: Allen Solly is an Indian clothing brand that specializes in casual and semi-formal wear for both men and women. It is a subsidiary of Aditya Birla Fashion and Retail Limited, a leading fashion conglomerate in India.
+  constraintType: LIST
+  constraintJson: [ 500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+- id: a1f2c19d-97ab-45fb-8a5d-45fefdfde247
+  priority: 510
+  countryId: 
+  website: https://www.vanheusen.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_van_heusen.png
+  title: Van Heusen
+  description: Van Heusen offers a wide range of clothing options, including shirts, blouses, suits, blazers, trousers, dresses, skirts, and accessories. They provide stylish and professional attire for various occasions, from corporate settings to special events.
+  constraintType: LIST
+  constraintJson: [ 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
