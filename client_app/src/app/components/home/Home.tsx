@@ -36,7 +36,6 @@ const Home = () => {
     navigate("/choose-gift-card");
   };
 
-  console.log(user.org?.country);
   return (
     <>
       <AppHeaderPrivate />

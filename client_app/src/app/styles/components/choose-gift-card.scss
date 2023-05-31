@@ -31,19 +31,86 @@ $choose-amount-active-points-font-size:14px;
           font-family: "Montserrat";
         }
 
-    .search-item{
-      justify-content: center;
-      display: flex;
-      .search-field{
-        background-color: white;
-        border-radius: variables.$base-unit *6;
-        width: 50%;
-        height: variables.$base-unit *6;
-        font-family: "Montserrat";
+      .menu-grid{
+        margin-top: variables.$base-unit * 3;
+        margin-left: variables.$base-unit * 3;
+
+        .country-item{
+          @media screen and (max-width: variables.$breakpoint-md){
+           display: inherit;
+           justify-content: center;
+          }
+          .country-field{
+            margin-bottom: variables.$base-unit * 2 !important;  
+          }
+        }
+
+        .search-item{
+          justify-content: end;
+          display: flex;
+          width: 100%;
+          @media screen and (min-width: variables.$breakpoint-md){
+            justify-content: end;
+          }
+
+          @media screen and (max-width: variables.$breakpoint-md){
+            justify-content: center;
+          }
+        
+          .search-field{
+            background-color: white;
+            border-radius: variables.$base-unit *6;
+            height: variables.$base-unit *6;
+            font-family: "Montserrat";
+            margin-right: variables.$base-unit;
+
+            @media screen and (min-width: variables.$breakpoint-md){
+              width: 70%;
+            }
+
+            @media screen and (max-width: variables.$breakpoint-md){
+              width: 90%;
+              margin-top: variables.$base-unit* 3;
+            }
+          }
+
+          .search-icon-style{
+            margin-left:variables.$base-unit *2;
+            margin-right:variables.$base-unit *2;
+          }
+        }
+    }
+
+    .MuiFormControl-root {
+      margin: 0px;
+      width: 100%;
+      background-color: white;
+      border-radius: variables.$base-unit *6;
+      height:variables.$base-unit *6;
+      @media screen and (min-width: variables.$breakpoint-md){
+        width: 100%;
       }
-      .search-icon-style{
-        margin-left:variables.$base-unit *2;
-        margin-right:variables.$base-unit *2;
+
+      @media screen and (max-width: variables.$breakpoint-md){
+        width: 90%;
+      }
+
+      .MuiOutlinedInput-root {
+        .MuiOutlinedInput-notchedOutline {
+          border-color: white;
+          height: 44px;
+        }
+      }
+      
+      .MuiInputBase-root{
+        width: 90%;
+        justify-content: center;
+        margin-left:  variables.$base-unit *2;
+        height: variables.$base-unit *6;
+      }
+  
+      .MuiSelect-select {
+        text-align: start;
       }
     }
 

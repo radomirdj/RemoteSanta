@@ -1,5 +1,5 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
-import { all, call, put, take, takeLatest } from "redux-saga/effects";
+import axios, { AxiosResponse } from "axios";
+import { all, call, put, takeLatest } from "redux-saga/effects";
 import * as FileSaver from "file-saver";
 import { getGiftCardFile } from "../../services/api-service";
 import { getSelfRequest } from "../auth/actions";
@@ -29,6 +29,7 @@ import {
 } from "./actionTypes";
 import {
   FetchGiftCardFile,
+  FetchGiftCardIntegrationList,
   IGiftCardIntegration,
   IGiftCardRequest,
   PostGiftCardRequest,
@@ -44,10 +45,15 @@ const getGiftCardRequestList = (token: string) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-const getGiftCardIntegrationList = (token: string) =>
-  axios.get<IGiftCardIntegration[]>("api/gift-card-integrations/", {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+const getGiftCardIntegrationList = (countryId: string, token: string) => {
+  console.log(countryId);
+  return axios.get<IGiftCardIntegration[]>(
+    `api/gift-card-integrations/?country=${countryId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
 
 const postGiftCardRequest = (
   token: string,
@@ -82,11 +88,14 @@ function* fetchGiftCardRequestListSaga() {
   }
 }
 
-function* fetchGiftCardIntegrationListSaga() {
+function* fetchGiftCardIntegrationListSaga(
+  action: FetchGiftCardIntegrationList
+) {
   try {
     const token: string = localStorage.getItem("token") || "";
     const response: AxiosResponse<IGiftCardIntegration[]> = yield call(
       getGiftCardIntegrationList,
+      action.payload.countryId,
       token
     );
     yield put(

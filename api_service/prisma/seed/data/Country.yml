@@ -10,6 +10,18 @@
   currencyString: 'USD'
   conversionRateToPoints: 100
 
+- id: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  countryName: 'Mexico'
+  countryCode: 'MX'
+  currencyString: 'MXN'
+  conversionRateToPoints: 10
+
+- id: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  countryName: 'India'
+  countryCode: 'IN'
+  currencyString: 'INR'
+  conversionRateToPoints: 1
+
 - id: 7810e53a-048f-4efa-9a1a-1b8042e6fdca
   countryName: 'Other'
   countryCode: 'N/A'

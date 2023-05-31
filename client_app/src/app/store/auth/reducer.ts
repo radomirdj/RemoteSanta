@@ -34,6 +34,7 @@ const initialState: AuthState = {
     userRole: "",
     org: undefined,
     userBalance: undefined,
+    countryId: "",
   },
   error: null,
   emailToResetPassword: null,

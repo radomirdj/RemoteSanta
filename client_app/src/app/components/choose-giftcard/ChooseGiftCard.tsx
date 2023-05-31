@@ -1,6 +1,10 @@
 import {
+  FormControl,
   Grid,
   InputBase,
+  InputLabel,
+  MenuItem,
+  Select,
   Step,
   StepLabel,
   Stepper,
@@ -25,18 +29,27 @@ import ChooseAmount from "./ChooseAmount";
 import GiftCardRequestOverview from "./GiftCardRequestOverview";
 import SearchIcon from "@mui/icons-material/Search";
 import DeclineIllustration from "./../../assets/illustrations/decline-gift-card-request-illustration.svg";
+import { countryList, ICountry } from "../../enums/CountryList";
+import { getAuthUserSelector } from "../../store/auth/selectors";
+import { getSelfRequest } from "../../store/auth/actions";
+import { useNavigate } from "react-router-dom";
 
 const ChooseGiftCard = () => {
   const dispatch = useDispatch();
+  const user = useSelector(getAuthUserSelector);
   const giftCardIntegrationList = useSelector(
     getGiftCardIntegrationListSelector
+  );
+  const [countryId, setCountryId] = React.useState<string>(
+    localStorage.getItem("countryId") || ""
   );
   const activeStep = useSelector(getStepperPagetSelector);
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
   const [searchValue, setSearchValue] = React.useState("");
+
   useEffect(() => {
     dispatch(setGiftCardRequestResetData());
-    dispatch(fetchGiftCardIntegrationList());
+    dispatch(fetchGiftCardIntegrationList({ countryId }));
   }, [dispatch]);
 
   const giftCardIntegrationFilteredList = giftCardIntegrationList.filter(
@@ -54,6 +67,11 @@ const ChooseGiftCard = () => {
       return false;
     }
   );
+
+  const setCountry = (id: string) => {
+    dispatch(fetchGiftCardIntegrationList({ countryId: id }));
+    setCountryId(id);
+  };
 
   return (
     <>
@@ -76,13 +94,51 @@ const ChooseGiftCard = () => {
             </Stepper>
           </Grid>
           {activeStep === 0 && (
-            <Grid item xs={12} className="search-item">
-              <InputBase
-                placeholder="Search for your favorite gift card..."
-                className="search-field"
-                startAdornment={<SearchIcon className="search-icon-style" />}
-                onChange={(e: any) => setSearchValue(e.target.value)}
-              />
+            <Grid container className="menu-grid">
+              <Grid item xs={12} md={4} className="country-item">
+                <FormControl variant="outlined">
+                  <InputLabel
+                    id="countryLabel"
+                    className="country-label"
+                  ></InputLabel>
+                  <Select
+                    labelId="countryLabel"
+                    id="country"
+                    className="country-field"
+                    label="Country"
+                    value={countryId}
+                    onChange={(e) => setCountry(e.target.value)}
+                  >
+                    {countryList.map((country, i) => {
+                      return (
+                        <MenuItem value={country.id} key={country.id}>
+                          {country.countryName !== "Other" && (
+                            <img
+                              src={country.flag}
+                              alt=""
+                              style={{
+                                marginRight: "8px",
+                                height: "24px",
+                                width: "40px",
+                                verticalAlign: "sub",
+                              }}
+                            />
+                          )}{" "}
+                          {country.countryName}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={8} className="search-item">
+                <InputBase
+                  placeholder="Search for your favorite gift card..."
+                  className="search-field"
+                  startAdornment={<SearchIcon className="search-icon-style" />}
+                  onChange={(e: any) => setSearchValue(e.target.value)}
+                />
+              </Grid>
             </Grid>
           )}
           {giftCardIntegrationFilteredList.length === 0 &&

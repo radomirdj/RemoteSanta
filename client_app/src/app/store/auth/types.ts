@@ -50,6 +50,7 @@ export interface AuthUser {
   userRole: string;
   org?: IOrg;
   userBalance?: IUserBalance;
+  countryId?: string;
 }
 
 export interface AuthState {
@@ -70,6 +71,7 @@ export interface SignUpRequestPayload {
   password: string;
   birthDate: Date;
   gender: string;
+  countryId: string;
 }
 
 export interface LoginFailurePayload {

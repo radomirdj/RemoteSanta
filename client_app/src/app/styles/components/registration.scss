@@ -2,6 +2,7 @@
 
 $registration-error-label-color: #666666;
 $terms-margin-bottom: 10px;
+$flag-height:28px;
 
 .registration {
   @media screen and (max-width: variables.$breakpoint-md) {
@@ -72,7 +73,7 @@ $terms-margin-bottom: 10px;
   }
 
   .registration-input {
-    margin-bottom: variables.$base-unit * 2 !important;
+    margin-bottom: variables.$base-unit * 2 !important;  
   }
 
   .registration-input-with-error {
@@ -112,6 +113,12 @@ $terms-margin-bottom: 10px;
   }
 
   .registration-gender-with-error {
+    .MuiOutlinedInput-notchedOutline {
+      border-color: variables.$error-color;
+    }
+  }
+
+  .registration-country-with-error {
     .MuiOutlinedInput-notchedOutline {
       border-color: variables.$error-color;
     }

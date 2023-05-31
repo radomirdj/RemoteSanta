@@ -25,10 +25,11 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorIcon from "@mui/icons-material/Error";
 import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
 import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
+import { countryList } from "../../enums/CountryList";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const Registration = () => {
           password: data.password,
           birthDate,
           gender: data.gender,
+          countryId: data.country,
         },
         navigate
       )
@@ -145,60 +147,106 @@ const Registration = () => {
                     Lastname is required.
                   </Typography>
                 )}
-
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <Controller
-                    control={control}
-                    name="birthDate"
-                    defaultValue={null}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <DatePicker
-                        label="Date of birth"
-                        disableFuture
-                        value={field.value}
-                        onChange={(date) => field.onChange(date)}
-                        className={
-                          errors.birthDate
-                            ? "registration-date-with-error"
-                            : "registration-input"
-                        }
-                        renderInput={(params: any) => <TextField {...params} />}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-
-                {errors.birthDate?.type === "required" && (
-                  <Typography className="registration-error-fe">
-                    Date of birth is required.
-                  </Typography>
-                )}
-
                 <FormControl variant="outlined">
-                  <InputLabel id="genderLabel">Gender</InputLabel>
+                  <InputLabel id="countryLabel">Country</InputLabel>
                   <Select
-                    labelId="genderLabel"
-                    id="gender"
+                    labelId="countryLabel"
+                    id="country"
                     className={
-                      errors.gender
-                        ? "registration-gender-with-error"
+                      errors.country
+                        ? "registration-country-with-error"
                         : "registration-input"
                     }
-                    label="Gender"
-                    {...register("gender", { required: true })}
+                    label="Country"
+                    {...register("country", { required: true })}
                   >
-                    <MenuItem value={"FEMALE"}>Female</MenuItem>
-                    <MenuItem value={"MALE"}>Male</MenuItem>
-                    <MenuItem value={"OTHER"}>Other</MenuItem>
+                    {countryList.map((country, i) => {
+                      return (
+                        <MenuItem value={country.id}>
+                          {country.countryName !== "Other" && (
+                            <img
+                              src={country.flag}
+                              alt=""
+                              style={{
+                                marginRight: "8px",
+                                height: "24px",
+                                width: "40px",
+                                verticalAlign: "sub",
+                              }}
+                            />
+                          )}{" "}
+                          {country.countryName}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
 
-                {errors.gender?.type === "required" && (
+                {errors.country?.type === "required" && (
                   <Typography className="registration-error-fe">
-                    Gender is required.
+                    Country is required.
                   </Typography>
                 )}
+                <Grid container columnSpacing={2}>
+                  <Grid item xs={12} lg={6}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <Controller
+                        control={control}
+                        name="birthDate"
+                        defaultValue={null}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                          <DatePicker
+                            label="Date of birth"
+                            disableFuture
+                            value={field.value}
+                            onChange={(date) => field.onChange(date)}
+                            className={
+                              errors.birthDate
+                                ? "registration-date-with-error split-input"
+                                : "registration-input"
+                            }
+                            renderInput={(params: any) => (
+                              <TextField {...params} />
+                            )}
+                          />
+                        )}
+                      />
+                    </LocalizationProvider>
+
+                    {errors.birthDate?.type === "required" && (
+                      <Typography className="registration-error-fe">
+                        Date of birth is required.
+                      </Typography>
+                    )}
+                  </Grid>
+                  <Grid item xs={12} lg={6}>
+                    <FormControl variant="outlined">
+                      <InputLabel id="genderLabel">Gender</InputLabel>
+                      <Select
+                        labelId="genderLabel"
+                        id="gender"
+                        className={
+                          errors.gender
+                            ? "registration-gender-with-error"
+                            : "registration-input"
+                        }
+                        label="Gender"
+                        {...register("gender", { required: true })}
+                      >
+                        <MenuItem value={"FEMALE"}>Female</MenuItem>
+                        <MenuItem value={"MALE"}>Male</MenuItem>
+                        <MenuItem value={"OTHER"}>Other</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    {errors.gender?.type === "required" && (
+                      <Typography className="registration-error-fe">
+                        Gender is required.
+                      </Typography>
+                    )}
+                  </Grid>
+                </Grid>
                 <FormControl variant="outlined">
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
                   <OutlinedInput

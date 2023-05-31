@@ -62,6 +62,10 @@ export interface FetchGiftCardRequestListFailurePayload {
   error: string;
 }
 
+export interface FetchGiftCardIntegrationListPayload {
+  countryId: string;
+}
+
 export interface FetchGiftCardIntegrationListSuccessPayload {
   giftCardIntegrationList: IGiftCardIntegration[];
 }
@@ -115,6 +119,7 @@ export interface FetchGiftCardRequestListFailure {
 
 export interface FetchGiftCardIntegrationList {
   type: typeof FETCH_GIFT_CARD_INTEGRATION_LIST;
+  payload: FetchGiftCardIntegrationListPayload;
 }
 
 export interface FetchGiftCardIntegrationListSuccess {

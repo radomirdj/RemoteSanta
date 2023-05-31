@@ -44,6 +44,7 @@ import {
   FetchGiftCardFileSuccess,
   FetchGiftCardFileFailure,
   FetchGiftCardFileFailurePayload,
+  FetchGiftCardIntegrationListPayload,
 } from "./types";
 
 export const fetchGiftCardRequestList = (): FetchGiftCardRequestList => ({
@@ -64,10 +65,12 @@ export const fetchGiftCardRequestListFailure = (
   payload,
 });
 
-export const fetchGiftCardIntegrationList =
-  (): FetchGiftCardIntegrationList => ({
-    type: FETCH_GIFT_CARD_INTEGRATION_LIST,
-  });
+export const fetchGiftCardIntegrationList = (
+  payload: FetchGiftCardIntegrationListPayload
+): FetchGiftCardIntegrationList => ({
+  type: FETCH_GIFT_CARD_INTEGRATION_LIST,
+  payload,
+});
 
 export const fetchGiftCardIntegrationListSuccess = (
   payload: FetchGiftCardIntegrationListSuccessPayload
