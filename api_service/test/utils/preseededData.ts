@@ -221,6 +221,7 @@ export const giftCardRequestList = [
     userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
     giftCardIntegrationId: '973dbf26-b6e3-4141-9357-7c479c102d14',
     amount: 3000,
+    giftCardIntegrationCurrencyAmount: 30.0,
     status: 'PENDING',
   },
   {
@@ -228,6 +229,7 @@ export const giftCardRequestList = [
     userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
     giftCardIntegrationId: 'f607eac9-3bed-4c4b-9118-2ea72eb5a9f8',
     amount: 6000,
+    giftCardIntegrationCurrencyAmount: 60.0,
     status: 'PENDING',
   },
   {
@@ -235,6 +237,7 @@ export const giftCardRequestList = [
     userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
     giftCardIntegrationId: '632fedde-10b8-41d5-a16b-b1f3f61923c8',
     amount: 9000,
+    giftCardIntegrationCurrencyAmount: 90.0,
     status: 'COMPLETED',
   },
   {
@@ -242,6 +245,7 @@ export const giftCardRequestList = [
     userId: userDeleted1.id,
     giftCardIntegrationId: '973dbf26-b6e3-4141-9357-7c479c102d14',
     amount: 3600,
+    giftCardIntegrationCurrencyAmount: 36.0,
     status: 'PENDING',
   },
 ];

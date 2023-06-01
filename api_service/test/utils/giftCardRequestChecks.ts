@@ -4,6 +4,9 @@ export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
     expectedValue.giftCardIntegrationId,
   );
   expect(responseBody.amount).toEqual(expectedValue.amount);
+  expect(responseBody.giftCardIntegrationCurrencyAmount).toEqual(
+    expectedValue.giftCardIntegrationCurrencyAmount,
+  );
   expect(responseBody.status).toEqual(expectedValue.status);
   expect(responseBody.createdAt).toBeDefined();
   if (expectedValue.integrationTitle) {
@@ -24,5 +27,8 @@ export const expectGiftCardRequestInDB = async (id, expectedValue, prisma) => {
     expectedValue.giftCardIntegrationId,
   );
   expect(giftCardRequest.amount).toEqual(expectedValue.amount);
+  expect(giftCardRequest.giftCardIntegrationCurrencyAmount).toEqual(
+    expectedValue.giftCardIntegrationCurrencyAmount,
+  );
   expect(giftCardRequest.status).toEqual(expectedValue.status);
 };

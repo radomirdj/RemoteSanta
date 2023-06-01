@@ -26,7 +26,7 @@ export class GiftCardRequestService {
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: UserDto) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
-    const [_, __, org] = await Promise.all([
+    const [giftCardIntegration, __, org] = await Promise.all([
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
         data.amount,
@@ -41,6 +41,8 @@ export class GiftCardRequestService {
       const giftCardRequest = await tx.giftCardRequest.create({
         data: {
           ...data,
+          giftCardIntegrationCurrencyAmount:
+            (data.amount * 1.0) / user.org.country.conversionRateToPoints,
           status: GiftCardRequestStatusEnum.PENDING,
           giftCardIntegration: {
             connect: {

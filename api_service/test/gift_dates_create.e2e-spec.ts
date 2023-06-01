@@ -202,7 +202,9 @@ describe('Gift Dates - create', () => {
       )
       .send({ ...newGiftDateOther, type: 'othr' })
       .expect(400);
-    expect(response.body.message[0]).toEqual('type must be a valid enum value');
+    expect(response.body.message[0]).toEqual(
+      'type must be one of the following values: HOLIDAY, BIRTHDAY, OTHER',
+    );
   });
 
   it('/gift-dates (POST) - try to create type OTHER without reaccurance type', async () => {

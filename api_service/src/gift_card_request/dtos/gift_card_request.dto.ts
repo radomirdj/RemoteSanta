@@ -25,7 +25,12 @@ export class GiftCardRequestDto {
   user?: UserDto;
 
   @Expose()
-  amount: string;
+  @Type(() => Number)
+  amount: number;
+
+  @Expose()
+  @Type(() => Number)
+  giftCardIntegrationCurrencyAmount?: number;
 
   @Expose()
   adminComment?: string;

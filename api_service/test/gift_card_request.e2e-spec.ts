@@ -179,6 +179,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
+        giftCardIntegrationCurrencyAmount: 27.0,
         userId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
@@ -186,6 +187,7 @@ describe('/gift-card-requests', () => {
         id,
         {
           ...newGiftCardRequest,
+          giftCardIntegrationCurrencyAmount: 27.0,
           status: GiftCardRequestStatusEnum.PENDING,
           userId: user3Manager.id,
         },
