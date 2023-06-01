@@ -34,6 +34,7 @@ export class GiftCardIntegrationsService {
       default:
         throw new AmountFailsCounstraintException();
     }
+    return integration;
   }
 
   async getOne(id: string): Promise<GiftCardIntegration> {

@@ -188,17 +188,18 @@ enum GiftCardRequestStatusEnum {
 }
 
 model GiftCardRequest {
-  id                    String                    @id @default(uuid())
-  user                  User                      @relation(fields: [userId], references: [id])
-  userId                String
-  giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
-  giftCardIntegrationId String
-  adminComment          String?
-  amount                Int
-  status                GiftCardRequestStatusEnum
-  createdAt             DateTime                  @default(now())
-  updatedAt             DateTime                  @updatedAt
-  GiftCard              GiftCard?
+  id                                String                    @id @default(uuid())
+  user                              User                      @relation(fields: [userId], references: [id])
+  userId                            String
+  giftCardIntegration               GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
+  giftCardIntegrationId             String
+  adminComment                      String?
+  amount                            Int
+  giftCardIntegrationCurrencyAmount Float?                    @default(0.0)
+  status                            GiftCardRequestStatusEnum
+  createdAt                         DateTime                  @default(now())
+  updatedAt                         DateTime                  @updatedAt
+  GiftCard                          GiftCard?
 }
 
 model GiftCard {
