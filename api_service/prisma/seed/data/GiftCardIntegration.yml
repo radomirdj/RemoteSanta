@@ -5,6 +5,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png
   title: Multibrand
   description: Multibrand karticu moguće je iskoristiti na preko 500 lokacija širom Srbije. Moguće je iskoristiti u naznačenim radnjama raznovrsnog tipa i zato kao takva predstavlja pravi spoj zabave, mode, sporta, tehnike.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -15,6 +16,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/SportVision.png
   title: Sport Vision
   description: Vodeći multibrend koncept na Balkanu. Više od 40 najpoznatijih sportskih brendova, za najbolje performanse,na jednom mestu- patike, kopačke, cipele, jakne, majice, trenerke, duksevi, oprema za fudbal, mali fudbal, košarku, trčanje i trening.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -25,6 +27,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png
   title: N Sport
   description: Jedan od vodećih distributera najpoznatijih sportskih i modnih brendova. Prepoznatljiv po svoja tri osnovna prodajna multibrend koncepta - N Sport, N Fashion i N Selection, koji odgovaraju aktivnom životu savremenih muškaraca i žena.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -35,6 +38,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/sOliver.png
   title: s. Oliver
   description: Nemački brend za celu porodicu. Nudi savršeno rešenje kada su u pitanju stil, kvalitet, udobnost i cena. Pored odeće i obuće S Oliver nudi i dodatne linije proizvoda kao što su donji veš, pidžame, kupaći kostimi, torbe, akcesoari i parfemi.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -45,6 +49,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/TheBodyShop.png
   title: The Body Shop
   description: Engleski brend kozmetičkih preparata za negu lica, tela, kose i proizvoda za šminku sa sastojcima na prirodnoj bazi u posebnom pakovanju koje lako možete da dopunite i koji čine da se žene dobro osećaju u svojoj koži.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -55,6 +60,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Toyzzz.png
   title: Toyzzz
   description: Toyzzz više od 20 godina plasira na naše tržište igračke svih tipova, bicikle i trotinete, bazene, školski probor, knjige, slikovnice... Uvoznik je preko 8000 artikla i velikog broja poznatih brendova npr Barbie, Cars, Disney, Kiki, Lol, Monopoly.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -65,6 +71,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/UnderArmour.png
   title: Under Armour
   description: Proizvodi ove američke kompanije namenjeni su svima koji žele da poboljšaju svoje sportske rezultate - sportska obuća, majice,jakne, duksevi, trenerke, helanke, sportski grudnjaci, atletske torbe, rukavice, kape i zaštitna oprema.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -75,6 +82,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Adidas.png
   title: Adidas
   description: Adidas je najveći evropski proizvođač sportske opreme sa fabrikama i prodavnicama širom sveta. Ovaj nemački brend osim sportske obuće i fudbalskih lopti proizvodi i drugu sportsku opremu kao i kozmetiku.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -85,6 +93,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/PetKlub.png
   title: Pet Klub
   description: Maloprodajni lanac gde se vlasnici kućnih ljubimaca mogu snabdeti hranom, lekovima i opremom  za pse, mačke, male životinje, ptice, ribice, kornjače... Brend koji  želi da učini kupovinu emotivnom i zbližavajućom.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -95,6 +104,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Proteini.png
   title: PROTEINI.SI
   description: U misiji zdravog i sportskog načina života brend Proteini SI bavi se prodajom sportske ishrane i dodatka ishrani. Već deceniju Proteini SI na naše tržište plasiraju najpoznatije američke i evropske proizvode.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -105,6 +115,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomedia.png
   title: Tehnomedia
   description: Tehnomedija centar zastupljen je na srpskom tržištu preko dvadeset godina. U maloprodajnim objektima bavi se trgovinom belom tehnikom, audio i video uređajima, IT opremom, uređajima za grejanje i klimatizaciju, kao i malim kućnim aparatima.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -115,6 +126,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Carpisa.png
   title: Carpisa
   description: Italijanski modni brend koji je namenjen svim generacijama žena i muškaraca koji prate aktuelne trendove. Asortiman brenda se sastoji od torbi, novčanika, akcesoara, kofera, kutija za nakit i putnog programa.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -125,6 +137,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Comma.png
   title: Comma
   description: Comma odeća, evropske proizvodnje, poznata je po modernom dizajnu, elegantnim i ženstvenim krojevima kao i kvalitetnim materijalima, a može se nositi u svim prilikama svakodnevno, 24h,  jer je i fleksibilna i svestrana.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -135,6 +148,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Univerexport.png
   title: Univerexport
   description: Domaći trgovinski lanac zastupljen sa preko 180 maloprodaja i onlajn servisom eLakolije sa besplatnom dostavom robe. Domaći artikli su najzastupljeniji, meso stiže sa farme Bačka a organski proizvodi sa sopstvenog poljoprivrednog domaćinstva.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -145,6 +159,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BelaGriva.png
   title: Bela Griva
   description: Jahanje je lek za dušu i telo. Udruženje Bela griva za sve ljubitelje najlepših životinja pruža usluge jahanja za sve uzraste, pansion za konje, trening konja za razna takmičenja, terensko jahanje, kao i iznajmljivanje konja za različite svrhe.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -155,6 +170,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BioSpajz.png
   title: Bio Špajz
   description: Misija Bio Špajza je da populariše zdrav način života, uz odgovarajuću ishranu, ali i zdrav odnos prema telu i duhu, kao i prema prirodi, prodajom zdrave hrane, napitaka i prirodne kozmetike. Porcijom zdravih ukusa obezbeđujete detoks tela i uma.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -165,6 +181,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomanija.png
   title: Tehnomanija
   description: Kompanija je lider na tržištu Srbije u oblasti trgovine električnim i elektronskim uređajima za domaćinstvo. U bogatoj ponudi nalaze se prozvodi renomiranih proizvođača bele tehnike, malih kućnih aparata ,televizora, IT uređaja i dodatne opreme.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -175,6 +192,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Ekspedicija.png
   title: Ekspedicija
   description: Kreativni pokloni razvrstani po kategorijama ili brendovima (Zippo, Forchino,Victorinox, Bicycle, Space Penn, Hinz&Kunst). Maloprodajni objekti mogu se naći u najvećim tržnim centrima u Beogradu, Novom Sadu i Kragujevcu.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -185,6 +203,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Katrin.png
   title: Katrin
   description: Modni brend Katrin je nastao u Srbiji 2005. godine i do danas uspeo da se uzdigne i stane uz svetske brendove kada je u pitanju ženska moda. Spoj topline i elegancije u njihovim modelima čine da se svaka žena oseća jedinstveno i posebno.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -195,6 +214,7 @@
   image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Luna.png
   title: Luna
   description: Modna kuća Luna već tri decenije dizajnira i stvara garderobu i aksesoare za dame, prateći duh i ritam savremene žene, njen senzibilitet i potrebe. Ovo je modni brend za dame koje biraju jedinstven stil, udobnost i kvalitet u svakoj prilici.
+  currency: RSD
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
@@ -205,8 +225,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
   title: Amazon
   description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 100, 'MAX': 200000 }
+  constraintJson: { 'MIN': 1, 'MAX': 2000 }
 
 - id: f78f593b-7c3c-4c47-aff0-6c6ee4009e7d
   priority: 20
@@ -216,7 +237,8 @@
   title: Google Play
   description: Google Play is the official app store for certified devices running on the Android operating system and its derivatives, as well as ChromeOS. It also serves as a digital media store, offering games, music, books, movies, and television programs.
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  currency: USD
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: df96a360-6a2e-4197-b50a-edd19ff32d6d
   priority: 30
@@ -225,8 +247,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/doordash.png
   title: DoorDash
   description: Discover local, on-demand delivery or Pickup from restaurants, nearby grocery and convenience stores, and more. From your neighborhood sushi spot to the burger and fries you crave, choose from over 300,000 local and national favorites across the U.S.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 6ec68b3d-1a49-412f-a8cd-d7c7d3a11690
   priority: 40
@@ -235,8 +258,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/apple.png
   title: Apple
   description: Apple Inc. is an American multinational technology company headquartered in Cupertino, California. Discover the innovative world of Apple and shop everything iPhone, iPad, Apple Watch, Mac, and Apple TV, plus explore accessories, entertainment.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 0a15db47-a0b1-4491-bcc2-83d64b27a8bd
   priority: 50
@@ -245,8 +269,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/starbucks.png
   title: Starbucks
   description: Starbucks is an American multinational chain of coffeehouses and roastery reserves. It is the world's largest coffeehouse chain. More than just great coffee. Explore the menu, sign up for Starbucks Rewards, manage your gift card and more.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 427b670f-dbc3-47a8-a1b4-f28073bbc756
   priority: 60
@@ -255,8 +280,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/bestbuy.png
   title: Best Buy
   description: Best Buy is an American multinational consumer electronics retailer. Shop Best Buy for electronics, computers, appliances, cell phones, video games & more new tech. In-store pickup & free 2-day shipping on thousands of items.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 6b3463cf-3af3-492d-9004-53c51501bdd5
   priority: 70
@@ -265,8 +291,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/uber.png
   title: Uber
   description: Uber is ride-hailing and transportation network company that operates in over 900 areas worldwide. In addition to ride-hailing, Uber has expanded into other areas such as food delivery (Uber Eats) and electric bike and scooter rentals (Uber Jump).
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 9c7a493e-ba09-4110-9aee-ecf685e6ac99
   priority: 80
@@ -275,8 +302,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/darden.png
   title: Darden
   description: Darden's portfolio of brands includes Olive Garden, LongHorn Steakhouse, Cheddar's Scratch Kitchen, Yard House, The Capital Grille, Seasons 52, Bahama Breeze, and Eddie V's. These brands operate over 1,800 restaurants across North America and beyond.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 0a00173d-47e8-461b-abc4-fbdbeeaed8a0
   priority: 90
@@ -285,8 +313,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/chipotle.png
   title: Chipotle
   description: Chipotle is an American chain of fast casual restaurants specializing in bowls, tacos and Mission burritos made to order in front of the customer. Chipotle operates restaurants in the United States, United Kingdom, Canada, Germany, and France.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: e2a78508-360d-4ee8-b4da-dbe171f3a7d8
   priority: 100
@@ -295,8 +324,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/victoriassecret.png
   title: Victoria's Secret
   description: Chain retailer known for housebrand women’s lingerie, plus pajamas, loungewear & beauty products. Shop your favorite clothing from sleepwear and sportswear to beauty and swim. Only from Victoria's Secret.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: bdcf6918-d5fa-458f-94bb-4ccd7a11077a
   priority: 110
@@ -305,8 +335,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/redlobster.png
   title: Red Lobster
   description: Red Lobster is known for its wide selection of seafood dishes, including lobster, crab, shrimp, and various fish options. It has over 700 locations in the United States and Canada, as well as a few international locations in Asia and the Middle East.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 6f3221c9-3149-4d11-800c-0ac84f5c38cd
   priority: 120
@@ -315,8 +346,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/netflix.png
   title: Netflix
   description: Netflix is a popular streaming service that provides a vast collection of movies, TV shows, and documentaries, which users can watch on their internet-connected devices. Netflix also offers many subscription plans for users.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: bd2fc8ca-1987-41f7-b503-6e6dc3249e03
   priority: 130
@@ -325,8 +357,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/lowes.png
   title: Lowe's
   description: Lowe's Companies, often shortened to Lowe's, is an American retail company specializing in home improvement, headquartered in Mooresville, North Carolina. Shop tools, appliances, building supplies, carpet, bathroom, lighting and more.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 50c48db3-7ac5-4425-b484-b10a581c44ab
   priority: 140
@@ -335,8 +368,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/chewy.png
   title: Chewy
   description: Chewy is an American online retailer of pet food and other pet-related products. Shop Chewy for the best pet supplies ranging from pet food, toys and treats to litter, aquariums, and pet supplements plus so much more.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 8ae02302-a821-4933-bd16-d59d207ddfae
   priority: 150
@@ -345,8 +379,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/instacart.png
   title: Instacart
   description: Instacart is an American retail company that operates a grocery delivery and pick-up service in the United States and Canada. The service allows customers to order groceries from many retailers with the shopping being done by a personal shopper.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 25000 }
+  constraintJson: { 'MIN': 25, 'MAX': 250 }
 
 - id: 60c4a493-e240-4e61-bd2b-62ae10cf63f5
   priority: 160
@@ -355,8 +390,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/hotels.png
   title: Hotels.com
   description: Hotels.com is an online travel agency that specializes in booking hotel accommodations around the world. Hotels.com offers a wide selection of hotels, resorts, apartments, and other types of accommodations across various price ranges and locations.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: d8782910-1750-4996-8671-c4db3186a54c
   priority: 170
@@ -365,8 +401,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/airbnb.png
   title: Airbnb
   description: Airbnb offers a variety of accommodations, apartments, houses, villas, cabins and properties like treehouses or igloos. It allows owners to list their spaces for rentals and allows travelers to browse and book properties directly through the app.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: dad2aacf-affa-4ce1-a5d2-bf227886d9f1
   priority: 180
@@ -375,8 +412,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/dominos.png
   title: Domino's
   description: Domino's Pizza is known for fast and efficient delivery service and its wide variety of pizza toppings and options. They offer a range of pizza crusts, including thin crust, hand-tossed, and deep dish, as well as a selection of sauces and toppings.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 4424b423-aeb4-489e-ab91-fda656265619
   priority: 190
@@ -385,8 +423,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/twitch.png
   title: Twitch
   description: Twitch is a live streaming platform that primarily focuses on video game streaming and eSports competitions, although it also features streams of other content such as music, talk shows, and creative content.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 8e3b6115-ee4b-4897-b9da-012beea59a05
   priority: 200
@@ -395,8 +434,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/nordstorm.png
   title: Nordstorm
   description: Nordstrom is a high-end department store chain that offers a wide range of luxury products and services, with a focus on exceptional customer service and personalized shopping experiences. It also offers various shopping events.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: d36f2556-0628-4cc3-b9e2-131a9c157b46
   priority: 210
@@ -405,8 +445,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/fiveguys.png
   title: Five Guys
   description: Five Guys is a fast-food restaurant chain that specializes in burgers, fries, and hot dogs. The company was founded in 1986 in Arlington, Virginia, and has since expanded to over 1,500 locations in the United States and other countries.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 8fd8e106-fde3-476e-8ace-51b063af2638
   priority: 220
@@ -415,8 +456,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/skechers.png
   title: Skechers
   description: Skechers is a footwear company that designs, develops, and markets a wide range of casual and athletic shoes for men, women, and children. The company was founded in 1992 in California, USA, and has since grown to become a global brand.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 65bc85bd-d43d-4b64-b391-1cf0cbacc12d
   priority: 230
@@ -425,8 +467,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/footlocker.png
   title: Foot Locker
   description: Foot Locker is a global retailer of athletic footwear and apparel. Foot Locker sells a wide variety of athletic shoes, including sneakers, running shoes, basketball shoes, and cleats, from popular brands such as Nike, Adidas, Puma, Jordan, and more.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 9779ba85-b7aa-46a4-9490-6a8c1f9f8741
   priority: 240
@@ -435,8 +478,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/michaels.png
   title: Michaels
   description: Michaels is a retail chain that specializes in arts and crafts supplies. Michaels is a popular destination for artists, crafters, and DIY enthusiasts who are looking for high-quality materials and tools to create their projects.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 81d9b706-39ed-48cb-86aa-355b11d5968d
   priority: 250
@@ -445,8 +489,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/aeo.png
   title: AEO
   description: American Eagle Outfitters is known for its trendy and affordable clothing that reflects the latest fashion trends. Their product lines include jeans, shorts, t-shirts, hoodies, jackets, dresses, and accessories such as shoes, jewelry, and bags.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 7f1cf51f-2274-401c-bfdf-c8b2a3c2635d
   priority: 260
@@ -455,8 +500,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/oldnavy.png
   title: Old Navy
   description: Old Navy is a clothing and accessories retail chain that offers affordable, casual fashion for the whole family. The brand is known for its classic and comfortable styles, often featuring bright colors, bold patterns, and graphic prints.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 182481b6-f517-4329-9b2a-c82ca3381e30
   priority: 270
@@ -465,8 +511,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/lyft.png
   title: Lyft
   description: Lyft offers a convenient and affordable alternative to traditional taxis and other ride-hailing services, with a focus on providing a friendly and welcoming experience for both passengers and drivers.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: ecf0cf5f-1b79-4daa-a8c5-66ba949beb8c
   priority: 280
@@ -475,8 +522,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/champs.png
   title: Champs Sports
   description: Champs Sports is a retail chain that specializes in athletic footwear, apparel, and accessories. Champs Sports offers a wide range of products from popular sports brands such as Nike, Adidas, Jordan, and Under Armour as well as other high-end brands.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 51cbb1d2-0d91-4372-b31b-0d521861d52c
   priority: 290
@@ -485,8 +533,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/stubhub.png
   title: StubHub
   description: StubHub is an online ticket exchange and resale platform that allows users to buy and sell tickets for live events such as concerts, sports games, theater performances, and other entertainment events.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 5533d2df-20da-4b12-a473-d14389e36fc7
   priority: 300
@@ -495,8 +544,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/adidas.png
   title: Adidas
   description: Adidas is a multinational corporation that designs and manufactures athletic and lifestyle footwear, apparel, and accessories. It offers many of products including athletic shoes, sneakers, running shoes, and casual shoes for men, women and children.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: ef863dbd-ea93-4607-af61-708eb4ae4f50
   priority: 310
@@ -505,8 +555,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/columbia.png
   title: Columbia
   description: The Columbia Sportswear Company is an American company that manufactures and distributes outerwear, sportswear, and footwear, as well as headgear, camping equipment, ski apparel, and outerwear accessories.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 25000 }
+  constraintJson: { 'MIN': 25, 'MAX': 250 }
 
 - id: 757657ae-6ab7-4730-bca0-f93b43ed6ff2
   priority: 320
@@ -515,8 +566,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/forever21.png
   title: Forever 21
   description: Forever 21 is a fashion retail chain that offers trendy and affordable clothing, accessories, and beauty products for young women, men, and kids. It operates over 600 stores worldwide, including in the United States, Canada, Europe, and Asia.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: e5f75784-92d9-4316-8958-5767f65526df
   priority: 330
@@ -525,8 +577,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/hm.png
   title: H&M
   description: The company's product lines include clothing, shoes, jewelry, bags, and home goods. H&M operates over 5,000 stores worldwide, including in Europe, Asia, North America, and the Middle East, as well as an online store.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 19c7c1f7-7919-4384-b702-f4e10a81e94d
   priority: 340
@@ -535,8 +588,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/aerie.png
   title: Aerie
   description: Aerie is a clothing brand that specializes in lingerie, swimwear and loungewear for women. It is a subsidiary of American Eagle Outfitters and was launched in 2006 with the goal of offering comfortable, body-positive intimates for women of all sizes.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 63b182d2-36ab-4416-9da7-061d3a89e2bb
   priority: 350
@@ -545,8 +599,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/amtrak.png
   title: Amtrak
   description: Amtrak is the national rail passenger service of the United States. Amtrak operates a variety of trains, including long-distance overnight trains, regional commuter trains, and high-speed Acela Express trains on the Northeast Corridor.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 2556694e-6eb1-4dad-b0fa-8f1ec8c851e9
   priority: 360
@@ -555,8 +610,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/siriusxm.png
   title: SiriusXM
   description: SiriusXM offers over 150 channels, including music channels, live sports coverage, talk shows hosted by popular personalities, news channels from major news organizations, and entertainment channels featuring comedy, drama, and more.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: ed0d6084-f55b-4cc4-bb25-a352f68d8d0f
   priority: 370
@@ -565,8 +621,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/nautica.png
   title: Nautica
   description: Nautica is an American clothing and lifestyle brand that was founded in 1983. The brand is known for its nautical-inspired clothing, which includes clothing for men, women, and children, as well as accessories and home goods.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 52c50e3c-a8ae-4c8f-8fe4-2438aa30efdf
   priority: 380
@@ -575,8 +632,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/harleydavidson.png
   title: Harley Davidson
   description: In addition to its motorcycles, Harley-Davidson also offers a line of branded clothing and accessories, including jackets, shirts, boots, and helmets. The company's clothing line is known for its rugged, Americana-inspired style.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 26f56f31-d2f9-4b81-9b15-5516c4a2bb36
   priority: 390
@@ -585,8 +643,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/lulus.png
   title: Lulus
   description: Lulus is a popular online fashion retailer that offers a wide range of women's clothing, shoes, and accessories. Lulus is known for its trendy fashion options, with a focus on dresses for various occasions, such as prom, weddings, and parties.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 1297b8d5-94b4-4dd0-b844-8b00863b68da
   priority: 400
@@ -595,8 +654,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/underarmour.png
   title: Under Armour
   description: Under Armour is a sportswear and footwear company. It's products are designed to provide athletes with the latest technology and innovation to help them perform at their best. The company also offers accessories such as hats, socks, gloves, and bags.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 8fd93a6f-b696-4cba-83f4-1f37a9597d22
   priority: 410
@@ -605,8 +665,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/jcrew.png
   title: J.Crew
   description: J.Crew is a popular American clothing and accessories brand. J.Crew's clothing line includes a range of items, from casual T-shirts and denim to dressy blouses and suits. J.Crew also offers a variety of accessories.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 9bea72f2-9f9f-4f13-9222-1a03f0486ed7
   priority: 420
@@ -615,8 +676,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/llbean.png
   title: L.L.Bean
   description: L.L.Bean's product line includes a range of outdoor apparel, such as jackets, pants, and shirts, as well as footwear. The company also offers a variety of camping and outdoor equipment, such as tents, sleeping bags, backpacks, and kayaks.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 16ec784b-1b29-44ef-b704-385cf4cf3a8a
   priority: 430
@@ -625,8 +687,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/containerstore.png
   title: The Container Store
   description: The Container Store offers a wide range of storage and organization products, including shelving units, closet organizers, kitchen and pantry storage solutions, office and desk organizers, and storage containers of all sizes and shapes.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: a2b020e6-6be0-4ca2-8c6b-241f6bd300af
   priority: 440
@@ -635,8 +698,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/coffeebean.png
   title: Coffee Bean
   description: Coffee Bean & Tea Leaf is a retail coffee and tea company that was founded in 1963 in Southern California, USA. The company is known for its high-quality coffee and tea products, as well as its cozy and welcoming cafes.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 5b851844-8d29-413c-96b1-3499840ad442
   priority: 450
@@ -645,8 +709,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/ontheborder.png
   title: On The Border
   description: On The Border is a chain of Tex-Mex restaurants that was founded in 1982 in Dallas, Texas, USA. The company offers a variety of Mexican-inspired cuisine, including tacos, burritos, enchiladas, fajitas, and margaritas.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 11949ba7-7677-44d7-8502-016cc921ac9d
   priority: 460
@@ -655,8 +720,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/landsend.png
   title: Lands' End
   description: Lands' End offers a wide range of clothing for men, women, and children, including outerwear, swimwear, activewear, and accessories. The company is particularly well-known for its high-quality, durable outerwear.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 2b7e3e64-8908-4cef-ac50-fe87e1647ff8
   priority: 470
@@ -665,8 +731,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/steakshake.png
   title: Steak n Shake
   description: Steak 'n Shake's menu features a variety of burgers made with 100% beef, as well as chicken sandwiches, hot dogs, and salads. The company is also known for its hand-dipped milkshakes, which come in a variety of flavors.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 8b68c1e5-06e7-4ec2-a03b-b8a2f2cd14f6
   priority: 480
@@ -675,8 +742,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/bathbodyworks.png
   title: Bath&Body Works
   description: Bath & Body Works offers a wide range of products, including body lotions, shower gels, hand soaps, candles and room sprays. It is known for its signature fragrances which are available in a variety of scents, from sweet and fruity to warm and spicy.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 632fedde-10b8-41d5-a16b-b1f3f61923c8
   priority: 490
@@ -685,8 +753,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/lego.png
   title: Lego
   description: Lego is a Danish toy company that is known for its plastic building blocks that can be used to construct a variety of models and structures. The company also offers a variety of Lego-themed games, books, and apparel.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 25000 }
+  constraintJson: { 'MIN': 25, 'MAX': 250 }
 
 - id: af406ac5-37d7-4563-9075-64069a206c5a
   priority: 500
@@ -695,8 +764,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/subway.png
   title: Subway
   description: Subway's menu features a variety of sandwich options, including cold cuts, meatballs, chicken, and vegetables, all of which can be customized with a variety of toppings and sauces. The company also offers salads, sides, and beverages.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 336be6e0-877d-4b14-9879-ef9a125bf6bc
   priority: 510
@@ -705,8 +775,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/sephora.png
   title: Sephora
   description: Sephora is a cosmetics retailer that offers a lot of beauty and skincare products including makeup, fragrance, skincare, haircare and bath and body products. It is known for its wide selection of high-quality beauty products from a variety of brands.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: f4ec018b-a2e4-4cda-b549-63060eef91c1
   priority: 520
@@ -715,8 +786,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/delta.png
   title: Delta
   description: Delta is a major American airline that provides both domestic and international air transportation services for passengers and cargo. Delta operates a fleet of over 800 aircraft, including narrow-body and wide-body planes.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 5000, 'MAX': 50000 }
+  constraintJson: { 'MIN': 50, 'MAX': 500 }
 
 - id: 1af52399-c423-4ff4-92bb-719a1c452838
   priority: 530
@@ -725,8 +797,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/papajohns.png
   title: Papa Johns
   description: Papa John's menu features a variety of pizza options, including traditional favorites like pepperoni and sausage, as well as unique options like Hawaiian barbecue chicken and spicy Italian. Customers can place orders for delivery or pickup online.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 0bb9be59-e680-4e37-9208-be348a2eb340
   priority: 540
@@ -735,8 +808,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/cabelas.png
   title: Cabela's
   description: Cabela's is a retail company that specializes in hunting, fishing and outdoor recreation. It's stores typically feature a wide selection of hunting and fishing gear, including firearms, ammunition, fishing rods and reels and camping equipment.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 9fa2afa8-cce3-4c0d-b448-0d4c150248d6
   priority: 550
@@ -745,8 +819,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/pandaexpress.png
   title: Panda Express
   description: Panda Express menu features a variety of dishes, including orange chicken, kung pao chicken, beef and broccoli, and chow mein. The company also offers sides like egg rolls and fried rice, as well as drinks and desserts.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 4e6cb5ec-460a-48ca-8326-602adc575ccc
   priority: 560
@@ -755,8 +830,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/topgolf.png
   title: Topgolf
   description: Topgolf venues feature multiple levels of hitting bays, where players hit golf balls into targets on a driving range-like field. The company uses technology to track each player's shots and score points based on accuracy and distance.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 25000 }
+  constraintJson: { 'MIN': 25, 'MAX': 250 }
 
 - id: ddd3f5c8-6652-407f-b180-f2bf799f3cc5
   priority: 570
@@ -765,8 +841,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/barnesnoble.png
   title: Barnes & Noble
   description: Barnes & Noble stores typically feature a wide selection of books, as well as magazines and newspapers. The company also sells e-books and audiobooks through its website, as well as other merchandise such as music, movies, and toys.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 9d863d7e-2b2b-4eb8-8996-59cb8c20dcfb
   priority: 580
@@ -775,8 +852,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/famousfootwear.png
   title: Famous Footwear
   description: Famous Footwear is a retail chain in the US that specializes in selling shoes and other footwear products. It operates over 1,000 stores in the US and sells a wide variety of shoes for men, women and children from various brands at affordable prices.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 82c54031-abde-4fe8-9fe6-6d150c7925d7
   priority: 590
@@ -785,8 +863,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/fanatics.png
   title: Fanatics
   description: Fanatics.com is an online retailer of licensed sports merchandise and apparel. The company offers a wide selection of products from various sports leagues, including the NFL, NBA, MLB, NHL, NASCAR NCAA, etc.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 21b1bc18-4ca0-4803-992e-a5534e8958e8
   priority: 600
@@ -795,8 +874,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/childrensplace.png
   title: The Children's Place
   description: The Children's Place is a specialty retailer that sells clothing and accessories for children. The company offers a wide selection of clothing for infants, toddlers, and older children, including tops, bottoms, dresses, outerwear, and sleepwear.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: e32cc948-7ae4-412b-9d6e-07859cf249a9
   priority: 610
@@ -805,8 +885,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/gap.png
   title: GAP
   description: Gap offers a wide variety of clothing and accessories for men, women, and children, including jeans, pants, dresses, skirts, shirts, sweaters, outerwear, and swimwear, as well as shoes, bags, and jewelry.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: cc3016e4-807c-447f-ac95-365affc884b0
   priority: 620
@@ -815,8 +896,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/hottopic.png
   title: Hot Topic
   description: Hot Topic is a retail chain that specializes in music and pop culture-inspired fashion and merchandise. The company's merchandise often features popular music, movie, and TV show references, as well as fan-favorite comic book and anime characters.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 8f16780c-6e93-4656-8898-9d691690ac40
   priority: 630
@@ -825,8 +907,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/krispykreme.png
   title: Krispy Kreme
   description: Krispy Kreme company is known for its signature glazed doughnuts, as well as a wide variety of other doughnut flavors, coffee, and other beverages. Krispy Kreme operates over 1,400 stores in 33 countries.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: 74b3f886-8ec6-43ca-ac26-739b74bd34de
   priority: 640
@@ -835,8 +918,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/guitarcenter.png
   title: Guitar Center
   description: Guitar Center is a retail chain that specializes in musical instruments, equipment, and accessories. It offers a lot of instruments for both beginner and professional musicians, including guitars, basses, drums, keyboards, and orchestral instruments.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: f607eac9-3bed-4c4b-9118-2ea72eb5a9f8
   priority: 650
@@ -845,8 +929,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/campingworld.png
   title: Camping World
   description: Camping World offers a wide variety of RVs for sale, including new and used motorhomes, travel trailers, fifth wheels, and toy haulers, as well as pop-up campers and truck campers. It operates over 170 locations in the US, as well as an online store.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
 
 - id: ca494a21-45a0-45f3-8e6e-a4f9bcea9728
   priority: 660
@@ -855,8 +940,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/pacsun.png
   title: PacSun
   description: PacSun is clothing company that specializes in streetwear and casual clothing. It is known for trendy and fashionable clothing, which often features bold prints, graphics, and designs inspired by skateboarding and other youth culture movements.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 138c0953-b5ee-4698-8d2c-270a5932bf64
   priority: 670
@@ -865,8 +951,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/ifly.png
   title: iFLY
   description: iFLY is an indoor skydiving experience that allows individuals to simulate the sensation of skydiving. It uses vertical wind tunnels that generate a powerful upward airflow, which allows participants to fly in a controlled and safe environment.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 973dbf26-b6e3-4141-9357-7c479c102d14
   priority: 680
@@ -875,8 +962,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/hardrock.png
   title: Hard Rock Cafe
   description: Hard Rock Cafe is a chain of restaurants known for its collection of rock-and-roll memorabilia and themed decor. The first Hard Rock Cafe was founded in 1971 in London, England, by Americans Isaac Tigrett and Peter Morton.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: c426c8fe-6629-45b1-86ac-3ff057d5d243
   priority: 690
@@ -885,8 +973,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/tillys.png
   title: Tillys
   description: Tillys is a retail chain that specializes in selling clothing, footwear, and accessories for surf, skate, and lifestyle enthusiasts. It is known for its trendy clothing, often featuring popular brands and graphics inspired by youth culture movements.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 50000 }
+  constraintJson: { 'MIN': 25, 'MAX': 500 }
 
 - id: 8532ba92-6624-4428-9105-6613a81f1fd9
   priority: 700
@@ -895,8 +984,9 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/landrys.png
   title: Landry's
   description: Landry's operates a diverse portfolio of more than 600 restaurant, hotel, and entertainment concepts, including well-known brands such as Morton's The Steakhouse, Bubba Gump Shrimp Co., Rainforest Cafe, Saltgrass Steak House, and Landry's Seafood.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 20000 }
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
 
 - id: 0c8fd718-49ed-4ba7-a35e-44d1cf976ba0
   priority: 710
@@ -905,5 +995,6 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/chicos.png
   title: Chico's
   description: Chico's is a women's clothing and accessories retail chain that was founded in 1983 in Florida, USA. It targets women over the age of 40 and offers a range of stylish and comfortable clothing that is designed to flatter a variety of body types.
+  currency: USD
   constraintType: MIN_MAX
-  constraintJson: { 'MIN': 2500, 'MAX': 10000 }
+  constraintJson: { 'MIN': 25, 'MAX': 100 }
