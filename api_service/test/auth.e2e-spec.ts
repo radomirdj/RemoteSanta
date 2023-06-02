@@ -51,6 +51,9 @@ import {
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('Authentication system', () => {
   let app: INestApplication;

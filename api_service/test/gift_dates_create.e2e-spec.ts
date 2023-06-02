@@ -14,6 +14,9 @@ import { BirthdayAlreadyAddedException } from '../src/errors/birthdayAlreadyAdde
 import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('Gift Dates - create', () => {
   let app: INestApplication;

@@ -35,6 +35,9 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 export const expectOrgTransactionRsp = (responseBody, expectedValue) => {
   expect(responseBody.orgId).toEqual(expectedValue.orgId);

@@ -21,6 +21,7 @@ services:
       AWS_REGION: ${AWS_REGION}
       FE_BASE_URL: ${FE_BASE_URL}
       NODE_ENV: production
+      CURRENCYFREAKS_KEY: ${CURRENCYFREAKS_KEY}
     ports:
       - "8090:8090"
   nginx:
