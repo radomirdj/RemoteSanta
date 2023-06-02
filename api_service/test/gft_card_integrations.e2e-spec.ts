@@ -23,7 +23,6 @@ jest.mock('../src/users/jwt-values.service');
 jest.mock(
   '../src/currency_rates/currency_rates_api/currency_rates_api.service',
 );
-
 export const expectGiftCardIntegrationRsp = (responseBody, expectedValue) => {
   expect(responseBody.priority).toEqual(expectedValue.priority);
   expect(responseBody.website).toEqual(expectedValue.website);
@@ -32,6 +31,10 @@ export const expectGiftCardIntegrationRsp = (responseBody, expectedValue) => {
   expect(responseBody.description).toEqual(expectedValue.description);
   expect(responseBody.constraintType).toEqual(expectedValue.constraintType);
   expect(responseBody.constraintJson).toEqual(expectedValue.constraintJson);
+  if (expectedValue.pointsToCurrencyConversionRate)
+    expect(responseBody.pointsToCurrencyConversionRate).toEqual(
+      expectedValue.pointsToCurrencyConversionRate,
+    );
 };
 
 describe('/gift-card-integrations', () => {
@@ -59,7 +62,7 @@ describe('/gift-card-integrations', () => {
   });
 
   describe('/:id (GET)', () => {
-    it('/:id (GET) - get gift card integration', async () => {
+    it('/:id (GET) - get gift card integration US points -> USD Gift Card', async () => {
       const response = await request(app.getHttpServer())
         .get(`/gift-card-integrations/${giftCardIntegration1.id}`)
         .set(
@@ -75,7 +78,32 @@ describe('/gift-card-integrations', () => {
       const id = response.body.id;
       expect(id).toEqual(giftCardIntegration1.id);
 
-      expectGiftCardIntegrationRsp(response.body, giftCardIntegration1);
+      expectGiftCardIntegrationRsp(response.body, {
+        ...giftCardIntegration1,
+        pointsToCurrencyConversionRate: 0.01,
+      });
+    });
+
+    it('/:id (GET) - get gift card integration US points -> RSD Gift Card', async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/gift-card-integrations/${giftCardIntegrationSrb.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .expect(200);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardIntegrationSrb.id);
+
+      expectGiftCardIntegrationRsp(response.body, {
+        ...giftCardIntegrationSrb,
+        pointsToCurrencyConversionRate: 1.0787111148,
+      });
     });
 
     it('/:id (GET) - get gift card integration - wrong id', async () => {
@@ -182,7 +210,7 @@ describe('/gift-card-integrations', () => {
         try {
           await giftCardIntegrationsService.validateIntegrationRequest(
             integration.id,
-            5000,
+            50,
           );
         } catch (err) {
           expect(integration.id).toEqual(

@@ -29,12 +29,11 @@ export class GiftCardIntegrationsService {
         if (amount < minMaxConstraint.MIN || amount > minMaxConstraint.MAX) {
           throw new AmountFailsCounstraintException();
         }
-        return;
+        return integration;
 
       default:
         throw new AmountFailsCounstraintException();
     }
-    return integration;
   }
 
   async getOne(id: string): Promise<GiftCardIntegration> {

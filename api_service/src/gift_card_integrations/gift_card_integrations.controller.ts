@@ -5,6 +5,7 @@ import { GiftCardIntegrationDto } from './dtos/gift_card_integration.dto';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { UserDto } from '../users/dtos/user.dto';
+import { CurrencyRatesService } from '../currency_rates/currency_rates.service';
 
 @Serialize(GiftCardIntegrationDto)
 @UseGuards(AuthGuard('jwt'))
@@ -12,11 +13,24 @@ import { UserDto } from '../users/dtos/user.dto';
 export class GiftCardIntegrationsController {
   constructor(
     private giftCardIntegrationsService: GiftCardIntegrationsService,
+    private currencyRatesService: CurrencyRatesService,
   ) {}
 
   @Get('/:id')
-  async getGiftCardIntegration(@Param('id') id: string) {
-    return this.giftCardIntegrationsService.getOne(id);
+  async getGiftCardIntegration(
+    @Param('id') id: string,
+    @CurrentUser() user: UserDto,
+  ) {
+    const integration = await this.giftCardIntegrationsService.getOne(id);
+    const pointsToCurrencyConversionRate =
+      await this.currencyRatesService.getPointsToCurrencyConversionRate(
+        user.org.country,
+        integration.currency,
+      );
+    return {
+      ...integration,
+      pointsToCurrencyConversionRate,
+    };
   }
 
   @Get('/')

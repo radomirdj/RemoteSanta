@@ -15,6 +15,12 @@ export class GiftCardIntegrationDto {
   title: string;
 
   @Expose()
+  currency: string;
+
+  @Expose()
+  pointsToCurrencyConversionRate?: number;
+
+  @Expose()
   description: string;
 
   @Expose()

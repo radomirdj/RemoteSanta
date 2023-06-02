@@ -187,7 +187,7 @@ export const giftCardIntegration1 = {
   description:
     'Hard Rock Cafe is a chain of restaurants known for its collection of rock-and-roll memorabilia and themed decor. The first Hard Rock Cafe was founded in 1971 in London, England, by Americans Isaac Tigrett and Peter Morton.',
   constraintType: 'MIN_MAX',
-  constraintJson: { MIN: 2500, MAX: 50000 },
+  constraintJson: { MIN: 25, MAX: 500 },
 };
 
 export const giftCardIntegration2 = {
@@ -199,7 +199,7 @@ export const giftCardIntegration2 = {
   description:
     'Camping World offers a wide variety of RVs for sale, including new and used motorhomes, travel trailers, fifth wheels, and toy haulers, as well as pop-up campers and truck campers. It operates over 170 locations in the US, as well as an online store.',
   constraintType: 'MIN_MAX',
-  constraintJson: { MIN: 2500, MAX: 10000 },
+  constraintJson: { MIN: 25, MAX: 100 },
 };
 
 export const giftCardIntegrationSrb = {
