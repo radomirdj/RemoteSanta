@@ -178,6 +178,7 @@ model GiftCardIntegration {
   constraintJson  Json
   country         Country                      @relation(fields: [countryId], references: [id])
   countryId       String
+  currency        String                       @default("---")
   GiftCardRequest GiftCardRequest[]
 }
 
