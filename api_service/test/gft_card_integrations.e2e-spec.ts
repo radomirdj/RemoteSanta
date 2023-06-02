@@ -11,6 +11,8 @@ import { GiftCardIntegrationsService } from '../src/gift_card_integrations/gift_
 import { PrismaService } from '../src/prisma/prisma.service';
 import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service';
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
+import { CurrencyRatesService } from '../src/currency_rates/currency_rates.service';
+
 import {
   giftCardIntegration1,
   user1,
@@ -41,6 +43,7 @@ describe('/gift-card-integrations', () => {
   let app: INestApplication;
   let giftCardIntegrationsService: GiftCardIntegrationsService;
   let prisma: PrismaService;
+  let currencyRatesService: CurrencyRatesService;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -58,6 +61,7 @@ describe('/gift-card-integrations', () => {
     app = moduleFixture.createNestApplication();
     giftCardIntegrationsService = app.get(GiftCardIntegrationsService);
     prisma = app.get(PrismaService);
+    currencyRatesService = app.get(CurrencyRatesService);
     await app.init();
   });
 
@@ -238,6 +242,18 @@ describe('/gift-card-integrations', () => {
         }
       });
       await Promise.all(promiseList);
+    });
+
+    it('All Preseeded GiftCardIntegrations currency should exist incurrency exchange service', async () => {
+      const rates = await currencyRatesService.getUsdRates();
+      const integrationList = await prisma.giftCardIntegration.findMany({});
+      integrationList.forEach((integration) => {
+        if (!rates.hasOwnProperty(integration.currency)) {
+          expect('').toEqual(
+            `Currency ${integration.currency} doesn't exist in  API currency exchange`,
+          );
+        }
+      });
     });
   });
 });

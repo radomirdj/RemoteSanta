@@ -5,6 +5,7 @@ import { LedgerService } from '../ledger/ledger.service';
 import { GiftCardIntegrationsService } from '../gift_card_integrations/gift_card_integrations.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
 import { EmailsService } from '../emails/emails.service';
+import { CurrencyRatesService } from '../currency_rates/currency_rates.service';
 import consts from '../utils/consts';
 
 import {
@@ -21,6 +22,8 @@ export class GiftCardRequestService {
     private giftCardIntegrationsService: GiftCardIntegrationsService,
     private ledgerService: LedgerService,
     private emailsService: EmailsService,
+    private currencyRatesService: CurrencyRatesService,
+
     @InjectS3() private readonly s3: S3,
   ) {}
 
