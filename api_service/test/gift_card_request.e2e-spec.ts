@@ -160,6 +160,7 @@ describe('/gift-card-requests', () => {
     const newGiftCardRequest = {
       giftCardIntegrationId: giftCardIntegration1.id,
       amount: 2700,
+      giftCardIntegrationCurrencyAmount: 27,
       //   status shouls be ignored
       status: GiftCardRequestStatusEnum.COMPLETED,
     };
@@ -182,7 +183,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
-        giftCardIntegrationCurrencyAmount: 27.0,
+        giftCardIntegrationCurrencyAmount: 27,
         userId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
@@ -190,7 +191,71 @@ describe('/gift-card-requests', () => {
         id,
         {
           ...newGiftCardRequest,
-          giftCardIntegrationCurrencyAmount: 27.0,
+          giftCardIntegrationCurrencyAmount: 27,
+          status: GiftCardRequestStatusEnum.PENDING,
+          userId: user3Manager.id,
+        },
+        prisma,
+      );
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user3ActiveBalanceSideId,
+        toId: user3ReservedBalanceSideId,
+        amount: newGiftCardRequest.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
+      });
+
+      await checkBalance(ledgerService, user3Manager.id, {
+        pointsActive: user3ActivePoints - newGiftCardRequest.amount,
+        pointsReserved: user3ReservedPoints + newGiftCardRequest.amount,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
+    it('/ (POST) - create gift card request US user, SRB card', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({
+          ...newGiftCardRequest,
+          giftCardIntegrationId: giftCardIntegrationSrb.id,
+          giftCardIntegrationCurrencyAmount: 2912,
+        })
+        .expect(201);
+
+      const id = response.body.id;
+
+      expectGiftCardRequestRsp(response.body, {
+        ...newGiftCardRequest,
+        giftCardIntegrationCurrencyAmount: 2912,
+        giftCardIntegrationId: giftCardIntegrationSrb.id,
+        userId: user3Manager.id,
+        status: GiftCardRequestStatusEnum.PENDING,
+      });
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...newGiftCardRequest,
+          giftCardIntegrationCurrencyAmount: 2912,
+          giftCardIntegrationId: giftCardIntegrationSrb.id,
           status: GiftCardRequestStatusEnum.PENDING,
           userId: user3Manager.id,
         },
@@ -233,7 +298,33 @@ describe('/gift-card-requests', () => {
               sub: user3Manager.cognitoSub,
             }),
         )
-        .send({ ...newGiftCardRequest, amount: 400 })
+        .send({
+          ...newGiftCardRequest,
+          amount: 400,
+          giftCardIntegrationCurrencyAmount: 4,
+        })
+        .expect(400);
+
+      expect(response.body.message).toEqual(
+        AmountFailsCounstraintException.defaultMessage,
+      );
+    });
+
+    it('/ (POST) - try to create gift card request with wrong amount, giftCardIntegrationCurrencyAmount missmatch', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({
+          ...newGiftCardRequest,
+          giftCardIntegrationCurrencyAmount: 27.001,
+        })
         .expect(400);
 
       expect(response.body.message).toEqual(

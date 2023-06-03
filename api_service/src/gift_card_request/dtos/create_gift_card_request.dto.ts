@@ -1,4 +1,11 @@
-import { IsString, Max, IsNotEmpty, Min, IsInt } from 'class-validator';
+import {
+  IsString,
+  Max,
+  IsNotEmpty,
+  Min,
+  IsInt,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateGiftCardRequestDto {
   @IsString()
@@ -9,4 +16,9 @@ export class CreateGiftCardRequestDto {
   @Min(1)
   @Max(1000000)
   amount: number;
+
+  @IsNumber()
+  @Min(1)
+  @Max(1000000)
+  giftCardIntegrationCurrencyAmount: number;
 }
