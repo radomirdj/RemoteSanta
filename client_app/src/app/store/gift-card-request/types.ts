@@ -109,6 +109,7 @@ export interface SetGiftCardRequestStepBackPayload {
 export interface PostGiftCardRequestPayload {
   giftCardIntegrationId: string;
   amount: number;
+  giftCardIntegrationCurrencyAmount: number;
 }
 
 export interface PostGiftCardRequestFailurePayload {

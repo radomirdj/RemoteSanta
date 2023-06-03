@@ -39,6 +39,8 @@ const GiftCardRequestOverview = () => {
         {
           giftCardIntegrationId: giftCardIntegration?.id || "",
           amount: giftCardRequestAmount,
+          giftCardIntegrationCurrencyAmount:
+            giftCardRequestAmountInIntegrationCurrency,
         },
         navigate
       )
