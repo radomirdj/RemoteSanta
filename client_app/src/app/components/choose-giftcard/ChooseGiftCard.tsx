@@ -29,10 +29,8 @@ import ChooseAmount from "./ChooseAmount";
 import GiftCardRequestOverview from "./GiftCardRequestOverview";
 import SearchIcon from "@mui/icons-material/Search";
 import DeclineIllustration from "./../../assets/illustrations/decline-gift-card-request-illustration.svg";
-import { countryList, ICountry } from "../../enums/CountryList";
+import { countryList } from "../../enums/CountryList";
 import { getAuthUserSelector } from "../../store/auth/selectors";
-import { getSelfRequest } from "../../store/auth/actions";
-import { useNavigate } from "react-router-dom";
 
 const ChooseGiftCard = () => {
   const dispatch = useDispatch();

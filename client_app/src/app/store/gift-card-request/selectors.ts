@@ -15,8 +15,15 @@ export const getGiftCardRequestIntegrationSelector = (state: AppState) =>
 export const getGiftCardRequestAmountSelector = (state: AppState) =>
   state.giftCardRequest.giftCardRequestAmount;
 
+export const getGiftCardRequestAmountInIntegrationCurrencySelector = (
+  state: AppState
+) => state.giftCardRequest.giftCardRequestAmountInIntegrationCurrency;
+
 export const getStepperPagetSelector = (state: AppState) =>
   state.giftCardRequest.stepperPage;
 
 export const getErrorSelector = (state: AppState) =>
   state.giftCardRequest.error;
+
+export const getGiftCardIntegrationSelector = (state: AppState) =>
+  state.giftCardRequest.giftCardIntegration;

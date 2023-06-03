@@ -36,6 +36,37 @@ $choose-amount-active-points-font-size:14px;
         margin-left: variables.$base-unit * 3;
 
         .country-item{
+          .MuiFormControl-root {
+            margin: 0px;
+            width: 100%;
+            background-color: white;
+            border-radius: variables.$base-unit *6;
+            height:variables.$base-unit *6;
+            @media screen and (min-width: variables.$breakpoint-md){
+              width: 100%;
+            }
+      
+            @media screen and (max-width: variables.$breakpoint-md){
+              width: 90%;
+            }
+          }
+          .MuiOutlinedInput-root {
+            .MuiOutlinedInput-notchedOutline {
+              border-color: white;
+              height: 44px;
+            }
+          }
+          
+          .MuiInputBase-root{
+            width: 90%;
+            justify-content: center;
+            margin-left:  variables.$base-unit *2;
+            height: variables.$base-unit *6;
+          }
+      
+          .MuiSelect-select {
+            text-align: start;
+          }
           @media screen and (max-width: variables.$breakpoint-md){
            display: inherit;
            justify-content: center;
@@ -81,37 +112,12 @@ $choose-amount-active-points-font-size:14px;
         }
     }
 
-    .MuiFormControl-root {
-      margin: 0px;
-      width: 100%;
-      background-color: white;
-      border-radius: variables.$base-unit *6;
-      height:variables.$base-unit *6;
-      @media screen and (min-width: variables.$breakpoint-md){
-        width: 100%;
-      }
-
-      @media screen and (max-width: variables.$breakpoint-md){
-        width: 90%;
-      }
-
-      .MuiOutlinedInput-root {
-        .MuiOutlinedInput-notchedOutline {
-          border-color: white;
-          height: 44px;
-        }
-      }
-      
-      .MuiInputBase-root{
-        width: 90%;
-        justify-content: center;
-        margin-left:  variables.$base-unit *2;
-        height: variables.$base-unit *6;
-      }
-  
-      .MuiSelect-select {
-        text-align: start;
-      }
+    .points-in-currency-style{
+      font-family: "Montserrat";
+      float: left;
+      margin-bottom: variables.$base-unit;
+      font-size: $choose-amount-active-points-font-size;
+      color: variables.$color-neutral-gray;
     }
 
     .empty-content{

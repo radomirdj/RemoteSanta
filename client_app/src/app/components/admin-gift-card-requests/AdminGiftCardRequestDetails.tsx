@@ -44,6 +44,8 @@ const AdminGiftCardRequestDetails = () => {
     navigate(-1);
   };
 
+  console.log(adminGiftCardRequest);
+
   const {
     register: registerDecline,
     formState: { errors: errorsDecline },
@@ -123,6 +125,17 @@ const AdminGiftCardRequestDetails = () => {
                     {new Date(adminGiftCardRequest?.createdAt || "")
                       .toLocaleDateString("en-GB")
                       .replaceAll("/", ".")}
+                  </Grid>
+                </Grid>
+              </Typography>
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Currency Amount</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.giftCardIntegrationCurrencyAmount}{" "}
+                    {adminGiftCardRequest?.giftCardIntegration.currency}
                   </Grid>
                 </Grid>
               </Typography>

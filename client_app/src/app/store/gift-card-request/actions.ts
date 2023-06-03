@@ -15,6 +15,9 @@ import {
   FETCH_GIFT_CARD_FILE,
   FETCH_GIFT_CARD_FILE_SUCCESS,
   FETCH_GIFT_CARD_FILE_FAILURE,
+  FETCH_GIFT_CARD_INTEGRATION,
+  FETCH_GIFT_CARD_INTEGRATION_SUCCESS,
+  FETCH_GIFT_CARD_INTEGRATION_FAILURE,
 } from "./actionTypes";
 import {
   FetchGiftCardRequestList,
@@ -45,6 +48,12 @@ import {
   FetchGiftCardFileFailure,
   FetchGiftCardFileFailurePayload,
   FetchGiftCardIntegrationListPayload,
+  FetchGiftCardIntegration,
+  FetchGiftCardIntegrationPayload,
+  FetchGiftCardIntegrationSuccessPayload,
+  FetchGiftCardIntegrationSuccess,
+  FetchGiftCardIntegrationFailure,
+  FetchGiftCardIntegrationFailurePayload,
 } from "./types";
 
 export const fetchGiftCardRequestList = (): FetchGiftCardRequestList => ({
@@ -146,5 +155,26 @@ export const fetchGiftCardFileFailure = (
   payload: FetchGiftCardFileFailurePayload
 ): FetchGiftCardFileFailure => ({
   type: FETCH_GIFT_CARD_FILE_FAILURE,
+  payload,
+});
+
+export const fetchGiftCardIntegration = (
+  payload: FetchGiftCardIntegrationPayload
+): FetchGiftCardIntegration => ({
+  type: FETCH_GIFT_CARD_INTEGRATION,
+  payload,
+});
+
+export const fetchGiftCardIntegrationSuccess = (
+  payload: FetchGiftCardIntegrationSuccessPayload
+): FetchGiftCardIntegrationSuccess => ({
+  type: FETCH_GIFT_CARD_INTEGRATION_SUCCESS,
+  payload,
+});
+
+export const fetchGiftCardIntegrationFailure = (
+  payload: FetchGiftCardIntegrationFailurePayload
+): FetchGiftCardIntegrationFailure => ({
+  type: FETCH_GIFT_CARD_INTEGRATION_FAILURE,
   payload,
 });

@@ -16,6 +16,9 @@ import {
   SET_GIFT_CARD_REQUEST_INTEGRATION,
   SET_GIFT_CARD_REQUEST_RESET_DATA,
   SET_GIFT_CARD_REQUEST_STEP_BACK,
+  FETCH_GIFT_CARD_INTEGRATION,
+  FETCH_GIFT_CARD_INTEGRATION_SUCCESS,
+  FETCH_GIFT_CARD_INTEGRATION_FAILURE,
 } from "./actionTypes";
 
 import { GiftCardRequestActions, GiftCardRequestState } from "./types";
@@ -24,9 +27,11 @@ const initialState: GiftCardRequestState = {
   pending: false,
   giftCardRequestList: [],
   giftCardIntegrationList: [],
+  giftCardIntegration: null,
   giftCardRequestIntegration: null,
   stepperPage: 0,
   giftCardRequestAmount: 0,
+  giftCardRequestAmountInIntegrationCurrency: 0,
   error: null,
 };
 
@@ -82,6 +87,8 @@ export default (state = initialState, action: GiftCardRequestActions) => {
         ...state,
         pending: false,
         giftCardRequestAmount: action.payload.amount,
+        giftCardRequestAmountInIntegrationCurrency:
+          action.payload.amountInIntegrationCurrency,
         stepperPage: 2,
       };
     case SET_GIFT_CARD_REQUEST_STEP_BACK:
@@ -141,6 +148,25 @@ export default (state = initialState, action: GiftCardRequestActions) => {
       return {
         ...state,
         pending: false,
+        error: action.payload.error,
+      };
+    case FETCH_GIFT_CARD_INTEGRATION:
+      return {
+        ...state,
+        pending: true,
+      };
+    case FETCH_GIFT_CARD_INTEGRATION_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        giftCardIntegration: action.payload.giftCardIntegration,
+        error: null,
+      };
+    case FETCH_GIFT_CARD_INTEGRATION_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        giftCardIntegration: null,
         error: action.payload.error,
       };
     default:
