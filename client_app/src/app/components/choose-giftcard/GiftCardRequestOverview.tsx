@@ -9,6 +9,7 @@ import {
   setGiftCardRequestStepBack,
 } from "../../store/gift-card-request/actions";
 import {
+  getGiftCardRequestAmountInIntegrationCurrencySelector,
   getGiftCardRequestAmountSelector,
   getGiftCardRequestIntegrationSelector,
   getStepperPagetSelector,
@@ -20,6 +21,10 @@ const GiftCardRequestOverview = () => {
     getGiftCardRequestIntegrationSelector
   );
   const giftCardRequestAmount = useSelector(getGiftCardRequestAmountSelector);
+  const giftCardRequestAmountInIntegrationCurrency = useSelector(
+    getGiftCardRequestAmountInIntegrationCurrencySelector
+  );
+  const integrationCurrency = giftCardIntegration?.currency || "";
   const user = useSelector(getAuthUserSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,10 +56,9 @@ const GiftCardRequestOverview = () => {
                 {giftCardIntegration?.title}
               </Typography>
               <Typography className="overview-points">
-                {giftCardRequestAmount /
-                  (user.org?.country?.conversionRateToPoints || 1)}{" "}
-                {user.org?.country?.currencyString} = {giftCardRequestAmount}{" "}
-                PTS
+                {giftCardRequestAmount} PTS ={" "}
+                {giftCardRequestAmountInIntegrationCurrency}{" "}
+                {integrationCurrency}
               </Typography>
               <Typography className="overview-amount">{user.email}</Typography>
             </Grid>

@@ -25,11 +25,39 @@ const ChooseAmount = () => {
   const giftCardIntegration = useSelector(
     getGiftCardRequestIntegrationSelector
   );
+  const [pointsToCurrencyMessage, setPointsToCurrencyMessage] =
+    React.useState("");
   const constraintString = JSON.stringify(giftCardIntegration?.constraintJson);
   const constraintJson = JSON.parse(constraintString);
+  const conversionRate =
+    giftCardIntegration?.pointsToCurrencyConversionRate || 1;
+  const integrationCurrencyMin = constraintJson["MIN"];
+  const integrationCurrencyMax = constraintJson["MAX"];
+  const integrationCurrency = giftCardIntegration?.currency || "";
+  const minValue = Math.ceil(integrationCurrencyMin / conversionRate);
+  const maxValue = Math.floor(integrationCurrencyMax / conversionRate);
+  const pointsActive = user.userBalance?.pointsActive || 0;
+  const userBalanceInCurrency = pointsActive * conversionRate;
+
+  const calculateAmountInIntegrationCurrency = (
+    amountInPoints: number,
+    conversionRate: number
+  ) => {
+    const fullAmountInCurrency = amountInPoints * conversionRate;
+    if (conversionRate > 0.1) return Math.floor(fullAmountInCurrency);
+    return Math.floor(fullAmountInCurrency * 100) / 100;
+  };
 
   const onSubmit = (data: any) => {
-    dispatch(setGiftCardRequestAmount({ amount: Number(data.amount) }));
+    dispatch(
+      setGiftCardRequestAmount({
+        amount: Number(data.amount),
+        amountInIntegrationCurrency: calculateAmountInIntegrationCurrency(
+          data.amount,
+          conversionRate
+        ),
+      })
+    );
   };
 
   const onBack = () => {
@@ -45,15 +73,24 @@ const ChooseAmount = () => {
     return false;
   };
 
+  const pointsToCurrency = (points: any) => {
+    const pointsInCurrency = calculateAmountInIntegrationCurrency(
+      points,
+      conversionRate
+    );
+    setPointsToCurrencyMessage(
+      "This is equal to " + pointsInCurrency + " " + integrationCurrency + "."
+    );
+  };
+
   return (
     <>
       <Card className="choose-amount-card">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Typography className="choose-amount-title">Choose Amount</Typography>
           <Typography className="choose-amount-active-points">
-            Your balance is {user.userBalance?.pointsActive} PTS.{" "}
-            {user.org?.country?.conversionRateToPoints} PTS is equal to 1{" "}
-            {user.org?.country?.currencyString}.
+            Your balance is {pointsActive} PTS. This is equal to{" "}
+            {userBalanceInCurrency.toFixed(2)} {giftCardIntegration?.currency}.
           </Typography>
           <TextField
             id="outlined-basic"
@@ -66,7 +103,7 @@ const ChooseAmount = () => {
           <TextField
             error={errors.amount ? true : false}
             id="outlined-basic"
-            label="Amount"
+            label="Amount in PTS"
             placeholder="PTS you want to spend"
             variant="outlined"
             className={
@@ -75,9 +112,10 @@ const ChooseAmount = () => {
             type="number"
             {...register("amount", {
               required: true,
-              min: constraintJson["MIN"],
-              max: constraintJson["MAX"],
+              min: minValue,
+              max: maxValue,
               validate: enoughBalance,
+              onChange: (e) => pointsToCurrency(e.target.value),
             })}
           />
 
@@ -89,13 +127,15 @@ const ChooseAmount = () => {
 
           {errors.amount?.type === "min" && (
             <Typography className="choose-amount-error-fe">
-              The minimum amount is {constraintJson["MIN"]} PTS.
+              The minimum amount is {minValue} PTS ({integrationCurrencyMin}{" "}
+              {integrationCurrency}).
             </Typography>
           )}
 
           {errors.amount?.type === "max" && (
             <Typography className="choose-amount-error-fe">
-              The maximum amount is {constraintJson["MAX"]} PTS.
+              The maximum amount is {maxValue} PTS ({integrationCurrencyMax}{" "}
+              {integrationCurrency}).
             </Typography>
           )}
 
@@ -104,6 +144,9 @@ const ChooseAmount = () => {
               The amount you specified is greater then the amount you have.
             </Typography>
           )}
+          <span className="points-in-currency-style">
+            {pointsToCurrencyMessage}
+          </span>
           <Grid container>
             <Grid item xs={6}>
               <Button

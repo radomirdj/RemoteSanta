@@ -26,6 +26,8 @@ export interface IAdminGiftCardIntegration {
   constraintType: string;
   priority: number;
   constraintJson: string;
+  currency: string;
+  pointsToCurrencyConversionRate?: number;
 }
 
 export interface IAdminGiftCardRequest {
@@ -36,6 +38,7 @@ export interface IAdminGiftCardRequest {
   amount: string;
   status: string;
   giftCardIntegration: IAdminGiftCardIntegration;
+  giftCardIntegrationCurrencyAmount: number;
   createdAt: Date;
   updatedAt: Date;
   user: AuthUser;

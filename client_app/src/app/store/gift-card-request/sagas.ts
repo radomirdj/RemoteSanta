@@ -1,7 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import * as FileSaver from "file-saver";
-import { getGiftCardFile } from "../../services/api-service";
+import {
+  getGiftCardFile,
+  getGiftCardIntegration,
+} from "../../services/api-service";
 import { getSelfRequest } from "../auth/actions";
 import {
   fetchGiftCardIntegrationListFailure,
@@ -16,9 +19,12 @@ import {
   setGiftCardRequestIntegration,
   setGiftCardRequestResetData,
   setGiftCardRequestStepBack,
+  fetchGiftCardIntegrationSuccess,
+  fetchGiftCardIntegrationFailure,
 } from "./actions";
 import {
   FETCH_GIFT_CARD_FILE,
+  FETCH_GIFT_CARD_INTEGRATION,
   FETCH_GIFT_CARD_INTEGRATION_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST,
   POST_GIFT_CARD_REQUEST,
@@ -29,6 +35,7 @@ import {
 } from "./actionTypes";
 import {
   FetchGiftCardFile,
+  FetchGiftCardIntegration,
   FetchGiftCardIntegrationList,
   IGiftCardIntegration,
   IGiftCardRequest,
@@ -46,7 +53,6 @@ const getGiftCardRequestList = (token: string) =>
   });
 
 const getGiftCardIntegrationList = (countryId: string, token: string) => {
-  console.log(countryId);
   return axios.get<IGiftCardIntegration[]>(
     `api/gift-card-integrations/?country=${countryId}`,
     {
@@ -166,6 +172,29 @@ function* fetchGiftCardFileSaga(action: FetchGiftCardFile) {
   }
 }
 
+function* fetchGiftCardIntegrationSaga(action: FetchGiftCardIntegration) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    const response: AxiosResponse<IGiftCardIntegration> = yield call(
+      getGiftCardIntegration,
+      action.payload.giftCardIntegrationId,
+      token
+    );
+    yield put(
+      fetchGiftCardIntegrationSuccess({
+        giftCardIntegration: response.data,
+      })
+    );
+    yield put(setGiftCardRequestIntegration({ integration: response.data }));
+  } catch (e) {
+    yield put(
+      fetchGiftCardIntegrationFailure({
+        error: e.message,
+      })
+    );
+  }
+}
+
 /*
   Starts worker saga on latest dispatched `FETCH_TODO_REQUEST` action.
   Allows concurrent increments.
@@ -200,6 +229,9 @@ function* giftCardRequestSaga() {
   ]);
   yield all([takeLatest(POST_GIFT_CARD_REQUEST, postGiftCardRequestSaga)]);
   yield all([takeLatest(FETCH_GIFT_CARD_FILE, fetchGiftCardFileSaga)]);
+  yield all([
+    takeLatest(FETCH_GIFT_CARD_INTEGRATION, fetchGiftCardIntegrationSaga),
+  ]);
 }
 
 export default giftCardRequestSaga;

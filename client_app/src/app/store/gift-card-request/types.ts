@@ -15,6 +15,9 @@ import {
   FETCH_GIFT_CARD_FILE,
   FETCH_GIFT_CARD_FILE_SUCCESS,
   FETCH_GIFT_CARD_FILE_FAILURE,
+  FETCH_GIFT_CARD_INTEGRATION,
+  FETCH_GIFT_CARD_INTEGRATION_SUCCESS,
+  FETCH_GIFT_CARD_INTEGRATION_FAILURE,
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
@@ -26,6 +29,8 @@ export interface IGiftCardIntegration {
   constraintType: string;
   priority: number;
   constraintJson: string;
+  currency: string;
+  pointsToCurrencyConversionRate?: number;
 }
 
 export interface IGiftCardFile {
@@ -48,9 +53,11 @@ export interface GiftCardRequestState {
   pending: boolean;
   giftCardRequestList: IGiftCardRequest[];
   giftCardIntegrationList: IGiftCardIntegration[];
+  giftCardIntegration: IGiftCardIntegration | null;
   giftCardRequestIntegration: IGiftCardIntegration | null;
   stepperPage: number;
   giftCardRequestAmount: number;
+  giftCardRequestAmountInIntegrationCurrency: number;
   error: string | null;
 }
 
@@ -74,12 +81,25 @@ export interface FetchGiftCardIntegrationListFailurePayload {
   error: string;
 }
 
+export interface FetchGiftCardIntegrationPayload {
+  giftCardIntegrationId: string;
+}
+
+export interface FetchGiftCardIntegrationSuccessPayload {
+  giftCardIntegration: IGiftCardIntegration;
+}
+
+export interface FetchGiftCardIntegrationFailurePayload {
+  error: string;
+}
+
 export interface SetGiftCardIntegrationPayload {
   integration: IGiftCardIntegration;
 }
 
 export interface SetGiftCardAmountPayload {
   amount: number;
+  amountInIntegrationCurrency: number;
 }
 
 export interface SetGiftCardRequestStepBackPayload {
@@ -180,6 +200,21 @@ export interface FetchGiftCardFileFailure {
   payload: FetchGiftCardFileFailurePayload;
 }
 
+export interface FetchGiftCardIntegration {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION;
+  payload: FetchGiftCardIntegrationPayload;
+}
+
+export interface FetchGiftCardIntegrationSuccess {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_SUCCESS;
+  payload: FetchGiftCardIntegrationSuccessPayload;
+}
+
+export interface FetchGiftCardIntegrationFailure {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_FAILURE;
+  payload: FetchGiftCardIntegrationFailurePayload;
+}
+
 export type GiftCardRequestActions =
   | FetchGiftCardRequestListFailure
   | FetchGiftCardRequestListSuccess
@@ -196,4 +231,7 @@ export type GiftCardRequestActions =
   | PostGiftCardRequestFailure
   | FetchGiftCardFile
   | FetchGiftCardFileSuccess
-  | FetchGiftCardFileFailure;
+  | FetchGiftCardFileFailure
+  | FetchGiftCardIntegration
+  | FetchGiftCardIntegrationSuccess
+  | FetchGiftCardIntegrationFailure;

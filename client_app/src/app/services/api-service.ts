@@ -26,7 +26,10 @@ import {
   PostAdminInvitePayload,
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
-import { FetchGiftCardFilePayload } from "../store/gift-card-request/types";
+import {
+  FetchGiftCardFilePayload,
+  IGiftCardIntegration,
+} from "../store/gift-card-request/types";
 import {
   DeleteOrgUserPayload,
   FetchOrgUserPayload,
@@ -303,3 +306,14 @@ export const sendPointsToUserUserManager = (
     }
   );
 };
+
+export const getGiftCardIntegration = (
+  giftCardIntegrationId: string,
+  token: string
+) =>
+  api.get<IGiftCardIntegration>(
+    `/gift-card-integrations/${giftCardIntegrationId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
