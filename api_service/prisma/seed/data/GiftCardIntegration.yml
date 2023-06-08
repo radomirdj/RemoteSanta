@@ -1562,3 +1562,158 @@
   currency: INR
   constraintType: LIST
   constraintJson: [1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+
+# Mexico
+- id: bd3a003e-31b7-4292-928d-c32419e6fa6e
+  priority: 10
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.amazon.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: USD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 5, 'MAX': 500 }
+
+- id: 38fcc2ff-b6b9-47b2-b340-3d6d74bd95b4
+  priority: 20
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://play.google.com/store/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/googleplay.png
+  title: Google Play
+  description: Google Play is the official app store for certified devices running on the Android operating system and its derivatives, as well as ChromeOS. It also serves as a digital media store, offering games, music, books, movies, and television programs.
+  currency: USD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 25, 'MAX': 200 }
+
+- id: f1056004-8032-4218-8c9c-4336ab2b62dd
+  priority: 30
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.fortnite.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_fortnite.png
+  title: Fortnite
+  description: Fortnite is a popular online video game developed by Epic Games. Fortnite is a multiplayer game that allows players to engage in a battle royale-style gameplay mode where up to 100 players compete against each other to be the last person standing.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 40, 100]
+
+- id: 4f3a3899-7601-493b-9733-4b0e10b6a9ac
+  priority: 40
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.jawaker.com/en
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_jawaker.png
+  title: Jawaker
+  description: Jawaker allows users to create accounts, join game rooms, and play against other players in real-time. It also offers features like chat functionality, leaderboards, tournaments, and various game modes to enhance the gaming experience.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [1, 5, 10, 20, 30, 50, 100]
+
+- id: c6524927-3a19-4010-8440-9dcd489ba8f6
+  priority: 50
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.pubgmobile.com/home.shtml
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_pubg.png
+  title: PUBG Mobile
+  description: Jawaker allows users to create accounts, join game rooms, and play against other players in real-time. It also offers features like chat functionality, leaderboards, tournaments, and various game modes to enhance the gaming experience.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [0.99, 4.99, 9.99, 24.99, 49.99, 99.99]
+
+- id: 1300a699-6b3f-43df-a610-ff5ba82eb489
+  priority: 60
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.riotgames.com/en
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_riot.png
+  title: RIOT Games
+  description: Riot Games is a video game developer and publisher known for creating popular online multiplayer games. Riot Games is best known for developing League of Legends (LoL), which is one of the most successful and widely played online games in the world.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 25, 50, 80]
+
+- id: a6159087-439c-4504-8562-f1df11e3f953
+  priority: 70
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://usa.visa.com/pay-with-visa
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_visa.png
+  title: Visa
+  description: Visa is a financial services corporation that facilitates electronic funds transfers throughout the world. It provides financial institutions, merchants and consumers with a wide range of products and services related to digital payments.
+  currency: USD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 5, 'MAX': 99 }
+
+- id: cea1b3db-fbd0-46db-868a-4b7ef386d1fd
+  priority: 80
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://m.mobilelegends.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_mobilelegends.png
+  title: Mobile Legends
+  description: Mobile Legends Bang Bang, often referred to as simply Mobile Legends, is a popular multiplayer online battle arena (MOBA) game developed and published by Moonton. It is available for mobile devices, including iOS and Android.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [0.99, 4.99, 9.99, 19.99, 29.99, 49.99, 99.99]
+
+- id: 89d6523b-86b1-4550-a307-7bb6b8b2ceaa
+  priority: 90
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://steamcommunity.com/app/1168880
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_molek.png
+  title: Molek Syntez
+  description: Molek-Syntez" is a video game developed by Zachtronics, an independent game development studio known for creating puzzle and programming games. Players assume the role of an alchemist working in a remote and abandoned chemical research facility.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [9.99]
+
+- id: 4c622eb5-44ce-4414-be7a-10cf6f337fee
+  priority: 100
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://play.runescape.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_runescape.png
+  title: RuneScape
+  description: RuneScape is a massively multiplayer online role-playing game (MMORPG) developed and published by Jagex. It was first released in 2001 and has since become one of the longest-running and most popular MMORPGs.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 25]
+# - id: 8dd3408a-8c27-4192-9cbc-a6e3fafbb595
+#   priority: 110
+#   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+#   website: https://www.xbox.com/
+#   image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_xbox.png
+#   title: XBOX
+#   description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
+#   currency: MXN
+#   constraintType: LIST
+#   constraintJson: [ 349, 549, 999 ]
+
+# - id: 5a2be503-7ac9-40e4-b10e-5774c6a82f40
+#   priority: 120
+#   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+#   website: https://www.blizzard.com/en-us/
+#   image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_blizzard.png
+#   title: Blizzard
+#   description: Blizzard Entertainment is a renowned video game developer and publisher known for creating popular and influential game franchises. The company was founded in 1991 and has headquarters in Irvine, California.
+#   currency: MXN
+#   constraintType: LIST
+#   constraintJson: [ 150, 350 ]
+
+# - id: 8e1b0859-f381-4a52-b4d6-07e7f1f75f35
+#   priority: 130
+#   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+#   website: https://www.uber.com/
+#   image: https://brandimagescards.s3.us-east-2.amazonaws.com/uber.png
+#   title: Uber
+#   description: Uber is ride-hailing and transportation network company that operates in over 900 areas worldwide. In addition to ride-hailing, Uber has expanded into other areas such as food delivery (Uber Eats) and electric bike and scooter rentals (Uber Jump).
+#   currency: MXN
+#   constraintType: LIST
+#   constraintJson: [ 300 ]
+
+# - id: bfdd788a-3418-4688-8e5a-604f626444c6
+#   priority: 140
+#   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+#   website: https://www.minecraft.net/en-us
+#   image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_minecraft.png
+#   title: Minecraft
+#   description: Minecraft is a popular sandbox video game that allows players to explore and create virtual worlds made up of blocks. It was created by Swedish game developer Markus Persson and later developed and published by Mojang Studios.
+#   currency: MXN
+#   constraintType: LIST
+#   constraintJson: [ 177, 349 ]
+
