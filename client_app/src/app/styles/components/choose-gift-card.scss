@@ -140,6 +140,12 @@ $choose-amount-active-points-font-size:14px;
         height: variables.$base-unit * 42;
       }
     }
+
+    .amount-input-list-with-error {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: variables.$error-color;
+      }
+    }
       
       .MuiStepper-root{
         @media screen and (min-width: variables.$breakpoint-md){
@@ -262,6 +268,10 @@ $choose-amount-active-points-font-size:14px;
   
       .MuiFormLabel-root.Mui-error {
         color: variables.$color-gray;
+      }
+
+      .MuiSelect-select {
+        text-align: start;
       }
     }
     .choose-amount-error-fe {
