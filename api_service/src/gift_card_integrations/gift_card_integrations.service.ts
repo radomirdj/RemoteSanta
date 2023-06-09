@@ -58,6 +58,19 @@ export class GiftCardIntegrationsService {
         }
         return integration;
 
+      case IntegrationConsraintTypeEnum.LIST:
+        const listConstraint =
+          integration.constraintJson as unknown as number[];
+        const foundElement = listConstraint.find(
+          (listConstraintElement) =>
+            Math.abs(
+              giftCardIntegrationCurrencyAmount - listConstraintElement,
+            ) < Number.EPSILON,
+        );
+
+        if (!foundElement) throw new AmountFailsCounstraintException();
+        return integration;
+
       default:
         throw new AmountFailsCounstraintException();
     }

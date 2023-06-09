@@ -215,6 +215,18 @@ export const giftCardIntegrationSrb = {
   constraintJson: { MIN: 500, MAX: 100000 },
 };
 
+export const giftCardIntegrationIndia = {
+  id: '8bb5a64a-b294-4891-ae19-aa33621b2c98',
+  priority: 10,
+  website: 'https://www.trends.ajio.com/',
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/ind_trends.png',
+  title: 'Trends',
+  description:
+    'The Trends available on the AJIO store may include clothing styles like athleisure, bohemian, streetwear, ethnic wear, or seasonal fashion trends like floral prints, pastel colors, or statement accessories.',
+  constraintType: 'LIST',
+  constraintJson: [500, 1000, 1500, 2000, 2500, 3000, 5000, 7500],
+};
+
 export const giftCardRequestList = [
   {
     id: '9794fc09-68ee-4f3d-ac3f-b5ea759021ca',
