@@ -18,7 +18,7 @@ export class CreateGiftCardRequestDto {
   amount: number;
 
   @IsNumber()
-  @Min(1)
+  @Min(0.1)
   @Max(1000000)
   giftCardIntegrationCurrencyAmount: number;
 }
