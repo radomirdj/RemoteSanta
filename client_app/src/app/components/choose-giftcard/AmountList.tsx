@@ -93,6 +93,7 @@ const AmountList = () => {
               required: true,
               validate: enoughBalance,
             })}
+            defaultValue={amountArray[0].amountInCurrency}
           >
             {amountArray.map((amountObject: any, i: string) => {
               return (
