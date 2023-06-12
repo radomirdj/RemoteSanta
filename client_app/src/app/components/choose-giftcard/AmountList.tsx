@@ -59,7 +59,7 @@ const AmountList = () => {
           data.amount,
           conversionRate
         ),
-        amountInIntegrationCurrency: data.amount,
+        amountInIntegrationCurrency: Number(data.amount),
       })
     );
   };
