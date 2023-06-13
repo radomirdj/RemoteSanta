@@ -101,15 +101,15 @@ const AmountMinMax = () => {
 
         {errors.amount?.type === "min" && (
           <Typography className="choose-amount-error-fe">
-            The minimum amount is {minValue} PTS ({integrationCurrencyMin}{" "}
-            {integrationCurrency}).
+            This shop has a minimum amount of {minValue} PTS (
+            {integrationCurrencyMin} {integrationCurrency}).
           </Typography>
         )}
 
         {errors.amount?.type === "max" && (
           <Typography className="choose-amount-error-fe">
-            The maximum amount is {maxValue} PTS ({integrationCurrencyMax}{" "}
-            {integrationCurrency}).
+            This shop has a maximum amount of {maxValue} PTS (
+            {integrationCurrencyMax} {integrationCurrency}).
           </Typography>
         )}
 
