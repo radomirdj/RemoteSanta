@@ -58,11 +58,7 @@ const Registration = () => {
   };
 
   const onSubmit = (data: any) => {
-    const birthDate = createUTCDate(
-      data.birthDate.$y,
-      data.birthDate.$M,
-      data.birthDate.$D
-    );
+    const birthDate = `1900-${data.birthDate.$M}-${data.birthDate.$D}T00:00:00.000Z`;
 
     dispatch(
       signUpRequest(
@@ -71,7 +67,7 @@ const Registration = () => {
           lastName: data.lastName,
           code: code || "",
           password: data.password,
-          birthDate,
+          birthDate: birthDate,
           gender: data.gender,
           countryId: data.country,
         },

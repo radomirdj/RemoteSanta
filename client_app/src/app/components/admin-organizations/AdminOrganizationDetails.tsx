@@ -67,9 +67,13 @@ const AdminOrganizationDetails = () => {
     (adminOrganizationTransaction) => {
       return {
         type: adminOrganizationTransaction.type,
-        createdAt: new Date(adminOrganizationTransaction.createdAt)
-          .toLocaleDateString("en-GB")
-          .replaceAll("/", "."),
+        createdAt: new Date(
+          adminOrganizationTransaction.createdAt
+        ).toLocaleDateString("en-US", {
+          day: "numeric",
+          year: "numeric",
+          month: "short",
+        }),
         event:
           adminOrganizationTransaction.event?.title &&
           adminOrganizationTransaction.event?.title
@@ -79,9 +83,11 @@ const AdminOrganizationDetails = () => {
                 adminOrganizationTransaction.event?.validTo
                   ? adminOrganizationTransaction.event?.validTo
                   : ""
-              )
-                .toLocaleDateString("en-GB")
-                .replaceAll("/", ".")
+              ).toLocaleDateString("en-US", {
+                day: "numeric",
+                year: "numeric",
+                month: "short",
+              })
             : "",
         amount: adminOrganizationTransaction.totalAmount + " PTS",
         id: adminOrganizationTransaction.id,

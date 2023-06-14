@@ -26,9 +26,24 @@ export const calculatePointsFromIntegrationCurrencyUpper = (
   return Math.ceil(amountInCurrency / conversionRate);
 };
 
+const getMonthName = (monthNumber: number) => {
+  const date = new Date();
+  date.setMonth(monthNumber - 1);
+
+  return date.toLocaleString("en-US", { month: "long" });
+};
+
+export const createBirthdayFromUTCString = (birthDateString: string) => {
+  const birthDate = new Date(birthDateString);
+  return `${getMonthName(
+    birthDate.getUTCMonth() + 1
+  )} ${birthDate.getUTCDate()}`;
+};
+
 export const Utils = {
   getEmailRegex,
   getPasswordRegex,
   calculateAmountInIntegrationCurrencyLower,
   calculatePointsFromIntegrationCurrencyUpper,
+  createBirthdayFromUTCString,
 };
