@@ -286,6 +286,7 @@ export class AdminOrgsService {
       message,
       orgName,
       user.firstName,
+      amount,
     );
 
     return orgToEmployeeTransaction;

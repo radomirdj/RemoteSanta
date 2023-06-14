@@ -103,11 +103,14 @@ export class EmailsService {
     message: string,
     orgName: string,
     firstName: string,
+    amount: number,
   ) {
     return this.sendEmail('send-points', to, {
       message,
       orgName,
       firstName,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
+      amount
     });
   }
 
