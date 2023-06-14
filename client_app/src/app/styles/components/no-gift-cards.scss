@@ -2,6 +2,7 @@
 
 $main-text-width: 50%;
 $main-text-phone-width: 80%;
+$points-font-size:18px;
 
 .no-gift-cards{
     background-color: variables.$main-yellow;
@@ -30,16 +31,12 @@ $main-text-phone-width: 80%;
         }
     }
 
-    .no-gift-cards-link{
-        font-family: "Montserrat";
-        cursor: pointer;
-        width: max-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .no-gift-cards-points{
         font-family: "Montserrat";
+        margin-bottom: variables.$base-unit ;
+        font-size: $points-font-size;
+        font-weight: 500;
+        margin-top: variables.$base-unit * 4;
     }
 
     .no-gift-cards-illustration{
@@ -47,5 +44,25 @@ $main-text-phone-width: 80%;
         margin-right: auto;
         margin-top: variables.$base-unit *4;
         width: variables.$base-unit * 44;
+    }
+
+    .use-points-button,
+        & .use-points-button:hover {
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit * 5;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        height: variables.$base-unit * 6;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit * 2;
+        margin-right: variables.$base-unit ;
+        text-align: center;
+        width: variables.$base-unit * 30;
+    }
+
+    .gift-icon-style{
+        margin-right: variables.$base-unit;
+        margin-bottom: 4px;
     }
 }
