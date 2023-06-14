@@ -69,7 +69,7 @@ export interface SignUpRequestPayload {
   lastName: string;
   code: string;
   password: string;
-  birthDate: string;
+  birthDate?: Date;
   gender: string;
   countryId: string;
 }
