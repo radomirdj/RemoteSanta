@@ -36,24 +36,64 @@ $points-font-size:20px;
               }
         } 
 
-        .home-title-right{
+        .home-balance{
             font-weight: 500;
+            font-family: "Montserrat";
             cursor: pointer;
+            width: max-content;
+            @media screen and (min-width: variables.$breakpoint-md) {
+          
+                font-size: variables.$font-size-large;
+            }
+
             @media screen and (max-width: variables.$breakpoint-md) {
-                font-family: "Montserrat";
-                font-size: $points-font-size;
-                width: max-content;
                 margin-left: variables.$base-unit * 2;
+                font-size: $points-font-size;
+            }
+        } 
+
+        .button-item{
+            display: flex;
+            justify-content: end;
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                justify-content: start; 
+                margin-top: variables.$base-unit;
               }
             
-              @media screen and (min-width: variables.$breakpoint-md) {
-                font-family: "Montserrat";
-                font-size: variables.$font-size-title;
-                width: max-content;
-                float: right;
-                margin-right: $margin-right;
+              @media screen and (min-width: variables.$breakpoint-sm) {
+                justify-content: end;
+                margin-top: variables.$base-unit * 3;
               }
-        } 
+
+            .use-points-button,
+                & .use-points-button:hover {
+                background-color: variables.$color-dark-yellow;
+                border-radius: variables.$base-unit * 5;
+                box-shadow: none;
+                color: variables.$color-neutral-black;
+                text-transform: none;
+                height: variables.$base-unit * 6;
+                font-weight: bold;
+                margin-bottom: variables.$base-unit * 2;
+                margin-right: variables.$base-unit ;
+                text-align: center;
+
+                @media screen and (max-width: variables.$breakpoint-sm) {
+                    margin-left: variables.$base-unit * 2;
+                    width: variables.$base-unit * 30;
+                  }
+                
+                  @media screen and (min-width: variables.$breakpoint-sm) {
+                    width: 50%;
+                  }
+            }
+
+            .gift-icon-style{
+                margin-right: variables.$base-unit;
+                margin-bottom: 4px;
+            }
+        }
+
 
         .home-text{
             font-family: "Montserrat";
@@ -63,24 +103,15 @@ $points-font-size:20px;
             color: variables.$color-neutral-gray;
             padding-bottom: variables.$base-unit ;
             @media screen and (max-width: variables.$breakpoint-md) {
+                margin-top: variables.$base-unit*2 ;
                 margin-left: variables.$base-unit * 2;
+            }
+
+            @media screen and (min-width: variables.$breakpoint-md) {
+                margin-top: variables.$base-unit *3;
             }
         }
 
-        .home-link{
-            cursor: pointer;
-        }
-
-        .home-text-right{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-medium;
-            margin-bottom: variables.$base-unit ;
-            width: max-content;
-            color: variables.$color-neutral-gray;
-            padding-bottom: variables.$base-unit ;
-            float: right;
-            margin-right: $margin-right;
-        }
 
         .card-item{
             background-color: rgb(253, 222, 146, 0.5);

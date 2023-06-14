@@ -1,4 +1,4 @@
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { Button, Grid, Tooltip, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { getClaimPointsEventListSelector } from "../../store/claim-points-event/
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import ClaimPointsEventItem from "./ClaimPointsEventItem";
+import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -45,11 +46,10 @@ const Home = () => {
             <Typography className="home-title">
               Hello {user.firstName}
             </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6}>
+
             <Tooltip
               title={`${user.org?.country?.conversionRateToPoints} PTS is equal to 1 ${user.org?.country?.currencyString}`}
-              placement="left"
+              placement="right"
               PopperProps={{
                 sx: {
                   "& .MuiTooltip-tooltip": {
@@ -65,22 +65,23 @@ const Home = () => {
                 },
               }}
             >
-              <Typography className="home-title-right">
-                {user.userBalance?.pointsActive} PTS
+              <Typography className="home-balance">
+                Your balance is {user.userBalance?.pointsActive} points.
               </Typography>
             </Tooltip>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography className="home-text">Upcoming events</Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography className="home-text-right">
-              Use your points{" "}
-              <u onClick={chooseGiftCardRedirect} className="home-link">
-                now
-              </u>
-              .
+            <Typography className="home-text">
+              {" "}
+              {user.org?.name}'s upcoming events
             </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} className="button-item">
+            <Button
+              onClick={chooseGiftCardRedirect}
+              className="use-points-button"
+            >
+              <img src={GiftIconBlack} alt="" className="gift-icon-style" /> Use
+              your points now
+            </Button>
           </Grid>
           {filteredList.map((element, i) => {
             return (
