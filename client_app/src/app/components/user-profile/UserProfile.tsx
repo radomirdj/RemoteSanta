@@ -1,4 +1,4 @@
-import { Avatar, Card, Grid, TextField } from "@mui/material";
+import { Card, Grid, TextField } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import React, { useEffect } from "react";
@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
-import AvatarMale from "./../../assets/avatars/avatar-male.svg";
-import AvatarFemale from "./../../assets/avatars/avatar-female.svg";
 import { useNavigate } from "react-router-dom";
 import { getSelfRequest } from "../../store/auth/actions";
+import { createBirthdayFromUTCString } from "../../utils/Utils";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -19,6 +18,17 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(getSelfRequest(navigate));
   }, [dispatch]);
+
+  if (user.birthDate) {
+    const birthDate = new Date(user.birthDate || "");
+    console.log(
+      birthDate,
+      user.birthDate,
+      birthDate.getUTCDate(),
+      birthDate.getUTCMonth() + 1,
+      birthDate.getUTCHours()
+    );
+  }
 
   return (
     <>
@@ -60,17 +70,16 @@ const UserProfile = () => {
                   disabled
                   value={user.gender}
                 />
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="Basic example"
-                    value={user.birthDate}
-                    onChange={(newValue) => {
-                      console.log();
-                    }}
+                {user.birthDate && (
+                  <TextField
+                    id="outlined-basic"
+                    label="Date of Birth"
+                    variant="outlined"
+                    className="user-profile-input"
                     disabled
-                    renderInput={(params) => <TextField {...params} />}
+                    value={createBirthdayFromUTCString(user.birthDate || "")}
                   />
-                </LocalizationProvider>
+                )}
               </form>
             </Card>
           </Grid>

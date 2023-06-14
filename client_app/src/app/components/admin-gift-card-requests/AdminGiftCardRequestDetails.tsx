@@ -122,9 +122,13 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name">Created At</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {new Date(adminGiftCardRequest?.createdAt || "")
-                      .toLocaleDateString("en-GB")
-                      .replaceAll("/", ".")}
+                    {new Date(
+                      adminGiftCardRequest?.createdAt || ""
+                    ).toLocaleDateString("en-US", {
+                      day: "numeric",
+                      year: "numeric",
+                      month: "short",
+                    })}
                   </Grid>
                 </Grid>
               </Typography>

@@ -30,6 +30,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
 import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
 import { countryList } from "../../enums/CountryList";
+import dayjs from "dayjs";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -58,11 +59,7 @@ const Registration = () => {
   };
 
   const onSubmit = (data: any) => {
-    const birthDate = createUTCDate(
-      data.birthDate.$y,
-      data.birthDate.$M,
-      data.birthDate.$D
-    );
+    const birthDate = createUTCDate(1900, data.birthDate.$M, data.birthDate.$D);
 
     dispatch(
       signUpRequest(
@@ -71,7 +68,7 @@ const Registration = () => {
           lastName: data.lastName,
           code: code || "",
           password: data.password,
-          birthDate,
+          birthDate: birthDate,
           gender: data.gender,
           countryId: data.country,
         },
@@ -198,14 +195,15 @@ const Registration = () => {
                         render={({ field }) => (
                           <DatePicker
                             label="Date of birth"
-                            disableFuture
                             value={field.value}
+                            inputFormat="MM/DD"
                             onChange={(date) => field.onChange(date)}
                             className={
                               errors.birthDate
                                 ? "registration-date-with-error split-input"
                                 : "registration-input"
                             }
+                            disableOpenPicker={true}
                             renderInput={(params: any) => (
                               <TextField {...params} />
                             )}

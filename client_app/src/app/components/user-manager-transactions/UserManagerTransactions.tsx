@@ -48,9 +48,13 @@ const UserManagerTransactions = () => {
           organizationTransaction.type === "ADMIN_TO_ORG"
             ? "PAYMENT"
             : organizationTransaction.type,
-        createdAt: new Date(organizationTransaction.createdAt)
-          .toLocaleDateString("en-GB")
-          .replaceAll("/", "."),
+        createdAt: new Date(
+          organizationTransaction.createdAt
+        ).toLocaleDateString("en-US", {
+          day: "numeric",
+          year: "numeric",
+          month: "short",
+        }),
         event: organizationTransaction.event?.title,
         amount: organizationTransaction.totalAmount + " PTS",
         id: organizationTransaction.id,

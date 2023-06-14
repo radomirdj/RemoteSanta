@@ -44,7 +44,7 @@ export interface AuthUser {
   firstName: string;
   lastName: string;
   email: string;
-  birthDate: Date | undefined;
+  birthDate: string | undefined;
   gender: string;
   accessToken: string;
   userRole: string;
@@ -69,7 +69,7 @@ export interface SignUpRequestPayload {
   lastName: string;
   code: string;
   password: string;
-  birthDate: Date;
+  birthDate?: Date;
   gender: string;
   countryId: string;
 }
