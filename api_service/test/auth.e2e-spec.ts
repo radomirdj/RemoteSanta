@@ -226,21 +226,21 @@ describe('Authentication system', () => {
       await prisma.user.delete({ where: { email: userInviteOrg2.email } });
     });
 
-    it('/signup (POST) - with good params to broke org', async () => {
+    it('/signup (POST) - with good params to broke org - user without birthday', async () => {
+      const { birthDate, ...userWithoutBirthday } = newUser;
       const response = await request(app.getHttpServer())
         .post('/users/signup')
-        .send({ ...newUser, code: userInviteBrokeOrg.code })
+        .send({ ...userWithoutBirthday, code: userInviteBrokeOrg.code })
         .expect(201);
-
       expectUserRsp(response.body, {
-        ...newUser,
+        ...userWithoutBirthday,
         userRole: UserRoleEnum.BASIC_USER,
         email: userInviteBrokeOrg.email,
         orgName: userInviteBrokeOrg.orgName,
       });
       await expectUserInDB(
         {
-          ...newUser,
+          ...userWithoutBirthday,
           email: userInviteBrokeOrg.email,
           userRole: UserRoleEnum.BASIC_USER,
         },

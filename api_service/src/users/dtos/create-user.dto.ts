@@ -4,6 +4,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsUUID,
+  IsOptional,
 } from 'class-validator';
 import { GenderEnum } from '@prisma/client';
 
@@ -25,7 +26,8 @@ export class CreateUserDto {
   lastName: string;
 
   @IsDateString()
-  birthDate: Date;
+  @IsOptional()
+  birthDate?: Date;
 
   @IsString()
   @IsEnum(GenderEnum)
