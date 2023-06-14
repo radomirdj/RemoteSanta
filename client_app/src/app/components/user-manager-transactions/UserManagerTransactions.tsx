@@ -44,7 +44,10 @@ const UserManagerTransactions = () => {
   const rows: GridRowsProp = organizationTransactionList.map(
     (organizationTransaction) => {
       return {
-        type: organizationTransaction.type,
+        type:
+          organizationTransaction.type === "ADMIN_TO_ORG"
+            ? "PAYMENT"
+            : organizationTransaction.type,
         createdAt: new Date(organizationTransaction.createdAt)
           .toLocaleDateString("en-GB")
           .replaceAll("/", "."),
