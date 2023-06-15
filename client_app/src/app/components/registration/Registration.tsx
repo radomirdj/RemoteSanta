@@ -31,6 +31,7 @@ import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
 import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
 import { countryList } from "../../enums/CountryList";
 import dayjs from "dayjs";
+import { SignUpRequestPayload } from "../../store/auth/types";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -60,27 +61,29 @@ const Registration = () => {
 
   const onSubmit = (data: any) => {
     const birthDate = data.birthDate
-      ? createUTCDate(1900, data.birthDate.$M, data.birthDate.$D)
+      ? createUTCDate(2000, data.birthDate.$M, data.birthDate.$D)
       : undefined;
-
-    dispatch(
-      signUpRequest(
-        {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          code: code || "",
-          password: data.password,
-          birthDate: birthDate,
-          gender: data.gender,
-          countryId: data.country,
-        },
-        navigate
-      )
-    );
+    let body: SignUpRequestPayload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      code: code || "",
+      password: data.password,
+      gender: data.gender,
+      countryId: data.country,
+    };
+    if (birthDate) body.birthDate = birthDate;
+    dispatch(signUpRequest(body, navigate));
   };
 
   const loginRedirect = () => {
     navigate("/login");
+  };
+
+  const dateFieldValidate = (dateField: any) => {
+    if (!dateField) return true;
+    if (isNaN(dateField.$d)) return false;
+
+    return true;
   };
 
   return (
@@ -193,6 +196,7 @@ const Registration = () => {
                         control={control}
                         name="birthDate"
                         defaultValue={null}
+                        rules={{ validate: dateFieldValidate }}
                         render={({ field }) => (
                           <DatePicker
                             label="Date of birth"
@@ -212,6 +216,12 @@ const Registration = () => {
                         )}
                       />
                     </LocalizationProvider>
+
+                    {errors.birthDate?.type === "validate" && (
+                      <Typography className="registration-error-fe">
+                        Date is not valid.
+                      </Typography>
+                    )}
                   </Grid>
                   <Grid item xs={12} lg={6}>
                     <FormControl variant="outlined">
