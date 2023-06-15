@@ -59,7 +59,9 @@ const Registration = () => {
   };
 
   const onSubmit = (data: any) => {
-    const birthDate = createUTCDate(1900, data.birthDate.$M, data.birthDate.$D);
+    const birthDate = data.birthDate
+      ? createUTCDate(1900, data.birthDate.$M, data.birthDate.$D)
+      : undefined;
 
     dispatch(
       signUpRequest(
@@ -191,7 +193,6 @@ const Registration = () => {
                         control={control}
                         name="birthDate"
                         defaultValue={null}
-                        rules={{ required: true }}
                         render={({ field }) => (
                           <DatePicker
                             label="Date of birth"
@@ -211,12 +212,6 @@ const Registration = () => {
                         )}
                       />
                     </LocalizationProvider>
-
-                    {errors.birthDate?.type === "required" && (
-                      <Typography className="registration-error-fe">
-                        Date of birth is required.
-                      </Typography>
-                    )}
                   </Grid>
                   <Grid item xs={12} lg={6}>
                     <FormControl variant="outlined">
