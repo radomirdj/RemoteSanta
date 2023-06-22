@@ -41,6 +41,14 @@ export const countryList: ICountry[] = [
     flag: require("./../assets/flags/serbia.png"),
   },
   {
+    id: "b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac",
+    countryName: "Slovenia",
+    countryCode: "SLO",
+    currencyString: "EUR",
+    conversionRateToPoints: 1,
+    flag: require("./../assets/flags/slovenia.png"),
+  },
+  {
     id: "7810e53a-048f-4efa-9a1a-1b8042e6fdca",
     countryName: "Other",
     countryCode: "N/A",
