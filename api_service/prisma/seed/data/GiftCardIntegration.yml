@@ -1717,3 +1717,213 @@
 #   constraintType: LIST
 #   constraintJson: [ 177, 349 ]
 
+# Slovenia
+- id: d36b3b6a-ea12-4458-b7a8-91bb4e1fdc4d
+  priority: 10
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.amazon.de/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 5, 'MAX': 500 }
+
+- id: 1c14b980-bf7f-45d6-8316-61e15a906529
+  priority: 20
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.primark.com/sl?_ga=2.147680695.108035081.1687273927-792986760.1687273923
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_primark.png
+  title: Primark
+  description: Primark is a popular retail clothing company that operates a chain of stores in various countries. It is known for offering a wide range of affordable and fashionable clothing, footwear, accessories, and home goods.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [15, 25, 40, 50, 100]
+
+- id: 40d143b8-0e1c-4e3c-9c7d-a16bc088d28e
+  priority: 30
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.supernova.si/en/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_supernova.png
+  title: Supernova
+  description: The new Supernova Gift Card is the most comprehensive gift card available, as it includes shopping in 19 Supernova shopping centres across Slovenia. From Nova Gorica all the way to Maribor and Ptuj, one gift card makes endless wishes come true!
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 10, 'MAX': 300 }
+
+- id: a40b49e9-0272-47c7-bb86-d18018c28820
+  priority: 40
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.etsy.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_etsy.png
+  title: Etsy
+  description: Etsy is one of the largest online marketplaces for handmade and vintage items. It provides a global platform for artisans, artists, crafters, and collectors to showcase and sell their creations directly to customers around the world.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [20, 50, 100, 200]
+
+- id: a4d3ed01-4e27-4336-b735-6792f0a8a496
+  priority: 50
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.nike.com/si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_nike.png
+  title: Nike
+  description: Nike is a well-known multinational corporation that specializes in the design, development, manufacturing, and marketing of athletic footwear, apparel, equipment, and accessories. It is one of the world's most recognizable sportswear brands.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [25, 50, 75, 100, 150, 200, 250]
+
+- id: d98c1873-1c79-478b-ab8f-eb74a6e3da64
+  priority: 60
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.guess.eu/en-si/home
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_guess.png
+  title: Guess
+  description: Guess is particularly renowned for its denim products, including jeans, jackets, and skirts, which feature unique washes, fits, and embellishments. Guess also offers a wide range of clothing items such as tops, dresses, outerwear, and activewear.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [40, 60, 80, 100, 120, 150, 200, 250]
+
+- id: fc2bada0-6700-47cc-8a7a-1b84cf63a022
+  priority: 70
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.flightgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_flightgift.png
+  title: Flightgift
+  description: Flightgift is a company that offers gift cards or vouchers specifically designed for purchasing flights. It allows you to give the gift of travel by providing a convenient way for recipients to book flights to their desired destinations.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 25, 'MAX': 1000 }
+
+- id: b62450b2-8fbb-4e98-bbec-4071baa9e36d
+  priority: 80
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.hotelgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_hotelgift.png
+  title: Hotelgift
+  description: Hotelgift is a company that offers gift cards or vouchers specifically designed for booking hotel accommodations. It allows you to give the gift of a hotel stay, providing recipients with the flexibility to choose from a wide range of hotels.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 25, 'MAX': 1000 }
+
+- id: 54e33309-495f-4564-ac57-8a244db6ad0c
+  priority: 90
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://tripgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_tripgift.png
+  title: Tripgift
+  description: Tripgift is the world's leading provider of global travel gift cards. Over 1.5 million travel and experience options worldwide to book. Access multi-brand worldwide providers of flights, hotels, car rentals etc.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [50, 100, 250, 500, 1000, 2000]
+
+- id: 4368a14b-3c78-4a58-bd84-f3edd2851585
+  priority: 100
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.swarovski.com/en-SI/s-faq-giftcard-voucher/Swarovski-Gift-Cards-Voucher-FAQs/?accordionID=CC-Purchase-Vouchers_AE-how-to-order-gift-card
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_swarovski.png
+  title: Swarovski
+  description: Swarovski is a renowned Austrian company that specializes in the production of luxury crystal products. Established in 1895, the company is known for its high-quality precision-cut crystals, jewelry, accessories, figurines, and decorative items.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [25, 50, 75, 100, 150, 200]
+
+- id: 37f6152a-70bb-4d6a-b3e8-32048463f202
+  priority: 110
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.jre.eu/en
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_jre.png
+  title: JRE
+  description: JRE-Jeunes Restaurateurs is an association of young restaurateurs and chefs with one common goal - to share talent and love for food with like-minded individuals. They serve fresh ingredients from local farms, with the highest level of quality.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 20, 'MAX': 3000 }
+
+- id: be27c4a3-5a49-45ab-a1e7-8166d4938bd3
+  priority: 120
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://wolt.com/en/discovery
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_wolt.png
+  title: Wolt
+  description: Wolt is a food delivery platform and app that operates in various cities across several countries. It allows users to order food and have it delivered to their desired location from a wide range of local restaurants and eateries.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 30, 50, 100]
+
+- id: 84463993-7c08-486a-af04-088c173b3254
+  priority: 130
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.audible.com/?ref=a_ep_giftce_t1_nav_header_logo&pf_rd_p=08b836ae-73e5-4c8c-9a3d-71c5be252964&pf_rd_r=NG5XTJRY0QAPRA7ZWD4D&pageLoadId=bbpiK0LWA36mYhzt&creativeId=1642b4d1-12f3-4375-98fa-4938afc1cedc
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_audible.png
+  title: Audible
+  description: Audible is a popular digital platform owned by Amazon that specializes in audiobooks and other audio content. It offers a vast library of audiobooks across various genres, including fiction, non-fiction, self-help, memoirs, and more.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [15, 45, 90, 150]
+
+- id: 9d6aeac4-a857-454f-9540-edfa76f7da12
+  priority: 140
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.zalando.si/zenske-home/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_zalando.png
+  title: Zalando
+  description: Zalando is a popular online fashion platform based in Germany. It operates as an e-commerce that offers a wide range of fashion and lifestyle products for men, women, and kids. It is known for its extensive selection of clothing, shoes, accessories.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [30]
+
+- id: da9d40fd-4e0f-4f0e-bc67-dfb4c1d97022
+  priority: 150
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://supercard.si/product-category/super-e/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_supercard.png
+  title: Supercard
+  description: Super E gift card for shopping in more than 80 online stores, including Mömax, 1001 Dar, Sensilab, Malinca, Hajdi.si, Unikashop, Evitas, TC Sport, Champion, Factory Store, Nina in Valentin, Looblahnah, Creative Players, Moja chocolate, Comshop, etc.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [15, 25, 50, 100]
+
+- id: 15b4c21b-81ff-437f-8a86-962fde8eb20e
+  priority: 160
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.mass.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_mass.png
+  title: Mass
+  description: MASS is a European brand of modern, trendy and quality footwear. A large selection of running shoes, slippers, sandals. They make stylish footwear for men and women and visit them to see the selection.
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300]
+
+- id: ca38ae1b-ec99-46ab-8f89-84f8199624ba
+  priority: 170
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://sbd-slo.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_sbd.png
+  title: SBD
+  description: SBD offers a very large selectionof quality knee braces that reduce the risk of injury and various training aids in different collections and limited series. Hurry up and grab the piece that suits you best!
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [10, 20, 50, 75, 100, 90, 100, 125, 150, 200]
+
+- id: fdd00b99-0981-4712-859f-a69deca877b4
+  priority: 180
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.bambee.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_bambee.png
+  title: BamBee
+  description: BamBee's goal is to delight store visitors with an exclusive shopping experience and excellent customer support. In the offer, you can find everything from children's toys, pacifiers and rattles to products for nursing and feeding your little one.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [10, 20, 50]
+
+- id: c1c112c0-1792-49f7-9d3e-6ab9a88c7a6b
+  priority: 190
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.vuch.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_vuch.png
+  title: VUCH
+  description: Vuch is a fashion accessories brand that specializes in the design and production of handbags, wallets, backpacks, and other accessories. The company is based in the Czech Republic and offers a wide range of trendy and affordable products.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [20, 40, 60, 80]

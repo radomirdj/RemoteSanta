@@ -10,6 +10,12 @@
   currencyString: 'USD'
   conversionRateToPoints: 100
 
+- id: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  countryName: 'Slovenia'
+  countryCode: 'SLO'
+  currencyString: 'EUR'
+  conversionRateToPoints: 100
+
 - id: 0268e718-8f26-4d29-8955-6fa96784bfb4
   countryName: 'Mexico'
   countryCode: 'MX'
