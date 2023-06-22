@@ -10,6 +10,12 @@
   pointsPerMonth: 0
   signupPoints: 2000
 
+- id: eaa7d5b5-ced2-48f6-919b-ac53001ae509
+  name: 'GORR'
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  pointsPerMonth: 0
+  signupPoints: 0
+
 - id: f040c93b-ad1b-4ddd-8df4-562faed4f98b
   name: 'Admin Org.'
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
