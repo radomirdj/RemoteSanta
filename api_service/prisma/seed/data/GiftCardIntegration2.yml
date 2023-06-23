@@ -156,7 +156,7 @@
 
 # Mexico
 
-- id: 49ccee54-b71f-4c4a-b9a7-ce4eeea90bff
+- id: f84d95e1-c2da-42af-b90b-c718ea4e807c
   priority: 10
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.xbox.com/
@@ -167,7 +167,7 @@
   constraintType: LIST
   constraintJson: [ 349, 549, 999 ]
 
-- id: 423d2d74-ad29-4a36-b74c-2dcaad5baac5
+- id: d5061d8e-ef9f-4f38-8b11-00fa49bdb457
   priority: 20
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.blizzard.com/en-us/
@@ -178,7 +178,7 @@
   constraintType: LIST
   constraintJson: [ 150, 350 ]
 
-- id: 8f340b56-6f6d-41a3-a9ee-fe4c80f3ecaf
+- id: 11ddee44-183d-4620-9fc2-3ea6cbceadd1
   priority: 30
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.uber.com/
@@ -189,7 +189,7 @@
   constraintType: LIST
   constraintJson: [ 300 ]
 
-- id: 6f88b5b5-c612-416c-ae6f-19fae0884d43
+- id: da8bb7d5-2573-4da6-92e4-ef3b046bd3e8
   priority: 40
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.minecraft.net/en-us
@@ -200,18 +200,18 @@
   constraintType: LIST
   constraintJson: [ 177, 349 ]
 
-- id: 5ccbec43-b6df-4909-8406-73309ecc893d
+- id: 66f84c15-a72e-4870-920e-3229db826e24
   priority: 50
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.amazon.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
-  title: Amazon
+  title: Amazon MX
   description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
   currency: MXN
   constraintType: LIST
   constraintJson: [150,300,500, 1000, 1500, 2000]
 
-- id: cc2caecc-fa9d-47ca-8b73-d019186a1468
+- id: 4e2c96d9-fb72-4b60-a6a9-330403765446
   priority: 60
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.gandhi.com.mx/
@@ -222,7 +222,7 @@
   constraintType: LIST
   constraintJson: [150, 300, 500, 1000, 1500, 2000]
 
-- id: e30d5524-da09-4fec-9a3b-e5a01aef2a1b
+- id: bf85f35d-a09e-4e87-91a7-0b4ee5740e24
   priority: 70
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://www.colecciones.mixup.com.mx/listado/musica-peliculas-series/
@@ -233,7 +233,7 @@
   constraintType: LIST
   constraintJson: [100, 300, 500, 1500, 2000]
 
-- id: 89a63ad2-184f-49df-97cc-a70bbc44b3d9
+- id: d9ea2fa3-b161-44e8-8dc5-a21b85c5c101
   priority: 80
   countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
   website: https://tripgift.com/
@@ -678,6 +678,17 @@
 
 
 #USA
+- id: 0618f276-3890-4877-9cff-d145133c187e
+  priority: 1
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.amazon.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon.com
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  
 - id: e6618cd2-1b20-462a-8328-be43cc999b46
   priority: 10
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
@@ -743,3 +754,137 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: a5775819-ef9f-4109-86fc-ba970824a28e
+  priority: 70
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.gap.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/gap.png
+  title: GAP
+  description: Gap offers a wide variety of clothing and accessories for men, women, and children, including jeans, pants, dresses, skirts, shirts, sweaters, outerwear, and swimwear, as well as shoes, bags, and jewelry.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 64bc4377-c8b9-4604-8a6a-faca57a1063b
+  priority: 80
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.homechef.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_homechef.png
+  title: Home Chef
+  description: Home Chef is a meal kit delivery service that provides customers with pre-portioned ingredients and step-by-step recipes to prepare meals at home. It was founded in 2013 and is based in the United States.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 58210648-e7a0-4378-b606-25b605a453ae
+  priority: 90
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.jamba.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_jamba.png
+  title: Jamba Juice
+  description: Jamba Juice is a popular American smoothie and juice bar chain. It was founded in 1990 in San Luis Obispo, California, and has since grown to become a well-known brand with numerous locations across the United States and internationally.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+
+- id: be1c30d9-5e14-4fb1-aa4b-c00c4919a846
+  priority: 100
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.landrysinc.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/landrys.png
+  title: Landry's
+  description: Landry's operates a diverse portfolio of more than 600 restaurant, hotel, and entertainment concepts, including well-known brands such as Morton's The Steakhouse, Bubba Gump Shrimp Co., Rainforest Cafe, Saltgrass Steak House, and Landry's Seafood.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: db8dfd8e-044d-4d4c-8e5d-740b71db18c4
+  priority: 110
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.nintendo.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_nintendo.png
+  title: Nintendo
+  description: Nintendo is a prominent Japanese video game company that has made a significant impact on the gaming industry. It was founded as a playing card company and later expanded into various other ventures before entering the video game market in the 1970s.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 20, 35, 50]
+
+- id: 14e01d1a-c6e5-4fa7-84a4-91a2d4bbec1d
+  priority: 120
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.rei.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_rei.png
+  title: REI
+  description: REI operates both physical retail stores and an online store where customers can browse and purchase their products. They offer a range of outdoor gear, including tents, sleeping bags, backpacks, hiking boots, bicycles, kayaks, skis, and snowboards. 
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 25, 50, 100]
+
+- id: 8e32126c-6e6a-4ce0-af0e-570dbf0e7c24
+  priority: 130
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://open.spotify.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_spotify.png
+  title: Spotify
+  description: Spotify is a digital music streaming platform that provides users with access to a vast library of music, podcasts, and other audio content. It was launched in 2008 and has grown into one of the largest music streaming services worldwide.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 30, 60]
+
+- id: 1cd9a827-e692-44e6-94e9-7599da6fd62d
+  priority: 140
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.containerstore.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/containerstore.png
+  title: The Container Store
+  description: The Container Store offers a wide range of storage and organization products, including shelving units, closet organizers, kitchen and pantry storage solutions, office and desk organizers, and storage containers of all sizes and shapes.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 7be4b0c8-1ba2-4cd7-9a2c-e9a6ebf1ff3b
+  priority: 150
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.williams-sonoma.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_william.png
+  title: Williams Sonoma
+  description: Williams-Sonoma is a renowned American retailer specializing in high-quality kitchenware, home furnishings, and gourmet food products. The company was founded in 1956 by Chuck Williams and has since become a well-known brand in the industry.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 331112c2-661c-4b93-bb78-3895ab91a075
+  priority: 160
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.adidas.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/adidas.png
+  title: Adidas
+  description: Adidas is a multinational corporation that designs and manufactures athletic and lifestyle footwear, apparel, and accessories. It offers many of products including athletic shoes, sneakers, running shoes, and casual shoes for men, women and children.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: f031c87b-068b-47d1-9bcd-0b01af9da718
+  priority: 170
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.ae.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/aeo.png
+  title: AEO
+  description: American Eagle Outfitters is known for its trendy and affordable clothing that reflects the latest fashion trends. Their product lines include jeans, shorts, t-shirts, hoodies, jackets, dresses, and accessories such as shoes, jewelry, and bags.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: b2fa4c11-e87c-4e3a-8272-296ce972c76f
+  priority: 180
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.barnesandnoble.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/barnesnoble.png
+  title: Barnes & Noble
+  description: Barnes & Noble stores typically feature a wide selection of books, as well as magazines and newspapers. The company also sells e-books and audiobooks through its website, as well as other merchandise such as music, movies, and toys.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+
