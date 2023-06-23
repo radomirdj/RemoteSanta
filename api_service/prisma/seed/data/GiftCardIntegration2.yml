@@ -688,7 +688,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
-  
+
 - id: e6618cd2-1b20-462a-8328-be43cc999b46
   priority: 10
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
@@ -886,5 +886,170 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: d6b4c1b5-63c7-4a8b-a848-d5fa9d0e2e3c
+  priority: 190
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.callawaygolf.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_callaway.png
+  title: Callaway
+  description: Callaway offers a wide range of golf products, golf balls, golf bags, apparel, footwear, and accessories. They are known for their innovative technologies and high-performance equipment that caters to golfers of various skill levels.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [50, 100]
+
+- id: 41ab24e1-9804-49d9-a572-bccdb22c7adc
+  priority: 200
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.carnival.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_carnival.png
+  title: Carnival Cruise
+  description: Carnival Cruise Line is one of the largest and most well-known cruise lines in the world. Carnival Cruise Line offers a wide range of cruise vacations and operates a fleet of ships that sail to various destinations worldwide.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950]
+
+- id: 03e333e8-7dea-451d-8fdf-8069fc17c836
+  priority: 210
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.columbia.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/columbia.png
+  title: Columbia
+  description: The Columbia Sportswear Company is an American company that manufactures and distributes outerwear, sportswear, and footwear, as well as headgear, camping equipment, ski apparel, and outerwear accessories.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 82c54031-abde-4fe8-9fe6-6d150c7925d7
+  priority: 220
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.fanatics.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/fanatics.png
+  title: Fanatics
+  description: Fanatics.com is an online retailer of licensed sports merchandise and apparel. The company offers a wide selection of products from various sports leagues, including the NFL, NBA, MLB, NHL, NASCAR NCAA, etc.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: fcf0fab7-1f13-48ec-9c71-664e03b26f35
+  priority: 230
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.globalexperiencescard.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_globexp.png
+  title: Global Experience
+  description: The global experience can be pursued in different ways, including through travel, study abroad programs, international work opportunities, cultural exchanges, or through engagement with global interactions with people from different backgrounds.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: e5f75784-92d9-4316-8958-5767f65526df
+  priority: 240
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.hm.com
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/hm.png
+  title: H&M
+  description: The company's product lines include clothing, shoes, jewelry, bags, and home goods. H&M operates over 5,000 stores worldwide, including in Europe, Asia, North America, and the Middle East, as well as an online store.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300]
+
+- id: fb1449ac-d6dc-48d2-8c88-d23697a758fe
+  priority: 250
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.kohls.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_kohl.png
+  title: Kohl's
+  description: Kohl's is a well-known store retail chain that offers a wide range of products, including clothing, accessories, home goods, and more. It was founded in 1962 and has grown to become one of the largest department store chains in the United States.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300]
+
+- id: 7b59ae52-a62a-4301-9414-e737138257f1
+  priority: 260
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.nike.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_nike.png
+  title: Nike
+  description: The company offers a wide range of athletic footwear, including running shoes, basketball shoes, soccer cleats, training shoes, and more. They are renowned for incorporating advanced technologies and materials to enhance performance and comfort.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 5c8acce0-046d-48e7-8139-9716a087e0bf
+  priority: 270
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://oldnavy.gap.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/oldnavy.png
+  title: Old Navy
+  description: Old Navy is a clothing and accessories retail chain that offers affordable, casual fashion for the whole family. The brand is known for its classic and comfortable styles, often featuring bright colors, bold patterns, and graphic prints.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 1297b8d5-94b4-4dd0-b844-8b00863b68da
+  priority: 280
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.underarmour.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/underarmour.png
+  title: Under Armour
+  description: Under Armour is a sportswear and footwear company. It's products are designed to provide athletes with the latest technology and innovation to help them perform at their best. The company also offers accessories such as hats, socks, gloves, and bags.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 9fa4842c-77a7-4ca8-a2c8-ced0719eaabd
+  priority: 290
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.longhornsteakhouse.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_longhorn.png
+  title: Longhorn
+  description: LongHorn Steakhouse is a popular American restaurant chain that specializes in serving grilled steaks and other American-style cuisine. Founded in 1981, LongHorn Steakhouse has since grown to have numerous locations across the United States.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 29f4a98c-e798-423e-a494-884152040695
+  priority: 300
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.bathandbodyworks.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/bathbodyworks.png
+  title: Bath&Body Works
+  description: Bath & Body Works offers a wide range of products, including body lotions, shower gels, hand soaps, candles and room sprays. It is known for its signature fragrances which are available in a variety of scents, from sweet and fruity to warm and spicy.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+
+- id: d9e7653b-77f5-4461-aaaf-893d30b8f0c7
+  priority: 310
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.chicos.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/chicos.png
+  title: Chico's
+  description: Chico's is a women's clothing and accessories retail chain that was founded in 1983 in Florida, USA. It targets women over the age of 40 and offers a range of stylish and comfortable clothing that is designed to flatter a variety of body types.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 1bb46b6a-b9b7-499f-ac93-76097d7ad144
+  priority: 320
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.bloominbrands.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_bloom.png
+  title: Bloomin' Brands
+  description: Bloomin' Brands is a hospitality company that operates several well-known restaurant brands. Founded in 1988, the company is headquartered in Tampa, Florida, and has a global presence with various locations in the United States and internationally.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 231d0148-218d-468a-938f-b43c274200a1
+  priority: 330
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.coffeebean.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/coffeebean.png
+  title: Coffee Bean
+  description: Coffee Bean & Tea Leaf is a retail coffee and tea company that was founded in 1963 in Southern California, USA. The company is known for its high-quality coffee and tea products, as well as its cozy and welcoming cafes.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
 
 
