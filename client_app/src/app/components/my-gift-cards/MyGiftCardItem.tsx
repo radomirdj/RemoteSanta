@@ -40,9 +40,11 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
           {giftCardRequest.giftCardIntegration.title}
         </Typography>
         <Typography variant="body2" className="card-date">
-          {new Date(giftCardRequest.createdAt)
-            .toLocaleDateString("en-GB")
-            .replaceAll("/", ".")}
+          {new Date(giftCardRequest.createdAt).toLocaleDateString("en-US", {
+            day: "numeric",
+            year: "numeric",
+            month: "short",
+          })}
           <span className="card-amount"> {giftCardRequest.amount} PTS</span>
         </Typography>
       </CardContent>

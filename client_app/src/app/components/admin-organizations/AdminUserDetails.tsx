@@ -76,6 +76,18 @@ const AdminUserDetails = () => {
             </Grid>
             <Grid container className="grid-container">
               <Grid item xs={4}>
+                <span className="column-name">Date Of Birth</span>
+              </Grid>
+              <Grid item xs={8}>
+                {new Date(user?.birthDate || "").toLocaleDateString("en-US", {
+                  day: "numeric",
+                  year: "numeric",
+                  month: "short",
+                })}
+              </Grid>
+            </Grid>
+            <Grid container className="grid-container">
+              <Grid item xs={4}>
                 <span className="column-name">Active PTS</span>
               </Grid>
               <Grid item xs={8}>
