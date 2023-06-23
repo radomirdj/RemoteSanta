@@ -1,0 +1,745 @@
+# India
+- id: 4674ea2b-c345-4cc6-af96-cf1b504c46b9
+  priority: 10
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.veromoda.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_veromoda.png
+  title: Vero Moda 
+  description: Vero Moda is known for offering trendy and affordable clothing and accessories for young women. Vero Moda focuses on creating stylish designs that are influenced by the latest fashion trends and caters to a wide range of tastes and preferences.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [250, 500, 1000]
+
+- id: 73531d62-58dc-4891-9fb7-95be4f56106e
+  priority: 20
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.flipkart.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_flipkart.png
+  title: Flipkart 
+  description: Flipkart operates as a marketplace where sellers can list their products, and customers can browse and purchase items directly from the platform. It provides an online shopping experience and offers a wide selection of products from different brands.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750, 800, 900, 1000, 1500, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000]
+
+- id: 4abe1124-d441-4b8d-bf9c-0222baccc9b1
+  priority: 30
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://allensolly.abfrl.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_allen_solly.png
+  title: Allen Solly 
+  description: Allen Solly is an Indian clothing brand that specializes in casual and semi-formal wear for both men and women. It is a subsidiary of Aditya Birla Fashion and Retail Limited, a leading fashion conglomerate in India.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [500, 1000, 2000, 3600, 5000, 10000, 15000, 20000, 25000]
+
+- id: 249ab754-7b1e-4fa0-9dbb-16689a187da8
+  priority: 40
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.shoppersstop.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_ss.png
+  title: Shoppers Stop 
+  description: Shoppers Stop is a prominent Indian retail chain that offers a wide range of products across various categories such as apparel, accessories, beauty, home decor, and more. It was founded in 1991 and is headquartered in Mumbai, India.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [250, 500, 1000, 2000, 5000]
+
+- id: 23e86014-c8b4-4959-9485-5eaca179a7e4
+  priority: 50
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.levi.com/US/en_US/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_levis.png
+  title: Levis 
+  description: Levi's is a globally recognized American denim jeans brand. It was founded by Levi Strauss and Jacob Davis in 1853 and has since become one of the most iconic and influential names in the fashion industry.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [500, 1000, 2000]
+
+- id: 4d8552ae-aba2-456e-a176-1936b28b9f6d
+  priority: 60
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://in.benetton.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_benetton.png
+  title: Benetton
+  description: Benetton offers a range of clothing and accessories for men, women, and children. Their collections include casual and sportswear, as well as outerwear, dresses, shirts, pants, and accessories such as bags and shoes. 
+  currency: INR
+  constraintType: LIST
+  constraintJson: [250, 500, 1000, 2000]
+
+- id: f7d96f90-c0c3-454b-9bfa-2acdc73c1389
+  priority: 70
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://archiesonline.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_archies.png
+  title: Archies
+  description: Archies is known for its extensive collection of greeting cards, ranging from heartfelt messages to humorous and quirky designs. Archies expanded its offerings to include gifts, personalized items, home decor, fashion accessories, and stationery.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [50, 100, 250, 500]
+
+- id: 99f555d8-d9cb-46d1-a710-288dca363843
+  priority: 80
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.homecentre.in
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_homecenter.png
+  title: Home Center
+  description: Home Centre is a popular home furnishing and furniture retail brand in India. It is a part of the Landmark Group, a multinational conglomerate based in Dubai. It offers furniture, home decor, furnishings, kitchenware, and other household products.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [2000]
+
+- id: 17bd95a8-07b0-4bac-9018-39d33d966bb9
+  priority: 90
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.fastrack.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_fastrack.png
+  title: Fastrack
+  description: Fastrack is an Indian fashion accessories brand that primarily focuses on watches, sunglasses, bags, and other lifestyle products. It is a subsidiary of Titan Company Limited, which is part of the Tata Group.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [500, 1000, 2000]
+
+- id: 3b640a5b-523c-486d-b2ed-0d7e67bd98f7
+  priority: 100
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.costacoffee.in/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_costa.png
+  title: Costa Caffee
+  description: Costa Coffee has gained popularity for its focus on sourcing high-quality coffee beans and providing a range of espresso-based drinks, including cappuccinos, lattes, macchiatos, flat whites, teas, hot chocolates, and cold beverages.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [100, 250, 300, 500, 1000]
+
+- id: 3e5bcd68-f02d-4ea5-90b4-c83519887f07
+  priority: 110
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.bigbasket.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_bigbasket.png
+  title: BigBasket
+  description: The platform provides various features such as scheduled deliveries, express delivery options, and a subscription-based service called "BigBasket Smart Bachat Club," which offers additional benefits and discounts to members.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [100, 250, 500, 1000]
+
+- id: a4db6bfa-88d0-4614-a159-77d432ad2ee7
+  priority: 120
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.aeropostale.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_aeropostale.png
+  title: Aeropostale
+  description: The brand is known for its relaxed and comfortable clothing styles, including t-shirts, hoodies, jeans, shorts, dresses, and outerwear. Aéropostale's fashion aesthetic typically reflects a laid-back and sporty vibe.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [250, 500, 1000]
+
+
+- id: 8ac210d3-b50e-49ab-bb4e-16fee74116e1
+  priority: 130
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://shopforaurelia.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_aurelia.png
+  title: Aurelia
+  description: The brand focuses on creating stylish outfits for women, incorporating Indian designs and prints. It's clothing collection often features vibrant colors, intricate embroideries, and traditional motifs, catering to different occasions and preferences.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [250, 500, 1000, 2000, 5000]
+
+- id: efb93aad-f999-4b9c-a32c-dbdb16cda228
+  priority: 140
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: https://www.myntra.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ind_myntra.png
+  title: Myntra
+  description: Myntra is one of the largest e-commerce platforms in India, specializing in fashion and lifestyle products. Initially launched as an online personalized gift store, Myntra transitioned to focus exclusively on fashion and lifestyle products.
+  currency: INR
+  constraintType: LIST
+  constraintJson: [250, 500, 1000, 1500, 2000, 5000]
+
+# Mexico
+
+- id: 49ccee54-b71f-4c4a-b9a7-ce4eeea90bff
+  priority: 10
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.xbox.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_xbox.png
+  title: XBOX
+  description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [ 349, 549, 999 ]
+
+- id: 423d2d74-ad29-4a36-b74c-2dcaad5baac5
+  priority: 20
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.blizzard.com/en-us/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_blizzard.png
+  title: Blizzard
+  description: Blizzard Entertainment is a renowned video game developer and publisher known for creating popular and influential game franchises. The company was founded in 1991 and has headquarters in Irvine, California.
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [ 150, 350 ]
+
+- id: 8f340b56-6f6d-41a3-a9ee-fe4c80f3ecaf
+  priority: 30
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.uber.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/uber.png
+  title: Uber
+  description: Uber is ride-hailing and transportation network company that operates in over 900 areas worldwide. In addition to ride-hailing, Uber has expanded into other areas such as food delivery (Uber Eats) and electric bike and scooter rentals (Uber Jump).
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [ 300 ]
+
+- id: 6f88b5b5-c612-416c-ae6f-19fae0884d43
+  priority: 40
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.minecraft.net/en-us
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_minecraft.png
+  title: Minecraft
+  description: Minecraft is a popular sandbox video game that allows players to explore and create virtual worlds made up of blocks. It was created by Swedish game developer Markus Persson and later developed and published by Mojang Studios.
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [ 177, 349 ]
+
+- id: 5ccbec43-b6df-4909-8406-73309ecc893d
+  priority: 50
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.amazon.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [150,300,500, 1000, 1500, 2000]
+
+- id: cc2caecc-fa9d-47ca-8b73-d019186a1468
+  priority: 60
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.gandhi.com.mx/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_gandhi.png
+  title: Gandhi
+  description: 
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [150, 300, 500, 1000, 1500, 2000]
+
+- id: e30d5524-da09-4fec-9a3b-e5a01aef2a1b
+  priority: 70
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://www.colecciones.mixup.com.mx/listado/musica-peliculas-series/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_mixup.png
+  title: Mixup.com
+  description: Mixup.com is a Mexican retail website that specializes in the sale of various entertainment products, including music, movies, video games, and electronics. It is operated by Mixup Digital, a subsidiary of Grupo Carso.
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [100, 300, 500, 1500, 2000]
+
+- id: 89a63ad2-184f-49df-97cc-a70bbc44b3d9
+  priority: 80
+  countryId: 0268e718-8f26-4d29-8955-6fa96784bfb4
+  website: https://tripgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_tripgift.png
+  title: Tripgift
+  description: "TripGift" is an online platform that offers gift cards and vouchers for various travel-related experiences and services. It allows individuals to purchase gift cards that can be redeemed for flights, hotels, tours, activities, car rentals, and more.
+  currency: MXN
+  constraintType: LIST
+  constraintJson: [2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000]
+
+# Slovenia
+- id: d36b3b6a-ea12-4458-b7a8-91bb4e1fdc4d
+  priority: 10
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.amazon.de/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon.de
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 5, 'MAX': 500 }
+
+- id: 1c14b980-bf7f-45d6-8316-61e15a906529
+  priority: 20
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.primark.com/sl?_ga=2.147680695.108035081.1687273927-792986760.1687273923
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_primark.png
+  title: Primark
+  description: Primark is a popular retail clothing company that operates a chain of stores in various countries. It is known for offering a wide range of affordable and fashionable clothing, footwear, accessories, and home goods.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [15, 25, 40, 50, 100]
+
+- id: 40d143b8-0e1c-4e3c-9c7d-a16bc088d28e
+  priority: 30
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.supernova.si/en/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_supernova.png
+  title: Supernova
+  description: The new Supernova Gift Card is the most comprehensive gift card available, as it includes shopping in 19 Supernova shopping centres across Slovenia. From Nova Gorica all the way to Maribor and Ptuj, one gift card makes endless wishes come true!
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 10, 'MAX': 300 }
+
+- id: a40b49e9-0272-47c7-bb86-d18018c28820
+  priority: 40
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.etsy.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_etsy.png
+  title: Etsy.com
+  description: Etsy is one of the largest online marketplaces for handmade and vintage items. It provides a global platform for artisans, artists, crafters, and collectors to showcase and sell their creations directly to customers around the world.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [20, 50, 100, 200]
+
+- id: d98c1873-1c79-478b-ab8f-eb74a6e3da64
+  priority: 50
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.guess.eu/en-si/home
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_guess.png
+  title: Guess
+  description: Guess is particularly renowned for its denim products, including jeans, jackets, and skirts, which feature unique washes, fits, and embellishments. Guess also offers a wide range of clothing items such as tops, dresses, outerwear, and activewear.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [40, 60, 80, 100, 120, 150, 200, 250]
+
+- id: fc2bada0-6700-47cc-8a7a-1b84cf63a022
+  priority: 60
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.flightgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_flightgift.png
+  title: Flightgift
+  description: Flightgift is a company that offers gift cards or vouchers specifically designed for purchasing flights. It allows you to give the gift of travel by providing a convenient way for recipients to book flights to their desired destinations.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 25, 'MAX': 1000 }
+
+- id: b62450b2-8fbb-4e98-bbec-4071baa9e36d
+  priority: 70
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.hotelgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_hotelgift.png
+  title: Hotelgift
+  description: Hotelgift is a company that offers gift cards or vouchers specifically designed for booking hotel accommodations. It allows you to give the gift of a hotel stay, providing recipients with the flexibility to choose from a wide range of hotels.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 25, 'MAX': 1000 }
+
+- id: 54e33309-495f-4564-ac57-8a244db6ad0c
+  priority: 80
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://tripgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_tripgift.png
+  title: Tripgift
+  description: Tripgift is the world's leading provider of global travel gift cards. Over 1.5 million travel and experience options worldwide to book. Access multi-brand worldwide providers of flights, hotels, car rentals etc.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [50, 100, 250, 500, 1000, 2000]
+
+- id: 4368a14b-3c78-4a58-bd84-f3edd2851585
+  priority: 90
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.swarovski.com/en-SI/s-faq-giftcard-voucher/Swarovski-Gift-Cards-Voucher-FAQs/?accordionID=CC-Purchase-Vouchers_AE-how-to-order-gift-card
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_swarovski.png
+  title: Swarovski
+  description: Swarovski is a renowned Austrian company that specializes in the production of luxury crystal products. Established in 1895, the company is known for its high-quality precision-cut crystals, jewelry, accessories, figurines, and decorative items.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [25, 50, 75, 100, 150, 200]
+
+- id: 37f6152a-70bb-4d6a-b3e8-32048463f202
+  priority: 100
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.jre.eu/en
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_jre.png
+  title: JRE
+  description: JRE-Jeunes Restaurateurs is an association of young restaurateurs and chefs with one common goal - to share talent and love for food with like-minded individuals. They serve fresh ingredients from local farms, with the highest level of quality.
+  currency: EUR
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 20, 'MAX': 3000 }
+
+- id: be27c4a3-5a49-45ab-a1e7-8166d4938bd3
+  priority: 110
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://wolt.com/en/discovery
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_wolt.png
+  title: Wolt
+  description: Wolt is a food delivery platform and app that operates in various cities across several countries. It allows users to order food and have it delivered to their desired location from a wide range of local restaurants and eateries.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 30, 50, 100]
+
+- id: 9d6aeac4-a857-454f-9540-edfa76f7da12
+  priority: 120
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.zalando.si/zenske-home/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_zalando.png
+  title: Zalando
+  description: Zalando is a popular online fashion platform based in Germany. It operates as an e-commerce that offers a wide range of fashion and lifestyle products for men, women, and kids. It is known for its extensive selection of clothing, shoes, accessories.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [30]
+
+- id: da9d40fd-4e0f-4f0e-bc67-dfb4c1d97022
+  priority: 130
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://supercard.si/product-category/super-e/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_supercard.png
+  title: Supercard
+  description: Super E gift card for shopping in more than 80 online stores, including Mömax, 1001 Dar, Sensilab, Malinca, Hajdi.si, Unikashop, Evitas, TC Sport, Champion, Factory Store, Nina in Valentin, Looblahnah, Creative Players, Moja chocolate, Comshop, etc.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [15, 25, 50, 100]
+
+- id: 15b4c21b-81ff-437f-8a86-962fde8eb20e
+  priority: 140
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.mass.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_mass.png
+  title: Mass
+  description: MASS is a European brand of modern, trendy and quality footwear. A large selection of running shoes, slippers, sandals. They make stylish footwear for men and women and visit them to see the selection.
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300]
+
+- id: ca38ae1b-ec99-46ab-8f89-84f8199624ba
+  priority: 150
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://sbd-slo.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_sbd.png
+  title: SBD
+  description: SBD offers a very large selectionof quality knee braces that reduce the risk of injury and various training aids in different collections and limited series. Hurry up and grab the piece that suits you best!
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [10, 20, 50, 75, 100, 90, 100, 125, 150, 200]
+
+- id: fdd00b99-0981-4712-859f-a69deca877b4
+  priority: 160
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.bambee.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_bambee.png
+  title: BamBee
+  description: BamBee's goal is to delight store visitors with an exclusive shopping experience and excellent customer support. In the offer, you can find everything from children's toys, pacifiers and rattles to products for nursing and feeding your little one.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [10, 20, 50]
+
+- id: c1c112c0-1792-49f7-9d3e-6ab9a88c7a6b
+  priority: 170
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.vuch.si/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_vuch.png
+  title: VUCH
+  description: Vuch is a fashion accessories brand that specializes in the design and production of handbags, wallets, backpacks, and other accessories. The company is based in the Czech Republic and offers a wide range of trendy and affordable products.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [20, 40, 60, 80]
+
+- id: ee309194-0a1e-4fcc-b486-434f68697661
+  priority: 180
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://www.mimovrste.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_mimovrste.png
+  title: Mimovrste
+  description: Mimovrste is a well-known online retailer based in Slovenia. Mimovrste offers a wide range of products across various categories, including electronics, home appliances, furniture, fashion, beauty, toys, sports equipment, and more.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [20]
+
+- id: d744fb46-fade-40ac-b4ac-e4a91d3f040c
+  priority: 190
+  countryId: b9d73ca0-7bff-4fbc-bf66-d2cc00a532ac
+  website: https://thejewelleryroom.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_jwlrroom.png
+  title: Jewellery Room
+  description: When choosing jewellery either for a fashion statement or as an investment, we know it’s best to consider the value it holds, and The Jewellery Room helps provide customers with the best choices to make.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [50, 100, 150, 200]
+
+  #Serbia 
+  - id: 469cf71d-86a5-450e-afc7-76bc6996a3ad
+  priority: 10
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://giftoncard.eu/listing/multibrand-poklon-kartica/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Multibrand.png
+  title: Multibrand
+  description: The Multibrand card can be used at over 500 locations throughout Serbia. It can be used in the indicated shops of various types and therefore as such represents a true combination of fun, fashion, sports, and technology.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 3ada6b27-f579-4297-9042-2d46b89b594e
+  priority: 20
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.sportvision.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/SportVision.png
+  title: Sport Vision
+  description: The leading multi-brand concept in the Balkans. More than 40 of the most famous brands in one place - sneakers, football boots, shoes, jackets, t-shirts, tracksuits, sweatshirts, equipment for football, futsal, basketball, running and training.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 023bf681-121d-48a1-a550-da1f9b37abe3
+  priority: 30
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.n-sport.net
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png
+  title: N Sport
+  description: One of the leading distributors of the most famous sports and fashion brands. Recognizable for its three main sales multibrand concepts - N Sport, N Fashion and N Selection, which correspond to the active life of modern men and women.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: d60c3469-d2ad-4701-906c-c677badaa478
+  priority: 40
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.soliver.eu
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/sOliver.png
+  title: s. Oliver
+  description: S Oliver offers the perfect solution when it comes to style, quality, comfort and price. In addition to clothing and footwear, S Oliver also offers additional product lines such as underwear, pajamas, swimwear, bags, accessories and perfumes.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: df7d81e9-d70f-4d0c-8f99-6db378c6f89c
+  priority: 50
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.thebodyshop.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/TheBodyShop.png
+  title: The Body Shop
+  description: An English brand of cosmetics for face, body, hair and make-up products with naturally-based ingredients in special packaging that you can easily refill and that make women feel good in their own skin.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: f4c319a8-704a-4b61-a670-31c7d25e83b9
+  priority: 60
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://toyzzz.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Toyzzz.png
+  title: Toyzzz
+  description: Toyzzz više od 20 godina plasira na naše tržište igračke svih tipova, bicikle i trotinete, bazene, školski probor, knjige, slikovnice... Uvoznik je preko 8000 artikla i velikog broja poznatih brendova npr Barbie, Cars, Disney, Kiki, Lol, Monopoly.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 7d896c06-8c1e-4bc4-822e-870b9ff1aab1
+  priority: 70
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.underarmour.com/en-us/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/UnderArmour.png
+  title: Under Armour
+  description: The products of this American company are intended for everyone who wants to improve their sports results - sports shoes, t-shirts, jackets, sweatshirts, trainers, leggings, sports bras, athletic bags, gloves, caps and protective equipment.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: f307e9a4-aaa7-4c9a-a71c-88e771823594
+  priority: 80
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.adidas.com/us
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Adidas.png
+  title: Adidas
+  description: Adidas is the largest European manufacturer of sports equipment with factories and stores all over the world. In addition to sports shoes and soccer balls, this German brand also produces other sports equipment and cosmetics.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 5b7843e4-110f-40f9-b438-408fd9b3597f
+  priority: 90
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://petklub.rs/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/PetKlub.png
+  title: Pet Klub
+  description: Pet Klub is a retail chain where pet owners can get food, medicine and equipment for dogs, cats, small animals, birds, fish. A brand that wants to make shopping emotional and closer. Make sure your pets are cared for with the Pet Klub's help.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: d789db6b-a555-4ff7-97da-270cf8f0aba9
+  priority: 100
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://rs.proteini.si
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Proteini.png
+  title: PROTEINI.SI
+  description: In the mission of a healthy and sporty lifestyle, the Proteini SI brand is engaged in the sale of sports nutrition and nutritional supplements. For a decade, Proteini SI has been placing the most famous American and European products on our market.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 409ef8c2-c270-4c91-9253-ebb30c10f19c
+  priority: 110
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.tehnomedia.rs/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomedia.png
+  title: Tehnomedia
+  description: Technomedia Center has been represented on the Serbian market for over twenty years. In retail stores, it sells white goods, audio and video devices, IT equipment, heating and air conditioning devices, as well as small household appliances.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: d9f1c8d0-59a1-45c5-bb8d-be0e5d4fc99b
+  priority: 120
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.carpisa.it/hr_en/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Carpisa.png
+  title: Carpisa
+  description: Italian fashion brand that is intended for all generations of women and men who follow current trends. The brand's range consists of bags, wallets, accessories, suitcases, jewelry boxes and travel programs.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: ef1a14d7-ef31-474d-9907-7fabeefa4d17
+  priority: 130
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.comma-store.eu
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Comma.png
+  title: Comma
+  description: European-made Comma clothing is known for its modern design, elegant and feminine cuts, as well as quality materials, and can be worn on all occasions, every day, 24 hours a day, because it is flexible and versatile.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: bf776d98-70e7-4536-9c03-7fad26ed658f
+  priority: 140
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://univerexport.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Univerexport.png
+  title: Univerexport
+  description: Retail chain is represented by over 180 retail stores and the eLakolija online service with free delivery of goods. Hommade items are the most represented, meat comes from the Bačka farm and organic products from our own agricultural household.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: ba868c93-f5d8-4825-8c4f-a6dc832a20ea
+  priority: 150
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.skolajahanjabeograd.com/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BelaGriva.png
+  title: Bela Griva
+  description: The Bela Griva Association provides horse riding services for all lovers of the most beautiful animals, horse boarding, horse training for various competitions, field riding, as well as horse rental for various purposes.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: f9b20424-255f-4ac0-98d3-e8ef7514455b
+  priority: 160
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.biospajz.rs/
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/BioSpajz.png
+  title: Bio Špajz
+  description: The mission of Bio Spajz is to popularize a healthy lifestyle, with proper nutrition, but also a healthy attitude towards body and spirit, as well as towards nature, by selling healthy food, drinks and natural cosmetics.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 75505b23-f4a8-4a9a-957a-389e62b89855
+  priority: 170
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.tehnomanija.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Tehnomanija.png
+  title: Tehnomanija
+  description: The company is the market leader in Serbia in the field of trade in electrical and electronic household appliances. The rich offer includes small household appliances, televisions, IT devices and accessories.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: f852edb9-a34d-4d63-83a1-263c81c922b2
+  priority: 180
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://ekspedicija.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Ekspedicija.png
+  title: Ekspedicija
+  description: Creative gifts sorted by category or brand (Zippo, Forchino, Victorinox, Bicycle, Space Penn, Hinz&Kunst). Retail facilities can be found in the largest shopping centers in Belgrade, Novi Sad and Kragujevac.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: b3ebee83-447e-47f3-87d3-1f8b4266f02f
+  priority: 190
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://katrin.rs
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Katrin.png
+  title: Katrin
+  description: The Katrin fashion brand was created in Serbia in 2005 and has managed to rise and stand alongside world brands when it comes to women's fashion. The combination of warmth and elegance in their models make every woman feel unique and special.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+- id: 799de00e-5c4b-4f6f-bb9f-32382ea00436
+  priority: 200
+  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  website: https://www.fashion-luna.com
+  image: https://publicintegrationimages.s3.eu-central-1.amazonaws.com/Luna.png
+  title: Luna
+  description: Luna has been designing and creating clothing and accessories for women for 30 years, following the spirit of the modern woman and her sensibility. This is a fashion brand for ladies who choose unique style, comfort and quality in every occasion.
+  currency: RSD
+  constraintType: MIN_MAX
+  constraintJson: { 'MIN': 500, 'MAX': 100000 }
+
+
+#USA
+- id: e6618cd2-1b20-462a-8328-be43cc999b46
+  priority: 10
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.1800flowers.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_1800flow.png
+  title: 1-800 Flowers
+  description: 1-800-Flowers is a well-known floral and gift delivery service based in the United States. It is a popular brand that offers a wide range of products, including flowers, plants, gift baskets, and other gift items.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 54075744-7bb0-400a-9b72-678c618e6c5b
+  priority: 20
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.ae.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/aerie.png
+  title: Aerie
+  description: Aerie is a clothing brand that specializes in lingerie, swimwear and loungewear for women. It is a subsidiary of American Eagle Outfitters and was launched in 2006 with the goal of offering comfortable, body-positive intimates for women of all sizes.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 40, 50, 60, 70 ,80, 90, 100, 150, 200, 250, 300]
+
+- id: e083b693-fba8-47cb-a094-9301320e5441
+  priority: 30
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.amctheatres.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_amc.png
+  title: AMC Theatres
+  description: AMC Theatres, also known as AMC Cinemas, is one of the largest movie theater chains in the world.  AMC Theatres offers a wide selection of films, ranging from Hollywood blockbusters to independent and foreign films.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+
+- id: aa0d023b-04d3-45f2-90e9-bd4e24ede373
+  priority: 40
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://bananarepublic.gap.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_banana.png
+  title: Banana Republic
+  description: Banana Republic is known for its classic and sophisticated aesthetic, often featuring tailored designs and versatile pieces that can be easily incorporated into professional or casual wardrobes. The brand offers a range of clothing items.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 14b6256d-8882-4128-be58-51f43d8b68d4
+  priority: 50
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.cb2.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_cb2.png
+  title: CB2
+  description: CB2 is a contemporary home furnishings and decor retailer. It is a sister brand of Crate and Barrel, another popular home goods retailer. CB2 offers modern and stylish furniture, accessories, lighting, rugs, and other decor items for the home.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 636fe299-6aae-410d-afb4-d10a8f77aec0
+  priority: 60
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.crateandbarrel.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_cratebarrel.png
+  title: Crate&Barrel
+  description: Crate and Barrel's product range includes furniture, kitchenware, dining and entertaining essentials, home decor, bedding, bath items, and more. The brand offers well-designed and functional products that cater to different styles and aesthetics.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
