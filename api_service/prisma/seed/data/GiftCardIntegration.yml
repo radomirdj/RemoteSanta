@@ -680,7 +680,7 @@
 #USA
 - id: 0618f276-3890-4877-9cff-d145133c187e
   priority: 1
-  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.amazon.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
   title: Amazon.com
