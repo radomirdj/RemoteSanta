@@ -217,7 +217,7 @@
   website: https://www.gandhi.com.mx/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_gandhi.png
   title: Gandhi
-  description: 
+  description: Librerías Gandhi (Gandhi Bookstores) is a bookstore chain in Mexico. They were created in 1971 and are one of the biggest bookstore chains in Mexico. After 40 years they now have more than 30 stores all over the country.
   currency: MXN
   constraintType: LIST
   constraintJson: [150, 300, 500, 1000, 1500, 2000]
@@ -239,7 +239,7 @@
   website: https://tripgift.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_tripgift.png
   title: Tripgift
-  description: "TripGift" is an online platform that offers gift cards and vouchers for various travel-related experiences and services. It allows individuals to purchase gift cards that can be redeemed for flights, hotels, tours, activities, car rentals, and more.
+  description: TripGift is an online platform that offers gift cards and vouchers for various travel-related experiences and services. It allows individuals to purchase gift cards that can be redeemed for flights, hotels, tours, activities, car rentals, and more.
   currency: MXN
   constraintType: LIST
   constraintJson: [2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000]
@@ -455,8 +455,8 @@
   constraintType: LIST
   constraintJson: [50, 100, 150, 200]
 
-  #Serbia 
-  - id: 469cf71d-86a5-450e-afc7-76bc6996a3ad
+# Serbia 
+- id: 469cf71d-86a5-450e-afc7-76bc6996a3ad
   priority: 10
   countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
   website: https://giftoncard.eu/listing/multibrand-poklon-kartica/
@@ -1074,7 +1074,7 @@
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
 
-  - id: 080b0877-f81c-4aee-b9c4-0809d82c64ac
+- id: 080b0877-f81c-4aee-b9c4-0809d82c64ac
   priority: 360
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.xbox.com/
@@ -1085,7 +1085,7 @@
   constraintType: LIST
   constraintJson: [ 5, 10, 15, 20, 25, 50, 100 ]
 
-  - id: 3644a97d-2b20-4803-a15f-bf69357e51d0
+- id: 3644a97d-2b20-4803-a15f-bf69357e51d0
   priority: 370
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.spafinder.com/
@@ -1096,7 +1096,7 @@
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 
-  - id: 78af2217-398c-4c96-abb5-687b2c4ad6f3
+- id: 78af2217-398c-4c96-abb5-687b2c4ad6f3
   priority: 380
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.marshalls.com/us/store/index.jsp
@@ -1114,7 +1114,7 @@
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_jwlrroom.png
   title: Jewellery Room
   description: When choosing jewellery either for a fashion statement or as an investment, we know it’s best to consider the value it holds, and The Jewellery Room helps provide customers with the best choices to make.
-  currency: EUR
+  currency: USD
   constraintType: LIST
   constraintJson: [50, 100, 150, 200]
 
