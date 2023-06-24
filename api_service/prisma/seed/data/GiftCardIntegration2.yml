@@ -1052,4 +1052,71 @@
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
 
+- id: e48c6d60-b876-41b5-96f2-88421d3408f5
+  priority: 340
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.landsend.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/landsend.png
+  title: Lands' End
+  description: Lands' End offers a wide range of clothing for men, women, and children, including outerwear, swimwear, activewear, and accessories. The company is particularly well-known for its high-quality, durable outerwear.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 656f8127-d6d4-49a3-9722-53a8ad20c1ee
+  priority: 350
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.sephora.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/sephora.png
+  title: Sephora
+  description: Sephora is a cosmetics retailer that offers a lot of beauty and skincare products including makeup, fragrance, skincare, haircare and bath and body products. It is known for its wide selection of high-quality beauty products from a variety of brands.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+
+  - id: 080b0877-f81c-4aee-b9c4-0809d82c64ac
+  priority: 360
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.xbox.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_xbox.png
+  title: XBOX
+  description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [ 5, 10, 15, 20, 25, 50, 100 ]
+
+  - id: 3644a97d-2b20-4803-a15f-bf69357e51d0
+  priority: 370
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.spafinder.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_spafinder.png
+  title: Spafinder
+  description: Spafinder operates a global network of spas, wellness centers, fitness studios, and other related establishments. Spafinder offers a range of services including spa treatments, massages, facials, yoga classes, fitness sessions, and more.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+  - id: 78af2217-398c-4c96-abb5-687b2c4ad6f3
+  priority: 380
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://www.marshalls.com/us/store/index.jsp
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_marshalls.png
+  title: MArshalls
+  description: Marshalls focuses on providing value to customers by offering an ever-changing assortment of high-quality products across different categories, including clothing, footwear, accessories, home décor, furniture, beauty products, and more.
+  currency: USD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 8e8c862c-9635-4b33-9c34-963284495687
+  priority: 390
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  website: https://thejewelleryroom.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_jwlrroom.png
+  title: Jewellery Room
+  description: When choosing jewellery either for a fashion statement or as an investment, we know it’s best to consider the value it holds, and The Jewellery Room helps provide customers with the best choices to make.
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [50, 100, 150, 200]
+
+
 
