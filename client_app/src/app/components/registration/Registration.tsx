@@ -20,7 +20,11 @@ import {
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
 import { useForm, Controller } from "react-hook-form";
-import { createUTCDate, getPasswordRegex } from "./../../utils/Utils";
+import {
+  createBirthdayFromUTCString,
+  createUTCDate,
+  getPasswordRegex,
+} from "./../../utils/Utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -44,8 +48,11 @@ const Registration = () => {
     control,
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [dateOfBirthValue, setDateOfBirthValue] = React.useState<Date>();
+
   const queryParameters = new URLSearchParams(window.location.search);
   const code = queryParameters.get("code");
+  const isDateValid = !!dateOfBirthValue;
 
   useEffect(() => {
     dispatch(clearError());
@@ -59,10 +66,16 @@ const Registration = () => {
     event.preventDefault();
   };
 
+  const createUTCBirthDate = (date: any) => {
+    if (!date) return undefined;
+    if (!(date.$d instanceof Date) || isNaN(+date.$d)) {
+      return undefined;
+    }
+    return createUTCDate(2000, date.$M, date.$D);
+  };
+
   const onSubmit = (data: any) => {
-    const birthDate = data.birthDate
-      ? createUTCDate(2000, data.birthDate.$M, data.birthDate.$D)
-      : undefined;
+    const birthDate = createUTCBirthDate(data.birthDate);
     let body: SignUpRequestPayload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -202,7 +215,10 @@ const Registration = () => {
                             label="Date of birth"
                             value={field.value}
                             inputFormat="MM/DD"
-                            onChange={(date) => field.onChange(date)}
+                            onChange={(date) => {
+                              field.onChange(date);
+                              setDateOfBirthValue(createUTCBirthDate(date));
+                            }}
                             className={
                               errors.birthDate
                                 ? "registration-date-with-error split-input"
@@ -216,13 +232,13 @@ const Registration = () => {
                         )}
                       />
                     </LocalizationProvider>
-
                     {errors.birthDate?.type === "validate" && (
                       <Typography className="registration-error-fe">
                         Date is not valid.
                       </Typography>
                     )}
                   </Grid>
+
                   <Grid item xs={12} lg={6}>
                     <FormControl variant="outlined">
                       <InputLabel id="genderLabel">Gender</InputLabel>
@@ -249,6 +265,14 @@ const Registration = () => {
                       </Typography>
                     )}
                   </Grid>
+
+                  {isDateValid && (
+                    <span className="date-of-birth-helper">
+                      {createBirthdayFromUTCString(
+                        dateOfBirthValue.toString() || ""
+                      )}
+                    </span>
+                  )}
                 </Grid>
                 <FormControl variant="outlined">
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
