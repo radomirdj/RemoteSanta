@@ -24,6 +24,14 @@ import {
   SET_CLOSE_DIALOG_SEND_POINTS,
 } from "./actionTypes";
 
+export interface IOrganizationCountry {
+  id: string;
+  currencyString: string;
+  countryCode: string;
+  countryName: string;
+  conversionRateToPoints: number;
+}
+
 export interface IOrganization {
   id: string;
   name: string;
@@ -31,6 +39,7 @@ export interface IOrganization {
   totalPointsPerMonth?: number;
   pointsPerMonth: number;
   balance: number;
+  country?: IOrganizationCountry;
 }
 
 export interface IOrgTransaction {
@@ -50,6 +59,7 @@ export interface IOrgUser {
   userBalance?: IUserBalance;
   userRole?: string;
   birthDate?: string;
+  org?: IOrganization;
 }
 
 export interface OrganizationState {
