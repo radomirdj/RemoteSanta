@@ -49,6 +49,7 @@ export interface IOrgUser {
   lastName: string;
   userBalance?: IUserBalance;
   userRole?: string;
+  birthDate?: string;
 }
 
 export interface OrganizationState {

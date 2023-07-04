@@ -19,6 +19,7 @@ import { getOrganizationUserSelector } from "../../store/orgs/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ErrorIcon from "@mui/icons-material/Error";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { createBirthdayFromUTCString } from "../../utils/Utils";
 
 const UserManagerUserDetails = () => {
   const params = useParams();
@@ -68,6 +69,14 @@ const UserManagerUserDetails = () => {
               </Grid>
               <Grid item xs={8}>
                 {user?.firstName} {user?.lastName}
+              </Grid>
+            </Grid>
+            <Grid container className="grid-container">
+              <Grid item xs={4}>
+                <span className="column-name">Date Of Birth</span>
+              </Grid>
+              <Grid item xs={8}>
+                {createBirthdayFromUTCString(user?.birthDate || "")}
               </Grid>
             </Grid>
             <Grid container className="grid-container">

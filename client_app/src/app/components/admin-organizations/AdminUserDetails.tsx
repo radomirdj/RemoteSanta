@@ -22,6 +22,7 @@ import { getAdminUserSelector } from "../../store/admin-organization/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ErrorIcon from "@mui/icons-material/Error";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { createBirthdayFromUTCString } from "../../utils/Utils";
 
 const AdminUserDetails = () => {
   const params = useParams();
@@ -79,11 +80,7 @@ const AdminUserDetails = () => {
                 <span className="column-name">Date Of Birth</span>
               </Grid>
               <Grid item xs={8}>
-                {new Date(user?.birthDate || "").toLocaleDateString("en-US", {
-                  day: "numeric",
-                  year: "numeric",
-                  month: "short",
-                })}
+                {createBirthdayFromUTCString(user?.birthDate || "")}
               </Grid>
             </Grid>
             <Grid container className="grid-container">
