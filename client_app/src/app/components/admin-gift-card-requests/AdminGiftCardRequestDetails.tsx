@@ -24,6 +24,7 @@ import {
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderAdmin from "../app-header-admin/AppHeaderAdmin";
 import ErrorIcon from "@mui/icons-material/Error";
+import { countryList } from "../../enums/CountryList";
 
 const AdminGiftCardRequestDetails = () => {
   const dispatch = useDispatch();
@@ -103,6 +104,22 @@ const AdminGiftCardRequestDetails = () => {
                   </Grid>
                   <Grid item xs={7}>
                     {adminGiftCardRequest?.giftCardIntegration.title}
+                  </Grid>
+                </Grid>
+              </Typography>
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Country</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {
+                      countryList.find(
+                        (country) =>
+                          country.id ===
+                          adminGiftCardRequest?.giftCardIntegration.countryId
+                      )?.countryName
+                    }
                   </Grid>
                 </Grid>
               </Typography>
