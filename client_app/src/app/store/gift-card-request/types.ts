@@ -31,6 +31,7 @@ export interface IGiftCardIntegration {
   constraintJson: string;
   currency: string;
   pointsToCurrencyConversionRate?: number;
+  countryId?: string;
 }
 
 export interface IGiftCardFile {

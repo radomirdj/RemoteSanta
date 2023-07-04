@@ -4,6 +4,7 @@ $declined-icon-width: 20px;
 $card-image-width: 83%;
 $card-button-width: 83%;
 $grid-max-width: 1200px;
+$card-country-margin-bottom:10px;
 
 .my-gift-cards {
     background-color: variables.$main-yellow;
@@ -71,7 +72,7 @@ $grid-max-width: 1200px;
             margin-right: auto;
             background-color: rgb(193, 211, 229, 0.6);
             border-radius: variables.$base-unit * 3;
-            height:variables.$base-unit * 45;
+            height:variables.$base-unit * 47;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
         }
 
@@ -89,6 +90,14 @@ $grid-max-width: 1200px;
             margin-left: variables.$base-unit * 2;
         }
 
+        .card-country{
+            font-family: "Montserrat";
+            margin-left: variables.$base-unit * 2;
+            margin-bottom: $card-country-margin-bottom;
+            font-weight: 600;
+            color: variables.$color-neutral-gray;
+        }
+
         .card-date{
             font-family: "Montserrat";
             color: variables.$color-neutral-black;
@@ -98,7 +107,7 @@ $grid-max-width: 1200px;
         .card-amount{
             float: right;
             font-family: "Montserrat";
-            font-weight: bold;
+            font-weight: 600;
             color: variables.$color-neutral-gray;
             margin-right: variables.$base-unit * 2;
         }

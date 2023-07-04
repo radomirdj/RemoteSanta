@@ -11,8 +11,9 @@ import React from "react";
 import { IGiftCardRequest } from "../../store/gift-card-request/types";
 import WatchGlass from "./../../assets/icons/watchglass.svg";
 import DeclinedIcon from "./../../assets/icons/declined-icon.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchGiftCardFile } from "../../store/gift-card-request/actions";
+import { countryList } from "../../enums/CountryList";
 
 const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
   const dispatch = useDispatch();
@@ -31,13 +32,16 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
         className="card-image"
       />
       <CardContent>
-        <Typography
-          gutterBottom
-          variant="h6"
-          component="div"
-          className="card-title"
-        >
+        <Typography variant="h6" className="card-title">
           {giftCardRequest.giftCardIntegration.title}
+        </Typography>
+        <Typography className="card-country" variant="body2">
+          {
+            countryList.find(
+              (country) =>
+                country.id === giftCardRequest.giftCardIntegration.countryId
+            )?.countryName
+          }
         </Typography>
         <Typography variant="body2" className="card-date">
           {new Date(giftCardRequest.createdAt).toLocaleDateString("en-US", {

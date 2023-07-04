@@ -31,4 +31,7 @@ export class GiftCardIntegrationDto {
 
   @Expose()
   constraintJson: string;
+
+  @Expose()
+  countryId: string;
 }
