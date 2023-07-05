@@ -179,27 +179,32 @@ export const giftDate4 = giftDates[3];
 export const giftDate5 = giftDates[4];
 
 export const giftCardIntegration1 = {
-  id: '973dbf26-b6e3-4141-9357-7c479c102d14',
-  priority: 680,
-  website: 'https://www.hardrockcafe.com/',
-  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/hardrock.png',
-  title: 'Hard Rock Cafe',
+  id: 'e6618cd2-1b20-462a-8328-be43cc999b46',
+  priority: 10,
+  website: 'https://www.1800flowers.com/',
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/us_1800flow.png',
+  title: '1-800 Flowers',
   description:
-    'Hard Rock Cafe is a chain of restaurants known for its collection of rock-and-roll memorabilia and themed decor. The first Hard Rock Cafe was founded in 1971 in London, England, by Americans Isaac Tigrett and Peter Morton.',
-  constraintType: 'MIN_MAX',
-  constraintJson: { MIN: 25, MAX: 500 },
+    '1-800-Flowers is a well-known floral and gift delivery service based in the United States. It is a popular brand that offers a wide range of products, including flowers, plants, gift baskets, and other gift items.',
+  constraintType: 'LIST',
+  constraintJson: [
+    5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300, 350,
+    400, 450, 500,
+  ],
 };
 
 export const giftCardIntegration2 = {
-  id: 'f607eac9-3bed-4c4b-9118-2ea72eb5a9f8',
-  priority: 650,
-  website: 'https://www.campingworld.com/',
-  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/campingworld.png',
-  title: 'Camping World',
+  id: '54075744-7bb0-400a-9b72-678c618e6c5b',
+  priority: 20,
+  website: 'https://www.ae.com/',
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/aerie.png',
+  title: 'Aerie',
   description:
-    'Camping World offers a wide variety of RVs for sale, including new and used motorhomes, travel trailers, fifth wheels, and toy haulers, as well as pop-up campers and truck campers. It operates over 170 locations in the US, as well as an online store.',
-  constraintType: 'MIN_MAX',
-  constraintJson: { MIN: 25, MAX: 100 },
+    'Aerie is a clothing brand that specializes in lingerie, swimwear and loungewear for women. It is a subsidiary of American Eagle Outfitters and was launched in 2006 with the goal of offering comfortable, body-positive intimates for women of all sizes.',
+  constraintType: 'LIST',
+  constraintJson: [
+    5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300,
+  ],
 };
 
 export const giftCardIntegrationSrb = {
@@ -210,28 +215,32 @@ export const giftCardIntegrationSrb = {
     'https://publicintegrationimages.s3.eu-central-1.amazonaws.com/NSport.png',
   title: 'N Sport',
   description:
-    'Jedan od vodećih distributera najpoznatijih sportskih i modnih brendova. Prepoznatljiv po svoja tri osnovna prodajna multibrend koncepta - N Sport, N Fashion i N Selection, koji odgovaraju aktivnom životu savremenih muškaraca i žena.',
+    'One of the leading distributors of the most famous sports and fashion brands. Recognizable for its three main sales multibrand concepts - N Sport, N Fashion and N Selection, which correspond to the active life of modern men and women.',
   constraintType: 'MIN_MAX',
   constraintJson: { MIN: 500, MAX: 100000 },
 };
 
 export const giftCardIntegrationIndia = {
-  id: '8bb5a64a-b294-4891-ae19-aa33621b2c98',
-  priority: 10,
-  website: 'https://www.trends.ajio.com/',
-  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/ind_trends.png',
-  title: 'Trends',
+  id: '73531d62-58dc-4891-9fb7-95be4f56106e',
+  priority: 20,
+  website: 'https://www.flipkart.com/',
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/ind_flipkart.png',
+  title: 'Flipkart',
   description:
-    'The Trends available on the AJIO store may include clothing styles like athleisure, bohemian, streetwear, ethnic wear, or seasonal fashion trends like floral prints, pastel colors, or statement accessories.',
+    'Flipkart operates as a marketplace where sellers can list their products, and customers can browse and purchase items directly from the platform. It provides an online shopping experience and offers a wide selection of products from different brands.',
   constraintType: 'LIST',
-  constraintJson: [500, 1000, 1500, 2000, 2500, 3000, 5000, 7500],
+  constraintJson: [
+    25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750, 800,
+    900, 1000, 1500, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000,
+    10000,
+  ],
 };
 
 export const giftCardRequestList = [
   {
     id: '9794fc09-68ee-4f3d-ac3f-b5ea759021ca',
     userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
-    giftCardIntegrationId: '973dbf26-b6e3-4141-9357-7c479c102d14',
+    giftCardIntegrationId: 'e6618cd2-1b20-462a-8328-be43cc999b46',
     amount: 3000,
     giftCardIntegrationCurrencyAmount: 30.0,
     status: 'PENDING',
@@ -239,7 +248,7 @@ export const giftCardRequestList = [
   {
     id: '17dd40fa-dff8-4b53-bdf1-a83ba1475e44',
     userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
-    giftCardIntegrationId: 'f607eac9-3bed-4c4b-9118-2ea72eb5a9f8',
+    giftCardIntegrationId: '54075744-7bb0-400a-9b72-678c618e6c5b',
     amount: 6000,
     giftCardIntegrationCurrencyAmount: 60.0,
     status: 'PENDING',
@@ -247,7 +256,7 @@ export const giftCardRequestList = [
   {
     id: '4098665d-b252-43d7-b40e-3d8444ab4567',
     userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
-    giftCardIntegrationId: '632fedde-10b8-41d5-a16b-b1f3f61923c8',
+    giftCardIntegrationId: '0618f276-3890-4877-9cff-d145133c187e',
     amount: 9000,
     giftCardIntegrationCurrencyAmount: 90.0,
     status: 'COMPLETED',
@@ -255,7 +264,7 @@ export const giftCardRequestList = [
   {
     id: '1804569e-6112-4519-82c3-6d40e754e035',
     userId: userDeleted1.id,
-    giftCardIntegrationId: '973dbf26-b6e3-4141-9357-7c479c102d14',
+    giftCardIntegrationId: 'e6618cd2-1b20-462a-8328-be43cc999b46',
     amount: 3600,
     giftCardIntegrationCurrencyAmount: 36.0,
     status: 'PENDING',

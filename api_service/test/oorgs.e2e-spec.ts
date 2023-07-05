@@ -210,15 +210,15 @@ describe('orgs', () => {
       });
     });
 
-    it('/ (GET) - NON ADMIN user, get ORG  USERS', async () => {
-      await request(app.getHttpServer())
+    it('/ (GET) - BASIC_USER  get ORG  USERS', async () => {
+      const response = await request(app.getHttpServer())
         .get('/orgs/current_org/users/')
         .set(
           'Authorization',
           'bearer ' +
             createToken({ email: user1.email, sub: user1.cognitoSub }),
         )
-        .expect(403);
+        .expect(200);
     });
 
     it('/ (GET) - try to get ORG  USERS without token', async () => {

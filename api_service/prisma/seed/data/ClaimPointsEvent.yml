@@ -87,7 +87,7 @@
   type: MONTHLY_ORG_TO_EMPLOYEE
   validTo: 2024-01-01T00:00:00.000Z
 
-  - id: 35cac49a-1f48-40b2-bf4d-b6abbc7e2c22
+- id: 35cac49a-1f48-40b2-bf4d-b6abbc7e2c22
   description: 'January is the first chapter of your year! '
   title: 'January 2024'
   type: MONTHLY_ORG_TO_EMPLOYEE

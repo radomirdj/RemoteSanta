@@ -160,16 +160,16 @@ describe('/gift-card-requests', () => {
   describe('/ (POST)', () => {
     const newGiftCardRequest = {
       giftCardIntegrationId: giftCardIntegration1.id,
-      amount: 2700,
-      giftCardIntegrationCurrencyAmount: 27,
+      amount: 2500,
+      giftCardIntegrationCurrencyAmount: 25,
       //   status shouls be ignored
       status: GiftCardRequestStatusEnum.COMPLETED,
     };
 
     const newGiftCardRequestAmountList = {
       giftCardIntegrationId: giftCardIntegrationIndia.id,
-      amount: 2456,
-      giftCardIntegrationCurrencyAmount: 2000,
+      amount: 492,
+      giftCardIntegrationCurrencyAmount: 400,
       //   status shouls be ignored
       status: GiftCardRequestStatusEnum.COMPLETED,
     };
@@ -192,7 +192,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
-        giftCardIntegrationCurrencyAmount: 27,
+        giftCardIntegrationCurrencyAmount: 25,
         userId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
@@ -200,7 +200,7 @@ describe('/gift-card-requests', () => {
         id,
         {
           ...newGiftCardRequest,
-          giftCardIntegrationCurrencyAmount: 27,
+          giftCardIntegrationCurrencyAmount: 25,
           status: GiftCardRequestStatusEnum.PENDING,
           userId: user3Manager.id,
         },
@@ -246,7 +246,7 @@ describe('/gift-card-requests', () => {
         .send({
           ...newGiftCardRequest,
           giftCardIntegrationId: giftCardIntegrationSrb.id,
-          giftCardIntegrationCurrencyAmount: 2912,
+          giftCardIntegrationCurrencyAmount: 2696,
         })
         .expect(201);
 
@@ -254,7 +254,7 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
-        giftCardIntegrationCurrencyAmount: 2912,
+        giftCardIntegrationCurrencyAmount: 2696,
         giftCardIntegrationId: giftCardIntegrationSrb.id,
         userId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
@@ -263,7 +263,7 @@ describe('/gift-card-requests', () => {
         id,
         {
           ...newGiftCardRequest,
-          giftCardIntegrationCurrencyAmount: 2912,
+          giftCardIntegrationCurrencyAmount: 2696,
           giftCardIntegrationId: giftCardIntegrationSrb.id,
           status: GiftCardRequestStatusEnum.PENDING,
           userId: user3Manager.id,
@@ -332,7 +332,7 @@ describe('/gift-card-requests', () => {
         )
         .send({
           ...newGiftCardRequest,
-          giftCardIntegrationCurrencyAmount: 27.001,
+          giftCardIntegrationCurrencyAmount: 25.001,
         })
         .expect(400);
 
@@ -411,8 +411,8 @@ describe('/gift-card-requests', () => {
         )
         .send({
           ...newGiftCardRequestAmountList,
-          amount: 492,
-          giftCardIntegrationCurrencyAmount: 400,
+          amount: 2456,
+          giftCardIntegrationCurrencyAmount: 2000,
         })
         .expect(400);
 

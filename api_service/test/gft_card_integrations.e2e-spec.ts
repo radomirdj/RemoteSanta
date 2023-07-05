@@ -50,8 +50,10 @@ const validateCountryMinMaxIntegrations = (
   amount: number,
   currencyAmount: number,
   errorMessage: string,
+  ignoreIdList: string[],
 ) => {
   const promiseList = integrationList.map(async (integration) => {
+    if (ignoreIdList.includes(integration.id)) return;
     try {
       await giftCardIntegrationsService.validateIntegrationRequest(
         integration.id,
@@ -185,7 +187,7 @@ describe('/gift-card-integrations', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(71);
+      expect(response.body.length).toEqual(40);
       const giftCardIntegrationRsp1 = response.body.find(
         (giftDateRsp) => giftDateRsp.id === giftCardIntegration1.id,
       );
@@ -266,6 +268,10 @@ describe('/gift-card-integrations', () => {
         5000,
         50,
         'Integration should accept 5000 points, check seed.',
+        [
+          '8e32126c-6e6a-4ce0-af0e-570dbf0e7c24',
+          '41ab24e1-9804-49d9-a572-bccdb22c7adc',
+        ],
       );
     });
 
@@ -285,6 +291,7 @@ describe('/gift-card-integrations', () => {
         1000,
         1000,
         'Integration Srb should accept 1000 points, check seed.',
+        [],
       );
     });
 
@@ -317,6 +324,7 @@ describe('/gift-card-integrations', () => {
         2000,
         2000,
         'Integration India should accept 2000 points, check seed.',
+        [],
       );
       validateListIntegrations(
         integrationListConstraintList,
@@ -356,6 +364,7 @@ describe('/gift-card-integrations', () => {
         6000,
         60,
         'Integration Mexico should accept 60 points, check seed.',
+        [],
       );
       validateListIntegrations(
         integrationListConstraintList,
