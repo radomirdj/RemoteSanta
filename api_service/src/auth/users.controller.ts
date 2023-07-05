@@ -98,7 +98,7 @@ export class UsersController {
   }
 
   @Get('/:id')
-  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  @UseGuards(AuthGuard('jwt'))
   async getUserDetails(@Param('id') id: string, @CurrentUser() user: User) {
     return this.adminUsersService.getUserDetailsById(id, true, user.orgId);
   }
