@@ -146,7 +146,7 @@ const AppHeaderPrivate = () => {
                 className="user-manager-button"
                 startIcon={<AutoAwesomeIcon />}
               >
-                Your company
+                My Company
               </Button>
               <Menu
                 sx={{ mt: "45px", width: "600px" }}
