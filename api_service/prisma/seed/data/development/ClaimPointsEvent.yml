@@ -88,6 +88,48 @@
   type: MONTHLY_ORG_TO_EMPLOYEE
   validTo: 2024-01-01T00:00:00.000Z
 
+  - id: 35cac49a-1f48-40b2-bf4d-b6abbc7e2c22
+  description: 'January is the first chapter of your year! '
+  title: 'January 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-02-01T00:00:00.000Z
+
+- id: 670c3eb2-ad4c-4d7a-a2e0-214dc49bc4c2
+  description: 'February. Border between winter and spring.'
+  title: 'February 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-03-01T00:00:00.000Z
+
+- id: 9ca11e84-d2aa-43a7-b90b-a888eb6d2f9e
+  description: 'Third month of the year, first month of Spring!'
+  title: 'March 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-04-01T00:00:00.000Z
+
+- id: c0ec931e-c704-4679-80b0-b86d058bbce3
+  description: 'Happy April! Here’s hoping nobody fools you!'
+  title: 'April 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-05-01T00:00:00.000Z
+
+- id: e964e228-28c0-4a8e-8d9b-c96632c31fd3
+  description: 'May you see spring all around you!'
+  title: 'May 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-06-01T00:00:00.000Z
+
+- id: b3298da4-3eb3-47ea-8f67-7a27200ec1e6
+  description: 'June suns, you cannot store them!'
+  title: 'June 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-07-01T00:00:00.000Z
+
+- id: b83ec787-41b0-470b-955a-4c6ff48204a3
+  description: 'July. Blind date with summer.'
+  title: 'July 2024'
+  type: MONTHLY_ORG_TO_EMPLOYEE
+  validTo: 2024-08-01T00:00:00.000Z
+
 - id: ec8dc7a8-0ed3-4815-bd0d-d2073005625e
   description: 'Make December to remember!'
   title: 'December 2053'
