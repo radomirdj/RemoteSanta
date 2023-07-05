@@ -58,8 +58,8 @@ const AppHeaderPrivate = () => {
     navigate("/my-gift-cards");
   };
 
-  const demoRedirect = () => {
-    navigate("/demo");
+  const myTeamRedirect = () => {
+    navigate("/my-team");
   };
 
   const userProfileRedirect = () => {
@@ -72,10 +72,6 @@ const AppHeaderPrivate = () => {
 
   const userManagerInvitesRedirect = () => {
     navigate("/user-manager-invites");
-  };
-
-  const userManagerUsersRedirect = () => {
-    navigate("/user-manager-users");
   };
 
   return (
@@ -122,13 +118,13 @@ const AppHeaderPrivate = () => {
           <Grid item xs={3} sm={2} md={1} className="align-left">
             <Typography
               className={
-                window.location.pathname === "/demo"
+                window.location.pathname === "/my-team"
                   ? "header-item-active"
                   : "header-item"
               }
-              onClick={demoRedirect}
+              onClick={myTeamRedirect}
             >
-              Video Tour
+              My Team
             </Typography>
           </Grid>
           {user.userRole === UserRole.USER_MANAGER && (
@@ -169,9 +165,6 @@ const AppHeaderPrivate = () => {
                 </MenuItem>
                 <MenuItem onClick={userManagerInvitesRedirect}>
                   <Typography textAlign="center">Invites</Typography>
-                </MenuItem>
-                <MenuItem onClick={userManagerUsersRedirect}>
-                  <Typography textAlign="center">Users</Typography>
                 </MenuItem>
               </Menu>
             </Grid>

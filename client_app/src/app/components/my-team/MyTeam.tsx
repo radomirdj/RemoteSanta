@@ -1,7 +1,5 @@
+import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOrganizationUserList } from "../../store/orgs/actions";
-import { getOrganizationUserListSelector } from "../../store/orgs/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import {
@@ -11,15 +9,15 @@ import {
   gridClasses,
   GridRenderCellParams,
 } from "@mui/x-data-grid";
-import { styled } from "@mui/material/styles";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrganizationUserListSelector } from "../../store/orgs/selectors";
+import { useNavigate } from "react-router-dom";
+import { fetchOrganizationUserList } from "../../store/orgs/actions";
+import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
-import { useNavigate } from "react-router-dom";
-import UserDetailsIcon from "../../assets/icons/user-details.svg";
-import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 
-const UserManagerUsers = () => {
+const MyTeam = () => {
   const dispatch = useDispatch();
   const orgUserList = useSelector(getOrganizationUserListSelector);
   const rowsPerPage = 7;
@@ -29,25 +27,8 @@ const UserManagerUsers = () => {
     dispatch(fetchOrganizationUserList());
   }, [dispatch]);
 
-  const userManagerUserDetailsRedirect = (userId: string) => {
-    navigate(`/user-manager-user-details/${userId}`);
-  };
-
   const userManagerSendPointsRedirect = (userId: string) => {
-    navigate(`/user-manager-send-points/${userId}`);
-  };
-
-  const detailsButton = (params: GridRenderCellParams) => {
-    return (
-      <Button
-        variant="contained"
-        className="button-details"
-        disableRipple
-        onClick={() => userManagerUserDetailsRedirect(params.id as string)}
-      >
-        <img src={UserDetailsIcon} alt="" />
-      </Button>
-    );
+    navigate(`/my-team-send-points/${userId}`);
   };
 
   const sendPoints = (params: GridRenderCellParams) => {
@@ -66,21 +47,13 @@ const UserManagerUsers = () => {
   const columns: GridColDef[] = [
     { field: "firstName", headerName: "Firstname", width: 200 },
     { field: "lastName", headerName: "Lastname", width: 200 },
-    { field: "email", headerName: "Email", width: 300 },
-    { field: "userRole", headerName: "Role", width: 200 },
+    { field: "email", headerName: "Email", width: 400 },
     {
       field: "sendPoints",
       headerName: "Send Points",
       width: 150,
       sortable: false,
       renderCell: sendPoints,
-    },
-    {
-      field: "details",
-      headerName: "Details",
-      width: 150,
-      sortable: false,
-      renderCell: detailsButton,
     },
   ];
 
@@ -89,8 +62,6 @@ const UserManagerUsers = () => {
       firstName: orgUser.firstName,
       lastName: orgUser.lastName,
       email: orgUser.email,
-      userRole: orgUser.userRole,
-      details: "",
       id: orgUser.id,
     };
   });
@@ -117,10 +88,10 @@ const UserManagerUsers = () => {
   return (
     <>
       <AppHeaderPrivate />
-      <div className="background user-manager-users">
+      <div className="background my-team">
         <Grid container className="grid-style">
           <Grid item xs={12}>
-            <Typography className="users-title">Users</Typography>
+            <Typography className="my-team-title">My Team</Typography>
           </Grid>
           <Box className="box-style">
             <StripedDataGrid
@@ -158,4 +129,4 @@ const UserManagerUsers = () => {
   );
 };
 
-export default UserManagerUsers;
+export default MyTeam;
