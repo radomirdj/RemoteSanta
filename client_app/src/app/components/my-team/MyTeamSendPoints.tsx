@@ -1,48 +1,31 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
-import {
-  fetchOrgUser,
-  sendPointsToUser,
-  setCloseDialogSendPoints,
-  setOpenDialogSendPoints,
-} from "../../store/orgs/actions";
+import { Button, Card, Grid, TextField, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getErrorSelector,
-  getOpenDialogSendPointsSelector,
+  getOrganizationSelector,
   getOrganizationUserSelector,
 } from "../../store/orgs/selectors";
-import {
-  Button,
-  Card,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { fetchOrganization, fetchOrgUser } from "../../store/orgs/actions";
 import { useForm } from "react-hook-form";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 import ErrorIcon from "@mui/icons-material/Error";
-import { ISendPointsData } from "../../store/admin-organization/types";
+import { getAuthUserSelector } from "../../store/auth/selectors";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const MyTeamSendPoints = () => {
   const params = useParams();
   const userId = params.id as string;
   const dispatch = useDispatch();
+  const userOrg = useSelector(getOrganizationUserSelector);
+  const organization = useSelector(getOrganizationSelector);
   const navigate = useNavigate();
-  const user = useSelector(getOrganizationUserSelector);
-  const open = useSelector(getOpenDialogSendPointsSelector);
-  const error = useSelector(getErrorSelector);
-  const [sendPointsData, setSendPointsData] = React.useState<ISendPointsData>();
   const [pointsToCurrencyMessage, setPointsToCurrencyMessage] =
     React.useState("");
+  const error = useSelector(getErrorSelector);
+  const userAuth = useSelector(getAuthUserSelector);
   const {
     register,
     formState: { errors },
@@ -51,81 +34,77 @@ const MyTeamSendPoints = () => {
 
   useEffect(() => {
     dispatch(fetchOrgUser({ userId: userId }));
+    if (userAuth.userRole === "USER_MANAGER") {
+      dispatch(fetchOrganization());
+    }
   }, [dispatch, userId]);
 
-  const goBack = () => {
-    navigate(-1);
-  };
-
-  const handleClose = () => {
-    dispatch(setCloseDialogSendPoints());
-  };
-
   const onSubmit = (data: any) => {
-    setSendPointsData(data);
-    dispatch(setOpenDialogSendPoints());
-  };
-
-  const onConfirm = () => {
-    dispatch(
-      sendPointsToUser(
-        {
-          userId: user?.id || "",
-          sendPointsData: {
-            amount: Number(sendPointsData?.amount) || 0,
-            message: sendPointsData?.message || "",
-          },
-        },
-        navigate
-      )
-    );
+    console.log();
   };
 
   const pointsToCurrency = (points: any) => {
     const conversionRateToPoints =
-      user?.org?.country?.conversionRateToPoints || 1;
+      userOrg?.org?.country?.conversionRateToPoints || 1;
     const pointsInCurrency = (points * 1.0) / conversionRateToPoints;
     setPointsToCurrencyMessage(
       "This is equal to " +
         pointsInCurrency +
         " " +
-        user?.org?.country?.currencyString +
+        userOrg?.org?.country?.currencyString +
         "."
     );
+  };
+
+  const enoughBalance = (amount: number) => {
+    if (userAuth.userBalance?.pointsActive) {
+      if (amount <= userAuth.userBalance?.pointsActive) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const goBack = () => {
+    navigate(-1);
   };
 
   return (
     <>
       <AppHeaderPrivate />
-      <div className="background user-manager-send-points">
+      <div className="background my-team-send-points">
         <Card className="card-style">
-          <Typography className="title-style">Send some points</Typography>
-          <Card className="child-card">
-            <Grid container className="grid-container">
-              <Grid item xs={4}>
-                <span className="column-name">Fullname</span>
+          <Typography className="title-style">
+            Send points to {userOrg?.firstName}
+          </Typography>
+          {userAuth.userRole === "USER_MANAGER" && (
+            <Card className="child-card">
+              <Grid container className="grid-container">
+                <Grid item xs={4}>
+                  <span className="column-name">Fullname</span>
+                </Grid>
+                <Grid item xs={8}>
+                  {userOrg?.firstName} {userOrg?.lastName}
+                </Grid>
               </Grid>
-              <Grid item xs={8}>
-                {user?.firstName} {user?.lastName}
+              <Grid container className="grid-container">
+                <Grid item xs={4}>
+                  <span className="column-name">Active PTS</span>
+                </Grid>
+                <Grid item xs={8}>
+                  {userOrg?.userBalance?.pointsActive}
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container className="grid-container">
-              <Grid item xs={4}>
-                <span className="column-name">Active PTS</span>
+              <Grid container className="grid-container">
+                <Grid item xs={4}>
+                  <span className="column-name">Email</span>
+                </Grid>
+                <Grid item xs={8}>
+                  {userOrg?.email}
+                </Grid>
               </Grid>
-              <Grid item xs={8}>
-                {user?.userBalance?.pointsActive}
-              </Grid>
-            </Grid>
-            <Grid container className="grid-container">
-              <Grid item xs={4}>
-                <span className="column-name">Email</span>
-              </Grid>
-              <Grid item xs={8}>
-                {user?.email}
-              </Grid>
-            </Grid>
-          </Card>
+            </Card>
+          )}
           <form onSubmit={handleSubmit(onSubmit)}>
             {error && (
               <div className="amount-error">
@@ -147,6 +126,7 @@ const MyTeamSendPoints = () => {
               {...register("amount", {
                 required: true,
                 min: 1,
+                validate: enoughBalance,
                 onChange: (e) => pointsToCurrency(e.target.value),
               })}
             />
@@ -159,6 +139,11 @@ const MyTeamSendPoints = () => {
             {errors.amount?.type === "min" && (
               <Typography className="amount-error-fe">
                 The minimum amount is 1 PTS.
+              </Typography>
+            )}
+            {errors.amount?.type === "validate" && (
+              <Typography className="amount-error-fe">
+                The amount you specified is greater then the amount you have.
               </Typography>
             )}
             <Typography className="points-in-currency-style">
@@ -196,52 +181,7 @@ const MyTeamSendPoints = () => {
                   Back
                 </Button>
               </Grid>
-              <Grid item xs={6}>
-                <Button
-                  disableRipple
-                  variant="contained"
-                  className="send-points-button"
-                  type="submit"
-                >
-                  <img src={GiftIconBlack} alt="" className="gift-icon-style" />{" "}
-                  Send Points
-                </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle id="alert-dialog-title" className="dialog-title">
-                    Send Points Confirmation
-                  </DialogTitle>
-                  <DialogContent>
-                    <DialogContentText
-                      id="alert-dialog-description"
-                      className="dialog-text"
-                    >
-                      Please confirm sending points to user.
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button
-                      onClick={handleClose}
-                      className="dialog-back-button"
-                      variant="outlined"
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      onClick={onConfirm}
-                      autoFocus
-                      className="dialog-confirm-button"
-                      variant="contained"
-                    >
-                      Confirm
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </Grid>
+              <Grid item xs={6}></Grid>
             </Grid>
           </form>
         </Card>

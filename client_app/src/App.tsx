@@ -37,6 +37,7 @@ import UserManagerSendPoints from "./app/components/user-manager-users/UserManag
 import AdminUserSendPoints from "./app/components/admin-organizations/AdminUserSendPoints";
 import MyTeam from "./app/components/my-team/MyTeam";
 import MyTeamSendPoints from "./app/components/my-team/MyTeamSendPoints";
+import MyTeamSendPointsSuccess from "./app/components/my-team/MyTeamSendPointsSuccess";
 
 const App = () => {
   return (
@@ -112,6 +113,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <MyTeamSendPoints />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="my-team-send-points-success"
+          element={
+            <PrivateRoute>
+              <MyTeamSendPointsSuccess />
             </PrivateRoute>
           }
         />

@@ -12,6 +12,7 @@ import {
   getGiftCardRequestAmountInIntegrationCurrencySelector,
   getGiftCardRequestAmountSelector,
   getGiftCardRequestIntegrationSelector,
+  getPendingSelector,
   getStepperPagetSelector,
 } from "../../store/gift-card-request/selectors";
 
@@ -28,6 +29,7 @@ const GiftCardRequestOverview = () => {
   const user = useSelector(getAuthUserSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const pending = useSelector(getPendingSelector);
 
   const onBack = () => {
     dispatch(setGiftCardRequestStepBack({ currentStep: activeStep }));
@@ -90,6 +92,7 @@ const GiftCardRequestOverview = () => {
               variant="contained"
               className="overview-confirm-button"
               disableRipple
+              disabled={pending ? true : false}
               type="submit"
               onClick={onSubmit}
             >

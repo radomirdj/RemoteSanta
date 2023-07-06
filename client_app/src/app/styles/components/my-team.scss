@@ -7,16 +7,28 @@ $content-width:950px;
     background-image: url("./../../assets/home-image.svg");
 
     .grid-style{
-        max-width: $content-width;
         justify-content: center;
         padding-top: variables.$base-unit * 5;
+        @media screen and (max-width: variables.$breakpoint-md) {
+            width: 100%;
+        }
+    
+        @media screen and (min-width: variables.$breakpoint-md) {
+            max-width: $content-width;
+        }
 
         .my-team-title{
             font-family: "Montserrat";
-            font-size: variables.$font-size-title;
             margin-bottom: variables.$base-unit;
             width: max-content;
             font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-larger;
+            }
+        
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-title;
+            }
         }
     }
 
@@ -26,7 +38,6 @@ $content-width:950px;
     }
 
     .data-grid{
-        width: $content-width;
         margin-left: auto;
         margin-right: auto;
         border-radius: variables.$base-unit * 3;
@@ -34,6 +45,14 @@ $content-width:950px;
         font-family: "Montserrat";
         border: none;
         overflow: hidden;
+
+        @media screen and (max-width: variables.$breakpoint-md) {
+            width: 100%;
+        }
+    
+        @media screen and (min-width: variables.$breakpoint-md) {
+            width: $content-width;
+        }
 
         .button-send-points{
             float: right;
