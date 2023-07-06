@@ -68,6 +68,7 @@ export class EmailsService {
     firstName: string,
     lastName: string,
     giftCardIntegrationTitle: string,
+    giftCardIntegrationCountryCode: string,
     attachment: { filename: string; buffer },
   ) {
     return this.sendEmail(
@@ -76,7 +77,7 @@ export class EmailsService {
       {
         firstName,
         lastName,
-        giftCardIntegrationTitle,
+        giftCardIntegrationTitle: `${giftCardIntegrationTitle}(${giftCardIntegrationCountryCode})`,
         fname: attachment.filename,
       },
       attachment,

@@ -35,7 +35,11 @@ export class AdminGiftCardRequestsService {
       where: { id },
       include: {
         user: true,
-        giftCardIntegration: true,
+        giftCardIntegration: {
+          include: {
+            country: true,
+          },
+        },
       },
     });
     if (!giftCardRequest)
@@ -91,6 +95,7 @@ export class AdminGiftCardRequestsService {
         giftCardRequest.user.firstName,
         giftCardRequest.user.lastName,
         giftCardRequest.giftCardIntegration.title,
+        giftCardRequest.giftCardIntegration.country.countryCode,
         {
           filename: fileName,
           buffer: file.buffer,
