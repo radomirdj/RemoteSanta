@@ -17,6 +17,7 @@ $grid-margin-bottom:10px;
         padding-left: variables.$base-unit * 5;
         padding-right: variables.$base-unit * 5;
         width: $card-width;
+        margin-top: variables.$base-unit * 3;
     }
 
     .title-style{
@@ -47,6 +48,17 @@ $grid-margin-bottom:10px;
   
       .MuiSelect-select {
         text-align: start;
+      }
+
+      .MuiFormGroup-root{
+        .MuiFormControlLabel-root{
+          .MuiTypography-root{
+            font-family: "Montserrat";
+          }
+          .MuiButtonBase-root{
+            color: #514e4e;
+          }
+        }
       }
   }
 
@@ -83,6 +95,15 @@ $grid-margin-bottom:10px;
     color: variables.$error-color;
     text-align: start;
     margin-bottom: variables.$base-unit;
+    display: inline-flex;
+    width: 100%;
+  }
+
+  .role-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 2;
     display: inline-flex;
     width: 100%;
   }
@@ -136,7 +157,7 @@ $grid-margin-bottom:10px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
     font-family: "Montserrat";
     padding: variables.$base-unit * 3;
-    margin-bottom: variables.$base-unit * 5;
+    margin-bottom: variables.$base-unit * 3;
 
     .column-name{
         font-weight: 600;
@@ -145,5 +166,31 @@ $grid-margin-bottom:10px;
     .grid-container{
         margin-bottom: $grid-margin-bottom;
     }
-}
+  }
+
+  .send-points-button,
+    & .send-points-button:hover {
+        background-color: variables.$main-green;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: black;
+        text-transform: none;
+        height: $button-height;
+        float: right;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit ;
+        margin-top: variables.$base-unit * 3;
+    }
+
+    .gift-icon-style{
+      margin-right: variables.$base-unit;
+    }
+
+    .role-input {
+      margin-bottom: variables.$base-unit * 2 !important;
+    }
+  
+    .role-input-with-error {
+      margin-bottom: 0px !important;
+    }
 }

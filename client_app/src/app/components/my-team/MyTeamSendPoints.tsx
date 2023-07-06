@@ -1,19 +1,41 @@
 import React, { useEffect } from "react";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
-import { Button, Card, Grid, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getErrorSelector,
+  getOpenDialogSendPointsSelector,
   getOrganizationSelector,
   getOrganizationUserSelector,
 } from "../../store/orgs/selectors";
-import { fetchOrganization, fetchOrgUser } from "../../store/orgs/actions";
+import {
+  fetchOrganization,
+  fetchOrgUser,
+  setCloseDialogSendPoints,
+  setOpenDialogSendPoints,
+} from "../../store/orgs/actions";
 import { useForm } from "react-hook-form";
 import ErrorIcon from "@mui/icons-material/Error";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 
 const MyTeamSendPoints = () => {
   const params = useParams();
@@ -26,6 +48,8 @@ const MyTeamSendPoints = () => {
     React.useState("");
   const error = useSelector(getErrorSelector);
   const userAuth = useSelector(getAuthUserSelector);
+  const open = useSelector(getOpenDialogSendPointsSelector);
+  const [selectedRole, setSelectedRole] = React.useState("");
   const {
     register,
     formState: { errors },
@@ -34,13 +58,23 @@ const MyTeamSendPoints = () => {
 
   useEffect(() => {
     dispatch(fetchOrgUser({ userId: userId }));
-    if (userAuth.userRole === "USER_MANAGER") {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole === "USER_MANAGER") {
       dispatch(fetchOrganization());
     }
   }, [dispatch, userId]);
 
   const onSubmit = (data: any) => {
+    //setSendPointsData(data);
+    dispatch(setOpenDialogSendPoints());
+  };
+
+  const onConfirm = () => {
     console.log();
+  };
+
+  const handleChangeRole = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedRole(event.target.value);
   };
 
   const pointsToCurrency = (points: any) => {
@@ -65,8 +99,21 @@ const MyTeamSendPoints = () => {
     return false;
   };
 
+  const enoughCompanyBalance = (amount: number) => {
+    if (organization?.balance) {
+      if (amount <= organization?.balance) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const goBack = () => {
     navigate(-1);
+  };
+
+  const handleClose = () => {
+    dispatch(setCloseDialogSendPoints());
   };
 
   return (
@@ -114,6 +161,45 @@ const MyTeamSendPoints = () => {
                 </Typography>
               </div>
             )}
+            {userAuth.userRole === "USER_MANAGER" && (
+              <div>
+                <FormControl>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    className={
+                      errors.userRole ? "role-input-with-error" : "role-input"
+                    }
+                  >
+                    <FormControlLabel
+                      value="basic_user"
+                      checked={selectedRole === "basic_user"}
+                      control={<Radio />}
+                      {...register("userRole", {
+                        required: true,
+                        onChange: handleChangeRole,
+                      })}
+                      label={String(`Send as ${userAuth.firstName}`)}
+                    />
+                    <FormControlLabel
+                      value="user_manager"
+                      checked={selectedRole === "user_manager"}
+                      control={<Radio />}
+                      {...register("userRole", {
+                        required: true,
+                        onChange: handleChangeRole,
+                      })}
+                      label="Send as company"
+                    />
+                  </RadioGroup>
+                </FormControl>
+                {errors.userRole?.type === "required" && (
+                  <Typography className="role-error-fe">
+                    User role is required.
+                  </Typography>
+                )}
+              </div>
+            )}
             <TextField
               error={errors.amount ? true : false}
               id="outlined-basic"
@@ -126,7 +212,10 @@ const MyTeamSendPoints = () => {
               {...register("amount", {
                 required: true,
                 min: 1,
-                validate: enoughBalance,
+                validate:
+                  selectedRole === "user_manager"
+                    ? enoughCompanyBalance
+                    : enoughBalance,
                 onChange: (e) => pointsToCurrency(e.target.value),
               })}
             />
@@ -181,7 +270,52 @@ const MyTeamSendPoints = () => {
                   Back
                 </Button>
               </Grid>
-              <Grid item xs={6}></Grid>
+              <Grid item xs={6}>
+                <Button
+                  disableRipple
+                  variant="contained"
+                  className="send-points-button"
+                  type="submit"
+                >
+                  <img src={GiftIconBlack} alt="" className="gift-icon-style" />{" "}
+                  Send Points
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title" className="dialog-title">
+                    Send Points Confirmation
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText
+                      id="alert-dialog-description"
+                      className="dialog-text"
+                    >
+                      Please confirm sending points to {userOrg?.firstName}.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={handleClose}
+                      className="dialog-back-button"
+                      variant="outlined"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      onClick={onConfirm}
+                      autoFocus
+                      className="dialog-confirm-button"
+                      variant="contained"
+                    >
+                      Confirm
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </Grid>
             </Grid>
           </form>
         </Card>
