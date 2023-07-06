@@ -36,6 +36,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
+import { UserRole } from "../../enums/UserRole";
 
 const MyTeamSendPoints = () => {
   const params = useParams();
@@ -55,11 +56,11 @@ const MyTeamSendPoints = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const userRole = localStorage.getItem("userRole");
 
   useEffect(() => {
     dispatch(fetchOrgUser({ userId: userId }));
-    const userRole = localStorage.getItem("userRole");
-    if (userRole === "USER_MANAGER") {
+    if (userRole === UserRole.USER_MANAGER) {
       dispatch(fetchOrganization());
     }
   }, [dispatch, userId]);
@@ -90,7 +91,7 @@ const MyTeamSendPoints = () => {
     );
   };
 
-  const enoughBalance = (amount: number) => {
+  const enoughUserBalance = (amount: number) => {
     if (userAuth.userBalance?.pointsActive) {
       if (amount <= userAuth.userBalance?.pointsActive) {
         return true;
@@ -106,6 +107,16 @@ const MyTeamSendPoints = () => {
       }
     }
     return false;
+  };
+
+  const enoughBalance = (amount: number) => {
+    if (userRole === UserRole.BASIC_USER || selectedRole === "basic_user") {
+      return enoughUserBalance(amount);
+    }
+    if (selectedRole === "user_manager") {
+      return enoughCompanyBalance(amount);
+    }
+    return true;
   };
 
   const goBack = () => {
@@ -189,7 +200,7 @@ const MyTeamSendPoints = () => {
                         required: true,
                         onChange: handleChangeRole,
                       })}
-                      label="Send as company"
+                      label={String(`Send as ${organization?.name}`)}
                     />
                   </RadioGroup>
                 </FormControl>
@@ -212,10 +223,7 @@ const MyTeamSendPoints = () => {
               {...register("amount", {
                 required: true,
                 min: 1,
-                validate:
-                  selectedRole === "user_manager"
-                    ? enoughCompanyBalance
-                    : enoughBalance,
+                validate: enoughBalance,
                 onChange: (e) => pointsToCurrency(e.target.value),
               })}
             />
@@ -232,7 +240,7 @@ const MyTeamSendPoints = () => {
             )}
             {errors.amount?.type === "validate" && (
               <Typography className="amount-error-fe">
-                The amount you specified is greater then the amount you have.
+                The amount you specified is greater then your amount.
               </Typography>
             )}
             <Typography className="points-in-currency-style">
