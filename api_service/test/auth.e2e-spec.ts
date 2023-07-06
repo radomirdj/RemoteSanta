@@ -38,6 +38,9 @@ import {
   userInviteBrokeOrg,
   brokeOrgId,
   userInviteManager,
+  user3ActiveBalanceSideId,
+  user3ActivePoints,
+  user3ReservedPoints,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
 import {
@@ -499,12 +502,122 @@ describe('Authentication system', () => {
     });
   });
 
-  describe('/:id/send-points (POST)', () => {
+  describe('/:id/send-p2p-points (POST)', () => {
     const sendPointsBody = {
       amount: 550,
       message: 'abcba',
     };
 
+    it.only('/:id/send-p2p-points (POST) - SEND USER1 to USER1', async () => {
+      await request(app.getHttpServer())
+        .post(`/users/${user3Manager.id}/send-p2p-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .send(sendPointsBody)
+        .expect(201);
+
+      // Check Ledger and balance
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user1ActiveBalanceSideId,
+        toId: user3ActiveBalanceSideId,
+        amount: sendPointsBody.amount,
+        type: LedgerTypeEnum.P2P_SEND_POINTS,
+      });
+
+      await checkBalance(ledgerService, user3Manager.id, {
+        pointsActive: user3ActivePoints + sendPointsBody.amount,
+        pointsReserved: user3ReservedPoints,
+      });
+
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints - sendPointsBody.amount,
+        pointsReserved: user1ReservedPoints,
+      });
+
+      const orgBalance = await ledgerService.getOrgBalance(org1.id);
+      expect(orgBalance).toEqual(org1Points);
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+    });
+
+    // it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - OTHER ORG MANAGER', async () => {
+    //   await request(app.getHttpServer())
+    //     .post(`/users/${user1.id}/send-points`)
+    //     .set(
+    //       'Authorization',
+    //       'bearer ' +
+    //         createToken({
+    //           email: org2Manager.email,
+    //           sub: org2Manager.cognitoSub,
+    //         }),
+    //     )
+    //     .send(sendPointsBody)
+    //     .expect(404);
+
+    //   await checkBalance(ledgerService, user1.id, {
+    //     pointsActive: user1ActivePoints,
+    //     pointsReserved: user1ReservedPoints,
+    //   });
+
+    //   const orgBalance = await ledgerService.getOrgBalance(org1.id);
+    //   expect(orgBalance).toEqual(org1Points);
+    // });
+
+    // it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - not enough points', async () => {
+    //   const response = await request(app.getHttpServer())
+    //     .post(`/users/${user1.id}/send-points`)
+    //     .set(
+    //       'Authorization',
+    //       'bearer ' +
+    //         createToken({
+    //           email: user3Manager.email,
+    //           sub: user3Manager.cognitoSub,
+    //         }),
+    //     )
+    //     .send({ ...sendPointsBody, amount: 50000 })
+    //     .expect(400);
+
+    //   await checkBalance(ledgerService, user1.id, {
+    //     pointsActive: user1ActivePoints,
+    //     pointsReserved: user1ReservedPoints,
+    //   });
+
+    //   expect(response.body.message).toEqual('Not Enough Balance');
+    //   const orgBalance = await ledgerService.getOrgBalance(org1.id);
+    //   expect(orgBalance).toEqual(org1Points);
+    // });
+
+    // it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - NON MANAGER', async () => {
+    //   await request(app.getHttpServer())
+    //     .post(`/users/${user1.id}/send-points`)
+    //     .set(
+    //       'Authorization',
+    //       'bearer ' +
+    //         createToken({ email: user1.email, sub: user1.cognitoSub }),
+    //     )
+    //     .send(sendPointsBody)
+    //     .expect(403);
+    // });
+  });
+
+  describe('/:id/send-points (POST)', () => {
+    const sendPointsBody = {
+      amount: 550,
+      message: 'abcba',
+    };
     it('/:id/send-points (POST) - SEND ORG POINTS to USER1 by MANAGER', async () => {
       await request(app.getHttpServer())
         .post(`/users/${user1.id}/send-points`)

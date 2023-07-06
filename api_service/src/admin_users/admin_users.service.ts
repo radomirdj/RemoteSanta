@@ -68,6 +68,25 @@ export class AdminUsersService {
     });
   }
 
+  async sendP2PPoints(
+    id: string,
+    actionByUserId,
+    amount: number,
+    message: string,
+    orgIdConstraint: string,
+  ) {
+    const user = await this.usersService.findDbBasicUserById(id);
+    if (!user || orgIdConstraint !== user.orgId)
+      throw new NotFoundException('User Not Found');
+
+    return this.ledgerService.createP2PTransaction(
+      actionByUserId,
+      id,
+      amount,
+      message,
+    );
+  }
+
   async sendPointsToEmployee(
     id: string,
     actionByUserId,
