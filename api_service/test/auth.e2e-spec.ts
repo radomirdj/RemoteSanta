@@ -41,6 +41,8 @@ import {
   user3ActiveBalanceSideId,
   user3ActivePoints,
   user3ReservedPoints,
+  org2ActivePoints,
+  org2ReservedPoints,
 } from './utils/preseededData';
 import { expectUserRsp, expectUserInDB } from './utils/userChecks';
 import {
@@ -52,6 +54,7 @@ import {
   Prisma,
 } from '@prisma/client';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
+import { NotEnoughBalanceException } from '../src/errors/notEnoughBalanceException';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock(
@@ -508,7 +511,7 @@ describe('Authentication system', () => {
       message: 'abcba',
     };
 
-    it.only('/:id/send-p2p-points (POST) - SEND USER1 to USER1', async () => {
+    it('/:id/send-p2p-points (POST) - SEND USER1 to USER MANAGER', async () => {
       await request(app.getHttpServer())
         .post(`/users/${user3Manager.id}/send-p2p-points`)
         .set(
@@ -553,64 +556,48 @@ describe('Authentication system', () => {
       });
     });
 
-    // it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - OTHER ORG MANAGER', async () => {
-    //   await request(app.getHttpServer())
-    //     .post(`/users/${user1.id}/send-points`)
-    //     .set(
-    //       'Authorization',
-    //       'bearer ' +
-    //         createToken({
-    //           email: org2Manager.email,
-    //           sub: org2Manager.cognitoSub,
-    //         }),
-    //     )
-    //     .send(sendPointsBody)
-    //     .expect(404);
+    it('/:id/send-p2p-points (POST) - SEND USER1 to USER MANAGER - not enough points', async () => {
+      const response = await request(app.getHttpServer())
+        .post(`/users/${user3Manager.id}/send-p2p-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .send({ ...sendPointsBody, amount: 50000 })
+        .expect(400);
+      expect(response.body.message).toEqual(
+        NotEnoughBalanceException.defaultMessage,
+      );
+    });
 
-    //   await checkBalance(ledgerService, user1.id, {
-    //     pointsActive: user1ActivePoints,
-    //     pointsReserved: user1ReservedPoints,
-    //   });
+    it('/:id/send-p2p-points (POST) - TRY TO SEND POINTS to  MANAGER by USER1 - OTHER ORG ', async () => {
+      await request(app.getHttpServer())
+        .post(`/users/${org2Manager.id}/send-p2p-points`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user1.email,
+              sub: user1.cognitoSub,
+            }),
+        )
+        .send(sendPointsBody)
+        .expect(404);
 
-    //   const orgBalance = await ledgerService.getOrgBalance(org1.id);
-    //   expect(orgBalance).toEqual(org1Points);
-    // });
+      await checkBalance(ledgerService, user1.id, {
+        pointsActive: user1ActivePoints,
+        pointsReserved: user1ReservedPoints,
+      });
 
-    // it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - not enough points', async () => {
-    //   const response = await request(app.getHttpServer())
-    //     .post(`/users/${user1.id}/send-points`)
-    //     .set(
-    //       'Authorization',
-    //       'bearer ' +
-    //         createToken({
-    //           email: user3Manager.email,
-    //           sub: user3Manager.cognitoSub,
-    //         }),
-    //     )
-    //     .send({ ...sendPointsBody, amount: 50000 })
-    //     .expect(400);
-
-    //   await checkBalance(ledgerService, user1.id, {
-    //     pointsActive: user1ActivePoints,
-    //     pointsReserved: user1ReservedPoints,
-    //   });
-
-    //   expect(response.body.message).toEqual('Not Enough Balance');
-    //   const orgBalance = await ledgerService.getOrgBalance(org1.id);
-    //   expect(orgBalance).toEqual(org1Points);
-    // });
-
-    // it('/:id/send-points (POST) - TRY TO SEND ORG POINTS to USER1 by MANAGER - NON MANAGER', async () => {
-    //   await request(app.getHttpServer())
-    //     .post(`/users/${user1.id}/send-points`)
-    //     .set(
-    //       'Authorization',
-    //       'bearer ' +
-    //         createToken({ email: user1.email, sub: user1.cognitoSub }),
-    //     )
-    //     .send(sendPointsBody)
-    //     .expect(403);
-    // });
+      await checkBalance(ledgerService, org2Manager.id, {
+        pointsActive: org2ActivePoints,
+        pointsReserved: org2ReservedPoints,
+      });
+    });
   });
 
   describe('/:id/send-points (POST)', () => {

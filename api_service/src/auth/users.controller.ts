@@ -108,14 +108,13 @@ export class UsersController {
   async sendPersonalPointsToUser(
     @Param('id') id: string,
     @Body() body: SendPointsToEmployeeDto,
-    @CurrentUser() user: User,
+    @CurrentUser() user: UserDto,
   ) {
     return this.adminUsersService.sendP2PPoints(
       id,
-      user.id,
+      user,
       body.amount,
       body.message,
-      user.orgId,
     );
   }
 

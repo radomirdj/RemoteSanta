@@ -110,7 +110,23 @@ export class EmailsService {
       orgName,
       firstName,
       loginUrl: `${process.env.FE_BASE_URL}login`,
-      amount
+      amount,
+    });
+  }
+
+  async sendP2PPointsEmail(
+    to: string,
+    message: string,
+    fromName: string,
+    firstName: string,
+    amount: number,
+  ) {
+    return this.sendEmail('send-p2p-points', to, {
+      message,
+      fromName,
+      firstName,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
+      amount,
     });
   }
 
