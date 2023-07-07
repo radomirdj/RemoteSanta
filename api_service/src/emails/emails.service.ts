@@ -1,6 +1,7 @@
 import { Injectable, INestApplication, OnModuleInit } from '@nestjs/common';
 import { MailerService, ISendMailOptions } from '@nestjs-modules/mailer';
 import * as Email from 'email-templates';
+import * as randomstring from 'randomstring';
 import { join } from 'path';
 
 @Injectable()
@@ -144,6 +145,7 @@ export class EmailsService {
       firstName,
       loginUrl: `${process.env.FE_BASE_URL}login`,
       amount,
+      randomIdentifier: randomstring.generate(7),
     });
   }
 
