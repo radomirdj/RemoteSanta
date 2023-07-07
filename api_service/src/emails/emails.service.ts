@@ -77,9 +77,11 @@ export class EmailsService {
   async sendGiftCardFullfiledEmail(
     to: string,
     firstName: string,
-    lastName: string,
     giftCardIntegrationTitle: string,
     giftCardIntegrationCountryCode: string,
+    amount: number,
+    currency: string,
+    giftCardRequestId,
     attachment: { filename: string; buffer },
   ) {
     return this.sendEmail(
@@ -87,8 +89,11 @@ export class EmailsService {
       to,
       {
         firstName,
-        lastName,
-        giftCardIntegrationTitle: `${giftCardIntegrationTitle}(${giftCardIntegrationCountryCode})`,
+        storeName: giftCardIntegrationTitle,
+        storeCountryCode: giftCardIntegrationCountryCode,
+        amount,
+        currency,
+        orderNumber: giftCardRequestId.slice(-8),
         fname: attachment.filename,
       },
       attachment,

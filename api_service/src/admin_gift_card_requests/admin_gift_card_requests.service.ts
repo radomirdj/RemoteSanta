@@ -93,9 +93,11 @@ export class AdminGiftCardRequestsService {
       await this.emailsService.sendGiftCardFullfiledEmail(
         giftCardRequest.user.email,
         giftCardRequest.user.firstName,
-        giftCardRequest.user.lastName,
         giftCardRequest.giftCardIntegration.title,
         giftCardRequest.giftCardIntegration.country.countryCode,
+        giftCardRequest.giftCardIntegrationCurrencyAmount,
+        giftCardRequest.giftCardIntegration.currency,
+        giftCardRequest.id,
         {
           filename: fileName,
           buffer: file.buffer,
