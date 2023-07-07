@@ -40,7 +40,7 @@ export class GiftCardRequestService {
       }),
     ]);
 
-    return this.prisma.$transaction(async (tx) => {
+    const giftCardRequest = await this.prisma.$transaction(async (tx) => {
       const giftCardRequest = await tx.giftCardRequest.create({
         data: {
           ...data,
@@ -66,21 +66,23 @@ export class GiftCardRequestService {
         data.amount,
         giftCardRequest.id,
       );
-      await this.emailsService.giftCardRequestCreatedEmail(
-        consts.adminRecepients,
-        `${user.firstName} ${user.lastName}`,
-        org.name,
-      );
-      await this.emailsService.giftCardRequestCreatedConfirmationEmail(
-        [user.email],
-        user.firstName,
-        giftCardRequestDto.giftCardIntegrationCurrencyAmount,
-        integration.currency,
-        integration.title,
-        giftCardRequest.id,
-      );
+
       return giftCardRequest;
     });
+    await this.emailsService.giftCardRequestCreatedEmail(
+      consts.adminRecepients,
+      `${user.firstName} ${user.lastName}`,
+      org.name,
+    );
+    await this.emailsService.giftCardRequestCreatedConfirmationEmail(
+      [user.email],
+      user.firstName,
+      giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+      integration.currency,
+      integration.title,
+      giftCardRequest.id,
+    );
+    return giftCardRequest;
   }
 
   async getOneByUser(id: string, userId: string): Promise<GiftCardRequest> {

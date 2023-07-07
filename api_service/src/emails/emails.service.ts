@@ -29,6 +29,7 @@ export class EmailsService {
       text: parsedData.text,
       html: parsedData.html,
       context: data,
+      replyTo: 'info@remotesanta.io',
     } as ISendMailOptions;
 
     if (attachment) {
