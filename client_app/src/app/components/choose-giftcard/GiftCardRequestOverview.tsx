@@ -78,7 +78,7 @@ const GiftCardRequestOverview = () => {
         <Grid container className="button-container">
           <Grid item xs={6}>
             <Button
-              variant="contained"
+              variant="outlined"
               className="overview-back-button"
               disableRipple
               onClick={onBack}

@@ -124,7 +124,7 @@ const AmountMinMax = () => {
         <Grid container>
           <Grid item xs={6}>
             <Button
-              variant="contained"
+              variant="outlined"
               className="choose-amount-back-button"
               disableRipple
               onClick={onBack}
