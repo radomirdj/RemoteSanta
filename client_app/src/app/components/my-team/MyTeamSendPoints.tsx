@@ -38,7 +38,7 @@ import { useForm } from "react-hook-form";
 import ErrorIcon from "@mui/icons-material/Error";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
+import SparkBlack from "../../assets/icons/spark-black.svg";
 import { UserRole } from "../../enums/UserRole";
 import { ISendPointsData } from "../../store/admin-organization/types";
 import { getSelfRequest } from "../../store/auth/actions";
@@ -338,7 +338,7 @@ const MyTeamSendPoints = () => {
               <Grid item xs={6}>
                 <Button
                   disableRipple
-                  variant="contained"
+                  variant="outlined"
                   className="back-button"
                   startIcon={<ChevronLeftIcon className="back-icon" />}
                   onClick={goBack}
@@ -353,7 +353,7 @@ const MyTeamSendPoints = () => {
                   className="send-points-button"
                   type="submit"
                 >
-                  <img src={GiftIconBlack} alt="" className="gift-icon-style" />{" "}
+                  <img src={SparkBlack} alt="" className="gift-icon-style" />{" "}
                   Send Points
                 </Button>
                 <Dialog

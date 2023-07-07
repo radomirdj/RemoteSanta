@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrganizationUserListSelector } from "../../store/orgs/selectors";
 import { useNavigate } from "react-router-dom";
 import { fetchOrganizationUserList } from "../../store/orgs/actions";
-import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
-import GiftIconGray from "../../assets/icons/gift-icon-gray.svg";
+import SparkBlack from "../../assets/icons/spark-black.svg";
+import SparkGray from "../../assets/icons/spark-gray.svg";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import { getAuthUserSelector } from "../../store/auth/selectors";
@@ -47,10 +47,7 @@ const MyTeam = () => {
         disabled={params.id === userAuth.id ? true : false}
         onClick={() => userManagerSendPointsRedirect(params.id as string)}
       >
-        <img
-          src={params.id === userAuth.id ? GiftIconGray : GiftIconBlack}
-          alt=""
-        />
+        <img src={params.id === userAuth.id ? SparkGray : SparkBlack} alt="" />
       </Button>
     );
   };

@@ -148,7 +148,8 @@ $grid-margin-bottom:10px;
   .back-button,
   & .back-button:hover {
     float: left;
-    background-color: variables.$color-dark-yellow;
+    background-color: white;
+    border-color:variables.$color-neutral-black;
     border-radius: variables.$base-unit;
     box-shadow: none;
     color: variables.$color-neutral-black;
@@ -197,7 +198,7 @@ $grid-margin-bottom:10px;
 
   .send-points-button,
     & .send-points-button:hover {
-        background-color: variables.$main-green;
+        background-color: variables.$main-blue;
         border-radius: variables.$base-unit;
         box-shadow: none;
         color: black;
