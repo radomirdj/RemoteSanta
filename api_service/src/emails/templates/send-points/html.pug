@@ -1,14 +1,26 @@
-p Hi #{firstName},
-br
-p Congratulations! 
-p #{orgName} just sent you #{amount} fresh points with note:
-fieldset #{message}
-br
-p Search the offer of gift cards and use the points on something you love! 
-p Happy shopping!
-br
-a(href=loginUrl) Login and use points
-br
-br
-p Best regards,
-p Remote Santa Team
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    style.
+      /* Add your CSS styles here */
+
+  body
+    p Dear #{firstName},
+
+    p Congratulations! #{orgName} has just sent you #{amount} points on Remote Santa.
+
+    p Message from #{orgName}:
+    blockquote #{message}
+
+    p
+      | These points can be used to redeem gift cards on the Remote Santa platform. 
+      a(href="#{loginUrl}")
+        | Log in
+      |  to your account and explore our curated collection to find the perfect gift card for yourself or someone special.
+
+    p Thank you for your hard work and dedication. Enjoy your gift card!
+
+    p Best regards,
+    p Remote Santa Team
