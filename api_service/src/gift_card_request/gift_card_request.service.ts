@@ -27,7 +27,7 @@ export class GiftCardRequestService {
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: UserDto) {
     const { giftCardIntegrationId, ...data } = giftCardRequestDto;
-    const [_, __, org] = await Promise.all([
+    const [integration, __, org] = await Promise.all([
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
         data.amount,
@@ -70,6 +70,14 @@ export class GiftCardRequestService {
         consts.adminRecepients,
         `${user.firstName} ${user.lastName}`,
         org.name,
+      );
+      await this.emailsService.giftCardRequestCreatedConfirmationEmail(
+        [user.email],
+        user.firstName,
+        giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+        integration.currency,
+        integration.title,
+        giftCardRequest.id,
       );
       return giftCardRequest;
     });

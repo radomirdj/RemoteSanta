@@ -42,9 +42,19 @@ export class EmailsService {
     return this.mailService.sendMail(emailParams);
   }
 
-  sendClaimPointsEmail(to: string[], claimPointsEventDescription: string) {
-    return this.sendEmail('claim-points', to, {
-      claimPointsEventDescription,
+  sendClaimPointsMonthEmail(
+    to: string[],
+    orgName: string,
+    month: string,
+    sentenceOfMonth: string,
+    pointsAmount: number,
+  ) {
+    return this.sendEmail('claim-points-month', to, {
+      orgName,
+      month,
+      sentenceOfMonth,
+      pointsAmount,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
     });
   }
 
@@ -153,6 +163,23 @@ export class EmailsService {
     return this.sendEmail('gift-card-request-created', to, {
       orgName,
       name,
+    });
+  }
+
+  async giftCardRequestCreatedConfirmationEmail(
+    to: string[],
+    firstName: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+  ) {
+    return this.sendEmail('gift-card-request-created-confirmation', to, {
+      firstName,
+      amount,
+      currency,
+      storeName,
+      orderNumber: giftCardRequestId.slice(-8),
     });
   }
 }
