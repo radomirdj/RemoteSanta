@@ -42,9 +42,19 @@ export class EmailsService {
     return this.mailService.sendMail(emailParams);
   }
 
-  sendClaimPointsEmail(to: string[], claimPointsEventDescription: string) {
-    return this.sendEmail('claim-points', to, {
-      claimPointsEventDescription,
+  sendClaimPointsMonthEmail(
+    to: string[],
+    orgName: string,
+    month: string,
+    sentenceOfMonth: string,
+    pointsAmount: number,
+  ) {
+    return this.sendEmail('claim-points-month', to, {
+      orgName,
+      month,
+      sentenceOfMonth,
+      pointsAmount,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
     });
   }
 

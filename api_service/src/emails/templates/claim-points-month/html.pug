@@ -1,0 +1,20 @@
+html
+  head
+    style(type='text/css')
+      // Add your custom CSS styles here
+  body
+    h1 Congratulations! Earned Points for #{month} - Treat Yourself with Remote Santa
+    p Congratulations! Your company, #{orgName}, has rewarded you with points for #{month}. #{sentenceOfMonth}
+    p Details:
+    ul
+      li Points Earned: #{pointsAmount}
+      li Month: #{month}
+      li Awarded by: #{orgName}
+    p
+      | Log in to your 
+      a(href="#{loginUrl}")
+        | Remote Santa account 
+      | and explore our curated collection to redeem your points for amazing gift cards. Treat yourself or someone special to a gift that will leave a lasting impression.
+    p Congratulations once again on your well-deserved reward! Enjoy the rewards and thank you for being a valuable member of #{orgName}.
+    p Warm regards,
+    p Remote Santa Team
