@@ -9,7 +9,7 @@ const MyTeamSendPointsSuccess = () => {
   const navigate = useNavigate();
 
   const homeRedirect = () => {
-    navigate("/");
+    navigate("/my-team");
   };
 
   return (
@@ -25,7 +25,7 @@ const MyTeamSendPointsSuccess = () => {
             className="my-team-send-points-success-link"
             onClick={homeRedirect}
           >
-            <u>Back to Home</u>
+            <u>Back to Team</u>
           </Typography>
           <img
             src={SuccessIllustration}

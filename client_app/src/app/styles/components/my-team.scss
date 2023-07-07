@@ -65,6 +65,20 @@ $content-width:950px;
             margin-bottom: variables.$base-unit ;
             margin-top: variables.$base-unit ;
         }
+
+        .button-send-points-disabled{
+            float: right;
+            background-color:#d2d2d2;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            text-transform: none;
+            height: variables.$base-unit *5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
+
+        
     }
 }
 

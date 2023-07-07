@@ -317,3 +317,16 @@ export const getGiftCardIntegration = (
       headers: { Authorization: `Bearer ${token}` },
     }
   );
+
+export const sendPointsToUserPeerToPeer = (
+  payload: SendPointsToUserPayload,
+  token: string
+) => {
+  return api.post<string>(
+    `/users/${payload.userId}/send-p2p-points`,
+    payload.sendPointsData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};

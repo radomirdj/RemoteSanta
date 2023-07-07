@@ -12,19 +12,32 @@ $grid-margin-bottom:10px;
         transform: translate(-50%, -50%);
         width: 400;
         border-radius: variables.$base-unit * 3;
-        padding-top: variables.$base-unit * 3;
-        padding-bottom: variables.$base-unit * 3;
+        padding-top: variables.$base-unit * 2;
+        padding-bottom: variables.$base-unit * 2;
         padding-left: variables.$base-unit * 5;
         padding-right: variables.$base-unit * 5;
-        width: $card-width;
         margin-top: variables.$base-unit * 3;
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          width: 80%;
+        }
+
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          width: $card-width;
+         
+        }
     }
 
     .title-style{
         font-family: "Montserrat";
         font-weight: 500;
-        font-size: variables.$font-size-title;
-        margin-bottom: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 2;
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          font-size: variables.$font-size-larger;
+        }
+    
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          font-size: variables.$font-size-title;
+        }
     }
 
     .MuiFormControl-root {
@@ -143,7 +156,7 @@ $grid-margin-bottom:10px;
     height: $button-height;
     font-weight: bold;
     margin-bottom: variables.$base-unit ;
-    margin-top: variables.$base-unit* 3 ;
+    margin-top: variables.$base-unit* 2 ;
 
     .back-icon{
         margin-bottom: $back-icon-margin-bottom;
@@ -156,12 +169,26 @@ $grid-margin-bottom:10px;
     border-radius: variables.$base-unit * 3;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
     font-family: "Montserrat";
-    padding: variables.$base-unit * 3;
-    margin-bottom: variables.$base-unit * 3;
+    padding: variables.$base-unit * 2;
+    margin-bottom: variables.$base-unit * 2;
+
 
     .column-name{
         font-weight: 600;
+
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          font-size: variables.$font-size-normal;
+        }
+    
     }
+
+    .column-value{
+
+      @media screen and (max-width: variables.$breakpoint-sm) {
+        font-size: variables.$font-size-normal;
+      }
+  
+  }
 
     .grid-container{
         margin-bottom: $grid-margin-bottom;
@@ -179,7 +206,15 @@ $grid-margin-bottom:10px;
         float: right;
         font-weight: bold;
         margin-bottom: variables.$base-unit ;
-        margin-top: variables.$base-unit * 3;
+        margin-top: variables.$base-unit * 2;
+
+        @media screen and (max-width: variables.$breakpoint-md) {
+          width: 100%;
+      }
+  
+      @media screen and (min-width: variables.$breakpoint-md) {
+          max-width: $content-width;
+      }
     }
 
     .gift-icon-style{
@@ -192,5 +227,19 @@ $grid-margin-bottom:10px;
   
     .role-input-with-error {
       margin-bottom: 0px !important;
+    }
+
+    .active-amount{
+      font-family: "Montserrat";
+      margin-bottom: variables.$base-unit * 2;
+      font-size: variables.$font-size-normal;
+      font-weight: 400;
+    }
+
+    .active-amount-manager{
+      font-family: "Montserrat";
+      margin-bottom: 4px;
+      font-size: variables.$font-size-normal;
+      font-weight: 400;
     }
 }

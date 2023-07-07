@@ -24,10 +24,13 @@ import {
   getOpenDialogSendPointsSelector,
   getOrganizationSelector,
   getOrganizationUserSelector,
+  getPendingSelector,
 } from "../../store/orgs/selectors";
 import {
   fetchOrganization,
   fetchOrgUser,
+  peerSendPointsToUser,
+  sendPointsToUser,
   setCloseDialogSendPoints,
   setOpenDialogSendPoints,
 } from "../../store/orgs/actions";
@@ -37,6 +40,8 @@ import { getAuthUserSelector } from "../../store/auth/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 import { UserRole } from "../../enums/UserRole";
+import { ISendPointsData } from "../../store/admin-organization/types";
+import { getSelfRequest } from "../../store/auth/actions";
 
 const MyTeamSendPoints = () => {
   const params = useParams();
@@ -51,6 +56,16 @@ const MyTeamSendPoints = () => {
   const userAuth = useSelector(getAuthUserSelector);
   const open = useSelector(getOpenDialogSendPointsSelector);
   const [selectedRole, setSelectedRole] = React.useState("");
+  const pointsActive = userAuth.userBalance?.pointsActive || 0;
+  const [sendPointsData, setSendPointsData] = React.useState<ISendPointsData>();
+  const conversionRateToPoints =
+    userOrg?.org?.country?.conversionRateToPoints || 1;
+  const pointsInCurrencyUser = (pointsActive * 1.0) / conversionRateToPoints;
+  const pending = useSelector(getPendingSelector);
+
+  const pointsInCurrencyOrganization = organization?.balance
+    ? (organization?.balance * 1.0) / conversionRateToPoints
+    : 0;
   const {
     register,
     formState: { errors },
@@ -63,15 +78,42 @@ const MyTeamSendPoints = () => {
     if (userRole === UserRole.USER_MANAGER) {
       dispatch(fetchOrganization());
     }
+    dispatch(getSelfRequest(navigate));
   }, [dispatch, userId]);
 
   const onSubmit = (data: any) => {
-    //setSendPointsData(data);
+    setSendPointsData(data);
     dispatch(setOpenDialogSendPoints());
   };
 
   const onConfirm = () => {
-    console.log();
+    if (selectedRole === "user_manager") {
+      dispatch(
+        sendPointsToUser(
+          {
+            userId: userOrg?.id || "",
+            sendPointsData: {
+              amount: Number(sendPointsData?.amount) || 0,
+              message: sendPointsData?.message || "",
+            },
+          },
+          navigate
+        )
+      );
+    } else {
+      dispatch(
+        peerSendPointsToUser(
+          {
+            userId: userOrg?.id || "",
+            sendPointsData: {
+              amount: Number(sendPointsData?.amount) || 0,
+              message: sendPointsData?.message || "",
+            },
+          },
+          navigate
+        )
+      );
+    }
   };
 
   const handleChangeRole = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,6 +177,27 @@ const MyTeamSendPoints = () => {
           <Typography className="title-style">
             Send points to {userOrg?.firstName}
           </Typography>
+          <Typography
+            className={
+              userAuth.userRole === UserRole.USER_MANAGER
+                ? "active-amount-manager"
+                : "active-amount"
+            }
+          >
+            Your balance is {pointsActive} PTS {"("}
+            {pointsInCurrencyUser.toFixed(2)}{" "}
+            {userAuth?.org?.country?.currencyString}
+            {")"}.
+          </Typography>
+          {userAuth.userRole === "USER_MANAGER" && (
+            <Typography className="active-amount">
+              {organization?.name}'s balance is {organization?.balance} PTS{" "}
+              {"("}
+              {pointsInCurrencyOrganization.toFixed(2)}{" "}
+              {userAuth?.org?.country?.currencyString}
+              {")"}.
+            </Typography>
+          )}
           {userAuth.userRole === "USER_MANAGER" && (
             <Card className="child-card">
               <Grid container className="grid-container">
@@ -142,7 +205,9 @@ const MyTeamSendPoints = () => {
                   <span className="column-name">Fullname</span>
                 </Grid>
                 <Grid item xs={8}>
-                  {userOrg?.firstName} {userOrg?.lastName}
+                  <span className="column-value">
+                    {userOrg?.firstName} {userOrg?.lastName}
+                  </span>
                 </Grid>
               </Grid>
               <Grid container className="grid-container">
@@ -150,7 +215,10 @@ const MyTeamSendPoints = () => {
                   <span className="column-name">Active PTS</span>
                 </Grid>
                 <Grid item xs={8}>
-                  {userOrg?.userBalance?.pointsActive}
+                  <span className="column-value">
+                    {" "}
+                    {userOrg?.userBalance?.pointsActive}
+                  </span>
                 </Grid>
               </Grid>
               <Grid container className="grid-container">
@@ -158,7 +226,7 @@ const MyTeamSendPoints = () => {
                   <span className="column-name">Email</span>
                 </Grid>
                 <Grid item xs={8}>
-                  {userOrg?.email}
+                  <span className="column-value"> {userOrg?.email} </span>
                 </Grid>
               </Grid>
             </Card>
@@ -318,6 +386,7 @@ const MyTeamSendPoints = () => {
                       autoFocus
                       className="dialog-confirm-button"
                       variant="contained"
+                      disabled={pending ? true : false}
                     >
                       Confirm
                     </Button>
