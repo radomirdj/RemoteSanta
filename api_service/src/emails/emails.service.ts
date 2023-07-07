@@ -155,4 +155,21 @@ export class EmailsService {
       name,
     });
   }
+
+  async giftCardRequestCreatedConfirmationEmail(
+    to: string[],
+    firstName: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+  ) {
+    return this.sendEmail('gift-card-request-created-confirmation', to, {
+      firstName,
+      amount,
+      currency,
+      storeName,
+      orderNumber: giftCardRequestId.slice(-8),
+    });
+  }
 }

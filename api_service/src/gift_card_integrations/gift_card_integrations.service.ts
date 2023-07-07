@@ -56,7 +56,7 @@ export class GiftCardIntegrationsService {
         ) {
           throw new AmountFailsCounstraintException();
         }
-        return integration;
+        break;
 
       case IntegrationConsraintTypeEnum.LIST:
         const listConstraint =
@@ -69,11 +69,12 @@ export class GiftCardIntegrationsService {
         );
 
         if (!foundElement) throw new AmountFailsCounstraintException();
-        return integration;
+        break;
 
       default:
         throw new AmountFailsCounstraintException();
     }
+    return integration;
   }
 
   async getOne(id: string): Promise<GiftCardIntegration> {

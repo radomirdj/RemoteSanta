@@ -77,15 +77,13 @@ export class AdminUsersService {
     amount: number,
     message: string,
   ) {
-    const [userReceivePoints, userBalance] = await Promise.all([
+    const [userReceivePoints, _] = await Promise.all([
       this.usersService.findDbBasicUserById(userReceivePointsId),
-      this.ledgerService.getUserBalance(createdByUser.id),
+      this.ledgerService.validateUserActiveBalance(createdByUser.id, amount),
     ]);
     if (!userReceivePoints || createdByUser.org.id !== userReceivePoints.orgId)
       throw new NotFoundException('User Not Found');
 
-    if (userBalance.pointsActive < amount)
-      throw new NotEnoughBalanceException();
     const ledgerTransaction = await this.ledgerService.createP2PTransaction(
       createdByUser.id,
       userReceivePointsId,
