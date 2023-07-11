@@ -1,0 +1,51 @@
+/* Add your custom CSS styles here */
+body {
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff4e5;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+li {
+  list-style-type: disc;
+}
+
+a {
+  color: #ffab43;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  margin-top: 40px;
+  color: #888888;
+}
