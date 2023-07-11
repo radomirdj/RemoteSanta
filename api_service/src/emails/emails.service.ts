@@ -129,6 +129,7 @@ export class EmailsService {
       firstName,
       loginUrl: `${process.env.FE_BASE_URL}login`,
       amount,
+      randomIdentifier: randomstring.generate(7),
     });
   }
 
