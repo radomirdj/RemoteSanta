@@ -56,7 +56,8 @@ async function main() {
     prisma,
     'GiftCardRequest',
     createForeignKeyListTransformer([
-      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+      { foreignKeyName: 'ownerId', foreignRecordName: 'owner' },
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
       {
         foreignKeyName: 'giftCardIntegrationId',
         foreignRecordName: 'giftCardIntegration',
