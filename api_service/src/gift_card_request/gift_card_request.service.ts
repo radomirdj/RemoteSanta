@@ -52,7 +52,12 @@ export class GiftCardRequestService {
               id: giftCardIntegrationId,
             },
           },
-          user: {
+          owner: {
+            connect: {
+              id: user.id,
+            },
+          },
+          createdBy: {
             connect: {
               id: user.id,
             },
@@ -92,7 +97,11 @@ export class GiftCardRequestService {
         giftCardIntegration: true,
       },
     });
-    if (!giftCardRequest || giftCardRequest.userId !== userId)
+    if (
+      !giftCardRequest ||
+      (giftCardRequest.ownerId !== userId &&
+        giftCardRequest.createdById !== userId)
+    )
       throw new NotFoundException('GiftCardRequest Not Found');
     return giftCardRequest;
   }
@@ -114,7 +123,10 @@ export class GiftCardRequestService {
   }
 
   async getGiftCardRequestFileName(id: string, userId: string) {
-    await this.getOneByUser(id, userId);
+    const giftCardRequest = await this.getOneByUser(id, userId);
+    if (giftCardRequest.ownerId !== userId)
+      throw new NotFoundException('GiftCardRequest Not Found');
+
     const giftCard = await this.prisma.giftCard.findUnique({
       where: { giftCardRequestId: id },
     });
@@ -124,7 +136,7 @@ export class GiftCardRequestService {
 
   getByUser(userId: string): Promise<GiftCardRequest[]> {
     return this.prisma.giftCardRequest.findMany({
-      where: { userId },
+      where: { ownerId: userId },
       include: {
         giftCardIntegration: true,
       },

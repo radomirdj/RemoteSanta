@@ -239,7 +239,8 @@ export const giftCardIntegrationIndia = {
 export const giftCardRequestList = [
   {
     id: '9794fc09-68ee-4f3d-ac3f-b5ea759021ca',
-    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    createdById: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    ownerId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
     giftCardIntegrationId: 'e6618cd2-1b20-462a-8328-be43cc999b46',
     amount: 3000,
     giftCardIntegrationCurrencyAmount: 30.0,
@@ -247,7 +248,8 @@ export const giftCardRequestList = [
   },
   {
     id: '17dd40fa-dff8-4b53-bdf1-a83ba1475e44',
-    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    createdById: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    ownerId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
     giftCardIntegrationId: '54075744-7bb0-400a-9b72-678c618e6c5b',
     amount: 6000,
     giftCardIntegrationCurrencyAmount: 60.0,
@@ -255,7 +257,8 @@ export const giftCardRequestList = [
   },
   {
     id: '4098665d-b252-43d7-b40e-3d8444ab4567',
-    userId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    createdById: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    ownerId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
     giftCardIntegrationId: '0618f276-3890-4877-9cff-d145133c187e',
     amount: 9000,
     giftCardIntegrationCurrencyAmount: 90.0,
@@ -263,7 +266,8 @@ export const giftCardRequestList = [
   },
   {
     id: '1804569e-6112-4519-82c3-6d40e754e035',
-    userId: userDeleted1.id,
+    createdById: userDeleted1.id,
+    ownerId: userDeleted1.id,
     giftCardIntegrationId: 'e6618cd2-1b20-462a-8328-be43cc999b46',
     amount: 3600,
     giftCardIntegrationCurrencyAmount: 36.0,

@@ -34,7 +34,8 @@ export class AdminGiftCardRequestsService {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
       include: {
-        user: true,
+        owner: true,
+        createdBy: true,
         giftCardIntegration: {
           include: {
             country: true,
@@ -81,7 +82,7 @@ export class AdminGiftCardRequestsService {
         }),
         this.ledgerService.createGiftCardRequestCompletedTransaction(
           tx,
-          giftCardRequest.userId,
+          giftCardRequest.createdById,
           giftCardRequest.amount,
           giftCardRequest.id,
         ),
@@ -91,8 +92,8 @@ export class AdminGiftCardRequestsService {
         }),
       ]);
       await this.emailsService.sendGiftCardFullfiledEmail(
-        giftCardRequest.user.email,
-        giftCardRequest.user.firstName,
+        giftCardRequest.owner.email,
+        giftCardRequest.owner.firstName,
         giftCardRequest.giftCardIntegration.title,
         giftCardRequest.giftCardIntegration.country.countryCode,
         giftCardRequest.giftCardIntegrationCurrencyAmount,
@@ -113,7 +114,8 @@ export class AdminGiftCardRequestsService {
     const giftCardRequest = await this.prisma.giftCardRequest.findUnique({
       where: { id },
       include: {
-        user: true,
+        owner: true,
+        createdBy: true,
         giftCardIntegration: true,
       },
     });
@@ -130,10 +132,10 @@ export class AdminGiftCardRequestsService {
       const [rsp1, giftCardRequestRsp] = await Promise.all([
         this.ledgerService.createGiftCardRequestDeclinedTransaction(
           tx,
-          giftCardRequest.userId,
+          giftCardRequest.createdById,
           giftCardRequest.amount,
           giftCardRequest.id,
-          giftCardRequest.user,
+          giftCardRequest.createdBy,
         ),
         tx.giftCardRequest.update({
           where: { id },
@@ -144,9 +146,9 @@ export class AdminGiftCardRequestsService {
         }),
       ]);
       await this.emailsService.sendGiftCardDeclinedEmail(
-        giftCardRequest.user.email,
-        giftCardRequest.user.firstName,
-        giftCardRequest.user.lastName,
+        giftCardRequest.createdBy.email,
+        giftCardRequest.createdBy.firstName,
+        giftCardRequest.createdBy.lastName,
         giftCardRequest.giftCardIntegration.title,
         data.adminComment,
       );
@@ -159,22 +161,30 @@ export class AdminGiftCardRequestsService {
       where: { id },
       include: {
         giftCardIntegration: true,
-        user: {
+        owner: {
+          include: userDefaultJoin,
+        },
+        createdBy: {
           include: userDefaultJoin,
         },
       },
     });
     if (!giftCardRequest)
       throw new NotFoundException('GiftCardRequest Not Found');
-    const userBalance = await this.ledgerService.getUserBalance(
-      giftCardRequest.user.id,
-    );
+    const [createdByBalance, ownerBalance] = await Promise.all([
+      this.ledgerService.getUserBalance(giftCardRequest.createdBy.id),
+      this.ledgerService.getUserBalance(giftCardRequest.owner.id),
+    ]);
 
     return {
       ...giftCardRequest,
-      user: {
-        ...giftCardRequest.user,
-        userBalance,
+      owner: {
+        ...giftCardRequest.owner,
+        userBalance: ownerBalance,
+      },
+      createdBy: {
+        ...giftCardRequest.createdBy,
+        userBalance: createdByBalance,
       },
     };
   }

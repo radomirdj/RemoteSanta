@@ -1,5 +1,6 @@
 export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
-  expect(responseBody.userId).toEqual(expectedValue.userId);
+  expect(responseBody.createdById).toEqual(expectedValue.createdById);
+  expect(responseBody.ownerId).toEqual(expectedValue.ownerId);
   expect(responseBody.giftCardIntegrationId).toEqual(
     expectedValue.giftCardIntegrationId,
   );
@@ -22,7 +23,8 @@ export const expectGiftCardRequestInDB = async (id, expectedValue, prisma) => {
   });
 
   expect(giftCardRequest).toBeTruthy();
-  expect(giftCardRequest.userId).toEqual(expectedValue.userId);
+  expect(giftCardRequest.createdById).toEqual(expectedValue.createdById);
+  expect(giftCardRequest.ownerId).toEqual(expectedValue.ownerId);
   expect(giftCardRequest.giftCardIntegrationId).toEqual(
     expectedValue.giftCardIntegrationId,
   );

@@ -193,7 +193,8 @@ describe('/gift-card-requests', () => {
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequest,
         giftCardIntegrationCurrencyAmount: 25,
-        userId: user3Manager.id,
+        createdById: user3Manager.id,
+        ownerId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
       await expectGiftCardRequestInDB(
@@ -202,7 +203,8 @@ describe('/gift-card-requests', () => {
           ...newGiftCardRequest,
           giftCardIntegrationCurrencyAmount: 25,
           status: GiftCardRequestStatusEnum.PENDING,
-          userId: user3Manager.id,
+          createdById: user3Manager.id,
+          ownerId: user3Manager.id,
         },
         prisma,
       );
@@ -256,7 +258,8 @@ describe('/gift-card-requests', () => {
         ...newGiftCardRequest,
         giftCardIntegrationCurrencyAmount: 2696,
         giftCardIntegrationId: giftCardIntegrationSrb.id,
-        userId: user3Manager.id,
+        createdById: user3Manager.id,
+        ownerId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
       await expectGiftCardRequestInDB(
@@ -266,7 +269,8 @@ describe('/gift-card-requests', () => {
           giftCardIntegrationCurrencyAmount: 2696,
           giftCardIntegrationId: giftCardIntegrationSrb.id,
           status: GiftCardRequestStatusEnum.PENDING,
-          userId: user3Manager.id,
+          createdById: user3Manager.id,
+          ownerId: user3Manager.id,
         },
         prisma,
       );
@@ -359,7 +363,8 @@ describe('/gift-card-requests', () => {
 
       expectGiftCardRequestRsp(response.body, {
         ...newGiftCardRequestAmountList,
-        userId: user3Manager.id,
+        createdById: user3Manager.id,
+        ownerId: user3Manager.id,
         status: GiftCardRequestStatusEnum.PENDING,
       });
       await expectGiftCardRequestInDB(
@@ -367,7 +372,8 @@ describe('/gift-card-requests', () => {
         {
           ...newGiftCardRequestAmountList,
           status: GiftCardRequestStatusEnum.PENDING,
-          userId: user3Manager.id,
+          createdById: user3Manager.id,
+          ownerId: user3Manager.id,
         },
         prisma,
       );
