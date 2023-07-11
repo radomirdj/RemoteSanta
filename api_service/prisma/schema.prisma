@@ -39,12 +39,13 @@ model User {
   org                             Org                           @relation(fields: [orgId], references: [id])
   orgId                           String
   deleted                         Boolean                       @default(false)
-  GiftCardRequest                 GiftCardRequest[]
-  GiftCard                        GiftCard[]
   claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
   OrgTransaction                  OrgTransaction[]
   BalanceSide                     BalanceSide[]
   UserInvite                      UserInvite[]
+  giftCardRequestCreator          GiftCardRequest[]             @relation("GiftCardRequest_owner")
+  giftCardRequestOwner            GiftCardRequest[]             @relation("GiftCardRequest_creator")
+  GiftCard                        GiftCard[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -190,8 +191,10 @@ enum GiftCardRequestStatusEnum {
 
 model GiftCardRequest {
   id                                String                    @id @default(uuid())
-  user                              User                      @relation(fields: [userId], references: [id])
-  userId                            String
+  createdBy                         User                      @relation("GiftCardRequest_creator", fields: [createdById], references: [id])
+  createdById                       String
+  owner                             User                      @relation("GiftCardRequest_owner", fields: [ownerId], references: [id])
+  ownerId                           String
   giftCardIntegration               GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
   giftCardIntegrationId             String
   adminComment                      String?
