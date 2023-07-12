@@ -41,7 +41,8 @@ export interface IGiftCardFile {
 export interface IGiftCardRequest {
   id: string;
   adminComment: string;
-  userId: string;
+  ownerId: string;
+  createdById: string;
   giftCardIntegrationId: string;
   amount: string;
   status: string;

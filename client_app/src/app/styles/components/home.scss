@@ -41,8 +41,8 @@ $points-font-size:20px;
             font-family: "Montserrat";
             cursor: pointer;
             width: max-content;
+            margin-bottom: variables.$base-unit * 2;
             @media screen and (min-width: variables.$breakpoint-md) {
-          
                 font-size: variables.$font-size-large;
             }
 
@@ -52,53 +52,10 @@ $points-font-size:20px;
             }
         } 
 
-        .button-item{
-            display: flex;
-            justify-content: end;
-            @media screen and (max-width: variables.$breakpoint-sm) {
-                justify-content: start; 
-                margin-top: variables.$base-unit;
-              }
-            
-              @media screen and (min-width: variables.$breakpoint-sm) {
-                justify-content: end;
-                margin-top: variables.$base-unit * 3;
-              }
-
-            .use-points-button,
-                & .use-points-button:hover {
-                background-color: variables.$color-dark-yellow;
-                border-radius: variables.$base-unit * 5;
-                box-shadow: none;
-                color: variables.$color-neutral-black;
-                text-transform: none;
-                height: variables.$base-unit * 6;
-                font-weight: bold;
-                margin-bottom: variables.$base-unit * 2;
-                margin-right: variables.$base-unit ;
-                text-align: center;
-
-                @media screen and (max-width: variables.$breakpoint-sm) {
-                    margin-left: variables.$base-unit * 2;
-                    width: variables.$base-unit * 30;
-                  }
-                
-                  @media screen and (min-width: variables.$breakpoint-sm) {
-                    width: 50%;
-                  }
-            }
-
-            .gift-icon-style{
-                margin-right: variables.$base-unit;
-                margin-bottom: 4px;
-            }
-        }
-
 
         .home-text{
             font-family: "Montserrat";
             font-size: variables.$font-size-medium;
-            margin-bottom: variables.$base-unit ;
             width: max-content;
             color: variables.$color-neutral-gray;
             padding-bottom: variables.$base-unit ;
@@ -184,6 +141,69 @@ $points-font-size:20px;
                     margin-bottom: $points-margin-bottom;
                 }
             }
+        }
+
+        .step-card{
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding-top: variables.$base-unit;
+            padding-bottom: variables.$base-unit;
+            padding-left: variables.$base-unit;
+            padding-right: variables.$base-unit;
+            border-radius: variables.$base-unit * 3;
+            height: variables.$base-unit * 20;
+        }
+
+        .step-title{
+            font-family: "Montserrat";
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 2;
+        }
+
+        .step-text{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-small;
+        }
+
+        .step-grid-item{
+            padding-left: 8px !important;
+        }
+
+        .step-grid-item-button{
+            padding-left: 0px !important;
+            padding-top: 0px !important;
+
+            .use-points-button,
+            & .use-points-button:hover {
+                background-color: variables.$color-dark-yellow;
+                border-radius: variables.$base-unit * 5;
+                box-shadow: none;
+                color: variables.$color-neutral-black;
+                text-transform: none;
+                height: variables.$base-unit * 5;
+                font-weight: bold;
+                margin-left: variables.$base-unit ;
+                text-align: center;
+                width: 70%;
+            }
+        }
+
+        .step-icon-style{
+            width: 20px;
+            height: 20px;
+            margin-right: variables.$base-unit;
+        }
+
+        .step-illustration{
+            width: variables.$base-unit * 10;
+            margin-right: variables.$base-unit * 2;
+            margin-top: variables.$base-unit * 2;
+        }
+
+        .step-illustration-recognize{
+            width: variables.$base-unit * 8;
+            margin-right: variables.$base-unit * 2;
+            margin-top: variables.$base-unit * 2;
         }
     }
 
