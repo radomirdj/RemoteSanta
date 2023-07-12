@@ -240,7 +240,7 @@ export const giftCardRequestList = [
   {
     id: '9794fc09-68ee-4f3d-ac3f-b5ea759021ca',
     createdById: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
-    ownerId: '69a89ce4-5f3e-403f-8fa2-821fc4f216c9',
+    ownerId: '25752f92-defd-4bb5-9553-154fc5ce9d8b',
     giftCardIntegrationId: 'e6618cd2-1b20-462a-8328-be43cc999b46',
     amount: 3000,
     giftCardIntegrationCurrencyAmount: 30.0,
@@ -267,7 +267,7 @@ export const giftCardRequestList = [
   {
     id: '1804569e-6112-4519-82c3-6d40e754e035',
     createdById: userDeleted1.id,
-    ownerId: userDeleted1.id,
+    ownerId: user3Manager.id,
     giftCardIntegrationId: 'e6618cd2-1b20-462a-8328-be43cc999b46',
     amount: 3600,
     giftCardIntegrationCurrencyAmount: 36.0,

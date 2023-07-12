@@ -45,6 +45,7 @@ import {
   userDeleted1ReservedPoints,
   user3ReservedBalanceSideId,
   userDeleted1ReservedBalanceSideId,
+  user3Manager,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 
@@ -92,6 +93,8 @@ describe('admin/gift-card-requests', () => {
       expectGiftCardRequestRsp(response.body, {
         ...giftCardRequest1,
         integrationTitle: giftCardIntegration1.title,
+        createdBy: user1,
+        owner: user3Manager,
       });
       expect(response.body.createdBy.deleted).toEqual(false);
       expect(response.body.owner.deleted).toEqual(false);
@@ -113,8 +116,9 @@ describe('admin/gift-card-requests', () => {
       expectGiftCardRequestRsp(response.body, {
         ...giftCardRequest3,
         integrationTitle: giftCardIntegration1.title,
+        createdBy: userDeleted1,
+        owner: user3Manager,
       });
-      expect(response.body.createdBy.email).toEqual(userDeleted1.email);
       expect(response.body.createdBy.userBalance.pointsActive).toEqual(
         userDeleted1ActivePoints,
       );
@@ -122,7 +126,6 @@ describe('admin/gift-card-requests', () => {
         userDeleted1ReservedPoints,
       );
       expect(response.body.createdBy.deleted).toEqual(true);
-      expect(response.body.owner.email).toEqual(userDeleted1.email);
     });
 
     it('/:id (GET) - user (NOT ADMIN) try to get gift card request', async () => {
@@ -162,16 +165,22 @@ describe('admin/gift-card-requests', () => {
       expectGiftCardRequestRsp(giftDateRsp1, {
         ...giftCardRequest2,
         integrationTitle: giftCardIntegration2.title,
+        createdBy: user1,
+        owner: user1,
       });
       expect(giftDateRsp2.id).toEqual(giftCardRequest1.id);
       expectGiftCardRequestRsp(giftDateRsp2, {
         ...giftCardRequest1,
         integrationTitle: giftCardIntegration1.title,
+        createdBy: user1,
+        owner: user3Manager,
       });
       expect(giftDateRsp3.id).toEqual(giftCardRequest3.id);
       expectGiftCardRequestRsp(giftDateRsp3, {
         ...giftCardRequest3,
         integrationTitle: giftCardIntegration1.title,
+        createdBy: userDeleted1,
+        owner: user3Manager,
       });
     });
 
@@ -241,23 +250,26 @@ describe('admin/gift-card-requests', () => {
         pointsReserved: user1ReservedPoints - giftCardRequest1.amount,
       });
 
-      // User Get File
-      const response2 = await request(app.getHttpServer())
-        .get(`/gift-card-requests/${giftCardRequest1.id}/file`)
-        .set(
-          'Authorization',
-          'bearer ' +
-            createToken({ email: user1.email, sub: user1.cognitoSub }),
-        )
-        .expect(200);
-
-      // Other User Get File
+      // User Get File - User Owner og GiftCardRequest
       await request(app.getHttpServer())
         .get(`/gift-card-requests/${giftCardRequest1.id}/file`)
         .set(
           'Authorization',
           'bearer ' +
-            createToken({ email: user2.email, sub: user2.cognitoSub }),
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .expect(200);
+
+      // Other User Get File - the one who sent it
+      await request(app.getHttpServer())
+        .get(`/gift-card-requests/${giftCardRequest1.id}/file`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({ email: user1.email, sub: user1.cognitoSub }),
         )
         .expect(404);
 

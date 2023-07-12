@@ -71,13 +71,35 @@ describe('/gift-card-requests', () => {
   });
 
   describe('/:id (GET)', () => {
-    it('/:id (GET) - get gift card request', async () => {
+    it('/:id (GET) - get gift card request - createdBy user - sender', async () => {
       const response = await request(app.getHttpServer())
         .get(`/gift-card-requests/${giftCardRequest1.id}`)
         .set(
           'Authorization',
           'bearer ' +
             createToken({ email: user1.email, sub: user1.cognitoSub }),
+        )
+        .expect(200);
+
+      const id = response.body.id;
+      expect(id).toEqual(giftCardRequest1.id);
+
+      expectGiftCardRequestRsp(response.body, {
+        ...giftCardRequest1,
+        integrationTitle: giftCardIntegration1.title,
+      });
+    });
+
+    it("/:id (GET) - get gift card request - owner user - the one it's sent to", async () => {
+      const response = await request(app.getHttpServer())
+        .get(`/gift-card-requests/${giftCardRequest1.id}`)
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
         )
         .expect(200);
 
@@ -131,10 +153,12 @@ describe('/gift-card-requests', () => {
       expectGiftCardRequestRsp(giftDateRsp2, {
         ...giftCardRequest1,
         integrationTitle: giftCardIntegration1.title,
+        owner: user3Manager,
+        createdBy: user1,
       });
     });
 
-    it('/ (GET) - user2 gets 0 gift card requests', async () => {
+    it('/ (GET) - user3Manager gets 2 gift card requests - those sent to him', async () => {
       const response = await request(app.getHttpServer())
         .get('/gift-card-requests/')
         .set(
@@ -147,7 +171,7 @@ describe('/gift-card-requests', () => {
         )
         .expect(200);
 
-      expect(response.body.length).toEqual(0);
+      expect(response.body.length).toEqual(2);
     });
 
     it('/ (GET) - try to get gift card requests without token', async () => {

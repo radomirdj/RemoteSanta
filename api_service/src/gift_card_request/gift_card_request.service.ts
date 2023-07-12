@@ -136,9 +136,13 @@ export class GiftCardRequestService {
 
   getByUser(userId: string): Promise<GiftCardRequest[]> {
     return this.prisma.giftCardRequest.findMany({
-      where: { ownerId: userId },
+      where: {
+        OR: [{ createdById: userId }, { ownerId: userId }],
+      },
       include: {
         giftCardIntegration: true,
+        owner: true,
+        createdBy: true,
       },
       orderBy: [
         {

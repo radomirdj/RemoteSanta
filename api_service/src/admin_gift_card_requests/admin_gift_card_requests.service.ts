@@ -194,6 +194,8 @@ export class AdminGiftCardRequestsService {
       where: { status: GiftCardRequestStatusEnum.PENDING },
       include: {
         giftCardIntegration: true,
+        owner: true,
+        createdBy: true,
       },
       orderBy: [
         {

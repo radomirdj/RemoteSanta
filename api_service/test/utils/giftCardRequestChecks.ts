@@ -15,6 +15,13 @@ export const expectGiftCardRequestRsp = (responseBody, expectedValue) => {
       expectedValue.integrationTitle,
     );
   }
+
+  if (expectedValue.owner) {
+    expect(responseBody.owner.email).toEqual(expectedValue.owner.email);
+  }
+  if (expectedValue.createdBy) {
+    expect(responseBody.createdBy.email).toEqual(expectedValue.createdBy.email);
+  }
 };
 
 export const expectGiftCardRequestInDB = async (id, expectedValue, prisma) => {
