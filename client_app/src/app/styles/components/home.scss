@@ -155,14 +155,27 @@ $points-font-size:20px;
 
         .step-title{
             font-family: "Montserrat";
-            font-size: 20px;
             font-weight: 600;
             margin-bottom: variables.$base-unit * 2;
+            @media screen and (min-width: variables.$breakpoint-sm) {
+                font-size: 20px;
+            }
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                width: 60%;
+                margin-left: variables.$base-unit;
+                font-size: variables.$font-size-medium;
+            }
         }
 
         .step-text{
             font-family: "Montserrat";
             font-size: variables.$font-size-small;
+           
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit;
+            }
         }
 
         .step-grid-item{
@@ -184,7 +197,13 @@ $points-font-size:20px;
                 font-weight: bold;
                 margin-left: variables.$base-unit ;
                 text-align: center;
-                width: 70%;
+                @media screen and (min-width: variables.$breakpoint-sm) {
+                    width: 70%;
+                }
+
+                @media screen and (max-width: variables.$breakpoint-sm) {
+                    width: 60%;
+                }
             }
         }
 
@@ -198,12 +217,20 @@ $points-font-size:20px;
             width: variables.$base-unit * 10;
             margin-right: variables.$base-unit * 2;
             margin-top: variables.$base-unit * 2;
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit * 3;
+            }
         }
 
         .step-illustration-recognize{
             width: variables.$base-unit * 8;
             margin-right: variables.$base-unit * 2;
             margin-top: variables.$base-unit * 2;
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit * 4;
+            }
         }
     }
 

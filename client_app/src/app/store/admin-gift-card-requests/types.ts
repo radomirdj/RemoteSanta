@@ -34,7 +34,8 @@ export interface IAdminGiftCardIntegration {
 export interface IAdminGiftCardRequest {
   id: string;
   adminComment: string;
-  userId: string;
+  ownerId: string;
+  createdById: string;
   giftCardIntegrationId: string;
   amount: string;
   status: string;
@@ -42,7 +43,8 @@ export interface IAdminGiftCardRequest {
   giftCardIntegrationCurrencyAmount: number;
   createdAt: Date;
   updatedAt: Date;
-  user: AuthUser;
+  owner: AuthUser;
+  createdBy: AuthUser;
 }
 
 export interface AdminGiftCardRequestState {

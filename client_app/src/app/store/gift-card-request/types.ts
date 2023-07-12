@@ -1,3 +1,4 @@
+import { AuthUser } from "../auth/types";
 import {
   FETCH_GIFT_CARD_REQUEST_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
@@ -42,7 +43,9 @@ export interface IGiftCardRequest {
   id: string;
   adminComment: string;
   ownerId: string;
+  owner: AuthUser;
   createdById: string;
+  createdBy: AuthUser;
   giftCardIntegrationId: string;
   amount: string;
   status: string;

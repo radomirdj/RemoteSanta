@@ -92,7 +92,7 @@ const AdminGiftCardRequestDetails = () => {
             Gift Card Request Details
           </Typography>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <Typography className="details-style">
                 Gift Card Details
               </Typography>
@@ -161,17 +161,17 @@ const AdminGiftCardRequestDetails = () => {
                 </Grid>
               </Typography>
             </Grid>
-            <Grid item xs={6}>
-              <Typography className="details-style">User Details</Typography>
-              <Divider className="divider-style" />
+            <Grid item xs={4}>
+              <Typography className="details-style">Owner Details</Typography>
+              <Divider className="divider-style-not-full" />
               <Typography className="info-style">
                 <Grid container>
                   <Grid item xs={5}>
                     <span className="column-name">Full name</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequest?.user.firstName}{" "}
-                    {adminGiftCardRequest?.user.lastName}
+                    {adminGiftCardRequest?.owner.firstName}{" "}
+                    {adminGiftCardRequest?.owner.lastName}
                   </Grid>
                 </Grid>
               </Typography>
@@ -181,7 +181,7 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name"> Active points</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequest?.user?.userBalance?.pointsActive}
+                    {adminGiftCardRequest?.owner?.userBalance?.pointsActive}
                     PTS
                   </Grid>
                 </Grid>
@@ -192,7 +192,7 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name"> Reserved points</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequest?.user?.userBalance?.pointsReserved}{" "}
+                    {adminGiftCardRequest?.owner?.userBalance?.pointsReserved}{" "}
                     PTS
                   </Grid>
                 </Grid>
@@ -203,7 +203,7 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name">Email</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequest?.user?.email}
+                    {adminGiftCardRequest?.owner?.email}
                   </Grid>
                 </Grid>
               </Typography>
@@ -213,12 +213,74 @@ const AdminGiftCardRequestDetails = () => {
                     <span className="column-name">Company name</span>
                   </Grid>
                   <Grid item xs={7}>
-                    {adminGiftCardRequest?.user?.org?.name}
+                    {adminGiftCardRequest?.owner?.org?.name}
                   </Grid>
                 </Grid>
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
+              <Typography className="details-style">
+                Created By Details
+              </Typography>
+              <Divider className="divider-style" />
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Full name</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.createdBy.firstName}{" "}
+                    {adminGiftCardRequest?.createdBy.lastName}
+                  </Grid>
+                </Grid>
+              </Typography>
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name"> Active points</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.createdBy?.userBalance?.pointsActive}
+                    PTS
+                  </Grid>
+                </Grid>
+              </Typography>
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name"> Reserved points</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {
+                      adminGiftCardRequest?.createdBy?.userBalance
+                        ?.pointsReserved
+                    }{" "}
+                    PTS
+                  </Grid>
+                </Grid>
+              </Typography>
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Email</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.createdBy?.email}
+                  </Grid>
+                </Grid>
+              </Typography>
+              <Typography className="info-style">
+                <Grid container>
+                  <Grid item xs={5}>
+                    <span className="column-name">Company name</span>
+                  </Grid>
+                  <Grid item xs={7}>
+                    {adminGiftCardRequest?.createdBy?.org?.name}
+                  </Grid>
+                </Grid>
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
               <Typography className="details-style-full">
                 Fulfill Gift Card Request
               </Typography>
@@ -255,7 +317,7 @@ const AdminGiftCardRequestDetails = () => {
                 </Grid>
               </form>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <Typography className="details-style-full">
                 Decline Gift Card Request
               </Typography>
