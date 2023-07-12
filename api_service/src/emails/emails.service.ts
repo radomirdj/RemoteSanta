@@ -20,6 +20,7 @@ export class EmailsService {
     to: string | string[],
     data: any,
     attachment: { filename: string; buffer } = null,
+    replyTo: string = null,
   ) {
     let parsedData = await this.email.renderAll(templateName, data);
 
@@ -30,7 +31,7 @@ export class EmailsService {
       text: parsedData.text,
       html: parsedData.html,
       context: data,
-      replyTo: 'info@remotesanta.io',
+      replyTo: replyTo || 'info@remotesanta.io',
     } as ISendMailOptions;
 
     if (attachment) {
@@ -190,5 +191,50 @@ export class EmailsService {
       storeName,
       orderNumber: giftCardRequestId.slice(-8),
     });
+  }
+
+  async giftCardRequestSentConfirmationSenderEmail(
+    to: string[],
+    firstNameSender: string,
+    firstNameRecepient: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+  ) {
+    return this.sendEmail('gift-card-request-sent-confirmation-sender', to, {
+      firstNameSender,
+      firstNameRecepient,
+      amount,
+      currency,
+      storeName,
+      orderNumber: giftCardRequestId.slice(-8),
+    });
+  }
+
+  async giftCardRequestSentConfirmationRecepientEmail(
+    to: string[],
+    firstNameSender: string,
+    firstNameRecepient: string,
+    senderEmail: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+  ) {
+    return this.sendEmail(
+      'gift-card-request-sent-confirmation-recepient',
+      to,
+      {
+        firstNameSender,
+        firstNameRecepient,
+        amount,
+        currency,
+        storeName,
+        orderNumber: giftCardRequestId.slice(-8),
+      },
+      null,
+      senderEmail,
+    );
   }
 }

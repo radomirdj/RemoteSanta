@@ -5,9 +5,16 @@ import {
   Min,
   IsInt,
   IsNumber,
+  IsUUID,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateGiftCardRequestDto {
+  @IsString()
+  @IsUUID()
+  @IsOptional()
+  sendToUserId?: string;
+
   @IsString()
   @IsNotEmpty()
   giftCardIntegrationId: string;
