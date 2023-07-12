@@ -837,7 +837,7 @@
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.containerstore.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/containerstore.png
-  title: The Container Store
+  title: Container Store
   description: The Container Store offers a wide range of storage and organization products, including shelving units, closet organizers, kitchen and pantry storage solutions, office and desk organizers, and storage containers of all sizes and shapes.
   currency: USD
   constraintType: LIST
@@ -936,7 +936,7 @@
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.globalexperiencescard.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_globexp.png
-  title: Global Experience
+  title: GE Card
   description: The global experience can be pursued in different ways, including through travel, study abroad programs, international work opportunities, cultural exchanges, or through engagement with global interactions with people from different backgrounds.
   currency: USD
   constraintType: LIST
@@ -1013,7 +1013,7 @@
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   website: https://www.bathandbodyworks.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/bathbodyworks.png
-  title: Bath&Body Works
+  title: Bath&Body
   description: Bath & Body Works offers a wide range of products, including body lotions, shower gels, hand soaps, candles and room sprays. It is known for its signature fragrances which are available in a variety of scents, from sweet and fruity to warm and spicy.
   currency: USD
   constraintType: LIST
