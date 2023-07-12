@@ -13,64 +13,91 @@ $card-country-margin-bottom:10px;
     background-size: contain !important;
 
     .grid-style{
-        padding-top: variables.$base-unit * 15;
+        padding-top: variables.$base-unit * 6;
+        padding-bottom: variables.$base-unit * 6;
+        margin-top:variables.$base-unit * 15; 
+        margin-bottom: variables.$base-unit * 6;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: variables.$base-unit * 2;
+        padding-right: variables.$base-unit * 3;
         overflow-y: auto;
-        max-width: $grid-max-width;
-        padding-bottom: variables.$base-unit * 12;
         z-index: 1000;
-
-        .my-gift-cards-title{
-            font-family: "Montserrat";
-            width: max-content;
-            margin-bottom: variables.$base-unit;
-            font-weight: 500;
-            @media screen and (max-width: variables.$breakpoint-md) {
-                font-size: variables.$font-size-larger;
-                margin-left: variables.$base-unit *3;
-            }
-            
-            @media screen and (min-width: variables.$breakpoint-md) {
-                font-size: variables.$font-size-title;
-                margin-left: variables.$base-unit ;
-            }
-        } 
+        background-color: white;
+        border-radius: variables.$base-unit * 5;
+        @media screen and (max-width: variables.$breakpoint-lg) {
+            max-width: 100%;
+        }
+        
+        @media screen and (min-width: variables.$breakpoint-lg) {
+            max-width: $grid-max-width;
+        }
 
         .my-gift-cards-text{
             font-family: "Montserrat";
             width: max-content;
-            font-size: variables.$font-size-medium;
-            @media screen and (max-width: variables.$breakpoint-md) {
+            font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-sm) {
                 margin-left: variables.$base-unit * 3;
+                font-size: variables.$font-size-medium;
             }
             
-            @media screen and (min-width: variables.$breakpoint-md) {
+            @media screen and (min-width: variables.$breakpoint-sm) {
                 margin-left: variables.$base-unit ;
+                font-size: variables.$font-size-larger;
             }
-        } 
-
-        .my-gift-cards-link{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-medium;
-            margin-left: variables.$base-unit ;
-            cursor: pointer;
-            width: max-content;
-        } 
-
-        .my-gift-card-points{
-            font-size: variables.$font-size-large;
-            color: variables.$color-neutral-black;
-            margin-right: variables.$base-unit ;
-            font-weight: 500;
         }
 
         .grid-item{
             padding-top: 0px;
         }
 
-        .card-item{
+        .button-item{
+            padding-top: 0px;
+            display: flex;
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                justify-content: start;
+                margin-top: variables.$base-unit * 2;
+                margin-left: variables.$base-unit * 2;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-sm) {
+                justify-content: end;
+            }
+        }
+
+        .use-points-button,
+        & .use-points-button:hover {
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit * 5;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height: variables.$base-unit * 6;
+            font-weight: bold;
+            margin-right: variables.$base-unit ;
+            text-align: center;
+            width: variables.$base-unit * 30;
+        }
+
+        .gift-icon-style{
+            margin-right: variables.$base-unit;
+            margin-bottom: 4px;
+        }
+
+        .card-item-success{
             margin-left: auto;
             margin-right: auto;
             background-color: rgb(193, 211, 229, 0.6);
+            border-radius: variables.$base-unit * 3;
+            height:variables.$base-unit * 47;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+
+        .card-item-pending{
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFE8B2;
             border-radius: variables.$base-unit * 3;
             height:variables.$base-unit * 47;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -159,6 +186,32 @@ $card-country-margin-bottom:10px;
     .MuiGrid-root{
         .MuiGrid-item{
             padding-left: 16px;
+        }
+    }
+
+    .tabs-style{
+        margin-top: variables.$base-unit * 2;
+        margin-left:  variables.$base-unit * 3;
+        .MuiTabs-fixed{
+            .MuiTabs-indicator{
+                background-color: #ADCCE4;
+                height: 4px;
+            }
+            .MuiTabs-flexContainer{
+                .MuiButtonBase-root{
+                    font-family: "Montserrat";
+                    font-weight: 500;
+                    font-size: variables.$font-size-medium;
+                    text-transform: none;
+                }
+
+                .MuiButtonBase-root.Mui-selected{
+                    color: variables.$color-neutral-black;
+                }
+                .MuiTouchRipple-root{
+                    text-transform: none;
+                }
+            }
         }
     }
 }

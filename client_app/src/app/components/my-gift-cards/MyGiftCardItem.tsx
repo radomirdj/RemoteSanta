@@ -10,7 +10,6 @@ import {
 import React from "react";
 import { IGiftCardRequest } from "../../store/gift-card-request/types";
 import WatchGlass from "./../../assets/icons/watchglass.svg";
-import DeclinedIcon from "./../../assets/icons/declined-icon.svg";
 import { useDispatch } from "react-redux";
 import { fetchGiftCardFile } from "../../store/gift-card-request/actions";
 import { countryList } from "../../enums/CountryList";
@@ -23,7 +22,14 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 270 }} className="card-item">
+    <Card
+      sx={{ maxWidth: 270 }}
+      className={
+        giftCardRequest.status === "PENDING"
+          ? "card-item-pending"
+          : "card-item-success"
+      }
+    >
       <CardMedia
         component="img"
         height="140"
@@ -70,19 +76,7 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
             </Grid>
             <Grid item xs={9}>
               <Typography variant="body2" className="pending-text">
-                Your Gift Card will be available soon
-              </Typography>
-            </Grid>
-          </Grid>
-        )}
-        {giftCardRequest.status === "DECLINED" && (
-          <Grid container>
-            <Grid item xs={3}>
-              <img src={DeclinedIcon} alt="" className="card-declined-icon" />
-            </Grid>
-            <Grid item xs={9}>
-              <Typography variant="body2" className="card-declined-text">
-                {giftCardRequest.adminComment}
+                Gift card will be available soon
               </Typography>
             </Grid>
           </Grid>
