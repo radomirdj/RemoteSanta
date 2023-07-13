@@ -11,3 +11,10 @@
   status: ACTIVE
   createdAt: 2022-09-14T21:59:43.10-05:00
   orgId: f040c93b-ad1b-4ddd-8df4-562faed4f98b
+
+- id: 4ba3f637-c6ce-434e-8aa8-fb4d0d19d7af
+  code: BBCDDD
+  email: djekovicjovana1+user@gmail.com
+  status: ACTIVE
+  createdAt: 2022-09-14T21:59:43.10-05:00
+  orgId: 752e05ce-4a81-4148-87c5-30832406d48c
