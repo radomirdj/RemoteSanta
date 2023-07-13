@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { fetchOrganizationUserList } from "../../store/orgs/actions";
 import SparkBlack from "../../assets/icons/spark-black.svg";
 import SparkGray from "../../assets/icons/spark-gray.svg";
+import GiftCardBlack from "../../assets/icons/gift-card-black-icon.svg";
+import GiftCardGray from "../../assets/icons/gift-card-gray-icon.svg";
 import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import { getAuthUserSelector } from "../../store/auth/selectors";
@@ -39,15 +41,33 @@ const MyTeam = () => {
       <Button
         variant="contained"
         className={
-          params.id === userAuth.id
-            ? "button-send-points-disabled"
-            : "button-send-points"
+          params.id === userAuth.id ? "button-disabled" : "button-send-points"
         }
         disableRipple
         disabled={params.id === userAuth.id ? true : false}
         onClick={() => userManagerSendPointsRedirect(params.id as string)}
       >
         <img src={params.id === userAuth.id ? SparkGray : SparkBlack} alt="" />
+      </Button>
+    );
+  };
+
+  const sendGiftCards = (params: GridRenderCellParams) => {
+    return (
+      <Button
+        variant="contained"
+        className={
+          params.id === userAuth.id
+            ? "button-disabled"
+            : "button-send-gift-cards"
+        }
+        disableRipple
+        disabled={params.id === userAuth.id ? true : false}
+      >
+        <img
+          src={params.id === userAuth.id ? GiftCardGray : GiftCardBlack}
+          alt=""
+        />
       </Button>
     );
   };
@@ -62,6 +82,13 @@ const MyTeam = () => {
       width: 150,
       sortable: false,
       renderCell: sendPoints,
+    },
+    {
+      field: "sendGiftCards",
+      headerName: "Send Gift Cards",
+      width: 150,
+      sortable: false,
+      renderCell: sendGiftCards,
     },
   ];
 

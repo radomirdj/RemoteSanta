@@ -22,7 +22,7 @@ import { getUserNextBirthday } from "../../utils/Utils";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const claimPointsEventList = useSelector(getClaimPointsEventListSelector);
+  // const claimPointsEventList = useSelector(getClaimPointsEventListSelector);
   const user = useSelector(getAuthUserSelector);
   const navigate = useNavigate();
   const orgUserList = useSelector(getOrganizationUserListSelector);
@@ -45,16 +45,16 @@ const Home = () => {
     .sort(compareByNextBirthday)
     .slice(0, 10);
 
-  const currentDate = new Date();
-  const filteredList = claimPointsEventList.filter((claimPointsEvent) => {
-    let validToDate = new Date(claimPointsEvent.validTo);
-    if (
-      currentDate > validToDate ||
-      claimPointsEvent.claimPointsEventFulfillment
-    )
-      return false;
-    return true;
-  });
+  // const currentDate = new Date();
+  // const filteredList = claimPointsEventList.filter((claimPointsEvent) => {
+  //   let validToDate = new Date(claimPointsEvent.validTo);
+  //   if (
+  //     currentDate > validToDate ||
+  //     claimPointsEvent.claimPointsEventFulfillment
+  //   )
+  //     return false;
+  //   return true;
+  // });
 
   const chooseGiftCardRedirect = () => {
     navigate("/choose-gift-card");

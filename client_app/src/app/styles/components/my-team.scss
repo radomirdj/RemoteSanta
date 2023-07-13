@@ -1,7 +1,7 @@
 @use "./../variables.scss";
 
 $button-details-height: 36px;
-$content-width:950px;
+$content-width:1100px;
 
 .my-team {
     background-image: url("./../../assets/home-image.svg");
@@ -66,7 +66,7 @@ $content-width:950px;
             margin-top: variables.$base-unit ;
         }
 
-        .button-send-points-disabled{
+        .button-disabled{
             float: right;
             background-color:#d2d2d2;
             border-radius: variables.$base-unit;
@@ -78,6 +78,17 @@ $content-width:950px;
             margin-top: variables.$base-unit ;
         }
 
+        .button-send-gift-cards{
+            float: right;
+            background-color:variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            text-transform: none;
+            height: variables.$base-unit *5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
         
     }
 }
