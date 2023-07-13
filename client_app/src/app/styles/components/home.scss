@@ -71,7 +71,7 @@ $points-font-size:20px;
 
 
         .card-item{
-            background-color: rgb(253, 222, 146, 0.5);
+            background-color: #e1e1b5;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
             margin-bottom: variables.$base-unit * 2;
             height:  variables.$base-unit  * 11;
@@ -80,67 +80,35 @@ $points-font-size:20px;
             .card-grid-item{
                 margin-right: auto;
                 margin-left: variables.$base-unit * 2;
+                padding-top: 0px;
             }
 
             .card-illustration-style{
                 width: $dollar-illustration-width;
                 height: $dollar-illustration-height;
+       
                 @media screen and (max-width: variables.$breakpoint-md) {
                     width: variables.$base-unit * 7;
                 }
             }
 
             .card-description{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    margin-top: variables.$base-unit * 3;
-                    font-family: "Montserrat";
-                    margin-left: variables.$base-unit * 3;
-                }
-                
-                @media screen and (min-width: variables.$breakpoint-md) {
-                    font-family: "Montserrat";
-                    margin-bottom: auto;
-                    margin-top: auto;
+                font-family: "Montserrat";
+                @media screen and (max-width: variables.$breakpoint-sm) {
+                    margin-left: variables.$base-unit * 4;
+                    font-size: variables.$font-size-normal;
                 }
             }
 
-            .card-description-text{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    visibility: hidden;
-                }
-            }
+          
 
             .grid-description-style{
                 margin-top: auto;
-                margin-bottom: variables.$base-unit * 5;
+                margin-bottom: auto;
+                justify-content: start;
+                display: flex;
             }
 
-            .card-points{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    font-size: variables.$font-size-medium;
-                    margin-right: variables.$base-unit;
-                    font-family: "Montserrat";
-                    font-weight: 500;
-                }
-                @media screen and (min-width: variables.$breakpoint-md) {
-                    font-size: variables.$font-size-large;
-                    font-family: "Montserrat";
-                    float: right;
-                    margin-right: variables.$base-unit * 5;
-                    font-weight: 500;
-                  }
-            }
-
-            .grid-points-style{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    margin-top: variables.$base-unit * 3;
-                }
-                
-                @media screen and (min-width: variables.$breakpoint-md) {
-                    margin-top: auto;
-                    margin-bottom: $points-margin-bottom;
-                }
-            }
         }
 
         .step-card{

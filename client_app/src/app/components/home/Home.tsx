@@ -1,5 +1,5 @@
 import { Button, Card, Grid, Tooltip, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getSelfRequest } from "../../store/auth/actions";
@@ -8,24 +8,42 @@ import { fetchClaimPointsEventList } from "../../store/claim-points-event/action
 import { getClaimPointsEventListSelector } from "../../store/claim-points-event/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
-import ClaimPointsEventItem from "./ClaimPointsEventItem";
 import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
 import GiftCardIcon from "../../assets/icons/gift-card-black-icon.svg";
 import SparkBlack from "../../assets/icons/spark-black.svg";
 import UseYourPointsIllustration from "./../../assets/illustrations/use-your-points-illustration.svg";
 import RecognizeTeamIllustration from "./../../assets/illustrations/recognize-team-illustration.svg";
 import YourGiftCardsIllustration from "./../../assets/illustrations/your-gift-cards-illustration.svg";
+import { getOrganizationUserListSelector } from "../../store/orgs/selectors";
+import { fetchOrganizationUserList } from "../../store/orgs/actions";
+import UserBirthdayListItem from "./UserBirthdayListItem";
+import { IOrgUser } from "../../store/orgs/types";
+import { getUserNextBirthday } from "../../utils/Utils";
 
 const Home = () => {
   const dispatch = useDispatch();
   const claimPointsEventList = useSelector(getClaimPointsEventListSelector);
   const user = useSelector(getAuthUserSelector);
   const navigate = useNavigate();
+  const orgUserList = useSelector(getOrganizationUserListSelector);
 
   useEffect(() => {
     dispatch(fetchClaimPointsEventList());
     dispatch(getSelfRequest(navigate));
+    dispatch(fetchOrganizationUserList());
   }, [dispatch]);
+
+  const compareByNextBirthday = (a: IOrgUser, b: IOrgUser) => {
+    return (
+      getUserNextBirthday(a.birthDate || "").getTime() -
+      getUserNextBirthday(b.birthDate || "").getTime()
+    );
+  };
+
+  const usersWithBirthday = orgUserList
+    .filter((user) => user.birthDate)
+    .sort(compareByNextBirthday)
+    .slice(0, 10);
 
   const currentDate = new Date();
   const filteredList = claimPointsEventList.filter((claimPointsEvent) => {
@@ -184,10 +202,17 @@ const Home = () => {
             </Typography>
           </Grid>
 
-          {filteredList.map((element, i) => {
+          {/* {filteredList.map((element, i) => {
             return (
               <Grid item xs={12} key={i}>
                 <ClaimPointsEventItem {...element} />
+              </Grid>
+            );
+          })} */}
+          {usersWithBirthday.map((element, i) => {
+            return (
+              <Grid item xs={12} key={i}>
+                <UserBirthdayListItem {...element} />
               </Grid>
             );
           })}

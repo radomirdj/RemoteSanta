@@ -40,10 +40,19 @@ export const createBirthdayFromUTCString = (birthDateString: string) => {
   )} ${birthDate.getUTCDate()}`;
 };
 
+export const getUserNextBirthday = (birthDateString: string): Date => {
+  const currentYear = new Date().getFullYear();
+  const dateOfBirth = new Date(birthDateString || "");
+  dateOfBirth.setFullYear(currentYear);
+  if (dateOfBirth < new Date()) dateOfBirth.setFullYear(currentYear + 1);
+  return dateOfBirth;
+};
+
 export const Utils = {
   getEmailRegex,
   getPasswordRegex,
   calculateAmountInIntegrationCurrencyLower,
   calculatePointsFromIntegrationCurrencyUpper,
   createBirthdayFromUTCString,
+  getUserNextBirthday,
 };
