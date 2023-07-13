@@ -76,6 +76,36 @@ export class EmailsService {
     });
   }
 
+  async sendGiftCardDeclinedRecepientEmail(
+    to: string,
+    firstNameRecipient: string,
+    firstNameSender: string,
+    giftCardIntegrationTitle: string,
+    adminComment: string,
+  ) {
+    return this.sendEmail('gift-card-request-declined-recepient', to, {
+      firstNameRecipient,
+      firstNameSender,
+      giftCardIntegrationTitle,
+      adminComment: adminComment,
+    });
+  }
+
+  async sendGiftCardDeclinedSenderEmail(
+    to: string,
+    firstNameRecipient: string,
+    firstNameSender: string,
+    giftCardIntegrationTitle: string,
+    adminComment: string,
+  ) {
+    return this.sendEmail('gift-card-request-declined-sender', to, {
+      firstNameRecipient,
+      firstNameSender,
+      giftCardIntegrationTitle,
+      adminComment: adminComment,
+    });
+  }
+
   async sendGiftCardFullfiledEmail(
     to: string,
     firstName: string,
