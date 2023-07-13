@@ -108,7 +108,7 @@ $card-country-margin-bottom:10px;
             height:variables.$base-unit * 18;
             margin-left: auto;
             margin-right: auto;
-            margin-top: variables.$base-unit * 5;
+            margin-top: variables.$base-unit * 4;
             border-radius: variables.$base-unit * 3;
         }
 
@@ -123,6 +123,24 @@ $card-country-margin-bottom:10px;
             margin-bottom: $card-country-margin-bottom;
             font-weight: 600;
             color: variables.$color-neutral-gray;
+            font-size: variables.$font-size-small;
+        }
+
+        .card-country-to-from{
+            font-family: "Montserrat";
+            margin-left: variables.$base-unit * 2;
+            color: variables.$color-neutral-gray;
+            font-size: variables.$font-size-small;
+
+        }
+
+        .card-sent-to-from{
+            font-family: "Montserrat";
+            color: variables.$color-neutral-gray;
+            margin-left: variables.$base-unit * 2;
+            font-size: variables.$font-size-small;
+   
+            margin-bottom: variables.$base-unit;
         }
 
         .card-date{
@@ -135,7 +153,7 @@ $card-country-margin-bottom:10px;
             float: right;
             font-family: "Montserrat";
             font-weight: 600;
-            color: variables.$color-neutral-gray;
+            color: variables.$color-neutral-black;
             margin-right: variables.$base-unit * 2;
         }
 
@@ -158,6 +176,19 @@ $card-country-margin-bottom:10px;
             margin-left: variables.$base-unit * 3;
             width: variables.$base-unit * 2;
             margin-top: variables.$base-unit;
+        }
+
+        .sent-icon{
+            margin-left: variables.$base-unit * 2;
+            width: variables.$base-unit * 4;
+            margin-top: variables.$base-unit;
+            color: #708C21;
+        }
+
+        .sent-text{
+            font-family: "Montserrat";
+            color:#708C21;
+            font-weight: 500;
         }
 
         .card-declined-icon{

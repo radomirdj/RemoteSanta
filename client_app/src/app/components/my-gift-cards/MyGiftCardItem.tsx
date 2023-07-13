@@ -7,15 +7,36 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { IGiftCardRequest } from "../../store/gift-card-request/types";
 import WatchGlass from "./../../assets/icons/watchglass.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchGiftCardFile } from "../../store/gift-card-request/actions";
 import { countryList } from "../../enums/CountryList";
+import { useNavigate } from "react-router-dom";
+import { getAuthUserSelector } from "../../store/auth/selectors";
+import { getSelfRequest } from "../../store/auth/actions";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector(getAuthUserSelector);
+  const isMy =
+    user.id === giftCardRequest.createdById &&
+    user.id === giftCardRequest.ownerId;
+
+  const isSent =
+    user.id === giftCardRequest.createdById &&
+    user.id !== giftCardRequest.ownerId;
+
+  const isReceived =
+    user.id !== giftCardRequest.createdById &&
+    user.id === giftCardRequest.ownerId;
+
+  useEffect(() => {
+    dispatch(getSelfRequest(navigate));
+  }, [dispatch]);
 
   const showMyGiftCard = () => {
     dispatch(fetchGiftCardFile({ giftCardRequestId: giftCardRequest.id }));
@@ -41,7 +62,12 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
         <Typography variant="h6" className="card-title">
           {giftCardRequest.giftCardIntegration.title}
         </Typography>
-        <Typography className="card-country" variant="body2">
+        <Typography
+          className={
+            isSent || isReceived ? "card-country-to-from" : "card-country"
+          }
+          variant="body2"
+        >
           {
             countryList.find(
               (country) =>
@@ -49,6 +75,16 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
             )?.countryName
           }
         </Typography>
+        {isSent && (
+          <Typography className="card-sent-to-from" variant="body2">
+            To: {giftCardRequest.owner.email}
+          </Typography>
+        )}
+        {isReceived && (
+          <Typography className="card-sent-to-from" variant="body2">
+            From: {giftCardRequest.createdBy.email}
+          </Typography>
+        )}
         <Typography variant="body2" className="card-date">
           {new Date(giftCardRequest.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
@@ -59,7 +95,7 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
         </Typography>
       </CardContent>
       <CardActions>
-        {giftCardRequest.status === "COMPLETED" && (
+        {giftCardRequest.status === "COMPLETED" && isSent === false && (
           <Button
             variant="contained"
             className="card-button"
@@ -68,6 +104,18 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
           >
             Show My Gift Card
           </Button>
+        )}
+        {giftCardRequest.status === "COMPLETED" && isSent === true && (
+          <Grid container>
+            <Grid item xs={3}>
+              <CheckCircleIcon className="sent-icon" />
+            </Grid>
+            <Grid item xs={9}>
+              <Typography variant="body2" className="sent-text">
+                Gift card is successfully delivered
+              </Typography>
+            </Grid>
+          </Grid>
         )}
         {giftCardRequest.status === "PENDING" && (
           <Grid container>

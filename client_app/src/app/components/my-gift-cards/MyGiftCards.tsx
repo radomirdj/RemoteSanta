@@ -21,8 +21,25 @@ const MyGiftCards = () => {
   const [tabIndex, setTabIndex] = React.useState("one");
 
   //remove declined gift cards from the from the list
-  const giftCardRequestList = giftCardRequestListAll.filter(
-    (giftCardRequest) => giftCardRequest.status !== "DECLINED"
+  const myGiftCardRequestList = giftCardRequestListAll.filter(
+    (giftCardRequest) =>
+      giftCardRequest.status !== "DECLINED" &&
+      giftCardRequest.ownerId === user.id &&
+      giftCardRequest.createdById === user.id
+  );
+
+  const sentGiftCardRequestList = giftCardRequestListAll.filter(
+    (giftCardRequest) =>
+      giftCardRequest.status !== "DECLINED" &&
+      giftCardRequest.ownerId !== user.id &&
+      giftCardRequest.createdById === user.id
+  );
+
+  const receivedGiftCardRequestList = giftCardRequestListAll.filter(
+    (giftCardRequest) =>
+      giftCardRequest.status !== "DECLINED" &&
+      giftCardRequest.ownerId === user.id &&
+      giftCardRequest.createdById !== user.id
   );
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -41,8 +58,7 @@ const MyGiftCards = () => {
   return (
     <>
       <AppHeaderPrivate />
-      {giftCardRequestList.length === 0 && <NoGiftCards />}
-      {giftCardRequestList.length > 0 && (
+      {myGiftCardRequestList.length > 0 && (
         <div className="background my-gift-cards">
           <Grid container spacing={4} className="grid-style">
             <Grid item xs={12} sm={6} className="grid-item">
@@ -72,8 +88,35 @@ const MyGiftCards = () => {
                 <Tab value="three" label="Received" disableRipple />
               </Tabs>
             </Box>
+            {tabIndex === "three" && myGiftCardRequestList.length === 0 && (
+              <NoGiftCards />
+            )}
             {tabIndex === "one" &&
-              giftCardRequestList.map((element, i) => {
+              myGiftCardRequestList.length > 0 &&
+              myGiftCardRequestList.map((element, i) => {
+                return (
+                  <Grid item xs={12} sm={6} md={3} key={i}>
+                    <MyGiftCardItem {...element} />
+                  </Grid>
+                );
+              })}
+            {tabIndex === "two" && sentGiftCardRequestList.length === 0 && (
+              <NoGiftCards />
+            )}
+            {tabIndex === "two" &&
+              sentGiftCardRequestList.length > 0 &&
+              sentGiftCardRequestList.map((element, i) => {
+                return (
+                  <Grid item xs={12} sm={6} md={3} key={i}>
+                    <MyGiftCardItem {...element} />
+                  </Grid>
+                );
+              })}
+            {tabIndex === "three" &&
+              receivedGiftCardRequestList.length === 0 && <NoGiftCards />}
+            {tabIndex === "three" &&
+              receivedGiftCardRequestList.length > 0 &&
+              receivedGiftCardRequestList.map((element, i) => {
                 return (
                   <Grid item xs={12} sm={6} md={3} key={i}>
                     <MyGiftCardItem {...element} />
