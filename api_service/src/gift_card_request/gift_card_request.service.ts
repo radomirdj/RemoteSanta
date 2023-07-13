@@ -28,7 +28,12 @@ export class GiftCardRequestService {
   ) {}
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: UserDto) {
-    const { giftCardIntegrationId, sendToUserId, ...data } = giftCardRequestDto;
+    const {
+      giftCardIntegrationId,
+      sendToUserId,
+      message = '',
+      ...data
+    } = giftCardRequestDto;
     let sendToUser;
     if (sendToUserId) {
       sendToUser = this.usersService.findById(sendToUserId);
@@ -113,6 +118,7 @@ export class GiftCardRequestService {
           integration.currency,
           integration.title,
           giftCardRequest.id,
+          message,
         ),
       ]);
     } else {

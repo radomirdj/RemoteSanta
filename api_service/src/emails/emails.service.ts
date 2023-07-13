@@ -196,7 +196,7 @@ export class EmailsService {
   async giftCardRequestSentConfirmationSenderEmail(
     to: string[],
     firstNameSender: string,
-    firstNameRecepient: string,
+    firstNameRecipient: string,
     amount: number,
     currency: string,
     storeName: string,
@@ -204,7 +204,7 @@ export class EmailsService {
   ) {
     return this.sendEmail('gift-card-request-sent-confirmation-sender', to, {
       firstNameSender,
-      firstNameRecepient,
+      firstNameRecipient,
       amount,
       currency,
       storeName,
@@ -215,23 +215,25 @@ export class EmailsService {
   async giftCardRequestSentConfirmationRecepientEmail(
     to: string[],
     firstNameSender: string,
-    firstNameRecepient: string,
+    firstNameRecipient: string,
     senderEmail: string,
     amount: number,
     currency: string,
     storeName: string,
     giftCardRequestId: string,
+    personalizedMessage: string,
   ) {
     return this.sendEmail(
       'gift-card-request-sent-confirmation-recepient',
       to,
       {
         firstNameSender,
-        firstNameRecepient,
+        firstNameRecipient,
         amount,
         currency,
         storeName,
         orderNumber: giftCardRequestId.slice(-8),
+        personalizedMessage,
       },
       null,
       senderEmail,

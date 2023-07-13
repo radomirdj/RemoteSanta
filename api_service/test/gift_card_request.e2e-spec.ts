@@ -269,7 +269,11 @@ describe('/gift-card-requests', () => {
               sub: user3Manager.cognitoSub,
             }),
         )
-        .send({ ...newGiftCardRequest, sendToUserId: user1.id })
+        .send({
+          ...newGiftCardRequest,
+          sendToUserId: user1.id,
+          message: 'All the best!',
+        })
         .expect(201);
 
       const id = response.body.id;

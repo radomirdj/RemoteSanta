@@ -16,6 +16,10 @@ export class CreateGiftCardRequestDto {
   sendToUserId?: string;
 
   @IsString()
+  @IsOptional()
+  message?: string;
+
+  @IsString()
   @IsNotEmpty()
   giftCardIntegrationId: string;
 
