@@ -20,6 +20,7 @@ export class EmailsService {
     to: string | string[],
     data: any,
     attachment: { filename: string; buffer } = null,
+    replyTo: string = null,
   ) {
     let parsedData = await this.email.renderAll(templateName, data);
 
@@ -30,7 +31,7 @@ export class EmailsService {
       text: parsedData.text,
       html: parsedData.html,
       context: data,
-      replyTo: 'info@remotesanta.io',
+      replyTo: replyTo || 'info@remotesanta.io',
     } as ISendMailOptions;
 
     if (attachment) {
@@ -70,6 +71,36 @@ export class EmailsService {
     return this.sendEmail('gift-card-request-declined', to, {
       firstName,
       lastName,
+      giftCardIntegrationTitle,
+      adminComment: adminComment,
+    });
+  }
+
+  async sendGiftCardDeclinedRecepientEmail(
+    to: string,
+    firstNameRecipient: string,
+    firstNameSender: string,
+    giftCardIntegrationTitle: string,
+    adminComment: string,
+  ) {
+    return this.sendEmail('gift-card-request-declined-recepient', to, {
+      firstNameRecipient,
+      firstNameSender,
+      giftCardIntegrationTitle,
+      adminComment: adminComment,
+    });
+  }
+
+  async sendGiftCardDeclinedSenderEmail(
+    to: string,
+    firstNameRecipient: string,
+    firstNameSender: string,
+    giftCardIntegrationTitle: string,
+    adminComment: string,
+  ) {
+    return this.sendEmail('gift-card-request-declined-sender', to, {
+      firstNameRecipient,
+      firstNameSender,
       giftCardIntegrationTitle,
       adminComment: adminComment,
     });
@@ -190,5 +221,52 @@ export class EmailsService {
       storeName,
       orderNumber: giftCardRequestId.slice(-8),
     });
+  }
+
+  async giftCardRequestSentConfirmationSenderEmail(
+    to: string[],
+    firstNameSender: string,
+    firstNameRecipient: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+  ) {
+    return this.sendEmail('gift-card-request-sent-confirmation-sender', to, {
+      firstNameSender,
+      firstNameRecipient,
+      amount,
+      currency,
+      storeName,
+      orderNumber: giftCardRequestId.slice(-8),
+    });
+  }
+
+  async giftCardRequestSentConfirmationRecepientEmail(
+    to: string[],
+    firstNameSender: string,
+    firstNameRecipient: string,
+    senderEmail: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+    personalizedMessage: string,
+  ) {
+    return this.sendEmail(
+      'gift-card-request-sent-confirmation-recepient',
+      to,
+      {
+        firstNameSender,
+        firstNameRecipient,
+        amount,
+        currency,
+        storeName,
+        orderNumber: giftCardRequestId.slice(-8),
+        personalizedMessage,
+      },
+      null,
+      senderEmail,
+    );
   }
 }

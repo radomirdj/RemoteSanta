@@ -258,6 +258,70 @@ describe('/gift-card-requests', () => {
       await prisma.giftCardRequest.delete({ where: { id } });
     });
 
+    it('/ (POST) - create gift card request - send to other user', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({
+          ...newGiftCardRequest,
+          sendToUserId: user1.id,
+          message: 'All the best!',
+        })
+        .expect(201);
+
+      const id = response.body.id;
+
+      expectGiftCardRequestRsp(response.body, {
+        ...newGiftCardRequest,
+        giftCardIntegrationCurrencyAmount: 25,
+        createdById: user3Manager.id,
+        ownerId: user1.id,
+        status: GiftCardRequestStatusEnum.PENDING,
+      });
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...newGiftCardRequest,
+          giftCardIntegrationCurrencyAmount: 25,
+          status: GiftCardRequestStatusEnum.PENDING,
+          createdById: user3Manager.id,
+          ownerId: user1.id,
+        },
+        prisma,
+      );
+
+      // Check Ledger
+      await checkOneAddedLedger(prisma, testStartTime, {
+        fromId: user3ActiveBalanceSideId,
+        toId: user3ReservedBalanceSideId,
+        amount: newGiftCardRequest.amount,
+        type: LedgerTypeEnum.GIFT_CARD_REQUEST_CREATED,
+      });
+
+      await checkBalance(ledgerService, user3Manager.id, {
+        pointsActive: user3ActivePoints - newGiftCardRequest.amount,
+        pointsReserved: user3ReservedPoints + newGiftCardRequest.amount,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
     it('/ (POST) - create gift card request US user, SRB card', async () => {
       const response = await request(app.getHttpServer())
         .post('/gift-card-requests/')

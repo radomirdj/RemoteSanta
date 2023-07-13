@@ -145,13 +145,35 @@ export class AdminGiftCardRequestsService {
           },
         }),
       ]);
-      await this.emailsService.sendGiftCardDeclinedEmail(
-        giftCardRequest.createdBy.email,
-        giftCardRequest.createdBy.firstName,
-        giftCardRequest.createdBy.lastName,
-        giftCardRequest.giftCardIntegration.title,
-        data.adminComment,
-      );
+
+      if (giftCardRequest.createdBy.id === giftCardRequest.owner.id)
+        // user bought card for himself
+        await this.emailsService.sendGiftCardDeclinedEmail(
+          giftCardRequest.createdBy.email,
+          giftCardRequest.createdBy.firstName,
+          giftCardRequest.createdBy.lastName,
+          giftCardRequest.giftCardIntegration.title,
+          data.adminComment,
+        );
+      // giftCardRequest.createdBy sent gift card to giftCardRequest.owner
+      else
+        await Promise.all([
+          this.emailsService.sendGiftCardDeclinedRecepientEmail(
+            giftCardRequest.owner.email,
+            giftCardRequest.owner.firstName,
+            giftCardRequest.createdBy.firstName,
+            giftCardRequest.giftCardIntegration.title,
+            data.adminComment,
+          ),
+          this.emailsService.sendGiftCardDeclinedSenderEmail(
+            giftCardRequest.createdBy.email,
+            giftCardRequest.owner.firstName,
+            giftCardRequest.createdBy.firstName,
+            giftCardRequest.giftCardIntegration.title,
+            data.adminComment,
+          ),
+        ]);
+
       return giftCardRequestRsp;
     });
   }

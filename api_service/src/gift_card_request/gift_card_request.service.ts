@@ -13,6 +13,7 @@ import {
   GiftCardRequestStatusEnum,
 } from '@prisma/client';
 import { UserDto } from '../users/dtos/user.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class GiftCardRequestService {
@@ -21,12 +22,25 @@ export class GiftCardRequestService {
     private giftCardIntegrationsService: GiftCardIntegrationsService,
     private ledgerService: LedgerService,
     private emailsService: EmailsService,
+    private usersService: UsersService,
 
     @InjectS3() private readonly s3: S3,
   ) {}
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: UserDto) {
-    const { giftCardIntegrationId, ...data } = giftCardRequestDto;
+    const {
+      giftCardIntegrationId,
+      sendToUserId,
+      message = '',
+      ...data
+    } = giftCardRequestDto;
+    let sendToUser;
+    if (sendToUserId) {
+      sendToUser = this.usersService.findById(sendToUserId);
+      if (!sendToUser) throw new NotFoundException('User Not Found');
+    }
+    const ownerId = sendToUserId || user.id;
+
     const [integration, __, org] = await Promise.all([
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
@@ -54,7 +68,7 @@ export class GiftCardRequestService {
           },
           owner: {
             connect: {
-              id: user.id,
+              id: ownerId,
             },
           },
           createdBy: {
@@ -74,19 +88,53 @@ export class GiftCardRequestService {
 
       return giftCardRequest;
     });
-    await this.emailsService.giftCardRequestCreatedEmail(
-      consts.adminRecepients,
-      `${user.firstName} ${user.lastName}`,
-      org.name,
-    );
-    await this.emailsService.giftCardRequestCreatedConfirmationEmail(
-      [user.email],
-      user.firstName,
-      giftCardRequestDto.giftCardIntegrationCurrencyAmount,
-      integration.currency,
-      integration.title,
-      giftCardRequest.id,
-    );
+
+    // Send Emails
+    const createdInfoEmailPromise =
+      this.emailsService.giftCardRequestCreatedEmail(
+        consts.adminRecepients,
+        `${user.firstName} ${user.lastName}`,
+        org.name,
+      );
+
+    if (sendToUserId) {
+      await Promise.all([
+        createdInfoEmailPromise,
+        this.emailsService.giftCardRequestSentConfirmationSenderEmail(
+          [user.email],
+          user.firstName,
+          sendToUser.firstName,
+          giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+          integration.currency,
+          integration.title,
+          giftCardRequest.id,
+        ),
+        this.emailsService.giftCardRequestSentConfirmationRecepientEmail(
+          [sendToUser.email],
+          `${user.firstName} ${user.lastName}`,
+          sendToUser.firstName,
+          user.email,
+          giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+          integration.currency,
+          integration.title,
+          giftCardRequest.id,
+          message,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        createdInfoEmailPromise,
+        this.emailsService.giftCardRequestCreatedConfirmationEmail(
+          [user.email],
+          user.firstName,
+          giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+          integration.currency,
+          integration.title,
+          giftCardRequest.id,
+        ),
+      ]);
+    }
+
     return giftCardRequest;
   }
 
