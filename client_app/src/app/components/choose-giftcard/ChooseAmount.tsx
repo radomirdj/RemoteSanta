@@ -7,7 +7,7 @@ import { getGiftCardRequestIntegrationSelector } from "../../store/gift-card-req
 import AmountList from "./AmountList";
 import AmountMinMax from "./AmountMinMax";
 
-const ChooseAmount = () => {
+const ChooseAmount = (props: any) => {
   const user = useSelector(getAuthUserSelector);
   const giftCardIntegration = useSelector(
     getGiftCardRequestIntegrationSelector
@@ -32,7 +32,7 @@ const ChooseAmount = () => {
           label="Email"
           variant="outlined"
           className="email-input"
-          value={user.email}
+          value={props.sendToEmail}
           disabled
         />
         {giftCardIntegration?.constraintType === "MIN_MAX" && <AmountMinMax />}

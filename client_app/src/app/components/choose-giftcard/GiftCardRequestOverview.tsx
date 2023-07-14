@@ -16,7 +16,7 @@ import {
   getStepperPagetSelector,
 } from "../../store/gift-card-request/selectors";
 
-const GiftCardRequestOverview = () => {
+const GiftCardRequestOverview = (props: any) => {
   const activeStep = useSelector(getStepperPagetSelector);
   const giftCardIntegration = useSelector(
     getGiftCardRequestIntegrationSelector
@@ -26,7 +26,6 @@ const GiftCardRequestOverview = () => {
     getGiftCardRequestAmountInIntegrationCurrencySelector
   );
   const integrationCurrency = giftCardIntegration?.currency || "";
-  const user = useSelector(getAuthUserSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const pending = useSelector(getPendingSelector);
@@ -43,6 +42,7 @@ const GiftCardRequestOverview = () => {
           amount: giftCardRequestAmount,
           giftCardIntegrationCurrencyAmount:
             giftCardRequestAmountInIntegrationCurrency,
+          sendToUserId: props.sendToUserId,
         },
         navigate
       )
@@ -64,7 +64,9 @@ const GiftCardRequestOverview = () => {
                 {giftCardRequestAmountInIntegrationCurrency}{" "}
                 {integrationCurrency}
               </Typography>
-              <Typography className="overview-amount">{user.email}</Typography>
+              <Typography className="overview-amount">
+                {props.sendToEmail}
+              </Typography>
             </Grid>
             <Grid item xs={5} className="grid-item">
               <img

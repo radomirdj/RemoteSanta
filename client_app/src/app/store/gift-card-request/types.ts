@@ -115,6 +115,8 @@ export interface PostGiftCardRequestPayload {
   giftCardIntegrationId: string;
   amount: number;
   giftCardIntegrationCurrencyAmount: number;
+  sendToUserId?: string;
+  message?: string;
 }
 
 export interface PostGiftCardRequestFailurePayload {

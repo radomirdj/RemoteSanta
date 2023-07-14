@@ -36,6 +36,10 @@ const MyTeam = () => {
     navigate(`/my-team-send-points/${userId}`);
   };
 
+  const chooseGiftCardsPeerToPeerRedirect = () => {
+    navigate(`/choose-gift-card-peer-to-peer`);
+  };
+
   const sendPoints = (params: GridRenderCellParams) => {
     return (
       <Button
@@ -63,6 +67,7 @@ const MyTeam = () => {
         }
         disableRipple
         disabled={params.id === userAuth.id ? true : false}
+        onClick={chooseGiftCardsPeerToPeerRedirect}
       >
         <img
           src={params.id === userAuth.id ? GiftCardGray : GiftCardBlack}

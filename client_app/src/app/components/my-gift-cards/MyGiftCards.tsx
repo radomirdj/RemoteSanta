@@ -52,7 +52,7 @@ const MyGiftCards = () => {
   }, [dispatch]);
 
   const chooseGiftCardRedirect = () => {
-    navigate("/choose-gift-card");
+    navigate("/choose-gift-card-personal");
   };
 
   return (

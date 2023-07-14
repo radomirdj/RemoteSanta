@@ -30,17 +30,13 @@ import GiftCardRequestOverview from "./GiftCardRequestOverview";
 import SearchIcon from "@mui/icons-material/Search";
 import DeclineIllustration from "./../../assets/illustrations/decline-gift-card-request-illustration.svg";
 import { countryList } from "../../enums/CountryList";
-import { getAuthUserSelector } from "../../store/auth/selectors";
 
-const ChooseGiftCard = () => {
+const ChooseGiftCard = (props: any) => {
   const dispatch = useDispatch();
-  const user = useSelector(getAuthUserSelector);
   const giftCardIntegrationList = useSelector(
     getGiftCardIntegrationListSelector
   );
-  const [countryId, setCountryId] = React.useState<string>(
-    localStorage.getItem("countryId") || ""
-  );
+  const [countryId, setCountryId] = React.useState<string>(props.countryId);
   const activeStep = useSelector(getStepperPagetSelector);
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
   const [searchValue, setSearchValue] = React.useState("");
@@ -163,12 +159,15 @@ const ChooseGiftCard = () => {
             })}
           {activeStep === 1 && (
             <Grid item xs={12}>
-              <ChooseAmount />
+              <ChooseAmount sendToEmail={props.sendToEmail} />
             </Grid>
           )}
           {activeStep === 2 && (
             <Grid item xs={12}>
-              <GiftCardRequestOverview />
+              <GiftCardRequestOverview
+                sendToEmail={props.sendToEmail}
+                sendToUserId={props.sendToUserId}
+              />
             </Grid>
           )}
         </Grid>
