@@ -51,7 +51,8 @@ $button-height: 44px;
     .back-button,
         & .back-button:hover {
             float: left;
-            background-color: variables.$color-dark-yellow;
+            background-color: white;
+            border-color:variables.$color-neutral-black;
             border-radius: variables.$base-unit;
             box-shadow: none;
             color: variables.$color-neutral-black;

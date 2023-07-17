@@ -36,7 +36,7 @@ export class GiftCardRequestService {
     } = giftCardRequestDto;
     let sendToUser;
     if (sendToUserId) {
-      sendToUser = this.usersService.findById(sendToUserId);
+      sendToUser = await this.usersService.findById(sendToUserId);
       if (!sendToUser) throw new NotFoundException('User Not Found');
     }
     const ownerId = sendToUserId || user.id;

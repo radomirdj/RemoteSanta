@@ -108,7 +108,7 @@ const UserManagerUserDetails = () => {
             <Grid item xs={6}>
               <Button
                 disableRipple
-                variant="contained"
+                variant="outlined"
                 className="back-button"
                 startIcon={<ChevronLeftIcon className="back-icon" />}
                 onClick={goBack}

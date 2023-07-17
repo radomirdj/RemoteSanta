@@ -43,6 +43,7 @@ const GiftCardRequestOverview = (props: any) => {
           giftCardIntegrationCurrencyAmount:
             giftCardRequestAmountInIntegrationCurrency,
           sendToUserId: props.sendToUserId,
+          message: "",
         },
         navigate
       )

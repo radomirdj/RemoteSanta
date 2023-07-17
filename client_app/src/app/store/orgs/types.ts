@@ -63,6 +63,7 @@ export interface IOrgUser {
   userRole?: string;
   birthDate?: string;
   org?: IOrganization;
+  countryId?: string;
 }
 
 export interface OrganizationState {

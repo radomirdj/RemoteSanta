@@ -47,7 +47,7 @@ const ChooseGiftCard = (props: any) => {
   }, [dispatch]);
 
   const giftCardIntegrationFilteredList = giftCardIntegrationList.filter(
-    (giftCardIntegration) => {
+    (giftCardIntegration: any) => {
       if (!searchValue) return true;
       if (
         giftCardIntegration.title
@@ -73,6 +73,12 @@ const ChooseGiftCard = (props: any) => {
       <div className="background choose-gift-card">
         <Grid container spacing={4} className="grid-style">
           <Grid item xs={12}>
+            {props.sendToUserId !== null && activeStep === 0 && (
+              <Typography className="send-to-user-title">
+                Pick a perfect gift card for {props.sendToUserName}
+              </Typography>
+            )}
+
             <Stepper
               alternativeLabel
               activeStep={activeStep}
@@ -150,7 +156,7 @@ const ChooseGiftCard = (props: any) => {
               </div>
             )}
           {activeStep === 0 &&
-            giftCardIntegrationFilteredList.map((element, i) => {
+            giftCardIntegrationFilteredList.map((element: any, i: number) => {
               return (
                 <Grid item xs={12} sm={6} md={3} key={i}>
                   <GiftCardIntegrationItem {...element} />
@@ -159,7 +165,10 @@ const ChooseGiftCard = (props: any) => {
             })}
           {activeStep === 1 && (
             <Grid item xs={12}>
-              <ChooseAmount sendToEmail={props.sendToEmail} />
+              <ChooseAmount
+                sendToEmail={props.sendToEmail}
+                hasMessage={props.sendToUserId !== null}
+              />
             </Grid>
           )}
           {activeStep === 2 && (

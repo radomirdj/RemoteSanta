@@ -35,8 +35,12 @@ const ChooseAmount = (props: any) => {
           value={props.sendToEmail}
           disabled
         />
-        {giftCardIntegration?.constraintType === "MIN_MAX" && <AmountMinMax />}
-        {giftCardIntegration?.constraintType === "LIST" && <AmountList />}
+        {giftCardIntegration?.constraintType === "MIN_MAX" && (
+          <AmountMinMax hasMessage={props.hasMessage} />
+        )}
+        {giftCardIntegration?.constraintType === "LIST" && (
+          <AmountList hasMessage={props.hasMessage} />
+        )}
       </Card>
     </>
   );

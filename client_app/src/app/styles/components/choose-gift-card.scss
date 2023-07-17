@@ -112,6 +112,14 @@ $choose-amount-active-points-font-size:14px;
         }
     }
 
+    .send-to-user-title{
+      font-family: "Montserrat";
+      font-weight: 500;
+      font-size: variables.$font-size-large;
+      margin-bottom: variables.$base-unit * 4;
+      margin-left: variables.$base-unit * 2;
+    }
+
     .points-in-currency-style{
       font-family: "Montserrat";
       float: left;
@@ -211,10 +219,10 @@ $choose-amount-active-points-font-size:14px;
   }
 
   .choose-amount-card{
-    padding-top: variables.$base-unit * 5;
-    padding-bottom: variables.$base-unit * 5;
-    padding-left: variables.$base-unit * 8;
-    padding-right: variables.$base-unit * 8;
+    padding-top: variables.$base-unit * 3;
+    padding-bottom: variables.$base-unit * 3;
+    padding-left: variables.$base-unit * 6;
+    padding-right: variables.$base-unit * 6;
     border-radius: variables.$base-unit * 4;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
@@ -239,6 +247,23 @@ $choose-amount-active-points-font-size:14px;
       font-weight: 500;
   }
 
+  .comment-input {
+    margin-bottom: variables.$base-unit * 2 !important;
+  }
+
+  .comment-input-with-error {
+    margin-bottom: 0px !important;
+  }
+
+  .comment-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 2;
+    display: inline-flex;
+    width: 100%;
+  }
+
   .choose-amount-active-points{
       font-family: "Montserrat";
       font-size: $choose-amount-active-points-font-size;
@@ -254,7 +279,6 @@ $choose-amount-active-points-font-size:14px;
       margin: 0px;
       width: 100%;
       border-radius: variables.$base-unit;
-      margin-bottom: variables.$base-unit;
   
       .MuiOutlinedInput-root {
         border-radius: variables.$base-unit;

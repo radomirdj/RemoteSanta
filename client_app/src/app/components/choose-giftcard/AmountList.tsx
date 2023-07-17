@@ -6,6 +6,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -21,7 +22,7 @@ import {
 } from "../../store/gift-card-request/selectors";
 import { calculatePointsFromIntegrationCurrencyUpper } from "../../utils/Utils";
 
-const AmountList = () => {
+const AmountList = (props: any) => {
   const user = useSelector(getAuthUserSelector);
   const {
     register,
@@ -60,6 +61,7 @@ const AmountList = () => {
           conversionRate
         ),
         amountInIntegrationCurrency: Number(data.amount),
+        message: data.message,
       })
     );
   };
@@ -128,7 +130,27 @@ const AmountList = () => {
             The amount you specified is greater then the amount you have.
           </Typography>
         )}
-
+        {props.hasMessage && (
+          <TextField
+            error={errors.message ? true : false}
+            id="standard-multiline-static"
+            label="Message"
+            multiline
+            rows={2}
+            className={
+              errors.message ? "comment-input-with-error" : "comment-input"
+            }
+            variant="outlined"
+            {...register("message", {
+              required: props.hasMessage,
+            })}
+          />
+        )}
+        {errors.message?.type === "required" && (
+          <Typography className="comment-error-fe">
+            Message is required.
+          </Typography>
+        )}
         <Grid container>
           <Grid item xs={6}>
             <Button

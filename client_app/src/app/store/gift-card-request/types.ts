@@ -105,6 +105,7 @@ export interface SetGiftCardIntegrationPayload {
 export interface SetGiftCardAmountPayload {
   amount: number;
   amountInIntegrationCurrency: number;
+  message?: string;
 }
 
 export interface SetGiftCardRequestStepBackPayload {
