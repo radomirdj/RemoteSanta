@@ -12,6 +12,7 @@ import {
   getGiftCardRequestAmountInIntegrationCurrencySelector,
   getGiftCardRequestAmountSelector,
   getGiftCardRequestIntegrationSelector,
+  getGiftCardRequestMessageSelector,
   getPendingSelector,
   getStepperPagetSelector,
 } from "../../store/gift-card-request/selectors";
@@ -22,6 +23,7 @@ const GiftCardRequestOverview = (props: any) => {
     getGiftCardRequestIntegrationSelector
   );
   const giftCardRequestAmount = useSelector(getGiftCardRequestAmountSelector);
+  const giftCardRequestMessage = useSelector(getGiftCardRequestMessageSelector);
   const giftCardRequestAmountInIntegrationCurrency = useSelector(
     getGiftCardRequestAmountInIntegrationCurrencySelector
   );
@@ -75,6 +77,10 @@ const GiftCardRequestOverview = (props: any) => {
                 alt=""
                 className="image-style"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography className="overview-message">Message</Typography>
+              <Card className="message-child-card"></Card>
             </Grid>
           </Grid>
         </Card>

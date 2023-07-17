@@ -83,7 +83,13 @@ const AmountMinMax = (props: any) => {
           label="Amount in PTS"
           placeholder="PTS you want to spend"
           variant="outlined"
-          className={errors.amount ? "amount-input-with-error" : "email-input"}
+          className={
+            errors.amount
+              ? "amount-input-with-error"
+              : props.hasMessage
+              ? "amount-input-min-max"
+              : "email-input"
+          }
           type="number"
           {...register("amount", {
             required: true,
@@ -119,7 +125,13 @@ const AmountMinMax = (props: any) => {
             The amount you specified is greater then the amount you have.
           </Typography>
         )}
-        <span className="points-in-currency-style">
+        <span
+          className={
+            props.hasMessage
+              ? "points-in-currency-style"
+              : "points-in-currency-style-no-message"
+          }
+        >
           {pointsToCurrencyMessage}
         </span>
         {props.hasMessage && (
@@ -130,7 +142,9 @@ const AmountMinMax = (props: any) => {
             multiline
             rows={2}
             className={
-              errors.message ? "comment-input-with-error" : "comment-input"
+              errors.message
+                ? "comment-input-with-error"
+                : "comment-input-min-max"
             }
             variant="outlined"
             {...register("message", {

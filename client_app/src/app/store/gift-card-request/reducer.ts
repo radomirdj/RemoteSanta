@@ -31,6 +31,7 @@ const initialState: GiftCardRequestState = {
   giftCardRequestIntegration: null,
   stepperPage: 0,
   giftCardRequestAmount: 0,
+  giftCardRequestMessage: null,
   giftCardRequestAmountInIntegrationCurrency: 0,
   error: null,
 };
@@ -89,6 +90,7 @@ export default (state = initialState, action: GiftCardRequestActions) => {
         giftCardRequestAmount: action.payload.amount,
         giftCardRequestAmountInIntegrationCurrency:
           action.payload.amountInIntegrationCurrency,
+        giftCardRequestMessage: action.payload.message || "",
         stepperPage: 2,
       };
     case SET_GIFT_CARD_REQUEST_STEP_BACK:
@@ -97,6 +99,7 @@ export default (state = initialState, action: GiftCardRequestActions) => {
           ...state,
           pending: false,
           giftCardRequestAmount: 0,
+          giftCardRequestMessage: null,
           giftCardRequestIntegration: null,
           stepperPage: 0,
         };
@@ -105,6 +108,7 @@ export default (state = initialState, action: GiftCardRequestActions) => {
           ...state,
           pending: false,
           giftCardRequestAmount: 0,
+          giftCardRequestMessage: null,
           stepperPage: 1,
         };
       }
@@ -113,6 +117,7 @@ export default (state = initialState, action: GiftCardRequestActions) => {
         ...state,
         pending: false,
         giftCardRequestAmount: 0,
+        giftCardRequestMessage: null,
         giftCardRequestIntegration: null,
         stepperPage: 0,
       };

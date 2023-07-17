@@ -123,9 +123,18 @@ $choose-amount-active-points-font-size:14px;
     .points-in-currency-style{
       font-family: "Montserrat";
       float: left;
-      margin-bottom: variables.$base-unit;
       font-size: $choose-amount-active-points-font-size;
       color: variables.$color-neutral-gray;
+      margin-bottom:variables.$base-unit;
+    }
+
+    .points-in-currency-style-no-message{
+      font-family: "Montserrat";
+      float: left;
+      font-size: $choose-amount-active-points-font-size;
+      color: variables.$color-neutral-gray;
+      margin-bottom:variables.$base-unit * 2;
+      margin-top:-8px;
     }
 
     .empty-content{
@@ -251,6 +260,11 @@ $choose-amount-active-points-font-size:14px;
     margin-bottom: variables.$base-unit * 2 !important;
   }
 
+  .comment-input-min-max {
+    margin-bottom: variables.$base-unit * 2 !important;
+    margin-top: variables.$base-unit* 2 !important;
+  }
+
   .comment-input-with-error {
     margin-bottom: 0px !important;
   }
@@ -272,9 +286,15 @@ $choose-amount-active-points-font-size:14px;
       width: 100%;
       margin-bottom: variables.$base-unit * 4;
     }
+
     .email-input {
       margin-bottom: variables.$base-unit * 3 !important;
     }
+
+    .amount-input-min-max {
+      margin-bottom: variables.$base-unit!important;
+    }
+
     .MuiFormControl-root {
       margin: 0px;
       width: 100%;
@@ -388,7 +408,7 @@ $choose-amount-active-points-font-size:14px;
 
   .overview-child-card{
     background-color: rgb(207, 209, 129, 0.5);
-    height: variables.$base-unit * 22;
+    height: variables.$base-unit * 40;
     border-radius: variables.$base-unit * 3;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   }
@@ -412,6 +432,15 @@ $choose-amount-active-points-font-size:14px;
       color: variables.$color-neutral-gray;
   }
 
+  .message-child-card{
+    background-color: white;
+    height: variables.$base-unit * 8;
+    border-radius: variables.$base-unit * 2;
+    width: 87%;
+    box-shadow: none;
+    margin-left: variables.$base-unit * 3;
+  }
+
   .overview-amount{
     font-family: "Montserrat";
     font-size: variables.$font-size-small;
@@ -419,7 +448,16 @@ $choose-amount-active-points-font-size:14px;
     margin-left: variables.$base-unit * 4;
     text-align: start;
     color: variables.$color-neutral-gray;
-}
+  }
+
+  .overview-message{
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
+    margin-left: variables.$base-unit * 4;
+    text-align: start;
+    color: variables.$color-neutral-black;
+    font-weight: 500;
+  }
 
   .image-style{
     float: right;
@@ -450,6 +488,7 @@ $choose-amount-active-points-font-size:14px;
     margin-top: auto;
     margin-bottom: auto;
   }
+
 
   .overview-back-button{
     float: left;

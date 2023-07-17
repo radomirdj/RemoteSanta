@@ -15,6 +15,9 @@ export const getGiftCardRequestIntegrationSelector = (state: AppState) =>
 export const getGiftCardRequestAmountSelector = (state: AppState) =>
   state.giftCardRequest.giftCardRequestAmount;
 
+export const getGiftCardRequestMessageSelector = (state: AppState) =>
+  state.giftCardRequest.giftCardRequestMessage;
+
 export const getGiftCardRequestAmountInIntegrationCurrencySelector = (
   state: AppState
 ) => state.giftCardRequest.giftCardRequestAmountInIntegrationCurrency;

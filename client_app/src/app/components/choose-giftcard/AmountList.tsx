@@ -40,6 +40,16 @@ const AmountList = (props: any) => {
     JSON.stringify(giftCardIntegration?.constraintJson || "")
   );
   const integrationCurrency = giftCardIntegration?.currency || "";
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
   const amountArray = amountArrayBasic.map((amount: number) => ({
     amountInCurrency: amount,
@@ -95,6 +105,7 @@ const AmountList = (props: any) => {
               required: true,
               validate: enoughBalance,
             })}
+            MenuProps={MenuProps}
             defaultValue={amountArray[0].amountInCurrency}
           >
             {amountArray.map((amountObject: any, i: string) => {

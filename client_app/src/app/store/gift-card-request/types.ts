@@ -62,6 +62,7 @@ export interface GiftCardRequestState {
   giftCardRequestIntegration: IGiftCardIntegration | null;
   stepperPage: number;
   giftCardRequestAmount: number;
+  giftCardRequestMessage: string | null;
   giftCardRequestAmountInIntegrationCurrency: number;
   error: string | null;
 }
