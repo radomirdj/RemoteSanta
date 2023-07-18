@@ -99,20 +99,20 @@ const AdminGiftCardRequestDetails = () => {
               <Divider className="divider-style-not-full" />
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Integration</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.giftCardIntegration.title}
                   </Grid>
                 </Grid>
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Country</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {
                       countryList.find(
                         (country) =>
@@ -125,20 +125,20 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Amount</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.amount} PTS
                   </Grid>
                 </Grid>
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Created At</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {new Date(
                       adminGiftCardRequest?.createdAt || ""
                     ).toLocaleDateString("en-US", {
@@ -151,10 +151,10 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Currency Amount</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.giftCardIntegrationCurrencyAmount}{" "}
                     {adminGiftCardRequest?.giftCardIntegration.currency}
                   </Grid>
@@ -166,10 +166,10 @@ const AdminGiftCardRequestDetails = () => {
               <Divider className="divider-style-not-full" />
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Full name</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.owner.firstName}{" "}
                     {adminGiftCardRequest?.owner.lastName}
                   </Grid>
@@ -177,10 +177,10 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name"> Active points</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.owner?.userBalance?.pointsActive}
                     PTS
                   </Grid>
@@ -188,10 +188,10 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name"> Reserved points</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.owner?.userBalance?.pointsReserved}{" "}
                     PTS
                   </Grid>
@@ -199,20 +199,20 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Email</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.owner?.email}
                   </Grid>
                 </Grid>
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Company name</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.owner?.org?.name}
                   </Grid>
                 </Grid>
@@ -225,10 +225,10 @@ const AdminGiftCardRequestDetails = () => {
               <Divider className="divider-style" />
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Full name</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.createdBy.firstName}{" "}
                     {adminGiftCardRequest?.createdBy.lastName}
                   </Grid>
@@ -236,10 +236,10 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name"> Active points</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.createdBy?.userBalance?.pointsActive}
                     PTS
                   </Grid>
@@ -247,10 +247,10 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name"> Reserved points</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {
                       adminGiftCardRequest?.createdBy?.userBalance
                         ?.pointsReserved
@@ -261,20 +261,20 @@ const AdminGiftCardRequestDetails = () => {
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Email</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.createdBy?.email}
                   </Grid>
                 </Grid>
               </Typography>
               <Typography className="info-style">
                 <Grid container>
-                  <Grid item xs={5}>
+                  <Grid item xs={4}>
                     <span className="column-name">Company name</span>
                   </Grid>
-                  <Grid item xs={7}>
+                  <Grid item xs={8}>
                     {adminGiftCardRequest?.createdBy?.org?.name}
                   </Grid>
                 </Grid>

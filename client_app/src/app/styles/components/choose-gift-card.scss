@@ -433,6 +433,13 @@ $choose-amount-active-points-font-size:14px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   }
 
+  .overview-child-card-no-message{
+    background-color: rgb(207, 209, 129, 0.5);
+    height: variables.$base-unit * 20;
+    border-radius: variables.$base-unit * 3;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  }
+
   .overview-brand-title{
       font-family: "Montserrat";
       font-size: variables.$font-size-large;
@@ -515,6 +522,27 @@ $choose-amount-active-points-font-size:14px;
       margin-right: variables.$base-unit * 4;
       border-radius: variables.$base-unit * 2;
       margin-top:  variables.$base-unit * 2;
+    }
+
+  }
+
+  .image-style-no-message{
+    float: right;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      height: variables.$base-unit * 6;
+      width:  variables.$base-unit * 8;
+      margin-bottom: variables.$base-unit * 4;
+      margin-left: variables.$base-unit * 2;
+      margin-right: variables.$base-unit * 3;
+      border-radius: variables.$base-unit;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      height: variables.$base-unit * 12;
+      width:  variables.$base-unit * 16;
+      margin-right: variables.$base-unit * 4;
+      border-radius: variables.$base-unit * 2;
     }
 
   }

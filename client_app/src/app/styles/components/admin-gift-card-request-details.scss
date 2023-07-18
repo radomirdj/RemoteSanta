@@ -1,6 +1,6 @@
 @use "./../variables.scss";
 
-$card-width: 1100px;
+$card-width: 1300px;
 $back-icon-margin-bottom:3px;
 
 .admin-gift-card-request-details{
@@ -13,8 +13,8 @@ $back-icon-margin-bottom:3px;
         transform: translate(-50%, -50%);
         width: 400;
         border-radius: variables.$base-unit * 4;
-        padding-left: variables.$base-unit * 5;
-        padding-right: variables.$base-unit * 5;
+        padding-left: variables.$base-unit * 3;
+        padding-right: variables.$base-unit * 3;
         padding-top: variables.$base-unit * 4;
         padding-bottom: variables.$base-unit ;
         width: $card-width;
@@ -51,6 +51,8 @@ $back-icon-margin-bottom:3px;
         font-size: variables.$font-size-normal;
         margin-bottom: variables.$base-unit;
     }
+
+    
 
     .details-style-full{
         margin-top: variables.$base-unit * 4;

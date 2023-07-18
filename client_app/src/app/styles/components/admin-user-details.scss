@@ -20,7 +20,25 @@ $button-height: 44px;
 
     .child-card{
         background-color: rgb(207, 209, 129, 0.5);
-        height: variables.$base-unit * 20;
+        height: variables.$base-unit * 21;
+        border-radius: variables.$base-unit * 3;
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+        font-family: "Montserrat";
+        padding: variables.$base-unit * 3;
+        margin-bottom: variables.$base-unit * 5;
+
+        .column-name{
+            font-weight: 600;
+        }
+
+        .grid-container{
+            margin-bottom: variables.$base-unit *2;
+        }
+    }
+
+    .child-card-no-birthday{
+        background-color: rgb(207, 209, 129, 0.5);
+        height: variables.$base-unit * 17;
         border-radius: variables.$base-unit * 3;
         box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
         font-family: "Montserrat";
