@@ -231,6 +231,7 @@ export class EmailsService {
     currency: string,
     storeName: string,
     giftCardRequestId: string,
+    personalizedMessage: string,
   ) {
     return this.sendEmail('gift-card-request-sent-confirmation-sender', to, {
       firstNameSender,
@@ -239,6 +240,7 @@ export class EmailsService {
       currency,
       storeName,
       orderNumber: giftCardRequestId.slice(-8),
+      personalizedMessage,
     });
   }
 

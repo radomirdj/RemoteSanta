@@ -108,6 +108,7 @@ export class GiftCardRequestService {
           integration.currency,
           integration.title,
           giftCardRequest.id,
+          message,
         ),
         this.emailsService.giftCardRequestSentConfirmationRecepientEmail(
           [sendToUser.email],
