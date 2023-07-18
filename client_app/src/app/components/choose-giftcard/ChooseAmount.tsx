@@ -26,7 +26,8 @@ const ChooseAmount = (props: any) => {
         <Typography className="choose-amount-title">Choose Amount</Typography>
         <Typography
           className={
-            user.userRole === UserRole.USER_MANAGER
+            user.userRole === UserRole.USER_MANAGER &&
+            props.sendToEmail !== user.email
               ? "choose-amount-active-points"
               : "choose-amount-active-points-with-margin"
           }
@@ -34,11 +35,12 @@ const ChooseAmount = (props: any) => {
           Your balance is {pointsActive} PTS. This is equal to{" "}
           {userBalanceInCurrency.toFixed(2)} {giftCardIntegration?.currency}.
         </Typography>
-        {user.userRole === UserRole.USER_MANAGER && (
-          <Typography className="send-gift-card-as">
-            You’re sending gift card as {user.firstName}.
-          </Typography>
-        )}
+        {user.userRole === UserRole.USER_MANAGER &&
+          props.sendToEmail !== user.email && (
+            <Typography className="send-gift-card-as">
+              You’re sending gift card as {user.firstName}.
+            </Typography>
+          )}
         <TextField
           id="outlined-basic"
           label="Email"
