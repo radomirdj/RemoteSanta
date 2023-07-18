@@ -107,10 +107,10 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
         )}
         {giftCardRequest.status === "COMPLETED" && isSent === true && (
           <Grid container>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <CheckCircleIcon className="sent-icon" />
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={10}>
               <Typography variant="body2" className="sent-text">
                 Gift card is successfully delivered
               </Typography>
@@ -119,10 +119,10 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
         )}
         {giftCardRequest.status === "PENDING" && (
           <Grid container>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <img src={WatchGlass} alt="" className="card-pending-icon" />
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={10}>
               <Typography variant="body2" className="pending-text">
                 Gift card will be available soon
               </Typography>

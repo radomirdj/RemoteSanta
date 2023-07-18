@@ -56,7 +56,13 @@ const GiftCardRequestOverview = (props: any) => {
     <>
       <Card className="overview-card">
         <Typography className="overview-title">Overview</Typography>
-        <Card className="overview-child-card">
+        <Card
+          className={
+            giftCardRequestMessage !== ""
+              ? "overview-child-card"
+              : "overview-child-card-no-message"
+          }
+        >
           <Grid container className="grid-style-overview">
             <Grid item xs={7} className="grid-item">
               <Typography className="overview-brand-title">
@@ -75,17 +81,23 @@ const GiftCardRequestOverview = (props: any) => {
               <img
                 src={giftCardIntegration?.image}
                 alt=""
-                className="image-style"
+                className={
+                  giftCardRequestMessage !== ""
+                    ? "image-style"
+                    : "image-style-no-message"
+                }
               />
             </Grid>
-            <Grid item xs={12}>
-              <Typography className="overview-message">Message</Typography>
-              <Box className="message-child-card">
-                <Typography className="overview-message-text">
-                  {giftCardRequestMessage}
-                </Typography>
-              </Box>
-            </Grid>
+            {giftCardRequestMessage !== "" && (
+              <Grid item xs={12}>
+                <Typography className="overview-message">Message</Typography>
+                <Box className="message-child-card">
+                  <Typography className="overview-message-text">
+                    {giftCardRequestMessage}
+                  </Typography>
+                </Box>
+              </Grid>
+            )}
           </Grid>
         </Card>
         <Grid container className="button-container">

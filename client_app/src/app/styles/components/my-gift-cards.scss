@@ -1,8 +1,8 @@
 @use "./../variables.scss";
 
 $declined-icon-width: 20px;
-$card-image-width: 83%;
-$card-button-width: 83%;
+$card-image-width: 85%;
+$card-button-width: 85%;
 $grid-max-width: 1200px;
 $card-country-margin-bottom:10px;
 
@@ -114,12 +114,12 @@ $card-country-margin-bottom:10px;
 
         .card-title{
             font-family: "Montserrat";
-            margin-left: variables.$base-unit * 2;
+            margin-left: variables.$base-unit ;
         }
 
         .card-country{
             font-family: "Montserrat";
-            margin-left: variables.$base-unit * 2;
+            margin-left: variables.$base-unit ;
             margin-bottom: $card-country-margin-bottom;
             font-weight: 600;
             color: variables.$color-neutral-gray;
@@ -128,7 +128,7 @@ $card-country-margin-bottom:10px;
 
         .card-country-to-from{
             font-family: "Montserrat";
-            margin-left: variables.$base-unit * 2;
+            margin-left: variables.$base-unit ;
             color: variables.$color-neutral-gray;
             font-size: variables.$font-size-small;
 
@@ -137,16 +137,15 @@ $card-country-margin-bottom:10px;
         .card-sent-to-from{
             font-family: "Montserrat";
             color: variables.$color-neutral-gray;
-            margin-left: variables.$base-unit * 2;
+            margin-left: variables.$base-unit ;
             font-size: variables.$font-size-small;
-   
             margin-bottom: variables.$base-unit;
         }
 
         .card-date{
             font-family: "Montserrat";
             color: variables.$color-neutral-black;
-            margin-left: variables.$base-unit * 2;
+            margin-left: variables.$base-unit ;
         }
 
         .card-amount{
@@ -173,7 +172,7 @@ $card-country-margin-bottom:10px;
         }
 
         .card-pending-icon{
-            margin-left: variables.$base-unit * 3;
+            margin-left: variables.$base-unit *2;
             width: variables.$base-unit * 2;
             margin-top: variables.$base-unit;
         }
@@ -189,10 +188,11 @@ $card-country-margin-bottom:10px;
             font-family: "Montserrat";
             color:#708C21;
             font-weight: 500;
+            margin-left: variables.$base-unit * 2;
         }
 
         .card-declined-icon{
-            margin-left: variables.$base-unit * 3;
+            margin-left: variables.$base-unit *2;
             width: $declined-icon-width;
             margin-top: variables.$base-unit;
         }
@@ -205,6 +205,7 @@ $card-country-margin-bottom:10px;
       
         .pending-text{
             font-family: "Montserrat";
+            margin-left: variables.$base-unit;
         }
 
         .MuiGrid-root{
