@@ -62,6 +62,7 @@ export interface GiftCardRequestState {
   giftCardRequestIntegration: IGiftCardIntegration | null;
   stepperPage: number;
   giftCardRequestAmount: number;
+  giftCardRequestMessage: string | null;
   giftCardRequestAmountInIntegrationCurrency: number;
   error: string | null;
 }
@@ -105,6 +106,7 @@ export interface SetGiftCardIntegrationPayload {
 export interface SetGiftCardAmountPayload {
   amount: number;
   amountInIntegrationCurrency: number;
+  message?: string;
 }
 
 export interface SetGiftCardRequestStepBackPayload {
@@ -115,6 +117,8 @@ export interface PostGiftCardRequestPayload {
   giftCardIntegrationId: string;
   amount: number;
   giftCardIntegrationCurrencyAmount: number;
+  sendToUserId?: string;
+  message?: string;
 }
 
 export interface PostGiftCardRequestFailurePayload {

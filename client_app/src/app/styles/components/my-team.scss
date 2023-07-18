@@ -1,7 +1,8 @@
 @use "./../variables.scss";
 
 $button-details-height: 36px;
-$content-width:950px;
+$content-width:1100px;
+$content-manager-width:1250px;
 
 .my-team {
     background-image: url("./../../assets/home-image.svg");
@@ -16,6 +17,18 @@ $content-width:950px;
         @media screen and (min-width: variables.$breakpoint-md) {
             max-width: $content-width;
         }
+    }
+    .grid-style-manager{
+        justify-content: center;
+        padding-top: variables.$base-unit * 5;
+        @media screen and (max-width: variables.$breakpoint-md) {
+            width: 100%;
+        }
+    
+        @media screen and (min-width: variables.$breakpoint-md) {
+            max-width: $content-manager-width;
+        }
+    }
 
         .my-team-title{
             font-family: "Montserrat";
@@ -30,7 +43,6 @@ $content-width:950px;
                 font-size: variables.$font-size-title;
             }
         }
-    }
 
     .box-style{
         height: 525px;
@@ -50,10 +62,6 @@ $content-width:950px;
             width: 100%;
         }
     
-        @media screen and (min-width: variables.$breakpoint-md) {
-            width: $content-width;
-        }
-
         .button-send-points{
             float: right;
             background-color:variables.$main-blue;
@@ -66,7 +74,20 @@ $content-width:950px;
             margin-top: variables.$base-unit ;
         }
 
-        .button-send-points-disabled{
+        .button-details{
+            float: right;
+            background-color: variables.$color-dark-yellow;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height: variables.$base-unit *5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
+
+        .button-disabled{
             float: right;
             background-color:#d2d2d2;
             border-radius: variables.$base-unit;
@@ -78,6 +99,17 @@ $content-width:950px;
             margin-top: variables.$base-unit ;
         }
 
+        .button-send-gift-cards{
+            float: right;
+            background-color:variables.$main-green;
+            border-radius: variables.$base-unit;
+            box-shadow: none;
+            text-transform: none;
+            height: variables.$base-unit *5;
+            font-weight: bold;
+            margin-bottom: variables.$base-unit ;
+            margin-top: variables.$base-unit ;
+        }
         
     }
 }

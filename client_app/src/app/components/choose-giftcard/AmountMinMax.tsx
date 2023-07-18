@@ -14,7 +14,7 @@ import {
 } from "../../store/gift-card-request/selectors";
 import { calculateAmountInIntegrationCurrencyLower } from "../../utils/Utils";
 
-const AmountMinMax = () => {
+const AmountMinMax = (props: any) => {
   const user = useSelector(getAuthUserSelector);
   const {
     register,
@@ -46,6 +46,7 @@ const AmountMinMax = () => {
           data.amount,
           conversionRate
         ),
+        message: data.message,
       })
     );
   };
@@ -82,7 +83,13 @@ const AmountMinMax = () => {
           label="Amount in PTS"
           placeholder="PTS you want to spend"
           variant="outlined"
-          className={errors.amount ? "amount-input-with-error" : "email-input"}
+          className={
+            errors.amount
+              ? "amount-input-with-error"
+              : props.hasMessage
+              ? "amount-input-min-max"
+              : "email-input"
+          }
           type="number"
           {...register("amount", {
             required: true,
@@ -118,9 +125,38 @@ const AmountMinMax = () => {
             The amount you specified is greater then the amount you have.
           </Typography>
         )}
-        <span className="points-in-currency-style">
+        <span
+          className={
+            props.hasMessage
+              ? "points-in-currency-style"
+              : "points-in-currency-style-no-message"
+          }
+        >
           {pointsToCurrencyMessage}
         </span>
+        {props.hasMessage && (
+          <TextField
+            error={errors.message ? true : false}
+            id="standard-multiline-static"
+            label="Message"
+            multiline
+            rows={2}
+            className={
+              errors.message
+                ? "comment-input-with-error"
+                : "comment-input-min-max"
+            }
+            variant="outlined"
+            {...register("message", {
+              required: props.hasMessage,
+            })}
+          />
+        )}
+        {errors.message?.type === "required" && (
+          <Typography className="comment-error-fe">
+            Message is required.
+          </Typography>
+        )}
         <Grid container>
           <Grid item xs={6}>
             <Button

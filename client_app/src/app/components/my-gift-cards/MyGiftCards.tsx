@@ -52,80 +52,79 @@ const MyGiftCards = () => {
   }, [dispatch]);
 
   const chooseGiftCardRedirect = () => {
-    navigate("/choose-gift-card");
+    navigate("/choose-gift-card-personal");
   };
 
   return (
     <>
       <AppHeaderPrivate />
-      {myGiftCardRequestList.length > 0 && (
-        <div className="background my-gift-cards">
-          <Grid container spacing={4} className="grid-style">
-            <Grid item xs={12} sm={6} className="grid-item">
-              <Typography className="my-gift-cards-text">
-                Your balance is {user.userBalance?.pointsActive} points.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} className="button-item">
-              <Button
-                onClick={chooseGiftCardRedirect}
-                className="use-points-button"
-              >
-                <img src={GiftIconBlack} alt="" className="gift-icon-style" />{" "}
-                Use your points now
-              </Button>
-            </Grid>
-            <Box sx={{ width: "100%" }}>
-              <Tabs
-                value={tabIndex}
-                onChange={handleChange}
-                textColor="secondary"
-                indicatorColor="primary"
-                className="tabs-style"
-              >
-                <Tab value="one" label="My" disableRipple />
-                <Tab value="two" label="Sent" disableRipple />
-                <Tab value="three" label="Received" disableRipple />
-              </Tabs>
-            </Box>
-            {tabIndex === "three" && myGiftCardRequestList.length === 0 && (
-              <NoGiftCards />
-            )}
-            {tabIndex === "one" &&
-              myGiftCardRequestList.length > 0 &&
-              myGiftCardRequestList.map((element, i) => {
-                return (
-                  <Grid item xs={12} sm={6} md={3} key={i}>
-                    <MyGiftCardItem {...element} />
-                  </Grid>
-                );
-              })}
-            {tabIndex === "two" && sentGiftCardRequestList.length === 0 && (
-              <NoGiftCards />
-            )}
-            {tabIndex === "two" &&
-              sentGiftCardRequestList.length > 0 &&
-              sentGiftCardRequestList.map((element, i) => {
-                return (
-                  <Grid item xs={12} sm={6} md={3} key={i}>
-                    <MyGiftCardItem {...element} />
-                  </Grid>
-                );
-              })}
-            {tabIndex === "three" &&
-              receivedGiftCardRequestList.length === 0 && <NoGiftCards />}
-            {tabIndex === "three" &&
-              receivedGiftCardRequestList.length > 0 &&
-              receivedGiftCardRequestList.map((element, i) => {
-                return (
-                  <Grid item xs={12} sm={6} md={3} key={i}>
-                    <MyGiftCardItem {...element} />
-                  </Grid>
-                );
-              })}
+      <div className="background my-gift-cards">
+        <Grid container spacing={4} className="grid-style">
+          <Grid item xs={12} sm={6} className="grid-item">
+            <Typography className="my-gift-cards-text">
+              Your balance is {user.userBalance?.pointsActive} points.
+            </Typography>
           </Grid>
-        </div>
-      )}
+          <Grid item xs={12} sm={6} className="button-item">
+            <Button
+              onClick={chooseGiftCardRedirect}
+              className="use-points-button"
+            >
+              <img src={GiftIconBlack} alt="" className="gift-icon-style" /> Use
+              your points now
+            </Button>
+          </Grid>
+          <Box sx={{ width: "100%" }}>
+            <Tabs
+              value={tabIndex}
+              onChange={handleChange}
+              textColor="secondary"
+              indicatorColor="primary"
+              className="tabs-style"
+            >
+              <Tab value="one" label="My" disableRipple />
+              <Tab value="two" label="Sent" disableRipple />
+              <Tab value="three" label="Received" disableRipple />
+            </Tabs>
+          </Box>
+          {tabIndex === "one" && myGiftCardRequestList.length === 0 && (
+            <NoGiftCards />
+          )}
+          {tabIndex === "one" &&
+            myGiftCardRequestList.length > 0 &&
+            myGiftCardRequestList.map((element, i) => {
+              return (
+                <Grid item xs={12} sm={6} md={3} key={i}>
+                  <MyGiftCardItem {...element} />
+                </Grid>
+              );
+            })}
+          {tabIndex === "two" && sentGiftCardRequestList.length === 0 && (
+            <NoGiftCards />
+          )}
+          {tabIndex === "two" &&
+            sentGiftCardRequestList.length > 0 &&
+            sentGiftCardRequestList.map((element, i) => {
+              return (
+                <Grid item xs={12} sm={6} md={3} key={i}>
+                  <MyGiftCardItem {...element} />
+                </Grid>
+              );
+            })}
+          {tabIndex === "three" && receivedGiftCardRequestList.length === 0 && (
+            <NoGiftCards />
+          )}
+          {tabIndex === "three" &&
+            receivedGiftCardRequestList.length > 0 &&
+            receivedGiftCardRequestList.map((element, i) => {
+              return (
+                <Grid item xs={12} sm={6} md={3} key={i}>
+                  <MyGiftCardItem {...element} />
+                </Grid>
+              );
+            })}
+        </Grid>
+      </div>
       <AppFooter />
     </>
   );

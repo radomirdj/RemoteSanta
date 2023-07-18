@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { getSelfRequest } from "../../store/auth/actions";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { fetchClaimPointsEventList } from "../../store/claim-points-event/actions";
-import { getClaimPointsEventListSelector } from "../../store/claim-points-event/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import GiftIconBlack from "../../assets/icons/gift-icon-black.svg";
@@ -22,7 +21,6 @@ import { getUserNextBirthday } from "../../utils/Utils";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const claimPointsEventList = useSelector(getClaimPointsEventListSelector);
   const user = useSelector(getAuthUserSelector);
   const navigate = useNavigate();
   const orgUserList = useSelector(getOrganizationUserListSelector);
@@ -45,19 +43,8 @@ const Home = () => {
     .sort(compareByNextBirthday)
     .slice(0, 10);
 
-  const currentDate = new Date();
-  const filteredList = claimPointsEventList.filter((claimPointsEvent) => {
-    let validToDate = new Date(claimPointsEvent.validTo);
-    if (
-      currentDate > validToDate ||
-      claimPointsEvent.claimPointsEventFulfillment
-    )
-      return false;
-    return true;
-  });
-
   const chooseGiftCardRedirect = () => {
-    navigate("/choose-gift-card");
+    navigate("/choose-gift-card-personal");
   };
 
   const myTeamRedirect = () => {
@@ -135,7 +122,7 @@ const Home = () => {
                 <Grid item xs={8}>
                   <Typography className="step-title">Recognize Team</Typography>
                   <Typography className="step-text">
-                    Pick a perfect gift cards for your teammates.
+                    Pick a perfect gift card for your teammate.
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
@@ -155,7 +142,7 @@ const Home = () => {
                       alt=""
                       className="step-icon-style"
                     />{" "}
-                    Send some presents
+                    Send presents
                   </Button>
                 </Grid>
               </Grid>
@@ -189,7 +176,7 @@ const Home = () => {
                       alt=""
                       className="step-icon-style"
                     />{" "}
-                    See my gift cards
+                    Check your gift cards
                   </Button>
                 </Grid>
               </Grid>

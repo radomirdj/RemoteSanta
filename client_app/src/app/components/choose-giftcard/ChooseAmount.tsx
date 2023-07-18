@@ -6,8 +6,9 @@ import { getAuthUserSelector } from "../../store/auth/selectors";
 import { getGiftCardRequestIntegrationSelector } from "../../store/gift-card-request/selectors";
 import AmountList from "./AmountList";
 import AmountMinMax from "./AmountMinMax";
+import { UserRole } from "../../enums/UserRole";
 
-const ChooseAmount = () => {
+const ChooseAmount = (props: any) => {
   const user = useSelector(getAuthUserSelector);
   const giftCardIntegration = useSelector(
     getGiftCardRequestIntegrationSelector
@@ -23,20 +24,35 @@ const ChooseAmount = () => {
     <>
       <Card className="choose-amount-card">
         <Typography className="choose-amount-title">Choose Amount</Typography>
-        <Typography className="choose-amount-active-points">
+        <Typography
+          className={
+            user.userRole === UserRole.USER_MANAGER
+              ? "choose-amount-active-points"
+              : "choose-amount-active-points-with-margin"
+          }
+        >
           Your balance is {pointsActive} PTS. This is equal to{" "}
           {userBalanceInCurrency.toFixed(2)} {giftCardIntegration?.currency}.
         </Typography>
+        {user.userRole === UserRole.USER_MANAGER && (
+          <Typography className="send-gift-card-as">
+            You’re sending gift card as {user.firstName}.
+          </Typography>
+        )}
         <TextField
           id="outlined-basic"
           label="Email"
           variant="outlined"
           className="email-input"
-          value={user.email}
+          value={props.sendToEmail}
           disabled
         />
-        {giftCardIntegration?.constraintType === "MIN_MAX" && <AmountMinMax />}
-        {giftCardIntegration?.constraintType === "LIST" && <AmountList />}
+        {giftCardIntegration?.constraintType === "MIN_MAX" && (
+          <AmountMinMax hasMessage={props.hasMessage} />
+        )}
+        {giftCardIntegration?.constraintType === "LIST" && (
+          <AmountList hasMessage={props.hasMessage} />
+        )}
       </Card>
     </>
   );

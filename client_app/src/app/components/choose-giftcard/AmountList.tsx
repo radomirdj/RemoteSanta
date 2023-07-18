@@ -6,6 +6,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -21,7 +22,7 @@ import {
 } from "../../store/gift-card-request/selectors";
 import { calculatePointsFromIntegrationCurrencyUpper } from "../../utils/Utils";
 
-const AmountList = () => {
+const AmountList = (props: any) => {
   const user = useSelector(getAuthUserSelector);
   const {
     register,
@@ -39,6 +40,16 @@ const AmountList = () => {
     JSON.stringify(giftCardIntegration?.constraintJson || "")
   );
   const integrationCurrency = giftCardIntegration?.currency || "";
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
   const amountArray = amountArrayBasic.map((amount: number) => ({
     amountInCurrency: amount,
@@ -60,6 +71,7 @@ const AmountList = () => {
           conversionRate
         ),
         amountInIntegrationCurrency: Number(data.amount),
+        message: data.message,
       })
     );
   };
@@ -93,6 +105,7 @@ const AmountList = () => {
               required: true,
               validate: enoughBalance,
             })}
+            MenuProps={MenuProps}
             defaultValue={amountArray[0].amountInCurrency}
           >
             {amountArray.map((amountObject: any, i: string) => {
@@ -128,7 +141,27 @@ const AmountList = () => {
             The amount you specified is greater then the amount you have.
           </Typography>
         )}
-
+        {props.hasMessage && (
+          <TextField
+            error={errors.message ? true : false}
+            id="standard-multiline-static"
+            label="Message"
+            multiline
+            rows={2}
+            className={
+              errors.message ? "comment-input-with-error" : "comment-input"
+            }
+            variant="outlined"
+            {...register("message", {
+              required: props.hasMessage,
+            })}
+          />
+        )}
+        {errors.message?.type === "required" && (
+          <Typography className="comment-error-fe">
+            Message is required.
+          </Typography>
+        )}
         <Grid container>
           <Grid item xs={6}>
             <Button
