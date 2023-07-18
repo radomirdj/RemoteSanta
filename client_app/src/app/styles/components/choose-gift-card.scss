@@ -284,7 +284,25 @@ $choose-amount-active-points-font-size:14px;
       text-align: start;
       color: variables.$color-neutral-gray;
       width: 100%;
+      margin-bottom: variables.$base-unit;
+    }
+
+  .choose-amount-active-points-with-margin{
+      font-family: "Montserrat";
+      font-size: $choose-amount-active-points-font-size;
+      text-align: start;
+      color: variables.$color-neutral-gray;
+      width: 100%;
       margin-bottom: variables.$base-unit * 4;
+  }
+
+    .send-gift-card-as{
+      font-family: "Montserrat";
+      font-size: $choose-amount-active-points-font-size;
+      text-align: start;
+      color: variables.$color-neutral-gray;
+      width: 100%;
+      margin-bottom: variables.$base-unit * 3;
     }
 
     .email-input {
@@ -380,20 +398,22 @@ $choose-amount-active-points-font-size:14px;
   .overview-card{
     padding-top: variables.$base-unit * 5;
     padding-bottom: variables.$base-unit * 5;
-    padding-left: variables.$base-unit * 8;
-    padding-right: variables.$base-unit * 8;
     border-radius: variables.$base-unit * 4;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
     @media screen and (max-width: variables.$breakpoint-sm) {
       margin-left: $choose-amount-margin-left;
+      padding-left: variables.$base-unit * 3;
+      padding-right: variables.$base-unit * 3;
     }
 
     @media screen and (min-width: variables.$breakpoint-sm) {
       width: variables.$base-unit * 52;
       margin-right: auto;
       margin-left: auto;
+      padding-left: variables.$base-unit * 8;
+      padding-right: variables.$base-unit * 8;
     }
 
   .overview-title{
@@ -408,7 +428,7 @@ $choose-amount-active-points-font-size:14px;
 
   .overview-child-card{
     background-color: rgb(207, 209, 129, 0.5);
-    height: variables.$base-unit * 40;
+    height: variables.$base-unit * 35;
     border-radius: variables.$base-unit * 3;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   }
@@ -434,11 +454,21 @@ $choose-amount-active-points-font-size:14px;
 
   .message-child-card{
     background-color: white;
-    height: variables.$base-unit * 8;
+    height: variables.$base-unit * 6;
     border-radius: variables.$base-unit * 2;
     width: 87%;
     box-shadow: none;
-    margin-left: variables.$base-unit * 3;
+    padding-top: variables.$base-unit * 2;
+    padding-bottom: variables.$base-unit * 2;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      margin-left: variables.$base-unit * 3;
+    }
   }
 
   .overview-amount{
@@ -446,6 +476,14 @@ $choose-amount-active-points-font-size:14px;
     font-size: variables.$font-size-small;
     margin-top: variables.$base-unit;
     margin-left: variables.$base-unit * 4;
+    text-align: start;
+    color: variables.$color-neutral-gray;
+  }
+
+  .overview-message-text{
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
+    margin-left: variables.$base-unit * 2;
     text-align: start;
     color: variables.$color-neutral-gray;
   }
@@ -467,7 +505,7 @@ $choose-amount-active-points-font-size:14px;
       width:  variables.$base-unit * 8;
       margin-bottom: variables.$base-unit * 4;
       margin-left: variables.$base-unit * 2;
-      margin-right: variables.$base-unit * 2;
+      margin-right: variables.$base-unit * 3;
       border-radius: variables.$base-unit;
     }
 
@@ -476,6 +514,7 @@ $choose-amount-active-points-font-size:14px;
       width:  variables.$base-unit * 16;
       margin-right: variables.$base-unit * 4;
       border-radius: variables.$base-unit * 2;
+      margin-top:  variables.$base-unit * 2;
     }
 
   }

@@ -1,5 +1,5 @@
 import { ChevronLeft } from "@mui/icons-material";
-import { Button, Card, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ const GiftCardRequestOverview = (props: any) => {
           giftCardIntegrationCurrencyAmount:
             giftCardRequestAmountInIntegrationCurrency,
           sendToUserId: props.sendToUserId,
-          message: "",
+          message: giftCardRequestMessage || "",
         },
         navigate
       )
@@ -80,7 +80,11 @@ const GiftCardRequestOverview = (props: any) => {
             </Grid>
             <Grid item xs={12}>
               <Typography className="overview-message">Message</Typography>
-              <Card className="message-child-card"></Card>
+              <Box className="message-child-card">
+                <Typography className="overview-message-text">
+                  {giftCardRequestMessage}
+                </Typography>
+              </Box>
             </Grid>
           </Grid>
         </Card>

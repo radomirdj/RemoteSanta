@@ -122,7 +122,7 @@ const Home = () => {
                 <Grid item xs={8}>
                   <Typography className="step-title">Recognize Team</Typography>
                   <Typography className="step-text">
-                    Pick a perfect gift cards for your teammates.
+                    Pick a perfect gift card for your teammate.
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
@@ -142,7 +142,7 @@ const Home = () => {
                       alt=""
                       className="step-icon-style"
                     />{" "}
-                    Send some presents
+                    Send presents
                   </Button>
                 </Grid>
               </Grid>
@@ -176,7 +176,7 @@ const Home = () => {
                       alt=""
                       className="step-icon-style"
                     />{" "}
-                    See my gift cards
+                    Check your gift cards
                   </Button>
                 </Grid>
               </Grid>
