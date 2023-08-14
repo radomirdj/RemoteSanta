@@ -40,6 +40,8 @@ import {
 } from '@prisma/client';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
+import { SqsUserInvitesService } from '../src/sqs_user_invites/sqs_user_invites.service';
+import { SqsUserInvitesServiceMock } from '../src/sqs_user_invites/__mock__/sqs_user_invites.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
@@ -74,6 +76,8 @@ describe('admin user invites', () => {
       .useValue(AwsCognitoServiceMock)
       .overrideProvider(MailerService)
       .useValue(MailerServiceMock)
+      .overrideProvider(SqsUserInvitesService)
+      .useValue(SqsUserInvitesServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();

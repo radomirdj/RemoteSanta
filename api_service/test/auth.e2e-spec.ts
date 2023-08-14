@@ -57,6 +57,7 @@ import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { expectOrgInDB } from './utils/orgsChecks';
 import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
 import { NotEnoughBalanceException } from '../src/errors/notEnoughBalanceException';
+import consts from '../src/utils/consts';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
@@ -399,6 +400,7 @@ describe('Authentication system', () => {
       firstName: 'Peter',
       lastName: 'Pan',
       password: '123456',
+      countryId: consts.usCountryId,
       orgName: 'Pan Inc.',
     };
 
