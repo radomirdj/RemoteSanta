@@ -23,6 +23,7 @@ import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.
 import { EmailsModule } from './emails/emails.module';
 import { AuthModule } from './auth/auth.module';
 import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
+import { GiftCardThirdPartyApiModule } from './gift_card_third_party_api/gift_card_third_party_api.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
     EmailsModule,
     AuthModule,
     CurrencyRatesModule,
+    GiftCardThirdPartyApiModule,
   ],
   controllers: [AppController],
   providers: [
