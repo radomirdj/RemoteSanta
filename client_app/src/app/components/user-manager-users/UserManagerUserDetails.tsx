@@ -19,6 +19,7 @@ import { getOrganizationUserSelector } from "../../store/orgs/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ErrorIcon from "@mui/icons-material/Error";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { createBirthdayFromUTCString } from "../../utils/Utils";
 
 const UserManagerUserDetails = () => {
   const params = useParams();
@@ -61,7 +62,11 @@ const UserManagerUserDetails = () => {
       <div className="background user-manager-user-details">
         <Card className="card-style">
           <Typography className="title-style">User Details</Typography>
-          <Card className="child-card">
+          <Card
+            className={
+              user?.birthDate !== null ? "child-card" : "child-card-no-birthday"
+            }
+          >
             <Grid container className="grid-container">
               <Grid item xs={4}>
                 <span className="column-name">Fullname</span>
@@ -70,6 +75,16 @@ const UserManagerUserDetails = () => {
                 {user?.firstName} {user?.lastName}
               </Grid>
             </Grid>
+            {user?.birthDate !== null && (
+              <Grid container className="grid-container">
+                <Grid item xs={4}>
+                  <span className="column-name">Date Of Birth</span>
+                </Grid>
+                <Grid item xs={8}>
+                  {createBirthdayFromUTCString(user?.birthDate || "")}
+                </Grid>
+              </Grid>
+            )}
             <Grid container className="grid-container">
               <Grid item xs={4}>
                 <span className="column-name">Active PTS</span>
@@ -99,7 +114,7 @@ const UserManagerUserDetails = () => {
             <Grid item xs={6}>
               <Button
                 disableRipple
-                variant="contained"
+                variant="outlined"
                 className="back-button"
                 startIcon={<ChevronLeftIcon className="back-icon" />}
                 onClick={goBack}

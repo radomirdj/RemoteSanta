@@ -8,6 +8,9 @@ import { AwsCognitoService } from './../src/users/aws-cognito/aws-cognito.servic
 import { AwsCognitoServiceMock } from './../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;

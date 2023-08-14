@@ -17,6 +17,9 @@ export class UserDto {
   lastName: string;
 
   @Expose()
+  countryId: string;
+
+  @Expose()
   deleted: boolean;
 
   @Expose()

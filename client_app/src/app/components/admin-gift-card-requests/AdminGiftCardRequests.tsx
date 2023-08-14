@@ -65,9 +65,14 @@ const AdminGiftCardRequests = () => {
         id: adminGiftCardRequest.id,
         integration: adminGiftCardRequest.giftCardIntegration.title,
         amount: adminGiftCardRequest.amount + " PTS",
-        createdAt: new Date(adminGiftCardRequest.createdAt)
-          .toLocaleDateString("en-GB")
-          .replaceAll("/", "."),
+        createdAt: new Date(adminGiftCardRequest.createdAt).toLocaleDateString(
+          "en-US",
+          {
+            day: "numeric",
+            year: "numeric",
+            month: "short",
+          }
+        ),
         details: "",
       };
     }

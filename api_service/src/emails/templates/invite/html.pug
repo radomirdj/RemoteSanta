@@ -1,10 +1,28 @@
-p Hi there,
-br
-p You're invited by #{senderName} to join #{orgName}.
-p Join us and collect points every month, buy presents and play gifting games with your teammates. Have fun together!
-p Here is your registration link: 
-a(href=registrationUrl) Register now
-br
-br
-p Best regards,
-p Remote Santa Team
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    style.
+      /* Add your CSS styles here */
+
+  body
+    p Hello,
+
+    p We hope this email finds you well! #{senderName}, has invited you to join #{orgName} team on Remote Santa, a platform that combines gifting and virtual parties to enhance your work-life celebrations.
+
+    p 
+      | To get started and join your team on Remote Santa, simply click on the 
+      a(href=registrationUrl)
+        | Invitation Link
+
+    p We can't wait for you to experience the joy of gifting and virtual parties with Remote Santa! Should you have any questions or need assistance, our dedicated support team is always here to help.
+
+    p Click on the invitation link above to join Remote Santa and start celebrating with your team!
+
+    p Best regards,
+    p Remote Santa
+
+    p
+      | P.S. To learn more about Remote Santa, visit our website at 
+      a(href="https://www.remotesanta.io/") https://www.remotesanta.io/

@@ -19,7 +19,9 @@ import {
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
- 
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('/claim-points-events', () => {
   let app: INestApplication;

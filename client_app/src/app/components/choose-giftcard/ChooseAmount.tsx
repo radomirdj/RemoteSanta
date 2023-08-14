@@ -1,134 +1,60 @@
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import { Button, Card, Grid, TextField, Typography } from "@mui/material";
+import { Card, TextField, Typography } from "@mui/material";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
-import {
-  setGiftCardRequestAmount,
-  setGiftCardRequestStepBack,
-} from "../../store/gift-card-request/actions";
-import {
-  getGiftCardRequestIntegrationSelector,
-  getStepperPagetSelector,
-} from "../../store/gift-card-request/selectors";
 
-const ChooseAmount = () => {
+import { getGiftCardRequestIntegrationSelector } from "../../store/gift-card-request/selectors";
+import AmountList from "./AmountList";
+import AmountMinMax from "./AmountMinMax";
+import { UserRole } from "../../enums/UserRole";
+
+const ChooseAmount = (props: any) => {
   const user = useSelector(getAuthUserSelector);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-  const dispatch = useDispatch();
-  const activeStep = useSelector(getStepperPagetSelector);
   const giftCardIntegration = useSelector(
     getGiftCardRequestIntegrationSelector
   );
-  const constraintString = JSON.stringify(giftCardIntegration?.constraintJson);
-  const constraintJson = JSON.parse(constraintString);
 
-  const onSubmit = (data: any) => {
-    dispatch(setGiftCardRequestAmount({ amount: Number(data.amount) }));
-  };
+  const conversionRate =
+    giftCardIntegration?.pointsToCurrencyConversionRate || 1;
 
-  const onBack = () => {
-    dispatch(setGiftCardRequestStepBack({ currentStep: activeStep }));
-  };
-
-  const enoughBalance = (amount: number) => {
-    if (user.userBalance?.pointsActive) {
-      if (amount <= user.userBalance?.pointsActive) {
-        return true;
-      }
-    }
-    return false;
-  };
+  const pointsActive = user.userBalance?.pointsActive || 0;
+  const userBalanceInCurrency = pointsActive * conversionRate;
 
   return (
     <>
       <Card className="choose-amount-card">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Typography className="choose-amount-title">Choose Amount</Typography>
-          <Typography className="choose-amount-active-points">
-            Your balance is {user.userBalance?.pointsActive} PTS.{" "}
-            {user.org?.country?.conversionRateToPoints} PTS is equal to 1{" "}
-            {user.org?.country?.currencyString}.
-          </Typography>
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            className="email-input"
-            value={user.email}
-            disabled
-          />
-          <TextField
-            error={errors.amount ? true : false}
-            id="outlined-basic"
-            label="Amount"
-            placeholder="PTS you want to spend"
-            variant="outlined"
-            className={
-              errors.amount ? "amount-input-with-error" : "email-input"
-            }
-            type="number"
-            {...register("amount", {
-              required: true,
-              min: constraintJson["MIN"],
-              max: constraintJson["MAX"],
-              validate: enoughBalance,
-            })}
-          />
-
-          {errors.amount?.type === "required" && (
-            <Typography className="choose-amount-error-fe">
-              Amount is required.
+        <Typography className="choose-amount-title">Choose Amount</Typography>
+        <Typography
+          className={
+            user.userRole === UserRole.USER_MANAGER &&
+            props.sendToEmail !== user.email
+              ? "choose-amount-active-points"
+              : "choose-amount-active-points-with-margin"
+          }
+        >
+          Your balance is {pointsActive} PTS. This is equal to{" "}
+          {userBalanceInCurrency.toFixed(2)} {giftCardIntegration?.currency}.
+        </Typography>
+        {user.userRole === UserRole.USER_MANAGER &&
+          props.sendToEmail !== user.email && (
+            <Typography className="send-gift-card-as">
+              You’re sending gift card as {user.firstName}.
             </Typography>
           )}
-
-          {errors.amount?.type === "min" && (
-            <Typography className="choose-amount-error-fe">
-              The minimum amount is {constraintJson["MIN"]} PTS.
-            </Typography>
-          )}
-
-          {errors.amount?.type === "max" && (
-            <Typography className="choose-amount-error-fe">
-              The maximum amount is {constraintJson["MAX"]} PTS.
-            </Typography>
-          )}
-
-          {errors.amount?.type === "validate" && (
-            <Typography className="choose-amount-error-fe">
-              The amount you specified is greater then the amount you have.
-            </Typography>
-          )}
-          <Grid container>
-            <Grid item xs={6}>
-              <Button
-                variant="contained"
-                className="choose-amount-back-button"
-                disableRipple
-                onClick={onBack}
-                startIcon={<ChevronLeft className="back-button-icon" />}
-              >
-                Back
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                variant="contained"
-                className="choose-amount-next-button"
-                disableRipple
-                type="submit"
-                endIcon={<ChevronRight className="next-button-icon" />}
-              >
-                Next
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          className="email-input"
+          value={props.sendToEmail}
+          disabled
+        />
+        {giftCardIntegration?.constraintType === "MIN_MAX" && (
+          <AmountMinMax hasMessage={props.hasMessage} />
+        )}
+        {giftCardIntegration?.constraintType === "LIST" && (
+          <AmountList hasMessage={props.hasMessage} />
+        )}
       </Card>
     </>
   );

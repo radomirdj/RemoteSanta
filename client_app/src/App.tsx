@@ -13,9 +13,7 @@ import VerifyEmail from "./app/components/verify-email/VerifyEmail";
 import ChangePasswordSuccess from "./app/components/change-password-success/ChangePasswordSuccess";
 import ErrorPage from "./app/components/error-page/ErrorPage";
 import MyGiftCards from "./app/components/my-gift-cards/MyGiftCards";
-import Demo from "./app/components/demo/Demo";
 import UserProfile from "./app/components/user-profile/UserProfile";
-import ChooseGiftCard from "./app/components/choose-giftcard/ChooseGiftCard";
 import GiftCardRequestSuccess from "./app/components/gift-card-request-success/GiftCardRequestSuccess";
 import AdminRoute from "./app/components/adminRoute/AdminRoute";
 import AdminGiftCardRequests from "./app/components/admin-gift-card-requests/AdminGiftCardRequests";
@@ -34,12 +32,16 @@ import UserManagerInvites from "./app/components/user-manager-invites/UserManage
 import UserManagerUsers from "./app/components/user-manager-users/UserManagerUsers";
 import AdminUserDetails from "./app/components/admin-organizations/AdminUserDetails";
 import UserManagerUserDetails from "./app/components/user-manager-users/UserManagerUserDetails";
-import UserManagerSendPoints from "./app/components/user-manager-users/UserManagerSendPoints";
 import AdminUserSendPoints from "./app/components/admin-organizations/AdminUserSendPoints";
 import CompanySignup from "./app/components/company-signup/CompanySignup";
 import CompanySignupVerifyEmail from "./app/components/company-signup/CompanySignupVerifyEmail";
 import InviteSingleCoworker from "./app/components/home/InviteSingleCoworker";
 import InviteGroupCoworker from "./app/components/home/InviteGroupCoworker";
+import MyTeam from "./app/components/my-team/MyTeam";
+import MyTeamSendPoints from "./app/components/my-team/MyTeamSendPoints";
+import MyTeamSendPointsSuccess from "./app/components/my-team/MyTeamSendPointsSuccess";
+import ChooseGiftCardPersonal from "./app/components/choose-giftcard/ChooseGiftCardPersonal";
+import ChooseGiftCardPeerToPeer from "./app/components/choose-giftcard/ChooseGiftCardPeerToPeer";
 
 const App = () => {
   return (
@@ -119,10 +121,26 @@ const App = () => {
           }
         />
         <Route
-          path="demo"
+          path="my-team"
           element={
             <PrivateRoute>
-              <Demo />
+              <MyTeam />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="my-team-send-points/:id"
+          element={
+            <PrivateRoute>
+              <MyTeamSendPoints />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="my-team-send-points-success"
+          element={
+            <PrivateRoute>
+              <MyTeamSendPointsSuccess />
             </PrivateRoute>
           }
         />
@@ -151,10 +169,18 @@ const App = () => {
           }
         />
         <Route
-          path="choose-gift-card"
+          path="choose-gift-card-personal"
           element={
             <PrivateRoute>
-              <ChooseGiftCard />
+              <ChooseGiftCardPersonal />
+            </PrivateRoute>
+          }
+        />{" "}
+        <Route
+          path="choose-gift-card-peer-to-peer"
+          element={
+            <PrivateRoute>
+              <ChooseGiftCardPeerToPeer />
             </PrivateRoute>
           }
         />
@@ -291,14 +317,6 @@ const App = () => {
           element={
             <UserManagerRoute>
               <UserManagerUserDetails />
-            </UserManagerRoute>
-          }
-        />
-        <Route
-          path="user-manager-send-points/:id"
-          element={
-            <UserManagerRoute>
-              <UserManagerSendPoints />
             </UserManagerRoute>
           }
         />

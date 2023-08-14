@@ -4,13 +4,13 @@ import {
   FetchAdminGiftCardRequestPayload,
   FetchAdminGiftCardRequestUserPayload,
   FulfillAdminGiftCardRequestPayload,
-  IAdminGiftCardRequest,
+  IAdminGiftCardRequest
 } from "../store/admin-gift-card-requests/types";
 import {
   FetchAdminOrganizationTransactionListPayload,
   IAdminOrganizationTransaction,
   PostAdminToOrgTransactionPayload,
-  PostOrgToEmployeesTransactionPayload,
+  PostOrgToEmployeesTransactionPayload
 } from "../store/admin-organization-transaction/types";
 import {
   AdminSendPointsToUserPayload,
@@ -23,33 +23,36 @@ import {
   IAdminInvite,
   IAdminOrganization,
   IAdminUser,
-  PostAdminInvitePayload,
+  PostAdminInvitePayload
 } from "../store/admin-organization/types";
 import { AuthUser } from "../store/auth/types";
-import { FetchGiftCardFilePayload } from "../store/gift-card-request/types";
+import {
+  FetchGiftCardFilePayload,
+  IGiftCardIntegration
+} from "../store/gift-card-request/types";
 import {
   DeleteOrgUserPayload,
   FetchOrgUserPayload,
   IOrganization,
   IOrgTransaction,
   IOrgUser,
-  SendPointsToUserPayload,
+  SendPointsToUserPayload
 } from "../store/orgs/types";
 import {
   ICompletementStep,
   PostCompletementStepsPayload,
-  SelfSignUpRequestPayload,
+  SelfSignUpRequestPayload
 } from "../store/self-signup/types";
 import {
   CancelUserInvitePayload,
   FetchUserInviteListPayload,
   IUserInvite,
-  PostUserInvitePayload,
+  PostUserInvitePayload
 } from "../store/user-invites/types";
 
 console.log("process.env.REACT_APP_BASE_URL", process.env.REACT_APP_BASE_URL);
 const api = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL
 });
 
 export const getAdminOrganizationTransactionList = (
@@ -59,13 +62,13 @@ export const getAdminOrganizationTransactionList = (
   api.get<IAdminOrganizationTransaction[]>(
     `admin/orgs/${payload.organizationId}/transactions/`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 
 export const getAdminOrganizationList = (token: string) =>
   api.get<IAdminOrganization[]>("admin/orgs/", {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getAdminUserList = (
@@ -73,7 +76,7 @@ export const getAdminUserList = (
   token: string
 ) =>
   api.get<IAdminUser[]>(`admin/orgs/${payload.organizationId}/users/`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getAdminInviteList = (
@@ -83,7 +86,7 @@ export const getAdminInviteList = (
   api.get<IAdminInvite[]>(
     `admin/orgs/${payload.organizationId}/user-invites/`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 
@@ -92,14 +95,14 @@ export const getAdminOrganization = (
   token: string
 ) =>
   api.get<IAdminOrganization>(`admin/orgs/${payload.organizationId}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getUserSelf = async (token: string) => {
   const response = await api.get<string>("users/self", {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`
+    }
   });
   return { authUser: response.data };
 };
@@ -112,7 +115,7 @@ export const postAdminToOrganizationTransaction = (
     `admin/orgs/${payload.organizationId}/transactions/admin-to-org/`,
     payload.adminToOrg,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -125,7 +128,7 @@ export const postOrganizationToEmployeesTransaction = (
     `admin/orgs/${payload.organizationId}/transactions/org-to-employees/`,
     payload.orgToEmployees,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -137,7 +140,7 @@ export const getAdminGiftCardRequest = (
   api.get<IAdminGiftCardRequest>(
     `admin/gift-card-requests/${payload.giftCardRequestId}`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 
@@ -146,7 +149,7 @@ export const getAdminGiftCardRequestUser = (
   token: string
 ) =>
   api.get<AuthUser>(`admin/users/${payload.userId}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const fulfillGiftCardRequest = (
@@ -161,8 +164,8 @@ export const fulfillGiftCardRequest = (
     {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
+        "Content-Type": "multipart/form-data"
+      }
     }
   );
 };
@@ -175,7 +178,7 @@ export const declineGiftCardRequest = (
     `admin/gift-card-requests/${payload.giftCardRequestId}/decline`,
     payload.declineData,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -188,7 +191,7 @@ export const postInviteAdmin = (
     `admin/orgs/${payload.orgId}/user-invites/`,
     payload.inviteData,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -201,24 +204,24 @@ export const cancelInviteAdmin = (
     `admin/user-invites/${payload.inviteId}/cancel`,
     {},
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
 
 export const getOrganization = (token: string) =>
   api.get<IOrganization>(`orgs/current_org`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getOrganizationTransactionList = (token: string) =>
   api.get<IOrgTransaction[]>(`orgs/current_org/transactions/`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getOrganizationUserList = (token: string) =>
   api.get<IOrgUser[]>(`orgs/current_org/users/`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const cancelInviteUser = (
@@ -229,7 +232,7 @@ export const cancelInviteUser = (
     `user-invites/${payload.inviteId}/cancel`,
     {},
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -239,7 +242,7 @@ export const postInviteUser = (
   token: string
 ) => {
   return api.post<string>(`user-invites/`, payload.inviteData, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 };
 
@@ -248,12 +251,12 @@ export const getUserInviteList = (
   token: string
 ) =>
   api.get<IUserInvite[]>(`user-invites/`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getAdminUser = (payload: FetchAdminUserPayload, token: string) =>
   api.get<AuthUser>(`admin/users/${payload.userId}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getGiftCardFile = (
@@ -262,7 +265,7 @@ export const getGiftCardFile = (
 ) =>
   api.get<any>(`gift-card-requests/${payload.giftCardRequestId}/file`, {
     responseType: "arraybuffer",
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const adminDeleteUser = (
@@ -270,17 +273,17 @@ export const adminDeleteUser = (
   token: string
 ) =>
   api.delete<string>(`admin/users/${payload.userId}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const getOrgUser = (payload: FetchOrgUserPayload, token: string) =>
   api.get<IOrgUser>(`users/${payload.userId}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const orgDeleteUser = (payload: DeleteOrgUserPayload, token: string) =>
   api.delete<string>(`users/${payload.userId}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const sendPointsToUserAdmin = (
@@ -291,7 +294,7 @@ export const sendPointsToUserAdmin = (
     `/admin/users/${payload.userId}/send-points`,
     payload.sendPointsData,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -304,7 +307,7 @@ export const sendPointsToUserUserManager = (
     `/users/${payload.userId}/send-points`,
     payload.sendPointsData,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };
@@ -315,7 +318,7 @@ export const selfSignupOrgUser = (payload: SelfSignUpRequestPayload) => {
 
 export const getCompletementStepList = (token: string) =>
   axios.get<ICompletementStep[]>("api/completement-steps/", {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` }
   });
 
 export const postCompletementStep = (
@@ -326,7 +329,31 @@ export const postCompletementStep = (
     `api/completement-steps/${payload.stepId}/update-status`,
     payload.completementStepStatus,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  );
+};
+
+export const getGiftCardIntegration = (
+  giftCardIntegrationId: string,
+  token: string
+) =>
+  api.get<IGiftCardIntegration>(
+    `/gift-card-integrations/${giftCardIntegrationId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  );
+
+export const sendPointsToUserPeerToPeer = (
+  payload: SendPointsToUserPayload,
+  token: string
+) => {
+  return api.post<string>(
+    `/users/${payload.userId}/send-p2p-points`,
+    payload.sendPointsData,
+    {
+      headers: { Authorization: `Bearer ${token}` }
     }
   );
 };

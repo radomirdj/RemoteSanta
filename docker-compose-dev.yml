@@ -98,6 +98,7 @@ services:
       AWS_REGION: ${AWS_REGION}
       EMAIL_FROM: ${EMAIL_FROM}
       FE_BASE_URL: http://localhost:3050/
+      CURRENCYFREAKS_KEY: ${CURRENCYFREAKS_KEY}
 
   api_full:
     <<: *app

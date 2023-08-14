@@ -48,9 +48,14 @@ export class AuthService {
     return userInviteList[0];
   }
 
-  async createUserSignupCore(tx, userDbData, orgId, password) {
+  async createUserSignupCore(tx, userDbData, countryId, orgId, password) {
     const dbUser = await this.usersService.createUserTransactional(tx, {
       ...userDbData,
+      country: {
+        connect: {
+          id: countryId,
+        },
+      },
       org: {
         connect: {
           id: orgId,
@@ -81,7 +86,7 @@ export class AuthService {
     const userInDb = await this.usersService.findByEmail(data.email);
     if (userInDb) throw new EmailInUseException();
 
-    const { orgName, password, ...userDbData } = data;
+    const { orgName, password, countryId, ...userDbData } = data;
     const dbUserId = await this.prisma.$transaction(async (tx) => {
       const orgDb = await this.adminOrgsService.createOrg(
         tx,
@@ -97,6 +102,7 @@ export class AuthService {
             ...userDbData,
             userRole: UserRoleEnum.USER_MANAGER,
           },
+          countryId,
           orgDb.id,
           password,
         ),
@@ -108,7 +114,7 @@ export class AuthService {
   }
 
   async signUp(data: CreateUserDto) {
-    const { password, code, ...userDbData } = data;
+    const { password, code, countryId, ...userDbData } = data;
     const userInvite = await this.findActiveInviteByCode(code);
     if (!userInvite) throw new NotFoundException('Active Invite Not Found');
 
@@ -122,6 +128,7 @@ export class AuthService {
           email: userInvite.email,
           userRole: userInvite.userRole,
         },
+        countryId,
         userInvite.orgId,
         password,
       );

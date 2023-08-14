@@ -9,7 +9,10 @@ export class GiftCardRequestDto {
   id: string;
 
   @Expose()
-  userId: string;
+  ownerId: string;
+
+  @Expose()
+  createdById: string;
 
   @Expose()
   giftCardIntegrationId: string;
@@ -22,10 +25,20 @@ export class GiftCardRequestDto {
   @ValidateNested()
   @Expose()
   @Type(() => UserDto)
-  user?: UserDto;
+  owner?: UserDto;
+
+  @ValidateNested()
+  @Expose()
+  @Type(() => UserDto)
+  createdBy?: UserDto;
 
   @Expose()
-  amount: string;
+  @Type(() => Number)
+  amount: number;
+
+  @Expose()
+  @Type(() => Number)
+  giftCardIntegrationCurrencyAmount?: number;
 
   @Expose()
   adminComment?: string;

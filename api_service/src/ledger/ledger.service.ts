@@ -85,6 +85,38 @@ export class LedgerService {
     return balanceSideDBList[0];
   }
 
+  async createP2PTransaction(
+    userFromId: string,
+    userToId: string,
+    amount: number,
+    message = '',
+  ): Promise<Ledger> {
+    const [{ activeList: activeListFrom }, { activeList: activeListTo }] =
+      await Promise.all([
+        this.getUserListLedgerSide([userFromId], this.prisma),
+        this.getUserListLedgerSide([userToId], this.prisma),
+      ]);
+    const sideFrom = activeListFrom[0].id;
+    const sideTo = activeListTo[0].id;
+    return this.prisma.ledger.create({
+      data: {
+        type: LedgerTypeEnum.P2P_SEND_POINTS,
+        amount,
+        detailsJson: { message },
+        from: {
+          connect: {
+            id: sideFrom,
+          },
+        },
+        to: {
+          connect: {
+            id: sideTo,
+          },
+        },
+      },
+    });
+  }
+
   async createAdminToOrgTransaction(
     tx,
     orgId: string,

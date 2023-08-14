@@ -15,7 +15,9 @@ import { GiftDateTypeEnum, GiftDateRecurrenceTypeEnum } from '@prisma/client';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
- 
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('Gift Dates - create', () => {
   let app: INestApplication;
@@ -204,7 +206,9 @@ describe('Gift Dates - create', () => {
       )
       .send({ ...newGiftDateOther, type: 'othr' })
       .expect(400);
-    expect(response.body.message[0]).toEqual('type must be a valid enum value');
+    expect(response.body.message[0]).toEqual(
+      'type must be one of the following values: HOLIDAY, BIRTHDAY, OTHER',
+    );
   });
 
   it('/gift-dates (POST) - try to create type OTHER without reaccurance type', async () => {

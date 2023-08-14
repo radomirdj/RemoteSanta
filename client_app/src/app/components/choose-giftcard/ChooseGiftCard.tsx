@@ -1,6 +1,10 @@
 import {
+  FormControl,
   Grid,
   InputBase,
+  InputLabel,
+  MenuItem,
+  Select,
   Step,
   StepLabel,
   Stepper,
@@ -25,22 +29,25 @@ import ChooseAmount from "./ChooseAmount";
 import GiftCardRequestOverview from "./GiftCardRequestOverview";
 import SearchIcon from "@mui/icons-material/Search";
 import DeclineIllustration from "./../../assets/illustrations/decline-gift-card-request-illustration.svg";
+import { countryList } from "../../enums/CountryList";
 
-const ChooseGiftCard = () => {
+const ChooseGiftCard = (props: any) => {
   const dispatch = useDispatch();
   const giftCardIntegrationList = useSelector(
     getGiftCardIntegrationListSelector
   );
+  const [countryId, setCountryId] = React.useState<string>(props.countryId);
   const activeStep = useSelector(getStepperPagetSelector);
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
   const [searchValue, setSearchValue] = React.useState("");
+
   useEffect(() => {
     dispatch(setGiftCardRequestResetData());
-    dispatch(fetchGiftCardIntegrationList());
+    dispatch(fetchGiftCardIntegrationList({ countryId }));
   }, [dispatch]);
 
   const giftCardIntegrationFilteredList = giftCardIntegrationList.filter(
-    (giftCardIntegration) => {
+    (giftCardIntegration: any) => {
       if (!searchValue) return true;
       if (
         giftCardIntegration.title
@@ -55,12 +62,23 @@ const ChooseGiftCard = () => {
     }
   );
 
+  const setCountry = (id: string) => {
+    dispatch(fetchGiftCardIntegrationList({ countryId: id }));
+    setCountryId(id);
+  };
+
   return (
     <>
       <AppHeaderPrivate />
       <div className="background choose-gift-card">
         <Grid container spacing={4} className="grid-style">
           <Grid item xs={12}>
+            {props.sendToUserId !== null && activeStep === 0 && (
+              <Typography className="send-to-user-title">
+                Pick a perfect gift card for {props.sendToUserName}
+              </Typography>
+            )}
+
             <Stepper
               alternativeLabel
               activeStep={activeStep}
@@ -76,13 +94,51 @@ const ChooseGiftCard = () => {
             </Stepper>
           </Grid>
           {activeStep === 0 && (
-            <Grid item xs={12} className="search-item">
-              <InputBase
-                placeholder="Search for your favorite gift card..."
-                className="search-field"
-                startAdornment={<SearchIcon className="search-icon-style" />}
-                onChange={(e: any) => setSearchValue(e.target.value)}
-              />
+            <Grid container className="menu-grid">
+              <Grid item xs={12} md={4} className="country-item">
+                <FormControl variant="outlined">
+                  <InputLabel
+                    id="countryLabel"
+                    className="country-label"
+                  ></InputLabel>
+                  <Select
+                    labelId="countryLabel"
+                    id="country"
+                    className="country-field"
+                    label="Country"
+                    value={countryId}
+                    onChange={(e) => setCountry(e.target.value)}
+                  >
+                    {countryList.map((country, i) => {
+                      return (
+                        <MenuItem value={country.id} key={country.id}>
+                          {country.countryName !== "Other" && (
+                            <img
+                              src={country.flag}
+                              alt=""
+                              style={{
+                                marginRight: "8px",
+                                height: "24px",
+                                width: "40px",
+                                verticalAlign: "sub",
+                              }}
+                            />
+                          )}{" "}
+                          {country.countryName}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} md={8} className="search-item">
+                <InputBase
+                  placeholder="Search for your favorite gift card..."
+                  className="search-field"
+                  startAdornment={<SearchIcon className="search-icon-style" />}
+                  onChange={(e: any) => setSearchValue(e.target.value)}
+                />
+              </Grid>
             </Grid>
           )}
           {giftCardIntegrationFilteredList.length === 0 &&
@@ -100,7 +156,7 @@ const ChooseGiftCard = () => {
               </div>
             )}
           {activeStep === 0 &&
-            giftCardIntegrationFilteredList.map((element, i) => {
+            giftCardIntegrationFilteredList.map((element: any, i: number) => {
               return (
                 <Grid item xs={12} sm={6} md={3} key={i}>
                   <GiftCardIntegrationItem {...element} />
@@ -109,12 +165,18 @@ const ChooseGiftCard = () => {
             })}
           {activeStep === 1 && (
             <Grid item xs={12}>
-              <ChooseAmount />
+              <ChooseAmount
+                sendToEmail={props.sendToEmail}
+                hasMessage={props.sendToUserId !== null}
+              />
             </Grid>
           )}
           {activeStep === 2 && (
             <Grid item xs={12}>
-              <GiftCardRequestOverview />
+              <GiftCardRequestOverview
+                sendToEmail={props.sendToEmail}
+                sendToUserId={props.sendToUserId}
+              />
             </Grid>
           )}
         </Grid>

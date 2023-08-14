@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+  head
+    style(type='text/css').
+      // Add your custom CSS styles here
+  body
+    p Hi #{firstNameSender},
+    p The #{giftCardIntegrationTitle} gift card you sent to #{firstNameRecipient} was unfortunately declined and will not be processed.
+    p All pending points are released and returned to you.
+    p We hope you will find some other shop to send a gift to #{firstNameRecipient}.
+    p The reason for declining the gift card:
+    fieldset #{adminComment}
+    p Best regards,
+    p Remote Santa Team

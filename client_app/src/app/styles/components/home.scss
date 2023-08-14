@@ -159,54 +159,42 @@ $stepper-card-font-size: 13px;
               }
         } 
 
-        .home-title-right{
+        .home-balance{
             font-weight: 500;
+            font-family: "Montserrat";
             cursor: pointer;
+            width: max-content;
+            margin-bottom: variables.$base-unit * 2;
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-large;
+            }
+
             @media screen and (max-width: variables.$breakpoint-md) {
-                font-family: "Montserrat";
-                font-size: $points-font-size;
-                width: max-content;
                 margin-left: variables.$base-unit * 2;
-              }
-            
-              @media screen and (min-width: variables.$breakpoint-md) {
-                font-family: "Montserrat";
-                font-size: variables.$font-size-title;
-                width: max-content;
-                float: right;
-                margin-right: $margin-right;
-              }
+                font-size: $points-font-size;
+            }
         } 
+
 
         .home-text{
             font-family: "Montserrat";
             font-size: variables.$font-size-medium;
-            margin-bottom: variables.$base-unit ;
             width: max-content;
             color: variables.$color-neutral-gray;
             padding-bottom: variables.$base-unit ;
             @media screen and (max-width: variables.$breakpoint-md) {
+                margin-top: variables.$base-unit*2 ;
                 margin-left: variables.$base-unit * 2;
+            }
+
+            @media screen and (min-width: variables.$breakpoint-md) {
+                margin-top: variables.$base-unit *3;
             }
         }
 
-        .home-link{
-            cursor: pointer;
-        }
-
-        .home-text-right{
-            font-family: "Montserrat";
-            font-size: variables.$font-size-medium;
-            margin-bottom: variables.$base-unit ;
-            width: max-content;
-            color: variables.$color-neutral-gray;
-            padding-bottom: variables.$base-unit ;
-            float: right;
-            margin-right: $margin-right;
-        }
 
         .card-item{
-            background-color: rgb(253, 222, 146, 0.5);
+            background-color: #e1e1b5;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
             margin-bottom: variables.$base-unit * 2;
             height:  variables.$base-unit  * 11;
@@ -215,66 +203,124 @@ $stepper-card-font-size: 13px;
             .card-grid-item{
                 margin-right: auto;
                 margin-left: variables.$base-unit * 2;
+                padding-top: 0px;
             }
 
             .card-illustration-style{
                 width: $dollar-illustration-width;
                 height: $dollar-illustration-height;
+       
                 @media screen and (max-width: variables.$breakpoint-md) {
                     width: variables.$base-unit * 7;
                 }
             }
 
             .card-description{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    margin-top: variables.$base-unit * 3;
-                    font-family: "Montserrat";
-                    margin-left: variables.$base-unit * 3;
-                }
-                
-                @media screen and (min-width: variables.$breakpoint-md) {
-                    font-family: "Montserrat";
-                    margin-bottom: auto;
-                    margin-top: auto;
+                font-family: "Montserrat";
+                @media screen and (max-width: variables.$breakpoint-sm) {
+                    margin-left: variables.$base-unit * 4;
+                    font-size: variables.$font-size-normal;
                 }
             }
 
-            .card-description-text{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    visibility: hidden;
-                }
-            }
+          
 
             .grid-description-style{
                 margin-top: auto;
-                margin-bottom: variables.$base-unit * 5;
+                margin-bottom: auto;
+                justify-content: start;
+                display: flex;
             }
 
-            .card-points{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    font-size: variables.$font-size-medium;
-                    margin-right: variables.$base-unit;
-                    font-family: "Montserrat";
-                    font-weight: 500;
-                }
-                @media screen and (min-width: variables.$breakpoint-md) {
-                    font-size: variables.$font-size-large;
-                    font-family: "Montserrat";
-                    float: right;
-                    margin-right: variables.$base-unit * 5;
-                    font-weight: 500;
-                  }
+        }
+
+        .step-card{
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding-top: variables.$base-unit;
+            padding-bottom: variables.$base-unit;
+            padding-left: variables.$base-unit;
+            padding-right: variables.$base-unit;
+            border-radius: variables.$base-unit * 3;
+            height: variables.$base-unit * 20;
+        }
+
+        .step-title{
+            font-family: "Montserrat";
+            font-weight: 600;
+            margin-bottom: variables.$base-unit * 2;
+            @media screen and (min-width: variables.$breakpoint-sm) {
+                font-size: 20px;
             }
 
-            .grid-points-style{
-                @media screen and (max-width: variables.$breakpoint-md) {
-                    margin-top: variables.$base-unit * 3;
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                width: 60%;
+                margin-left: variables.$base-unit;
+                font-size: variables.$font-size-medium;
+            }
+        }
+
+        .step-text{
+            font-family: "Montserrat";
+            font-size: variables.$font-size-small;
+           
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit;
+            }
+        }
+
+        .step-grid-item{
+            padding-left: 8px !important;
+        }
+
+        .step-grid-item-button{
+            padding-left: 0px !important;
+            padding-top: 0px !important;
+
+            .use-points-button,
+            & .use-points-button:hover {
+                background-color: variables.$color-dark-yellow;
+                border-radius: variables.$base-unit * 5;
+                box-shadow: none;
+                color: variables.$color-neutral-black;
+                text-transform: none;
+                height: variables.$base-unit * 5;
+                font-weight: bold;
+                margin-left: variables.$base-unit ;
+                text-align: center;
+                @media screen and (min-width: variables.$breakpoint-sm) {
+                    width: 70%;
                 }
-                
-                @media screen and (min-width: variables.$breakpoint-md) {
-                    margin-top: auto;
-                    margin-bottom: $points-margin-bottom;
+
+                @media screen and (max-width: variables.$breakpoint-sm) {
+                    width: 60%;
                 }
+            }
+        }
+
+        .step-icon-style{
+            width: 20px;
+            height: 20px;
+            margin-right: variables.$base-unit;
+        }
+
+        .step-illustration{
+            width: variables.$base-unit * 10;
+            margin-right: variables.$base-unit * 2;
+            margin-top: variables.$base-unit * 2;
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit * 3;
+            }
+        }
+
+        .step-illustration-recognize{
+            width: variables.$base-unit * 8;
+            margin-right: variables.$base-unit * 2;
+            margin-top: variables.$base-unit * 2;
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit * 4;
             }
         }
     }

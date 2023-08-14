@@ -6,6 +6,7 @@ import {
   getOrganizationUserList,
   getOrgUser,
   orgDeleteUser,
+  sendPointsToUserPeerToPeer,
   sendPointsToUserUserManager,
 } from "../../services/api-service";
 import {
@@ -19,6 +20,8 @@ import {
   fetchOrganizationUserListSuccess,
   fetchOrgUserFailure,
   fetchOrgUserSuccess,
+  peerSendPointsToUserFailure,
+  peerSendPointsToUserSuccess,
   sendPointsToUserFailure,
   sendPointsToUserSuccess,
   setCloseDialogSendPoints,
@@ -29,6 +32,7 @@ import {
   FETCH_ORG_TRANSACTION_LIST,
   FETCH_ORG_USER,
   FETCH_ORG_USER_LIST,
+  PEER_SEND_POINTS_TO_USER,
   SEND_POINTS_TO_USER,
 } from "./actionTypes";
 import {
@@ -139,7 +143,7 @@ function* deleteOrgUserSaga(action: DeleteOrgUser) {
       token
     );
     yield put(deleteOrgUserSuccess());
-    action.navigate("/user-manager-users");
+    action.navigate("/my-team");
   } catch (e) {
     yield put(
       deleteOrgUserFailure({
@@ -155,11 +159,28 @@ function* sendPointsToUserSaga(action: SendPointsToUser) {
     yield call(sendPointsToUserUserManager, action.payload, token);
     yield put(sendPointsToUserSuccess());
     yield put(setCloseDialogSendPoints());
-    action.navigate(`/user-manager-users`);
+    action.navigate(`/my-team`);
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(
       sendPointsToUserFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+function* peerSendPointsToUserSaga(action: SendPointsToUser) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(sendPointsToUserPeerToPeer, action.payload, token);
+    yield put(peerSendPointsToUserSuccess());
+    yield put(setCloseDialogSendPoints());
+    action.navigate(`/my-team-send-points-success`);
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      peerSendPointsToUserFailure({
         error: e.response.data.message,
       })
     );
@@ -181,6 +202,7 @@ function* OrganizationSaga() {
     takeLatest(FETCH_ORG_USER, fetchOrgUserSaga),
     takeLatest(DELETE_ORG_USER, deleteOrgUserSaga),
     takeLatest(SEND_POINTS_TO_USER, sendPointsToUserSaga),
+    takeLatest(PEER_SEND_POINTS_TO_USER, peerSendPointsToUserSaga),
   ]);
 }
 

@@ -1,6 +1,7 @@
 @use "./../variables.scss";
 
 $logo-height:42px;
+$user-manager-button-height: 44px;
 
 .app-header-private{
     background-color: variables.$main-yellow !important;
@@ -60,10 +61,26 @@ $logo-height:42px;
         font-weight: 700;
     }
 
-    .user-manager-icon{
-        width: variables.$base-unit *5;
-        height: variables.$base-unit *5;
-    }
+        .user-manager-button,
+        & .user-manager-button:hover {
+            float: left;
+            color: variables.$color-neutral-black;
+            text-transform: none;
+            height:$user-manager-button-height;
+            background-color: variables.$main-yellow;
+            border-color: black;
+            font-family: "Montserrat";
+            border-radius:variables.$base-unit *3;
+            margin-left: variables.$base-unit *3;
+
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: 15px;
+            }
+
+            @media screen and (max-width: variables.$breakpoint-md) {
+               border:none;
+            }
+        }
 
     .logo-style{
         height: $logo-height;

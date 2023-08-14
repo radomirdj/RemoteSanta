@@ -1,0 +1,246 @@
+@use "./../variables.scss";
+
+$grid-margin-bottom:10px;
+
+.my-team-send-points{
+    background-image: url("./../../assets/single-employee-transaction.svg");
+
+    .card-style{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400;
+        border-radius: variables.$base-unit * 3;
+        padding-top: variables.$base-unit * 2;
+        padding-bottom: variables.$base-unit * 2;
+        padding-left: variables.$base-unit * 5;
+        padding-right: variables.$base-unit * 5;
+        margin-top: variables.$base-unit * 3;
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          width: 80%;
+        }
+
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          width: $card-width;
+         
+        }
+    }
+
+    .title-style{
+        font-family: "Montserrat";
+        font-weight: 500;
+        margin-bottom: variables.$base-unit * 2;
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          font-size: variables.$font-size-larger;
+        }
+    
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          font-size: variables.$font-size-title;
+        }
+    }
+
+    .MuiFormControl-root {
+      margin: 0px;
+      width: 100%;
+      border-radius: variables.$base-unit;
+  
+      .MuiOutlinedInput-root {
+        border-radius: variables.$base-unit;
+      }
+  
+      .MuiOutlinedInput-root.Mui-error {
+        .MuiOutlinedInput-notchedOutline {
+          border-color: variables.$error-color;
+        }
+      }
+  
+      .MuiFormLabel-root.Mui-error {
+        color: $registration-error-label-color;
+      }
+  
+      .MuiSelect-select {
+        text-align: start;
+      }
+
+      .MuiFormGroup-root{
+        .MuiFormControlLabel-root{
+          .MuiTypography-root{
+            font-family: "Montserrat";
+          }
+          .MuiButtonBase-root{
+            color: #514e4e;
+          }
+        }
+      }
+  }
+
+  .amount-error {
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 3;
+    display: inline-flex;
+    width: 100%;
+
+    .amount-error-icon {
+      width: $login-error-icon-width !important;
+      height: $login-error-icon-height;
+      width: 10%;
+      margin-right: variables.$base-unit;
+    }
+
+    .amount-error-message {
+      width: 90%;
+      font-size: variables.$font-size-small;
+    }
+  }
+
+  .amount-input {
+    margin-bottom: variables.$base-unit * 2 !important;
+  }
+
+  .amount-input-with-error {
+    margin-bottom: 0px !important;
+  }
+
+  .amount-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit;
+    display: inline-flex;
+    width: 100%;
+  }
+
+  .role-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 2;
+    display: inline-flex;
+    width: 100%;
+  }
+
+  .points-in-currency-style{
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
+    margin-bottom: variables.$base-unit * 2;
+    margin-top: -8px;
+  }
+
+  .comment-input {
+    margin-bottom: variables.$base-unit * 2 !important;
+  }
+
+  .comment-input-with-error {
+    margin-bottom: 0px !important;
+  }
+
+  .comment-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 2;
+    display: inline-flex;
+    width: 100%;
+  }
+  
+  .back-button,
+  & .back-button:hover {
+    float: left;
+    background-color: white;
+    border-color:variables.$color-neutral-black;
+    border-radius: variables.$base-unit;
+    box-shadow: none;
+    color: variables.$color-neutral-black;
+    text-transform: none;
+    height: $button-height;
+    font-weight: bold;
+    margin-bottom: variables.$base-unit ;
+    margin-top: variables.$base-unit* 2 ;
+
+    .back-icon{
+        margin-bottom: $back-icon-margin-bottom;
+    }
+  }
+
+  .child-card{
+    background-color: rgb(207, 209, 129, 0.5);
+    height: variables.$base-unit * 11;
+    border-radius: variables.$base-unit * 3;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    font-family: "Montserrat";
+    padding: variables.$base-unit * 2;
+    margin-bottom: variables.$base-unit * 2;
+
+
+    .column-name{
+        font-weight: 600;
+
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          font-size: variables.$font-size-normal;
+        }
+    
+    }
+
+    .column-value{
+
+      @media screen and (max-width: variables.$breakpoint-sm) {
+        font-size: variables.$font-size-normal;
+      }
+  
+  }
+
+    .grid-container{
+        margin-bottom: $grid-margin-bottom;
+    }
+  }
+
+  .send-points-button,
+    & .send-points-button:hover {
+        background-color: variables.$main-blue;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: black;
+        text-transform: none;
+        height: $button-height;
+        float: right;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit ;
+        margin-top: variables.$base-unit * 2;
+
+        @media screen and (max-width: variables.$breakpoint-md) {
+          width: 100%;
+      }
+  
+      @media screen and (min-width: variables.$breakpoint-md) {
+          max-width: $content-width;
+      }
+    }
+
+    .gift-icon-style{
+      margin-right: variables.$base-unit;
+    }
+
+    .role-input {
+      margin-bottom: variables.$base-unit * 2 !important;
+    }
+  
+    .role-input-with-error {
+      margin-bottom: 0px !important;
+    }
+
+    .active-amount{
+      font-family: "Montserrat";
+      margin-bottom: variables.$base-unit * 2;
+      font-size: variables.$font-size-normal;
+      font-weight: 400;
+    }
+
+    .active-amount-manager{
+      font-family: "Montserrat";
+      margin-bottom: 4px;
+      font-size: variables.$font-size-normal;
+      font-weight: 400;
+    }
+}

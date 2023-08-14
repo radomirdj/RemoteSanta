@@ -104,9 +104,24 @@ export class UsersController {
   }
 
   @Get('/:id')
-  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  @UseGuards(AuthGuard('jwt'))
   async getUserDetails(@Param('id') id: string, @CurrentUser() user: User) {
     return this.adminUsersService.getUserDetailsById(id, true, user.orgId);
+  }
+
+  @Post('/:id/send-p2p-points')
+  @UseGuards(AuthGuard('jwt'))
+  async sendPersonalPointsToUser(
+    @Param('id') id: string,
+    @Body() body: SendPointsToEmployeeDto,
+    @CurrentUser() user: UserDto,
+  ) {
+    return this.adminUsersService.sendP2PPoints(
+      id,
+      user,
+      body.amount,
+      body.message,
+    );
   }
 
   @Post('/:id/send-points')

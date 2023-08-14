@@ -308,6 +308,7 @@ export class AdminOrgsService {
       message,
       orgName,
       user.firstName,
+      amount,
     );
 
     return orgToEmployeeTransaction;
@@ -363,9 +364,12 @@ export class AdminOrgsService {
         admin.id,
         async () => {
           const to = employeeList.map((employee) => employee.email);
-          await this.emailsService.sendClaimPointsEmail(
+          await this.emailsService.sendClaimPointsMonthEmail(
             to.slice(0, 50),
+            org.name,
+            claimPointsEvent.title,
             claimPointsEvent.description,
+            org.pointsPerMonth,
           );
         },
       );

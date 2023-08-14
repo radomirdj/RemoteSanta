@@ -1,3 +1,4 @@
+import { AuthUser } from "../auth/types";
 import {
   FETCH_GIFT_CARD_REQUEST_LIST,
   FETCH_GIFT_CARD_REQUEST_LIST_SUCCESS,
@@ -15,6 +16,9 @@ import {
   FETCH_GIFT_CARD_FILE,
   FETCH_GIFT_CARD_FILE_SUCCESS,
   FETCH_GIFT_CARD_FILE_FAILURE,
+  FETCH_GIFT_CARD_INTEGRATION,
+  FETCH_GIFT_CARD_INTEGRATION_SUCCESS,
+  FETCH_GIFT_CARD_INTEGRATION_FAILURE,
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
@@ -26,6 +30,9 @@ export interface IGiftCardIntegration {
   constraintType: string;
   priority: number;
   constraintJson: string;
+  currency: string;
+  pointsToCurrencyConversionRate?: number;
+  countryId?: string;
 }
 
 export interface IGiftCardFile {
@@ -35,7 +42,10 @@ export interface IGiftCardFile {
 export interface IGiftCardRequest {
   id: string;
   adminComment: string;
-  userId: string;
+  ownerId: string;
+  owner: AuthUser;
+  createdById: string;
+  createdBy: AuthUser;
   giftCardIntegrationId: string;
   amount: string;
   status: string;
@@ -48,9 +58,12 @@ export interface GiftCardRequestState {
   pending: boolean;
   giftCardRequestList: IGiftCardRequest[];
   giftCardIntegrationList: IGiftCardIntegration[];
+  giftCardIntegration: IGiftCardIntegration | null;
   giftCardRequestIntegration: IGiftCardIntegration | null;
   stepperPage: number;
   giftCardRequestAmount: number;
+  giftCardRequestMessage: string | null;
+  giftCardRequestAmountInIntegrationCurrency: number;
   error: string | null;
 }
 
@@ -62,11 +75,27 @@ export interface FetchGiftCardRequestListFailurePayload {
   error: string;
 }
 
+export interface FetchGiftCardIntegrationListPayload {
+  countryId: string;
+}
+
 export interface FetchGiftCardIntegrationListSuccessPayload {
   giftCardIntegrationList: IGiftCardIntegration[];
 }
 
 export interface FetchGiftCardIntegrationListFailurePayload {
+  error: string;
+}
+
+export interface FetchGiftCardIntegrationPayload {
+  giftCardIntegrationId: string;
+}
+
+export interface FetchGiftCardIntegrationSuccessPayload {
+  giftCardIntegration: IGiftCardIntegration;
+}
+
+export interface FetchGiftCardIntegrationFailurePayload {
   error: string;
 }
 
@@ -76,6 +105,8 @@ export interface SetGiftCardIntegrationPayload {
 
 export interface SetGiftCardAmountPayload {
   amount: number;
+  amountInIntegrationCurrency: number;
+  message?: string;
 }
 
 export interface SetGiftCardRequestStepBackPayload {
@@ -85,6 +116,9 @@ export interface SetGiftCardRequestStepBackPayload {
 export interface PostGiftCardRequestPayload {
   giftCardIntegrationId: string;
   amount: number;
+  giftCardIntegrationCurrencyAmount: number;
+  sendToUserId?: string;
+  message?: string;
 }
 
 export interface PostGiftCardRequestFailurePayload {
@@ -115,6 +149,7 @@ export interface FetchGiftCardRequestListFailure {
 
 export interface FetchGiftCardIntegrationList {
   type: typeof FETCH_GIFT_CARD_INTEGRATION_LIST;
+  payload: FetchGiftCardIntegrationListPayload;
 }
 
 export interface FetchGiftCardIntegrationListSuccess {
@@ -175,6 +210,21 @@ export interface FetchGiftCardFileFailure {
   payload: FetchGiftCardFileFailurePayload;
 }
 
+export interface FetchGiftCardIntegration {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION;
+  payload: FetchGiftCardIntegrationPayload;
+}
+
+export interface FetchGiftCardIntegrationSuccess {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_SUCCESS;
+  payload: FetchGiftCardIntegrationSuccessPayload;
+}
+
+export interface FetchGiftCardIntegrationFailure {
+  type: typeof FETCH_GIFT_CARD_INTEGRATION_FAILURE;
+  payload: FetchGiftCardIntegrationFailurePayload;
+}
+
 export type GiftCardRequestActions =
   | FetchGiftCardRequestListFailure
   | FetchGiftCardRequestListSuccess
@@ -191,4 +241,7 @@ export type GiftCardRequestActions =
   | PostGiftCardRequestFailure
   | FetchGiftCardFile
   | FetchGiftCardFileSuccess
-  | FetchGiftCardFileFailure;
+  | FetchGiftCardFileFailure
+  | FetchGiftCardIntegration
+  | FetchGiftCardIntegrationSuccess
+  | FetchGiftCardIntegrationFailure;

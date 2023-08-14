@@ -33,17 +33,20 @@ model User {
   GiftDate                        GiftDate[]
   birthDate                       DateTime?                     @db.Date
   gender                          GenderEnum?
+  country                         Country                       @relation(fields: [countryId], references: [id])
+  countryId                       String
   userRole                        UserRoleEnum                  @default(BASIC_USER)
   org                             Org                           @relation(fields: [orgId], references: [id])
   orgId                           String
   deleted                         Boolean                       @default(false)
-  GiftCardRequest                 GiftCardRequest[]
-  GiftCard                        GiftCard[]
   claimPointsEventFulfillmentUser ClaimPointsEventFulfillment[] @relation("ClaimPointsEventFulfillment_user")
   OrgTransaction                  OrgTransaction[]
   BalanceSide                     BalanceSide[]
   UserInvite                      UserInvite[]
   UserInviteImportJob             UserInviteImportJob[]
+  giftCardRequestCreator          GiftCardRequest[]             @relation("GiftCardRequest_owner")
+  giftCardRequestOwner            GiftCardRequest[]             @relation("GiftCardRequest_creator")
+  GiftCard                        GiftCard[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -225,6 +228,7 @@ model GiftCardIntegration {
   constraintJson  Json
   country         Country                      @relation(fields: [countryId], references: [id])
   countryId       String
+  currency        String                       @default("---")
   GiftCardRequest GiftCardRequest[]
 }
 
@@ -235,17 +239,20 @@ enum GiftCardRequestStatusEnum {
 }
 
 model GiftCardRequest {
-  id                    String                    @id @default(uuid())
-  user                  User                      @relation(fields: [userId], references: [id])
-  userId                String
-  giftCardIntegration   GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
-  giftCardIntegrationId String
-  adminComment          String?
-  amount                Int
-  status                GiftCardRequestStatusEnum
-  createdAt             DateTime                  @default(now())
-  updatedAt             DateTime                  @updatedAt
-  GiftCard              GiftCard?
+  id                                String                    @id @default(uuid())
+  createdBy                         User                      @relation("GiftCardRequest_creator", fields: [createdById], references: [id])
+  createdById                       String
+  owner                             User                      @relation("GiftCardRequest_owner", fields: [ownerId], references: [id])
+  ownerId                           String
+  giftCardIntegration               GiftCardIntegration       @relation(fields: [giftCardIntegrationId], references: [id])
+  giftCardIntegrationId             String
+  adminComment                      String?
+  amount                            Int
+  giftCardIntegrationCurrencyAmount Float?                    @default(0.0)
+  status                            GiftCardRequestStatusEnum
+  createdAt                         DateTime                  @default(now())
+  updatedAt                         DateTime                  @updatedAt
+  GiftCard                          GiftCard?
 }
 
 model GiftCard {
@@ -281,6 +288,7 @@ model BalanceSide {
 enum LedgerTypeEnum {
   ORG_TO_EMPLOYEES_BY_EVENT
   EMPLOYEES_TO_ORG_BY_EVENT
+  P2P_SEND_POINTS
   ADMIN_TO_ORG
   GIFT_CARD_REQUEST_CREATED
   GIFT_CARD_REQUEST_COMPLETED
@@ -308,6 +316,7 @@ model Country {
   countryName            String
   Org                    Org[]
   GiftCardIntegration    GiftCardIntegration[]
+  User                   User[]
 }
 
 model Report {

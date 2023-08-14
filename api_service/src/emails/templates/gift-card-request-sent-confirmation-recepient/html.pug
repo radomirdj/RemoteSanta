@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    style(type='text/css').
+      // Add your custom CSS styles here
+  body
+    p Dear #{firstNameRecipient},
+    p Your colleague, #{firstNameSender}, has gifted you a special surprise through Remote Santa! We're thrilled to inform you that a gift card has been purchased on your behalf and our team is working diligently to ensure its delivery.
+    p At Remote Santa, we believe in creating memorable gifting experiences. To make this gift truly exceptional, some manual work is involved in the process of acquiring your chosen gift card. Rest assured, our diligent "Elfs" are meticulously handpicking and preparing your gift card to make it truly special.
+    p Details of your gift card:
+    ul
+      li Store: #{storeName}
+      li Amount: #{amount} #{currency}
+    p Along with the gift card, your colleague has also included a personalized message:
+    blockquote #{personalizedMessage}
+    p You will receive your beautifully designed digital gift card at this email address once it's ready. We appreciate your patience, and we're confident that it will be worth the wait!
+    p In the meantime, if you'd like to send a message to your colleague, simply reply to this email. Your response will be forwarded to #{firstNameSender}.
+    p Warm regards,
+    p Remote Santa Team
