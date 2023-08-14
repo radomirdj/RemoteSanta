@@ -10,6 +10,8 @@ import { UserDto } from '../users/dtos/user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { OrgDto } from '../users/dtos/org.dto';
 import { UserRoleEnum } from '.prisma/client';
+import { NotEnoughBalanceException } from '../errors/notEnoughBalanceException';
+import { EmailsService } from '../emails/emails.service';
 
 @Injectable()
 export class AdminUsersService {
@@ -18,6 +20,7 @@ export class AdminUsersService {
     private ledgerService: LedgerService,
     private adminOrgsService: AdminOrgsService,
     private prisma: PrismaService,
+    private emailsService: EmailsService,
   ) {}
 
   async getUserDetailsById(
@@ -66,6 +69,35 @@ export class AdminUsersService {
         },
       });
     });
+  }
+
+  async sendP2PPoints(
+    userReceivePointsId: string,
+    createdByUser: UserDto,
+    amount: number,
+    message: string,
+  ) {
+    const [userReceivePoints, _] = await Promise.all([
+      this.usersService.findDbBasicUserById(userReceivePointsId),
+      this.ledgerService.validateUserActiveBalance(createdByUser.id, amount),
+    ]);
+    if (!userReceivePoints || createdByUser.org.id !== userReceivePoints.orgId)
+      throw new NotFoundException('User Not Found');
+
+    const ledgerTransaction = await this.ledgerService.createP2PTransaction(
+      createdByUser.id,
+      userReceivePointsId,
+      amount,
+      message,
+    );
+    this.emailsService.sendP2PPointsEmail(
+      userReceivePoints.email,
+      message,
+      `${createdByUser.firstName} ${createdByUser.lastName}`,
+      userReceivePoints.firstName,
+      amount,
+    );
+    return ledgerTransaction;
   }
 
   async sendPointsToEmployee(

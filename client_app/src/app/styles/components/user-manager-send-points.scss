@@ -69,6 +69,13 @@ $grid-margin-bottom:10px;
         width: 100%;
     }
 
+    .points-in-currency-style{
+      font-family: "Montserrat";
+      font-size: variables.$font-size-small;
+      margin-bottom: variables.$base-unit * 2;
+      margin-top: -8px;
+    }
+
     .comment-error-fe {
         font-size: variables.$font-size-small;
         color: variables.$error-color;

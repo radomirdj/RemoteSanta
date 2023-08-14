@@ -2,6 +2,8 @@
 
 $registration-error-label-color: #666666;
 $terms-margin-bottom: 10px;
+$flag-height:28px;
+$helper-text-font-size:14px;
 
 .registration {
   @media screen and (max-width: variables.$breakpoint-md) {
@@ -72,7 +74,7 @@ $terms-margin-bottom: 10px;
   }
 
   .registration-input {
-    margin-bottom: variables.$base-unit * 2 !important;
+    margin-bottom: variables.$base-unit * 2 !important;  
   }
 
   .registration-input-with-error {
@@ -115,6 +117,20 @@ $terms-margin-bottom: 10px;
     .MuiOutlinedInput-notchedOutline {
       border-color: variables.$error-color;
     }
+  }
+
+  .registration-country-with-error {
+    .MuiOutlinedInput-notchedOutline {
+      border-color: variables.$error-color;
+    }
+  }
+
+  .date-of-birth-helper{
+    margin-top: -8px;
+    margin-bottom: variables.$base-unit *2;
+    margin-left: variables.$base-unit * 2;
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
   }
 
   .registration-error-fe {

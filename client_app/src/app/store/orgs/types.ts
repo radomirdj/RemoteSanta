@@ -22,7 +22,18 @@ import {
   SEND_POINTS_TO_USER_FAILURE,
   SET_OPEN_DIALOG_SEND_POINTS,
   SET_CLOSE_DIALOG_SEND_POINTS,
+  PEER_SEND_POINTS_TO_USER,
+  PEER_SEND_POINTS_TO_USER_SUCCESS,
+  PEER_SEND_POINTS_TO_USER_FAILURE,
 } from "./actionTypes";
+
+export interface IOrganizationCountry {
+  id: string;
+  currencyString: string;
+  countryCode: string;
+  countryName: string;
+  conversionRateToPoints: number;
+}
 
 export interface IOrganization {
   id: string;
@@ -31,6 +42,7 @@ export interface IOrganization {
   totalPointsPerMonth?: number;
   pointsPerMonth: number;
   balance: number;
+  country?: IOrganizationCountry;
 }
 
 export interface IOrgTransaction {
@@ -49,6 +61,9 @@ export interface IOrgUser {
   lastName: string;
   userBalance?: IUserBalance;
   userRole?: string;
+  birthDate?: string;
+  org?: IOrganization;
+  countryId?: string;
 }
 
 export interface OrganizationState {
@@ -111,6 +126,15 @@ export interface SendPointsToUserPayload {
 }
 
 export interface SendPointsToUserFailurePayload {
+  error: string;
+}
+
+export interface PeerSendPointsToUserPayload {
+  userId: string;
+  sendPointsData: ISendPointsData;
+}
+
+export interface PeerSendPointsToUserFailurePayload {
   error: string;
 }
 
@@ -209,6 +233,21 @@ export interface SetCloseDialogSendPoints {
   type: typeof SET_CLOSE_DIALOG_SEND_POINTS;
 }
 
+export interface PeerSendPointsToUser {
+  type: typeof PEER_SEND_POINTS_TO_USER;
+  payload: PeerSendPointsToUserPayload;
+  navigate: Function;
+}
+
+export type PeerSendPointsToUserSuccess = {
+  type: typeof PEER_SEND_POINTS_TO_USER_SUCCESS;
+};
+
+export type PeerSendPointsToUserFailure = {
+  type: typeof PEER_SEND_POINTS_TO_USER_FAILURE;
+  payload: PeerSendPointsToUserFailurePayload;
+};
+
 export type OrganizationActions =
   | FetchOrganization
   | FetchOrganizationSuccess
@@ -229,4 +268,7 @@ export type OrganizationActions =
   | SendPointsToUserSuccess
   | SendPointsToUserFailure
   | SetOpenDialogSendPoints
-  | SetCloseDialogSendPoints;
+  | SetCloseDialogSendPoints
+  | PeerSendPointsToUser
+  | PeerSendPointsToUserSuccess
+  | PeerSendPointsToUserFailure;

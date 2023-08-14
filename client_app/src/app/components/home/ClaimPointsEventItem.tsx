@@ -23,10 +23,13 @@ const ClaimPointsEventItem = (claimPointsEventItem: IClaimPointEvent) => {
             </span>
           </Typography>
         </Grid>
+
         <Grid item xs={3} className="grid-points-style">
-          <Typography className="card-points">
-            {claimPointsEventItem.amount} PTS
-          </Typography>
+          {claimPointsEventItem.amount !== 0 && (
+            <Typography className="card-points">
+              {claimPointsEventItem.amount} PTS
+            </Typography>
+          )}
         </Grid>
       </Grid>
     </Card>

@@ -22,6 +22,7 @@ import { UserInvitesModule } from './user_invites/user_invites.module';
 import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.module';
 import { EmailsModule } from './emails/emails.module';
 import { AuthModule } from './auth/auth.module';
+import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { AuthModule } from './auth/auth.module';
     AdminUserInvitesModule,
     EmailsModule,
     AuthModule,
+    CurrencyRatesModule,
   ],
   controllers: [AppController],
   providers: [

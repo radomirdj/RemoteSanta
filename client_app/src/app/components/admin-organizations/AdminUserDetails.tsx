@@ -22,6 +22,7 @@ import { getAdminUserSelector } from "../../store/admin-organization/selectors";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ErrorIcon from "@mui/icons-material/Error";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { createBirthdayFromUTCString } from "../../utils/Utils";
 
 const AdminUserDetails = () => {
   const params = useParams();
@@ -65,7 +66,11 @@ const AdminUserDetails = () => {
       <div className="background admin-user-details">
         <Card className="card-style">
           <Typography className="title-style">User Details</Typography>
-          <Card className="child-card">
+          <Card
+            className={
+              user?.birthDate !== null ? "child-card" : "child-card-no-birthday"
+            }
+          >
             <Grid container className="grid-container">
               <Grid item xs={4}>
                 <span className="column-name">Fullname</span>
@@ -74,6 +79,16 @@ const AdminUserDetails = () => {
                 {user?.firstName} {user?.lastName}
               </Grid>
             </Grid>
+            {user?.birthDate !== null && (
+              <Grid container className="grid-container">
+                <Grid item xs={4}>
+                  <span className="column-name">Date Of Birth</span>
+                </Grid>
+                <Grid item xs={8}>
+                  {createBirthdayFromUTCString(user?.birthDate || "")}
+                </Grid>
+              </Grid>
+            )}
             <Grid container className="grid-container">
               <Grid item xs={4}>
                 <span className="column-name">Active PTS</span>

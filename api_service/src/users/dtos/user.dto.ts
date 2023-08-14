@@ -17,13 +17,16 @@ export class UserDto {
   lastName: string;
 
   @Expose()
+  countryId: string;
+
+  @Expose()
   deleted: boolean;
 
   @Expose()
   accessToken?: string;
 
   @Expose()
-  birthDate: Date;
+  birthDate?: Date;
 
   @Expose()
   gender: GenderEnum;

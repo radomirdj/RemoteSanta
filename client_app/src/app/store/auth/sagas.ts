@@ -82,6 +82,10 @@ function* loginSaga(action: LoginRequest) {
     );
     yield put(loginSuccess(loginSuccessPayload));
     localStorage.setItem("token", loginSuccessPayload.authUser.accessToken);
+    localStorage.setItem(
+      "countryId",
+      loginSuccessPayload.authUser.countryId || ""
+    );
     localStorage.setItem("userRole", loginSuccessPayload.authUser.userRole);
   } catch (e) {
     console.log("function*loginSaga -> e", e);
@@ -108,9 +112,15 @@ function* getSelfSaga(action: GetSelfRequest) {
         token
       );
       yield put(getSelfSuccess(getSelfSuccessPayload));
+      localStorage.setItem(
+        "countryId",
+        getSelfSuccessPayload.authUser.countryId || ""
+      );
+      localStorage.setItem("userRole", getSelfSuccessPayload.authUser.userRole);
     }
   } catch (e) {
     localStorage.removeItem("token");
+    localStorage.removeItem("countryId");
     localStorage.removeItem("userRole");
     action.navigate("/login");
     console.log("function*getSelfSaga -> e", e);
@@ -124,6 +134,7 @@ function* getSelfSaga(action: GetSelfRequest) {
 
 function* logoutSaga(action: Logout) {
   localStorage.removeItem("token");
+  localStorage.removeItem("countryId");
   localStorage.removeItem("userRole");
   action.navigate("/login");
 }

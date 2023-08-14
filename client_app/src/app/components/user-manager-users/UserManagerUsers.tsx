@@ -25,8 +25,6 @@ const UserManagerUsers = () => {
   const rowsPerPage = 7;
   const navigate = useNavigate();
 
-  console.log(orgUserList);
-
   useEffect(() => {
     dispatch(fetchOrganizationUserList());
   }, [dispatch]);

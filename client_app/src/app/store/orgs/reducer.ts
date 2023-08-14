@@ -20,6 +20,9 @@ import {
   SEND_POINTS_TO_USER_FAILURE,
   SET_OPEN_DIALOG_SEND_POINTS,
   SET_CLOSE_DIALOG_SEND_POINTS,
+  PEER_SEND_POINTS_TO_USER,
+  PEER_SEND_POINTS_TO_USER_SUCCESS,
+  PEER_SEND_POINTS_TO_USER_FAILURE,
 } from "./actionTypes";
 
 import { OrganizationActions, OrganizationState } from "./types";
@@ -151,13 +154,28 @@ export default (state = initialState, action: OrganizationActions) => {
       return {
         ...state,
         openDialog: true,
-        pending: true,
       };
     case SET_CLOSE_DIALOG_SEND_POINTS:
       return {
         ...state,
         openDialog: false,
+      };
+    case PEER_SEND_POINTS_TO_USER:
+      return {
+        ...state,
         pending: true,
+      };
+    case PEER_SEND_POINTS_TO_USER_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case PEER_SEND_POINTS_TO_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
       };
     default:
       return {

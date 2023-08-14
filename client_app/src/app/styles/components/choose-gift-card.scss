@@ -31,20 +31,110 @@ $choose-amount-active-points-font-size:14px;
           font-family: "Montserrat";
         }
 
-    .search-item{
-      justify-content: center;
-      display: flex;
-      .search-field{
-        background-color: white;
-        border-radius: variables.$base-unit *6;
-        width: 50%;
-        height: variables.$base-unit *6;
-        font-family: "Montserrat";
-      }
-      .search-icon-style{
-        margin-left:variables.$base-unit *2;
-        margin-right:variables.$base-unit *2;
-      }
+      .menu-grid{
+        margin-top: variables.$base-unit * 3;
+        margin-left: variables.$base-unit * 3;
+
+        .country-item{
+          .MuiFormControl-root {
+            margin: 0px;
+            width: 100%;
+            background-color: white;
+            border-radius: variables.$base-unit *6;
+            height:variables.$base-unit *6;
+            @media screen and (min-width: variables.$breakpoint-md){
+              width: 100%;
+            }
+      
+            @media screen and (max-width: variables.$breakpoint-md){
+              width: 90%;
+            }
+          }
+          .MuiOutlinedInput-root {
+            .MuiOutlinedInput-notchedOutline {
+              border-color: white;
+              height: 44px;
+            }
+          }
+          
+          .MuiInputBase-root{
+            width: 90%;
+            justify-content: center;
+            margin-left:  variables.$base-unit *2;
+            height: variables.$base-unit *6;
+          }
+      
+          .MuiSelect-select {
+            text-align: start;
+          }
+          @media screen and (max-width: variables.$breakpoint-md){
+           display: inherit;
+           justify-content: center;
+          }
+          .country-field{
+            margin-bottom: variables.$base-unit * 2 !important;  
+          }
+        }
+
+        .search-item{
+          justify-content: end;
+          display: flex;
+          width: 100%;
+          @media screen and (min-width: variables.$breakpoint-md){
+            justify-content: end;
+          }
+
+          @media screen and (max-width: variables.$breakpoint-md){
+            justify-content: center;
+          }
+        
+          .search-field{
+            background-color: white;
+            border-radius: variables.$base-unit *6;
+            height: variables.$base-unit *6;
+            font-family: "Montserrat";
+            margin-right: variables.$base-unit;
+
+            @media screen and (min-width: variables.$breakpoint-md){
+              width: 70%;
+            }
+
+            @media screen and (max-width: variables.$breakpoint-md){
+              width: 90%;
+              margin-top: variables.$base-unit* 3;
+            }
+          }
+
+          .search-icon-style{
+            margin-left:variables.$base-unit *2;
+            margin-right:variables.$base-unit *2;
+          }
+        }
+    }
+
+    .send-to-user-title{
+      font-family: "Montserrat";
+      font-weight: 500;
+      font-size: variables.$font-size-large;
+      margin-bottom: variables.$base-unit * 4;
+      margin-left: variables.$base-unit * 2;
+    }
+
+    .points-in-currency-style{
+      font-family: "Montserrat";
+      float: left;
+      font-size: $choose-amount-active-points-font-size;
+      color: variables.$color-neutral-gray;
+      margin-bottom:variables.$base-unit;
+    }
+
+    .points-in-currency-style-no-message{
+      font-family: "Montserrat";
+      float: left;
+      font-size: $choose-amount-active-points-font-size;
+      color: variables.$color-neutral-gray;
+      margin-bottom:variables.$base-unit * 2;
+      margin-top:-8px;
     }
 
     .empty-content{
@@ -65,6 +155,12 @@ $choose-amount-active-points-font-size:14px;
 
       .empty-illustration{
         height: variables.$base-unit * 42;
+      }
+    }
+
+    .amount-input-list-with-error {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: variables.$error-color;
       }
     }
       
@@ -132,10 +228,10 @@ $choose-amount-active-points-font-size:14px;
   }
 
   .choose-amount-card{
-    padding-top: variables.$base-unit * 5;
-    padding-bottom: variables.$base-unit * 5;
-    padding-left: variables.$base-unit * 8;
-    padding-right: variables.$base-unit * 8;
+    padding-top: variables.$base-unit * 3;
+    padding-bottom: variables.$base-unit * 3;
+    padding-left: variables.$base-unit * 6;
+    padding-right: variables.$base-unit * 6;
     border-radius: variables.$base-unit * 4;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
@@ -160,22 +256,67 @@ $choose-amount-active-points-font-size:14px;
       font-weight: 500;
   }
 
+  .comment-input {
+    margin-bottom: variables.$base-unit * 2 !important;
+  }
+
+  .comment-input-min-max {
+    margin-bottom: variables.$base-unit * 2 !important;
+    margin-top: variables.$base-unit* 2 !important;
+  }
+
+  .comment-input-with-error {
+    margin-bottom: 0px !important;
+  }
+
+  .comment-error-fe {
+    font-size: variables.$font-size-small;
+    color: variables.$error-color;
+    text-align: start;
+    margin-bottom: variables.$base-unit * 2;
+    display: inline-flex;
+    width: 100%;
+  }
+
   .choose-amount-active-points{
       font-family: "Montserrat";
       font-size: $choose-amount-active-points-font-size;
       text-align: start;
       color: variables.$color-neutral-gray;
       width: 100%;
-      margin-bottom: variables.$base-unit * 4;
+      margin-bottom: variables.$base-unit;
     }
+
+  .choose-amount-active-points-with-margin{
+      font-family: "Montserrat";
+      font-size: $choose-amount-active-points-font-size;
+      text-align: start;
+      color: variables.$color-neutral-gray;
+      width: 100%;
+      margin-bottom: variables.$base-unit * 4;
+  }
+
+    .send-gift-card-as{
+      font-family: "Montserrat";
+      font-size: $choose-amount-active-points-font-size;
+      text-align: start;
+      color: variables.$color-neutral-gray;
+      width: 100%;
+      margin-bottom: variables.$base-unit * 3;
+    }
+
     .email-input {
       margin-bottom: variables.$base-unit * 3 !important;
     }
+
+    .amount-input-min-max {
+      margin-bottom: variables.$base-unit!important;
+    }
+
     .MuiFormControl-root {
       margin: 0px;
       width: 100%;
       border-radius: variables.$base-unit;
-      margin-bottom: variables.$base-unit;
   
       .MuiOutlinedInput-root {
         border-radius: variables.$base-unit;
@@ -190,6 +331,10 @@ $choose-amount-active-points-font-size:14px;
       .MuiFormLabel-root.Mui-error {
         color: variables.$color-gray;
       }
+
+      .MuiSelect-select {
+        text-align: start;
+      }
     }
     .choose-amount-error-fe {
       font-size: variables.$font-size-small;
@@ -202,7 +347,8 @@ $choose-amount-active-points-font-size:14px;
 
     .choose-amount-back-button{
       float: left;
-      background-color: variables.$color-dark-yellow;
+      background-color: white;
+      border-color:variables.$color-neutral-black;
       border-radius: variables.$base-unit;
       box-shadow: none;
       color: variables.$color-neutral-black;
@@ -252,20 +398,22 @@ $choose-amount-active-points-font-size:14px;
   .overview-card{
     padding-top: variables.$base-unit * 5;
     padding-bottom: variables.$base-unit * 5;
-    padding-left: variables.$base-unit * 8;
-    padding-right: variables.$base-unit * 8;
     border-radius: variables.$base-unit * 4;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 
     @media screen and (max-width: variables.$breakpoint-sm) {
       margin-left: $choose-amount-margin-left;
+      padding-left: variables.$base-unit * 3;
+      padding-right: variables.$base-unit * 3;
     }
 
     @media screen and (min-width: variables.$breakpoint-sm) {
       width: variables.$base-unit * 52;
       margin-right: auto;
       margin-left: auto;
+      padding-left: variables.$base-unit * 8;
+      padding-right: variables.$base-unit * 8;
     }
 
   .overview-title{
@@ -280,7 +428,14 @@ $choose-amount-active-points-font-size:14px;
 
   .overview-child-card{
     background-color: rgb(207, 209, 129, 0.5);
-    height: variables.$base-unit * 22;
+    height: variables.$base-unit * 35;
+    border-radius: variables.$base-unit * 3;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  }
+
+  .overview-child-card-no-message{
+    background-color: rgb(207, 209, 129, 0.5);
+    height: variables.$base-unit * 20;
     border-radius: variables.$base-unit * 3;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   }
@@ -304,6 +459,25 @@ $choose-amount-active-points-font-size:14px;
       color: variables.$color-neutral-gray;
   }
 
+  .message-child-card{
+    background-color: white;
+    height: variables.$base-unit * 6;
+    border-radius: variables.$base-unit * 2;
+    width: 87%;
+    box-shadow: none;
+    padding-top: variables.$base-unit * 2;
+    padding-bottom: variables.$base-unit * 2;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      margin-left: variables.$base-unit * 3;
+    }
+  }
+
   .overview-amount{
     font-family: "Montserrat";
     font-size: variables.$font-size-small;
@@ -311,7 +485,24 @@ $choose-amount-active-points-font-size:14px;
     margin-left: variables.$base-unit * 4;
     text-align: start;
     color: variables.$color-neutral-gray;
-}
+  }
+
+  .overview-message-text{
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
+    margin-left: variables.$base-unit * 2;
+    text-align: start;
+    color: variables.$color-neutral-gray;
+  }
+
+  .overview-message{
+    font-family: "Montserrat";
+    font-size: variables.$font-size-small;
+    margin-left: variables.$base-unit * 4;
+    text-align: start;
+    color: variables.$color-neutral-black;
+    font-weight: 500;
+  }
 
   .image-style{
     float: right;
@@ -321,7 +512,29 @@ $choose-amount-active-points-font-size:14px;
       width:  variables.$base-unit * 8;
       margin-bottom: variables.$base-unit * 4;
       margin-left: variables.$base-unit * 2;
-      margin-right: variables.$base-unit * 2;
+      margin-right: variables.$base-unit * 3;
+      border-radius: variables.$base-unit;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-sm) {
+      height: variables.$base-unit * 12;
+      width:  variables.$base-unit * 16;
+      margin-right: variables.$base-unit * 4;
+      border-radius: variables.$base-unit * 2;
+      margin-top:  variables.$base-unit * 2;
+    }
+
+  }
+
+  .image-style-no-message{
+    float: right;
+
+    @media screen and (max-width: variables.$breakpoint-sm) {
+      height: variables.$base-unit * 6;
+      width:  variables.$base-unit * 8;
+      margin-bottom: variables.$base-unit * 4;
+      margin-left: variables.$base-unit * 2;
+      margin-right: variables.$base-unit * 3;
       border-radius: variables.$base-unit;
     }
 
@@ -343,9 +556,11 @@ $choose-amount-active-points-font-size:14px;
     margin-bottom: auto;
   }
 
+
   .overview-back-button{
     float: left;
-    background-color: variables.$color-dark-yellow;
+    background-color: white;
+    border-color:variables.$color-neutral-black;
     border-radius: variables.$base-unit;
     box-shadow: none;
     color: variables.$color-neutral-black;

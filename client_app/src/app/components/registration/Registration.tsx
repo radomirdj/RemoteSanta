@@ -20,15 +20,22 @@ import {
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
 import { useForm, Controller } from "react-hook-form";
-import { createUTCDate, getPasswordRegex } from "./../../utils/Utils";
+import {
+  createBirthdayFromUTCString,
+  createUTCDate,
+  getPasswordRegex,
+} from "./../../utils/Utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorIcon from "@mui/icons-material/Error";
 import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
 import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
+import { countryList } from "../../enums/CountryList";
+import dayjs from "dayjs";
+import { SignUpRequestPayload } from "../../store/auth/types";
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -41,8 +48,11 @@ const Registration = () => {
     control,
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [dateOfBirthValue, setDateOfBirthValue] = React.useState<Date>();
+
   const queryParameters = new URLSearchParams(window.location.search);
   const code = queryParameters.get("code");
+  const isDateValid = !!dateOfBirthValue;
 
   useEffect(() => {
     dispatch(clearError());
@@ -56,30 +66,37 @@ const Registration = () => {
     event.preventDefault();
   };
 
-  const onSubmit = (data: any) => {
-    const birthDate = createUTCDate(
-      data.birthDate.$y,
-      data.birthDate.$M,
-      data.birthDate.$D
-    );
+  const createUTCBirthDate = (date: any) => {
+    if (!date) return undefined;
+    if (!(date.$d instanceof Date) || isNaN(+date.$d)) {
+      return undefined;
+    }
+    return createUTCDate(2000, date.$M, date.$D);
+  };
 
-    dispatch(
-      signUpRequest(
-        {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          code: code || "",
-          password: data.password,
-          birthDate,
-          gender: data.gender,
-        },
-        navigate
-      )
-    );
+  const onSubmit = (data: any) => {
+    const birthDate = createUTCBirthDate(data.birthDate);
+    let body: SignUpRequestPayload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      code: code || "",
+      password: data.password,
+      gender: data.gender,
+      countryId: data.country,
+    };
+    if (birthDate) body.birthDate = birthDate;
+    dispatch(signUpRequest(body, navigate));
   };
 
   const loginRedirect = () => {
     navigate("/login");
+  };
+
+  const dateFieldValidate = (dateField: any) => {
+    if (!dateField) return true;
+    if (isNaN(dateField.$d)) return false;
+
+    return true;
   };
 
   return (
@@ -145,60 +162,118 @@ const Registration = () => {
                     Lastname is required.
                   </Typography>
                 )}
-
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <Controller
-                    control={control}
-                    name="birthDate"
-                    defaultValue={null}
-                    rules={{ required: true }}
-                    render={({ field }) => (
-                      <DatePicker
-                        label="Date of birth"
-                        disableFuture
-                        value={field.value}
-                        onChange={(date) => field.onChange(date)}
-                        className={
-                          errors.birthDate
-                            ? "registration-date-with-error"
-                            : "registration-input"
-                        }
-                        renderInput={(params: any) => <TextField {...params} />}
-                      />
-                    )}
-                  />
-                </LocalizationProvider>
-
-                {errors.birthDate?.type === "required" && (
-                  <Typography className="registration-error-fe">
-                    Date of birth is required.
-                  </Typography>
-                )}
-
                 <FormControl variant="outlined">
-                  <InputLabel id="genderLabel">Gender</InputLabel>
+                  <InputLabel id="countryLabel">Country</InputLabel>
                   <Select
-                    labelId="genderLabel"
-                    id="gender"
+                    labelId="countryLabel"
+                    id="country"
                     className={
-                      errors.gender
-                        ? "registration-gender-with-error"
+                      errors.country
+                        ? "registration-country-with-error"
                         : "registration-input"
                     }
-                    label="Gender"
-                    {...register("gender", { required: true })}
+                    label="Country"
+                    {...register("country", { required: true })}
                   >
-                    <MenuItem value={"FEMALE"}>Female</MenuItem>
-                    <MenuItem value={"MALE"}>Male</MenuItem>
-                    <MenuItem value={"OTHER"}>Other</MenuItem>
+                    {countryList.map((country, i) => {
+                      return (
+                        <MenuItem value={country.id}>
+                          {country.countryName !== "Other" && (
+                            <img
+                              src={country.flag}
+                              alt=""
+                              style={{
+                                marginRight: "8px",
+                                height: "24px",
+                                width: "40px",
+                                verticalAlign: "sub",
+                              }}
+                            />
+                          )}{" "}
+                          {country.countryName}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
 
-                {errors.gender?.type === "required" && (
+                {errors.country?.type === "required" && (
                   <Typography className="registration-error-fe">
-                    Gender is required.
+                    Country is required.
                   </Typography>
                 )}
+                <Grid container columnSpacing={2}>
+                  <Grid item xs={12} lg={6}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <Controller
+                        control={control}
+                        name="birthDate"
+                        defaultValue={null}
+                        rules={{ validate: dateFieldValidate }}
+                        render={({ field }) => (
+                          <DatePicker
+                            label="Date of birth"
+                            value={field.value}
+                            inputFormat="MM/DD"
+                            onChange={(date) => {
+                              field.onChange(date);
+                              setDateOfBirthValue(createUTCBirthDate(date));
+                            }}
+                            className={
+                              errors.birthDate
+                                ? "registration-date-with-error split-input"
+                                : "registration-input"
+                            }
+                            disableOpenPicker={true}
+                            renderInput={(params: any) => (
+                              <TextField {...params} />
+                            )}
+                          />
+                        )}
+                      />
+                    </LocalizationProvider>
+                    {errors.birthDate?.type === "validate" && (
+                      <Typography className="registration-error-fe">
+                        Date is not valid.
+                      </Typography>
+                    )}
+                  </Grid>
+
+                  <Grid item xs={12} lg={6}>
+                    <FormControl variant="outlined">
+                      <InputLabel id="genderLabel">Gender</InputLabel>
+                      <Select
+                        labelId="genderLabel"
+                        id="gender"
+                        className={
+                          errors.gender
+                            ? "registration-gender-with-error"
+                            : "registration-input"
+                        }
+                        label="Gender"
+                        {...register("gender", { required: true })}
+                      >
+                        <MenuItem value={"FEMALE"}>Female</MenuItem>
+                        <MenuItem value={"MALE"}>Male</MenuItem>
+                        <MenuItem value={"OTHER"}>Other</MenuItem>
+                      </Select>
+                    </FormControl>
+
+                    {errors.gender?.type === "required" && (
+                      <Typography className="registration-error-fe">
+                        Gender is required.
+                      </Typography>
+                    )}
+                  </Grid>
+
+                  {isDateValid && (
+                    <span className="date-of-birth-helper">
+                      {createBirthdayFromUTCString(
+                        dateOfBirthValue.toString() || ""
+                      )}
+                    </span>
+                  )}
+                </Grid>
                 <FormControl variant="outlined">
                   <InputLabel htmlFor="outlined-password">Password</InputLabel>
                   <OutlinedInput

@@ -20,6 +20,7 @@ async function main() {
     'User',
     createForeignKeyListTransformer([
       { foreignKeyName: 'orgId', foreignRecordName: 'org' },
+      { foreignKeyName: 'countryId', foreignRecordName: 'country' },
     ]),
   );
   await seedTable(
@@ -55,7 +56,8 @@ async function main() {
     prisma,
     'GiftCardRequest',
     createForeignKeyListTransformer([
-      { foreignKeyName: 'userId', foreignRecordName: 'user' },
+      { foreignKeyName: 'ownerId', foreignRecordName: 'owner' },
+      { foreignKeyName: 'createdById', foreignRecordName: 'createdBy' },
       {
         foreignKeyName: 'giftCardIntegrationId',
         foreignRecordName: 'giftCardIntegration',

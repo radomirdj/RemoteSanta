@@ -1,6 +1,7 @@
 import { Injectable, INestApplication, OnModuleInit } from '@nestjs/common';
 import { MailerService, ISendMailOptions } from '@nestjs-modules/mailer';
 import * as Email from 'email-templates';
+import * as randomstring from 'randomstring';
 import { join } from 'path';
 
 @Injectable()
@@ -19,6 +20,7 @@ export class EmailsService {
     to: string | string[],
     data: any,
     attachment: { filename: string; buffer } = null,
+    replyTo: string = null,
   ) {
     let parsedData = await this.email.renderAll(templateName, data);
 
@@ -29,6 +31,7 @@ export class EmailsService {
       text: parsedData.text,
       html: parsedData.html,
       context: data,
+      replyTo: replyTo || 'info@remotesanta.io',
     } as ISendMailOptions;
 
     if (attachment) {
@@ -42,9 +45,19 @@ export class EmailsService {
     return this.mailService.sendMail(emailParams);
   }
 
-  sendClaimPointsEmail(to: string[], claimPointsEventDescription: string) {
-    return this.sendEmail('claim-points', to, {
-      claimPointsEventDescription,
+  sendClaimPointsMonthEmail(
+    to: string[],
+    orgName: string,
+    month: string,
+    sentenceOfMonth: string,
+    pointsAmount: number,
+  ) {
+    return this.sendEmail('claim-points-month', to, {
+      orgName,
+      month,
+      sentenceOfMonth,
+      pointsAmount,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
     });
   }
 
@@ -63,11 +76,44 @@ export class EmailsService {
     });
   }
 
+  async sendGiftCardDeclinedRecepientEmail(
+    to: string,
+    firstNameRecipient: string,
+    firstNameSender: string,
+    giftCardIntegrationTitle: string,
+    adminComment: string,
+  ) {
+    return this.sendEmail('gift-card-request-declined-recepient', to, {
+      firstNameRecipient,
+      firstNameSender,
+      giftCardIntegrationTitle,
+      adminComment: adminComment,
+    });
+  }
+
+  async sendGiftCardDeclinedSenderEmail(
+    to: string,
+    firstNameRecipient: string,
+    firstNameSender: string,
+    giftCardIntegrationTitle: string,
+    adminComment: string,
+  ) {
+    return this.sendEmail('gift-card-request-declined-sender', to, {
+      firstNameRecipient,
+      firstNameSender,
+      giftCardIntegrationTitle,
+      adminComment: adminComment,
+    });
+  }
+
   async sendGiftCardFullfiledEmail(
     to: string,
     firstName: string,
-    lastName: string,
     giftCardIntegrationTitle: string,
+    giftCardIntegrationCountryCode: string,
+    amount: number,
+    currency: string,
+    giftCardRequestId,
     attachment: { filename: string; buffer },
   ) {
     return this.sendEmail(
@@ -75,8 +121,11 @@ export class EmailsService {
       to,
       {
         firstName,
-        lastName,
-        giftCardIntegrationTitle,
+        storeName: giftCardIntegrationTitle,
+        storeCountryCode: giftCardIntegrationCountryCode,
+        amount,
+        currency,
+        orderNumber: giftCardRequestId.slice(-8),
         fname: attachment.filename,
       },
       attachment,
@@ -103,11 +152,32 @@ export class EmailsService {
     message: string,
     orgName: string,
     firstName: string,
+    amount: number,
   ) {
     return this.sendEmail('send-points', to, {
       message,
       orgName,
       firstName,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
+      amount,
+      randomIdentifier: randomstring.generate(7),
+    });
+  }
+
+  async sendP2PPointsEmail(
+    to: string,
+    message: string,
+    fromName: string,
+    firstName: string,
+    amount: number,
+  ) {
+    return this.sendEmail('send-p2p-points', to, {
+      message,
+      fromName,
+      firstName,
+      loginUrl: `${process.env.FE_BASE_URL}login`,
+      amount,
+      randomIdentifier: randomstring.generate(7),
     });
   }
 
@@ -134,5 +204,71 @@ export class EmailsService {
       orgName,
       name,
     });
+  }
+
+  async giftCardRequestCreatedConfirmationEmail(
+    to: string[],
+    firstName: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+  ) {
+    return this.sendEmail('gift-card-request-created-confirmation', to, {
+      firstName,
+      amount,
+      currency,
+      storeName,
+      orderNumber: giftCardRequestId.slice(-8),
+    });
+  }
+
+  async giftCardRequestSentConfirmationSenderEmail(
+    to: string[],
+    firstNameSender: string,
+    firstNameRecipient: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+    personalizedMessage: string,
+  ) {
+    return this.sendEmail('gift-card-request-sent-confirmation-sender', to, {
+      firstNameSender,
+      firstNameRecipient,
+      amount,
+      currency,
+      storeName,
+      orderNumber: giftCardRequestId.slice(-8),
+      personalizedMessage,
+    });
+  }
+
+  async giftCardRequestSentConfirmationRecepientEmail(
+    to: string[],
+    firstNameSender: string,
+    firstNameRecipient: string,
+    senderEmail: string,
+    amount: number,
+    currency: string,
+    storeName: string,
+    giftCardRequestId: string,
+    personalizedMessage: string,
+  ) {
+    return this.sendEmail(
+      'gift-card-request-sent-confirmation-recepient',
+      to,
+      {
+        firstNameSender,
+        firstNameRecipient,
+        amount,
+        currency,
+        storeName,
+        orderNumber: giftCardRequestId.slice(-8),
+        personalizedMessage,
+      },
+      null,
+      senderEmail,
+    );
   }
 }

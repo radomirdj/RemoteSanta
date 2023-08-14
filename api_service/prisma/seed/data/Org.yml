@@ -1,8 +1,20 @@
 - id: 752e05ce-4a81-4148-87c5-30832406d48c
   name: 'Winterfell Inc.'
-  countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   pointsPerMonth: 1200
   signupPoints: 2400
+
+- id: 235166cc-2698-4acd-a5b6-cfdb4b48803e
+  name: 'Sema'
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  pointsPerMonth: 0
+  signupPoints: 2000
+
+- id: eaa7d5b5-ced2-48f6-919b-ac53001ae509
+  name: 'GORR'
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  pointsPerMonth: 0
+  signupPoints: 0
 
 - id: f040c93b-ad1b-4ddd-8df4-562faed4f98b
   name: 'Admin Org.'

@@ -13,6 +13,7 @@ import {
   GiftCardRequestStatusEnum,
 } from '@prisma/client';
 import { UserDto } from '../users/dtos/user.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class GiftCardRequestService {
@@ -21,16 +22,31 @@ export class GiftCardRequestService {
     private giftCardIntegrationsService: GiftCardIntegrationsService,
     private ledgerService: LedgerService,
     private emailsService: EmailsService,
+    private usersService: UsersService,
+
     @InjectS3() private readonly s3: S3,
   ) {}
 
   async create(giftCardRequestDto: CreateGiftCardRequestDto, user: UserDto) {
-    const { giftCardIntegrationId, ...data } = giftCardRequestDto;
-    const [_, __, org] = await Promise.all([
+    const {
+      giftCardIntegrationId,
+      sendToUserId,
+      message = '',
+      ...data
+    } = giftCardRequestDto;
+    let sendToUser;
+    if (sendToUserId) {
+      sendToUser = await this.usersService.findById(sendToUserId);
+      if (!sendToUser) throw new NotFoundException('User Not Found');
+    }
+    const ownerId = sendToUserId || user.id;
+
+    const [integration, __, org] = await Promise.all([
       this.giftCardIntegrationsService.validateIntegrationRequest(
         giftCardIntegrationId,
         data.amount,
-        user.org.country.id,
+        giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+        user.org.country,
       ),
       this.ledgerService.validateUserActiveBalance(user.id, data.amount),
       this.prisma.org.findUnique({
@@ -38,17 +54,24 @@ export class GiftCardRequestService {
       }),
     ]);
 
-    return this.prisma.$transaction(async (tx) => {
+    const giftCardRequest = await this.prisma.$transaction(async (tx) => {
       const giftCardRequest = await tx.giftCardRequest.create({
         data: {
           ...data,
+          giftCardIntegrationCurrencyAmount:
+            giftCardRequestDto.giftCardIntegrationCurrencyAmount,
           status: GiftCardRequestStatusEnum.PENDING,
           giftCardIntegration: {
             connect: {
               id: giftCardIntegrationId,
             },
           },
-          user: {
+          owner: {
+            connect: {
+              id: ownerId,
+            },
+          },
+          createdBy: {
             connect: {
               id: user.id,
             },
@@ -62,13 +85,58 @@ export class GiftCardRequestService {
         data.amount,
         giftCardRequest.id,
       );
-      await this.emailsService.giftCardRequestCreatedEmail(
+
+      return giftCardRequest;
+    });
+
+    // Send Emails
+    const createdInfoEmailPromise =
+      this.emailsService.giftCardRequestCreatedEmail(
         consts.adminRecepients,
         `${user.firstName} ${user.lastName}`,
         org.name,
       );
-      return giftCardRequest;
-    });
+
+    if (sendToUserId) {
+      await Promise.all([
+        createdInfoEmailPromise,
+        this.emailsService.giftCardRequestSentConfirmationSenderEmail(
+          [user.email],
+          user.firstName,
+          sendToUser.firstName,
+          giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+          integration.currency,
+          integration.title,
+          giftCardRequest.id,
+          message,
+        ),
+        this.emailsService.giftCardRequestSentConfirmationRecepientEmail(
+          [sendToUser.email],
+          `${user.firstName} ${user.lastName}`,
+          sendToUser.firstName,
+          user.email,
+          giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+          integration.currency,
+          integration.title,
+          giftCardRequest.id,
+          message,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        createdInfoEmailPromise,
+        this.emailsService.giftCardRequestCreatedConfirmationEmail(
+          [user.email],
+          user.firstName,
+          giftCardRequestDto.giftCardIntegrationCurrencyAmount,
+          integration.currency,
+          integration.title,
+          giftCardRequest.id,
+        ),
+      ]);
+    }
+
+    return giftCardRequest;
   }
 
   async getOneByUser(id: string, userId: string): Promise<GiftCardRequest> {
@@ -78,7 +146,11 @@ export class GiftCardRequestService {
         giftCardIntegration: true,
       },
     });
-    if (!giftCardRequest || giftCardRequest.userId !== userId)
+    if (
+      !giftCardRequest ||
+      (giftCardRequest.ownerId !== userId &&
+        giftCardRequest.createdById !== userId)
+    )
       throw new NotFoundException('GiftCardRequest Not Found');
     return giftCardRequest;
   }
@@ -100,7 +172,10 @@ export class GiftCardRequestService {
   }
 
   async getGiftCardRequestFileName(id: string, userId: string) {
-    await this.getOneByUser(id, userId);
+    const giftCardRequest = await this.getOneByUser(id, userId);
+    if (giftCardRequest.ownerId !== userId)
+      throw new NotFoundException('GiftCardRequest Not Found');
+
     const giftCard = await this.prisma.giftCard.findUnique({
       where: { giftCardRequestId: id },
     });
@@ -110,9 +185,13 @@ export class GiftCardRequestService {
 
   getByUser(userId: string): Promise<GiftCardRequest[]> {
     return this.prisma.giftCardRequest.findMany({
-      where: { userId },
+      where: {
+        OR: [{ createdById: userId }, { ownerId: userId }],
+      },
       include: {
         giftCardIntegration: true,
+        owner: true,
+        createdBy: true,
       },
       orderBy: [
         {

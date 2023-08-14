@@ -1,7 +1,22 @@
-p Hi #{firstName} #{lastName},
-br
-p Hooray! Your #{giftCardIntegrationTitle} gift card is ready! 
-p Please find your gift card attached in this letter. Happy shopping!
-br
-p Best regards,
-p Remote Santa Team
+doctype html
+html(lang="en")
+  head
+    style(type='text/css')
+      // Add your custom CSS styles here
+
+  body
+    p Dear #{firstName},
+
+    p We are thrilled to inform you that your gift card request is now ready! Our team of Elfs has carefully prepared your gift card and we are delighted to send it to you.
+    p At Remote Santa, we strive to create exceptional gifting experiences. Your chosen gift card, customized to your preferences, is now beautifully designed and ready to bring joy to its lucky recipient.
+    p Details of your gift card:
+    ul
+      li Store: #{storeName}
+      li Amount: #{amount} #{currency}
+      li Country: #{storeCountryCode}
+
+    p Please find attached your digital gift card. You can simply open the attachment to view and redeem it. If you encounter any issues or have any questions, our support team will be more than happy to assist you.
+    p Thank you for choosing Remote Santa for your gifting needs. We hope this gift card brings delight and happiness to you or your intended recipient.
+
+    p Warm regards,
+    p Remote Santa Team

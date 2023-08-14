@@ -12,7 +12,7 @@ import React from "react";
 import { IGiftCardIntegration } from "../../store/gift-card-request/types";
 import { ChevronRight } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { setGiftCardRequestIntegration } from "../../store/gift-card-request/actions";
+import { fetchGiftCardIntegration } from "../../store/gift-card-request/actions";
 
 const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
   const [open, setOpen] = React.useState(false);
@@ -34,7 +34,9 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
 
   const onSubmit = () => {
     dispatch(
-      setGiftCardRequestIntegration({ integration: giftCardIntegration })
+      fetchGiftCardIntegration({
+        giftCardIntegrationId: giftCardIntegration.id,
+      })
     );
   };
 

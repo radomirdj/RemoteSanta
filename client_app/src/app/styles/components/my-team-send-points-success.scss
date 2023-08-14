@@ -1,0 +1,48 @@
+@use "./../variables.scss";
+
+$main-text-width: 50%;
+$main-text-phone-width: 80%;
+
+.my-team-send-points-success {
+    background-color: variables.$main-yellow;
+
+    .my-team-send-points-success-content{
+        width: 100%;
+        text-align: center;
+        padding-top: variables.$base-unit * 11;
+
+        .my-team-send-points-success-title{
+            font-family: "Montserrat";
+            margin-bottom: variables.$base-unit * 3;
+            text-align: center;
+            width: $main-text-width;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-large;
+                width: $main-text-phone-width;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-larger;
+                width: $main-text-width;
+            }
+        }
+
+        .my-team-send-points-success-link{
+            font-family: "Montserrat";
+            cursor: pointer;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .success-illustration{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: variables.$base-unit *4;
+            width: variables.$base-unit * 44;
+        }
+    }
+}

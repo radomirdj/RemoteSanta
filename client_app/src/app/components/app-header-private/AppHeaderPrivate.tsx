@@ -2,6 +2,7 @@ import React from "react";
 import {
   AppBar,
   Avatar,
+  Button,
   Grid,
   IconButton,
   Menu,
@@ -10,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import Logo from "./../../assets/logo.svg";
-import UserManager from "./../../assets/icons/user-manager.svg";
 import AvatarMale from "./../../assets/avatars/avatar-male.svg";
 import AvatarFemale from "./../../assets/avatars/avatar-female.svg";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { logout } from "../../store/auth/actions";
 import { UserRole } from "../../enums/UserRole";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 const AppHeaderPrivate = () => {
   const navigate = useNavigate();
@@ -57,8 +58,8 @@ const AppHeaderPrivate = () => {
     navigate("/my-gift-cards");
   };
 
-  const demoRedirect = () => {
-    navigate("/demo");
+  const myTeamRedirect = () => {
+    navigate("/my-team");
   };
 
   const userProfileRedirect = () => {
@@ -73,17 +74,13 @@ const AppHeaderPrivate = () => {
     navigate("/user-manager-invites");
   };
 
-  const userManagerUsersRedirect = () => {
-    navigate("/user-manager-users");
-  };
-
   return (
     <AppBar className="app-header-private">
       <Toolbar disableGutters className="toolbar-style">
         <Grid container className="grid-style">
           <Grid
             item
-            md={user.userRole === UserRole.USER_MANAGER ? 6 : 7}
+            md={user.userRole === UserRole.USER_MANAGER ? 5 : 7}
             sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
           >
             <img
@@ -121,30 +118,32 @@ const AppHeaderPrivate = () => {
           <Grid item xs={3} sm={2} md={1} className="align-left">
             <Typography
               className={
-                window.location.pathname === "/demo"
+                window.location.pathname === "/my-team"
                   ? "header-item-active"
                   : "header-item"
               }
-              onClick={demoRedirect}
+              onClick={myTeamRedirect}
             >
-              Demo
+              My Team
             </Typography>
           </Grid>
           {user.userRole === UserRole.USER_MANAGER && (
             <Grid
               item
               sm={2}
-              md={1}
+              md={2}
               className="align-left"
               sx={{ display: { xs: "none", sm: "inline-flex" } }}
             >
-              <IconButton
-                onClick={handleOpenManagerMenu}
-                sx={{ p: 0 }}
+              <Button
                 disableRipple
+                onClick={handleOpenManagerMenu}
+                variant="outlined"
+                className="user-manager-button"
+                startIcon={<AutoAwesomeIcon />}
               >
-                <img src={UserManager} alt="" className="user-manager-icon" />
-              </IconButton>
+                My Company
+              </Button>
               <Menu
                 sx={{ mt: "45px", width: "600px" }}
                 id="menu-appbar-manager"
@@ -162,13 +161,10 @@ const AppHeaderPrivate = () => {
                 onClose={handleCloseManagerMenu}
               >
                 <MenuItem onClick={userManagerTransactionsRedirect}>
-                  <Typography textAlign="center">Transactions</Typography>
+                  <Typography textAlign="center">Balance</Typography>
                 </MenuItem>
                 <MenuItem onClick={userManagerInvitesRedirect}>
                   <Typography textAlign="center">Invites</Typography>
-                </MenuItem>
-                <MenuItem onClick={userManagerUsersRedirect}>
-                  <Typography textAlign="center">Users</Typography>
                 </MenuItem>
               </Menu>
             </Grid>

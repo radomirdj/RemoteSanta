@@ -43,6 +43,8 @@ const AdminUserSendPoints = () => {
   const error = useSelector(getErrorSelector);
   const [sendPointsData, setSendPointsData] = React.useState<ISendPointsData>();
   const open = useSelector(getOpenDialogSendPointsSelector);
+  const [pointsToCurrencyMessage, setPointsToCurrencyMessage] =
+    React.useState("");
 
   const {
     register,
@@ -81,6 +83,19 @@ const AdminUserSendPoints = () => {
 
   const handleClose = () => {
     dispatch(setCloseDialogSendPoints());
+  };
+
+  const pointsToCurrency = (points: any) => {
+    const conversionRateToPoints =
+      user?.org?.country?.conversionRateToPoints || 1;
+    const pointsInCurrency = (points * 1.0) / conversionRateToPoints;
+    setPointsToCurrencyMessage(
+      "This is equal to " +
+        pointsInCurrency +
+        " " +
+        user?.org?.country?.currencyString +
+        "."
+    );
   };
 
   return (
@@ -136,6 +151,7 @@ const AdminUserSendPoints = () => {
               {...register("amount", {
                 required: true,
                 min: 1,
+                onChange: (e) => pointsToCurrency(e.target.value),
               })}
             />
             {errors.amount?.type === "required" && (
@@ -148,6 +164,9 @@ const AdminUserSendPoints = () => {
                 The minimum amount is 1 PTS.
               </Typography>
             )}
+            <Typography className="points-in-currency-style">
+              {pointsToCurrencyMessage}
+            </Typography>
             <TextField
               error={errors.message ? true : false}
               id="standard-multiline-static"
