@@ -30,8 +30,11 @@ $stepper-card-font-size: 13px;
             padding-right: variables.$base-unit * 6;
             border-radius: variables.$base-unit * 4;
             margin-bottom: variables.$base-unit * 4;
+            margin-right: 4px;
             position: relative;
             z-index: 1000;
+            background-color: #FFEFC8;
+            box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 
             .react-multi-carousel-list{
                 height: 250px;

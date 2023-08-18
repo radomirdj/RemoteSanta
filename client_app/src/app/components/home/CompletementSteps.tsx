@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import WatchDemoIllustration from "./../../assets/illustrations/watch-demo-illustration.svg";
+import TalkWithASpecialistIllustration from "./../../assets/illustrations/talk-with-a-specialist-illustration.svg";
 import PersonalDetailsIllustration from "./../../assets/illustrations/personal-details-illustration.svg";
 import InviteCoworkersIllustration from "./../../assets/illustrations/invite-coworkers-illustration.svg";
 import AddPaymentIllustration from "./../../assets/illustrations/add-payment-illustration.svg";
@@ -141,27 +141,16 @@ const CompletementSteps = () => {
           <Grid item xs={12}>
             <Card className="stepper-card">
               <Grid container>
-                <Grid item xs={8}>
+                <Grid item xs={12}>
                   <Typography className="stepper-card-title">
                     Let’s set up you company’s page!
                   </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <Button
-                    variant="contained"
-                    className="talk-to-a-specialist-button"
-                    disableRipple
-                    startIcon={<ContactSupportIcon />}
-                    onClick={calendlyRedirect}
-                  >
-                    Talk to a specialist
-                  </Button>
+                  <Typography className="stepper-card-text">
+                    Completing this steps will help that you and employees in
+                    your company have better experience using our app.
+                  </Typography>
                 </Grid>
               </Grid>
-              <Typography className="stepper-card-text">
-                Completing this steps will help that you and employees in your
-                company have better experience using our app.
-              </Typography>
               <BorderLinearProgress
                 variant="determinate"
                 value={stepperValue}
@@ -172,55 +161,29 @@ const CompletementSteps = () => {
                 {!completedStepsMap.get("WATCH_TUTORIAL") && (
                   <Card className="step-card">
                     <Grid container>
-                      <Grid item xs={12}>
-                        <Typography className="step-title">
-                          Watch Tutorial
-                        </Typography>
-                      </Grid>
                       <Grid item xs={8}>
-                        <Typography className="step-text">
-                          See Remote Santa in action. Understand better its
-                          features and get the best experience.
+                        <Typography className="step-title">
+                          Talk with a specialist
                         </Typography>
-                        <Grid container>
-                          <Grid item xs={6} className="step-grid-item-button">
-                            <Button
-                              variant="contained"
-                              className="lets-go-button"
-                              disableRipple
-                              onClick={handleOpenDemo}
-                            >
-                              Let's go
-                            </Button>
-                          </Grid>
-                          <Grid item xs={6} className="step-grid-item-button">
-                            <Button
-                              variant="outlined"
-                              className="skip-button"
-                              disableRipple
-                              onClick={() =>
-                                markAsCompletedSkip("WATCH_TUTORIAL")
-                              }
-                            >
-                              Skip
-                            </Button>
-                          </Grid>
-                        </Grid>
-                        <Modal
-                          open={openModalStep === "WATCH_TUTORIAL"}
-                          onClose={handleCloseModalStep}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                        >
-                          <WatchDemoStep />
-                        </Modal>
+                        <Typography className="step-text">
+                          Have a call with us, and our team will assist you in
+                          setting up your company profile in no time.
+                        </Typography>
                       </Grid>
-                      <Grid item xs={4} className="step-grid-item">
+                      <Grid item xs={4}>
                         <img
-                          src={WatchDemoIllustration}
+                          src={TalkWithASpecialistIllustration}
                           alt=""
                           className="step-illustration"
                         />
+                      </Grid>
+                      <Grid item xs={12} className="step-grid-item-button">
+                        <Button
+                          onClick={() => {}}
+                          className="use-points-button"
+                        >
+                          Go for it
+                        </Button>
                       </Grid>
                     </Grid>
                   </Card>

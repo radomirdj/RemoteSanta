@@ -7,7 +7,9 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
+  MenuItem,
   OutlinedInput,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -24,6 +26,7 @@ import { selfSignUpRequest } from "../../store/self-signup/actions";
 import { useNavigate } from "react-router-dom";
 import { getErrorSelector } from "../../store/self-signup/selectors";
 import ErrorIcon from "@mui/icons-material/Error";
+import { countryList } from "../../enums/CountryList";
 
 const CompanySignup = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -37,6 +40,7 @@ const CompanySignup = () => {
   } = useForm();
 
   const onSubmit = (data: any) => {
+    console.log(data.country);
     dispatch(
       selfSignUpRequest(
         {
@@ -45,6 +49,7 @@ const CompanySignup = () => {
           firstName: data.firstName,
           lastName: data.lastName,
           orgName: data.companyName,
+          countryId: data.country,
         },
         navigate
       )
@@ -148,6 +153,45 @@ const CompanySignup = () => {
                     )}
                   </Grid>
                 </Grid>
+                <FormControl variant="outlined">
+                  <InputLabel id="countryLabel">Your Country</InputLabel>
+                  <Select
+                    labelId="countryLabel"
+                    id="country"
+                    className={
+                      errors.country
+                        ? "country-input-with-error"
+                        : "country-input"
+                    }
+                    label="Country"
+                    {...register("country", { required: true })}
+                  >
+                    {countryList.map((country, i) => {
+                      return (
+                        <MenuItem value={country.id} key={country.id}>
+                          {country.countryName !== "Other" && (
+                            <img
+                              src={country.flag}
+                              alt=""
+                              style={{
+                                marginRight: "8px",
+                                height: "24px",
+                                width: "40px",
+                                verticalAlign: "sub",
+                              }}
+                            />
+                          )}{" "}
+                          {country.countryName}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+                {errors.country?.type === "required" && (
+                  <Typography className="signup-error-fe">
+                    Country is required.
+                  </Typography>
+                )}
                 <TextField
                   error={errors.email ? true : false}
                   id="outlined-basic"
