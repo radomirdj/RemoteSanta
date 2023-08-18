@@ -31,7 +31,7 @@ const AutomaticPointsDeliveryStep = () => {
     dispatch(
       postCompletementSteps(
         {
-          stepId: allStepsIdMap.get("WATCH_TUTORIAL"),
+          stepId: allStepsIdMap.get("TALK_TO_A_SPECIALIST"),
           completementStepStatus: { completed: true },
         },
         navigate

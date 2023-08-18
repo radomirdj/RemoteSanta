@@ -12,8 +12,9 @@ import React, { useEffect } from "react";
 import TalkWithASpecialistIllustration from "./../../assets/illustrations/talk-with-a-specialist-illustration.svg";
 import PersonalDetailsIllustration from "./../../assets/illustrations/personal-details-illustration.svg";
 import InviteCoworkersIllustration from "./../../assets/illustrations/invite-coworkers-illustration.svg";
-import AddPaymentIllustration from "./../../assets/illustrations/add-payment-illustration.svg";
-import AutomaticPointsDeliveryIllustration from "./../../assets/illustrations/automatic-points-delivery-illustration.svg";
+import BirthdayIllustration from "./../../assets/illustrations/birthday-illustration.svg";
+import PurchasePointsIllustration from "./../../assets/illustrations/purchase-points-illustration.svg";
+import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-illustration.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCompletementStepsSelector,
@@ -30,10 +31,6 @@ import {
 import { getSelfRequest } from "../../store/auth/actions";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ContactSupportIcon from "@mui/icons-material/ContactSupport";
-import WatchDemoStep from "./WatchDemoStep";
-import InviteCoworkersStep from "./InviteCoworkersStep";
-import PersonalDetailsStep from "./PersonalDetailsStep";
 import AutomaticPointsDeliveryStep from "./AutomaticPointsDeliveryStep";
 
 const CompletementSteps = () => {
@@ -65,7 +62,7 @@ const CompletementSteps = () => {
   const openModalStep = useSelector(getOpenModalStepSelector);
 
   const handleOpenDemo = () =>
-    dispatch(setOpenModalStep({ openModalStep: "WATCH_TUTORIAL" }));
+    dispatch(setOpenModalStep({ openModalStep: "TALK_TO_A_SPECIALIST" }));
 
   const handleOpenInvites = () =>
     dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
@@ -114,7 +111,7 @@ const CompletementSteps = () => {
 
   const calendlyRedirect = () => {
     window.open(
-      "https://calendly.com/radomir-remotesanta/remote-santa-support",
+      "https://calendly.com/radomir-remotesanta/talk-to-specialist?month=2023-09",
       "_blank"
     );
   };
@@ -136,7 +133,11 @@ const CompletementSteps = () => {
       {completedStepsNum < allStepsNum && (
         <Grid
           container
-          sx={{ display: { xs: "none", sm: "none", md: "inline-flex" } }}
+          sx={{
+            display: {
+              xs: "inline-flex",
+            },
+          }}
         >
           <Grid item xs={12}>
             <Card className="stepper-card">
@@ -158,32 +159,44 @@ const CompletementSteps = () => {
               />
 
               <Carousel responsive={responsive} slidesToSlide={1}>
-                {!completedStepsMap.get("WATCH_TUTORIAL") && (
+                {!completedStepsMap.get("TALK_TO_A_SPECIALIST") && (
                   <Card className="step-card">
                     <Grid container>
-                      <Grid item xs={8}>
+                      <Grid item xs={9}>
                         <Typography className="step-title">
-                          Talk with a specialist
+                          Talk to a specialist
                         </Typography>
                         <Typography className="step-text">
-                          Have a call with us, and our team will assist you in
-                          setting up your company profile in no time.
+                          Schedule a call, and we'll easily set up your company
+                          profile.
                         </Typography>
                       </Grid>
-                      <Grid item xs={4}>
+                      <Grid item xs={3}>
                         <img
                           src={TalkWithASpecialistIllustration}
                           alt=""
                           className="step-illustration"
                         />
                       </Grid>
-                      <Grid item xs={12} className="step-grid-item-button">
-                        <Button
-                          onClick={() => {}}
-                          className="use-points-button"
-                        >
-                          Go for it
-                        </Button>
+                      <Grid container>
+                        <Grid item xs={6} className="step-grid-item-button">
+                          <Button
+                            onClick={calendlyRedirect}
+                            className="proceed-button"
+                          >
+                            Go for it
+                          </Button>
+                        </Grid>
+                        <Grid item xs={6} className="step-grid-item-button">
+                          <Button
+                            className="skip-button"
+                            onClick={() =>
+                              markAsCompletedSkip("TALK_TO_A_SPECIALIST")
+                            }
+                          >
+                            Skip
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Card>
@@ -192,39 +205,85 @@ const CompletementSteps = () => {
                 {!completedStepsMap.get("PERSONAL_DETAILS") && (
                   <Card className="step-card">
                     <Grid container>
-                      <Grid item xs={12}>
+                      <Grid item xs={9}>
                         <Typography className="step-title">
                           Personal Details
                         </Typography>
-                      </Grid>
-                      <Grid item xs={8}>
                         <Typography className="step-text">
-                          Let's meet! Tell us something more about yourself and
-                          enjoy the best experience!
+                          Tell us something more about yourself and enjoy the
+                          best experience!
                         </Typography>
-                        <Button
-                          variant="contained"
-                          className="lets-go-button"
-                          disableRipple
-                          onClick={handleOpenPersonalDetails}
-                        >
-                          Let's go
-                        </Button>
                       </Grid>
-                      <Modal
-                        open={openModalStep === "PERSONAL_DETAILS"}
-                        onClose={handleCloseModalStep}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <PersonalDetailsStep />
-                      </Modal>
-                      <Grid item xs={4} className="step-grid-item">
+                      <Grid item xs={3}>
                         <img
                           src={PersonalDetailsIllustration}
                           alt=""
                           className="step-illustration"
                         />
+                      </Grid>
+                      <Grid container>
+                        <Grid item xs={12} className="step-grid-item-button">
+                          <Button className="proceed-button-no-skip">
+                            Set up now
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                )}
+                {!completedStepsMap.get("INVITE_EMPLOYEES") && (
+                  <Card className="step-card">
+                    <Grid container>
+                      <Grid item xs={9}>
+                        <Typography className="step-title">
+                          Invite Coworkers
+                        </Typography>
+                        <Typography className="step-text">
+                          Invite your coworkers and enjoy the community!
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <img
+                          src={InviteCoworkersIllustration}
+                          alt=""
+                          className="step-illustration"
+                        />
+                      </Grid>
+                      <Grid container>
+                        <Grid item xs={12} className="step-grid-item-button">
+                          <Button className="proceed-button-no-skip">
+                            Set up now
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                )}
+                {!completedStepsMap.get("BIRTHDAYS") && (
+                  <Card className="step-card">
+                    <Grid container>
+                      <Grid item xs={9}>
+                        <Typography className="step-title">
+                          Birthdays
+                        </Typography>
+                        <Typography className="step-text">
+                          Enjoy virtual birthday parties and get points
+                          automatically.
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <img
+                          src={BirthdayIllustration}
+                          alt=""
+                          className="step-illustration-birthday"
+                        />
+                      </Grid>
+                      <Grid container>
+                        <Grid item xs={12} className="step-grid-item-button">
+                          <Button className="proceed-button-no-skip">
+                            Set up now
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Card>
@@ -233,25 +292,33 @@ const CompletementSteps = () => {
                 {!completedStepsMap.get("AUTOMATIC_POINTS") && (
                   <Card className="step-card">
                     <Grid container>
-                      <Grid item xs={12}>
+                      <Grid item xs={9}>
                         <Typography className="step-title">
-                          Automatic points delivery
+                          Signup Bonus
                         </Typography>
-                      </Grid>
-                      <Grid item xs={8}>
                         <Typography className="step-text">
-                          Don't think about points, set them now and employees
-                          will get them automatically!
+                          Welcome employees with signup bonus points when
+                          joining the app.
                         </Typography>
-                        <Button
-                          variant="contained"
-                          className="lets-go-button"
-                          disableRipple
-                          onClick={handleOpenAutomaticPoints}
-                        >
-                          Let's go
-                        </Button>
                       </Grid>
+                      <Grid item xs={3}>
+                        <img
+                          src={SignupBonusIllustration}
+                          alt=""
+                          className="step-illustration"
+                        />
+                      </Grid>
+                      <Grid container>
+                        <Grid item xs={12} className="step-grid-item-button">
+                          <Button
+                            className="proceed-button-no-skip"
+                            onClick={handleOpenAutomaticPoints}
+                          >
+                            Set up now
+                          </Button>
+                        </Grid>
+                      </Grid>
+
                       <Modal
                         open={openModalStep === "AUTOMATIC_POINTS"}
                         onClose={handleCloseModalStep}
@@ -260,83 +327,33 @@ const CompletementSteps = () => {
                       >
                         <AutomaticPointsDeliveryStep />
                       </Modal>
-                      <Grid item xs={4} className="step-grid-item">
-                        <img
-                          src={AutomaticPointsDeliveryIllustration}
-                          alt=""
-                          className="step-illustration"
-                        />
-                      </Grid>
                     </Grid>
                   </Card>
                 )}
-                {!completedStepsMap.get("INVITE_EMPLOYEES") && (
+                {!completedStepsMap.get("PURCHASE_POINTS") && (
                   <Card className="step-card">
                     <Grid container>
-                      <Grid item xs={12}>
+                      <Grid item xs={9}>
                         <Typography className="step-title">
-                          Invite coworkers
+                          Purchase Points
                         </Typography>
-                      </Grid>
-                      <Grid item xs={8}>
                         <Typography className="step-text">
-                          Invite your coworkers and enjoy the community! Have
-                          fun together.
+                          Acquire your points right here!
                         </Typography>
-                        <Button
-                          variant="contained"
-                          className="lets-go-button"
-                          disableRipple
-                          onClick={handleOpenInvites}
-                        >
-                          Let's go
-                        </Button>
                       </Grid>
-                      <Modal
-                        open={openModalStep === "INVITE_EMPLOYEES"}
-                        onClose={handleCloseModalStep}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <InviteCoworkersStep />
-                      </Modal>
-                      <Grid item xs={4} className="step-grid-item">
+                      <Grid item xs={3}>
                         <img
-                          src={InviteCoworkersIllustration}
+                          src={PurchasePointsIllustration}
                           alt=""
-                          className="step-illustration"
+                          className="step-illustration-birthday"
                         />
                       </Grid>
-                    </Grid>
-                  </Card>
-                )}
-                {!completedStepsMap.get("ADD_PAYMENT") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Typography className="step-title">
-                          Payment method
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={7}>
-                        <Typography className="step-text">
-                          Add payment method. Choose the payment option that
-                          suits you best!
-                        </Typography>
-                        <Button
-                          variant="contained"
-                          className="lets-go-button"
-                          disableRipple
-                        >
-                          Let's go
-                        </Button>
-                      </Grid>
-                      <Grid item xs={5} className="step-grid-item">
-                        <img
-                          src={AddPaymentIllustration}
-                          alt=""
-                          className="step-illustration"
-                        />
+                      <Grid container>
+                        <Grid item xs={12} className="step-grid-item-button">
+                          <Button className="proceed-button-no-skip">
+                            Set up now
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Card>

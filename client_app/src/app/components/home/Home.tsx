@@ -183,12 +183,14 @@ const Home = () => {
               </Grid>
             </Card>
           </Grid>
-          <Grid item xs={12}>
-            <Typography className="home-text">
-              {" "}
-              {user.org?.name}'s upcoming events
-            </Typography>
-          </Grid>
+          {usersWithBirthday.length > 0 && (
+            <Grid item xs={12}>
+              <Typography className="home-text">
+                {" "}
+                {user.org?.name}'s upcoming events
+              </Typography>
+            </Grid>
+          )}
 
           {/* {filteredList.map((element, i) => {
             return (

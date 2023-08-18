@@ -34,7 +34,7 @@ $stepper-card-font-size: 13px;
             position: relative;
             z-index: 1000;
             background-color: #FFEFC8;
-            box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 
             .react-multi-carousel-list{
                 height: 250px;
@@ -81,13 +81,13 @@ $stepper-card-font-size: 13px;
             }
 
                 .step-card{
-                    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
                     padding-top: variables.$base-unit;
                     padding-bottom: variables.$base-unit;
                     padding-left: variables.$base-unit;
                     padding-right: variables.$base-unit;
                     border-radius: variables.$base-unit * 2;
                     height: variables.$base-unit * 20;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                 }
 
                 .step-title{
@@ -112,36 +112,67 @@ $stepper-card-font-size: 13px;
                 }
 
                 .step-illustration{
-                    width: variables.$base-unit * 10;
-                    margin-right: 16px;
+                    width: variables.$base-unit * 8;
+                    margin-left: -16px;
+                    margin-right: variables.$base-unit * 4;
+                    margin-top: variables.$base-unit * 2;
+        
+                    @media screen and (max-width: variables.$breakpoint-sm) {
+                        margin-left: variables.$base-unit * 3;
+                    }
                 }
 
-                .lets-go-button,
-                & .lets-go-button:hover {
-                    background-color: variables.$color-dark-yellow;
+                .step-illustration-birthday{
+                    width: variables.$base-unit * 10;
+                    margin-left: -32px;
+                    margin-right: variables.$base-unit * 4;
+                    margin-top: variables.$base-unit * 2;
+        
+                    @media screen and (max-width: variables.$breakpoint-sm) {
+                        margin-left: variables.$base-unit * 3;
+                    }
+                }
+
+                .proceed-button-no-skip,
+                & .proceed-button-no-skip:hover {
+                    background-color: variables.$main-green;
                     border-radius: variables.$base-unit;
-                    box-shadow: none;
                     color: variables.$color-neutral-black;
                     text-transform: none;
-                    width: variables.$base-unit * 12;
-                    height: variables.$base-unit * 4;
+                    height: 36px;
                     font-weight: bold;
-                    margin-top: variables.$base-unit;
+                    margin-left: variables.$base-unit * 2;
+                    text-align: center;
+                    width: 50%;
+                    margin-top: variables.$base-unit ;
+
+                }
+
+                .proceed-button,
+                & .proceed-button:hover {
+                    background-color: variables.$main-green;
+                    border-radius: variables.$base-unit;
+                    color: variables.$color-neutral-black;
+                    text-transform: none;
+                    height: 36px;
+                    font-weight: bold;
+                    margin-left: variables.$base-unit * 2;
+                    text-align: center;
+                    width: 85%;
                 }
 
                 .skip-button,
                 & .skip-button:hover {
                     background-color: white;
                     border-radius: variables.$base-unit;
-                    border-color: black;
-                    box-shadow: none;
+                    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
                     color: variables.$color-neutral-black;
                     text-transform: none;
-                    width: variables.$base-unit * 8;
-                    height: variables.$base-unit * 4;
+                    height: 36px;
                     font-weight: bold;
-                    margin-top: variables.$base-unit;
-                    margin-left: variables.$base-unit * 4;
+                    margin-left: variables.$base-unit * 2;
+                    text-align: center;
+                    width: 60%;
                 }
         }
     
