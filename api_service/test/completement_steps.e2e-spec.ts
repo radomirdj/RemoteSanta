@@ -62,7 +62,8 @@ describe('/completement-steps', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(4);
+      expect(response.body.length).toEqual(6);
+      console.log('response.body', response.body);
       response.body.forEach((stepStatus) => {
         expect(stepStatus.completed).toEqual(true);
       });
@@ -79,15 +80,17 @@ describe('/completement-steps', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(4);
+      expect(response.body.length).toEqual(6);
       const rspMap = {};
       response.body.forEach((stepStatus) => {
         rspMap[stepStatus.name] = stepStatus.completed;
       });
       expect(rspMap['INVITE_EMPLOYEES']).toEqual(true);
-      expect(rspMap['ADD_PAYMENT']).toEqual(true);
+      expect(rspMap['PERSONAL_DETAILS']).toEqual(true);
       expect(rspMap['AUTOMATIC_POINTS']).toEqual(true);
-      expect(rspMap['WATCH_TUTORIAL']).toEqual(false);
+      expect(rspMap['BIRTHDAYS']).toEqual(true);
+      expect(rspMap['PURCHASE_POINTS']).toEqual(true);
+      expect(rspMap['TALK_TO_A_SPECIALIST']).toEqual(false);
     });
     it('/ (GET) - get list of completement steps - basic user with no access', async () => {
       const response = await request(app.getHttpServer())
@@ -114,7 +117,7 @@ describe('/completement-steps', () => {
     it('/:id/update-status (POST) - update status of completement step - status not in db', async () => {
       await request(app.getHttpServer())
         .post(
-          `/completement-steps/${consts.orgCompletementSteps.ADD_PAYMENT.id}/update-status`,
+          `/completement-steps/${consts.orgCompletementSteps.INVITE_EMPLOYEES.id}/update-status`,
         )
         .set(
           'Authorization',
@@ -131,12 +134,13 @@ describe('/completement-steps', () => {
         org1.id,
       );
 
-      expect(stepStatusList.length).toEqual(4);
-      expect(stepStatusList[0].completed).toEqual(false);
+      expect(stepStatusList.length).toEqual(6);
+      expect(stepStatusList[1].completed).toEqual(false);
       //  clear data
       await prisma.orgCompletementStepStatus.deleteMany({
         where: {
-          orgCompletementStepId: consts.orgCompletementSteps.ADD_PAYMENT.id,
+          orgCompletementStepId:
+            consts.orgCompletementSteps.INVITE_EMPLOYEES.id,
           orgId: org1.id,
         },
       });
@@ -144,7 +148,7 @@ describe('/completement-steps', () => {
     it('/:id/update-status (POST) - update status of completement step - status is in db', async () => {
       await request(app.getHttpServer())
         .post(
-          `/completement-steps/${consts.orgCompletementSteps.WATCH_TUTORIAL.id}/update-status`,
+          `/completement-steps/${consts.orgCompletementSteps.TALK_TO_A_SPECIALIST.id}/update-status`,
         )
         .set(
           'Authorization',
@@ -161,12 +165,13 @@ describe('/completement-steps', () => {
         org1.id,
       );
 
-      expect(stepStatusList.length).toEqual(4);
-      expect(stepStatusList[3].completed).toEqual(false);
+      expect(stepStatusList.length).toEqual(6);
+      expect(stepStatusList[0].completed).toEqual(false);
       //  clear data
       await prisma.orgCompletementStepStatus.updateMany({
         where: {
-          orgCompletementStepId: consts.orgCompletementSteps.WATCH_TUTORIAL.id,
+          orgCompletementStepId:
+            consts.orgCompletementSteps.TALK_TO_A_SPECIALIST.id,
           orgId: org1.id,
         },
         data: {
@@ -177,7 +182,7 @@ describe('/completement-steps', () => {
     it('/:id/update-status (POST) - update status of completement step - NOT USER MANAGER', async () => {
       await request(app.getHttpServer())
         .post(
-          `/completement-steps/${consts.orgCompletementSteps.WATCH_TUTORIAL.id}/update-status`,
+          `/completement-steps/${consts.orgCompletementSteps.TALK_TO_A_SPECIALIST.id}/update-status`,
         )
         .set(
           'Authorization',

@@ -10,21 +10,29 @@ export default {
     'jovana@remotesanta.io',
   ],
   orgCompletementSteps: {
-    ADD_PAYMENT: {
-      id: 'a38731bb-8b5d-426b-92d0-ca422080eb67',
-      name: 'ADD_PAYMENT',
-    },
-    AUTOMATIC_POINTS: {
-      id: '9de0888e-6193-409e-a308-3fc0257c3939',
-      name: 'AUTOMATIC_POINTS',
+    TALK_TO_A_SPECIALIST: {
+      id: '4d4d62a7-3c0f-4433-b7bb-bc3e75da07a4',
+      name: 'TALK_TO_A_SPECIALIST',
     },
     INVITE_EMPLOYEES: {
-      id: '764c104e-055d-453a-a061-60698581be15',
+      id: 'f78f2566-7b93-4b57-9237-f25bab4ee308',
       name: 'INVITE_EMPLOYEES',
     },
-    WATCH_TUTORIAL: {
-      id: '7477296f-6919-442b-9ea5-7306f09ba028',
-      name: 'WATCH_TUTORIAL',
+    AUTOMATIC_POINTS: {
+      id: '6b600e9f-2e22-42f8-8c29-20179c5d1a10',
+      name: 'AUTOMATIC_POINTS',
+    },
+    PERSONAL_DETAILS: {
+      id: '5afd1ac1-6d68-4801-a04c-720b23d2a073',
+      name: 'PERSONAL_DETAILS',
+    },
+    BIRTHDAYS: {
+      id: '2f123b4f-e28d-4bf0-add9-d4a79c998e19',
+      name: 'BIRTHDAYS',
+    },
+    PURCHASE_POINTS: {
+      id: '31e90020-bcfd-48a7-b28e-5ad083e0b19f',
+      name: 'PURCHASE_POINTS',
     },
   },
   orgNegativeTransactions: [
