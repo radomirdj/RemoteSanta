@@ -39,6 +39,7 @@ export interface SelfSignUpRequestPayload {
   firstName: string;
   lastName: string;
   orgName: string;
+  countryId: string;
 }
 
 export interface FetchCompletementStepsSuccessPayload {

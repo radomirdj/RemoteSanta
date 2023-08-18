@@ -92,6 +92,16 @@
     display: block;
   }
 
+  .country-input-with-error {
+    .MuiOutlinedInput-notchedOutline {
+      border-color: variables.$error-color;
+    }
+  }
+
+  .country-input {
+    margin-bottom: variables.$base-unit * 3 !important;
+  }
+
   .email-input {
     margin-bottom: variables.$base-unit * 3 !important;
   }
@@ -112,7 +122,7 @@
     margin: 0px;
     width: 100%;
     border-radius: variables.$base-unit;
-    margin-bottom: variables.$base-unit;
+   
 
     .MuiOutlinedInput-root {
       border-radius: variables.$base-unit;
@@ -126,6 +136,10 @@
 
     .MuiFormLabel-root.Mui-error {
       color: variables.$color-gray;
+    }
+
+    .MuiSelect-select {
+      text-align: start;
     }
   }
 

@@ -18,6 +18,7 @@ import { fetchOrganizationUserList } from "../../store/orgs/actions";
 import UserBirthdayListItem from "./UserBirthdayListItem";
 import { IOrgUser } from "../../store/orgs/types";
 import { getUserNextBirthday } from "../../utils/Utils";
+import CompletementSteps from "./CompletementSteps";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Home = () => {
   };
 
   const usersWithBirthday = orgUserList
-    .filter(user => user.birthDate)
+    .filter((user) => user.birthDate)
     .sort(compareByNextBirthday)
     .slice(0, 10);
 
@@ -60,11 +61,11 @@ const Home = () => {
       <AppHeaderPrivate />
       <div className="background home">
         <Grid container spacing={4} className="grid-style">
+          <CompletementSteps />
           <Grid item xs={12}>
             <Typography className="home-title">
               Hello {user.firstName}
             </Typography>
-
             <Tooltip
               title={`${user.org?.country?.conversionRateToPoints} PTS is equal to 1 ${user.org?.country?.currencyString}`}
               placement="right"
@@ -78,9 +79,9 @@ const Home = () => {
                     height: "40px",
                     width: "200px",
                     borderRadius: "16px",
-                    paddingTop: "20px"
-                  }
-                }
+                    paddingTop: "20px",
+                  },
+                },
               }}
             >
               <Typography className="home-balance">
@@ -182,12 +183,14 @@ const Home = () => {
               </Grid>
             </Card>
           </Grid>
-          <Grid item xs={12}>
-            <Typography className="home-text">
-              {" "}
-              {user.org?.name}'s upcoming events
-            </Typography>
-          </Grid>
+          {usersWithBirthday.length > 0 && (
+            <Grid item xs={12}>
+              <Typography className="home-text">
+                {" "}
+                {user.org?.name}'s upcoming events
+              </Typography>
+            </Grid>
+          )}
 
           {/* {filteredList.map((element, i) => {
             return (
