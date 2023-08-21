@@ -73,6 +73,14 @@
   type: USER_RESERVED
   userId: 3a4e4ddd-dee6-4132-886c-c7953f03c00b
 
+- id: 126705cb-fbeb-401f-9227-1576e2eb2495
+  type: USER_ACTIVE
+  userId: ff9ea7ac-019f-4139-8d96-8ea1b35556c7
+
+- id: 292aaf8c-5cb7-4744-b52c-a1a16b4f8012
+  type: USER_RESERVED
+  userId: ff9ea7ac-019f-4139-8d96-8ea1b35556c7
+
 - id: dfd73aeb-32e6-463b-ae7a-d1ea63d4fcf3
   type: ORG
   orgId: 752e05ce-4a81-4148-87c5-30832406d48c

@@ -67,6 +67,15 @@ export const users = [
     lastName: 'New',
     role: 'USER_MANAGER',
   },
+  {
+    id: 'ff9ea7ac-019f-4139-8d96-8ea1b35556c7',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
+    cognitoSub: '8ea1b35556c7',
+    password: 'abcABC123',
+    email: 'jovanadjeko+notcompletedbasic@gmail.com',
+    firstName: 'NewB',
+    lastName: 'NewB',
+  },
 ];
 
 export const user1 = users[0];
@@ -125,6 +134,7 @@ export const org2ActivePoints = 0;
 export const org2ReservedPoints = 0;
 
 export const orgNonCompletedManager = users[5];
+export const orgNonCompletedBasic = users[6];
 
 export const userSrb = {
   id: 'c9c96ed0-6750-401e-aebd-1563c5933467',

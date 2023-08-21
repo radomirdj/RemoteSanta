@@ -18,6 +18,7 @@ import {
   org1,
   orgNonCompletedManager,
   orgNonCompleted,
+  orgNonCompletedBasic,
 } from './utils/preseededData';
 import { createToken } from './utils/tokenService';
 import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
@@ -261,6 +262,21 @@ describe('/completement-steps', () => {
           completed: false,
         },
       });
+    });
+
+    it('/ (POST) - set-signup-bonus by Non Completed Org - BASIC user error', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-signup-bonus/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedBasic.email,
+              sub: orgNonCompletedBasic.cognitoSub,
+            }),
+        )
+        .send({ signupPoints: 150 })
+        .expect(403);
     });
   });
 });

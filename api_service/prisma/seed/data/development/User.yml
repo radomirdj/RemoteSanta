@@ -122,3 +122,13 @@
   orgId: a2811909-a87c-402e-8fc1-2f54e72532e2
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: ff9ea7ac-019f-4139-8d96-8ea1b35556c7
+  cognitoSub: 8ea1b35556c7
+  email: jovanadjeko+notcompletedbasic@gmail.com
+  firstName: NewB
+  lastName: NewB
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
+  orgId: a2811909-a87c-402e-8fc1-2f54e72532e2
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00
