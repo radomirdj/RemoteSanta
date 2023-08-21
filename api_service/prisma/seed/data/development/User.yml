@@ -111,3 +111,14 @@
   orgId: 27d432c3-7c7c-455a-9d8d-2de6bc5492c3
   createdAt: 2022-11-14T21:59:43.10-05:00
   updatedAt: 2022-11-14T21:59:43.10-05:00
+
+- id: 3a4e4ddd-dee6-4132-886c-c7953f03c00b
+  cognitoSub: c7953f03c00b
+  email: jovanadjeko+notcompleted@gmail.com
+  firstName: New
+  lastName: New
+  userRole: USER_MANAGER
+  countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
+  orgId: a2811909-a87c-402e-8fc1-2f54e72532e2
+  createdAt: 2022-11-14T21:59:43.10-05:00
+  updatedAt: 2022-11-14T21:59:43.10-05:00

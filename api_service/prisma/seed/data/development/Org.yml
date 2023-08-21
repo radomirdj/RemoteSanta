@@ -59,10 +59,10 @@
   signupPoints: 2400
 
 - id: a2811909-a87c-402e-8fc1-2f54e72532e2
-  name: 'Casterly Rock Inc.10'
+  name: 'Not Completed Org'
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
-  pointsPerMonth: 600
-  signupPoints: 2400
+  pointsPerMonth: 0
+  signupPoints: 0
 
 - id: f13f1e8c-79a5-4321-a8a1-aa9d8264838f
   name: 'Casterly Rock Inc.11'

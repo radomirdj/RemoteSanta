@@ -16,6 +16,8 @@ import {
   user3Manager,
   org2Manager,
   org1,
+  orgNonCompletedManager,
+  orgNonCompleted,
 } from './utils/preseededData';
 import { createToken } from './utils/tokenService';
 import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
@@ -23,7 +25,6 @@ import consts from '../src/utils/consts';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
- 
 
 describe('/completement-steps', () => {
   let app: INestApplication;
@@ -63,7 +64,6 @@ describe('/completement-steps', () => {
         )
         .expect(200);
       expect(response.body.length).toEqual(6);
-      console.log('response.body', response.body);
       response.body.forEach((stepStatus) => {
         expect(stepStatus.completed).toEqual(true);
       });
@@ -92,6 +92,24 @@ describe('/completement-steps', () => {
       expect(rspMap['PURCHASE_POINTS']).toEqual(true);
       expect(rspMap['TALK_TO_A_SPECIALIST']).toEqual(false);
     });
+    it('/ (GET) - get list of completement steps Non Completed Org', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/completement-steps/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedManager.email,
+              sub: orgNonCompletedManager.cognitoSub,
+            }),
+        )
+        .expect(200);
+      expect(response.body.length).toEqual(6);
+      response.body.forEach((stepStatus) => {
+        expect(stepStatus.completed).toEqual(false);
+      });
+    });
+
     it('/ (GET) - get list of completement steps - basic user with no access', async () => {
       const response = await request(app.getHttpServer())
         .get('/completement-steps/')
@@ -208,6 +226,41 @@ describe('/completement-steps', () => {
         )
         .send({ completed: false })
         .expect(404);
+    });
+  });
+  describe('/set-signup-bonus (POST)', () => {
+    it('/ (POST) - set-signup-bonus by Non Completed Org', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-signup-bonus/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedManager.email,
+              sub: orgNonCompletedManager.cognitoSub,
+            }),
+        )
+        .send({ signupPoints: 150 })
+        .expect(201);
+      const stepStatusList = await completementStepsService.getListByOrg(
+        orgNonCompleted.id,
+      );
+      expect(stepStatusList[2].completed).toEqual(true);
+      const orgDb = await prisma.org.findUnique({
+        where: { id: orgNonCompleted.id },
+      });
+      expect(orgDb.signupPoints).toEqual(150);
+      //  clear data
+      await prisma.orgCompletementStepStatus.updateMany({
+        where: {
+          orgCompletementStepId:
+            consts.orgCompletementSteps.AUTOMATIC_POINTS.id,
+          orgId: orgNonCompleted.id,
+        },
+        data: {
+          completed: false,
+        },
+      });
     });
   });
 });
