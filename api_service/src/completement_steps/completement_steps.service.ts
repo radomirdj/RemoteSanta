@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CompletementStepDto } from './dtos/completement_step.dto';
 import consts from '../utils/consts';
+import { GenderEnum } from '@prisma/client';
 
 @Injectable()
 export class CompletementStepsService {
@@ -88,6 +89,29 @@ export class CompletementStepsService {
       data: {
         signupPoints,
       },
+    });
+  }
+
+  async updatePersonalDetails(
+    orgId: string,
+    userId: string,
+    gender: GenderEnum,
+    birthDate?: Date,
+  ) {
+    await this.updateOrgCompletementStatus(
+      orgId,
+      consts.orgCompletementSteps.PERSONAL_DETAILS.id,
+      true,
+    );
+    let data: { gender: GenderEnum; birthDate?: Date } = {
+      gender,
+    };
+    if (birthDate) data.birthDate = birthDate;
+    await this.prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data,
     });
   }
 

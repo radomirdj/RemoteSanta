@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { IntegrationConsraintTypeEnum } from '@prisma/client';
+import { IntegrationConsraintTypeEnum, GenderEnum } from '@prisma/client';
 
 import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
@@ -262,6 +262,14 @@ describe('/completement-steps', () => {
           completed: false,
         },
       });
+      await prisma.org.update({
+        where: {
+          id: orgNonCompleted.id,
+        },
+        data: {
+          signupPoints: 0,
+        },
+      });
     });
 
     it('/ (POST) - set-signup-bonus by Non Completed Org - BASIC user error', async () => {
@@ -276,6 +284,121 @@ describe('/completement-steps', () => {
             }),
         )
         .send({ signupPoints: 150 })
+        .expect(403);
+    });
+  });
+  describe('/set-personal-details (POST)', () => {
+    it('/ (POST) - set-personal-details by Non Completed Org', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-personal-details/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedManager.email,
+              sub: orgNonCompletedManager.cognitoSub,
+            }),
+        )
+        .send({
+          gender: GenderEnum.FEMALE,
+          birthDate: new Date('2000-04-31T00:00:00.000Z'),
+        })
+        .expect(201);
+      const stepStatusList = await completementStepsService.getListByOrg(
+        orgNonCompleted.id,
+      );
+      expect(stepStatusList[3].completed).toEqual(true);
+      const userDb = await prisma.user.findUnique({
+        where: { id: orgNonCompletedManager.id },
+      });
+      expect(userDb.gender).toEqual(GenderEnum.FEMALE);
+      expect(userDb.birthDate).toEqual(new Date('2000-04-31T00:00:00.000Z'));
+
+      //  clear data
+      await prisma.orgCompletementStepStatus.updateMany({
+        where: {
+          orgCompletementStepId:
+            consts.orgCompletementSteps.PERSONAL_DETAILS.id,
+          orgId: orgNonCompleted.id,
+        },
+        data: {
+          completed: false,
+        },
+      });
+
+      await prisma.user.update({
+        where: {
+          id: orgNonCompletedManager.id,
+        },
+        data: {
+          birthDate: null,
+          gender: null,
+        },
+      });
+    });
+
+    it('/ (POST) - set-personal-details by Non Completed Org, update just gender', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-personal-details/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedManager.email,
+              sub: orgNonCompletedManager.cognitoSub,
+            }),
+        )
+        .send({
+          gender: GenderEnum.FEMALE,
+        })
+        .expect(201);
+      const stepStatusList = await completementStepsService.getListByOrg(
+        orgNonCompleted.id,
+      );
+      expect(stepStatusList[3].completed).toEqual(true);
+      const userDb = await prisma.user.findUnique({
+        where: { id: orgNonCompletedManager.id },
+      });
+      expect(userDb.gender).toEqual(GenderEnum.FEMALE);
+      expect(userDb.birthDate).toBeNull();
+
+      //  clear data
+      await prisma.orgCompletementStepStatus.updateMany({
+        where: {
+          orgCompletementStepId:
+            consts.orgCompletementSteps.PERSONAL_DETAILS.id,
+          orgId: orgNonCompleted.id,
+        },
+        data: {
+          completed: false,
+        },
+      });
+
+      await prisma.user.update({
+        where: {
+          id: orgNonCompletedManager.id,
+        },
+        data: {
+          gender: null,
+        },
+      });
+    });
+
+    it('/ (POST) - set-personal-details by Non Completed Org - BASIC user error', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-personal-details/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedBasic.email,
+              sub: orgNonCompletedBasic.cognitoSub,
+            }),
+        )
+        .send({
+          gender: GenderEnum.FEMALE,
+          birthDate: new Date('2000-04-31T00:00:00.000Z'),
+        })
         .expect(403);
     });
   });
