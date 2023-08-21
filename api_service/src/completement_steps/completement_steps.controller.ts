@@ -8,6 +8,7 @@ import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { UserDto } from '../users/dtos/user.dto';
 import { UserManagerGuard } from '../guards/user_manager.guard';
 import { CompletementStepStatusUpdateDto } from './dtos/completement_step_status_update.dto';
+import { SetSignupBonusCompletementStepDto } from './dtos/set_signup_bonus_completment_step';
 
 @Controller('completement-steps')
 @Serialize(CompletementStepDto)
@@ -33,6 +34,18 @@ export class CompletementStepsController {
       user.org.id,
       stepId,
       body.completed,
+    );
+  }
+
+  @Post('/set-signup-bonus')
+  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  async setSignupBonusCompletementStep(
+    @CurrentUser() user: UserDto,
+    @Body() body: SetSignupBonusCompletementStepDto,
+  ) {
+    return this.completementStepsService.updateOrgSignupBonus(
+      user.org.id,
+      body.signupPoints,
     );
   }
 }

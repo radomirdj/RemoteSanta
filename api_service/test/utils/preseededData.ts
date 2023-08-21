@@ -57,6 +57,25 @@ export const users = [
     role: 'USER_MANAGER',
     birthDate: new Date('1945-04-19T00:00:00.000Z'),
   },
+  {
+    id: '3a4e4ddd-dee6-4132-886c-c7953f03c00b',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
+    cognitoSub: 'c7953f03c00b',
+    password: 'abcABC123',
+    email: 'jovanadjeko+notcompleted@gmail.com',
+    firstName: 'New',
+    lastName: 'New',
+    role: 'USER_MANAGER',
+  },
+  {
+    id: 'ff9ea7ac-019f-4139-8d96-8ea1b35556c7',
+    countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
+    cognitoSub: '8ea1b35556c7',
+    password: 'abcABC123',
+    email: 'jovanadjeko+notcompletedbasic@gmail.com',
+    firstName: 'NewB',
+    lastName: 'NewB',
+  },
 ];
 
 export const user1 = users[0];
@@ -113,6 +132,9 @@ export const userDeleted2 = {
 export const org2Manager = users[4];
 export const org2ActivePoints = 0;
 export const org2ReservedPoints = 0;
+
+export const orgNonCompletedManager = users[5];
+export const orgNonCompletedBasic = users[6];
 
 export const userSrb = {
   id: 'c9c96ed0-6750-401e-aebd-1563c5933467',
@@ -304,6 +326,14 @@ export const org2Points = 25200;
 export const org2BalanceSideId = '1c80baff-e523-4787-a94d-7edcf35216aa';
 
 export const brokeOrgId = 'd5d4d9a2-7d77-43ba-bacd-b87504e5fae1';
+
+export const orgNonCompleted = {
+  id: 'a2811909-a87c-402e-8fc1-2f54e72532e2',
+  name: 'Not Completed Org',
+  pointsPerMonth: 0,
+  signupPoints: 0,
+  employeeNumber: 1,
+};
 
 export const claimPointsEvent1 = {
   id: 'e0c01322-f499-4f84-baac-af230e238d07',

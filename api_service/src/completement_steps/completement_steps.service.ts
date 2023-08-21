@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CompletementStepDto } from './dtos/completement_step.dto';
+import consts from '../utils/consts';
 
 @Injectable()
 export class CompletementStepsService {
@@ -70,6 +71,22 @@ export class CompletementStepsService {
       where: { id: completementStepStatusList[0].id },
       data: {
         completed,
+      },
+    });
+  }
+
+  async updateOrgSignupBonus(orgId: string, signupPoints: number) {
+    await this.updateOrgCompletementStatus(
+      orgId,
+      consts.orgCompletementSteps.AUTOMATIC_POINTS.id,
+      true,
+    );
+    await this.prisma.org.update({
+      where: {
+        id: orgId,
+      },
+      data: {
+        signupPoints,
       },
     });
   }
