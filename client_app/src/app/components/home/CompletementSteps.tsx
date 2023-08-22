@@ -32,6 +32,8 @@ import { getSelfRequest } from "../../store/auth/actions";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import AutomaticPointsDeliveryStep from "./AutomaticPointsDeliveryStep";
+import BirthdaysStep from "./BirthdaysStep";
+import PersonalDetailsStep from "./PersonalDetailsStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -61,14 +63,14 @@ const CompletementSteps = () => {
   const stepperValue = (completedStepsNum * 100) / allStepsNum;
   const openModalStep = useSelector(getOpenModalStepSelector);
 
-  const handleOpenDemo = () =>
-    dispatch(setOpenModalStep({ openModalStep: "TALK_TO_A_SPECIALIST" }));
-
   const handleOpenInvites = () =>
     dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
 
   const handleOpenAutomaticPoints = () =>
     dispatch(setOpenModalStep({ openModalStep: "AUTOMATIC_POINTS" }));
+
+  const handleOpenBirthdays = () =>
+    dispatch(setOpenModalStep({ openModalStep: "BIRTHDAYS" }));
 
   const handleOpenPersonalDetails = () =>
     dispatch(setOpenModalStep({ openModalStep: "PERSONAL_DETAILS" }));
@@ -223,11 +225,22 @@ const CompletementSteps = () => {
                       </Grid>
                       <Grid container>
                         <Grid item xs={12} className="step-grid-item-button">
-                          <Button className="proceed-button-no-skip">
+                          <Button
+                            className="proceed-button-no-skip"
+                            onClick={handleOpenPersonalDetails}
+                          >
                             Set up now
                           </Button>
                         </Grid>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "PERSONAL_DETAILS"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <PersonalDetailsStep />
+                      </Modal>
                     </Grid>
                   </Card>
                 )}
@@ -280,11 +293,22 @@ const CompletementSteps = () => {
                       </Grid>
                       <Grid container>
                         <Grid item xs={12} className="step-grid-item-button">
-                          <Button className="proceed-button-no-skip">
+                          <Button
+                            className="proceed-button-no-skip"
+                            onClick={handleOpenBirthdays}
+                          >
                             Set up now
                           </Button>
                         </Grid>
                       </Grid>
+                      <Modal
+                        open={openModalStep === "BIRTHDAYS"}
+                        onClose={handleCloseModalStep}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <BirthdaysStep />
+                      </Modal>
                     </Grid>
                   </Card>
                 )}

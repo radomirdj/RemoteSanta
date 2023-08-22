@@ -404,63 +404,29 @@ $stepper-card-font-size: 13px;
             margin-right: variables.$base-unit * 3;
         }
 
-        .personal-details-title{
+
+        .completement-step-personal-details-illustration{
+            margin-left: variables.$base-unit;
+            width: 80px;
+        }
+
+        .completement-step-title{
             font-family: "Montserrat";
             font-weight: 600;
             margin-bottom: variables.$base-unit * 3;
             font-size: variables.$font-size-larger;
         }
 
-        .personal-details-text{
+        .completement-step-text{
             font-family: "Montserrat";
             font-weight: 400;
             margin-bottom: variables.$base-unit * 3;
             font-size: $stepper-card-font-size;
         }
 
-        .personal-details-illustration{
-            margin-left: variables.$base-unit * 4;
-            width: 100px;
-            margin-top: variables.$base-unit * 3;
-        }
-
-        .automatic-points-delivery-title{
-            font-family: "Montserrat";
-            font-weight: 600;
-            margin-bottom: variables.$base-unit * 3;
-            font-size: variables.$font-size-larger;
-        }
-
-        .automatic-points-delivery-text{
-            font-family: "Montserrat";
-            font-weight: 400;
-            margin-bottom: variables.$base-unit * 3;
-            font-size: $stepper-card-font-size;
-        }
-
-        .automatic-points-delivery-illustration{
+        .completement-step-illustration{
             margin-left: variables.$base-unit;
             width: 100px;
-        }
-
-        .invite-coworkers-title{
-            font-family: "Montserrat";
-            font-weight: 600;
-            margin-bottom: variables.$base-unit * 2;
-            margin-left: variables.$base-unit * 3;
-            font-size: variables.$font-size-larger;
-        }
-
-        .invite-coworkers-text{
-            font-family: "Montserrat";
-            font-weight: 400;
-            margin-bottom: variables.$base-unit * 3;
-            margin-left: variables.$base-unit * 3;
-            font-size: $stepper-card-font-size;
-        }
-
-        .invite-coworkers-illustration{
-            margin-left: variables.$base-unit * 2;
         }
 
         .invite-group-coworker-button,
