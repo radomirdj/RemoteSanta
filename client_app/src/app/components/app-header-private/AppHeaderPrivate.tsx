@@ -69,6 +69,9 @@ const AppHeaderPrivate = () => {
   const userManagerTransactionsRedirect = () => {
     navigate("/user-manager-transactions");
   };
+  const userManagerPurchasePointsRedirect = () => {
+    navigate("/user-manager-purchase-points");
+  };
 
   const userManagerInvitesRedirect = () => {
     navigate("/user-manager-invites");
@@ -159,9 +162,13 @@ const AppHeaderPrivate = () => {
                 }}
                 open={Boolean(anchorElManager)}
                 onClose={handleCloseManagerMenu}
+                className="menu-style"
               >
                 <MenuItem onClick={userManagerTransactionsRedirect}>
                   <Typography textAlign="center">Balance</Typography>
+                </MenuItem>
+                <MenuItem onClick={userManagerPurchasePointsRedirect}>
+                  <Typography textAlign="center">Purchase Points</Typography>
                 </MenuItem>
                 <MenuItem onClick={userManagerInvitesRedirect}>
                   <Typography textAlign="center">Invites</Typography>

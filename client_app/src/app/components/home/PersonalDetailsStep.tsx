@@ -27,44 +27,34 @@ const PersonalDetailsStep = () => {
     p: 4,
   };
 
-  const markAsCompletedWatch = () => {
-    dispatch(
-      postCompletementSteps(
-        {
-          stepId: allStepsIdMap.get("TALK_TO_A_SPECIALIST"),
-          completementStepStatus: { completed: true },
-        },
-        navigate
-      )
-    );
-  };
-
   return (
     <Card sx={style}>
       <Grid container>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <Typography
             id="modal-modal-title"
             variant="h4"
-            className="personal-details-title"
+            className="completement-step-title"
           >
             Personal Details
           </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={PersonalDetailsIllustration}
+            alt=""
+            className="completement-step-personal-details-illustration"
+          />
+        </Grid>
+        <Grid item xs={12}>
           <Typography
             id="modal-modal-title"
             variant="body2"
-            className="personal-details-text"
+            className="completement-step-text"
           >
             Let's meet! Tell us something more about yourself and enjoy the best
             experience!
           </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <img
-            src={PersonalDetailsIllustration}
-            alt=""
-            className="personal-details-illustration"
-          />
         </Grid>
       </Grid>
     </Card>

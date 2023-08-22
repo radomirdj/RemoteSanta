@@ -1,8 +1,8 @@
 import { Card, Grid, Typography } from "@mui/material";
 import React from "react";
-import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-illustration.svg";
+import BirthdayIllustration from "./../../assets/illustrations/birthday-illustration.svg";
 
-const AutomaticPointsDeliveryStep = () => {
+const BirthdaysStep = () => {
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,12 +24,12 @@ const AutomaticPointsDeliveryStep = () => {
             variant="h4"
             className="completement-step-title"
           >
-            Signup Bonus Points
+            Birthdays
           </Typography>
         </Grid>
         <Grid item xs={3}>
           <img
-            src={SignupBonusIllustration}
+            src={BirthdayIllustration}
             alt=""
             className="completement-step-illustration"
           />
@@ -40,9 +40,8 @@ const AutomaticPointsDeliveryStep = () => {
             variant="body2"
             className="completement-step-text"
           >
-            Extend a warm welcome with signup bonus points for your employees as
-            they join the app. Our recommended range is around 5-10 USD per
-            employee.
+            Let Remote Santa plan your fantastic birthday bash! Just share a few
+            details for the perfect setup and watch the magic unfold.
           </Typography>
         </Grid>
       </Grid>
@@ -50,4 +49,4 @@ const AutomaticPointsDeliveryStep = () => {
   );
 };
 
-export default AutomaticPointsDeliveryStep;
+export default BirthdaysStep;
