@@ -43,6 +43,7 @@ import MyTeamSendPointsSuccess from "./app/components/my-team/MyTeamSendPointsSu
 import ChooseGiftCardPersonal from "./app/components/choose-giftcard/ChooseGiftCardPersonal";
 import ChooseGiftCardPeerToPeer from "./app/components/choose-giftcard/ChooseGiftCardPeerToPeer";
 import UserManagerPurchasePoints from "./app/components/user-manager-purchase-points/UserManagerPurchasePoints";
+import UserManagerPurchasePointsSuccess from "./app/components/user-manager-purchase-points/UserManagerPurchasePointsSuccess";
 
 const App = () => {
   return (
@@ -302,6 +303,14 @@ const App = () => {
           element={
             <UserManagerRoute>
               <UserManagerPurchasePoints />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-purchase-points-success"
+          element={
+            <UserManagerRoute>
+              <UserManagerPurchasePointsSuccess />
             </UserManagerRoute>
           }
         />
