@@ -172,7 +172,7 @@ $stepper-card-font-size: 13px;
                     font-weight: bold;
                     margin-left: variables.$base-unit * 2;
                     text-align: center;
-                    width: 60%;
+                    width: 75%;
                 }
         }
     
@@ -376,6 +376,7 @@ $stepper-card-font-size: 13px;
 
 .MuiModal-root{
     .MuiCard-root{
+
         .watch-demo-title{
             font-family: "Montserrat";
             font-weight: 600;
@@ -420,13 +421,88 @@ $stepper-card-font-size: 13px;
         .completement-step-text{
             font-family: "Montserrat";
             font-weight: 400;
-            margin-bottom: variables.$base-unit * 3;
+            margin-bottom: variables.$base-unit * 2;
             font-size: $stepper-card-font-size;
         }
 
         .completement-step-illustration{
             margin-left: variables.$base-unit;
             width: 100px;
+        }
+
+        .completement-step-date-with-error {
+            .MuiOutlinedInput-root {
+              .MuiOutlinedInput-notchedOutline {
+                border-color: variables.$error-color;
+              }
+            }
+        }
+
+        .completement-step-input {
+            width: 100%;
+        }
+
+        .completement-step-select-with-error {
+            .MuiOutlinedInput-notchedOutline {
+              border-color: variables.$error-color;
+            }
+        }
+
+        .MuiFormControl-root {
+            width: 100%;
+            margin-top: variables.$base-unit * 3 !important;
+            border-radius: variables.$base-unit;
+        
+            .MuiOutlinedInput-root {
+              border-radius: variables.$base-unit;
+            }
+        
+            .MuiOutlinedInput-root.Mui-error {
+              .MuiOutlinedInput-notchedOutline {
+                border-color: variables.$error-color;
+              }
+            }
+        
+            .MuiFormLabel-root.Mui-error {
+              color: $registration-error-label-color;
+            }
+        
+            .MuiSelect-select {
+              text-align: start;
+            }
+          }
+
+        .completement-step-error-fe {
+            font-size: variables.$font-size-small;
+            color: variables.$error-color;
+            text-align: start;
+            margin-bottom: variables.$base-unit;
+            display: inline-flex;
+            width: 100%;
+        }
+
+        .completement-step-date-helper{
+            margin-top: 4px;
+            margin-left: 4px;
+            font-family: "Montserrat";
+            font-size: variables.$font-size-small;
+        }
+
+        .completement-step-button,
+        & .completement-step-button:hover {
+          background-color: variables.$color-dark-yellow;
+          border-radius: variables.$base-unit;
+          box-shadow: none;
+          color: variables.$color-neutral-black;
+          text-transform: none;
+          width: 100%;
+          height: variables.$base-unit * 6;
+          font-weight: bold;
+          margin-top: variables.$base-unit * 3;
+        }
+
+        .completement-step-form{
+            width: 100%;
         }
 
         .invite-group-coworker-button,

@@ -11,6 +11,12 @@ import {
   POST_COMPLETEMENT_STEPS_FAILURE,
   SET_OPEN_MODAL_STEP,
   SET_CLOSE_MODAL_STEP,
+  POST_PERSONAL_DETAILS_REQUEST,
+  POST_PERSONAL_DETAILS_SUCCESS,
+  POST_PERSONAL_DETAILS_FAILURE,
+  POST_SIGNUP_BONUS_REQUEST,
+  POST_SIGNUP_BONUS_SUCCESS,
+  POST_SIGNUP_BONUS_FAILURE,
 } from "./actionTypes";
 import {
   SelfSignUpRequest,
@@ -31,6 +37,16 @@ import {
   SetOpenModalStep,
   SetCloseModalStep,
   SetOpenModalStepPayload,
+  PostPersonalDetailsPayload,
+  PostPersonalDetails,
+  PostPersonalDetailsSuccess,
+  PostPersonalDetailsFailurePayload,
+  PostPersonalDetailsFailure,
+  PostSignupBonusPayload,
+  PostSignupBonus,
+  PostSignupBonusSuccess,
+  PostSignupBonusFailurePayload,
+  PostSignupBonusFailure,
 } from "./types";
 
 export const selfSignUpRequest = (
@@ -101,4 +117,40 @@ export const setOpenModalStep = (
 
 export const setCloseModalStep = (): SetCloseModalStep => ({
   type: SET_CLOSE_MODAL_STEP,
+});
+
+export const postPersonalDetails = (
+  payload: PostPersonalDetailsPayload
+): PostPersonalDetails => ({
+  type: POST_PERSONAL_DETAILS_REQUEST,
+  payload,
+});
+
+export const postPersonalDetailsSuccess = (): PostPersonalDetailsSuccess => ({
+  type: POST_PERSONAL_DETAILS_SUCCESS,
+});
+
+export const postPersonalDetailsFailure = (
+  payload: PostPersonalDetailsFailurePayload
+): PostPersonalDetailsFailure => ({
+  type: POST_PERSONAL_DETAILS_FAILURE,
+  payload,
+});
+
+export const postSignupBonus = (
+  payload: PostSignupBonusPayload
+): PostSignupBonus => ({
+  type: POST_SIGNUP_BONUS_REQUEST,
+  payload,
+});
+
+export const postSignupBonusSuccess = (): PostSignupBonusSuccess => ({
+  type: POST_SIGNUP_BONUS_SUCCESS,
+});
+
+export const postSignupBonusFailure = (
+  payload: PostSignupBonusFailurePayload
+): PostSignupBonusFailure => ({
+  type: POST_SIGNUP_BONUS_FAILURE,
+  payload,
 });

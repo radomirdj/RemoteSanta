@@ -11,6 +11,12 @@ import {
   POST_COMPLETEMENT_STEPS_FAILURE,
   SET_CLOSE_MODAL_STEP,
   SET_OPEN_MODAL_STEP,
+  POST_PERSONAL_DETAILS_REQUEST,
+  POST_PERSONAL_DETAILS_SUCCESS,
+  POST_PERSONAL_DETAILS_FAILURE,
+  POST_SIGNUP_BONUS_REQUEST,
+  POST_SIGNUP_BONUS_SUCCESS,
+  POST_SIGNUP_BONUS_FAILURE,
 } from "./actionTypes";
 
 import { SelfSignupState, SelfSignupActions } from "./types";
@@ -90,6 +96,41 @@ export default (state = initialState, action: SelfSignupActions) => {
         openModalStep: "NONE",
         pending: true,
         error: null,
+      };
+    case POST_PERSONAL_DETAILS_REQUEST:
+      return {
+        ...state,
+        pending: true,
+      };
+    case POST_PERSONAL_DETAILS_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        openModalStep: "NONE",
+        error: null,
+      };
+    case POST_PERSONAL_DETAILS_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case POST_SIGNUP_BONUS_REQUEST:
+      return {
+        ...state,
+        pending: true,
+      };
+    case POST_SIGNUP_BONUS_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case POST_SIGNUP_BONUS_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
       };
     default:
       return {

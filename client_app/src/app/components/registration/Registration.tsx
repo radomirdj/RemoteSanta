@@ -34,7 +34,6 @@ import ErrorIcon from "@mui/icons-material/Error";
 import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
 import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
 import { countryList } from "../../enums/CountryList";
-import dayjs from "dayjs";
 import { SignUpRequestPayload } from "../../store/auth/types";
 
 const Registration = () => {

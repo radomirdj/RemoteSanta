@@ -10,6 +10,12 @@ import {
   POST_COMPLETEMENT_STEPS_FAILURE,
   SET_OPEN_MODAL_STEP,
   SET_CLOSE_MODAL_STEP,
+  POST_PERSONAL_DETAILS_REQUEST,
+  POST_PERSONAL_DETAILS_SUCCESS,
+  POST_PERSONAL_DETAILS_FAILURE,
+  POST_SIGNUP_BONUS_REQUEST,
+  POST_SIGNUP_BONUS_SUCCESS,
+  POST_SIGNUP_BONUS_FAILURE,
 } from "./actionTypes";
 
 export interface ICompletementStep {
@@ -69,6 +75,23 @@ export interface SetOpenModalStepPayload {
   openModalStep: string;
 }
 
+export interface PostPersonalDetailsPayload {
+  birthDate?: Date;
+  gender: string;
+}
+
+export interface PostPersonalDetailsFailurePayload {
+  error: string;
+}
+
+export interface PostSignupBonusPayload {
+  signupPoints: number;
+}
+
+export interface PostSignupBonusFailurePayload {
+  error: string;
+}
+
 export type SelfSignUpSuccess = {
   type: typeof SELF_SIGN_UP_SUCCESS;
 };
@@ -116,6 +139,34 @@ export interface SetCloseModalStep {
   type: typeof SET_CLOSE_MODAL_STEP;
 }
 
+export interface PostPersonalDetails {
+  type: typeof POST_PERSONAL_DETAILS_REQUEST;
+  payload: PostPersonalDetailsPayload;
+}
+
+export interface PostPersonalDetailsSuccess {
+  type: typeof POST_PERSONAL_DETAILS_SUCCESS;
+}
+
+export interface PostPersonalDetailsFailure {
+  type: typeof POST_PERSONAL_DETAILS_FAILURE;
+  payload: PostPersonalDetailsFailurePayload;
+}
+
+export interface PostSignupBonus {
+  type: typeof POST_SIGNUP_BONUS_REQUEST;
+  payload: PostSignupBonusPayload;
+}
+
+export interface PostSignupBonusSuccess {
+  type: typeof POST_SIGNUP_BONUS_SUCCESS;
+}
+
+export interface PostSignupBonusFailure {
+  type: typeof POST_SIGNUP_BONUS_FAILURE;
+  payload: PostSignupBonusFailurePayload;
+}
+
 export type SelfSignupActions =
   | SelfSignUpRequest
   | SelfSignUpSuccess
@@ -127,4 +178,10 @@ export type SelfSignupActions =
   | PostCompletementStepsSuccess
   | PostCompletementStepsFailure
   | SetOpenModalStep
-  | SetCloseModalStep;
+  | SetCloseModalStep
+  | PostPersonalDetails
+  | PostPersonalDetailsSuccess
+  | PostPersonalDetailsFailure
+  | PostSignupBonus
+  | PostSignupBonusSuccess
+  | PostSignupBonusFailure;

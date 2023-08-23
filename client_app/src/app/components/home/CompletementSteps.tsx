@@ -40,22 +40,13 @@ const CompletementSteps = () => {
   const user = useSelector(getAuthUserSelector);
   const navigate = useNavigate();
   const completementStepList = useSelector(getCompletementStepsSelector);
-  const personalDetailsStep = {
-    name: "PERSONAL_DETAILS",
-    completed: !!user.birthDate,
-    id: "",
-  };
-  const fullCompletementStepList = [
-    ...completementStepList,
-    personalDetailsStep,
-  ];
-  const allStepsNum = Number(fullCompletementStepList.length);
-  const completedStepsList = fullCompletementStepList.filter(
+  const allStepsNum = Number(completementStepList.length);
+  const completedStepsList = completementStepList.filter(
     (step) => step.completed
   );
   const completedStepsMap = new Map<string, boolean>();
   const allStepsIdMap = new Map<string, string>();
-  fullCompletementStepList.forEach((completedStep) => {
+  completementStepList.forEach((completedStep) => {
     completedStepsMap.set(completedStep.name, completedStep.completed);
     allStepsIdMap.set(completedStep.name, completedStep.id);
   });
@@ -111,7 +102,7 @@ const CompletementSteps = () => {
     },
   };
 
-  const calendlyRedirect = () => {
+  const calendlyRedirect = (stepName: string) => {
     window.open(
       "https://calendly.com/radomir-remotesanta/talk-to-specialist?month=2023-09",
       "_blank"
@@ -183,7 +174,9 @@ const CompletementSteps = () => {
                       <Grid container>
                         <Grid item xs={6} className="step-grid-item-button">
                           <Button
-                            onClick={calendlyRedirect}
+                            onClick={() =>
+                              calendlyRedirect("TALK_TO_A_SPECIALIST")
+                            }
                             className="proceed-button"
                           >
                             Go for it
@@ -196,7 +189,7 @@ const CompletementSteps = () => {
                               markAsCompletedSkip("TALK_TO_A_SPECIALIST")
                             }
                           >
-                            Skip
+                            Complete
                           </Button>
                         </Grid>
                       </Grid>
@@ -301,6 +294,7 @@ const CompletementSteps = () => {
                           </Button>
                         </Grid>
                       </Grid>
+
                       <Modal
                         open={openModalStep === "BIRTHDAYS"}
                         onClose={handleCloseModalStep}

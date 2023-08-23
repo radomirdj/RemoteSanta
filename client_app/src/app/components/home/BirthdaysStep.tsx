@@ -12,7 +12,7 @@ const BirthdaysStep = () => {
     bgcolor: "background.paper",
     border: "2px solid #ffffff",
     borderRadius: "24px",
-    p: 4,
+    p: 6,
   };
 
   return (
@@ -26,15 +26,6 @@ const BirthdaysStep = () => {
           >
             Birthdays
           </Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <img
-            src={BirthdayIllustration}
-            alt=""
-            className="completement-step-illustration"
-          />
-        </Grid>
-        <Grid item xs={12}>
           <Typography
             id="modal-modal-title"
             variant="body2"
@@ -43,6 +34,13 @@ const BirthdaysStep = () => {
             Let Remote Santa plan your fantastic birthday bash! Just share a few
             details for the perfect setup and watch the magic unfold.
           </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={BirthdayIllustration}
+            alt=""
+            className="completement-step-illustration"
+          />
         </Grid>
       </Grid>
     </Card>

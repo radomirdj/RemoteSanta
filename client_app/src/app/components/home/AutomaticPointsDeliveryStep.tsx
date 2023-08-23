@@ -12,7 +12,7 @@ const AutomaticPointsDeliveryStep = () => {
     bgcolor: "background.paper",
     border: "2px solid #ffffff",
     borderRadius: "24px",
-    p: 4,
+    p: 6,
   };
 
   return (

@@ -41,6 +41,8 @@ import {
 import {
   ICompletementStep,
   PostCompletementStepsPayload,
+  PostPersonalDetailsPayload,
+  PostSignupBonusPayload,
   SelfSignUpRequestPayload,
 } from "../store/self-signup/types";
 import {
@@ -353,6 +355,32 @@ export const sendPointsToUserPeerToPeer = (
   return api.post<string>(
     `/users/${payload.userId}/send-p2p-points`,
     payload.sendPointsData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postPersonalDetailsStep = (
+  payload: PostPersonalDetailsPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/set-personal-details`,
+    payload,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postSignupBonusStep = (
+  payload: PostSignupBonusPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/set-signup-bonus`,
+    payload,
     {
       headers: { Authorization: `Bearer ${token}` },
     }

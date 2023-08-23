@@ -3,6 +3,8 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
   getCompletementStepList,
   postCompletementStep,
+  postPersonalDetailsStep,
+  postSignupBonusStep,
   selfSignupOrgUser,
 } from "../../services/api-service";
 
@@ -12,6 +14,10 @@ import {
   fetchCompletementStepsSuccess,
   postCompletementStepsFailure,
   postCompletementStepsSuccess,
+  postPersonalDetailsFailure,
+  postPersonalDetailsSuccess,
+  postSignupBonusFailure,
+  postSignupBonusSuccess,
   selfSignUpFailure,
   selfSignUpSuccess,
   setCloseModalStep,
@@ -19,14 +25,19 @@ import {
 import {
   FETCH_COMPLETEMENT_STEPS_REQUEST,
   POST_COMPLETEMENT_STEPS_REQUEST,
+  POST_PERSONAL_DETAILS_REQUEST,
+  POST_SIGNUP_BONUS_REQUEST,
   SELF_SIGN_UP_REQUEST,
   SET_OPEN_MODAL_STEP,
 } from "./actionTypes";
 import {
   ICompletementStep,
   PostCompletementSteps,
+  PostPersonalDetails,
+  PostSignupBonus,
   SelfSignUpRequest,
 } from "./types";
+import { fetchOrganizationUserList } from "../orgs/actions";
 
 /*
   Worker Saga: Fired on FETCH_MESSAGE_REQUEST action
@@ -91,6 +102,45 @@ function* postCompletementStepsSaga(action: PostCompletementSteps) {
 }
 
 /*
+  Worker Saga: Fired on FETCH_TODO_REQUEST action
+*/
+function* postPersonalDetailsSaga(action: PostPersonalDetails) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postPersonalDetailsStep, action.payload, token);
+    yield put(postPersonalDetailsSuccess());
+    yield put(fetchCompletementSteps());
+    yield put(fetchOrganizationUserList());
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      postPersonalDetailsFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+/*
+  Worker Saga: Fired on FETCH_TODO_REQUEST action
+*/
+function* postSignupBonusSaga(action: PostSignupBonus) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postSignupBonusStep, action.payload, token);
+    yield put(postSignupBonusSuccess());
+    yield put(fetchCompletementSteps());
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      postSignupBonusFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+/*
   Starts worker saga on latest dispatched `FETCH_MESSAGE_REQUEST` action.
   Allows concurrent increments.
 */
@@ -102,6 +152,10 @@ function* selfSignupSaga() {
   yield all([
     takeLatest(POST_COMPLETEMENT_STEPS_REQUEST, postCompletementStepsSaga),
   ]);
+  yield all([
+    takeLatest(POST_PERSONAL_DETAILS_REQUEST, postPersonalDetailsSaga),
+  ]);
+  yield all([takeLatest(POST_SIGNUP_BONUS_REQUEST, postSignupBonusSaga)]);
 }
 
 export default selfSignupSaga;

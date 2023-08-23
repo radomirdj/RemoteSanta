@@ -27,7 +27,7 @@ const Home = () => {
   const orgUserList = useSelector(getOrganizationUserListSelector);
 
   useEffect(() => {
-    dispatch(fetchClaimPointsEventList());
+    //dispatch(fetchClaimPointsEventList());
     dispatch(getSelfRequest(navigate));
     dispatch(fetchOrganizationUserList());
   }, [dispatch]);
@@ -191,14 +191,6 @@ const Home = () => {
               </Typography>
             </Grid>
           )}
-
-          {/* {filteredList.map((element, i) => {
-            return (
-              <Grid item xs={12} key={i}>
-                <ClaimPointsEventItem {...element} />
-              </Grid>
-            );
-          })} */}
           {usersWithBirthday.map((element, i) => {
             return (
               <Grid item xs={12} key={i}>
