@@ -124,6 +124,7 @@ export default (state = initialState, action: SelfSignupActions) => {
       return {
         ...state,
         pending: false,
+        openModalStep: "NONE",
         error: null,
       };
     case POST_SIGNUP_BONUS_FAILURE:

@@ -377,19 +377,6 @@ $stepper-card-font-size: 13px;
 .MuiModal-root{
     .MuiCard-root{
 
-        .watch-demo-title{
-            font-family: "Montserrat";
-            font-weight: 600;
-            margin-bottom: variables.$base-unit * 3;
-            margin-left: variables.$base-unit * 3;
-            font-size: variables.$font-size-larger;
-        }
-
-        .watch-demo-grid-item{
-            justify-items: center;
-            display: grid;
-        }
-
         .mark-as-completed-button,
         & .mark-as-completed:hover {
             background-color: variables.$color-dark-yellow;
@@ -473,12 +460,13 @@ $stepper-card-font-size: 13px;
           }
 
         .completement-step-error-fe {
-            font-size: variables.$font-size-small;
+            font-size: variables.$font-size-small !important;
             color: variables.$error-color;
             text-align: start;
-            margin-bottom: variables.$base-unit;
             display: inline-flex;
             width: 100%;
+            margin-left: 0px !important;
+            margin-top: 0px !important;
         }
 
         .completement-step-date-helper{

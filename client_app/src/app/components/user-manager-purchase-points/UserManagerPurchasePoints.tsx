@@ -46,6 +46,7 @@ const UserManagerPurchasePoints = () => {
               id="outlined-basic"
               label="Preffered Amount "
               variant="outlined"
+              placeholder="USD"
               className={
                 errors.amount ? "amount-input-with-error" : "amount-input"
               }

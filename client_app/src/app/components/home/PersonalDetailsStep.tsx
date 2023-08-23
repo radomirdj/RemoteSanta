@@ -11,10 +11,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  postCompletementSteps,
-  postPersonalDetails,
-} from "../../store/self-signup/actions";
+import { postPersonalDetails } from "../../store/self-signup/actions";
 import { getCompletementStepsSelector } from "../../store/self-signup/selectors";
 import PersonalDetailsIllustration from "./../../assets/illustrations/personal-details-illustration.svg";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
