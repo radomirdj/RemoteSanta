@@ -3,10 +3,17 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CompletementStepDto } from './dtos/completement_step.dto';
 import consts from '../utils/consts';
 import { GenderEnum } from '@prisma/client';
+import { UserDto } from 'src/users/dtos/user.dto';
+import { PurchasePointsCompletementStepDto } from './dtos/purchase_points_completment_step';
+import { SetBirthdayConfigCompletementStepDto } from './dtos/set_birthday_config_completment_step';
+import { EmailsService } from '../emails/emails.service';
 
 @Injectable()
 export class CompletementStepsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private emailService: EmailsService,
+  ) {}
   getCompletementStepFullList() {
     return this.prisma.orgCompletementStep.findMany({
       orderBy: [
@@ -113,6 +120,45 @@ export class CompletementStepsService {
       },
       data,
     });
+  }
+
+  async purchasePoints(user: UserDto, amount: number) {
+    await this.updateOrgCompletementStatus(
+      user.org.id,
+      consts.orgCompletementSteps.PURCHASE_POINTS.id,
+      true,
+    );
+    await this.emailService.purchasePointsRequestToAdminEmail(
+      consts.adminRecepients,
+      user.id,
+      user.firstName,
+      user.lastName,
+      user.org.name,
+      user.org.id,
+      amount,
+    );
+  }
+
+  async setBirthdaysConfig(
+    user: UserDto,
+    purchasePointsCompletementStepDetails: SetBirthdayConfigCompletementStepDto,
+  ) {
+    await this.updateOrgCompletementStatus(
+      user.org.id,
+      consts.orgCompletementSteps.BIRTHDAYS.id,
+      true,
+    );
+    await this.emailService.birthdayConfigCompletementStepToAdminEmail(
+      consts.adminRecepients,
+      user.id,
+      user.firstName,
+      user.lastName,
+      user.org.name,
+      user.org.id,
+      purchasePointsCompletementStepDetails.preferredMeetingPlatform,
+      purchasePointsCompletementStepDetails.preferredTimeDetails,
+      purchasePointsCompletementStepDetails.bugetInPoints,
+    );
   }
 
   async getListByOrg(orgId: string): Promise<CompletementStepDto[]> {

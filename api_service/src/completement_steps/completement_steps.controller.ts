@@ -10,6 +10,8 @@ import { UserManagerGuard } from '../guards/user_manager.guard';
 import { CompletementStepStatusUpdateDto } from './dtos/completement_step_status_update.dto';
 import { SetSignupBonusCompletementStepDto } from './dtos/set_signup_bonus_completment_step';
 import { SetPersonalDetailsCompletementStepDto } from './dtos/set_personal_details_completment_step';
+import { PurchasePointsCompletementStepDto } from './dtos/purchase_points_completment_step';
+import { SetBirthdayConfigCompletementStepDto } from './dtos/set_birthday_config_completment_step';
 
 @Controller('completement-steps')
 @Serialize(CompletementStepDto)
@@ -62,5 +64,26 @@ export class CompletementStepsController {
       body.gender,
       body.birthDate,
     );
+  }
+
+  @Post('/purchase-points')
+  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  async purchasePointsCompletementStep(
+    @CurrentUser() user: UserDto,
+    @Body() body: PurchasePointsCompletementStepDto,
+  ) {
+    return this.completementStepsService.purchasePoints(
+      user,
+      body.purchasePoints,
+    );
+  }
+
+  @Post('/set-birthdays-config')
+  @UseGuards(AuthGuard('jwt'), UserManagerGuard)
+  async setBirthdaysConfigCompletementStep(
+    @CurrentUser() user: UserDto,
+    @Body() body: SetBirthdayConfigCompletementStepDto,
+  ) {
+    return this.completementStepsService.setBirthdaysConfig(user, body);
   }
 }
