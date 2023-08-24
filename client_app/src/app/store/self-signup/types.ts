@@ -16,6 +16,12 @@ import {
   POST_SIGNUP_BONUS_REQUEST,
   POST_SIGNUP_BONUS_SUCCESS,
   POST_SIGNUP_BONUS_FAILURE,
+  POST_PURCHASE_POINTS_REQUEST,
+  POST_PURCHASE_POINTS_SUCCESS,
+  POST_PURCHASE_POINTS_FAILURE,
+  POST_BIRTHDAYS_SETUP_REQUEST,
+  POST_BIRTHDAYS_SETUP_SUCCESS,
+  POST_BIRTHDAYS_SETUP_FAILURE,
 } from "./actionTypes";
 
 export interface ICompletementStep {
@@ -89,6 +95,24 @@ export interface PostSignupBonusPayload {
 }
 
 export interface PostSignupBonusFailurePayload {
+  error: string;
+}
+
+export interface PostPurchasePointsPayload {
+  purchasePoints: number;
+}
+
+export interface PostPurchasePointsFailurePayload {
+  error: string;
+}
+
+export interface PostBirthdaysSetupPayload {
+  preferredMeetingPlatform: string;
+  preferredTimeDetails: string;
+  bugetInPoints: number;
+}
+
+export interface PostBirthdaysSetupFailurePayload {
   error: string;
 }
 
@@ -167,6 +191,35 @@ export interface PostSignupBonusFailure {
   payload: PostSignupBonusFailurePayload;
 }
 
+export interface PostPurchasePoints {
+  type: typeof POST_PURCHASE_POINTS_REQUEST;
+  payload: PostPurchasePointsPayload;
+  navigate: Function;
+}
+
+export interface PostPurchasePointsSuccess {
+  type: typeof POST_PURCHASE_POINTS_SUCCESS;
+}
+
+export interface PostPurchasePointsFailure {
+  type: typeof POST_PURCHASE_POINTS_FAILURE;
+  payload: PostPurchasePointsFailurePayload;
+}
+
+export interface PostBirthdaysSetup {
+  type: typeof POST_BIRTHDAYS_SETUP_REQUEST;
+  payload: PostBirthdaysSetupPayload;
+}
+
+export interface PostBirthdaysSetupSuccess {
+  type: typeof POST_BIRTHDAYS_SETUP_SUCCESS;
+}
+
+export interface PostBirthdaysSetupFailure {
+  type: typeof POST_BIRTHDAYS_SETUP_FAILURE;
+  payload: PostBirthdaysSetupFailurePayload;
+}
+
 export type SelfSignupActions =
   | SelfSignUpRequest
   | SelfSignUpSuccess
@@ -184,4 +237,10 @@ export type SelfSignupActions =
   | PostPersonalDetailsFailure
   | PostSignupBonus
   | PostSignupBonusSuccess
-  | PostSignupBonusFailure;
+  | PostSignupBonusFailure
+  | PostPurchasePoints
+  | PostPurchasePointsSuccess
+  | PostPurchasePointsFailure
+  | PostBirthdaysSetup
+  | PostBirthdaysSetupSuccess
+  | PostBirthdaysSetupFailure;

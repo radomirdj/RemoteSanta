@@ -17,6 +17,12 @@ import {
   POST_SIGNUP_BONUS_REQUEST,
   POST_SIGNUP_BONUS_SUCCESS,
   POST_SIGNUP_BONUS_FAILURE,
+  POST_PURCHASE_POINTS_REQUEST,
+  POST_PURCHASE_POINTS_SUCCESS,
+  POST_PURCHASE_POINTS_FAILURE,
+  POST_BIRTHDAYS_SETUP_REQUEST,
+  POST_BIRTHDAYS_SETUP_SUCCESS,
+  POST_BIRTHDAYS_SETUP_FAILURE,
 } from "./actionTypes";
 
 import { SelfSignupState, SelfSignupActions } from "./types";
@@ -128,6 +134,41 @@ export default (state = initialState, action: SelfSignupActions) => {
         error: null,
       };
     case POST_SIGNUP_BONUS_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case POST_PURCHASE_POINTS_REQUEST:
+      return {
+        ...state,
+        pending: true,
+      };
+    case POST_PURCHASE_POINTS_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case POST_PURCHASE_POINTS_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case POST_BIRTHDAYS_SETUP_REQUEST:
+      return {
+        ...state,
+        pending: true,
+      };
+    case POST_BIRTHDAYS_SETUP_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        openModalStep: "NONE",
+        error: null,
+      };
+    case POST_BIRTHDAYS_SETUP_FAILURE:
       return {
         ...state,
         pending: false,

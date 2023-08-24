@@ -1,9 +1,15 @@
 @use "./../variables.scss";
 
-$content-width:1000px;
+$card-width: 440px;
 
 .user-manager-purchase-points{
+  @media screen and (max-width: variables.$breakpoint-md) {
+    background-color: variables.$main-yellow;
+  }
+
+  @media screen and (min-width: variables.$breakpoint-md) {
     background-image: url("./../../assets/purchase-points-image.svg");
+  }
 
     .card-style{
         position: absolute;
@@ -13,10 +19,18 @@ $content-width:1000px;
         width: 400;
         border-radius: variables.$base-unit * 3;
         padding-top: variables.$base-unit * 3;
-        padding-bottom: variables.$base-unit * 3;
+        padding-bottom: variables.$base-unit * 4;
         padding-left: variables.$base-unit * 5;
         padding-right: variables.$base-unit * 5;
-        width: $card-width;
+
+        @media screen and (max-width: variables.$breakpoint-sm) {
+          width: 300px;        
+        }
+      
+        @media screen and (min-width: variables.$breakpoint-sm) {
+          width: $card-width;
+          
+        }
     }
 
     .title-style{
@@ -24,6 +38,7 @@ $content-width:1000px;
         font-weight: 500;
         font-size: variables.$font-size-title;
         margin-bottom: variables.$base-unit * 2;
+      
     }
 
     .text-style{
@@ -87,6 +102,20 @@ $content-width:1000px;
         margin-bottom: variables.$base-unit;
         display: inline-flex;
         width: 100%;
+      }
+
+      .purchase-points-button,
+      & .purchase-points-button:hover {
+        background-color: variables.$color-dark-yellow;
+        border-radius: variables.$base-unit;
+        box-shadow: none;
+        color: variables.$color-neutral-black;
+        text-transform: none;
+        width: 100%;
+        height: variables.$base-unit * 6;
+        font-weight: bold;
+        margin-bottom: variables.$base-unit;
+        margin-top: variables.$base-unit;
       }
 }
 

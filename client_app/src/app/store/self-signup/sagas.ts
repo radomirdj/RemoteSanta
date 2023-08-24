@@ -2,8 +2,10 @@ import { AxiosResponse } from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
   getCompletementStepList,
+  postBirthdaysSetupStep,
   postCompletementStep,
   postPersonalDetailsStep,
+  postPurchasePointsStep,
   postSignupBonusStep,
   selfSignupOrgUser,
 } from "../../services/api-service";
@@ -12,10 +14,14 @@ import {
   fetchCompletementSteps,
   fetchCompletementStepsFailure,
   fetchCompletementStepsSuccess,
+  postBirthdaysSetupFailure,
+  postBirthdaysSetupSuccess,
   postCompletementStepsFailure,
   postCompletementStepsSuccess,
   postPersonalDetailsFailure,
   postPersonalDetailsSuccess,
+  postPurchasePointsFailure,
+  postPurchasePointsSuccess,
   postSignupBonusFailure,
   postSignupBonusSuccess,
   selfSignUpFailure,
@@ -24,16 +30,20 @@ import {
 } from "./actions";
 import {
   FETCH_COMPLETEMENT_STEPS_REQUEST,
+  POST_BIRTHDAYS_SETUP_REQUEST,
   POST_COMPLETEMENT_STEPS_REQUEST,
   POST_PERSONAL_DETAILS_REQUEST,
+  POST_PURCHASE_POINTS_REQUEST,
   POST_SIGNUP_BONUS_REQUEST,
   SELF_SIGN_UP_REQUEST,
   SET_OPEN_MODAL_STEP,
 } from "./actionTypes";
 import {
   ICompletementStep,
+  PostBirthdaysSetup,
   PostCompletementSteps,
   PostPersonalDetails,
+  PostPurchasePoints,
   PostSignupBonus,
   SelfSignUpRequest,
 } from "./types";
@@ -141,6 +151,45 @@ function* postSignupBonusSaga(action: PostSignupBonus) {
 }
 
 /*
+  Worker Saga: Fired on FETCH_TODO_REQUEST action
+*/
+function* postPurchasePointsSaga(action: PostPurchasePoints) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postPurchasePointsStep, action.payload, token);
+    yield put(postPurchasePointsSuccess());
+    yield put(fetchCompletementSteps());
+    action.navigate("/user-manager-purchase-points-success");
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      postPurchasePointsFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+/*
+  Worker Saga: Fired on FETCH_TODO_REQUEST action
+*/
+function* postBirthdaysSetupSaga(action: PostBirthdaysSetup) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postBirthdaysSetupStep, action.payload, token);
+    yield put(postBirthdaysSetupSuccess());
+    yield put(fetchCompletementSteps());
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      postBirthdaysSetupFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
+/*
   Starts worker saga on latest dispatched `FETCH_MESSAGE_REQUEST` action.
   Allows concurrent increments.
 */
@@ -156,6 +205,8 @@ function* selfSignupSaga() {
     takeLatest(POST_PERSONAL_DETAILS_REQUEST, postPersonalDetailsSaga),
   ]);
   yield all([takeLatest(POST_SIGNUP_BONUS_REQUEST, postSignupBonusSaga)]);
+  yield all([takeLatest(POST_PURCHASE_POINTS_REQUEST, postPurchasePointsSaga)]);
+  yield all([takeLatest(POST_BIRTHDAYS_SETUP_REQUEST, postBirthdaysSetupSaga)]);
 }
 
 export default selfSignupSaga;

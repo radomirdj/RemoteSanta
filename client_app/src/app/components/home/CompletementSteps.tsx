@@ -109,6 +109,10 @@ const CompletementSteps = () => {
     );
   };
 
+  const purchasePointsRedirect = () => {
+    navigate("/user-manager-purchase-points");
+  };
+
   const markAsCompletedSkip = (stepName: string) => {
     dispatch(
       postCompletementSteps(
@@ -368,7 +372,10 @@ const CompletementSteps = () => {
                       </Grid>
                       <Grid container>
                         <Grid item xs={12} className="step-grid-item-button">
-                          <Button className="proceed-button-no-skip">
+                          <Button
+                            className="proceed-button-no-skip"
+                            onClick={purchasePointsRedirect}
+                          >
                             Set up now
                           </Button>
                         </Grid>

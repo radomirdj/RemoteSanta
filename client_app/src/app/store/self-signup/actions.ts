@@ -17,6 +17,12 @@ import {
   POST_SIGNUP_BONUS_REQUEST,
   POST_SIGNUP_BONUS_SUCCESS,
   POST_SIGNUP_BONUS_FAILURE,
+  POST_PURCHASE_POINTS_REQUEST,
+  POST_PURCHASE_POINTS_SUCCESS,
+  POST_PURCHASE_POINTS_FAILURE,
+  POST_BIRTHDAYS_SETUP_REQUEST,
+  POST_BIRTHDAYS_SETUP_SUCCESS,
+  POST_BIRTHDAYS_SETUP_FAILURE,
 } from "./actionTypes";
 import {
   SelfSignUpRequest,
@@ -47,6 +53,16 @@ import {
   PostSignupBonusSuccess,
   PostSignupBonusFailurePayload,
   PostSignupBonusFailure,
+  PostPurchasePointsPayload,
+  PostPurchasePoints,
+  PostPurchasePointsSuccess,
+  PostPurchasePointsFailurePayload,
+  PostPurchasePointsFailure,
+  PostBirthdaysSetupPayload,
+  PostBirthdaysSetup,
+  PostBirthdaysSetupSuccess,
+  PostBirthdaysSetupFailurePayload,
+  PostBirthdaysSetupFailure,
 } from "./types";
 
 export const selfSignUpRequest = (
@@ -152,5 +168,43 @@ export const postSignupBonusFailure = (
   payload: PostSignupBonusFailurePayload
 ): PostSignupBonusFailure => ({
   type: POST_SIGNUP_BONUS_FAILURE,
+  payload,
+});
+
+export const postPurchasePoints = (
+  payload: PostPurchasePointsPayload,
+  navigate: Function
+): PostPurchasePoints => ({
+  type: POST_PURCHASE_POINTS_REQUEST,
+  payload,
+  navigate,
+});
+
+export const postPurchasePointsSuccess = (): PostPurchasePointsSuccess => ({
+  type: POST_PURCHASE_POINTS_SUCCESS,
+});
+
+export const postPurchasePointsFailure = (
+  payload: PostPurchasePointsFailurePayload
+): PostPurchasePointsFailure => ({
+  type: POST_PURCHASE_POINTS_FAILURE,
+  payload,
+});
+
+export const postBirthdaysSetup = (
+  payload: PostBirthdaysSetupPayload
+): PostBirthdaysSetup => ({
+  type: POST_BIRTHDAYS_SETUP_REQUEST,
+  payload,
+});
+
+export const postBirthdaysSetupSuccess = (): PostBirthdaysSetupSuccess => ({
+  type: POST_BIRTHDAYS_SETUP_SUCCESS,
+});
+
+export const postBirthdaysSetupFailure = (
+  payload: PostBirthdaysSetupFailurePayload
+): PostBirthdaysSetupFailure => ({
+  type: POST_BIRTHDAYS_SETUP_FAILURE,
   payload,
 });

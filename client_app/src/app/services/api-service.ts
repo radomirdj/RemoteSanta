@@ -40,8 +40,10 @@ import {
 } from "../store/orgs/types";
 import {
   ICompletementStep,
+  PostBirthdaysSetupPayload,
   PostCompletementStepsPayload,
   PostPersonalDetailsPayload,
+  PostPurchasePointsPayload,
   PostSignupBonusPayload,
   SelfSignUpRequestPayload,
 } from "../store/self-signup/types";
@@ -380,6 +382,28 @@ export const postSignupBonusStep = (
 ) => {
   return axios.post<string>(
     `api/completement-steps/set-signup-bonus`,
+    payload,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postPurchasePointsStep = (
+  payload: PostPurchasePointsPayload,
+  token: string
+) => {
+  return axios.post<string>(`api/completement-steps/purchase-points`, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const postBirthdaysSetupStep = (
+  payload: PostBirthdaysSetupPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/set-birthdays-config`,
     payload,
     {
       headers: { Authorization: `Bearer ${token}` },

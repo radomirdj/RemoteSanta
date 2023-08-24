@@ -1,14 +1,18 @@
 import React from "react";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
-import { Card, TextField, Typography } from "@mui/material";
+import { Button, Card, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/orgs/selectors";
 import ErrorIcon from "@mui/icons-material/Error";
+import { postPurchasePoints } from "../../store/self-signup/actions";
+import { useNavigate } from "react-router-dom";
 
 const UserManagerPurchasePoints = () => {
   const error = useSelector(getErrorSelector);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -16,7 +20,14 @@ const UserManagerPurchasePoints = () => {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    dispatch(
+      postPurchasePoints(
+        {
+          purchasePoints: Number(data.amount),
+        },
+        navigate
+      )
+    );
   };
 
   return (
@@ -67,6 +78,14 @@ const UserManagerPurchasePoints = () => {
                 The minimum amount is 1 PTS.
               </Typography>
             )}
+            <Button
+              variant="contained"
+              className="purchase-points-button"
+              disableRipple
+              type="submit"
+            >
+              Purchase Points
+            </Button>
           </form>
         </Card>
       </div>
