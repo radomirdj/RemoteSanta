@@ -23,9 +23,14 @@ import {
 import { createToken } from './utils/tokenService';
 import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
 import consts from '../src/utils/consts';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('/completement-steps', () => {
   let app: INestApplication;
@@ -43,6 +48,8 @@ describe('/completement-steps', () => {
     })
       .overrideProvider(AwsCognitoService)
       .useValue(AwsCognitoServiceMock)
+      .overrideProvider(MailerService)
+      .useValue(MailerServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
@@ -398,6 +405,109 @@ describe('/completement-steps', () => {
         .send({
           gender: GenderEnum.FEMALE,
           birthDate: new Date('2000-04-31T00:00:00.000Z'),
+        })
+        .expect(403);
+    });
+  });
+
+  describe('/purchase-points (POST)', () => {
+    it('/ (POST) - purchase-points by Non Completed Org', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/purchase-points/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedManager.email,
+              sub: orgNonCompletedManager.cognitoSub,
+            }),
+        )
+        .send({ purchasePoints: 200 })
+        .expect(201);
+      const stepStatusList = await completementStepsService.getListByOrg(
+        orgNonCompleted.id,
+      );
+      expect(stepStatusList[5].completed).toEqual(true);
+
+      //  clear data
+      await prisma.orgCompletementStepStatus.updateMany({
+        where: {
+          orgCompletementStepId: consts.orgCompletementSteps.PURCHASE_POINTS.id,
+          orgId: orgNonCompleted.id,
+        },
+        data: {
+          completed: false,
+        },
+      });
+    });
+
+    it('/ (POST) - purchase-points by Non Completed Org - BASIC user error', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/purchase-points/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedBasic.email,
+              sub: orgNonCompletedBasic.cognitoSub,
+            }),
+        )
+        .send({ purchasePoints: 200 })
+        .expect(403);
+    });
+  });
+
+  describe('/set-birthdays-config (POST)', () => {
+    it('/ (POST) - Set Birthdays Config by Non Completed Org', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-birthdays-config/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedManager.email,
+              sub: orgNonCompletedManager.cognitoSub,
+            }),
+        )
+        .send({
+          preferredMeetingPlatform: 'Zoom',
+          preferredTimeDetails: 'noon UTC',
+          bugetInPoints: 2000,
+        })
+        .expect(201);
+
+      const stepStatusList = await completementStepsService.getListByOrg(
+        orgNonCompleted.id,
+      );
+      expect(stepStatusList[4].completed).toEqual(true);
+
+      //  clear data
+      await prisma.orgCompletementStepStatus.updateMany({
+        where: {
+          orgCompletementStepId: consts.orgCompletementSteps.PURCHASE_POINTS.id,
+          orgId: orgNonCompleted.id,
+        },
+        data: {
+          completed: false,
+        },
+      });
+    });
+
+    it('/ (POST) - Set Birthdays Config by Non Completed Org - BASIC user error', async () => {
+      await request(app.getHttpServer())
+        .post('/completement-steps/set-birthdays-config/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: orgNonCompletedBasic.email,
+              sub: orgNonCompletedBasic.cognitoSub,
+            }),
+        )
+        .send({
+          preferredMeetingPlatform: 'Zoom',
+          preferredTimeDetails: 'noon UTC',
+          bugetInPoints: 2000,
         })
         .expect(403);
     });
