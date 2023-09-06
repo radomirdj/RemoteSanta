@@ -113,6 +113,10 @@ const CompletementSteps = () => {
     navigate("/user-manager-purchase-points");
   };
 
+  const userInvitesRedirect = () => {
+    navigate("/user-manager-invites");
+  };
+
   const markAsCompletedSkip = (stepName: string) => {
     dispatch(
       postCompletementSteps(
@@ -248,7 +252,7 @@ const CompletementSteps = () => {
                         <Typography className="step-title">
                           Invite Coworkers
                         </Typography>
-                        <Typography className="step-text">
+                        <Typography className="step-text-invite-coworkers">
                           Invite your coworkers and enjoy the community!
                         </Typography>
                       </Grid>
@@ -260,9 +264,22 @@ const CompletementSteps = () => {
                         />
                       </Grid>
                       <Grid container>
-                        <Grid item xs={12} className="step-grid-item-button">
-                          <Button className="proceed-button-no-skip">
-                            Set up now
+                        <Grid item xs={6} className="step-grid-item-button">
+                          <Button
+                            className="proceed-button"
+                            onClick={userInvitesRedirect}
+                          >
+                            Go for it
+                          </Button>
+                        </Grid>
+                        <Grid item xs={6} className="step-grid-item-button">
+                          <Button
+                            className="skip-button"
+                            onClick={() =>
+                              markAsCompletedSkip("INVITE_EMPLOYEES")
+                            }
+                          >
+                            Complete
                           </Button>
                         </Grid>
                       </Grid>

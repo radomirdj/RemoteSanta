@@ -11,9 +11,15 @@ import {
 } from "@mui/material";
 import React from "react";
 import BirthdayIllustration from "./../../assets/illustrations/birthday-illustration.svg";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
+import { postBirthdaysSetup } from "../../store/self-signup/actions";
+import { useDispatch } from "react-redux";
 
 const BirthdaysStep = () => {
+  const [prefferedPlatform, setPrefferedPlatform] = React.useState<string>("");
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
@@ -21,8 +27,29 @@ const BirthdaysStep = () => {
     control,
   } = useForm();
 
+  const convertTimeZone = (date: any, tzString: string) => {
+    return new Date(
+      (typeof date === "string" ? new Date(date) : date).toLocaleString(
+        "en-US",
+        { timeZone: tzString }
+      )
+    );
+  };
+
   const onSubmit = (data: any) => {
-    console.log(data);
+    dispatch(
+      postBirthdaysSetup({
+        preferredMeetingPlatform:
+          data.platform === "OTHER" ? data.customPlatform : data.platform,
+        preferredTimeDetails: String(
+          convertTimeZone(
+            data.prefferedTime.toLocaleString(),
+            "Europe/Belgrade"
+          )
+        ),
+        bugetInPoints: Number(data.amount),
+      })
+    );
   };
 
   const style = {
@@ -70,7 +97,7 @@ const BirthdaysStep = () => {
         >
           <FormControl variant="outlined">
             <InputLabel id="platformLabel">
-              Preferred Meeting Platform
+              Preferred meeting platform
             </InputLabel>
             <Select
               labelId="platformLabel"
@@ -81,7 +108,10 @@ const BirthdaysStep = () => {
                   : "completement-step-input"
               }
               label="Platform"
-              {...register("platform", { required: true })}
+              {...register("platform", {
+                required: true,
+                onChange: (e) => setPrefferedPlatform(e.target.value),
+              })}
             >
               <MenuItem value={"TEAMS"}>Microsoft Teams</MenuItem>
               <MenuItem value={"GOOGLE"}>Google Meets</MenuItem>
@@ -94,10 +124,62 @@ const BirthdaysStep = () => {
               Platform is required.
             </Typography>
           )}
+          {prefferedPlatform === "OTHER" && (
+            <TextField
+              error={errors.customPlatform ? true : false}
+              id="outlined-basic"
+              label="Please type your preffered meeting platform "
+              variant="outlined"
+              className={
+                errors.customPlatform
+                  ? "completement-step-input-with-error"
+                  : "completement-step-input"
+              }
+              {...register("customPlatform", {
+                required: true,
+              })}
+            />
+          )}
+          {errors.customPlatform?.type === "required" && (
+            <Typography className="completement-step-error-fe">
+              Your preffered meeting platform is
+            </Typography>
+          )}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Controller
+              control={control}
+              name="prefferedTime"
+              defaultValue={null}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TimePicker
+                  label="Preffered time for virtual parties"
+                  value={field.value}
+                  onChange={(date) => {
+                    field.onChange(date);
+                  }}
+                  className={
+                    errors.prefferedTime
+                      ? "completement-step-date-with-error split-input"
+                      : "completement-step-input"
+                  }
+                  renderInput={(params: any) => <TextField {...params} />}
+                />
+              )}
+            />
+          </LocalizationProvider>
+
+          {errors.prefferedTime?.type === "required" && (
+            <Typography className="completement-step-error-fe">
+              Time is required, but you can change it any time or contact us to
+              provide any other details.
+            </Typography>
+          )}
+
           <TextField
             error={errors.amount ? true : false}
             id="outlined-basic"
-            label="Budget For Each Employee’s Birthday Present "
+            label="Budget for each employee’s birthday present "
             variant="outlined"
             placeholder="USD"
             className={

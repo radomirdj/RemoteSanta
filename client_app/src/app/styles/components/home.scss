@@ -303,6 +303,12 @@ $stepper-card-font-size: 13px;
             }
         }
 
+        .step-text-invite-coworkers{
+            margin-bottom: variables.$base-unit *3;
+            font-family: "Montserrat";
+            font-size: variables.$font-size-small;
+        }
+
         .step-grid-item{
             padding-left: 8px !important;
         }
@@ -465,6 +471,7 @@ $stepper-card-font-size: 13px;
             text-align: start;
             display: inline-flex;
             width: 100%;
+            font-family: Arial, Helvetica, sans-serif !important;
             margin-left: 0px !important;
             margin-top: 0px !important;
         }

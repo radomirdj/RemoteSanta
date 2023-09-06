@@ -78,7 +78,6 @@ $content-width:775px;
     .MuiFormControl-root {
         margin: 0px;
         border-radius: variables.$base-unit;
-        margin-bottom: variables.$base-unit;
     
         .MuiOutlinedInput-root {
           border-radius: variables.$base-unit;
@@ -105,7 +104,7 @@ $content-width:775px;
           font-family: "Montserrat";
           margin-left:variables.$base-unit * 3;
           font-size: variables.$font-size-larger;
-          margin-bottom: variables.$base-unit * 4;
+          margin-bottom: variables.$base-unit ;
           width: max-content;
           font-weight: 500;
       }
@@ -123,13 +122,13 @@ $content-width:775px;
             font-size: variables.$font-size-small;
             color: variables.$error-color;
             text-align: start;
-            margin-bottom: variables.$base-unit * 2;
+            margin-bottom: 0px;
             margin-left: variables.$base-unit * 3;
             display: inline-flex;
             width: 88%;
           }
+
           .email-input {
-            margin-bottom: variables.$base-unit * 3 !important;
             margin-left:variables.$base-unit * 3;
             width: 88%;
           }
