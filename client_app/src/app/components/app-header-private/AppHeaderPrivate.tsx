@@ -94,7 +94,7 @@ const AppHeaderPrivate = () => {
             />
           </Grid>
 
-          <Grid item xs={3} sm={2} md={1} className="align-right">
+          <Grid item xs={2} sm={2} md={1} className="align-right">
             <Typography
               className={
                 window.location.pathname === "/"
@@ -118,7 +118,7 @@ const AppHeaderPrivate = () => {
               My Gift Cards
             </Typography>
           </Grid>
-          <Grid item xs={3} sm={2} md={1} className="align-left">
+          <Grid item xs={2} sm={2} md={1} className="align-left">
             <Typography
               className={
                 window.location.pathname === "/my-team"
@@ -133,17 +133,18 @@ const AppHeaderPrivate = () => {
           {user.userRole === UserRole.USER_MANAGER && (
             <Grid
               item
+              xs={3}
               sm={2}
               md={2}
               className="align-left"
-              sx={{ display: { xs: "none", sm: "inline-flex" } }}
+              sx={{ display: { xs: "inline-flex" } }}
             >
               <Button
                 disableRipple
                 onClick={handleOpenManagerMenu}
                 variant="outlined"
                 className="user-manager-button"
-                startIcon={<AutoAwesomeIcon />}
+                startIcon={<AutoAwesomeIcon className="user-manager-icon" />}
               >
                 My Company
               </Button>
@@ -176,7 +177,7 @@ const AppHeaderPrivate = () => {
               </Menu>
             </Grid>
           )}
-          <Grid item xs={3} sm={2} md={1} className="align-left">
+          <Grid item xs={2} sm={2} md={1} className="align-left">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar
                 alt="Remy Sharp"
