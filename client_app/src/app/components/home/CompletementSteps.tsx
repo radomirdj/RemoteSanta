@@ -6,7 +6,7 @@ import {
   linearProgressClasses,
   Modal,
   styled,
-  Typography,
+  Typography
 } from "@mui/material";
 import React, { useEffect } from "react";
 import TalkWithASpecialistIllustration from "./../../assets/illustrations/talk-with-a-specialist-illustration.svg";
@@ -18,7 +18,7 @@ import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-i
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCompletementStepsSelector,
-  getOpenModalStepSelector,
+  getOpenModalStepSelector
 } from "../../store/self-signup/selectors";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ import {
   fetchCompletementSteps,
   postCompletementSteps,
   setCloseModalStep,
-  setOpenModalStep,
+  setOpenModalStep
 } from "../../store/self-signup/actions";
 import { getSelfRequest } from "../../store/auth/actions";
 import Carousel from "react-multi-carousel";
@@ -42,11 +42,11 @@ const CompletementSteps = () => {
   const completementStepList = useSelector(getCompletementStepsSelector);
   const allStepsNum = Number(completementStepList.length);
   const completedStepsList = completementStepList.filter(
-    (step) => step.completed
+    step => step.completed
   );
   const completedStepsMap = new Map<string, boolean>();
   const allStepsIdMap = new Map<string, string>();
-  completementStepList.forEach((completedStep) => {
+  completementStepList.forEach(completedStep => {
     completedStepsMap.set(completedStep.name, completedStep.completed);
     allStepsIdMap.set(completedStep.name, completedStep.id);
   });
@@ -79,27 +79,27 @@ const CompletementSteps = () => {
     borderRadius: 10,
     [`&.${linearProgressClasses.colorPrimary}`]: {
       backgroundColor:
-        theme.palette.grey[theme.palette.mode === "light" ? 500 : 800],
+        theme.palette.grey[theme.palette.mode === "light" ? 500 : 800]
     },
     [`& .${linearProgressClasses.bar}`]: {
       borderRadius: 10,
-      backgroundColor: theme.palette.mode === "light" ? "#CED15E" : "#A8A8A8",
-    },
+      backgroundColor: theme.palette.mode === "light" ? "#CED15E" : "#A8A8A8"
+    }
   }));
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 900 },
-      items: 3,
+      items: 3
     },
     tablet: {
       breakpoint: { max: 900, min: 500 },
-      items: 2,
+      items: 2
     },
     mobile: {
       breakpoint: { max: 500, min: 0 },
-      items: 1,
-    },
+      items: 1
+    }
   };
 
   const calendlyRedirect = (stepName: string) => {
@@ -122,13 +122,243 @@ const CompletementSteps = () => {
       postCompletementSteps(
         {
           stepId: allStepsIdMap.get(stepName),
-          completementStepStatus: { completed: true },
+          completementStepStatus: { completed: true }
         },
         navigate
       )
     );
   };
 
+  const talktToSpecalistCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={9}>
+          <Typography className="step-title">Talk to a specialist</Typography>
+          <Typography className="step-text">
+            Schedule a call, and we'll easily set up your company profile.
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={TalkWithASpecialistIllustration}
+            alt=""
+            className="step-illustration"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={6} className="step-grid-item-button">
+            <Button
+              onClick={() => calendlyRedirect("TALK_TO_A_SPECIALIST")}
+              className="proceed-button"
+            >
+              Go for it
+            </Button>
+          </Grid>
+          <Grid item xs={6} className="step-grid-item-button">
+            <Button
+              className="skip-button"
+              onClick={() => markAsCompletedSkip("TALK_TO_A_SPECIALIST")}
+            >
+              Complete
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Card>
+  );
+
+  const personalDetailsCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={9}>
+          <Typography className="step-title">Personal Details</Typography>
+          <Typography className="step-text">
+            Tell us something more about yourself and enjoy the best experience!
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={PersonalDetailsIllustration}
+            alt=""
+            className="step-illustration"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} className="step-grid-item-button">
+            <Button
+              className="proceed-button-no-skip"
+              onClick={handleOpenPersonalDetails}
+            >
+              Set up now
+            </Button>
+          </Grid>
+        </Grid>
+        <Modal
+          open={openModalStep === "PERSONAL_DETAILS"}
+          onClose={handleCloseModalStep}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <PersonalDetailsStep />
+        </Modal>
+      </Grid>
+    </Card>
+  );
+  const inviteEmployeesCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={9}>
+          <Typography className="step-title">Invite Coworkers</Typography>
+          <Typography className="step-text-invite-coworkers">
+            Invite your coworkers and enjoy the community!
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={InviteCoworkersIllustration}
+            alt=""
+            className="step-illustration"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={6} className="step-grid-item-button">
+            <Button className="proceed-button" onClick={userInvitesRedirect}>
+              Go for it
+            </Button>
+          </Grid>
+          <Grid item xs={6} className="step-grid-item-button">
+            <Button
+              className="skip-button"
+              onClick={() => markAsCompletedSkip("INVITE_EMPLOYEES")}
+            >
+              Complete
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Card>
+  );
+
+  const birthdaysCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={9}>
+          <Typography className="step-title">Birthdays</Typography>
+          <Typography className="step-text">
+            Enjoy virtual birthday parties and get points automatically.
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={BirthdayIllustration}
+            alt=""
+            className="step-illustration-birthday"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} className="step-grid-item-button">
+            <Button
+              className="proceed-button-no-skip"
+              onClick={handleOpenBirthdays}
+            >
+              Set up now
+            </Button>
+          </Grid>
+        </Grid>
+
+        <Modal
+          open={openModalStep === "BIRTHDAYS"}
+          onClose={handleCloseModalStep}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <BirthdaysStep />
+        </Modal>
+      </Grid>
+    </Card>
+  );
+
+  const automaticPointsCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={9}>
+          <Typography className="step-title">Signup Bonus</Typography>
+          <Typography className="step-text">
+            Welcome employees with signup bonus points when joining the app.
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={SignupBonusIllustration}
+            alt=""
+            className="step-illustration"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} className="step-grid-item-button">
+            <Button
+              className="proceed-button-no-skip"
+              onClick={handleOpenAutomaticPoints}
+            >
+              Set up now
+            </Button>
+          </Grid>
+        </Grid>
+
+        <Modal
+          open={openModalStep === "AUTOMATIC_POINTS"}
+          onClose={handleCloseModalStep}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <AutomaticPointsDeliveryStep />
+        </Modal>
+      </Grid>
+    </Card>
+  );
+
+  const purchasePointsCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={9}>
+          <Typography className="step-title">Purchase Points</Typography>
+          <Typography className="step-text">
+            Acquire your points right here!
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <img
+            src={PurchasePointsIllustration}
+            alt=""
+            className="step-illustration-birthday"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} className="step-grid-item-button">
+            <Button
+              className="proceed-button-no-skip"
+              onClick={purchasePointsRedirect}
+            >
+              Set up now
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Card>
+  );
+  const completementStepElementList: (() => JSX.Element)[] = [];
+  if (!completedStepsMap.get("TALK_TO_A_SPECIALIST"))
+    completementStepElementList.push(talktToSpecalistCompletementStep);
+  if (!completedStepsMap.get("PERSONAL_DETAILS"))
+    completementStepElementList.push(personalDetailsCompletementStep);
+  if (!completedStepsMap.get("INVITE_EMPLOYEES"))
+    completementStepElementList.push(inviteEmployeesCompletementStep);
+  if (!completedStepsMap.get("BIRTHDAYS"))
+    completementStepElementList.push(birthdaysCompletementStep);
+  if (!completedStepsMap.get("AUTOMATIC_POINTS"))
+    completementStepElementList.push(automaticPointsCompletementStep);
+  if (!completedStepsMap.get("PURCHASE_POINTS"))
+    completementStepElementList.push(purchasePointsCompletementStep);
   return (
     <>
       {completedStepsNum < allStepsNum && (
@@ -136,8 +366,8 @@ const CompletementSteps = () => {
           container
           sx={{
             display: {
-              xs: "inline-flex",
-            },
+              xs: "inline-flex"
+            }
           }}
         >
           <Grid item xs={12}>
@@ -160,245 +390,8 @@ const CompletementSteps = () => {
               />
 
               <Carousel responsive={responsive} slidesToSlide={1}>
-                {!completedStepsMap.get("TALK_TO_A_SPECIALIST") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <Typography className="step-title">
-                          Talk to a specialist
-                        </Typography>
-                        <Typography className="step-text">
-                          Schedule a call, and we'll easily set up your company
-                          profile.
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <img
-                          src={TalkWithASpecialistIllustration}
-                          alt=""
-                          className="step-illustration"
-                        />
-                      </Grid>
-                      <Grid container>
-                        <Grid item xs={6} className="step-grid-item-button">
-                          <Button
-                            onClick={() =>
-                              calendlyRedirect("TALK_TO_A_SPECIALIST")
-                            }
-                            className="proceed-button"
-                          >
-                            Go for it
-                          </Button>
-                        </Grid>
-                        <Grid item xs={6} className="step-grid-item-button">
-                          <Button
-                            className="skip-button"
-                            onClick={() =>
-                              markAsCompletedSkip("TALK_TO_A_SPECIALIST")
-                            }
-                          >
-                            Complete
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Card>
-                )}
-
-                {!completedStepsMap.get("PERSONAL_DETAILS") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <Typography className="step-title">
-                          Personal Details
-                        </Typography>
-                        <Typography className="step-text">
-                          Tell us something more about yourself and enjoy the
-                          best experience!
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <img
-                          src={PersonalDetailsIllustration}
-                          alt=""
-                          className="step-illustration"
-                        />
-                      </Grid>
-                      <Grid container>
-                        <Grid item xs={12} className="step-grid-item-button">
-                          <Button
-                            className="proceed-button-no-skip"
-                            onClick={handleOpenPersonalDetails}
-                          >
-                            Set up now
-                          </Button>
-                        </Grid>
-                      </Grid>
-                      <Modal
-                        open={openModalStep === "PERSONAL_DETAILS"}
-                        onClose={handleCloseModalStep}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <PersonalDetailsStep />
-                      </Modal>
-                    </Grid>
-                  </Card>
-                )}
-                {!completedStepsMap.get("INVITE_EMPLOYEES") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <Typography className="step-title">
-                          Invite Coworkers
-                        </Typography>
-                        <Typography className="step-text-invite-coworkers">
-                          Invite your coworkers and enjoy the community!
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <img
-                          src={InviteCoworkersIllustration}
-                          alt=""
-                          className="step-illustration"
-                        />
-                      </Grid>
-                      <Grid container>
-                        <Grid item xs={6} className="step-grid-item-button">
-                          <Button
-                            className="proceed-button"
-                            onClick={userInvitesRedirect}
-                          >
-                            Go for it
-                          </Button>
-                        </Grid>
-                        <Grid item xs={6} className="step-grid-item-button">
-                          <Button
-                            className="skip-button"
-                            onClick={() =>
-                              markAsCompletedSkip("INVITE_EMPLOYEES")
-                            }
-                          >
-                            Complete
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Card>
-                )}
-                {!completedStepsMap.get("BIRTHDAYS") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <Typography className="step-title">
-                          Birthdays
-                        </Typography>
-                        <Typography className="step-text">
-                          Enjoy virtual birthday parties and get points
-                          automatically.
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <img
-                          src={BirthdayIllustration}
-                          alt=""
-                          className="step-illustration-birthday"
-                        />
-                      </Grid>
-                      <Grid container>
-                        <Grid item xs={12} className="step-grid-item-button">
-                          <Button
-                            className="proceed-button-no-skip"
-                            onClick={handleOpenBirthdays}
-                          >
-                            Set up now
-                          </Button>
-                        </Grid>
-                      </Grid>
-
-                      <Modal
-                        open={openModalStep === "BIRTHDAYS"}
-                        onClose={handleCloseModalStep}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <BirthdaysStep />
-                      </Modal>
-                    </Grid>
-                  </Card>
-                )}
-
-                {!completedStepsMap.get("AUTOMATIC_POINTS") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <Typography className="step-title">
-                          Signup Bonus
-                        </Typography>
-                        <Typography className="step-text">
-                          Welcome employees with signup bonus points when
-                          joining the app.
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <img
-                          src={SignupBonusIllustration}
-                          alt=""
-                          className="step-illustration"
-                        />
-                      </Grid>
-                      <Grid container>
-                        <Grid item xs={12} className="step-grid-item-button">
-                          <Button
-                            className="proceed-button-no-skip"
-                            onClick={handleOpenAutomaticPoints}
-                          >
-                            Set up now
-                          </Button>
-                        </Grid>
-                      </Grid>
-
-                      <Modal
-                        open={openModalStep === "AUTOMATIC_POINTS"}
-                        onClose={handleCloseModalStep}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <AutomaticPointsDeliveryStep />
-                      </Modal>
-                    </Grid>
-                  </Card>
-                )}
-                {!completedStepsMap.get("PURCHASE_POINTS") && (
-                  <Card className="step-card">
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <Typography className="step-title">
-                          Purchase Points
-                        </Typography>
-                        <Typography className="step-text">
-                          Acquire your points right here!
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <img
-                          src={PurchasePointsIllustration}
-                          alt=""
-                          className="step-illustration-birthday"
-                        />
-                      </Grid>
-                      <Grid container>
-                        <Grid item xs={12} className="step-grid-item-button">
-                          <Button
-                            className="proceed-button-no-skip"
-                            onClick={purchasePointsRedirect}
-                          >
-                            Set up now
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Card>
+                {completementStepElementList.map(completementStepEl =>
+                  completementStepEl()
                 )}
               </Carousel>
             </Card>
