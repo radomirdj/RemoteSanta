@@ -6,26 +6,44 @@ $content-width:1000px;
     background-image: url("./../../assets/home-image.svg");
 
     .grid-style{
-        max-width: $content-width;
         justify-content: center;
         padding-top: variables.$base-unit * 10;
+        @media screen and (max-width: variables.$breakpoint-md) {
+            width: 100%;
+        }
+    
+        @media screen and (min-width: variables.$breakpoint-md) {
+            max-width: $content-width;
+        }
 
         .organization-title{
             font-family: "Montserrat";
-            font-size: variables.$font-size-title;
             width: max-content;
             margin-left: variables.$base-unit;
             font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-larger;
+            }
+        
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-title;
+            }
         }
 
         .balance-title{
             font-family: "Montserrat";
-            font-size: variables.$font-size-large;
-            float: right;
             margin-top: variables.$base-unit;
-            margin-right: variables.$base-unit;
             width: max-content;
+            float: left;
+            margin-left: variables.$base-unit;
             font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: 20px
+            }
+        
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-large;
+            }
         }
     }
 
@@ -43,6 +61,9 @@ $content-width:1000px;
         font-family: "Montserrat";
         border: none;
         overflow: hidden;
+        @media screen and (max-width: variables.$breakpoint-md) {
+            width: 100%;
+        }
     }
 }
 
