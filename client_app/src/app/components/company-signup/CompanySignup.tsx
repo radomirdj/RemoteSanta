@@ -11,7 +11,7 @@ import {
   OutlinedInput,
   Select,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -36,8 +36,18 @@ const CompanySignup = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm();
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
   const onSubmit = (data: any) => {
     console.log(data.country);
@@ -49,14 +59,14 @@ const CompanySignup = () => {
           firstName: data.firstName,
           lastName: data.lastName,
           orgName: data.companyName,
-          countryId: data.country
+          countryId: data.country,
         },
         navigate
       )
     );
   };
 
-  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -98,7 +108,7 @@ const CompanySignup = () => {
                       : "company-name-input"
                   }
                   {...register("companyName", {
-                    required: true
+                    required: true,
                   })}
                 />
 
@@ -120,7 +130,7 @@ const CompanySignup = () => {
                           : "first-name-input"
                       }
                       {...register("firstName", {
-                        required: true
+                        required: true,
                       })}
                     />
 
@@ -142,7 +152,7 @@ const CompanySignup = () => {
                           : "last-name-input"
                       }
                       {...register("lastName", {
-                        required: true
+                        required: true,
                       })}
                     />
 
@@ -165,6 +175,7 @@ const CompanySignup = () => {
                     }
                     label="Country"
                     {...register("country", { required: true })}
+                    MenuProps={MenuProps}
                   >
                     {countryList.map((country, i) => {
                       return (
@@ -202,7 +213,7 @@ const CompanySignup = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex()
+                    pattern: getEmailRegex(),
                   })}
                 />
 
@@ -243,7 +254,7 @@ const CompanySignup = () => {
                     label="Password"
                     {...register("password", {
                       required: true,
-                      pattern: getPasswordRegex()
+                      pattern: getPasswordRegex(),
                     })}
                   />
 
