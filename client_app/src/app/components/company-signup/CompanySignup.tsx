@@ -11,7 +11,7 @@ import {
   OutlinedInput,
   Select,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -36,7 +36,7 @@ const CompanySignup = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = useForm();
 
   const onSubmit = (data: any) => {
@@ -49,14 +49,14 @@ const CompanySignup = () => {
           firstName: data.firstName,
           lastName: data.lastName,
           orgName: data.companyName,
-          countryId: data.country,
+          countryId: data.country
         },
         navigate
       )
     );
   };
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -98,7 +98,7 @@ const CompanySignup = () => {
                       : "company-name-input"
                   }
                   {...register("companyName", {
-                    required: true,
+                    required: true
                   })}
                 />
 
@@ -120,7 +120,7 @@ const CompanySignup = () => {
                           : "first-name-input"
                       }
                       {...register("firstName", {
-                        required: true,
+                        required: true
                       })}
                     />
 
@@ -142,7 +142,7 @@ const CompanySignup = () => {
                           : "last-name-input"
                       }
                       {...register("lastName", {
-                        required: true,
+                        required: true
                       })}
                     />
 
@@ -169,7 +169,7 @@ const CompanySignup = () => {
                     {countryList.map((country, i) => {
                       return (
                         <MenuItem value={country.id} key={country.id}>
-                          {country.countryName !== "Other" && (
+                          {/* {country.countryName !== "Other" && (
                             <img
                               src={country.flag}
                               alt=""
@@ -180,8 +180,8 @@ const CompanySignup = () => {
                                 verticalAlign: "sub",
                               }}
                             />
-                          )}{" "}
-                          {country.countryName}
+                          )}{" "} */}
+                          {country.flagEmoji + " " + country.countryName}
                         </MenuItem>
                       );
                     })}
@@ -202,7 +202,7 @@ const CompanySignup = () => {
                   }
                   {...register("email", {
                     required: true,
-                    pattern: getEmailRegex(),
+                    pattern: getEmailRegex()
                   })}
                 />
 
@@ -243,7 +243,7 @@ const CompanySignup = () => {
                     label="Password"
                     {...register("password", {
                       required: true,
-                      pattern: getPasswordRegex(),
+                      pattern: getPasswordRegex()
                     })}
                   />
 

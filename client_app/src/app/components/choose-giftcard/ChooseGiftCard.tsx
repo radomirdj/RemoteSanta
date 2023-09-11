@@ -8,17 +8,17 @@ import {
   Step,
   StepLabel,
   Stepper,
-  Typography,
+  Typography
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchGiftCardIntegrationList,
-  setGiftCardRequestResetData,
+  setGiftCardRequestResetData
 } from "../../store/gift-card-request/actions";
 import {
   getGiftCardIntegrationListSelector,
-  getStepperPagetSelector,
+  getStepperPagetSelector
 } from "../../store/gift-card-request/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
@@ -84,7 +84,7 @@ const ChooseGiftCard = (props: any) => {
               activeStep={activeStep}
               connector={<ColorlibConnector />}
             >
-              {steps.map((label) => (
+              {steps.map(label => (
                 <Step key={label}>
                   <StepLabel StepIconComponent={ColorlibStepIcon}>
                     {label}
@@ -107,12 +107,12 @@ const ChooseGiftCard = (props: any) => {
                     className="country-field"
                     label="Country"
                     value={countryId}
-                    onChange={(e) => setCountry(e.target.value)}
+                    onChange={e => setCountry(e.target.value)}
                   >
                     {countryList.map((country, i) => {
                       return (
                         <MenuItem value={country.id} key={country.id}>
-                          {country.countryName !== "Other" && (
+                          {/* {country.countryName !== "Other" && (
                             <img
                               src={country.flag}
                               alt=""
@@ -123,8 +123,8 @@ const ChooseGiftCard = (props: any) => {
                                 verticalAlign: "sub",
                               }}
                             />
-                          )}{" "}
-                          {country.countryName}
+                          )}{" "} */}
+                          {country.flagEmoji + " " + country.countryName}
                         </MenuItem>
                       );
                     })}
@@ -141,20 +141,19 @@ const ChooseGiftCard = (props: any) => {
               </Grid>
             </Grid>
           )}
-          {giftCardIntegrationFilteredList.length === 0 &&
-            searchValue !== "" && (
-              <div className="empty-content">
-                <Typography className="empty-title">
-                  Oh no! We couldn’t find any results for your search. Please,
-                  try a different search.
-                </Typography>
-                <img
-                  src={DeclineIllustration}
-                  alt=""
-                  className="empty-illustration"
-                />
-              </div>
-            )}
+          {giftCardIntegrationFilteredList.length === 0 && searchValue !== "" && (
+            <div className="empty-content">
+              <Typography className="empty-title">
+                Oh no! We couldn’t find any results for your search. Please, try
+                a different search.
+              </Typography>
+              <img
+                src={DeclineIllustration}
+                alt=""
+                className="empty-illustration"
+              />
+            </div>
+          )}
           {activeStep === 0 &&
             giftCardIntegrationFilteredList.map((element: any, i: number) => {
               return (
