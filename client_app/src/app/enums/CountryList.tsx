@@ -6,6 +6,7 @@ export interface ICountry {
   conversionRateToPoints: number;
   flagEmoji: string;
   flagEmojiUnicode?: string;
+  hasGiftCards?: boolean;
 }
 
 export const countryList: ICountry[] = [
@@ -16,7 +17,8 @@ export const countryList: ICountry[] = [
     countryCode: "USA",
     countryName: "United States of America",
     flagEmoji: "🇺🇸",
-    flagEmojiUnicode: "U+1F1FA U+1F1F8"
+    flagEmojiUnicode: "U+1F1FA U+1F1F8",
+    hasGiftCards: true
   },
   {
     id: "96d35219-4e09-44ea-a192-bf954b7b0208",
@@ -934,7 +936,8 @@ export const countryList: ICountry[] = [
     countryCode: "IND",
     countryName: "India",
     flagEmoji: "🇮🇳",
-    flagEmojiUnicode: "U+1F1EE U+1F1F3"
+    flagEmojiUnicode: "U+1F1EE U+1F1F3",
+    hasGiftCards: true
   },
   {
     id: "4add9800-f722-4dc2-afee-5876231f8d2b",
@@ -1294,7 +1297,8 @@ export const countryList: ICountry[] = [
     countryCode: "MEX",
     countryName: "Mexico",
     flagEmoji: "🇲🇽",
-    flagEmojiUnicode: "U+1F1F2 U+1F1FD"
+    flagEmojiUnicode: "U+1F1F2 U+1F1FD",
+    hasGiftCards: true
   },
   {
     id: "6be58265-6f37-4aae-85bb-cfcef1ee024f",
@@ -1790,7 +1794,8 @@ export const countryList: ICountry[] = [
     countryCode: "SRB",
     countryName: "Serbia",
     flagEmoji: "🇷🇸",
-    flagEmojiUnicode: "U+1F1F7 U+1F1F8"
+    flagEmojiUnicode: "U+1F1F7 U+1F1F8",
+    hasGiftCards: true
   },
   {
     id: "b723d5cd-d21e-44a7-ab12-576b85126c9d",
@@ -1844,7 +1849,8 @@ export const countryList: ICountry[] = [
     countryCode: "SVN",
     countryName: "Slovenia",
     flagEmoji: "🇸🇮",
-    flagEmojiUnicode: "U+1F1F8 U+1F1EE"
+    flagEmojiUnicode: "U+1F1F8 U+1F1EE",
+    hasGiftCards: true
   },
   {
     id: "2063ce61-0046-4d0a-be91-82f1656370f2",

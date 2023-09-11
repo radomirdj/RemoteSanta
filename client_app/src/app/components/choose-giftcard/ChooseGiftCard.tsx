@@ -109,10 +109,19 @@ const ChooseGiftCard = (props: any) => {
                     value={countryId}
                     onChange={e => setCountry(e.target.value)}
                   >
-                    {countryList.map((country, i) => {
-                      return (
-                        <MenuItem value={country.id} key={country.id}>
-                          {/* {country.countryName !== "Other" && (
+                    {countryList
+                      .filter(
+                        country =>
+                          country.hasGiftCards ||
+                          [
+                            "7810e53a-048f-4efa-9a1a-1b8042e6fdca",
+                            props.countryId
+                          ].includes(country.id)
+                      )
+                      .map((country, i) => {
+                        return (
+                          <MenuItem value={country.id} key={country.id}>
+                            {/* {country.countryName !== "Other" && (
                             <img
                               src={country.flag}
                               alt=""
@@ -124,10 +133,10 @@ const ChooseGiftCard = (props: any) => {
                               }}
                             />
                           )}{" "} */}
-                          {country.flagEmoji + " " + country.countryName}
-                        </MenuItem>
-                      );
-                    })}
+                            {country.flagEmoji + " " + country.countryName}
+                          </MenuItem>
+                        );
+                      })}
                   </Select>
                 </FormControl>
               </Grid>
