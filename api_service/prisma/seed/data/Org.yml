@@ -27,3 +27,9 @@
   countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
   pointsPerMonth: 1000
   signupPoints: 2000
+
+- id: f73f4313-7126-4543-878d-6b4f5ed5412e
+  name: 'INNOVATION FUND'
+  countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c'
+  pointsPerMonth: 0
+  signupPoints: 2000
