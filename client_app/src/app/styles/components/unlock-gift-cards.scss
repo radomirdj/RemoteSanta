@@ -1,0 +1,39 @@
+@use "./../variables.scss";
+
+
+.unlock-gift-cards{
+    .unlock-gift-cards-content{
+        width: 100%;
+        text-align: center;
+        padding-top: variables.$base-unit * 4;
+
+        .unlock-gift-cards-title{
+            font-family: "Montserrat";
+            margin-bottom: variables.$base-unit * 3;
+            text-align: center;
+            margin-left: auto;
+            width: 80%;
+            margin-right: auto;
+            font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: 20px;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-large;
+            }
+        }
+        .unlock-gift-cards-illustration{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: variables.$base-unit *4;
+            @media screen and (max-width: variables.$breakpoint-md) {
+                width: variables.$base-unit * 36;
+            }
+            
+            @media screen and (min-width: variables.$breakpoint-md) {
+                width: variables.$base-unit * 42;
+            }
+        }
+    }
+}

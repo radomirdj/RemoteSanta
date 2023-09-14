@@ -35,6 +35,10 @@ $stepper-card-font-size: 13px;
             z-index: 1000;
             background-color: #FFEFC8;
             box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+            @media screen and (max-width: variables.$breakpoint-md) {
+              margin-left: variables.$base-unit * 3;
+              margin-right: 0px;
+            }
 
             .react-multi-carousel-list{
                 height: 250px;
@@ -88,6 +92,9 @@ $stepper-card-font-size: 13px;
                     border-radius: variables.$base-unit * 2;
                     height: variables.$base-unit * 20;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                    @media screen and (max-width: variables.$breakpoint-sm) {
+                        padding-bottom: variables.$base-unit *2;
+                    }
                 }
 
                 .step-title{
@@ -100,6 +107,10 @@ $stepper-card-font-size: 13px;
                 .step-text{
                     font-family: "Montserrat";
                     font-size: variables.$font-size-small;
+                    @media screen and (max-width: variables.$breakpoint-sm) {
+                        font-size: 11px;
+                        margin-top:-8px;
+                    }
                 }
 
                 .step-grid-item{
@@ -118,8 +129,9 @@ $stepper-card-font-size: 13px;
                     margin-top: variables.$base-unit * 2;
         
                     @media screen and (max-width: variables.$breakpoint-sm) {
-                        margin-left: variables.$base-unit * 3;
+                        visibility: hidden;
                     }
+                    
                 }
 
                 .step-illustration-birthday{
@@ -129,7 +141,7 @@ $stepper-card-font-size: 13px;
                     margin-top: variables.$base-unit * 2;
         
                     @media screen and (max-width: variables.$breakpoint-sm) {
-                        margin-left: variables.$base-unit * 3;
+                        visibility: hidden;
                     }
                 }
 
@@ -145,7 +157,6 @@ $stepper-card-font-size: 13px;
                     text-align: center;
                     width: 50%;
                     margin-top: variables.$base-unit ;
-
                 }
 
                 .proceed-button,
@@ -307,6 +318,10 @@ $stepper-card-font-size: 13px;
             margin-bottom: variables.$base-unit *3;
             font-family: "Montserrat";
             font-size: variables.$font-size-small;
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                font-size: 11px;
+                margin-top:-8px;
+            }
         }
 
         .step-grid-item{

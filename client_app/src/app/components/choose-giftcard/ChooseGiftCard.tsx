@@ -8,17 +8,17 @@ import {
   Step,
   StepLabel,
   Stepper,
-  Typography
+  Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchGiftCardIntegrationList,
-  setGiftCardRequestResetData
+  setGiftCardRequestResetData,
 } from "../../store/gift-card-request/actions";
 import {
   getGiftCardIntegrationListSelector,
-  getStepperPagetSelector
+  getStepperPagetSelector,
 } from "../../store/gift-card-request/selectors";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
@@ -30,12 +30,15 @@ import GiftCardRequestOverview from "./GiftCardRequestOverview";
 import SearchIcon from "@mui/icons-material/Search";
 import DeclineIllustration from "./../../assets/illustrations/decline-gift-card-request-illustration.svg";
 import { countryList } from "../../enums/CountryList";
+import { getAuthUserSelector } from "../../store/auth/selectors";
+import UnlockGiftCards from "./UnlockGiftCards";
 
 const ChooseGiftCard = (props: any) => {
   const dispatch = useDispatch();
   const giftCardIntegrationList = useSelector(
     getGiftCardIntegrationListSelector
   );
+  const user = useSelector(getAuthUserSelector);
   const [countryId, setCountryId] = React.useState<string>(props.countryId);
   const activeStep = useSelector(getStepperPagetSelector);
   const steps = ["Select a gift card", "Choose an amount", "Overview"];
@@ -66,6 +69,9 @@ const ChooseGiftCard = (props: any) => {
     dispatch(fetchGiftCardIntegrationList({ countryId: id }));
     setCountryId(id);
   };
+  const showUnlockGiftCards =
+    giftCardIntegrationList.length === 0 &&
+    user.userBalance?.pointsActive === 0;
 
   return (
     <>
@@ -84,7 +90,7 @@ const ChooseGiftCard = (props: any) => {
               activeStep={activeStep}
               connector={<ColorlibConnector />}
             >
-              {steps.map(label => (
+              {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel StepIconComponent={ColorlibStepIcon}>
                     {label}
@@ -107,32 +113,20 @@ const ChooseGiftCard = (props: any) => {
                     className="country-field"
                     label="Country"
                     value={countryId}
-                    onChange={e => setCountry(e.target.value)}
+                    onChange={(e) => setCountry(e.target.value)}
                   >
                     {countryList
                       .filter(
-                        country =>
+                        (country) =>
                           country.hasGiftCards ||
                           [
                             "7810e53a-048f-4efa-9a1a-1b8042e6fdca",
-                            props.countryId
+                            props.countryId,
                           ].includes(country.id)
                       )
                       .map((country, i) => {
                         return (
                           <MenuItem value={country.id} key={country.id}>
-                            {/* {country.countryName !== "Other" && (
-                            <img
-                              src={country.flag}
-                              alt=""
-                              style={{
-                                marginRight: "8px",
-                                height: "24px",
-                                width: "40px",
-                                verticalAlign: "sub",
-                              }}
-                            />
-                          )}{" "} */}
                             {country.flagEmoji + " " + country.countryName}
                           </MenuItem>
                         );
@@ -150,19 +144,21 @@ const ChooseGiftCard = (props: any) => {
               </Grid>
             </Grid>
           )}
-          {giftCardIntegrationFilteredList.length === 0 && searchValue !== "" && (
-            <div className="empty-content">
-              <Typography className="empty-title">
-                Oh no! We couldn’t find any results for your search. Please, try
-                a different search.
-              </Typography>
-              <img
-                src={DeclineIllustration}
-                alt=""
-                className="empty-illustration"
-              />
-            </div>
-          )}
+          {giftCardIntegrationFilteredList.length === 0 &&
+            searchValue !== "" &&
+            !showUnlockGiftCards && (
+              <div className="empty-content">
+                <Typography className="empty-title">
+                  Oh no! We couldn’t find any results for your search. Please,
+                  try a different search.
+                </Typography>
+                <img
+                  src={DeclineIllustration}
+                  alt=""
+                  className="empty-illustration"
+                />
+              </div>
+            )}
           {activeStep === 0 &&
             giftCardIntegrationFilteredList.map((element: any, i: number) => {
               return (
@@ -171,6 +167,7 @@ const ChooseGiftCard = (props: any) => {
                 </Grid>
               );
             })}
+          {activeStep === 0 && showUnlockGiftCards && <UnlockGiftCards />}
           {activeStep === 1 && (
             <Grid item xs={12}>
               <ChooseAmount
