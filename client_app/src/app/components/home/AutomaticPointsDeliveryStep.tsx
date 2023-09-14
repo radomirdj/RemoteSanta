@@ -4,6 +4,7 @@ import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-i
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { postSignupBonus } from "../../store/self-signup/actions";
+import { USD_TO_POINTS_CONVERSION_RATE } from "../../utils/Const";
 
 const AutomaticPointsDeliveryStep = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,11 @@ const AutomaticPointsDeliveryStep = () => {
   };
 
   const onSubmit = (data: any) => {
-    dispatch(postSignupBonus({ signupPoints: Number(data.amount) }));
+    dispatch(
+      postSignupBonus({
+        signupPoints: Number(data.amount) * USD_TO_POINTS_CONVERSION_RATE,
+      })
+    );
   };
 
   return (
