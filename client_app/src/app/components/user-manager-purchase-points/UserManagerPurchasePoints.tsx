@@ -8,6 +8,7 @@ import { getErrorSelector } from "../../store/orgs/selectors";
 import ErrorIcon from "@mui/icons-material/Error";
 import { postPurchasePoints } from "../../store/self-signup/actions";
 import { useNavigate } from "react-router-dom";
+import { USD_TO_POINTS_CONVERSION_RATE } from "../../utils/Const";
 
 const UserManagerPurchasePoints = () => {
   const error = useSelector(getErrorSelector);
@@ -23,7 +24,7 @@ const UserManagerPurchasePoints = () => {
     dispatch(
       postPurchasePoints(
         {
-          purchasePoints: Number(data.amount),
+          purchasePoints: Number(data.amount) * USD_TO_POINTS_CONVERSION_RATE,
         },
         navigate
       )

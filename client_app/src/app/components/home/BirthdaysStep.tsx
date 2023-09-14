@@ -16,6 +16,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { postBirthdaysSetup } from "../../store/self-signup/actions";
 import { useDispatch } from "react-redux";
+import { USD_TO_POINTS_CONVERSION_RATE } from "../../utils/Const";
 
 const BirthdaysStep = () => {
   const [prefferedPlatform, setPrefferedPlatform] = React.useState<string>("");
@@ -47,7 +48,7 @@ const BirthdaysStep = () => {
             "Europe/Belgrade"
           )
         ),
-        bugetInPoints: Number(data.amount),
+        bugetInPoints: Number(data.amount) * USD_TO_POINTS_CONVERSION_RATE,
       })
     );
   };
