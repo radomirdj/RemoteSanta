@@ -31,17 +31,17 @@ export class SqsUserInvitesService {
     await this.sqsService.send('user-invite-bulk-create', messageList);
   }
 
-  async inviteByEmailList2(emailList: string[]) {
-    const messageList = emailList.map((email) =>
-      addSQSFifoParams({
-        id: uuidv4(),
-        body: { test: email },
-      }),
-    );
-    try {
-      await this.sqsService.send('first-queue', messageList);
-    } catch (error) {
-      console.log('error in producing image!', error);
-    }
-  }
+  // async inviteByEmailList2(emailList: string[]) {
+  //   const messageList = emailList.map((email) =>
+  //     addSQSFifoParams({
+  //       id: uuidv4(),
+  //       body: { test: email },
+  //     }),
+  //   );
+  //   try {
+  //     await this.sqsService.send('first-queue', messageList);
+  //   } catch (error) {
+  //     console.log('error in producing image!', error);
+  //   }
+  // }
 }

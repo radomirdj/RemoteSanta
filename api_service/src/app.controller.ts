@@ -11,11 +11,11 @@ export class AppController {
 
   @Get()
   async getHello(): Promise<string> {
-    const emailArray = Array.from(
-      { length: 20 },
-      (_, index) => `email+${index}@email.com`,
-    );
-    await this.sqsUserInvitesService.inviteByEmailList2(emailArray);
+    // const emailArray = Array.from(
+    //   { length: 20 },
+    //   (_, index) => `email+${index}@email.com`,
+    // );
+    // await this.sqsUserInvitesService.inviteByEmailList2(emailArray);
     return this.appService.getHello();
   }
 }
