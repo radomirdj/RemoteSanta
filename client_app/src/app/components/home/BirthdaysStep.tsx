@@ -3,6 +3,7 @@ import {
   Card,
   FormControl,
   Grid,
+  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -182,11 +183,20 @@ const BirthdaysStep = () => {
             id="outlined-basic"
             label="Budget for each employee’s birthday present "
             variant="outlined"
-            placeholder="USD"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment
+                  position="start"
+                  style={{ marginLeft: "-16px" }}
+                >
+                  $
+                </InputAdornment>
+              ),
+            }}
             className={
               errors.amount
                 ? "completement-step-input-with-error"
-                : "completement-step-input"
+                : "completement-step-dollar-input"
             }
             type="number"
             {...register("amount", {

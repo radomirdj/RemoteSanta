@@ -13,8 +13,14 @@ import SparkBlack from "../../assets/icons/spark-black.svg";
 import UseYourPointsIllustration from "./../../assets/illustrations/use-your-points-illustration.svg";
 import RecognizeTeamIllustration from "./../../assets/illustrations/recognize-team-illustration.svg";
 import YourGiftCardsIllustration from "./../../assets/illustrations/your-gift-cards-illustration.svg";
-import { getOrganizationUserListSelector } from "../../store/orgs/selectors";
-import { fetchOrganizationUserList } from "../../store/orgs/actions";
+import {
+  getOrganizationSelector,
+  getOrganizationUserListSelector,
+} from "../../store/orgs/selectors";
+import {
+  fetchOrganization,
+  fetchOrganizationUserList,
+} from "../../store/orgs/actions";
 import UserBirthdayListItem from "./UserBirthdayListItem";
 import { IOrgUser } from "../../store/orgs/types";
 import { getUserNextBirthday } from "../../utils/Utils";
@@ -25,11 +31,12 @@ const Home = () => {
   const user = useSelector(getAuthUserSelector);
   const navigate = useNavigate();
   const orgUserList = useSelector(getOrganizationUserListSelector);
+  const organization = useSelector(getOrganizationSelector);
 
   useEffect(() => {
-    //dispatch(fetchClaimPointsEventList());
     dispatch(getSelfRequest(navigate));
     dispatch(fetchOrganizationUserList());
+    dispatch(fetchOrganization());
   }, [dispatch]);
 
   const compareByNextBirthday = (a: IOrgUser, b: IOrgUser) => {
@@ -66,6 +73,8 @@ const Home = () => {
             <Typography className="home-title">
               Hello {user.firstName}
             </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <Tooltip
               title={`${user.org?.country?.conversionRateToPoints} PTS is equal to 1 ${user.org?.country?.currencyString}`}
               placement="right"
@@ -76,10 +85,10 @@ const Home = () => {
                     backgroundColor: "white",
                     fontFamily: "Montserrat",
                     fontSize: "16px",
-                    height: "40px",
+                    height: "32px",
                     width: "200px",
                     borderRadius: "16px",
-                    paddingTop: "20px",
+                    paddingTop: "16px",
                   },
                 },
               }}
@@ -88,6 +97,32 @@ const Home = () => {
                 Your balance is {user.userBalance?.pointsActive} points.
               </Typography>
             </Tooltip>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            {user.userRole === "USER_MANAGER" && (
+              <Tooltip
+                title="Manage balance, purchase points, and recognize employees in the My Company menu."
+                placement="top"
+                PopperProps={{
+                  sx: {
+                    "& .MuiTooltip-tooltip": {
+                      color: "black",
+                      backgroundColor: "white",
+                      fontFamily: "Montserrat",
+                      fontSize: "16px",
+                      height: "73px",
+                      width: "300px",
+                      borderRadius: "16px",
+                      paddingTop: "16px",
+                    },
+                  },
+                }}
+              >
+                <Typography className="home-company-balance">
+                  Company's balance is {organization?.balance} points.
+                </Typography>
+              </Tooltip>
+            )}
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Card className="step-card">

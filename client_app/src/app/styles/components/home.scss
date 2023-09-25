@@ -209,14 +209,31 @@ $stepper-card-font-size: 13px;
             font-family: "Montserrat";
             cursor: pointer;
             width: max-content;
-            margin-bottom: variables.$base-unit * 2;
             @media screen and (min-width: variables.$breakpoint-md) {
                 font-size: variables.$font-size-large;
+                margin-bottom: variables.$base-unit * 2;
             }
 
             @media screen and (max-width: variables.$breakpoint-md) {
                 margin-left: variables.$base-unit * 2;
                 font-size: $points-font-size;
+            }
+        } 
+
+        .home-company-balance{
+            font-weight: 500;
+            font-family: "Montserrat";
+            cursor: pointer;
+            width: max-content;
+            margin-bottom: variables.$base-unit * 2;
+            @media screen and (min-width: variables.$breakpoint-md) {
+                font-size: variables.$font-size-large;
+                float: right;
+            }
+
+            @media screen and (max-width: variables.$breakpoint-md) {
+                font-size: $points-font-size;
+                margin-left: variables.$base-unit * 2;
             }
         } 
 
@@ -444,6 +461,15 @@ $stepper-card-font-size: 13px;
                 border-color: variables.$error-color;
               }
             }
+        }
+
+        .completement-step-dollar-input {
+            .MuiInputBase-root{
+                .MuiInputBase-input{
+                    margin-left: -16px;
+                }
+            }
+            width: 100%;
         }
 
         .completement-step-input {

@@ -18,7 +18,7 @@ const UserManagerPurchasePointsSuccess = () => {
       <div className="background user-manager-purchase-points-success">
         <div className="user-manager-purchase-points-success-content">
           <Typography className="user-manager-purchase-points-success-title">
-            Thank you! Your points purchase has been completed successfully!
+            Thank you! The points you acquired have been successfully processed!
           </Typography>
           <div className="user-manager-purchase-points-success-div-text">
             <Typography className="user-manager-purchase-points-success-text">

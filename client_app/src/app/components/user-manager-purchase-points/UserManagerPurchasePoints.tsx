@@ -1,7 +1,13 @@
 import React from "react";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
-import { Button, Card, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorSelector } from "../../store/orgs/selectors";
@@ -38,11 +44,9 @@ const UserManagerPurchasePoints = () => {
         <Card className="card-style">
           <Typography className="title-style">Purchase Points</Typography>
           <Typography className="text-style">
-            Discover a seamless way to boost motivation! Here, you can easily
-            buy points and receive an invoice. Your team will automatically
-            receive points on birthdays and signup bonuses. Our tip: You might
-            find 25 USD per employee to be the sweet spot for best outcomes.{" "}
-            <br />1 USD is equal to 100 PTS.
+            Easily purchase points for automated birthday rewards and signup
+            bonuses for the employees. Our tip: Allocate 25 USD per employee for
+            the best results. Each USD is equivalent to 100 PTS.
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
             {error && (
@@ -56,9 +60,13 @@ const UserManagerPurchasePoints = () => {
             <TextField
               error={errors.amount ? true : false}
               id="outlined-basic"
-              label="Preffered Amount "
+              label="Preffered Amount"
               variant="outlined"
-              placeholder="USD"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">$</InputAdornment>
+                ),
+              }}
               className={
                 errors.amount ? "amount-input-with-error" : "amount-input"
               }

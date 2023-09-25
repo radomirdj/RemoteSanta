@@ -1,4 +1,11 @@
-import { Button, Card, Grid, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-illustration.svg";
 import { useForm } from "react-hook-form";
@@ -60,9 +67,9 @@ const AutomaticPointsDeliveryStep = () => {
             variant="body2"
             className="completement-step-text"
           >
-            Extend a warm welcome with signup bonus points for your employees as
-            they join the app. Our recommended range is around 5-10 USD per
-            employee.
+            Give your employees a special bonus when they join the app, so they
+            can immediately begin Remote Santa adventure. Our recommended bonus
+            range is between 5-10 USD per employee.
           </Typography>
         </Grid>
         <form
@@ -72,13 +79,22 @@ const AutomaticPointsDeliveryStep = () => {
           <TextField
             error={errors.amount ? true : false}
             id="outlined-basic"
-            label="Preffered Amount"
+            label="Preffered Amount Per Employee"
             variant="outlined"
-            placeholder="USD"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment
+                  position="start"
+                  style={{ marginLeft: "-16px" }}
+                >
+                  $
+                </InputAdornment>
+              ),
+            }}
             className={
               errors.amount
                 ? "completement-step-input-with-error"
-                : "completement-step-input"
+                : "completement-step-dollar-input"
             }
             type="number"
             {...register("amount", {
