@@ -2,7 +2,7 @@ import React from "react";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPrivate from "../app-header-private/AppHeaderPrivate";
 import { Typography } from "@mui/material";
-import SuccessIllustration from "./../../assets/illustrations/my-team-send-points-success-illustration.svg";
+import SuccessIllustration from "./../../assets/illustrations/purchase-points-success-illustration.svg";
 import { useNavigate } from "react-router-dom";
 
 const UserManagerPurchasePointsSuccess = () => {
@@ -18,17 +18,10 @@ const UserManagerPurchasePointsSuccess = () => {
       <div className="background user-manager-purchase-points-success">
         <div className="user-manager-purchase-points-success-content">
           <Typography className="user-manager-purchase-points-success-title">
-            Thank you! The points you acquired have been successfully processed!
+            Thank you for your purchase!
+            <br /> We appreciate your support. Enjoy our app to the fullest and
+            empower your team to be more proactive and engaged!
           </Typography>
-          <div className="user-manager-purchase-points-success-div-text">
-            <Typography className="user-manager-purchase-points-success-text">
-              Remote Santa Magic is about to land in your inbox! We want to
-              inform you that payment instructions and an invoice will be sent
-              to your email address in the next few hours. There's a bit of
-              manual work involved from our end, but please know that we're
-              fully committed to making it a smooth process for you.
-            </Typography>
-          </div>
           <Typography
             className="user-manager-purchase-points-success-link"
             onClick={homeRedirect}
