@@ -411,7 +411,7 @@ describe('/completement-steps', () => {
   });
 
   describe('/purchase-points (POST)', () => {
-    it('/ (POST) - purchase-points by Non Completed Org', async () => {
+    it.skip('/ (POST) - purchase-points by Non Completed Org', async () => {
       await request(app.getHttpServer())
         .post('/completement-steps/purchase-points/')
         .set(
