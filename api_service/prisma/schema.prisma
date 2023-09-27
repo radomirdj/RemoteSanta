@@ -47,6 +47,7 @@ model User {
   giftCardRequestCreator          GiftCardRequest[]             @relation("GiftCardRequest_owner")
   giftCardRequestOwner            GiftCardRequest[]             @relation("GiftCardRequest_creator")
   GiftCard                        GiftCard[]
+  PaymentRequest                  PaymentRequest[]
 
   @@index([email])
   @@index([cognitoSub])
@@ -103,6 +104,26 @@ model UserInviteSingleImport {
   userInviteImportJobId String
   createdAt             DateTime                         @default(now())
   updatedAt             DateTime                         @updatedAt
+}
+
+enum PaymentRequestStatusEnum {
+  PENDING
+  SUCCESS
+  SUCCESS_UPDATE_STARTED
+  FAIL
+}
+
+model PaymentRequest {
+  id           String                   @id @default(uuid())
+  pointsAmount Int
+  sessionId    String                   @unique
+  status       PaymentRequestStatusEnum @default(PENDING)
+  org          Org                      @relation(fields: [orgId], references: [id])
+  orgId        String
+  createdBy    User?                    @relation(fields: [createdById], references: [id])
+  createdById  String?
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
 }
 
 enum GiftDateTypeEnum {
@@ -191,6 +212,7 @@ model Org {
   UserInvite                UserInvite[]
   OrgCompletementStepStatus OrgCompletementStepStatus[]
   UserInviteImportJob       UserInviteImportJob[]
+  PaymentRequest            PaymentRequest[]
 }
 
 model OrgCompletementStep {

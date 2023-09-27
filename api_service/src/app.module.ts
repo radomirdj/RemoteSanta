@@ -26,6 +26,7 @@ import { CompletementStepsModule } from './completement_steps/completement_steps
 import { SqsUserInvitesModule } from './sqs_user_invites/sqs_user_invites.module';
 import { WorkerUserInvitesModule } from './worker_user_invites/worker_user_invites.module';
 import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
     SqsUserInvitesModule,
     WorkerUserInvitesModule,
     CurrencyRatesModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [

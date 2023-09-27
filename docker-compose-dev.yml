@@ -99,6 +99,8 @@ services:
       EMAIL_FROM: ${EMAIL_FROM}
       FE_BASE_URL: http://localhost:3050/
       CURRENCYFREAKS_KEY: ${CURRENCYFREAKS_KEY}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_HOOK_SECRET_KEY: ${STRIPE_HOOK_SECRET_KEY}
 
   api_full:
     <<: *app

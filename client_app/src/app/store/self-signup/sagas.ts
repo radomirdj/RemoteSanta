@@ -156,10 +156,10 @@ function* postSignupBonusSaga(action: PostSignupBonus) {
 function* postPurchasePointsSaga(action: PostPurchasePoints) {
   try {
     const token: string = localStorage.getItem("token") || "";
-    yield call(postPurchasePointsStep, action.payload, token);
+    const { data } = yield call(postPurchasePointsStep, action.payload, token);
     yield put(postPurchasePointsSuccess());
     yield put(fetchCompletementSteps());
-    action.navigate("/user-manager-purchase-points-success");
+    window.location.replace(data);
   } catch (e) {
     console.log("function*signUpSaga -> e", e);
     yield put(

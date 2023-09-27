@@ -7,12 +7,14 @@ import { UserDto } from 'src/users/dtos/user.dto';
 import { PurchasePointsCompletementStepDto } from './dtos/purchase_points_completment_step';
 import { SetBirthdayConfigCompletementStepDto } from './dtos/set_birthday_config_completment_step';
 import { EmailsService } from '../emails/emails.service';
+import { PaymentsService } from '../payments/payments.service';
 
 @Injectable()
 export class CompletementStepsService {
   constructor(
     private prisma: PrismaService,
     private emailService: EmailsService,
+    private paymentsService: PaymentsService,
   ) {}
   getCompletementStepFullList() {
     return this.prisma.orgCompletementStep.findMany({
@@ -122,12 +124,13 @@ export class CompletementStepsService {
     });
   }
 
-  async purchasePoints(user: UserDto, amount: number) {
+  async purchasePoints(user: UserDto, amount: number): Promise<string> {
     await this.updateOrgCompletementStatus(
       user.org.id,
       consts.orgCompletementSteps.PURCHASE_POINTS.id,
       true,
     );
+    const url = await this.paymentsService.startPaymentSession(amount, user);
     await this.emailService.purchasePointsRequestToAdminEmail(
       consts.adminRecepients,
       user.id,
@@ -138,6 +141,7 @@ export class CompletementStepsService {
       user.org.id,
       amount,
     );
+    return url;
   }
 
   async setBirthdaysConfig(

@@ -1,4 +1,14 @@
-import { Controller, Get, UseGuards, Post, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  UseGuards,
+  Post,
+  Param,
+  Body,
+  Headers,
+  Req,
+  RawBodyRequest,
+} from '@nestjs/common';
 import { UserRoleEnum } from '@prisma/client';
 import { CompletementStepsService } from './completement_steps.service';
 import { Serialize } from '../interceptors/serialize.interceptor';
@@ -12,11 +22,15 @@ import { SetSignupBonusCompletementStepDto } from './dtos/set_signup_bonus_compl
 import { SetPersonalDetailsCompletementStepDto } from './dtos/set_personal_details_completment_step';
 import { PurchasePointsCompletementStepDto } from './dtos/purchase_points_completment_step';
 import { SetBirthdayConfigCompletementStepDto } from './dtos/set_birthday_config_completment_step';
+import { PaymentsService } from '../payments/payments.service';
 
 @Controller('completement-steps')
 @Serialize(CompletementStepDto)
 export class CompletementStepsController {
-  constructor(private completementStepsService: CompletementStepsService) {}
+  constructor(
+    private paymentsService: PaymentsService,
+    private completementStepsService: CompletementStepsService,
+  ) {}
 
   @Get('/')
   @UseGuards(AuthGuard('jwt'))
@@ -66,6 +80,7 @@ export class CompletementStepsController {
     );
   }
 
+  // WARNING!!! - THIS ENDPOINT IS NOT COVERED WITH TESTS
   @Post('/purchase-points')
   @UseGuards(AuthGuard('jwt'), UserManagerGuard)
   async purchasePointsCompletementStep(
@@ -76,6 +91,16 @@ export class CompletementStepsController {
       user,
       body.purchasePoints,
     );
+  }
+
+  // WARNING!!! - THIS ENDPOINT IS NOT COVERED WITH TESTS
+  @Post('/stripe-webhook')
+  async purchasePoinstripeWebhooktsCompletementStep(
+    @Headers() headers,
+    @Req() req: RawBodyRequest<Request>,
+  ) {
+    const sig = headers['stripe-signature'];
+    await this.paymentsService.handleStripeWebhook(req.rawBody, sig);
   }
 
   @Post('/set-birthdays-config')
