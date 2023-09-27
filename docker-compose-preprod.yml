@@ -26,6 +26,8 @@ services:
       FE_BASE_URL: ${FE_BASE_URL}
       NODE_ENV: preprod
       CURRENCYFREAKS_KEY: ${CURRENCYFREAKS_KEY}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_HOOK_SECRET_KEY: ${STRIPE_HOOK_SECRET_KEY}
     ports:
       - "8090:8090"
   nginx:

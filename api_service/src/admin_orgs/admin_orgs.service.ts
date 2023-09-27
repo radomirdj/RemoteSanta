@@ -135,10 +135,11 @@ export class AdminOrgsService {
     return orgDb;
   }
 
+  // TODO All ADMIN TO ORG Things should be renamed to -- add points to org since it's used when user buy points
   async createTransactionAdminToOrg(
     orgId: string,
-    createAdminToOrgDto: CreateAdminToOrgDto,
-    admin: User,
+    amount: number,
+    createdById: string,
   ): Promise<OrgTransactionDto> {
     const [org, orgUserManagerList] = await Promise.all([
       this.getById(orgId),
@@ -151,7 +152,7 @@ export class AdminOrgsService {
     return this.prisma.$transaction(async (tx) => {
       const orgTransaction = await tx.orgTransaction.create({
         data: {
-          totalAmount: createAdminToOrgDto.amount,
+          totalAmount: amount,
           type: OrgTransactionTypeEnum.ADMIN_TO_ORG,
           org: {
             connect: {
@@ -160,7 +161,7 @@ export class AdminOrgsService {
           },
           createdBy: {
             connect: {
-              id: admin.id,
+              id: createdById,
             },
           },
         },
@@ -168,13 +169,13 @@ export class AdminOrgsService {
       await this.ledgerService.createAdminToOrgTransaction(
         tx,
         orgId,
-        createAdminToOrgDto.amount,
+        amount,
         orgTransaction.id,
       );
       if (orgEmailUserManagerList.length) {
         await this.emailsService.sendAdminToOrgPointsEmail(
           orgEmailUserManagerList,
-          createAdminToOrgDto.amount,
+          amount,
           org.name,
         );
       }
