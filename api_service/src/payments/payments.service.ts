@@ -103,6 +103,8 @@ export class PaymentsService {
         where: { id: paymentRequest.id },
         data: { status: PaymentRequestStatusEnum.SUCCESS },
       });
+      return paymentRequest.orgId;
     }
+    return null;
   }
 }

@@ -125,11 +125,6 @@ export class CompletementStepsService {
   }
 
   async purchasePoints(user: UserDto, amount: number): Promise<string> {
-    await this.updateOrgCompletementStatus(
-      user.org.id,
-      consts.orgCompletementSteps.PURCHASE_POINTS.id,
-      true,
-    );
     const url = await this.paymentsService.startPaymentSession(amount, user);
     await this.emailService.purchasePointsRequestToAdminEmail(
       consts.adminRecepients,

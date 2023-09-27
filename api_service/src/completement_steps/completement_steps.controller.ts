@@ -23,6 +23,7 @@ import { SetPersonalDetailsCompletementStepDto } from './dtos/set_personal_detai
 import { PurchasePointsCompletementStepDto } from './dtos/purchase_points_completment_step';
 import { SetBirthdayConfigCompletementStepDto } from './dtos/set_birthday_config_completment_step';
 import { PaymentsService } from '../payments/payments.service';
+import consts from '../utils/consts';
 
 @Controller('completement-steps')
 @Serialize(CompletementStepDto)
@@ -100,7 +101,14 @@ export class CompletementStepsController {
     @Req() req: RawBodyRequest<Request>,
   ) {
     const sig = headers['stripe-signature'];
-    await this.paymentsService.handleStripeWebhook(req.rawBody, sig);
+    const completedPaymentOrgId =
+      await this.paymentsService.handleStripeWebhook(req.rawBody, sig);
+    if (completedPaymentOrgId)
+      await this.completementStepsService.updateOrgCompletementStatus(
+        completedPaymentOrgId,
+        consts.orgCompletementSteps.PURCHASE_POINTS.id,
+        true,
+      );
   }
 
   @Post('/set-birthdays-config')
