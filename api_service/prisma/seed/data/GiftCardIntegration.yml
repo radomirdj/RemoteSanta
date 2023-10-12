@@ -1118,5 +1118,289 @@
   constraintType: LIST
   constraintJson: [50, 100, 150, 200]
 
+#Canada
+- id: fa57f0cb-73f5-4b34-8445-4e5c786286e3
+  priority: 10
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://tripgift.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/slo_tripgift.png
+  title: Tripgift
+  description: TripGift is an online platform that offers gift cards and vouchers for various travel-related experiences and services. It allows individuals to purchase gift cards that can be redeemed for flights, hotels, tours, activities, car rentals, and more.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 750, 1000, 1250, 1500, 1750, 2000]
 
+- id: 3026c647-e5a8-437f-9686-13e6baeda857
+  priority: 20
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.cabelas.com/shop/en#
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/cabelas_cad.png
+  title: Cabela's
+  description: Cabela's is a well-known retail that focuses on outdoor and recreational products.  Cabela's is particularly famous for its extensive selection of outdoor gear, including hunting, fishing, camping, and other outdoor-related equipment and supplies.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500]
 
+- id: b036ad50-ffe3-4b1e-94a5-e53abe16d161
+  priority: 30
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.globalexperiencescard.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_globexp.png
+  title: GE Card
+  description: The global experience can be pursued in different ways, including through travel, study abroad programs, international work opportunities, cultural exchanges, or through engagement with global interactions with people from different backgrounds.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500]
+
+- id: fc74dc97-3ed8-43ef-86c6-a5ced2fad1ce
+  priority: 40
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.amazon.ca/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/amazon.png
+  title: Amazon CA
+  description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 ]
+
+- id: d4c7511c-5c32-46e2-b32f-6722a07b204a
+  priority: 50
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.xbox.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/mx_xbox.png
+  title: XBOX
+  description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [ 15, 25, 50, 75, 100 ]
+
+- id: c9abee48-d0dc-45aa-a7b2-f1ad6098cfd8
+  priority: 60
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.kobo.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/kobo_card.png
+  title: Rakuten kobo
+  description: The Kobo eReaders are designed to provide an experience similar to reading a physical book, with features such as E Ink displays, long battery life, adjustable text settings, and the ability to store and carry thousands of eBooks in a single device.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100 ]
+
+- id: 46fa6318-5cd7-4edf-b678-e520cfdc83fa
+  priority: 70
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.globalhotelcard.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/global_hotel_cad.png
+  title: Global Hotel
+  description: The "Global Hotel Card Powered by Expedia" is a gift card that allows to book hotel through the Expedia platform. It is a well-known online travel agency and booking platform that offers a wide range of travel services, including hotel reservations.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000 ]
+
+- id: 205f0378-eb30-4081-a240-c54f6dca228f
+  priority: 80
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.hm.com
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/hm.png
+  title: H&M
+  description: The company's product lines include clothing, shoes, jewelry, bags, and home goods. H&M operates over 5,000 stores worldwide, including in Europe, Asia, North America, and the Middle East, as well as an online store.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 06f19cfb-ecda-40d7-bd13-f05bb1c70705
+  priority: 90
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.ubereats.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/uber_eats_cad.png
+  title: Uber Eats
+  description: Uber Eats is a food delivery service operated by Uber Technologies Inc., the same company known for its ride-sharing services. Uber Eats allows users to order food from a wide range of restaurants and have it delivered to their location.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 4fabdbf6-ca28-4f28-ab4b-464b211b7061
+  priority: 100
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.esso.ca/en-ca
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/esso_cad.png
+  title: Esso
+  description: Esso service stations are a common sight in various countries around the world, including the United States, Canada, Europe, and Asia. They offer various petroleum products, such as gasoline and diesel fuel, as well as convenience store items. 
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 670e38ca-6b64-4079-9e4a-08eb97920a4a
+  priority: 110
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.harveys.ca/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/harveys_cad.png
+  title: Harvey's
+  description: Harvey's is a Canadian fast-food restaurant chain that primarily specializes in hamburgers. It is well known for its "Build-A-Burger" concept, where customers can customize their burgers by selecting from various toppings and condiments.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 3418c9c6-9e8e-4ba5-9e4f-c72b221c0e3e
+  priority: 120
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://dukesrefresher.ca/st-lawrence-market/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/dukes_cad.png
+  title: Duke's
+  description: Enjoy a diverse and delectable selection of beverages, from classic cocktails to craft beers, while you unwind in style. Duke's bar is the ultimate destination for creating unforgettable moments and savoring the pleasures of good company.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 6ddefab3-2ce0-4cfa-8463-548367705283
+  priority: 130
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://theloosemoose.ca/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/loose_moose_cad.png
+  title: The Loose Moose
+  description: The Loose Moose is a well-known bar and restaurant located in Toronto, Canada. It is a popular gathering spot in the city, especially for sports fans, as it often features big-screen TVs broadcasting various sports events.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 7e4832d8-1dcf-45e8-9903-8883d298b6f8
+  priority: 140
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.nintendo.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_nintendo.png
+  title: Nintendo
+  description: Nintendo is a prominent Japanese video game company that has made a significant impact on the gaming industry. It was founded as a playing card company and later expanded into various other ventures before entering the video game market in the 1970s.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [10, 20, 35, 50, 99]
+
+- id: 32a31b77-46aa-4019-96ce-48294ff13a8d
+  priority: 150
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://redsrestaurants.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/red_cad.png
+  title: Reds
+  description: Reds Wine Tavern redefines social dining with culinary confidence and an engaging décor. Uncompromised values, timeless spirit and sociability prevail in a relaxed atmosphere.Enjoy a Reds classic cocktail or choose from expansive offering 24 wines.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: ac80de9e-2a5a-403b-9f95-002701d1dc34
+  priority: 160
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.scaddabush.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/scaddabush_cad.png
+  title: Scaddabush
+  description: Scaddabush is a Canadian restaurant chain that focuses on serving Italian cuisine. The name "Scaddabush" is a playful blend of two Italian words "scaddapace" and "abbondanza," which roughly translate to "a little bit of everything." 
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 3a03f8fa-8878-4d42-a5cf-826da5a7f030
+  priority: 170
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.doordash.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/doordash_cad.png
+  title: Doobrash
+  description: DoorDash is an American on-demand food delivery service and technology company. It connects people with local restaurants and offers food delivery from a wide variety of eateries, including fast-food, casual dining, and even some fine dining. 
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200]
+
+- id: 23c02a60-7dcb-4ea7-ae9c-92cff327e8ff
+  priority: 180
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.instacart.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/instacart_cad.png
+  title: Instacart
+  description: Instacart offers an online grocery shopping and delivery service. It allows customers to order groceries and other household items from local supermarkets and have them delivered to their doorstep, often within the same day. 
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+
+- id: 6b3a0e2f-b1f6-46e8-80a7-caed9411c665
+  priority: 190
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.ae.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/aeo.png
+  title: AEO
+  description: American Eagle Outfitters is known for its trendy and affordable clothing that reflects the latest fashion trends. Their product lines include jeans, shorts, t-shirts, hoodies, jackets, dresses, and accessories such as shoes, jewelry, and bags.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: f02fa0bc-c732-4895-8d69-ad5b947d9e8e
+  priority: 200
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.saksfifthavenue.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/saks_cad.png
+  title: Saks
+  description: Saks Fifth Avenue is a high-end American luxury department store chain that offers a wide range of designer clothing, accessories, footwear, cosmetics, and home goods. It is known for its upscale and fashionable merchandise.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: bf9eac4d-7d85-4b59-b384-559d7273db26
+  priority: 210
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.golftown.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/golftown_cad.png
+  title: Golf Town
+  description: Golf Town stores offer a wide variety of golf products, including golf clubs, golf balls, apparel, footwear, bags, golf technology, and more. They provide a one-stop shopping experience for golfers looking to purchase or upgrade their golf equipment.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [50]
+
+- id: 9d7b102e-c1c9-4b97-9e34-022dd5138b5d
+  priority: 220
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.starbucks.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/starbucks_cad.png
+  title: Starbucks
+  description: Starbucks is a globally recognized American coffeehouse chain that operates thousands of coffee shops around the world. The company was founded in Seattle, and it has since become one of the world's most well-known and influential coffee brands.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 812199e7-899d-4f51-8d9e-44fa48e054da
+  priority: 230
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://earls.ca/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/earls_cad.png
+  title: Earls
+  description: Earls is a restaurant chain that originated in Canada and has expanded to other countries, including the United States. Earls offers a range of options, including appetizers, entrees, salads, sandwiches, and a variety of cocktails and beverages.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 7d842f97-93e3-4573-8883-bb7bd63992ac
+  priority: 240
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.homedepot.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/home_depot_cad.png
+  title: Home Depot
+  description: The Home Depot is a well-known American home improvement and construction supply retailing company. It is one of the largest and most popular home improvement retailers in the United States and around the world. 
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+
+- id: 35c2d8c7-c8e7-4b7d-a5a7-df6b10fb3bcb
+  priority: 250
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.playstation.com/en-us/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/ps_cad.png
+  title: Play Station
+  description: PlayStation is a line of video game consoles and gaming-related products developed and produced by Sony Interactive Entertainment, a division of Sony Corporation. It is one of the most popular and influential gaming platforms in the world.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [50]
+
+- id: e2f68276-acaf-44ac-8240-610421166f24
+  priority: 260
+  countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
+  website: https://www.wayfair.com/
+  image: https://brandimagescards.s3.us-east-2.amazonaws.com/wayfair_cad.png
+  title: Wayfair
+  description: Wayfair is an American e-commerce company that specializes in selling furniture and home goods online. The company has since become one of the largest and most popular online destinations for purchasing a wide range of home-related products.
+  currency: CAD
+  constraintType: LIST
+  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
