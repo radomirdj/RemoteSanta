@@ -326,7 +326,7 @@ export class EmailsService {
     lastName: string,
     userEmail: string,
     orgName: string,
-    referralCode,
+    referralCode?: string,
   ) {
     return this.sendEmail('org_signup_to_admin', to, {
       firstName,

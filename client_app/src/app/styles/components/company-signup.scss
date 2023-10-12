@@ -37,23 +37,14 @@
     text-align: start;
     color: variables.$color-neutral-black;
     width: 100%;
+    margin-bottom: variables.$base-unit * 3;
   }
 
   .logo-style{
     width: variables.$base-unit * 4;
     margin-left: variables.$base-unit;
   }
-
-  .company-signup-helper-text {
-    font-family: "Montserrat";
-    font-size: variables.$font-size-medium;
-    font-weight: 500;
-    margin-bottom: variables.$base-unit * 4;
-    text-align: start;
-    color: variables.$color-neutral-black;
-    width: 100%;
-  }
-
+  
   .company-name-input {
     margin-bottom: variables.$base-unit * 3 !important;
   }

@@ -60,6 +60,7 @@ const CompanySignup = () => {
           lastName: data.lastName,
           orgName: data.companyName,
           countryId: data.country,
+          referralCode: data.referralCode || "",
         },
         navigate
       )
@@ -85,9 +86,6 @@ const CompanySignup = () => {
                 <Typography className="company-signup-title">
                   Welcome to{" "}
                   <img src={LogoSmall} alt="" className="logo-style" />
-                </Typography>
-                <Typography className="company-signup-helper-text">
-                  Create Account
                 </Typography>
                 {error && (
                   <div className="signup-error">
@@ -270,6 +268,13 @@ const CompanySignup = () => {
                       lowercase letter, 1 uppercase letter and 1 number.
                     </Typography>
                   )}
+                  <TextField
+                    id="outlined-basic"
+                    label="Referral Code (Optional)"
+                    variant="outlined"
+                    className="email-input"
+                    {...register("referralCode")}
+                  />
                 </FormControl>
                 <Button
                   variant="contained"

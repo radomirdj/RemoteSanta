@@ -86,7 +86,7 @@ export class AuthService {
     const userInDb = await this.usersService.findByEmail(data.email);
     if (userInDb) throw new EmailInUseException();
 
-    const { orgName, password, countryId, ...userDbData } = data;
+    const { referralCode, orgName, password, countryId, ...userDbData } = data;
     const dbUserId = await this.prisma.$transaction(async (tx) => {
       const orgDb = await this.adminOrgsService.createOrg(
         tx,
@@ -110,6 +110,7 @@ export class AuthService {
       ]);
       return dbUser.id;
     });
+    await this.emailsService.orgSignupToAdminEmail(consts.adminRecepients, data.firstName, data.lastName, data.email, data.orgName, referralCode);
     return this.usersService.findById(dbUserId);
   }
 

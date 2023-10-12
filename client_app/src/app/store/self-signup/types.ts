@@ -52,6 +52,7 @@ export interface SelfSignUpRequestPayload {
   lastName: string;
   orgName: string;
   countryId: string;
+  referralCode?:string;
 }
 
 export interface FetchCompletementStepsSuccessPayload {
