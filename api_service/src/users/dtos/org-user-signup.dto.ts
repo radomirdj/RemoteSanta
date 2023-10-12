@@ -22,4 +22,7 @@ export class OrgUserSignupDto {
   @IsString()
   @IsNotEmpty()
   orgName: string;
+
+  @IsString()
+  referralCode: string;
 }

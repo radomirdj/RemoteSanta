@@ -319,4 +319,22 @@ export class EmailsService {
       randomIdentifier: randomstring.generate(7),
     });
   }
+
+  async orgSignupToAdminEmail(
+    to: string[],
+    firstName: string,
+    lastName: string,
+    userEmail: string,
+    orgName: string,
+    referralCode,
+  ) {
+    return this.sendEmail('org_signup_to_admin', to, {
+      firstName,
+      lastName,
+      userEmail,
+      orgName,
+      referralCode: referralCode || '---',
+      randomIdentifier: randomstring.generate(7),
+    });
+  }
 }
