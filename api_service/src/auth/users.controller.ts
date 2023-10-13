@@ -137,6 +137,7 @@ export class UsersController {
       body.amount,
       body.message,
       true,
+      true,
       user.orgId,
     );
   }

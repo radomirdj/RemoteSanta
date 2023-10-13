@@ -105,6 +105,7 @@ export class AdminUsersService {
     actionByUserId,
     amount: number,
     message: string,
+    shouldSendEmail: boolean,
     checkOrgConstraint: boolean = false,
     orgIdConstraint?: string,
   ) {
@@ -122,6 +123,7 @@ export class AdminUsersService {
         amount,
         message,
         org.name,
+        shouldSendEmail,
       );
     });
   }

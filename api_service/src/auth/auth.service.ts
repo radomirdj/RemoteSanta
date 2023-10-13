@@ -110,7 +110,18 @@ export class AuthService {
       ]);
       return dbUser.id;
     });
-    await this.emailsService.orgSignupToAdminEmail(consts.adminRecepients, data.firstName, data.lastName, data.email, data.orgName, referralCode);
+    const userCountry = await this.prisma.country.findUnique({
+      where: { id: countryId },
+    });
+    await this.emailsService.orgSignupToAdminEmail(
+      consts.adminRecepients,
+      data.firstName,
+      data.lastName,
+      data.email,
+      userCountry.countryName,
+      data.orgName,
+      referralCode,
+    );
     return this.usersService.findById(dbUserId);
   }
 

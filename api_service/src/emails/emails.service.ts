@@ -325,6 +325,7 @@ export class EmailsService {
     firstName: string,
     lastName: string,
     userEmail: string,
+    userCountryName: string,
     orgName: string,
     referralCode?: string,
   ) {
@@ -332,6 +333,7 @@ export class EmailsService {
       firstName,
       lastName,
       userEmail,
+      userCountryName,
       orgName,
       referralCode: referralCode || '---',
       randomIdentifier: randomstring.generate(7),

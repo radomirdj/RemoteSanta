@@ -489,6 +489,29 @@ describe('Authentication system', () => {
       await prisma.org.delete({ where: { id: response.body.org.id } });
     });
 
+    it('/org-signup (POST) - with good params - add referralCode', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/org-signup')
+        .send({ ...newUserOrg, referralCode: 'abc' })
+        .expect(201);
+
+      // Clean DB
+      await prisma.balanceSide.deleteMany({
+        where: { userId: response.body.id },
+      });
+
+      await prisma.balanceSide.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.orgCompletementStepStatus.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.user.delete({ where: { email: newUserOrg.email } });
+      await prisma.org.delete({ where: { id: response.body.org.id } });
+    });
+
     it('/org-signup (POST) - try to signup existing email', async () => {
       const response = await request(app.getHttpServer())
         .post('/users/org-signup')

@@ -38,6 +38,7 @@ export class AdminUsersController {
       user.id,
       body.amount,
       body.message,
+      false,
     );
   }
 

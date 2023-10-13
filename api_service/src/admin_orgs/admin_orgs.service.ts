@@ -281,6 +281,7 @@ export class AdminOrgsService {
     amount: number,
     message: string,
     orgName: string,
+    shouldSendEmail: boolean,
   ): Promise<OrgTransactionDto | null> {
     const [orgBalance, claimPointsEventList] = await Promise.all([
       this.ledgerService.getOrgBalance(orgId),
@@ -304,13 +305,14 @@ export class AdminOrgsService {
       true,
       message,
     );
-    await this.emailsService.sendPointsEmail(
-      user.email,
-      message,
-      orgName,
-      user.firstName,
-      amount,
-    );
+    if (shouldSendEmail)
+      await this.emailsService.sendPointsEmail(
+        user.email,
+        message,
+        orgName,
+        user.firstName,
+        amount,
+      );
 
     return orgToEmployeeTransaction;
   }
