@@ -28,6 +28,7 @@ export const countryList: ICountry[] = [
     countryName: "Canada",
     flagEmoji: "🇨🇦",
     flagEmojiUnicode: "U+1F1E8 U+1F1E6",
+    hasGiftCards: true,
   },
   {
     id: "96d35219-4e09-44ea-a192-bf954b7b0208",
