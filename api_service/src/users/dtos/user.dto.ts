@@ -1,6 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 import { GenderEnum, UserRoleEnum } from '@prisma/client';
-import { OrgDto } from './org.dto';
+import { OrgDto } from '../../admin_orgs/dtos/org.dto';
 import { UserBalanceDto } from '../../ledger/dtos/user_balance.dto';
 import { ValidateNested } from 'class-validator';
 export class UserDto {
@@ -29,7 +29,7 @@ export class UserDto {
   birthDate?: Date;
 
   @Expose()
-  gender: GenderEnum;
+  gender?: GenderEnum;
 
   @Expose()
   userRole: UserRoleEnum;

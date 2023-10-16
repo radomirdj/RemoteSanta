@@ -299,6 +299,17 @@ export class LedgerService {
     });
   }
 
+  createOrgSide(tx, orgId: string): Promise<BalanceSide[]> {
+    return tx.balanceSide.createMany({
+      data: [
+        {
+          type: BalanceSideTypeEnum.ORG,
+          orgId,
+        },
+      ],
+    });
+  }
+
   async getOrgBalance(orgId): Promise<number> {
     const orgSide = await this.getOrgLedgerSide(orgId);
 

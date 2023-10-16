@@ -22,8 +22,12 @@ import { UserInvitesModule } from './user_invites/user_invites.module';
 import { AdminUserInvitesModule } from './admin_user_invites/admin_user_invites.module';
 import { EmailsModule } from './emails/emails.module';
 import { AuthModule } from './auth/auth.module';
+import { CompletementStepsModule } from './completement_steps/completement_steps.module';
+import { SqsUserInvitesModule } from './sqs_user_invites/sqs_user_invites.module';
+import { WorkerUserInvitesModule } from './worker_user_invites/worker_user_invites.module';
 import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
 import { GiftCardThirdPartyApiModule } from './gift_card_third_party_api/gift_card_third_party_api.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -58,8 +62,12 @@ import { GiftCardThirdPartyApiModule } from './gift_card_third_party_api/gift_ca
     AdminUserInvitesModule,
     EmailsModule,
     AuthModule,
+    CompletementStepsModule,
+    SqsUserInvitesModule,
+    WorkerUserInvitesModule,
     CurrencyRatesModule,
     GiftCardThirdPartyApiModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [

@@ -86,12 +86,12 @@ const UserManagerTransactions = () => {
       <AppHeaderPrivate />
       <div className="background user-manager-transactions">
         <Grid container className="grid-style">
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography className="organization-title">
               {organization?.name}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography className="balance-title">
               Company Balance: {organization?.balance} PTS
             </Typography>

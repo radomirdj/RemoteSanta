@@ -3,7 +3,12 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
-import { Prisma, UserInvite, UserInviteStatusEnum } from '@prisma/client';
+import {
+  Prisma,
+  UserInvite,
+  UserInviteStatusEnum,
+  UserRoleEnum,
+} from '@prisma/client';
 import { UsersService } from '../users/users.service';
 import { AwsCognitoService } from '../users/aws-cognito/aws-cognito.service';
 import { CreateUserDto } from '../users/dtos/create-user.dto';
@@ -16,7 +21,10 @@ import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 import { LedgerService } from '../ledger/ledger.service';
 import { EmailsService } from '../emails/emails.service';
+import { CompletementStepsService } from '../completement_steps/completement_steps.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
+import { OrgUserSignupDto } from '../users/dtos/org-user-signup.dto';
+import consts from '../utils/consts';
 
 const scrypt = promisify(_scrypt);
 
@@ -29,6 +37,7 @@ export class AuthService {
     private prisma: PrismaService,
     private ledgerService: LedgerService,
     private adminOrgsService: AdminOrgsService,
+    private completementStepsService: CompletementStepsService,
   ) {}
 
   async findActiveInviteByCode(code: string): Promise<UserInvite | null> {
@@ -39,62 +48,119 @@ export class AuthService {
     return userInviteList[0];
   }
 
+  async createUserSignupCore(tx, userDbData, countryId, orgId, password) {
+    const dbUser = await this.usersService.createUserTransactional(tx, {
+      ...userDbData,
+      country: {
+        connect: {
+          id: countryId,
+        },
+      },
+      org: {
+        connect: {
+          id: orgId,
+        },
+      },
+    });
+    let userSub;
+    try {
+      userSub = await this.cognitoService.registerUser(
+        password,
+        userDbData.email,
+      );
+    } catch (err) {
+      throw new CognitoException(err.message);
+    }
+
+    const ledgerPromise = this.ledgerService.createUserSides(tx, dbUser.id);
+    const cognitoUpdatePromise = this.usersService.setCognitoSubTransactional(
+      tx,
+      dbUser.id,
+      userSub,
+    );
+    await Promise.all([ledgerPromise, cognitoUpdatePromise]);
+    return dbUser;
+  }
+
+  async signUpOrg(data: OrgUserSignupDto) {
+    const userInDb = await this.usersService.findByEmail(data.email);
+    if (userInDb) throw new EmailInUseException();
+
+    const { referralCode, orgName, password, countryId, ...userDbData } = data;
+    const dbUserId = await this.prisma.$transaction(async (tx) => {
+      const orgDb = await this.adminOrgsService.createOrg(
+        tx,
+        data.orgName,
+        consts.usCountryId,
+        0,
+        0,
+      );
+      const [dbUser, _notUsed] = await Promise.all([
+        this.createUserSignupCore(
+          tx,
+          {
+            ...userDbData,
+            userRole: UserRoleEnum.USER_MANAGER,
+          },
+          countryId,
+          orgDb.id,
+          password,
+        ),
+        this.completementStepsService.setAllStepsNotCompleted(tx, orgDb.id),
+      ]);
+      return dbUser.id;
+    });
+    const userCountry = await this.prisma.country.findUnique({
+      where: { id: countryId },
+    });
+    await this.emailsService.orgSignupToAdminEmail(
+      consts.adminRecepients,
+      data.firstName,
+      data.lastName,
+      data.email,
+      userCountry.countryName,
+      data.orgName,
+      referralCode,
+    );
+    return this.usersService.findById(dbUserId);
+  }
+
   async signUp(data: CreateUserDto) {
-    const { password: string, code, countryId, ...userDbData } = data;
+    const { password, code, countryId, ...userDbData } = data;
     const userInvite = await this.findActiveInviteByCode(code);
     if (!userInvite) throw new NotFoundException('Active Invite Not Found');
 
     const userInDb = await this.usersService.findByEmail(userInvite.email);
     if (userInDb) throw new EmailInUseException();
-    const dbUser = await this.prisma.$transaction(async (tx) => {
-      const dbUser = await this.usersService.createUserTransactional(tx, {
-        ...userDbData,
-        email: userInvite.email,
-        userRole: userInvite.userRole,
-        country: {
-          connect: {
-            id: countryId,
-          },
+    const dbUserId = await this.prisma.$transaction(async (tx) => {
+      const dbUser = await this.createUserSignupCore(
+        tx,
+        {
+          ...userDbData,
+          email: userInvite.email,
+          userRole: userInvite.userRole,
         },
-        org: {
-          connect: {
-            id: userInvite.orgId,
-          },
-        },
-      });
-      let userSub;
-      try {
-        userSub = await this.cognitoService.registerUser(
-          data,
-          userInvite.email,
-        );
-      } catch (err) {
-        throw new CognitoException(err.message);
-      }
-      const invitePromise = tx.userInvite.update({
+        countryId,
+        userInvite.orgId,
+        password,
+      );
+
+      await tx.userInvite.update({
         where: { id: userInvite.id },
         data: {
           status: UserInviteStatusEnum.COMPLETED,
         },
       });
 
-      const ledgerPromise = this.ledgerService.createUserSides(tx, dbUser.id);
-      const cognitoUpdatePromise = this.usersService.setCognitoSubTransactional(
-        tx,
-        dbUser.id,
-        userSub,
-      );
-
-      await Promise.all([ledgerPromise, cognitoUpdatePromise, invitePromise]);
       await this.adminOrgsService.createTransactionOrgToEmployeeSignup(
         tx,
         userInvite.orgId,
         dbUser,
       );
-      return dbUser;
+      return dbUser.id;
     });
 
-    return this.usersService.findById(dbUser.id);
+    return this.usersService.findById(dbUserId);
   }
 
   async login(data: LoginUserDto) {

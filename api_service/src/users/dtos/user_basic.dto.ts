@@ -20,7 +20,7 @@ export class UserBasicDto {
   birthDate?: Date;
 
   @Expose()
-  gender: GenderEnum;
+  gender?: GenderEnum;
 
   @Expose()
   userRole: UserRoleEnum;

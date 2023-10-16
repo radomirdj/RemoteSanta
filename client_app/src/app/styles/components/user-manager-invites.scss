@@ -6,16 +6,29 @@ $content-width:775px;
     background-image: url("./../../assets/home-image.svg");
 
     .grid-style{
-        max-width: $content-width;
         justify-content: center;
         padding-top: variables.$base-unit * 7;
+        @media screen and (max-width: variables.$breakpoint-md) {
+          width: 100%;
+      }
+  
+      @media screen and (min-width: variables.$breakpoint-md) {
+          max-width: $content-width;
+      }
 
         .invites-title{
             font-family: "Montserrat";
-            font-size: variables.$font-size-title;
             margin-bottom: variables.$base-unit;
             width: max-content;
             font-weight: 500;
+            @media screen and (max-width: variables.$breakpoint-md) {
+              font-size: variables.$font-size-larger;
+              margin-left: variables.$base-unit;
+          }
+      
+          @media screen and (min-width: variables.$breakpoint-md) {
+              font-size: variables.$font-size-title;
+          }
         }
 
         .add-button{
@@ -25,11 +38,19 @@ $content-width:775px;
             box-shadow: none;
             color: variables.$color-neutral-black;
             text-transform: none;
-            width: 50%;
             height: variables.$base-unit * 5;
             font-weight: bold;
             margin-bottom: variables.$base-unit ;
             margin-top: variables.$base-unit ;
+
+            @media screen and (max-width: variables.$breakpoint-md) {
+              width:90%;
+              margin-right:variables.$base-unit;
+          }
+      
+          @media screen and (min-width: variables.$breakpoint-md) {
+            width: 50%;
+          }
         }
     }
 
@@ -47,6 +68,9 @@ $content-width:775px;
         font-family: "Montserrat";
         border: none;
         overflow: hidden;
+        @media screen and (max-width: variables.$breakpoint-md) {
+          width: 100%;
+      }
 
         .cancel-button,
         & .cancel-button:hover{
@@ -78,7 +102,6 @@ $content-width:775px;
     .MuiFormControl-root {
         margin: 0px;
         border-radius: variables.$base-unit;
-        margin-bottom: variables.$base-unit;
     
         .MuiOutlinedInput-root {
           border-radius: variables.$base-unit;
@@ -105,7 +128,7 @@ $content-width:775px;
           font-family: "Montserrat";
           margin-left:variables.$base-unit * 3;
           font-size: variables.$font-size-larger;
-          margin-bottom: variables.$base-unit * 4;
+          margin-bottom: variables.$base-unit ;
           width: max-content;
           font-weight: 500;
       }
@@ -123,13 +146,13 @@ $content-width:775px;
             font-size: variables.$font-size-small;
             color: variables.$error-color;
             text-align: start;
-            margin-bottom: variables.$base-unit * 2;
+            margin-bottom: 0px;
             margin-left: variables.$base-unit * 3;
             display: inline-flex;
             width: 88%;
           }
+
           .email-input {
-            margin-bottom: variables.$base-unit * 3 !important;
             margin-left:variables.$base-unit * 3;
             width: 88%;
           }

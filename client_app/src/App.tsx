@@ -33,11 +33,17 @@ import UserManagerUsers from "./app/components/user-manager-users/UserManagerUse
 import AdminUserDetails from "./app/components/admin-organizations/AdminUserDetails";
 import UserManagerUserDetails from "./app/components/user-manager-users/UserManagerUserDetails";
 import AdminUserSendPoints from "./app/components/admin-organizations/AdminUserSendPoints";
+import CompanySignup from "./app/components/company-signup/CompanySignup";
+import CompanySignupVerifyEmail from "./app/components/company-signup/CompanySignupVerifyEmail";
+import InviteSingleCoworker from "./app/components/home/InviteSingleCoworker";
+import InviteGroupCoworker from "./app/components/home/InviteGroupCoworker";
 import MyTeam from "./app/components/my-team/MyTeam";
 import MyTeamSendPoints from "./app/components/my-team/MyTeamSendPoints";
 import MyTeamSendPointsSuccess from "./app/components/my-team/MyTeamSendPointsSuccess";
 import ChooseGiftCardPersonal from "./app/components/choose-giftcard/ChooseGiftCardPersonal";
 import ChooseGiftCardPeerToPeer from "./app/components/choose-giftcard/ChooseGiftCardPeerToPeer";
+import UserManagerPurchasePoints from "./app/components/user-manager-purchase-points/UserManagerPurchasePoints";
+import UserManagerPurchasePointsSuccess from "./app/components/user-manager-purchase-points/UserManagerPurchasePointsSuccess";
 
 const App = () => {
   return (
@@ -91,6 +97,22 @@ const App = () => {
             </PublicRoute>
           }
         />
+        <Route
+          path="company-signup-verify-email"
+          element={
+            <PublicRoute>
+              <CompanySignupVerifyEmail />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="company-signup"
+          element={
+            <PublicRoute>
+              <CompanySignup />
+            </PublicRoute>
+          }
+        />
         <Route path="error-page" element={<ErrorPage />} />
         <Route
           path="my-gift-cards"
@@ -129,6 +151,22 @@ const App = () => {
           element={
             <PrivateRoute>
               <UserProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="invite-single-coworker"
+          element={
+            <PrivateRoute>
+              <InviteSingleCoworker />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="invite-group-coworker"
+          element={
+            <PrivateRoute>
+              <InviteGroupCoworker />
             </PrivateRoute>
           }
         />
@@ -257,6 +295,22 @@ const App = () => {
           element={
             <UserManagerRoute>
               <UserManagerTransactions />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-purchase-points"
+          element={
+            <UserManagerRoute>
+              <UserManagerPurchasePoints />
+            </UserManagerRoute>
+          }
+        />
+        <Route
+          path="user-manager-purchase-points-success"
+          element={
+            <UserManagerRoute>
+              <UserManagerPurchasePointsSuccess />
             </UserManagerRoute>
           }
         />

@@ -44,6 +44,7 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
 jest.mock(
   '../src/currency_rates/currency_rates_api/currency_rates_api.service',
 );

@@ -271,4 +271,72 @@ export class EmailsService {
       senderEmail,
     );
   }
+
+  async purchasePointsRequestToAdminEmail(
+    to: string[],
+    userId: string,
+    firstName: string,
+    lastName: string,
+    userEmail: string,
+    orgName: string,
+    orgId: string,
+    amount: number,
+  ) {
+    return this.sendEmail('purchase_points_request_to_admin', to, {
+      userId,
+      firstName,
+      lastName,
+      userEmail,
+      orgName,
+      orgId,
+      amount,
+      randomIdentifier: randomstring.generate(7),
+    });
+  }
+
+  async birthdayConfigCompletementStepToAdminEmail(
+    to: string[],
+    userId: string,
+    firstName: string,
+    lastName: string,
+    userEmail: string,
+    orgName: string,
+    orgId: string,
+    preferredMeetingPlatform: string,
+    preferredTimeDetails: string,
+    bugetInPoints: number,
+  ) {
+    return this.sendEmail('birthday_config_completement_step_to_admin', to, {
+      userId,
+      firstName,
+      lastName,
+      userEmail,
+      orgName,
+      orgId,
+      preferredMeetingPlatform,
+      preferredTimeDetails,
+      bugetInPoints,
+      randomIdentifier: randomstring.generate(7),
+    });
+  }
+
+  async orgSignupToAdminEmail(
+    to: string[],
+    firstName: string,
+    lastName: string,
+    userEmail: string,
+    userCountryName: string,
+    orgName: string,
+    referralCode?: string,
+  ) {
+    return this.sendEmail('org_signup_to_admin', to, {
+      firstName,
+      lastName,
+      userEmail,
+      userCountryName,
+      orgName,
+      referralCode: referralCode || '---',
+      randomIdentifier: randomstring.generate(7),
+    });
+  }
 }

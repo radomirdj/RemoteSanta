@@ -54,9 +54,13 @@ import {
   Prisma,
 } from '@prisma/client';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
+import { expectOrgInDB } from './utils/orgsChecks';
+import { CompletementStepsService } from '../src/completement_steps/completement_steps.service';
 import { NotEnoughBalanceException } from '../src/errors/notEnoughBalanceException';
+import consts from '../src/utils/consts';
 
 jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
 jest.mock(
   '../src/currency_rates/currency_rates_api/currency_rates_api.service',
 );
@@ -65,6 +69,7 @@ describe('Authentication system', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   let ledgerService: LedgerService;
+  let completementStepsService: CompletementStepsService;
   const testStartTime = new Date();
 
   beforeAll(async () => {
@@ -80,6 +85,7 @@ describe('Authentication system', () => {
     app = moduleFixture.createNestApplication();
     prisma = app.get(PrismaService);
     ledgerService = app.get(LedgerService);
+    completementStepsService = app.get(CompletementStepsService);
     await app.init();
   });
 
@@ -382,6 +388,134 @@ describe('Authentication system', () => {
       const response = await request(app.getHttpServer())
         .post('/users/signup')
         .send({ ...newUser, code: userInviteDoubleEmail.code })
+        .expect(400);
+
+      expect(response.body.message).toEqual(EmailInUseException.defaultMessage);
+    });
+  });
+
+  describe('/org-signup (POST)', () => {
+    const newUserOrg = {
+      email: 'petar@pan.com',
+      firstName: 'Peter',
+      lastName: 'Pan',
+      password: '123456',
+      countryId: consts.usCountryId,
+      orgName: 'Pan Inc.',
+    };
+
+    it('/org-signup (POST) - with good params', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/org-signup')
+        .send(newUserOrg)
+        .expect(201);
+
+      expectUserRsp(response.body, {
+        ...newUserOrg,
+        userRole: UserRoleEnum.USER_MANAGER,
+      });
+      await expectUserInDB(
+        {
+          ...newUserOrg,
+          userRole: UserRoleEnum.USER_MANAGER,
+        },
+        prisma,
+      );
+
+      await expectOrgInDB(
+        {
+          id: response.body.org.id,
+          name: newUserOrg.orgName,
+          pointsPerMonth: 0,
+          signupPoints: 0,
+        },
+        prisma,
+      );
+
+      const balanceSideDBList = await prisma.balanceSide.findMany({
+        where: { userId: response.body.id },
+      });
+      expect(balanceSideDBList.length).toEqual(2);
+      const balanceSideActive = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_ACTIVE,
+      );
+      expect(balanceSideActive).toBeDefined();
+      expect(balanceSideActive.userId).toEqual(response.body.id);
+
+      const balanceSideReserved = balanceSideDBList.find(
+        (balanceSide) => balanceSide.type === BalanceSideTypeEnum.USER_RESERVED,
+      );
+      expect(balanceSideReserved).toBeDefined();
+      expect(balanceSideReserved.userId).toEqual(response.body.id);
+
+      // orgBalance
+      const balanceOrgDBList = await prisma.balanceSide.findMany({
+        where: { orgId: response.body.org.id },
+      });
+      expect(balanceOrgDBList.length).toEqual(1);
+
+      // orgProgress
+      const progressStepList = await completementStepsService.getListByOrg(
+        response.body.org.id,
+      );
+      expect(progressStepList.length).toEqual(6);
+      progressStepList.forEach((stepStatus) => {
+        expect(stepStatus.completed).toEqual(false);
+      });
+
+      // Check User And Org balance - Signup Bonus
+      const [orgBalance, newUserBalance] = await Promise.all([
+        ledgerService.getOrgBalance(response.body.org.id),
+        ledgerService.getUserBalance(response.body.id),
+      ]);
+      expect(orgBalance).toEqual(0);
+
+      expect(newUserBalance.pointsActive).toEqual(0);
+      expect(newUserBalance.pointsReserved).toEqual(0);
+      // Clean DB
+      await prisma.balanceSide.deleteMany({
+        where: { userId: response.body.id },
+      });
+
+      await prisma.balanceSide.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.orgCompletementStepStatus.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.user.delete({ where: { email: newUserOrg.email } });
+      await prisma.org.delete({ where: { id: response.body.org.id } });
+    });
+
+    it('/org-signup (POST) - with good params - add referralCode', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/org-signup')
+        .send({ ...newUserOrg, referralCode: 'abc' })
+        .expect(201);
+
+      // Clean DB
+      await prisma.balanceSide.deleteMany({
+        where: { userId: response.body.id },
+      });
+
+      await prisma.balanceSide.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.orgCompletementStepStatus.deleteMany({
+        where: { orgId: response.body.org.id },
+      });
+
+      await prisma.user.delete({ where: { email: newUserOrg.email } });
+      await prisma.org.delete({ where: { id: response.body.org.id } });
+    });
+
+    it('/org-signup (POST) - try to signup existing email', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/users/org-signup')
+        .send({ ...newUserOrg, email: user1.email })
         .expect(400);
 
       expect(response.body.message).toEqual(EmailInUseException.defaultMessage);

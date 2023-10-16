@@ -8,7 +8,7 @@ import { LedgerService } from '../ledger/ledger.service';
 import { AdminOrgsService } from '../admin_orgs/admin_orgs.service';
 import { UserDto } from '../users/dtos/user.dto';
 import { PrismaService } from '../prisma/prisma.service';
-import { OrgDto } from '../users/dtos/org.dto';
+import { OrgDto } from '../admin_orgs/dtos/org.dto';
 import { UserRoleEnum } from '.prisma/client';
 import { NotEnoughBalanceException } from '../errors/notEnoughBalanceException';
 import { EmailsService } from '../emails/emails.service';
@@ -105,6 +105,7 @@ export class AdminUsersService {
     actionByUserId,
     amount: number,
     message: string,
+    shouldSendEmail: boolean,
     checkOrgConstraint: boolean = false,
     orgIdConstraint?: string,
   ) {
@@ -122,6 +123,7 @@ export class AdminUsersService {
         amount,
         message,
         org.name,
+        shouldSendEmail,
       );
     });
   }

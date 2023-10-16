@@ -15,7 +15,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  Typography,
+  Typography
 } from "@mui/material";
 import AppFooter from "../app-footer/AppFooter";
 import AppHeaderPublic from "../app-header-public/AppHeaderPublic";
@@ -23,7 +23,7 @@ import { useForm, Controller } from "react-hook-form";
 import {
   createBirthdayFromUTCString,
   createUTCDate,
-  getPasswordRegex,
+  getPasswordRegex
 } from "./../../utils/Utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -34,7 +34,6 @@ import ErrorIcon from "@mui/icons-material/Error";
 import PrivacyPolicy from "./../../assets/documents/PrivacyPolicy.pdf";
 import TermsOfUse from "./../../assets/documents/Terms&Conditions.pdf";
 import { countryList } from "../../enums/CountryList";
-import dayjs from "dayjs";
 import { SignUpRequestPayload } from "../../store/auth/types";
 
 const Registration = () => {
@@ -45,7 +44,7 @@ const Registration = () => {
     register,
     formState: { errors },
     handleSubmit,
-    control,
+    control
   } = useForm();
   const [showPassword, setShowPassword] = React.useState(false);
   const [dateOfBirthValue, setDateOfBirthValue] = React.useState<Date>();
@@ -58,7 +57,7 @@ const Registration = () => {
     dispatch(clearError());
   }, [dispatch]);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => setShowPassword(show => !show);
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -82,7 +81,7 @@ const Registration = () => {
       code: code || "",
       password: data.password,
       gender: data.gender,
-      countryId: data.country,
+      countryId: data.country
     };
     if (birthDate) body.birthDate = birthDate;
     dispatch(signUpRequest(body, navigate));
@@ -178,7 +177,7 @@ const Registration = () => {
                     {countryList.map((country, i) => {
                       return (
                         <MenuItem value={country.id}>
-                          {country.countryName !== "Other" && (
+                          {/* {country.countryName !== "Other" && (
                             <img
                               src={country.flag}
                               alt=""
@@ -189,8 +188,8 @@ const Registration = () => {
                                 verticalAlign: "sub",
                               }}
                             />
-                          )}{" "}
-                          {country.countryName}
+                          )}{" "} */}
+                          {country.flagEmoji + " " + country.countryName}
                         </MenuItem>
                       );
                     })}
@@ -215,7 +214,7 @@ const Registration = () => {
                             label="Date of birth"
                             value={field.value}
                             inputFormat="MM/DD"
-                            onChange={(date) => {
+                            onChange={date => {
                               field.onChange(date);
                               setDateOfBirthValue(createUTCBirthDate(date));
                             }}
@@ -300,7 +299,7 @@ const Registration = () => {
                     label="Password"
                     {...register("password", {
                       required: true,
-                      pattern: getPasswordRegex(),
+                      pattern: getPasswordRegex()
                     })}
                   />
 

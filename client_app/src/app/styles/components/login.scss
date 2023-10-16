@@ -3,6 +3,7 @@
 $login-error-icon-width: 18px;
 $login-error-icon-height: 18px;
 $login-form-width:400px;
+$no-account-font-size: 14px;
 
 .login {
   @media screen and (max-width: variables.$breakpoint-md) {
@@ -100,7 +101,17 @@ $login-form-width:400px;
     width: 100%;
     height: variables.$base-unit * 6;
     font-weight: bold;
-    margin-bottom: variables.$base-unit * 2;
+    margin-bottom: variables.$base-unit;
+  }
+
+  .no-account{
+    font-family: "Montserrat";
+    font-size: $no-account-font-size;
+
+    .no-account-link{
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
   .login-error {

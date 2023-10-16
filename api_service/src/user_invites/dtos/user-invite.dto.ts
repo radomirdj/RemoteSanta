@@ -1,7 +1,7 @@
 import { Expose, Type } from 'class-transformer';
 import { UserInviteStatusEnum } from '@prisma/client';
 import { UserBasicDto } from '../../users/dtos/user_basic.dto';
-import { OrgDto } from '../../users/dtos/org.dto';
+import { OrgDto } from '../../admin_orgs/dtos/org.dto';
 import { UserInviteRoleEnum } from '@prisma/client';
 import { ValidateNested } from 'class-validator';
 

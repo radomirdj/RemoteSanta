@@ -3,7 +3,9 @@ export const expectUserRsp = (responseBody, expectedValue) => {
   expect(responseBody.countryId).toEqual(expectedValue.countryId);
   expect(responseBody.firstName).toEqual(expectedValue.firstName);
   expect(responseBody.lastName).toEqual(expectedValue.lastName);
-  expect(responseBody.gender).toEqual(expectedValue.gender);
+  if (expectedValue.gender)
+    expect(responseBody.gender).toEqual(expectedValue.gender);
+  else expect(responseBody.gender).toBeNull();
   expect(responseBody.userRole).toEqual(expectedValue.userRole);
   if (expectedValue.birthDate)
     expect(responseBody.birthDate).toEqual(
@@ -29,7 +31,8 @@ export const expectUserInDB = async (expectedValue, prisma) => {
   expect(user.firstName).toEqual(expectedValue.firstName);
   expect(user.lastName).toEqual(expectedValue.lastName);
   expect(user.cognitoSub).toEqual(`sub_${expectedValue.email}`);
-  expect(user.gender).toEqual(expectedValue.gender);
+  if (expectedValue.gender) expect(user.gender).toEqual(expectedValue.gender);
+  else expect(user.gender).toBeNull();
   expect(user.userRole).toEqual(expectedValue.userRole);
 
   if (expectedValue.birthDate)

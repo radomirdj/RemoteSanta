@@ -39,6 +39,15 @@ import {
   SendPointsToUserPayload,
 } from "../store/orgs/types";
 import {
+  ICompletementStep,
+  PostBirthdaysSetupPayload,
+  PostCompletementStepsPayload,
+  PostPersonalDetailsPayload,
+  PostPurchasePointsPayload,
+  PostSignupBonusPayload,
+  SelfSignUpRequestPayload,
+} from "../store/self-signup/types";
+import {
   CancelUserInvitePayload,
   FetchUserInviteListPayload,
   IUserInvite,
@@ -307,6 +316,29 @@ export const sendPointsToUserUserManager = (
   );
 };
 
+export const selfSignupOrgUser = (payload: SelfSignUpRequestPayload) => {
+  console.log(payload);
+  return axios.post<string>("api/users/org-signup", payload);
+};
+
+export const getCompletementStepList = (token: string) =>
+  axios.get<ICompletementStep[]>("api/completement-steps/", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const postCompletementStep = (
+  payload: PostCompletementStepsPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/${payload.stepId}/update-status`,
+    payload.completementStepStatus,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
 export const getGiftCardIntegration = (
   giftCardIntegrationId: string,
   token: string
@@ -325,6 +357,54 @@ export const sendPointsToUserPeerToPeer = (
   return api.post<string>(
     `/users/${payload.userId}/send-p2p-points`,
     payload.sendPointsData,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postPersonalDetailsStep = (
+  payload: PostPersonalDetailsPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/set-personal-details`,
+    payload,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postSignupBonusStep = (
+  payload: PostSignupBonusPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/set-signup-bonus`,
+    payload,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};
+
+export const postPurchasePointsStep = (
+  payload: PostPurchasePointsPayload,
+  token: string
+) => {
+  return axios.post<string>(`api/completement-steps/purchase-points`, payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const postBirthdaysSetupStep = (
+  payload: PostBirthdaysSetupPayload,
+  token: string
+) => {
+  return axios.post<string>(
+    `api/completement-steps/set-birthdays-config`,
+    payload,
     {
       headers: { Authorization: `Bearer ${token}` },
     }

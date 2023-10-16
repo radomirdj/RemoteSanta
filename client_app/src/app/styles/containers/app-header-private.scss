@@ -14,8 +14,17 @@ $user-manager-button-height: 44px;
     }
 
     .toolbar-style {
-        margin-left: variables.$base-unit * 6;
+
+
+        @media screen and (max-width: variables.$breakpoint-sm) {
+            margin-left: variables.$base-unit * 2;
+          }
+        
+          @media screen and (min-width: variables.$breakpoint-sm) {
+            margin-left: variables.$base-unit * 6;
+          }
     }
+    
 
     .logo-small {
         margin-top: variables.$base-unit * 2;
@@ -26,24 +35,27 @@ $user-manager-button-height: 44px;
         text-align: right;
         margin-top: variables.$base-unit * 2;
 
-        @media screen and (max-width: variables.$breakpoint-md) {
+        @media screen and (max-width: variables.$breakpoint-sm) {
             text-align: left;
           }
+        
     }
 
     .align-center {
         text-align: center;
         margin-top: variables.$base-unit * 2;
-
-        @media screen and (max-width: variables.$breakpoint-md) {
-            text-align: left;
-          }
          
     }
 
     .align-left{
         text-align: left;
         margin-top: variables.$base-unit * 2;
+    }
+
+    .user-manager-icon{
+        @media screen and (max-width: variables.$breakpoint-sm) {
+            visibility: hidden;
+          }
     }
 
     .header-item {
@@ -71,7 +83,6 @@ $user-manager-button-height: 44px;
             border-color: black;
             font-family: "Montserrat";
             border-radius:variables.$base-unit *3;
-            margin-left: variables.$base-unit *3;
 
             @media screen and (min-width: variables.$breakpoint-md) {
                 font-size: 15px;
@@ -80,6 +91,16 @@ $user-manager-button-height: 44px;
             @media screen and (max-width: variables.$breakpoint-md) {
                border:none;
             }
+
+            @media screen and (max-width: variables.$breakpoint-md) {
+                margin-left: 0px;
+                margin-top: variables.$base-unit;
+                margin-right: variables.$base-unit * 2;
+              }
+
+              @media screen and (min-width: variables.$breakpoint-md) {
+                margin-left: variables.$base-unit *3;
+              }
         }
 
     .logo-style{
@@ -89,10 +110,11 @@ $user-manager-button-height: 44px;
     }
 }
 
+
 .MuiPopover-root{
     .MuiPaper-root{
         border-radius: variables.$base-unit * 2;
-        width: variables.$base-unit * 22;
+        width: variables.$base-unit * 25;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   
         .MuiList-root{

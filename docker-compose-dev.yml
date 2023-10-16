@@ -49,6 +49,13 @@ services:
       exit 0;
       "
 
+  sqs:
+    working_dir: /app
+    build:
+      context: ./sqs_mock
+    ports:
+      - 9324:9324
+
   pgtest:
     image: postgres:13.5
     environment:
@@ -80,10 +87,20 @@ services:
       AWS_S3_SECRET_KEY: my_secret_key
       AWS_S3_BUCKET_GIFT_CARDS: ${AWS_S3_BUCKET_GIFT_CARDS}
       AWS_S3_ENDPOINT: http://minio:9000
+      AWS_SQS_ENDPOINT: http://sqs:9324
+      AWS_ACCESS_KEY: my_access_key
+      AWS_SECRET_KEY: my_secret_key
+      AWS_SQS_IGNORE_FIFO: "true"
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: http://sqs:9324/queue/user-invite-bulk-create
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/user-invite-bulk-create-failed
+      AWS_SQS_QUEUE_URL_FIRST: http://sqs:9324/queue/first-queue
+      AWS_SQS_QUEUE_URL_FIRST_FAILED: http://sqs:9324/queue/dead-first-queue
       AWS_REGION: ${AWS_REGION}
       EMAIL_FROM: ${EMAIL_FROM}
       FE_BASE_URL: http://localhost:3050/
       CURRENCYFREAKS_KEY: ${CURRENCYFREAKS_KEY}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_HOOK_SECRET_KEY: ${STRIPE_HOOK_SECRET_KEY}
 
   api_full:
     <<: *app
@@ -93,9 +110,11 @@ services:
       - pg
       - minio
       - createbuckets
+      - sqs
     links:
       - pg
       - minio
+      - sqs
 
   client_app_bare: &fe_app # image: node:16.15.1
     working_dir: /app
@@ -139,10 +158,20 @@ services:
       AWS_S3_ACCESS_KEY: my_access_key
       AWS_S3_SECRET_KEY: my_secret_key
       AWS_S3_ENDPOINT: http://minio:9000
+      AWS_SQS_ENDPOINT: http://sqs:9324
+      AWS_ACCESS_KEY: my_access_key
+      AWS_SECRET_KEY: my_secret_key
+      AWS_SQS_QUEUE_URL_FIRST: http://sqs:9324/queue/first-queue
+      AWS_SQS_QUEUE_URL_FIRST_FAILED: http://sqs:9324/queue/dead-first-queue
+      AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT: test-user-invite-bulk-create
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT: http://sqs:9324/queue/test-user-invite-bulk-create
+      AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT_FAILED: test-user-invite-bulk-create-failed
+      AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/test-user-invite-bulk-create-failed
       AWS_S3_BUCKET_GIFT_CARDS: giftcardfilestest
     depends_on:
       - pgtest
       - minio
+      - sqs
       - createbucketstest
 
   unit_test:
