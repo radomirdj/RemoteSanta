@@ -189,7 +189,7 @@ describe('/gift-card-integrations', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(40);
+      expect(response.body.length).toEqual(41);
       const giftCardIntegrationRsp1 = response.body.find(
         (giftDateRsp) => giftDateRsp.id === giftCardIntegration1.id,
       );

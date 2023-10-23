@@ -251,6 +251,7 @@ model GiftCardIntegration {
   country         Country                      @relation(fields: [countryId], references: [id])
   countryId       String
   currency        String                       @default("---")
+  gogiftId        String?
   GiftCardRequest GiftCardRequest[]
 }
 

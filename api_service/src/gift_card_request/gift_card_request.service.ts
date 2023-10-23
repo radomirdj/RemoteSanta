@@ -1,16 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectS3, S3 } from 'nestjs-s3';
+import * as getCountryISO2 from 'country-iso-3-to-2';
 import { PrismaService } from '../prisma/prisma.service';
 import { LedgerService } from '../ledger/ledger.service';
 import { GiftCardIntegrationsService } from '../gift_card_integrations/gift_card_integrations.service';
+import { GiftCardThirdPartyApiService } from '../gift_card_third_party_api/gift_card_third_party_api.service';
 import { CreateGiftCardRequestDto } from './dtos/create_gift_card_request.dto';
 import { EmailsService } from '../emails/emails.service';
 import consts from '../utils/consts';
-
 import {
   User,
   GiftCardRequest,
   GiftCardRequestStatusEnum,
+  GiftCardIntegration,
 } from '@prisma/client';
 import { UserDto } from '../users/dtos/user.dto';
 import { UsersService } from '../users/users.service';
@@ -20,6 +22,7 @@ export class GiftCardRequestService {
   constructor(
     private prisma: PrismaService,
     private giftCardIntegrationsService: GiftCardIntegrationsService,
+    private giftCardThirdPartyApiService: GiftCardThirdPartyApiService,
     private ledgerService: LedgerService,
     private emailsService: EmailsService,
     private usersService: UsersService,
@@ -97,7 +100,11 @@ export class GiftCardRequestService {
         org.name,
       );
 
+    let ownerEmail = user.email;
+    let ownerName = user.firstName;
     if (sendToUserId) {
+      ownerEmail = sendToUser.email;
+      ownerName = sendToUser.firstName;
       await Promise.all([
         createdInfoEmailPromise,
         this.emailsService.giftCardRequestSentConfirmationSenderEmail(
@@ -136,7 +143,74 @@ export class GiftCardRequestService {
       ]);
     }
 
-    return giftCardRequest;
+    if (integration.gogiftId) {
+      await this.automaticFullfillGiftCardRequest(
+        giftCardRequest,
+        ownerName,
+        ownerEmail,
+        integration,
+      );
+    }
+    return this.prisma.giftCardRequest.findUnique({
+      where: { id: giftCardRequest.id },
+    });
+  }
+
+  async automaticFullfillGiftCardRequest(
+    giftCardRequest,
+    ownerName: string,
+    ownerEmail: string,
+    integration: GiftCardIntegration,
+  ) {
+    const country = await this.prisma.country.findUnique({
+      where: { id: integration.countryId },
+    });
+    try {
+      console.log(
+        '-------------------------GOGIFT AUTHOMATIC FULFILL GIFTCARD START--------------------------------------',
+      );
+      console.log('giftCardRequest: ', giftCardRequest.id);
+      console.log('recipientEmail: ', ownerEmail);
+      console.log('integration: ', integration.id);
+      console.log('currency: ', integration.currency);
+      console.log(
+        'countryCode: ',
+        country.countryCode,
+        getCountryISO2(country.countryCode),
+      );
+
+      await this.giftCardThirdPartyApiService.fulfillGiftCard(
+        integration.gogiftId,
+        ownerEmail,
+        ownerName,
+        integration.currency,
+        giftCardRequest.giftCardIntegrationCurrencyAmount,
+        getCountryISO2(country.countryCode),
+      );
+      await this.prisma.$transaction(async (tx) => {
+        await Promise.all([
+          this.ledgerService.createGiftCardRequestCompletedTransaction(
+            tx,
+            giftCardRequest.createdById,
+            giftCardRequest.amount,
+            giftCardRequest.id,
+          ),
+          tx.giftCardRequest.update({
+            where: { id: giftCardRequest.id },
+            data: { status: GiftCardRequestStatusEnum.COMPLETED },
+          }),
+        ]);
+      });
+
+      console.log(
+        '-------------------------GOGIFT AUTHOMATIC FULFILL GIFTCARD END----------------------------------------',
+      );
+    } catch (err) {
+      console.log(
+        err,
+        '\n-------------------------GOGIFT AUTHOMATIC FULFILL GIFTCARD ERROR----------------------------------------',
+      );
+    }
   }
 
   async getOneByUser(id: string, userId: string): Promise<GiftCardRequest> {

@@ -10,10 +10,11 @@ import { AwsCognitoService } from '../src/users/aws-cognito/aws-cognito.service'
 import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cognito.service.mock';
 import { GiftCardThirdPartyApiService } from '../src/gift_card_third_party_api/gift_card_third_party_api.service';
 
-// jest.mock('../src/users/jwt-values.service');
-// jest.mock(
-//   '../src/currency_rates/currency_rates_api/currency_rates_api.service',
-// );
+jest.mock('../src/users/jwt-values.service');
+jest.mock('../src/worker_user_invites/woker_module_config');
+jest.mock(
+  '../src/currency_rates/currency_rates_api/currency_rates_api.service',
+);
 
 describe('LedgerService', () => {
   let app: INestApplication;
@@ -35,8 +36,30 @@ describe('LedgerService', () => {
   });
 
   describe('Get gift card integrations by country - GoGift', () => {
-    it('Get All US gift card integrations - GoGift', async () => {
-      await giftCardThirdPartyApiService.getToken();
+    it.skip('Get All US gift card integrations - GoGift', async () => {
+      const rsp =
+        await giftCardThirdPartyApiService.getGiftCardIntegrationsExample();
+      console.log('rsp', rsp);
+    });
+  });
+
+  describe('Fulfill Gift Card', () => {
+    it.skip('Fulfill Gift Card Germany gift card integrations - GoGift', async () => {
+      const productId = '578930576070434816';
+      const recepientEmail = 'radomir.m.djokovic@gmail.com';
+      const recepientName = 'Pera';
+      const valueCurrency = 'EUR';
+
+      const fulfilledBasket =
+        await giftCardThirdPartyApiService.fulfillGiftCard(
+          productId,
+          recepientEmail,
+          recepientName,
+          valueCurrency,
+          50,
+          'DE',
+        );
+      console.log('fulfilledBasket', fulfilledBasket);
     });
   });
 });

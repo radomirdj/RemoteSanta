@@ -42,4 +42,9 @@ export default {
   userInviteImpotMessage: {
     EMAIL_EXISTS_FAIL: 'email exists',
   },
+  gogiftConsts: {
+    deliveryMethods: {
+      EMAIL: 'Email',
+    },
+  },
 };

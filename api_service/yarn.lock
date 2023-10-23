@@ -2485,6 +2485,11 @@ country-flag-emoji@^1.0.3:
   resolved "https://registry.yarnpkg.com/country-flag-emoji/-/country-flag-emoji-1.0.3.tgz#2417e1c1fa088200c4ecfc53bb1a0f7d05e7917d"
   integrity sha512-OVMltN9rF8Rd9fjDzcNAT376fslwlkTuu+BeqzY4Z+kr+nF/3u4Kod5SyEKuABxwvi6tWO7uszO3MgWzoevAuQ==
 
+country-iso-3-to-2@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/country-iso-3-to-2/-/country-iso-3-to-2-1.1.1.tgz#9c62d02290f3872d93d40debcdd5ecb1cc468881"
+  integrity sha512-nirmbzPq5vt40WT9YWrWEvruxNt3h0g/h/k5umfo1ctq0ncw4Kwjd3+MKVL1vp5W5npb/fc3gv4E62xa/PZDiA==
+
 country-list-js@^3.1.7:
   version "3.1.7"
   resolved "https://registry.yarnpkg.com/country-list-js/-/country-list-js-3.1.7.tgz#b6821872a4fc83059d595b0d62d0b5df0569cb51"
