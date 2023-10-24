@@ -127,13 +127,12 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={4}>
             <Card className="step-card">
               <Grid container>
-                <Grid item xs={8}>
-                  <Typography className="step-title">Use Points</Typography>
-                  <Typography className="step-text">
-                    Tailor the experience based on your needs and interests.
+                <Grid item xs={8} sm={7}>
+                  <Typography className="step-title">
+                    Use Your Points
                   </Typography>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} sm={5}>
                   <img
                     src={UseYourPointsIllustration}
                     alt=""
@@ -155,13 +154,10 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={4}>
             <Card className="step-card">
               <Grid container>
-                <Grid item xs={8}>
+                <Grid item xs={8} sm={7}>
                   <Typography className="step-title">Recognize Team</Typography>
-                  <Typography className="step-text">
-                    Pick a perfect gift card for your teammate.
-                  </Typography>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} sm={5}>
                   <img
                     src={RecognizeTeamIllustration}
                     alt=""
@@ -187,19 +183,16 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={4}>
             <Card className="step-card">
               <Grid container>
-                <Grid item xs={8}>
+                <Grid item xs={8} sm={7}>
                   <Typography className="step-title">
                     Your Gift Cards
                   </Typography>
-                  <Typography className="step-text">
-                    Manage, send or reedem your gift cards.
-                  </Typography>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} sm={5}>
                   <img
                     src={YourGiftCardsIllustration}
                     alt=""
-                    className="step-illustration-home"
+                    className="step-illustration-gift-cards"
                   />
                 </Grid>
                 <Grid item xs={12} className="step-grid-item-button">

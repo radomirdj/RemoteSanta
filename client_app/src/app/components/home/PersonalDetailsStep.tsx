@@ -76,7 +76,7 @@ const PersonalDetailsStep = () => {
   return (
     <Card sx={style}>
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={12}>
           <Typography
             id="modal-modal-title"
             variant="h4"
@@ -84,22 +84,8 @@ const PersonalDetailsStep = () => {
           >
             Personal Details
           </Typography>
-          <Typography
-            id="modal-modal-title"
-            variant="body2"
-            className="completement-step-text"
-          >
-            Let's meet! Tell us something more about yourself and enjoy the best
-            experience!
-          </Typography>
         </Grid>
-        <Grid item xs={3}>
-          <img
-            src={PersonalDetailsIllustration}
-            alt=""
-            className="completement-step-personal-details-illustration"
-          />
-        </Grid>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="completement-step-form"

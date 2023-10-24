@@ -35,6 +35,7 @@ import "react-multi-carousel/lib/styles.css";
 import AutomaticPointsDeliveryStep from "./AutomaticPointsDeliveryStep";
 import BirthdaysStep from "./BirthdaysStep";
 import PersonalDetailsStep from "./PersonalDetailsStep";
+import ClaimCodeStep from "./ClaimCodeStep";
 
 const CompletementSteps = () => {
   const dispatch = useDispatch();
@@ -223,12 +224,12 @@ const CompletementSteps = () => {
           </Grid>
         </Grid>
         <Modal
-          open={openModalStep === "PERSONAL_DETAILS"}
+          open={openModalStep === "REFFERAL_CODE"}
           onClose={handleCloseModalStep}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <PersonalDetailsStep />
+          <ClaimCodeStep />
         </Modal>
       </Grid>
     </Card>
@@ -304,10 +305,10 @@ const CompletementSteps = () => {
   const automaticPointsCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={10} sm={7}>
-          <Typography className="step-title">Signup Bonus Points</Typography>
+        <Grid item xs={8} sm={7}>
+          <Typography className="step-title">Welcome Bonus</Typography>
         </Grid>
-        <Grid item xs={2} sm={5}>
+        <Grid item xs={4} sm={5}>
           <img
             src={SignupBonusIllustration}
             alt=""
@@ -364,20 +365,20 @@ const CompletementSteps = () => {
     </Card>
   );
   const completementStepElementList: (() => JSX.Element)[] = [];
-  if (!completedStepsMap.get("TALK_TO_A_SPECIALIST"))
-    completementStepElementList.push(talktToSpecalistCompletementStep);
-  if (!completedStepsMap.get("PERSONAL_DETAILS"))
-    completementStepElementList.push(personalDetailsCompletementStep);
   if (!completedStepsMap.get("INVITE_EMPLOYEES"))
     completementStepElementList.push(inviteEmployeesCompletementStep);
+  if (!completedStepsMap.get("PURCHASE_POINTS"))
+    completementStepElementList.push(purchasePointsCompletementStep);
   if (!completedStepsMap.get("BIRTHDAYS"))
     completementStepElementList.push(birthdaysCompletementStep);
   if (!completedStepsMap.get("REFFERAL_CODE"))
     completementStepElementList.push(refferalCodeCompletementStep);
   if (!completedStepsMap.get("AUTOMATIC_POINTS"))
     completementStepElementList.push(automaticPointsCompletementStep);
-  if (!completedStepsMap.get("PURCHASE_POINTS"))
-    completementStepElementList.push(purchasePointsCompletementStep);
+  if (!completedStepsMap.get("PERSONAL_DETAILS"))
+    completementStepElementList.push(personalDetailsCompletementStep);
+  if (!completedStepsMap.get("TALK_TO_A_SPECIALIST"))
+    completementStepElementList.push(talktToSpecalistCompletementStep);
   return (
     <>
       {completedStepsNum < allStepsNum && (
@@ -395,10 +396,6 @@ const CompletementSteps = () => {
                 <Grid item xs={12}>
                   <Typography className="stepper-card-title">
                     Let’s set up you company’s page!
-                  </Typography>
-                  <Typography className="stepper-card-text">
-                    Completing this steps will help that you and employees in
-                    your company have better experience using our app.
                   </Typography>
                 </Grid>
               </Grid>

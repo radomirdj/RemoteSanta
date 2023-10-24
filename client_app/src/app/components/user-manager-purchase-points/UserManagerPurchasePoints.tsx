@@ -44,9 +44,7 @@ const UserManagerPurchasePoints = () => {
         <Card className="card-style">
           <Typography className="title-style">Purchase Points</Typography>
           <Typography className="text-style">
-            Easily purchase points for automated birthday rewards and signup
-            bonuses for the employees. Our tip: Allocate 25 USD per employee for
-            the best results. Each USD is equivalent to 100 PTS.
+            Purchase points for employee rewards.
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
             {error && (

@@ -24,8 +24,8 @@ $stepper-card-font-size: 13px;
         max-width: $grid-max-width;
     
         .stepper-card{
+            display: grid;
             padding-top: variables.$base-unit * 4;
-        
             padding-left: variables.$base-unit * 6;
             padding-right: variables.$base-unit * 6;
             border-radius: variables.$base-unit * 4;
@@ -57,19 +57,12 @@ $stepper-card-font-size: 13px;
                 font-family: "Montserrat";
                 font-weight: 600;
                 float: left;
+                margin-bottom: variables.$base-unit * 2;
             }
-
-            .stepper-card-text{
-                margin-top: variables.$base-unit;
-                font-size: $stepper-card-font-size;
-                font-family: "Montserrat";
-                float: left;
-                margin-bottom:variables.$base-unit * 2;
-            }
-
 
             .stepper-card-stepper{
-                width: 100%;
+                width: 97%;
+                justify-self: center;
             }
 
                 .step-card{
@@ -294,12 +287,9 @@ $stepper-card-font-size: 13px;
 
         .step-card{
             box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-            padding-top: variables.$base-unit;
-            padding-bottom: variables.$base-unit;
-            padding-left: variables.$base-unit;
-            padding-right: variables.$base-unit;
-            border-radius: variables.$base-unit * 3;
-            height: variables.$base-unit * 20;
+            padding: variables.$base-unit;
+            border-radius: variables.$base-unit * 2;
+            height: variables.$base-unit * 18;
         }
 
         .step-title{
@@ -354,7 +344,7 @@ $stepper-card-font-size: 13px;
                 text-transform: none;
                 height: variables.$base-unit * 5;
                 font-weight: bold;
-                margin-left: variables.$base-unit ;
+                margin-left: variables.$base-unit * 2;
                 text-align: center;
                 @media screen and (min-width: variables.$breakpoint-sm) {
                     width: 70%;
@@ -374,8 +364,8 @@ $stepper-card-font-size: 13px;
 
         .step-illustration-home{
             width: variables.$base-unit * 10;
-            margin-right: variables.$base-unit * 2;
-            margin-top: variables.$base-unit * 2;
+            margin-top: 4px;
+            margin-bottom: variables.$base-unit * 2;
 
             @media screen and (max-width: variables.$breakpoint-sm) {
                 margin-left: variables.$base-unit * 3;
@@ -383,9 +373,18 @@ $stepper-card-font-size: 13px;
         }
 
         .step-illustration-recognize{
-            width: variables.$base-unit * 8;
+            width: variables.$base-unit * 10;
             margin-right: variables.$base-unit * 2;
-            margin-top: variables.$base-unit * 2;
+
+            @media screen and (max-width: variables.$breakpoint-sm) {
+                margin-left: variables.$base-unit * 4;
+            }
+        }
+
+        .step-illustration-gift-cards{
+            width: variables.$base-unit * 9;
+            margin-right: variables.$base-unit * 2;
+            margin-bottom: 12px;
 
             @media screen and (max-width: variables.$breakpoint-sm) {
                 margin-left: variables.$base-unit * 4;
@@ -435,15 +434,14 @@ $stepper-card-font-size: 13px;
         .completement-step-title{
             font-family: "Montserrat";
             font-weight: 600;
-            margin-bottom: variables.$base-unit * 3;
             font-size: variables.$font-size-larger;
         }
 
         .completement-step-text{
             font-family: "Montserrat";
             font-weight: 400;
-            margin-bottom: variables.$base-unit * 2;
             font-size: $stepper-card-font-size;
+            margin-top: variables.$base-unit * 2;
         }
 
         .completement-step-illustration{

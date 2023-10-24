@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { postSignupBonus } from "../../store/self-signup/actions";
 import { USD_TO_POINTS_CONVERSION_RATE } from "../../utils/Const";
 
-const AutomaticPointsDeliveryStep = () => {
+const ClaimCodeStep = () => {
   const dispatch = useDispatch();
   const {
     register,
@@ -35,11 +35,7 @@ const AutomaticPointsDeliveryStep = () => {
   };
 
   const onSubmit = (data: any) => {
-    dispatch(
-      postSignupBonus({
-        signupPoints: Number(data.amount) * USD_TO_POINTS_CONVERSION_RATE,
-      })
-    );
+    console.log("CODE");
   };
 
   return (
@@ -51,17 +47,7 @@ const AutomaticPointsDeliveryStep = () => {
             variant="h4"
             className="completement-step-title"
           >
-            Welcome Bonus
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Typography
-            id="modal-modal-title"
-            variant="body2"
-            className="completement-step-text"
-          >
-            Provide bonus points to every new employee on the platform.
+            Claim Your Code
           </Typography>
         </Grid>
         <form
@@ -69,40 +55,23 @@ const AutomaticPointsDeliveryStep = () => {
           className="completement-step-form"
         >
           <TextField
-            error={errors.amount ? true : false}
+            error={errors.refferalCode ? true : false}
             id="outlined-basic"
-            label="Preffered Amount Per Employee"
+            label="Refferal Code"
             variant="outlined"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment
-                  position="start"
-                  style={{ marginLeft: "-16px" }}
-                >
-                  $
-                </InputAdornment>
-              ),
-            }}
             className={
               errors.amount
                 ? "completement-step-input-with-error"
-                : "completement-step-dollar-input"
+                : "completement-step-input"
             }
-            type="number"
-            {...register("amount", {
+            {...register("refferalCode", {
               required: true,
-              min: 1,
             })}
           />
 
-          {errors.amount?.type === "required" && (
+          {errors.refferalCode?.type === "required" && (
             <Typography className="completement-step-error-fe">
-              Amount is required.
-            </Typography>
-          )}
-          {errors.amount?.type === "min" && (
-            <Typography className="completement-step-error-fe">
-              The minimum amount is 1 PTS.
+              Code is required.
             </Typography>
           )}
           <Button
@@ -111,7 +80,7 @@ const AutomaticPointsDeliveryStep = () => {
             disableRipple
             type="submit"
           >
-            Save
+            Claim code
           </Button>
         </form>
       </Grid>
@@ -119,4 +88,4 @@ const AutomaticPointsDeliveryStep = () => {
   );
 };
 
-export default AutomaticPointsDeliveryStep;
+export default ClaimCodeStep;

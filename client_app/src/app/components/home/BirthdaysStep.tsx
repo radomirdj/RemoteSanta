@@ -69,30 +69,24 @@ const BirthdaysStep = () => {
   return (
     <Card sx={style}>
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={12}>
           <Typography
             id="modal-modal-title"
             variant="h4"
             className="completement-step-title"
           >
-            Birthdays
+            Birthday Celebrations
           </Typography>
           <Typography
             id="modal-modal-title"
             variant="body2"
             className="completement-step-text"
           >
-            Let Remote Santa plan your fantastic birthday bash! Just share a few
-            details for the perfect setup and watch the magic unfold.
+            Share the details, and let Remote Santa organize birthday
+            celebrations for your team.
           </Typography>
         </Grid>
-        <Grid item xs={3}>
-          <img
-            src={BirthdayIllustration}
-            alt=""
-            className="completement-step-illustration"
-          />
-        </Grid>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="completement-step-form"
