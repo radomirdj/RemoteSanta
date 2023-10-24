@@ -6,7 +6,7 @@ import {
   linearProgressClasses,
   Modal,
   styled,
-  Typography
+  Typography,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import TalkWithASpecialistIllustration from "./../../assets/illustrations/talk-with-a-specialist-illustration.svg";
@@ -14,11 +14,12 @@ import PersonalDetailsIllustration from "./../../assets/illustrations/personal-d
 import InviteCoworkersIllustration from "./../../assets/illustrations/invite-coworkers-illustration.svg";
 import BirthdayIllustration from "./../../assets/illustrations/birthday-illustration.svg";
 import PurchasePointsIllustration from "./../../assets/illustrations/purchase-points-illustration.svg";
+import ClaimCodeIllustration from "./../../assets/illustrations/claim-code-illustration.svg";
 import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-illustration.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCompletementStepsSelector,
-  getOpenModalStepSelector
+  getOpenModalStepSelector,
 } from "../../store/self-signup/selectors";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +27,7 @@ import {
   fetchCompletementSteps,
   postCompletementSteps,
   setCloseModalStep,
-  setOpenModalStep
+  setOpenModalStep,
 } from "../../store/self-signup/actions";
 import { getSelfRequest } from "../../store/auth/actions";
 import Carousel from "react-multi-carousel";
@@ -42,20 +43,17 @@ const CompletementSteps = () => {
   const completementStepList = useSelector(getCompletementStepsSelector);
   const allStepsNum = Number(completementStepList.length);
   const completedStepsList = completementStepList.filter(
-    step => step.completed
+    (step) => step.completed
   );
   const completedStepsMap = new Map<string, boolean>();
   const allStepsIdMap = new Map<string, string>();
-  completementStepList.forEach(completedStep => {
+  completementStepList.forEach((completedStep) => {
     completedStepsMap.set(completedStep.name, completedStep.completed);
     allStepsIdMap.set(completedStep.name, completedStep.id);
   });
   const completedStepsNum = Number(completedStepsList.length);
   const stepperValue = (completedStepsNum * 100) / allStepsNum;
   const openModalStep = useSelector(getOpenModalStepSelector);
-
-  const handleOpenInvites = () =>
-    dispatch(setOpenModalStep({ openModalStep: "INVITE_EMPLOYEES" }));
 
   const handleOpenAutomaticPoints = () =>
     dispatch(setOpenModalStep({ openModalStep: "AUTOMATIC_POINTS" }));
@@ -65,6 +63,9 @@ const CompletementSteps = () => {
 
   const handleOpenPersonalDetails = () =>
     dispatch(setOpenModalStep({ openModalStep: "PERSONAL_DETAILS" }));
+
+  const handleOpenClaimCode = () =>
+    dispatch(setOpenModalStep({ openModalStep: "REFFERAL_CODE" }));
 
   const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
@@ -79,27 +80,27 @@ const CompletementSteps = () => {
     borderRadius: 10,
     [`&.${linearProgressClasses.colorPrimary}`]: {
       backgroundColor:
-        theme.palette.grey[theme.palette.mode === "light" ? 500 : 800]
+        theme.palette.grey[theme.palette.mode === "light" ? 500 : 800],
     },
     [`& .${linearProgressClasses.bar}`]: {
       borderRadius: 10,
-      backgroundColor: theme.palette.mode === "light" ? "#CED15E" : "#A8A8A8"
-    }
+      backgroundColor: theme.palette.mode === "light" ? "#CED15E" : "#A8A8A8",
+    },
   }));
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 900 },
-      items: 3
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 900, min: 500 },
-      items: 2
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 500, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
 
   const calendlyRedirect = (stepName: string) => {
@@ -122,7 +123,7 @@ const CompletementSteps = () => {
       postCompletementSteps(
         {
           stepId: allStepsIdMap.get(stepName),
-          completementStepStatus: { completed: true }
+          completementStepStatus: { completed: true },
         },
         navigate
       )
@@ -132,17 +133,14 @@ const CompletementSteps = () => {
   const talktToSpecalistCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={9}>
-          <Typography className="step-title">Talk to a specialist</Typography>
-          <Typography className="step-text">
-            Schedule a call, and we'll easily set up your company profile.
-          </Typography>
+        <Grid item xs={8} sm={7}>
+          <Typography className="step-title">Talk with a specialist</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4} sm={5}>
           <img
             src={TalkWithASpecialistIllustration}
             alt=""
-            className="step-illustration"
+            className="step-illustration-normal"
           />
         </Grid>
         <Grid container>
@@ -170,17 +168,14 @@ const CompletementSteps = () => {
   const personalDetailsCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={8} sm={7}>
           <Typography className="step-title">Personal Details</Typography>
-          <Typography className="step-text">
-            Tell us something more about yourself and enjoy the best experience!
-          </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4} sm={5}>
           <img
             src={PersonalDetailsIllustration}
             alt=""
-            className="step-illustration"
+            className="step-illustration-bigger"
           />
         </Grid>
         <Grid container>
@@ -204,20 +199,51 @@ const CompletementSteps = () => {
       </Grid>
     </Card>
   );
+  const refferalCodeCompletementStep = () => (
+    <Card className="step-card">
+      <Grid container>
+        <Grid item xs={8} sm={7}>
+          <Typography className="step-title">Claim your code</Typography>
+        </Grid>
+        <Grid item xs={4} sm={5}>
+          <img
+            src={ClaimCodeIllustration}
+            alt=""
+            className="step-illustration-bigger"
+          />
+        </Grid>
+        <Grid container>
+          <Grid item xs={12} className="step-grid-item-button">
+            <Button
+              className="proceed-button-no-skip"
+              onClick={handleOpenClaimCode}
+            >
+              Set up now
+            </Button>
+          </Grid>
+        </Grid>
+        <Modal
+          open={openModalStep === "PERSONAL_DETAILS"}
+          onClose={handleCloseModalStep}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <PersonalDetailsStep />
+        </Modal>
+      </Grid>
+    </Card>
+  );
   const inviteEmployeesCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={8} sm={7}>
           <Typography className="step-title">Invite Coworkers</Typography>
-          <Typography className="step-text-invite-coworkers">
-            Invite your coworkers and enjoy the community!
-          </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4} sm={5}>
           <img
             src={InviteCoworkersIllustration}
             alt=""
-            className="step-illustration"
+            className="step-illustration-medium"
           />
         </Grid>
         <Grid container>
@@ -242,17 +268,14 @@ const CompletementSteps = () => {
   const birthdaysCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={9}>
-          <Typography className="step-title">Birthdays</Typography>
-          <Typography className="step-text">
-            Enjoy virtual birthday parties and get points automatically.
-          </Typography>
+        <Grid item xs={8} sm={7}>
+          <Typography className="step-title">Birthday Celebrations</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4} sm={5}>
           <img
             src={BirthdayIllustration}
             alt=""
-            className="step-illustration-birthday"
+            className="step-illustration-small"
           />
         </Grid>
         <Grid container>
@@ -281,17 +304,14 @@ const CompletementSteps = () => {
   const automaticPointsCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={9}>
-          <Typography className="step-title">Signup Bonus</Typography>
-          <Typography className="step-text">
-            Welcome employees with signup bonus points when joining the app.
-          </Typography>
+        <Grid item xs={10} sm={7}>
+          <Typography className="step-title">Signup Bonus Points</Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2} sm={5}>
           <img
             src={SignupBonusIllustration}
             alt=""
-            className="step-illustration"
+            className="step-illustration-small"
           />
         </Grid>
         <Grid container>
@@ -320,17 +340,14 @@ const CompletementSteps = () => {
   const purchasePointsCompletementStep = () => (
     <Card className="step-card">
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={8} sm={7}>
           <Typography className="step-title">Purchase Points</Typography>
-          <Typography className="step-text">
-            Acquire your points right here!
-          </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4} sm={5}>
           <img
             src={PurchasePointsIllustration}
             alt=""
-            className="step-illustration-birthday"
+            className="step-illustration-medium"
           />
         </Grid>
         <Grid container>
@@ -355,6 +372,8 @@ const CompletementSteps = () => {
     completementStepElementList.push(inviteEmployeesCompletementStep);
   if (!completedStepsMap.get("BIRTHDAYS"))
     completementStepElementList.push(birthdaysCompletementStep);
+  if (!completedStepsMap.get("REFFERAL_CODE"))
+    completementStepElementList.push(refferalCodeCompletementStep);
   if (!completedStepsMap.get("AUTOMATIC_POINTS"))
     completementStepElementList.push(automaticPointsCompletementStep);
   if (!completedStepsMap.get("PURCHASE_POINTS"))
@@ -366,8 +385,8 @@ const CompletementSteps = () => {
           container
           sx={{
             display: {
-              xs: "inline-flex"
-            }
+              xs: "inline-flex",
+            },
           }}
         >
           <Grid item xs={12}>
@@ -390,7 +409,7 @@ const CompletementSteps = () => {
               />
 
               <Carousel responsive={responsive} slidesToSlide={1}>
-                {completementStepElementList.map(completementStepEl =>
+                {completementStepElementList.map((completementStepEl) =>
                   completementStepEl()
                 )}
               </Carousel>

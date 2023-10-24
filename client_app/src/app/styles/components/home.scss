@@ -25,7 +25,7 @@ $stepper-card-font-size: 13px;
     
         .stepper-card{
             padding-top: variables.$base-unit * 4;
-            padding-bottom: variables.$base-unit * 4;
+        
             padding-left: variables.$base-unit * 6;
             padding-right: variables.$base-unit * 6;
             border-radius: variables.$base-unit * 4;
@@ -67,18 +67,6 @@ $stepper-card-font-size: 13px;
                 margin-bottom:variables.$base-unit * 2;
             }
 
-            .talk-to-a-specialist-button,
-                &  .talk-to-a-specialist-button:hover {
-                    background-color: variables.$main-green;
-                    border-radius: variables.$base-unit * 2;
-                    box-shadow: none;
-                    color: variables.$color-neutral-black;
-                    text-transform: none;
-                    width: variables.$base-unit * 24;
-                    height: variables.$base-unit * 6;
-                    font-weight: bold;
-                    float: right;
-                }
 
             .stepper-card-stepper{
                 width: 100%;
@@ -90,7 +78,7 @@ $stepper-card-font-size: 13px;
                     padding-left: variables.$base-unit;
                     padding-right: variables.$base-unit;
                     border-radius: variables.$base-unit * 2;
-                    height: variables.$base-unit * 20;
+                    height: variables.$base-unit * 17;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                     @media screen and (max-width: variables.$breakpoint-sm) {
                         padding-bottom: variables.$base-unit *2;
@@ -101,6 +89,7 @@ $stepper-card-font-size: 13px;
                     font-family: "Montserrat";
                     font-size: variables.$font-size-medium;
                     font-weight: 700;
+                    padding-bottom: variables.$base-unit * 2;
                   
                 }
 
@@ -122,28 +111,35 @@ $stepper-card-font-size: 13px;
                     padding-top: 0px !important;
                 }
 
-                .step-illustration{
+                .step-illustration-normal{
                     width: variables.$base-unit * 8;
-                    margin-left: -16px;
-                    margin-right: variables.$base-unit * 4;
-                    margin-top: variables.$base-unit * 2;
-        
-                    @media screen and (max-width: variables.$breakpoint-sm) {
-                        visibility: hidden;
-                    }
-                    
+                    float: right;
+                    margin-right: variables.$base-unit * 2;
+                   
                 }
 
-                .step-illustration-birthday{
-                    width: variables.$base-unit * 10;
-                    margin-left: -32px;
-                    margin-right: variables.$base-unit * 4;
-                    margin-top: variables.$base-unit * 2;
-        
-                    @media screen and (max-width: variables.$breakpoint-sm) {
-                        visibility: hidden;
-                    }
+                .step-illustration-bigger{
+                    width: variables.$base-unit * 11;
+                    float: right;
+                    margin-right: variables.$base-unit * 2;
+                   
                 }
+
+                .step-illustration-medium{
+                    width: variables.$base-unit * 9;
+                    float: right;
+                    margin-right: variables.$base-unit * 2;
+                   
+                }
+
+                .step-illustration-small{
+                    width: variables.$base-unit * 7;
+                    float: right;
+                    margin-right: variables.$base-unit * 2;
+                   
+                }
+
+               
 
                 .proceed-button-no-skip,
                 & .proceed-button-no-skip:hover {
@@ -156,7 +152,7 @@ $stepper-card-font-size: 13px;
                     margin-left: variables.$base-unit * 2;
                     text-align: center;
                     width: 50%;
-                    margin-top: variables.$base-unit ;
+                  
                 }
 
                 .proceed-button,
@@ -376,7 +372,7 @@ $stepper-card-font-size: 13px;
             margin-right: variables.$base-unit;
         }
 
-        .step-illustration{
+        .step-illustration-home{
             width: variables.$base-unit * 10;
             margin-right: variables.$base-unit * 2;
             margin-top: variables.$base-unit * 2;

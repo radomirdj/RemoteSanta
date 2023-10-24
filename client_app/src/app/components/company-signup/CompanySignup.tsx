@@ -268,13 +268,6 @@ const CompanySignup = () => {
                       lowercase letter, 1 uppercase letter and 1 number.
                     </Typography>
                   )}
-                  <TextField
-                    id="outlined-basic"
-                    label="Referral Code (Optional)"
-                    variant="outlined"
-                    className="email-input"
-                    {...register("referralCode")}
-                  />
                 </FormControl>
                 <Button
                   variant="contained"

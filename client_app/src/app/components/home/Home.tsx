@@ -137,7 +137,7 @@ const Home = () => {
                   <img
                     src={UseYourPointsIllustration}
                     alt=""
-                    className="step-illustration"
+                    className="step-illustration-home"
                   />
                 </Grid>
                 <Grid item xs={12} className="step-grid-item-button">
@@ -199,7 +199,7 @@ const Home = () => {
                   <img
                     src={YourGiftCardsIllustration}
                     alt=""
-                    className="step-illustration"
+                    className="step-illustration-home"
                   />
                 </Grid>
                 <Grid item xs={12} className="step-grid-item-button">
