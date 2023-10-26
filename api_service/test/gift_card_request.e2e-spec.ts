@@ -38,6 +38,7 @@ import {
   user3ReservedBalanceSideId,
   giftCardIntegrationSrb,
   giftCardIntegrationIndia,
+  org1,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { MailerService } from '@nestjs-modules/mailer';
@@ -544,6 +545,74 @@ describe('/gift-card-requests', () => {
       });
 
       // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
+    it("/ (POST) - create gift card request Canada - automatic fulfill gift card request - TEST OTG DOESN'T FULFILL AUTOMATIC", async () => {
+      await prisma.org.update({
+        where: {
+          id: org1.id,
+        },
+        data: {
+          isTestOrg: true,
+        },
+      });
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(newGiftCardRequestAutomaticFulfill)
+        .expect(201);
+
+      const id = response.body.id;
+
+      expectGiftCardRequestRsp(response.body, {
+        ...newGiftCardRequestAutomaticFulfill,
+        createdById: user3Manager.id,
+        ownerId: user3Manager.id,
+        status: GiftCardRequestStatusEnum.PENDING,
+      });
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...newGiftCardRequestAutomaticFulfill,
+          status: GiftCardRequestStatusEnum.PENDING,
+          createdById: user3Manager.id,
+          ownerId: user3Manager.id,
+        },
+        prisma,
+      );
+
+      await checkBalance(ledgerService, user3Manager.id, {
+        pointsActive:
+          user3ActivePoints - newGiftCardRequestAutomaticFulfill.amount,
+        pointsReserved:
+          user3ReservedPoints + newGiftCardRequestAutomaticFulfill.amount,
+      });
+
+      // Clean DB
+      await prisma.org.update({
+        where: {
+          id: org1.id,
+        },
+        data: {
+          isTestOrg: false,
+        },
+      });
       await prisma.ledger.deleteMany({
         where: {
           createdAt: {

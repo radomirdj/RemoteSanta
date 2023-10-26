@@ -10,6 +10,9 @@ export class OrgDto {
   name: string;
 
   @Expose()
+  isTestOrg?: boolean;
+
+  @Expose()
   balance?: number;
 
   @Expose()
