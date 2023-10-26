@@ -80,6 +80,7 @@ export default (state = initialState, action: SelfSignupActions) => {
     case POST_COMPLETEMENT_STEPS_SUCCESS:
       return {
         ...state,
+        openModalStep: "NONE",
         pending: false,
         error: null,
       };

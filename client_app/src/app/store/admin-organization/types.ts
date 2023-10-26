@@ -40,6 +40,7 @@ export interface IAdminOrganization {
   totalPointsPerMonth?: number;
   pointsPerMonth: number;
   balance: number;
+  isTestOrg?: boolean;
 }
 
 export interface IAdminUser {

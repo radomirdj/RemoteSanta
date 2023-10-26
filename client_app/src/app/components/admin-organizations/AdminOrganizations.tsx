@@ -23,6 +23,8 @@ const AdminOrganizations = () => {
   const adminOrganizationList = useSelector(getAdminOrganizationListSelector);
   const rowsPerPage = 7;
 
+  console.log(adminOrganizationList);
+
   useEffect(() => {
     dispatch(fetchAdminOrganizationList());
   }, [dispatch]);
@@ -46,10 +48,11 @@ const AdminOrganizations = () => {
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", width: 500 },
+    { field: "test", headerName: "Is Test", width: 100 },
     {
       field: "details",
       headerName: "Details",
-      width: 300,
+      width: 200,
       sortable: false,
       renderCell: detailsButton,
     },
@@ -59,6 +62,7 @@ const AdminOrganizations = () => {
     return {
       id: adminOrganization.id,
       name: adminOrganization.name,
+      test: adminOrganization.isTestOrg ? "YES" : "NO",
       details: "",
     };
   });

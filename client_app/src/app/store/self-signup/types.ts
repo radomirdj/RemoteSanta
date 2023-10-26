@@ -32,6 +32,7 @@ export interface ICompletementStep {
 
 export interface ICompletementStepStatus {
   completed: boolean;
+  additionalParams?: string;
 }
 
 export interface SelfSignupState {
@@ -52,7 +53,7 @@ export interface SelfSignUpRequestPayload {
   lastName: string;
   orgName: string;
   countryId: string;
-  referralCode?:string;
+  referralCode?: string;
 }
 
 export interface FetchCompletementStepsSuccessPayload {

@@ -9,18 +9,29 @@ import {
 import React from "react";
 import SignupBonusIllustration from "./../../assets/illustrations/signup-bonus-illustration.svg";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { postSignupBonus } from "../../store/self-signup/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  postCompletementSteps,
+  postSignupBonus,
+} from "../../store/self-signup/actions";
 import { USD_TO_POINTS_CONVERSION_RATE } from "../../utils/Const";
+import { useNavigate } from "react-router-dom";
+import { getCompletementStepsSelector } from "../../store/self-signup/selectors";
 
 const ClaimCodeStep = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
     control,
   } = useForm();
+  const completementStepList = useSelector(getCompletementStepsSelector);
+  const allStepsIdMap = new Map<string, string>();
+  completementStepList.forEach((completedStep) => {
+    allStepsIdMap.set(completedStep.name, completedStep.id);
+  });
 
   const style = {
     position: "absolute",
@@ -35,7 +46,19 @@ const ClaimCodeStep = () => {
   };
 
   const onSubmit = (data: any) => {
-    console.log("CODE");
+    const refferalCode = "RefferalCode:" + data.refferalCode;
+    dispatch(
+      postCompletementSteps(
+        {
+          stepId: allStepsIdMap.get("CLAIM_CODE"),
+          completementStepStatus: {
+            completed: true,
+            additionalParams: refferalCode,
+          },
+        },
+        navigate
+      )
+    );
   };
 
   return (

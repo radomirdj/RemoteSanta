@@ -66,7 +66,7 @@ const CompletementSteps = () => {
     dispatch(setOpenModalStep({ openModalStep: "PERSONAL_DETAILS" }));
 
   const handleOpenClaimCode = () =>
-    dispatch(setOpenModalStep({ openModalStep: "REFFERAL_CODE" }));
+    dispatch(setOpenModalStep({ openModalStep: "CLAIM_CODE" }));
 
   const handleCloseModalStep = () => dispatch(setCloseModalStep());
 
@@ -224,7 +224,7 @@ const CompletementSteps = () => {
           </Grid>
         </Grid>
         <Modal
-          open={openModalStep === "REFFERAL_CODE"}
+          open={openModalStep === "CLAIM_CODE"}
           onClose={handleCloseModalStep}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -371,7 +371,7 @@ const CompletementSteps = () => {
     completementStepElementList.push(purchasePointsCompletementStep);
   if (!completedStepsMap.get("BIRTHDAYS"))
     completementStepElementList.push(birthdaysCompletementStep);
-  if (!completedStepsMap.get("REFFERAL_CODE"))
+  if (!completedStepsMap.get("CLAIM_CODE"))
     completementStepElementList.push(refferalCodeCompletementStep);
   if (!completedStepsMap.get("AUTOMATIC_POINTS"))
     completementStepElementList.push(automaticPointsCompletementStep);
