@@ -320,6 +320,22 @@ export class EmailsService {
     });
   }
 
+  async completementStepConfigToAdminEmail(
+    to: string[],
+    completementStep: string,
+    orgName: string,
+    orgId: string,
+    additionalParams: string,
+  ) {
+    return this.sendEmail('completement_step_config_to_admin', to, {
+      completementStep,
+      orgName,
+      orgId,
+      additionalParams,
+      randomIdentifier: randomstring.generate(7),
+    });
+  }
+
   async orgSignupToAdminEmail(
     to: string[],
     firstName: string,

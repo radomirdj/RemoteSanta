@@ -43,46 +43,62 @@ export class CompletementStepsService {
     orgId: string,
     stepId: string,
     completed: boolean,
+    additionalParams?: string,
   ) {
-    const [completementStepStatusList, completementStep] = await Promise.all([
-      this.prisma.orgCompletementStepStatus.findMany({
-        where: {
-          orgId,
-          orgCompletementStepId: stepId,
-        },
-      }),
-      this.prisma.orgCompletementStep.findUnique({
-        where: {
-          id: stepId,
-        },
-      }),
-    ]);
+    const [org, completementStepStatusList, completementStep] =
+      await Promise.all([
+        this.prisma.org.findUnique({ where: { id: orgId } }),
+        this.prisma.orgCompletementStepStatus.findMany({
+          where: {
+            orgId,
+            orgCompletementStepId: stepId,
+          },
+        }),
+        this.prisma.orgCompletementStep.findUnique({
+          where: {
+            id: stepId,
+          },
+        }),
+      ]);
     if (!completementStep)
       throw new NotFoundException('Completement Step Not Found');
 
+    let completementStepStatus;
     if (!completementStepStatusList.length) {
-      return this.prisma.orgCompletementStepStatus.create({
-        data: {
-          org: {
-            connect: {
-              id: orgId,
+      completementStepStatus =
+        await this.prisma.orgCompletementStepStatus.create({
+          data: {
+            org: {
+              connect: {
+                id: orgId,
+              },
             },
-          },
-          orgCompletementStep: {
-            connect: {
-              id: stepId,
+            orgCompletementStep: {
+              connect: {
+                id: stepId,
+              },
             },
+            completed,
           },
-          completed,
-        },
-      });
+        });
+    } else {
+      completementStepStatus =
+        await this.prisma.orgCompletementStepStatus.update({
+          where: { id: completementStepStatusList[0].id },
+          data: {
+            completed,
+          },
+        });
     }
-    return this.prisma.orgCompletementStepStatus.update({
-      where: { id: completementStepStatusList[0].id },
-      data: {
-        completed,
-      },
-    });
+
+    await this.emailService.completementStepConfigToAdminEmail(
+      consts.adminRecepients,
+      completementStep.name,
+      org.name,
+      org.id,
+      additionalParams || '--',
+    );
+    return completementStepStatus;
   }
 
   async updateOrgSignupBonus(orgId: string, signupPoints: number) {
@@ -90,6 +106,7 @@ export class CompletementStepsService {
       orgId,
       consts.orgCompletementSteps.AUTOMATIC_POINTS.id,
       true,
+      `signupPoints = ${signupPoints}`,
     );
     await this.prisma.org.update({
       where: {

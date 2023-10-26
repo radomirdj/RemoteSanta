@@ -71,7 +71,7 @@ describe('/completement-steps', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(6);
+      expect(response.body.length).toEqual(7);
       response.body.forEach((stepStatus) => {
         expect(stepStatus.completed).toEqual(true);
       });
@@ -88,7 +88,7 @@ describe('/completement-steps', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(6);
+      expect(response.body.length).toEqual(7);
       const rspMap = {};
       response.body.forEach((stepStatus) => {
         rspMap[stepStatus.name] = stepStatus.completed;
@@ -98,6 +98,7 @@ describe('/completement-steps', () => {
       expect(rspMap['AUTOMATIC_POINTS']).toEqual(true);
       expect(rspMap['BIRTHDAYS']).toEqual(true);
       expect(rspMap['PURCHASE_POINTS']).toEqual(true);
+      expect(rspMap['CLAIM_CODE']).toEqual(true);
       expect(rspMap['TALK_TO_A_SPECIALIST']).toEqual(false);
     });
     it('/ (GET) - get list of completement steps Non Completed Org', async () => {
@@ -112,7 +113,7 @@ describe('/completement-steps', () => {
             }),
         )
         .expect(200);
-      expect(response.body.length).toEqual(6);
+      expect(response.body.length).toEqual(7);
       response.body.forEach((stepStatus) => {
         expect(stepStatus.completed).toEqual(false);
       });
@@ -160,7 +161,7 @@ describe('/completement-steps', () => {
         org1.id,
       );
 
-      expect(stepStatusList.length).toEqual(6);
+      expect(stepStatusList.length).toEqual(7);
       expect(stepStatusList[1].completed).toEqual(false);
       //  clear data
       await prisma.orgCompletementStepStatus.deleteMany({
@@ -191,7 +192,7 @@ describe('/completement-steps', () => {
         org1.id,
       );
 
-      expect(stepStatusList.length).toEqual(6);
+      expect(stepStatusList.length).toEqual(7);
       expect(stepStatusList[0].completed).toEqual(false);
       //  clear data
       await prisma.orgCompletementStepStatus.updateMany({
@@ -205,6 +206,38 @@ describe('/completement-steps', () => {
         },
       });
     });
+
+    it('/:id/update-status (POST) - update status of completement step - Additional Params', async () => {
+      await request(app.getHttpServer())
+        .post(
+          `/completement-steps/${consts.orgCompletementSteps.CLAIM_CODE.id}/update-status`,
+        )
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send({ completed: true, additionalParams: 'code: ABC' })
+        .expect(201);
+
+      const stepStatusList = await completementStepsService.getListByOrg(
+        org1.id,
+      );
+
+      expect(stepStatusList.length).toEqual(7);
+      expect(stepStatusList[6].completed).toEqual(true);
+      //  clear data
+      await prisma.orgCompletementStepStatus.deleteMany({
+        where: {
+          orgCompletementStepId: consts.orgCompletementSteps.CLAIM_CODE.id,
+          orgId: org1.id,
+        },
+      });
+    });
+
     it('/:id/update-status (POST) - update status of completement step - NOT USER MANAGER', async () => {
       await request(app.getHttpServer())
         .post(
