@@ -25,7 +25,7 @@ export class GiftCardIntegrationsService {
     amount: number,
     giftCardIntegrationCurrencyAmount: number,
     pointsCountry: Country,
-  ) {
+  ): Promise<GiftCardIntegration> {
     const integration = await this.getOne(giftCardIntegrationId);
     const pointsToCurrencyConversionRate =
       await this.currencyRatesService.getPointsToCurrencyConversionRate(

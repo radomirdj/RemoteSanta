@@ -26,6 +26,7 @@ import { CompletementStepsModule } from './completement_steps/completement_steps
 import { SqsUserInvitesModule } from './sqs_user_invites/sqs_user_invites.module';
 import { WorkerUserInvitesModule } from './worker_user_invites/worker_user_invites.module';
 import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
+import { GiftCardThirdPartyApiModule } from './gift_card_third_party_api/gift_card_third_party_api.module';
 import { PaymentsModule } from './payments/payments.module';
 
 @Module({
@@ -65,6 +66,7 @@ import { PaymentsModule } from './payments/payments.module';
     SqsUserInvitesModule,
     WorkerUserInvitesModule,
     CurrencyRatesModule,
+    GiftCardThirdPartyApiModule,
     PaymentsModule,
   ],
   controllers: [AppController],

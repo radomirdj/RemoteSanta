@@ -458,7 +458,7 @@ describe('Authentication system', () => {
       const progressStepList = await completementStepsService.getListByOrg(
         response.body.org.id,
       );
-      expect(progressStepList.length).toEqual(6);
+      expect(progressStepList.length).toEqual(7);
       progressStepList.forEach((stepStatus) => {
         expect(stepStatus.completed).toEqual(false);
       });

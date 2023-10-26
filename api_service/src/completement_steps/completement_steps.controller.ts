@@ -52,6 +52,7 @@ export class CompletementStepsController {
       user.org.id,
       stepId,
       body.completed,
+      body.additionalParams,
     );
   }
 

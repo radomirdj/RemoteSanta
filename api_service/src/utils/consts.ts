@@ -35,11 +35,20 @@ export default {
       id: '31e90020-bcfd-48a7-b28e-5ad083e0b19f',
       name: 'PURCHASE_POINTS',
     },
+    CLAIM_CODE: {
+      id: '412c0ccc-bbd0-4699-9553-82a6f207968e',
+      name: 'CLAIM_CODE',
+    },
   },
   orgNegativeTransactions: [
     OrgTransactionTypeEnum.ORG_TO_EMPLOYEES_BY_EVENT,
   ] as OrgTransactionTypeEnum[],
   userInviteImpotMessage: {
     EMAIL_EXISTS_FAIL: 'email exists',
+  },
+  gogiftConsts: {
+    deliveryMethods: {
+      EMAIL: 'Email',
+    },
   },
 };

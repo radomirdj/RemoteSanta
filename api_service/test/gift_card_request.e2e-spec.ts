@@ -38,10 +38,14 @@ import {
   user3ReservedBalanceSideId,
   giftCardIntegrationSrb,
   giftCardIntegrationIndia,
+  org1,
 } from './utils/preseededData';
 import { checkOneAddedLedger, checkBalance } from './utils/ledgerChecks';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailerServiceMock } from '../src/emails/__mocks__/mailer.service.mock';
+
+import { GogiftApiService } from '../src/gift_card_third_party_api/gogift_api/gogift_api.service';
+import { GogiftApiServiceMock } from '../src/gift_card_third_party_api/gogift_api/__mocks__/gogift_api.service.mock';
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
@@ -63,6 +67,8 @@ describe('/gift-card-requests', () => {
       .useValue(AwsCognitoServiceMock)
       .overrideProvider(MailerService)
       .useValue(MailerServiceMock)
+      .overrideProvider(GogiftApiService)
+      .useValue(GogiftApiServiceMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
@@ -197,6 +203,12 @@ describe('/gift-card-requests', () => {
       giftCardIntegrationCurrencyAmount: 400,
       //   status shouls be ignored
       status: GiftCardRequestStatusEnum.COMPLETED,
+    };
+
+    const newGiftCardRequestAutomaticFulfill = {
+      giftCardIntegrationId: '79982a89-d4dd-4f19-b891-9949a821d0bd',
+      amount: 2000,
+      giftCardIntegrationCurrencyAmount: 20,
     };
 
     it('/ (POST) - create gift card request', async () => {
@@ -493,6 +505,125 @@ describe('/gift-card-requests', () => {
       await prisma.giftCardRequest.delete({ where: { id } });
     });
 
+    it('/ (POST) - create gift card request Canada - automatic fulfill gift card request', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(newGiftCardRequestAutomaticFulfill)
+        .expect(201);
+
+      const id = response.body.id;
+
+      expectGiftCardRequestRsp(response.body, {
+        ...newGiftCardRequestAutomaticFulfill,
+        createdById: user3Manager.id,
+        ownerId: user3Manager.id,
+        status: GiftCardRequestStatusEnum.COMPLETED,
+      });
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...newGiftCardRequestAutomaticFulfill,
+          status: GiftCardRequestStatusEnum.COMPLETED,
+          createdById: user3Manager.id,
+          ownerId: user3Manager.id,
+        },
+        prisma,
+      );
+
+      await checkBalance(ledgerService, user3Manager.id, {
+        pointsActive:
+          user3ActivePoints - newGiftCardRequestAutomaticFulfill.amount,
+        pointsReserved: user3ReservedPoints,
+      });
+
+      // Clean DB
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
+    it("/ (POST) - create gift card request Canada - automatic fulfill gift card request - TEST OTG DOESN'T FULFILL AUTOMATIC", async () => {
+      await prisma.org.update({
+        where: {
+          id: org1.id,
+        },
+        data: {
+          isTestOrg: true,
+        },
+      });
+      const response = await request(app.getHttpServer())
+        .post('/gift-card-requests/')
+        .set(
+          'Authorization',
+          'bearer ' +
+            createToken({
+              email: user3Manager.email,
+              sub: user3Manager.cognitoSub,
+            }),
+        )
+        .send(newGiftCardRequestAutomaticFulfill)
+        .expect(201);
+
+      const id = response.body.id;
+
+      expectGiftCardRequestRsp(response.body, {
+        ...newGiftCardRequestAutomaticFulfill,
+        createdById: user3Manager.id,
+        ownerId: user3Manager.id,
+        status: GiftCardRequestStatusEnum.PENDING,
+      });
+      await expectGiftCardRequestInDB(
+        id,
+        {
+          ...newGiftCardRequestAutomaticFulfill,
+          status: GiftCardRequestStatusEnum.PENDING,
+          createdById: user3Manager.id,
+          ownerId: user3Manager.id,
+        },
+        prisma,
+      );
+
+      await checkBalance(ledgerService, user3Manager.id, {
+        pointsActive:
+          user3ActivePoints - newGiftCardRequestAutomaticFulfill.amount,
+        pointsReserved:
+          user3ReservedPoints + newGiftCardRequestAutomaticFulfill.amount,
+      });
+
+      // Clean DB
+      await prisma.org.update({
+        where: {
+          id: org1.id,
+        },
+        data: {
+          isTestOrg: false,
+        },
+      });
+      await prisma.ledger.deleteMany({
+        where: {
+          createdAt: {
+            gte: testStartTime,
+          },
+        },
+      });
+
+      await prisma.giftCardRequest.delete({ where: { id } });
+    });
+
     it('/ (POST) - create gift card request India - amount from the list - wrong amount', async () => {
       const response = await request(app.getHttpServer())
         .post('/gift-card-requests/')
@@ -506,7 +637,6 @@ describe('/gift-card-requests', () => {
         )
         .send({
           ...newGiftCardRequestAmountList,
-          amount: 2456,
           giftCardIntegrationCurrencyAmount: 2000,
         })
         .expect(400);

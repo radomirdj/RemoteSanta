@@ -101,6 +101,11 @@ services:
       CURRENCYFREAKS_KEY: ${CURRENCYFREAKS_KEY}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       STRIPE_HOOK_SECRET_KEY: ${STRIPE_HOOK_SECRET_KEY}
+      GOGIFT_AUTH_URL: https://auth-pre.gogift.io
+      GOGIFT_URL: https://api-pre.gogift.io
+      GOGIFT_CLIENT_ID: 01H5VSQZH29VAH0AKSE9SE73GX
+      GOGIFT_CLIENT_SECRET: ${GOGIFT_CLIENT_SECRET}
+      GOGIFT_DEPARTMENT_ID: "635739862473355264"
 
   api_full:
     <<: *app
@@ -168,6 +173,11 @@ services:
       AWS_SQS_QUEUE_NAME_USER_INVITE_IMPORT_FAILED: test-user-invite-bulk-create-failed
       AWS_SQS_QUEUE_URL_USER_INVITE_IMPORT_FAILED: http://sqs:9324/queue/test-user-invite-bulk-create-failed
       AWS_S3_BUCKET_GIFT_CARDS: giftcardfilestest
+      GOGIFT_AUTH_URL: https://auth-pre.gogift.io
+      GOGIFT_URL: https://api-pre.gogift.io
+      GOGIFT_CLIENT_ID: 01H5VSQZH29VAH0AKSE9SE73GX
+      GOGIFT_CLIENT_SECRET: ${GOGIFT_CLIENT_SECRET}
+      GOGIFT_DEPARTMENT_ID: "635739862473355264"
     depends_on:
       - pgtest
       - minio
