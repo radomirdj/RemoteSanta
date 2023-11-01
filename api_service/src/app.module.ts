@@ -28,6 +28,7 @@ import { WorkerUserInvitesModule } from './worker_user_invites/worker_user_invit
 import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
 import { GiftCardThirdPartyApiModule } from './gift_card_third_party_api/gift_card_third_party_api.module';
 import { PaymentsModule } from './payments/payments.module';
+import { AdminGiftCardIntegrationsModule } from './admin_gift_card_integrations/admin_gift_card_integrations.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { PaymentsModule } from './payments/payments.module';
     CurrencyRatesModule,
     GiftCardThirdPartyApiModule,
     PaymentsModule,
+    AdminGiftCardIntegrationsModule,
   ],
   controllers: [AppController],
   providers: [

@@ -15,7 +15,7 @@ function createBasket(token: string) {
 }
 
 function getProductSku(productId: string, token: string, currency: string) {
-  return '---';
+  return { sku: '---', product: '' };
 }
 
 function fillBasket(

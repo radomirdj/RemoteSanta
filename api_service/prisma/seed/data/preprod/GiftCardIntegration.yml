@@ -918,7 +918,7 @@
   description: The Columbia Sportswear Company is an American company that manufactures and distributes outerwear, sportswear, and footwear, as well as headgear, camping equipment, ski apparel, and outerwear accessories.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
 
 - id: 82c54031-abde-4fe8-9fe6-6d150c7925d7
   priority: 220
@@ -1039,7 +1039,7 @@
   description: Bloomin' Brands is a hospitality company that operates several well-known restaurant brands. Founded in 1988, the company is headquartered in Tampa, Florida, and has a global presence with various locations in the United States and internationally.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
 
 - id: 231d0148-218d-468a-938f-b43c274200a1
   priority: 330
@@ -1072,7 +1072,7 @@
   description: Sephora is a cosmetics retailer that offers a lot of beauty and skincare products including makeup, fragrance, skincare, haircare and bath and body products. It is known for its wide selection of high-quality beauty products from a variety of brands.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
 
 - id: 080b0877-f81c-4aee-b9c4-0809d82c64ac
   priority: 360

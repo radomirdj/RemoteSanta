@@ -50,5 +50,8 @@ export default {
     deliveryMethods: {
       EMAIL: 'Email',
     },
+    integrationId: {
+      SKIP: 'SKIP',
+    },
   },
 };

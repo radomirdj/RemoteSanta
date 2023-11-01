@@ -688,6 +688,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '219045387352141824'
 
 - id: e6618cd2-1b20-462a-8328-be43cc999b46
   priority: 10
@@ -699,6 +700,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367871734517760'
 
 - id: 54075744-7bb0-400a-9b72-678c618e6c5b
   priority: 20
@@ -710,6 +712,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 40, 50, 60, 70 ,80, 90, 100, 150, 200, 250, 300]
+  gogiftId: '422367872816648192'
 
 - id: e083b693-fba8-47cb-a094-9301320e5441
   priority: 30
@@ -721,6 +724,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  gogiftId: '422367874100105216'
 
 - id: aa0d023b-04d3-45f2-90e9-bd4e24ede373
   priority: 40
@@ -732,6 +736,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367875077378048'
 
 - id: 14b6256d-8882-4128-be58-51f43d8b68d4
   priority: 50
@@ -743,6 +748,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367876658630656'
 
 - id: 636fe299-6aae-410d-afb4-d10a8f77aec0
   priority: 60
@@ -754,6 +760,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367877715595264'
 
 - id: a5775819-ef9f-4109-86fc-ba970824a28e
   priority: 70
@@ -765,6 +772,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367879720472576'
 
 - id: 64bc4377-c8b9-4604-8a6a-faca57a1063b
   priority: 80
@@ -776,6 +784,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367883596009472'
 
 - id: 58210648-e7a0-4378-b606-25b605a453ae
   priority: 90
@@ -787,6 +796,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  gogiftId: '422367884095131648'
 
 - id: be1c30d9-5e14-4fb1-aa4b-c00c4919a846
   priority: 100
@@ -798,6 +808,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367885030461440'
 
 - id: db8dfd8e-044d-4d4c-8e5d-740b71db18c4
   priority: 110
@@ -809,6 +820,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 20, 35, 50]
+  gogiftId: 'SKIP'
 
 - id: 14e01d1a-c6e5-4fa7-84a4-91a2d4bbec1d
   priority: 120
@@ -820,6 +832,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 25, 50, 100]
+  gogiftId: 'SKIP'
 
 - id: 8e32126c-6e6a-4ce0-af0e-570dbf0e7c24
   priority: 130
@@ -831,6 +844,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 30, 60]
+  gogiftId: 'SKIP'
 
 - id: 1cd9a827-e692-44e6-94e9-7599da6fd62d
   priority: 140
@@ -842,6 +856,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '645132620581089280'
 
 - id: 7be4b0c8-1ba2-4cd7-9a2c-e9a6ebf1ff3b
   priority: 150
@@ -853,6 +868,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: 'SKIP'
 
 - id: 331112c2-661c-4b93-bb78-3895ab91a075
   priority: 160
@@ -864,6 +880,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370261821423616'
 
 - id: f031c87b-068b-47d1-9bcd-0b01af9da718
   priority: 170
@@ -875,6 +892,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370263771774976'
 
 - id: b2fa4c11-e87c-4e3a-8272-296ce972c76f
   priority: 180
@@ -886,6 +904,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370264627412992'
 
 - id: d6b4c1b5-63c7-4a8b-a848-d5fa9d0e2e3c
   priority: 190
@@ -897,6 +916,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [50, 100]
+  gogiftId: 'SKIP'
 
 - id: 41ab24e1-9804-49d9-a572-bccdb22c7adc
   priority: 200
@@ -908,6 +928,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950]
+  gogiftId: '422370266758119424'
 
 - id: 03e333e8-7dea-451d-8fdf-8069fc17c836
   priority: 210
@@ -918,7 +939,8 @@
   description: The Columbia Sportswear Company is an American company that manufactures and distributes outerwear, sportswear, and footwear, as well as headgear, camping equipment, ski apparel, and outerwear accessories.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  gogiftId: '422370267240464384'
 
 - id: 82c54031-abde-4fe8-9fe6-6d150c7925d7
   priority: 220
@@ -930,6 +952,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370268251291648'
 
 - id: fcf0fab7-1f13-48ec-9c71-664e03b26f35
   priority: 230
@@ -941,6 +964,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370270121951232'
 
 - id: e5f75784-92d9-4316-8958-5767f65526df
   priority: 240
@@ -952,6 +976,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300]
+  gogiftId: '422370273389314048'
 
 - id: fb1449ac-d6dc-48d2-8c88-d23697a758fe
   priority: 250
@@ -963,6 +988,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300]
+  gogiftId: 'SKIP'
 
 - id: 7b59ae52-a62a-4301-9414-e737138257f1
   priority: 260
@@ -974,6 +1000,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370275322888192'
 
 - id: 5c8acce0-046d-48e7-8139-9716a087e0bf
   priority: 270
@@ -985,6 +1012,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370275788455936'
 
 - id: 1297b8d5-94b4-4dd0-b844-8b00863b68da
   priority: 280
@@ -996,6 +1024,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370279227785216'
 
 - id: 9fa4842c-77a7-4ca8-a2c8-ced0719eaabd
   priority: 290
@@ -1007,6 +1036,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '474399258981421056'
 
 - id: 29f4a98c-e798-423e-a494-884152040695
   priority: 300
@@ -1018,6 +1048,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  gogiftId: '518775378652213248'
 
 - id: d9e7653b-77f5-4461-aaaf-893d30b8f0c7
   priority: 310
@@ -1029,6 +1060,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '518775379356856320'
 
 - id: 1bb46b6a-b9b7-499f-ac93-76097d7ad144
   priority: 320
@@ -1039,7 +1071,8 @@
   description: Bloomin' Brands is a hospitality company that operates several well-known restaurant brands. Founded in 1988, the company is headquartered in Tampa, Florida, and has a global presence with various locations in the United States and internationally.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '518775379403091968'
 
 - id: 231d0148-218d-468a-938f-b43c274200a1
   priority: 330
@@ -1051,6 +1084,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  gogiftId: '518775379646324736'
 
 - id: e48c6d60-b876-41b5-96f2-88421d3408f5
   priority: 340
@@ -1062,6 +1096,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '518775379843395584'
 
 - id: 656f8127-d6d4-49a3-9722-53a8ad20c1ee
   priority: 350
@@ -1072,7 +1107,8 @@
   description: Sephora is a cosmetics retailer that offers a lot of beauty and skincare products including makeup, fragrance, skincare, haircare and bath and body products. It is known for its wide selection of high-quality beauty products from a variety of brands.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  gogiftId: '518775379944157184'
 
 - id: 080b0877-f81c-4aee-b9c4-0809d82c64ac
   priority: 360
@@ -1084,6 +1120,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [ 5, 10, 15, 20, 25, 50, 100 ]
+  gogiftId: 'SKIP'
 
 - id: 3644a97d-2b20-4803-a15f-bf69357e51d0
   priority: 370
@@ -1095,6 +1132,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '518775380367683584'
 
 - id: 78af2217-398c-4c96-abb5-687b2c4ad6f3
   priority: 380
@@ -1106,6 +1144,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: 'SKIP'
 
 - id: 8e8c862c-9635-4b33-9c34-963284495687
   priority: 390
@@ -1117,6 +1156,7 @@
   currency: USD
   constraintType: LIST
   constraintJson: [50, 100, 150, 200]
+  gogiftId: 'SKIP'
 
 #Canada
 - id: fa57f0cb-73f5-4b34-8445-4e5c786286e3

@@ -7,6 +7,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { AmountFailsCounstraintException } from '../errors/amountFailsCounstraintException';
 import { CurrencyRatesService } from '../currency_rates/currency_rates.service';
+import consts from '../utils/consts';
 
 interface MinMaxConstraintInterface {
   MIN: number;
@@ -87,7 +88,7 @@ export class GiftCardIntegrationsService {
   }
 
   async getAll(countryId: string): Promise<GiftCardIntegration[]> {
-    return this.prisma.giftCardIntegration.findMany({
+    const fullList = await this.prisma.giftCardIntegration.findMany({
       where: { countryId },
       orderBy: [
         {
@@ -95,5 +96,10 @@ export class GiftCardIntegrationsService {
         },
       ],
     });
+    return fullList.filter(
+      (giftCardIntegration) =>
+        !giftCardIntegration.gogiftId ||
+        giftCardIntegration.gogiftId !== consts.gogiftConsts.integrationId.SKIP,
+    );
   }
 }

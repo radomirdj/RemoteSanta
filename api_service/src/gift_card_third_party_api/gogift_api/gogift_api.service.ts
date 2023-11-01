@@ -28,11 +28,18 @@ export class GogiftApiService {
   }
 
   // TODO - what if more than a page - max 50 per page + Country
-  async getGiftCardIntegrationsExample() {
+  async getGiftCardIntegrationsExample(countryCode: string) {
     const tokenFull = await this.getToken();
     const rsp = await axios.post(
       `${GOGIFT_URL}/products/filter`,
-      { salesChannel: '109', redeemableInCoutries: 'CA' },
+      {
+        salesChannel: '109',
+        redeemableInCoutries: countryCode,
+        paging: {
+          perPage: 200,
+          page: 1,
+        },
+      },
       {
         headers: { Authorization: `Bearer ${tokenFull.access_token}` },
       },
@@ -65,15 +72,15 @@ export class GogiftApiService {
         deliveryMethodElement.deliveryMethod ===
         consts.gogiftConsts.deliveryMethods.EMAIL,
     );
-    if (!deliveryMethod) return null;
+    if (!deliveryMethod) return { sku: null, product };
 
     const inventoryEntry = deliveryMethod.inventory.inventoryEntries.find(
       (inventoryEntryElement) =>
         inventoryEntryElement.priceCurrency === currency,
     );
-    if (!inventoryEntry) return null;
+    if (!inventoryEntry) return { sku: null, product };
 
-    return inventoryEntry.sku;
+    return { sku: inventoryEntry.sku, product, inventoryEntry };
   }
 
   async fillBasket(

@@ -9,8 +9,18 @@ export class GiftCardThirdPartyApiService {
     return this.gogiftApiService.getToken();
   }
 
-  getGiftCardIntegrationsExample() {
-    return this.gogiftApiService.getGiftCardIntegrationsExample();
+  getGiftCardIntegrationsExample(countryCode: string) {
+    return this.gogiftApiService.getGiftCardIntegrationsExample(countryCode);
+  }
+
+  async getProductSku(gogiftProductId: string, currency: string) {
+    const token = await this.gogiftApiService.getToken();
+
+    return this.gogiftApiService.getProductSku(
+      gogiftProductId,
+      token.access_token,
+      currency,
+    );
   }
 
   async fulfillGiftCard(
@@ -25,7 +35,7 @@ export class GiftCardThirdPartyApiService {
     const createdBasket = await this.gogiftApiService.createBasket(
       token.access_token,
     );
-    const sku = await this.gogiftApiService.getProductSku(
+    const { sku } = await this.gogiftApiService.getProductSku(
       productId,
       token.access_token,
       currency,
