@@ -67,43 +67,54 @@ export class AdminGiftCardIntegrationsController {
     for (let i = 0; i < giftCardIntegrationList.length; i++) {
       const giftCardIntegration = giftCardIntegrationList[i];
       const prepareElement = async (giftCardIntegration) => {
-        const { sku, product, inventoryEntry } =
-          await this.giftCardThirdPartyApiService.getProductSku(
-            giftCardIntegration.gogiftId,
-            giftCardIntegration.currency,
+        try {
+          const { sku, product, inventoryEntry } =
+            await this.giftCardThirdPartyApiService.getProductSku(
+              giftCardIntegration.gogiftId,
+              giftCardIntegration.currency,
+            );
+          const currencyLower = giftCardIntegration.currency.toLowerCase();
+
+          const minPrice = inventoryEntry.salesPriceMinNoTax
+            ? inventoryEntry.salesPriceMinNoTax[currencyLower]
+            : 'fail';
+
+          const stepPrice = inventoryEntry.salesPriceStepNoTax
+            ? inventoryEntry.salesPriceStepNoTax[currencyLower]
+            : 'fail';
+
+          const maxPrice = inventoryEntry.salesPriceMaxNoTax
+            ? inventoryEntry.salesPriceMaxNoTax[currencyLower]
+            : 'fail';
+
+          return {
+            id: giftCardIntegration.id,
+            sku,
+            title: giftCardIntegration.title,
+            titleGoGift: product.title['en'],
+            descGoGift: product.shortDescription['en'],
+            priceConstraintType: giftCardIntegration.constraintType,
+            priceConstraintJson: giftCardIntegration.constraintJson,
+            priceValidationStatus: validatePriceValues(
+              minPrice,
+              maxPrice,
+              stepPrice,
+              giftCardIntegration.constraintJson,
+            ),
+            minPriceGoGift: minPrice,
+            stepPriceGoGift: stepPrice,
+            maxPriceGoGift: maxPrice,
+          };
+        } catch (err) {
+          console.log(
+            'AdminGiftCardIntegrationsController -> prepareElement -> err',
+            err,
           );
-        const currencyLower = giftCardIntegration.currency.toLowerCase();
-
-        const minPrice = inventoryEntry.salesPriceMinNoTax
-          ? inventoryEntry.salesPriceMinNoTax[currencyLower]
-          : 'fail';
-
-        const stepPrice = inventoryEntry.salesPriceStepNoTax
-          ? inventoryEntry.salesPriceStepNoTax[currencyLower]
-          : 'fail';
-
-        const maxPrice = inventoryEntry.salesPriceMaxNoTax
-          ? inventoryEntry.salesPriceMaxNoTax[currencyLower]
-          : 'fail';
-
-        return {
-          id: giftCardIntegration.id,
-          sku,
-          title: giftCardIntegration.title,
-          titleGoGift: product.title['en'],
-          descGoGift: product.shortDescription['en'],
-          priceConstraintType: giftCardIntegration.constraintType,
-          priceConstraintJson: giftCardIntegration.constraintJson,
-          priceValidationStatus: validatePriceValues(
-            minPrice,
-            maxPrice,
-            stepPrice,
-            giftCardIntegration.constraintJson,
-          ),
-          minPriceGoGift: minPrice,
-          stepPriceGoGift: stepPrice,
-          maxPriceGoGift: maxPrice,
-        };
+          return {
+            id: giftCardIntegration.id,
+            status: 'fail',
+          };
+        }
       };
       promiseList.push(prepareElement(giftCardIntegration));
     }
