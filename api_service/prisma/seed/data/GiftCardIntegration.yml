@@ -1169,6 +1169,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 750, 1000, 1250, 1500, 1750, 2000]
+  gogiftId: '603955893530247168'
 
 - id: 3026c647-e5a8-437f-9686-13e6baeda857
   priority: 20
@@ -1180,6 +1181,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367876146925568'
 
 - id: b036ad50-ffe3-4b1e-94a5-e53abe16d161
   priority: 30
@@ -1191,6 +1193,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422367880186040320'
 
 - id: fc74dc97-3ed8-43ef-86c6-a5ced2fad1ce
   priority: 40
@@ -1202,6 +1205,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 ]
+  gogiftId: '422367873449988096'
 
 - id: d4c7511c-5c32-46e2-b32f-6722a07b204a
   priority: 50
@@ -1213,6 +1217,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [ 15, 25, 50, 75, 100 ]
+  gogiftId: 'SKIP'
 
 - id: c9abee48-d0dc-45aa-a7b2-f1ad6098cfd8
   priority: 60
@@ -1224,6 +1229,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100 ]
+  gogiftId: '422367884560699392'
 
 - id: 46fa6318-5cd7-4edf-b678-e520cfdc83fa
   priority: 70
@@ -1235,6 +1241,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000 ]
+  gogiftId: '422367881175896064'
 
 - id: 205f0378-eb30-4081-a240-c54f6dca228f
   priority: 80
@@ -1246,6 +1253,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '422370271585763328'
 
 - id: 06f19cfb-ecda-40d7-bd13-f05bb1c70705
   priority: 90
@@ -1257,6 +1265,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '548854884494192640'
 
 - id: 4fabdbf6-ca28-4f28-ab4b-464b211b7061
   priority: 100
@@ -1268,6 +1277,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '554378355143847936'
 
 - id: 670e38ca-6b64-4079-9e4a-08eb97920a4a
   priority: 110
@@ -1279,6 +1289,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '554378355923988480'
 
 - id: 3418c9c6-9e8e-4ba5-9e4f-c72b221c0e3e
   priority: 120
@@ -1290,6 +1301,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '554378354778943488'
 
 - id: 6ddefab3-2ce0-4cfa-8463-548367705283
   priority: 130
@@ -1301,6 +1313,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '554378357711409152'
 
 - id: 7e4832d8-1dcf-45e8-9903-8883d298b6f8
   priority: 140
@@ -1312,6 +1325,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [10, 20, 35, 50, 99]
+  gogiftId: 'SKIP'
 
 - id: 32a31b77-46aa-4019-96ce-48294ff13a8d
   priority: 150
@@ -1323,6 +1337,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '554378360064413696'
 
 - id: ac80de9e-2a5a-403b-9f95-002701d1dc34
   priority: 160
@@ -1334,17 +1349,19 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '554378360819388416'
 
 - id: 3a03f8fa-8878-4d42-a5cf-826da5a7f030
   priority: 170
   countryId: 4c3b3875-e5ad-4551-84d9-bdbe8b18fa27
   website: https://www.doordash.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/doordash_cad.png
-  title: Doobrash
+  title: DoorDash
   description: DoorDash is an American on-demand food delivery service and technology company. It connects people with local restaurants and offers food delivery from a wide variety of eateries, including fast-food, casual dining, and even some fine dining. 
   currency: CAD
   constraintType: LIST
   constraintJson: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200]
+  gogiftId: '556390125584580608'
 
 - id: 23c02a60-7dcb-4ea7-ae9c-92cff327e8ff
   priority: 180
@@ -1356,6 +1373,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  gogiftId: '556390128315072512'
 
 - id: 6b3a0e2f-b1f6-46e8-80a7-caed9411c665
   priority: 190
@@ -1367,6 +1385,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '596969218244997120'
 
 - id: f02fa0bc-c732-4895-8d69-ad5b947d9e8e
   priority: 200
@@ -1378,6 +1397,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '631839566757638144'
 
 - id: bf9eac4d-7d85-4b59-b384-559d7273db26
   priority: 210
@@ -1389,6 +1409,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [50]
+  gogiftId: 'SKIP'
 
 - id: 9d7b102e-c1c9-4b97-9e34-022dd5138b5d
   priority: 220
@@ -1400,6 +1421,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '602471927572197376'
 
 - id: 812199e7-899d-4f51-8d9e-44fa48e054da
   priority: 230
@@ -1411,6 +1433,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '606814358028140544'
 
 - id: 7d842f97-93e3-4573-8883-bb7bd63992ac
   priority: 240
@@ -1422,6 +1445,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '606814358249795584'
 
 - id: 35c2d8c7-c8e7-4b7d-a5a7-df6b10fb3bcb
   priority: 250
@@ -1433,6 +1457,7 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [50]
+  gogiftId: 'SKIP'
 
 - id: e2f68276-acaf-44ac-8240-610421166f24
   priority: 260
@@ -1444,3 +1469,4 @@
   currency: CAD
   constraintType: LIST
   constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '631839576470376448'
