@@ -6,7 +6,7 @@ import {
   IconButton,
   Link,
   Modal,
-  Typography,
+  Typography
 } from "@mui/material";
 import React from "react";
 import { IGiftCardIntegration } from "../../store/gift-card-request/types";
@@ -29,13 +29,13 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
     bgcolor: "background.paper",
     border: "2px solid #ffffff",
     borderRadius: "24px",
-    p: 4,
+    p: 4
   };
 
   const onSubmit = () => {
     dispatch(
       fetchGiftCardIntegration({
-        giftCardIntegrationId: giftCardIntegration.id,
+        giftCardIntegrationId: giftCardIntegration.id
       })
     );
   };
@@ -49,12 +49,7 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
         className="card-image"
       />
       <CardContent>
-        <Typography
-          gutterBottom
-          variant="h6"
-          component="div"
-          className="card-title"
-        >
+        <Typography gutterBottom component="div" className="card-title">
           {giftCardIntegration.title}
         </Typography>
 
@@ -98,13 +93,6 @@ const GiftCardIntegrationItem = (giftCardIntegration: IGiftCardIntegration) => {
                   >
                     {giftCardIntegration.description}
                   </Typography>
-                  <Link
-                    href={giftCardIntegration.website}
-                    target="_blank"
-                    className="modal-website-link"
-                  >
-                    {giftCardIntegration.website}
-                  </Link>
                 </Card>
               </Modal>
             </div>

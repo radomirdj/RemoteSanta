@@ -5,7 +5,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
-  Typography,
+  Typography
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { IGiftCardRequest } from "../../store/gift-card-request/types";
@@ -70,7 +70,7 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
         >
           {
             countryList.find(
-              (country) =>
+              country =>
                 country.id === giftCardRequest.giftCardIntegration.countryId
             )?.countryName
           }
@@ -89,22 +89,24 @@ const MyGiftCardItem = (giftCardRequest: IGiftCardRequest) => {
           {new Date(giftCardRequest.createdAt).toLocaleDateString("en-US", {
             day: "numeric",
             year: "numeric",
-            month: "short",
+            month: "short"
           })}
           <span className="card-amount"> {giftCardRequest.amount} PTS</span>
         </Typography>
       </CardContent>
       <CardActions>
-        {giftCardRequest.status === "COMPLETED" && isSent === false && (
-          <Button
-            variant="contained"
-            className="card-button"
-            onClick={showMyGiftCard}
-            disableRipple
-          >
-            Show My Gift Card
-          </Button>
-        )}
+        {giftCardRequest.status === "COMPLETED" &&
+          isSent === false &&
+          !giftCardRequest.giftCardIntegration.gogiftId && (
+            <Button
+              variant="contained"
+              className="card-button"
+              onClick={showMyGiftCard}
+              disableRipple
+            >
+              Show My Gift Card
+            </Button>
+          )}
         {giftCardRequest.status === "COMPLETED" && isSent === true && (
           <Grid container>
             <Grid item xs={2}>

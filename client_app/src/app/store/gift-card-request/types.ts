@@ -18,12 +18,11 @@ import {
   FETCH_GIFT_CARD_FILE_FAILURE,
   FETCH_GIFT_CARD_INTEGRATION,
   FETCH_GIFT_CARD_INTEGRATION_SUCCESS,
-  FETCH_GIFT_CARD_INTEGRATION_FAILURE,
+  FETCH_GIFT_CARD_INTEGRATION_FAILURE
 } from "./actionTypes";
 
 export interface IGiftCardIntegration {
   id: string;
-  website: string;
   image: string;
   title: string;
   description: string;
@@ -31,6 +30,7 @@ export interface IGiftCardIntegration {
   priority: number;
   constraintJson: string;
   currency: string;
+  gogiftId: string;
   pointsToCurrencyConversionRate?: number;
   countryId?: string;
 }

@@ -25,6 +25,9 @@ export class GiftCardIntegrationDto {
 
   @Expose()
   constraintType: IntegrationConsraintTypeEnum;
+  
+  @Expose()
+  gogiftId: string;
 
   @Expose()
   priority: number;
