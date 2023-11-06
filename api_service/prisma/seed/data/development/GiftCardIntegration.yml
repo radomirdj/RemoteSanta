@@ -201,8 +201,8 @@
 - id: a70ec37a-64af-41ed-848f-cc8a11f1c450
   priority: 0
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Ray-Ban IN Gift Card
   description: Ray-Ban sunglasses consistently blend high-tech design, lenses, and materials
   currency: INR
@@ -233,8 +233,8 @@
 - id: b8487c2d-8d08-4a15-b295-83a42833c40f
   priority: 10
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: O2 Spa Salon IN Gift Card
   description: O2Spa Salon is the synonymous with wellness and salon services of global standards
   currency: INR
@@ -265,8 +265,8 @@
 - id: b7c9b6b7-ea93-49bc-ba23-f921e98aa4ea
   priority: 20
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Indian Terrain IN Gift Card
   description: India’s leading menswear & boys wear brand offering premium smart casual clothing
   currency: INR
@@ -309,8 +309,8 @@
 - id: a6836c93-1e97-43d1-967d-528d7e3a6ac2
   priority: 30
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: AirlineGift IN Gift Card
   description: The world’s best airlines gift card and online travel booking selection
   currency: INR
@@ -320,8 +320,8 @@
 - id: 6bc060e4-8655-4543-aafd-a7c4bce9d664
   priority: 40
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: PVR Cinemas IN Gift Card
   description: PVR Cinemas has gone from strength to strength since it opened its first multiplex theater in 1995
   currency: INR
@@ -355,8 +355,8 @@
 - id: 9742c953-46e4-4ccc-bb5c-10674d12c3fa
   priority: 50
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Jack & Jones IN Gift Card
   description: Jack & Jones offers fashion forward apparel for the modern man
   currency: INR
@@ -382,8 +382,8 @@
 - id: ea59cc1b-5202-4fb9-991c-21941daeb280
   priority: 60
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Skechers IN Gift Card
   description: Skechers, leader in the high performance and lifestyle footwear
   currency: INR
@@ -414,8 +414,8 @@
 - id: 251a35a7-53f5-4929-9038-e5c109934615
   priority: 70
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Cafe Coffee Day IN Gift Card
   description: Café Coffee Day your hangout for coffee and conversations
   currency: INR
@@ -445,8 +445,8 @@
 - id: 44eb4f11-ce3c-4883-b10e-adff607466a0
   priority: 80
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Gupta Distributors IN Gift Card
   description: Gupta Distributors is one of the largest retailer of electronic products
   currency: INR
@@ -477,8 +477,8 @@
 - id: 5b7eddea-4e73-492a-aedc-ddd8f5d097cd
   priority: 90
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Speedo IN Gift Card
   description: Speedo is the most renowned swimwear brand in the world
   currency: INR
@@ -526,8 +526,8 @@
 - id: 4dfd35ce-6d34-4b2c-8563-429d2699b5f7
   priority: 100
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Jockey IN Gift Card
   description: Jockey is the leading manufacturer and marketer of comfort apparel
   currency: INR
@@ -575,8 +575,8 @@
 - id: 28ef4a2a-4bb1-4b71-9e4b-e149850a1bc1
   priority: 110
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: The Man Company IN Gift Card
   description: The Man Company, premium men's grooming essentials
 
@@ -603,8 +603,8 @@
 - id: d2d98b3e-163f-47ba-af04-9ee0f479d7fd
   priority: 120
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Max Fashion IN Gift Card
   description: MAX, over the years, has become synonymous with beauty, fashion, trends and good living
   currency: INR
@@ -634,8 +634,8 @@
 - id: c93723f1-d70e-49be-ba4c-fcbd195572ba
   priority: 130
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Helios IN Gift Card
   description: Helios stocks amazing watches from amazing brands
   currency: INR
@@ -678,8 +678,8 @@
 - id: 40a38e74-0d2c-4887-8779-71ecf92329e4
   priority: 140
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: BodyCraft IN Gift Card
   description: Bodycraft Spa & Salon experienced professionals in hair care, skin care, and wellness
   currency: INR
@@ -710,8 +710,8 @@
 - id: 789bc2b1-bc86-4ba8-ba5c-2ea701656ffe
   priority: 150
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Prestige Smart Kitchen IN Gift Card
   description: Prestige offers innovating kitchen and home needs products for the Indian homemaker
   currency: INR
@@ -762,8 +762,8 @@
 - id: 041e302d-13ab-4f25-a450-f9ecdbab4a80
   priority: 160
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Domino's Pizza IN Gift Card
   description: Domino’s Pizza delivers great tasting pizzas and sides
   currency: INR
@@ -793,8 +793,8 @@
 - id: 95d20bf0-a00f-4bdf-a6dd-8d97a801bdc0
   priority: 170
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: FlystayGift IN Gift Card
   description: The world’s best package Flight + Hotel gift card and online travel booking selection
   currency: INR
@@ -804,8 +804,8 @@
 - id: e62c1144-6c4d-47e3-8714-e7530cdce91f
   priority: 180
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: eLearnGift IN Gift Card
   description: eLearnGift offers an exciting range of over 200 online Language and Learning courses
   currency: INR
@@ -815,8 +815,8 @@
 - id: e1b920c8-8155-4115-a97d-4fe552b1817e
   priority: 190
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: TripGift IN Gift Card
   description: TripGift® offers everything needed to book local or international travel online
   currency: INR
@@ -826,8 +826,8 @@
 - id: 4221485b-0b03-4d7f-ab74-7cfd9b917596
   priority: 200
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: ToursGift IN Gift Card
   description: Everything needed to book local and international private tours online
   currency: INR
@@ -837,8 +837,8 @@
 - id: be6898f7-9daf-4750-b4ba-f98c2593d307
   priority: 210
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: RentacarGift IN Gift Card
   description: The world’s only multi-brand Car Rental only gift card
   currency: INR
@@ -848,8 +848,8 @@
 - id: 72942c6f-f862-4035-9fde-163a54e11978
   priority: 220
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: HotelsGift IN Gift Card
   description: The world’s best Hotel gift card with over 750,000 Hotels, Villas & Apartments
   currency: INR
@@ -859,8 +859,8 @@
 - id: 7eff0cd8-23c9-4c9e-b737-6dfc5ef1219b
   priority: 230
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Himalaya IN Gift Card
   description: Himalaya produces organic, skin-friendly shampoos, hand-sanitizers, lotions, tonics and much more
   currency: INR
@@ -899,8 +899,8 @@
 - id: 8b79bc05-c5c3-42d9-98bc-d0921ffa8705
   priority: 240
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: SPAR Hypermarket IN Gift Card
   description: SPAR Hypermarket is one of the largest hypermarket in India
   currency: INR
@@ -939,8 +939,8 @@
 - id: 289a1699-f2fe-4d11-98cb-85b12b557f64
   priority: 250
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Urban Ladder IN Gift Card
   description: Urban Ladder offers a unique selection of stylish, contemporary, and chic furniture
   currency: INR
@@ -977,8 +977,8 @@
 - id: 0acde6f9-194d-48da-ab59-9ac52d03a38c
   priority: 260
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Chumbak IN Gift Card
   description: Chumbak is a design-led lifestyle brand
   currency: INR
@@ -1009,8 +1009,8 @@
 - id: 81dd873a-2836-42ad-9250-0629038061d5
   priority: 270
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Hidesign IN Gift Card
   description: Hidesign is the best place to shop
   currency: INR
@@ -1054,8 +1054,8 @@
 - id: 4828dd0b-47ea-4016-b66e-3c4e11cfc9dd
   priority: 280
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Barbeque Nation IN Gift Card
   description: Barbeque Nation offers a complete dining experience to customers at affordable prices
   currency: INR
@@ -1086,8 +1086,8 @@
 - id: 1be3484f-339a-40b4-b76b-6b9289237b3e
   priority: 290
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Taj Hotels IN Gift Card
   description: Enjoy stays, dining, spa, and many more indulgences at any Taj Hotel in India
   currency: INR
@@ -1124,8 +1124,8 @@
 - id: 49835923-f3d8-4160-b4c9-a358e6ff4f60
   priority: 300
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Make My Trip IN Gift Card
   description: MakeMyTrip.com, India’s leading online travel company
   currency: INR
@@ -1168,8 +1168,8 @@
 - id: bcbb04c0-e9cc-4a1a-b620-04af9f2599c1
   priority: 310
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Make My Trip Hotels IN Gift Card
   description: MakeMyTrip.com, empowers the Indian traveller with instant booking and comprehensive choices
   currency: INR
@@ -1212,8 +1212,8 @@
 - id: 41d63d55-0afa-46e8-94be-cd3bb37d5d95
   priority: 320
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Titan Eye Plus IN Gift Card
   description: Titan Eye+ offers a striking range of eyewear
   currency: INR
@@ -1260,8 +1260,8 @@
 - id: 0f939853-f77a-4a47-b3b0-2160ac42a5bc
   priority: 330
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Spencer's IN Gift Card
   description: A multi-format food-first retailer providing a wide range of quality products
   currency: INR
@@ -1299,8 +1299,8 @@
 - id: 42cc8018-e4fd-40e5-b510-c2ca0107b8ef
   priority: 340
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Pantaloons IN Gift Card
   description: Make gifting a joy for the receiver as much as for the shopper
   currency: INR
@@ -1334,8 +1334,8 @@
 - id: b5befc61-fb55-47e7-b09b-7a3d876425ef
   priority: 350
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Nature's Basket IN Gift Card
   description: Nature’s Basket is the destination for fine and premium foods from across the world
   currency: INR

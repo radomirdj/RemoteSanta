@@ -201,8 +201,8 @@
 - id: a70ec37a-64af-41ed-848f-cc8a11f1c450
   priority: 0
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Ray-Ban IN Gift Card
   description: Ray-Ban sunglasses consistently blend high-tech design, lenses, and materials
   currency: INR
@@ -233,8 +233,8 @@
 - id: b8487c2d-8d08-4a15-b295-83a42833c40f
   priority: 10
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: O2 Spa Salon IN Gift Card
   description: O2Spa Salon is the synonymous with wellness and salon services of global standards
   currency: INR
@@ -265,8 +265,8 @@
 - id: b7c9b6b7-ea93-49bc-ba23-f921e98aa4ea
   priority: 20
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Indian Terrain IN Gift Card
   description: India’s leading menswear & boys wear brand offering premium smart casual clothing
   currency: INR
@@ -309,8 +309,8 @@
 - id: a6836c93-1e97-43d1-967d-528d7e3a6ac2
   priority: 30
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: AirlineGift IN Gift Card
   description: The world’s best airlines gift card and online travel booking selection
   currency: INR
@@ -320,8 +320,8 @@
 - id: 6bc060e4-8655-4543-aafd-a7c4bce9d664
   priority: 40
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: PVR Cinemas IN Gift Card
   description: PVR Cinemas has gone from strength to strength since it opened its first multiplex theater in 1995
   currency: INR
@@ -355,8 +355,8 @@
 - id: 9742c953-46e4-4ccc-bb5c-10674d12c3fa
   priority: 50
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Jack & Jones IN Gift Card
   description: Jack & Jones offers fashion forward apparel for the modern man
   currency: INR
@@ -382,8 +382,8 @@
 - id: ea59cc1b-5202-4fb9-991c-21941daeb280
   priority: 60
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Skechers IN Gift Card
   description: Skechers, leader in the high performance and lifestyle footwear
   currency: INR
@@ -414,8 +414,8 @@
 - id: 251a35a7-53f5-4929-9038-e5c109934615
   priority: 70
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Cafe Coffee Day IN Gift Card
   description: Café Coffee Day your hangout for coffee and conversations
   currency: INR
@@ -445,8 +445,8 @@
 - id: 44eb4f11-ce3c-4883-b10e-adff607466a0
   priority: 80
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Gupta Distributors IN Gift Card
   description: Gupta Distributors is one of the largest retailer of electronic products
   currency: INR
@@ -477,8 +477,8 @@
 - id: 5b7eddea-4e73-492a-aedc-ddd8f5d097cd
   priority: 90
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Speedo IN Gift Card
   description: Speedo is the most renowned swimwear brand in the world
   currency: INR
@@ -526,8 +526,8 @@
 - id: 4dfd35ce-6d34-4b2c-8563-429d2699b5f7
   priority: 100
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Jockey IN Gift Card
   description: Jockey is the leading manufacturer and marketer of comfort apparel
   currency: INR
@@ -575,8 +575,8 @@
 - id: 28ef4a2a-4bb1-4b71-9e4b-e149850a1bc1
   priority: 110
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: The Man Company IN Gift Card
   description: The Man Company, premium men's grooming essentials
 
@@ -603,8 +603,8 @@
 - id: d2d98b3e-163f-47ba-af04-9ee0f479d7fd
   priority: 120
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Max Fashion IN Gift Card
   description: MAX, over the years, has become synonymous with beauty, fashion, trends and good living
   currency: INR
@@ -634,8 +634,8 @@
 - id: c93723f1-d70e-49be-ba4c-fcbd195572ba
   priority: 130
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Helios IN Gift Card
   description: Helios stocks amazing watches from amazing brands
   currency: INR
@@ -678,8 +678,8 @@
 - id: 40a38e74-0d2c-4887-8779-71ecf92329e4
   priority: 140
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: BodyCraft IN Gift Card
   description: Bodycraft Spa & Salon experienced professionals in hair care, skin care, and wellness
   currency: INR
@@ -710,8 +710,8 @@
 - id: 789bc2b1-bc86-4ba8-ba5c-2ea701656ffe
   priority: 150
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Prestige Smart Kitchen IN Gift Card
   description: Prestige offers innovating kitchen and home needs products for the Indian homemaker
   currency: INR
@@ -762,8 +762,8 @@
 - id: 041e302d-13ab-4f25-a450-f9ecdbab4a80
   priority: 160
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Domino's Pizza IN Gift Card
   description: Domino’s Pizza delivers great tasting pizzas and sides
   currency: INR
@@ -793,8 +793,8 @@
 - id: 95d20bf0-a00f-4bdf-a6dd-8d97a801bdc0
   priority: 170
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: FlystayGift IN Gift Card
   description: The world’s best package Flight + Hotel gift card and online travel booking selection
   currency: INR
@@ -804,8 +804,8 @@
 - id: e62c1144-6c4d-47e3-8714-e7530cdce91f
   priority: 180
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: eLearnGift IN Gift Card
   description: eLearnGift offers an exciting range of over 200 online Language and Learning courses
   currency: INR
@@ -815,8 +815,8 @@
 - id: e1b920c8-8155-4115-a97d-4fe552b1817e
   priority: 190
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: TripGift IN Gift Card
   description: TripGift® offers everything needed to book local or international travel online
   currency: INR
@@ -826,8 +826,8 @@
 - id: 4221485b-0b03-4d7f-ab74-7cfd9b917596
   priority: 200
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: ToursGift IN Gift Card
   description: Everything needed to book local and international private tours online
   currency: INR
@@ -837,8 +837,8 @@
 - id: be6898f7-9daf-4750-b4ba-f98c2593d307
   priority: 210
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: RentacarGift IN Gift Card
   description: The world’s only multi-brand Car Rental only gift card
   currency: INR
@@ -848,8 +848,8 @@
 - id: 72942c6f-f862-4035-9fde-163a54e11978
   priority: 220
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: HotelsGift IN Gift Card
   description: The world’s best Hotel gift card with over 750,000 Hotels, Villas & Apartments
   currency: INR
@@ -859,8 +859,8 @@
 - id: 7eff0cd8-23c9-4c9e-b737-6dfc5ef1219b
   priority: 230
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Himalaya IN Gift Card
   description: Himalaya produces organic, skin-friendly shampoos, hand-sanitizers, lotions, tonics and much more
   currency: INR
@@ -899,8 +899,8 @@
 - id: 8b79bc05-c5c3-42d9-98bc-d0921ffa8705
   priority: 240
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: SPAR Hypermarket IN Gift Card
   description: SPAR Hypermarket is one of the largest hypermarket in India
   currency: INR
@@ -939,8 +939,8 @@
 - id: 289a1699-f2fe-4d11-98cb-85b12b557f64
   priority: 250
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Urban Ladder IN Gift Card
   description: Urban Ladder offers a unique selection of stylish, contemporary, and chic furniture
   currency: INR
@@ -977,8 +977,8 @@
 - id: 0acde6f9-194d-48da-ab59-9ac52d03a38c
   priority: 260
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Chumbak IN Gift Card
   description: Chumbak is a design-led lifestyle brand
   currency: INR
@@ -1009,8 +1009,8 @@
 - id: 81dd873a-2836-42ad-9250-0629038061d5
   priority: 270
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Hidesign IN Gift Card
   description: Hidesign is the best place to shop
   currency: INR
@@ -1054,8 +1054,8 @@
 - id: 4828dd0b-47ea-4016-b66e-3c4e11cfc9dd
   priority: 280
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Barbeque Nation IN Gift Card
   description: Barbeque Nation offers a complete dining experience to customers at affordable prices
   currency: INR
@@ -1086,8 +1086,8 @@
 - id: 1be3484f-339a-40b4-b76b-6b9289237b3e
   priority: 290
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Taj Hotels IN Gift Card
   description: Enjoy stays, dining, spa, and many more indulgences at any Taj Hotel in India
   currency: INR
@@ -1124,8 +1124,8 @@
 - id: 49835923-f3d8-4160-b4c9-a358e6ff4f60
   priority: 300
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Make My Trip IN Gift Card
   description: MakeMyTrip.com, India’s leading online travel company
   currency: INR
@@ -1168,8 +1168,8 @@
 - id: bcbb04c0-e9cc-4a1a-b620-04af9f2599c1
   priority: 310
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Make My Trip Hotels IN Gift Card
   description: MakeMyTrip.com, empowers the Indian traveller with instant booking and comprehensive choices
   currency: INR
@@ -1212,8 +1212,8 @@
 - id: 41d63d55-0afa-46e8-94be-cd3bb37d5d95
   priority: 320
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Titan Eye Plus IN Gift Card
   description: Titan Eye+ offers a striking range of eyewear
   currency: INR
@@ -1260,8 +1260,8 @@
 - id: 0f939853-f77a-4a47-b3b0-2160ac42a5bc
   priority: 330
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Spencer's IN Gift Card
   description: A multi-format food-first retailer providing a wide range of quality products
   currency: INR
@@ -1299,8 +1299,8 @@
 - id: 42cc8018-e4fd-40e5-b510-c2ca0107b8ef
   priority: 340
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Pantaloons IN Gift Card
   description: Make gifting a joy for the receiver as much as for the shopper
   currency: INR
@@ -1334,8 +1334,8 @@
 - id: b5befc61-fb55-47e7-b09b-7a3d876425ef
   priority: 350
   countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: Nature's Basket IN Gift Card
   description: Nature’s Basket is the destination for fine and premium foods from across the world
   currency: INR
@@ -1392,7 +1392,7 @@
   description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
   currency: MXN
   constraintType: LIST
-  constraintJson: [ 349, 549, 999 ]
+  constraintJson: [349, 549, 999]
 
 - id: d5061d8e-ef9f-4f38-8b11-00fa49bdb457
   priority: 20
@@ -1403,7 +1403,7 @@
   description: Blizzard Entertainment is a renowned video game developer and publisher known for creating popular and influential game franchises. The company was founded in 1991 and has headquarters in Irvine, California.
   currency: MXN
   constraintType: LIST
-  constraintJson: [ 150, 350 ]
+  constraintJson: [150, 350]
 
 - id: 11ddee44-183d-4620-9fc2-3ea6cbceadd1
   priority: 30
@@ -1414,7 +1414,7 @@
   description: Uber is ride-hailing and transportation network company that operates in over 900 areas worldwide. In addition to ride-hailing, Uber has expanded into other areas such as food delivery (Uber Eats) and electric bike and scooter rentals (Uber Jump).
   currency: MXN
   constraintType: LIST
-  constraintJson: [ 300 ]
+  constraintJson: [300]
 
 - id: da8bb7d5-2573-4da6-92e4-ef3b046bd3e8
   priority: 40
@@ -1425,7 +1425,7 @@
   description: Minecraft is a popular sandbox video game that allows players to explore and create virtual worlds made up of blocks. It was created by Swedish game developer Markus Persson and later developed and published by Mojang Studios.
   currency: MXN
   constraintType: LIST
-  constraintJson: [ 177, 349 ]
+  constraintJson: [177, 349]
 
 - id: 66f84c15-a72e-4870-920e-3229db826e24
   priority: 50
@@ -1436,7 +1436,7 @@
   description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
   currency: MXN
   constraintType: LIST
-  constraintJson: [150,300,500, 1000, 1500, 2000]
+  constraintJson: [150, 300, 500, 1000, 1500, 2000]
 
 - id: 4e2c96d9-fb72-4b60-a6a9-330403765446
   priority: 60
@@ -1469,7 +1469,8 @@
   description: TripGift is an online platform that offers gift cards and vouchers for various travel-related experiences and services. It allows individuals to purchase gift cards that can be redeemed for flights, hotels, tours, activities, car rentals, and more.
   currency: MXN
   constraintType: LIST
-  constraintJson: [2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000]
+  constraintJson:
+    [2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000]
 
 # Slovenia
 - id: d36b3b6a-ea12-4458-b7a8-91bb4e1fdc4d
@@ -1682,7 +1683,7 @@
   constraintType: LIST
   constraintJson: [50, 100, 150, 200]
 
-# Serbia 
+# Serbia
 - id: 469cf71d-86a5-450e-afc7-76bc6996a3ad
   priority: 10
   countryId: '76a2e7f6-e202-4c99-95a6-08fb361b112d'
@@ -1903,7 +1904,6 @@
   constraintType: MIN_MAX
   constraintJson: { 'MIN': 500, 'MAX': 100000 }
 
-
 #USA
 - id: 0618f276-3890-4877-9cff-d145133c187e
   priority: 1
@@ -1914,7 +1914,37 @@
   description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: e6618cd2-1b20-462a-8328-be43cc999b46
   priority: 10
@@ -1925,7 +1955,29 @@
   description: 1-800-Flowers is a well-known floral and gift delivery service based in the United States. It is a popular brand that offers a wide range of products, including flowers, plants, gift baskets, and other gift items.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      75,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 54075744-7bb0-400a-9b72-678c618e6c5b
   priority: 20
@@ -1936,7 +1988,8 @@
   description: Aerie is a clothing brand that specializes in lingerie, swimwear and loungewear for women. It is a subsidiary of American Eagle Outfitters and was launched in 2006 with the goal of offering comfortable, body-positive intimates for women of all sizes.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 40, 50, 60, 70 ,80, 90, 100, 150, 200, 250, 300]
+  constraintJson:
+    [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 250, 300]
 
 - id: e083b693-fba8-47cb-a094-9301320e5441
   priority: 30
@@ -1947,7 +2000,29 @@
   description: AMC Theatres, also known as AMC Cinemas, is one of the largest movie theater chains in the world.  AMC Theatres offers a wide selection of films, ranging from Hollywood blockbusters to independent and foreign films.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+    ]
 
 - id: aa0d023b-04d3-45f2-90e9-bd4e24ede373
   priority: 40
@@ -1958,7 +2033,36 @@
   description: Banana Republic is known for its classic and sophisticated aesthetic, often featuring tailored designs and versatile pieces that can be easily incorporated into professional or casual wardrobes. The brand offers a range of clothing items.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 14b6256d-8882-4128-be58-51f43d8b68d4
   priority: 50
@@ -1969,7 +2073,37 @@
   description: CB2 is a contemporary home furnishings and decor retailer. It is a sister brand of Crate and Barrel, another popular home goods retailer. CB2 offers modern and stylish furniture, accessories, lighting, rugs, and other decor items for the home.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 636fe299-6aae-410d-afb4-d10a8f77aec0
   priority: 60
@@ -1980,7 +2114,33 @@
   description: Crate and Barrel's product range includes furniture, kitchenware, dining and entertaining essentials, home decor, bedding, bath items, and more. The brand offers well-designed and functional products that cater to different styles and aesthetics.
   currency: USD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: a5775819-ef9f-4109-86fc-ba970824a28e
   priority: 70
@@ -1991,7 +2151,36 @@
   description: Gap offers a wide variety of clothing and accessories for men, women, and children, including jeans, pants, dresses, skirts, shirts, sweaters, outerwear, and swimwear, as well as shoes, bags, and jewelry.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 64bc4377-c8b9-4604-8a6a-faca57a1063b
   priority: 80
@@ -2002,7 +2191,28 @@
   description: Home Chef is a meal kit delivery service that provides customers with pre-portioned ingredients and step-by-step recipes to prepare meals at home. It was founded in 2013 and is based in the United States.
   currency: USD
   constraintType: LIST
-  constraintJson: [50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 58210648-e7a0-4378-b606-25b605a453ae
   priority: 90
@@ -2013,7 +2223,29 @@
   description: Jamba Juice is a popular American smoothie and juice bar chain. It was founded in 1990 in San Luis Obispo, California, and has since grown to become a well-known brand with numerous locations across the United States and internationally.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+    ]
 
 - id: be1c30d9-5e14-4fb1-aa4b-c00c4919a846
   priority: 100
@@ -2024,7 +2256,36 @@
   description: Landry's operates a diverse portfolio of more than 600 restaurant, hotel, and entertainment concepts, including well-known brands such as Morton's The Steakhouse, Bubba Gump Shrimp Co., Rainforest Cafe, Saltgrass Steak House, and Landry's Seafood.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: db8dfd8e-044d-4d4c-8e5d-740b71db18c4
   priority: 110
@@ -2043,7 +2304,7 @@
   website: https://www.rei.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/us_rei.png
   title: REI
-  description: REI operates both physical retail stores and an online store where customers can browse and purchase their products. They offer a range of outdoor gear, including tents, sleeping bags, backpacks, hiking boots, bicycles, kayaks, skis, and snowboards. 
+  description: REI operates both physical retail stores and an online store where customers can browse and purchase their products. They offer a range of outdoor gear, including tents, sleeping bags, backpacks, hiking boots, bicycles, kayaks, skis, and snowboards.
   currency: USD
   constraintType: LIST
   constraintJson: [10, 25, 50, 100]
@@ -2068,7 +2329,37 @@
   description: The Container Store offers a wide range of storage and organization products, including shelving units, closet organizers, kitchen and pantry storage solutions, office and desk organizers, and storage containers of all sizes and shapes.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 7be4b0c8-1ba2-4cd7-9a2c-e9a6ebf1ff3b
   priority: 150
@@ -2079,7 +2370,33 @@
   description: Williams-Sonoma is a renowned American retailer specializing in high-quality kitchenware, home furnishings, and gourmet food products. The company was founded in 1956 by Chuck Williams and has since become a well-known brand in the industry.
   currency: USD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 331112c2-661c-4b93-bb78-3895ab91a075
   priority: 160
@@ -2090,7 +2407,37 @@
   description: Adidas is a multinational corporation that designs and manufactures athletic and lifestyle footwear, apparel, and accessories. It offers many of products including athletic shoes, sneakers, running shoes, and casual shoes for men, women and children.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: f031c87b-068b-47d1-9bcd-0b01af9da718
   priority: 170
@@ -2101,7 +2448,37 @@
   description: American Eagle Outfitters is known for its trendy and affordable clothing that reflects the latest fashion trends. Their product lines include jeans, shorts, t-shirts, hoodies, jackets, dresses, and accessories such as shoes, jewelry, and bags.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: b2fa4c11-e87c-4e3a-8272-296ce972c76f
   priority: 180
@@ -2112,7 +2489,37 @@
   description: Barnes & Noble stores typically feature a wide selection of books, as well as magazines and newspapers. The company also sells e-books and audiobooks through its website, as well as other merchandise such as music, movies, and toys.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: d6b4c1b5-63c7-4a8b-a848-d5fa9d0e2e3c
   priority: 190
@@ -2134,7 +2541,27 @@
   description: Carnival Cruise Line is one of the largest and most well-known cruise lines in the world. Carnival Cruise Line offers a wide range of cruise vacations and operates a fleet of ships that sail to various destinations worldwide.
   currency: USD
   constraintType: LIST
-  constraintJson: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950]
+  constraintJson:
+    [
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      550,
+      600,
+      650,
+      700,
+      750,
+      800,
+      850,
+      900,
+      950,
+    ]
 
 - id: 03e333e8-7dea-451d-8fdf-8069fc17c836
   priority: 210
@@ -2145,7 +2572,31 @@
   description: The Columbia Sportswear Company is an American company that manufactures and distributes outerwear, sportswear, and footwear, as well as headgear, camping equipment, ski apparel, and outerwear accessories.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+    ]
 
 - id: 82c54031-abde-4fe8-9fe6-6d150c7925d7
   priority: 220
@@ -2156,7 +2607,37 @@
   description: Fanatics.com is an online retailer of licensed sports merchandise and apparel. The company offers a wide selection of products from various sports leagues, including the NFL, NBA, MLB, NHL, NASCAR NCAA, etc.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: fcf0fab7-1f13-48ec-9c71-664e03b26f35
   priority: 230
@@ -2167,7 +2648,33 @@
   description: The global experience can be pursued in different ways, including through travel, study abroad programs, international work opportunities, cultural exchanges, or through engagement with global interactions with people from different backgrounds.
   currency: USD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: e5f75784-92d9-4316-8958-5767f65526df
   priority: 240
@@ -2178,7 +2685,33 @@
   description: The company's product lines include clothing, shoes, jewelry, bags, and home goods. H&M operates over 5,000 stores worldwide, including in Europe, Asia, North America, and the Middle East, as well as an online store.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+    ]
 
 - id: fb1449ac-d6dc-48d2-8c88-d23697a758fe
   priority: 250
@@ -2189,7 +2722,33 @@
   description: Kohl's is a well-known store retail chain that offers a wide range of products, including clothing, accessories, home goods, and more. It was founded in 1962 and has grown to become one of the largest department store chains in the United States.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+    ]
 
 - id: 7b59ae52-a62a-4301-9414-e737138257f1
   priority: 260
@@ -2200,7 +2759,37 @@
   description: The company offers a wide range of athletic footwear, including running shoes, basketball shoes, soccer cleats, training shoes, and more. They are renowned for incorporating advanced technologies and materials to enhance performance and comfort.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 5c8acce0-046d-48e7-8139-9716a087e0bf
   priority: 270
@@ -2211,7 +2800,36 @@
   description: Old Navy is a clothing and accessories retail chain that offers affordable, casual fashion for the whole family. The brand is known for its classic and comfortable styles, often featuring bright colors, bold patterns, and graphic prints.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 1297b8d5-94b4-4dd0-b844-8b00863b68da
   priority: 280
@@ -2222,7 +2840,33 @@
   description: Under Armour is a sportswear and footwear company. It's products are designed to provide athletes with the latest technology and innovation to help them perform at their best. The company also offers accessories such as hats, socks, gloves, and bags.
   currency: USD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 9fa4842c-77a7-4ca8-a2c8-ced0719eaabd
   priority: 290
@@ -2233,7 +2877,37 @@
   description: LongHorn Steakhouse is a popular American restaurant chain that specializes in serving grilled steaks and other American-style cuisine. Founded in 1981, LongHorn Steakhouse has since grown to have numerous locations across the United States.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 29f4a98c-e798-423e-a494-884152040695
   priority: 300
@@ -2244,7 +2918,29 @@
   description: Bath & Body Works offers a wide range of products, including body lotions, shower gels, hand soaps, candles and room sprays. It is known for its signature fragrances which are available in a variety of scents, from sweet and fruity to warm and spicy.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+    ]
 
 - id: d9e7653b-77f5-4461-aaaf-893d30b8f0c7
   priority: 310
@@ -2255,7 +2951,36 @@
   description: Chico's is a women's clothing and accessories retail chain that was founded in 1983 in Florida, USA. It targets women over the age of 40 and offers a range of stylish and comfortable clothing that is designed to flatter a variety of body types.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 1bb46b6a-b9b7-499f-ac93-76097d7ad144
   priority: 320
@@ -2266,7 +2991,34 @@
   description: Bloomin' Brands is a hospitality company that operates several well-known restaurant brands. Founded in 1988, the company is headquartered in Tampa, Florida, and has a global presence with various locations in the United States and internationally.
   currency: USD
   constraintType: LIST
-  constraintJson: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 231d0148-218d-468a-938f-b43c274200a1
   priority: 330
@@ -2277,7 +3029,29 @@
   description: Coffee Bean & Tea Leaf is a retail coffee and tea company that was founded in 1963 in Southern California, USA. The company is known for its high-quality coffee and tea products, as well as its cozy and welcoming cafes.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+    ]
 
 - id: e48c6d60-b876-41b5-96f2-88421d3408f5
   priority: 340
@@ -2288,7 +3062,33 @@
   description: Lands' End offers a wide range of clothing for men, women, and children, including outerwear, swimwear, activewear, and accessories. The company is particularly well-known for its high-quality, durable outerwear.
   currency: USD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 656f8127-d6d4-49a3-9722-53a8ad20c1ee
   priority: 350
@@ -2299,7 +3099,31 @@
   description: Sephora is a cosmetics retailer that offers a lot of beauty and skincare products including makeup, fragrance, skincare, haircare and bath and body products. It is known for its wide selection of high-quality beauty products from a variety of brands.
   currency: USD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+    ]
 
 - id: 080b0877-f81c-4aee-b9c4-0809d82c64ac
   priority: 360
@@ -2310,7 +3134,7 @@
   description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
   currency: USD
   constraintType: LIST
-  constraintJson: [ 5, 10, 15, 20, 25, 50, 100 ]
+  constraintJson: [5, 10, 15, 20, 25, 50, 100]
 
 - id: 3644a97d-2b20-4803-a15f-bf69357e51d0
   priority: 370
@@ -2321,7 +3145,33 @@
   description: Spafinder operates a global network of spas, wellness centers, fitness studios, and other related establishments. Spafinder offers a range of services including spa treatments, massages, facials, yoga classes, fitness sessions, and more.
   currency: USD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 78af2217-398c-4c96-abb5-687b2c4ad6f3
   priority: 380
@@ -2332,7 +3182,37 @@
   description: Marshalls focuses on providing value to customers by offering an ever-changing assortment of high-quality products across different categories, including clothing, footwear, accessories, home décor, furniture, beauty products, and more.
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 8e8c862c-9635-4b33-9c34-963284495687
   priority: 390
@@ -2355,7 +3235,25 @@
   description: TripGift is an online platform that offers gift cards and vouchers for various travel-related experiences and services. It allows individuals to purchase gift cards that can be redeemed for flights, hotels, tours, activities, car rentals, and more.
   currency: CAD
   constraintType: LIST
-  constraintJson: [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 750, 1000, 1250, 1500, 1750, 2000]
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000,
+    ]
 
 - id: 3026c647-e5a8-437f-9686-13e6baeda857
   priority: 20
@@ -2366,7 +3264,39 @@
   description: Cabela's is a well-known retail that focuses on outdoor and recreational products.  Cabela's is particularly famous for its extensive selection of outdoor gear, including hunting, fishing, camping, and other outdoor-related equipment and supplies.
   currency: CAD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      105,
+      110,
+      115,
+      120,
+      125,
+      150,
+      175,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: b036ad50-ffe3-4b1e-94a5-e53abe16d161
   priority: 30
@@ -2377,7 +3307,39 @@
   description: The global experience can be pursued in different ways, including through travel, study abroad programs, international work opportunities, cultural exchanges, or through engagement with global interactions with people from different backgrounds.
   currency: CAD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      105,
+      110,
+      115,
+      120,
+      125,
+      150,
+      175,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: fc74dc97-3ed8-43ef-86c6-a5ced2fad1ce
   priority: 40
@@ -2388,7 +3350,59 @@
   description: Amazon is a multinational technology company that specializes in e-commerce, digital streaming, cloud computing, and artificial intelligence. Browse & discover millions of products. Read customer reviews and find best sellers.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 ]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      350,
+      400,
+      450,
+      500,
+      550,
+      600,
+      650,
+      700,
+      750,
+      800,
+      850,
+      900,
+      950,
+      1000,
+      1500,
+      2000,
+      2500,
+      3000,
+      3500,
+      4000,
+      4500,
+      5000,
+    ]
 
 - id: d4c7511c-5c32-46e2-b32f-6722a07b204a
   priority: 50
@@ -2399,7 +3413,7 @@
   description: Xbox is a brand of video game consoles and gaming services developed and owned by Microsoft. The Xbox brand was first introduced in 2001 with the release of the original Xbox console and has since become a prominent player in the gaming industry.
   currency: CAD
   constraintType: LIST
-  constraintJson: [ 15, 25, 50, 75, 100 ]
+  constraintJson: [15, 25, 50, 75, 100]
 
 - id: c9abee48-d0dc-45aa-a7b2-f1ad6098cfd8
   priority: 60
@@ -2410,7 +3424,28 @@
   description: The Kobo eReaders are designed to provide an experience similar to reading a physical book, with features such as E Ink displays, long battery life, adjustable text settings, and the ability to store and carry thousands of eBooks in a single device.
   currency: CAD
   constraintType: LIST
-  constraintJson: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100 ]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+    ]
 
 - id: 46fa6318-5cd7-4edf-b678-e520cfdc83fa
   priority: 70
@@ -2421,7 +3456,42 @@
   description: The "Global Hotel Card Powered by Expedia" is a gift card that allows to book hotel through the Expedia platform. It is a well-known online travel agency and booking platform that offers a wide range of travel services, including hotel reservations.
   currency: CAD
   constraintType: LIST
-  constraintJson: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000 ]
+  constraintJson:
+    [
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      350,
+      400,
+      450,
+      500,
+      550,
+      600,
+      650,
+      700,
+      750,
+      800,
+      850,
+      900,
+      950,
+      1000,
+    ]
 
 - id: 205f0378-eb30-4081-a240-c54f6dca228f
   priority: 80
@@ -2432,7 +3502,37 @@
   description: The company's product lines include clothing, shoes, jewelry, bags, and home goods. H&M operates over 5,000 stores worldwide, including in Europe, Asia, North America, and the Middle East, as well as an online store.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 06f19cfb-ecda-40d7-bd13-f05bb1c70705
   priority: 90
@@ -2443,7 +3543,35 @@
   description: Uber Eats is a food delivery service operated by Uber Technologies Inc., the same company known for its ride-sharing services. Uber Eats allows users to order food from a wide range of restaurants and have it delivered to their location.
   currency: CAD
   constraintType: LIST
-  constraintJson: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 4fabdbf6-ca28-4f28-ab4b-464b211b7061
   priority: 100
@@ -2451,10 +3579,40 @@
   website: https://www.esso.ca/en-ca
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/esso_cad.png
   title: Esso
-  description: Esso service stations are a common sight in various countries around the world, including the United States, Canada, Europe, and Asia. They offer various petroleum products, such as gasoline and diesel fuel, as well as convenience store items. 
+  description: Esso service stations are a common sight in various countries around the world, including the United States, Canada, Europe, and Asia. They offer various petroleum products, such as gasoline and diesel fuel, as well as convenience store items.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 670e38ca-6b64-4079-9e4a-08eb97920a4a
   priority: 110
@@ -2465,7 +3623,37 @@
   description: Harvey's is a Canadian fast-food restaurant chain that primarily specializes in hamburgers. It is well known for its "Build-A-Burger" concept, where customers can customize their burgers by selecting from various toppings and condiments.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 3418c9c6-9e8e-4ba5-9e4f-c72b221c0e3e
   priority: 120
@@ -2476,7 +3664,36 @@
   description: Enjoy a diverse and delectable selection of beverages, from classic cocktails to craft beers, while you unwind in style. Duke's bar is the ultimate destination for creating unforgettable moments and savoring the pleasures of good company.
   currency: CAD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 6ddefab3-2ce0-4cfa-8463-548367705283
   priority: 130
@@ -2487,7 +3704,36 @@
   description: The Loose Moose is a well-known bar and restaurant located in Toronto, Canada. It is a popular gathering spot in the city, especially for sports fans, as it often features big-screen TVs broadcasting various sports events.
   currency: CAD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 7e4832d8-1dcf-45e8-9903-8883d298b6f8
   priority: 140
@@ -2509,7 +3755,36 @@
   description: Reds Wine Tavern redefines social dining with culinary confidence and an engaging décor. Uncompromised values, timeless spirit and sociability prevail in a relaxed atmosphere.Enjoy a Reds classic cocktail or choose from expansive offering 24 wines.
   currency: CAD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: ac80de9e-2a5a-403b-9f95-002701d1dc34
   priority: 160
@@ -2517,10 +3792,39 @@
   website: https://www.scaddabush.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/scaddabush_cad.png
   title: Scaddabush
-  description: Scaddabush is a Canadian restaurant chain that focuses on serving Italian cuisine. The name "Scaddabush" is a playful blend of two Italian words "scaddapace" and "abbondanza," which roughly translate to "a little bit of everything." 
+  description: Scaddabush is a Canadian restaurant chain that focuses on serving Italian cuisine. The name "Scaddabush" is a playful blend of two Italian words "scaddapace" and "abbondanza," which roughly translate to "a little bit of everything."
   currency: CAD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 3a03f8fa-8878-4d42-a5cf-826da5a7f030
   priority: 170
@@ -2528,10 +3832,32 @@
   website: https://www.doordash.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/doordash_cad.png
   title: Doobrash
-  description: DoorDash is an American on-demand food delivery service and technology company. It connects people with local restaurants and offers food delivery from a wide variety of eateries, including fast-food, casual dining, and even some fine dining. 
+  description: DoorDash is an American on-demand food delivery service and technology company. It connects people with local restaurants and offers food delivery from a wide variety of eateries, including fast-food, casual dining, and even some fine dining.
   currency: CAD
   constraintType: LIST
-  constraintJson: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200]
+  constraintJson:
+    [
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+    ]
 
 - id: 23c02a60-7dcb-4ea7-ae9c-92cff327e8ff
   priority: 180
@@ -2539,10 +3865,31 @@
   website: https://www.instacart.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/instacart_cad.png
   title: Instacart
-  description: Instacart offers an online grocery shopping and delivery service. It allows customers to order groceries and other household items from local supermarkets and have them delivered to their doorstep, often within the same day. 
+  description: Instacart offers an online grocery shopping and delivery service. It allows customers to order groceries and other household items from local supermarkets and have them delivered to their doorstep, often within the same day.
   currency: CAD
   constraintType: LIST
-  constraintJson: [25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250]
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+    ]
 
 - id: 6b3a0e2f-b1f6-46e8-80a7-caed9411c665
   priority: 190
@@ -2553,7 +3900,37 @@
   description: American Eagle Outfitters is known for its trendy and affordable clothing that reflects the latest fashion trends. Their product lines include jeans, shorts, t-shirts, hoodies, jackets, dresses, and accessories such as shoes, jewelry, and bags.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: f02fa0bc-c732-4895-8d69-ad5b947d9e8e
   priority: 200
@@ -2564,7 +3941,37 @@
   description: Saks Fifth Avenue is a high-end American luxury department store chain that offers a wide range of designer clothing, accessories, footwear, cosmetics, and home goods. It is known for its upscale and fashionable merchandise.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: bf9eac4d-7d85-4b59-b384-559d7273db26
   priority: 210
@@ -2586,7 +3993,37 @@
   description: Starbucks is a globally recognized American coffeehouse chain that operates thousands of coffee shops around the world. The company was founded in Seattle, and it has since become one of the world's most well-known and influential coffee brands.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 812199e7-899d-4f51-8d9e-44fa48e054da
   priority: 230
@@ -2597,7 +4034,37 @@
   description: Earls is a restaurant chain that originated in Canada and has expanded to other countries, including the United States. Earls offers a range of options, including appetizers, entrees, salads, sandwiches, and a variety of cocktails and beverages.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 7d842f97-93e3-4573-8883-bb7bd63992ac
   priority: 240
@@ -2605,10 +4072,39 @@
   website: https://www.homedepot.com/
   image: https://brandimagescards.s3.us-east-2.amazonaws.com/home_depot_cad.png
   title: Home Depot
-  description: The Home Depot is a well-known American home improvement and construction supply retailing company. It is one of the largest and most popular home improvement retailers in the United States and around the world. 
+  description: The Home Depot is a well-known American home improvement and construction supply retailing company. It is one of the largest and most popular home improvement retailers in the United States and around the world.
   currency: CAD
   constraintType: LIST
-  constraintJson: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
 - id: 35c2d8c7-c8e7-4b7d-a5a7-df6b10fb3bcb
   priority: 250
@@ -2630,10 +4126,40 @@
   description: Wayfair is an American e-commerce company that specializes in selling furniture and home goods online. The company has since become one of the largest and most popular online destinations for purchasing a wide range of home-related products.
   currency: CAD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 ,75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
 
   # Preprod Specific
-  # USA - with GoGiftId - AuthomaticBuy 
+  # USA - with GoGiftId - AuthomaticBuy
 - id: 79982a89-d4dd-4f19-b891-9949a821d0bd
   priority: 5
   countryId: 90f80d8c-40dc-4c43-b385-6f6fcf8e848c
@@ -2643,5 +4169,57 @@
   description: Gogift multibrand card is available for many brands
   currency: USD
   constraintType: LIST
-  constraintJson: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 ]
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      350,
+      400,
+      450,
+      500,
+      550,
+      600,
+      650,
+      700,
+      750,
+      800,
+      850,
+      900,
+      950,
+      1000,
+      1500,
+      2000,
+      2500,
+      3000,
+      3500,
+      4000,
+      4500,
+      5000,
+    ]
   gogiftId: '161122844267937792'
