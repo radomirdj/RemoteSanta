@@ -46,6 +46,44 @@ export class AdminGiftCardIntegrationsController {
       title: gogiftIntegration.title['en'],
       shortDescription: gogiftIntegration.shortDescription['en'],
     }));
+    /*
+    MORE DETAILS IN RESPONSE NEEDED FOR SEED GENERATING!!!
+    const CURRENCY = 'INR';
+    const currencyLower = 'inr';
+    const promiseList = gogiftIntegrationEmailList.map(
+      async (gogiftIntegration) => {
+        const { sku, product, inventoryEntry } =
+          await this.giftCardThirdPartyApiService.getProductSku(
+            gogiftIntegration.id,
+            CURRENCY,
+          );
+        const minPrice =
+          inventoryEntry && inventoryEntry.salesPriceMinNoTax
+            ? inventoryEntry.salesPriceMinNoTax[currencyLower]
+            : 'fail';
+
+        const stepPrice =
+          inventoryEntry && inventoryEntry.salesPriceStepNoTax
+            ? inventoryEntry.salesPriceStepNoTax[currencyLower]
+            : 'fail';
+
+        const maxPrice =
+          inventoryEntry && inventoryEntry.salesPriceMaxNoTax
+            ? inventoryEntry.salesPriceMaxNoTax[currencyLower]
+            : 'fail';
+
+        return {
+          id: product.id,
+          sku,
+          titleGoGift: product.title['en'],
+          descGoGift: product.shortDescription['en'],
+          minPriceGoGift: minPrice,
+          stepPriceGoGift: stepPrice,
+          maxPriceGoGift: maxPrice,
+        };
+      },
+    );
+    return Promise.all(promiseList); */
   }
 
   @Post('/check-gogift-integrations/')

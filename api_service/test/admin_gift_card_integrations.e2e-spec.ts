@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
+import { v4 as uuidv4 } from 'uuid';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from '../src/app.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
@@ -12,6 +13,7 @@ import { AwsCognitoServiceMock } from '../src/users/aws-cognito/__mock__/aws-cog
 import { GiftCardThirdPartyApiService } from '../src/gift_card_third_party_api/gift_card_third_party_api.service';
 import { createToken } from './utils/tokenService';
 import { admin } from './utils/preseededData';
+const fs = require('fs');
 
 jest.mock('../src/users/jwt-values.service');
 jest.mock('../src/worker_user_invites/woker_module_config');
@@ -48,7 +50,50 @@ describe('GoGift Third Prty Integrations Admin', () => {
         .expect(200);
       const rsp = response.body;
       console.log('rsp', JSON.stringify(rsp));
-    });
+      /* 
+      GENERATE SEED - UNCOMMENT PART OF ENDPOINT
+      const names = rsp
+        .filter((product) => product.sku && product.stepPriceGoGift !== 'fail')
+        .map((product, i) => {
+          const fullConstraintArray = [
+            25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750,
+            800, 900, 1000, 1500, 2500, 3000, 3500, 4000, 4500, 5000, 6000,
+            7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000,
+            17000, 18000, 19000, 20000, 25000, 30000,
+          ];
+
+          const constraintArray = fullConstraintArray.filter(
+            (constraintNumber) => {
+              if (
+                constraintNumber < product.minPriceGoGift ||
+                constraintNumber > product.maxPriceGoGift
+              )
+                return false;
+              const stepCount =
+                (constraintNumber - product.minPriceGoGift) /
+                (product.stepPriceGoGift * 1.0);
+              if (!Number.isInteger(stepCount)) return false;
+              return true;
+            },
+          );
+          console.log('product', product);
+
+          return `
+- id: ${uuidv4()}
+  priority: ${i * 10}
+  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
+  website: WEBSITE_PLACEHOLDER
+  image: IMAGE_PLACEHOLDER
+  title: ${product.titleGoGift} 
+  description: ${product.descGoGift} 
+  currency: INR
+  constraintType: LIST
+  constraintJson: [ ${constraintArray.join(', ')} ]
+  gogiftId: '${product.id}'`;
+        });
+      fs.writeFileSync('./seed_integrations.yml', names.join('\n'));
+      */
+    }, 30000);
     it.skip('Check gogift intergrations US', async () => {
       const response = await request(app.getHttpServer())
         .post('/admin/gift-card-integrations/check-gogift-integrations/')
