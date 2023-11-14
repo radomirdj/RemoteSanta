@@ -15,6 +15,7 @@ import { GiftCardThirdPartyApiService } from '../gift_card_third_party_api/gift_
 import consts from '../utils/consts';
 import { CheckGogiftIntegrationsDto } from './dtos/check_gogift_integrations.dto';
 import { GiftCardIntegration } from '.prisma/client';
+import { SetRequestTimeout } from '../interceptors/timeout.interceptor';
 
 @Controller('admin/gift-card-integrations')
 @UseGuards(AuthGuard('jwt'), AdminGuard)
@@ -25,6 +26,7 @@ export class AdminGiftCardIntegrationsController {
     private prisma: PrismaService,
   ) {}
   @Get('/gogift-integrations/:countryCode')
+  @SetRequestTimeout(300000)
   async getGiftCardRequest(@Param('countryCode') countryCode: string) {
     const gogiftIntegrationList =
       await this.giftCardThirdPartyApiService.getGiftCardIntegrationsExample(
@@ -47,43 +49,56 @@ export class AdminGiftCardIntegrationsController {
       shortDescription: gogiftIntegration.shortDescription['en'],
     }));
     /*
-    MORE DETAILS IN RESPONSE NEEDED FOR SEED GENERATING!!!
-    const CURRENCY = 'INR';
-    const currencyLower = 'inr';
+    // MORE DETAILS IN RESPONSE NEEDED FOR SEED GENERATING!!!
+    const CURRENCY = 'EUR';
+    const currencyLower = 'eur';
+
     const promiseList = gogiftIntegrationEmailList.map(
       async (gogiftIntegration) => {
-        const { sku, product, inventoryEntry } =
-          await this.giftCardThirdPartyApiService.getProductSku(
-            gogiftIntegration.id,
-            CURRENCY,
+        try {
+          const { sku, product, inventoryEntry } =
+            await this.giftCardThirdPartyApiService.getProductSku(
+              gogiftIntegration.id,
+              CURRENCY,
+            );
+          const minPrice =
+            inventoryEntry && inventoryEntry.salesPriceMinNoTax
+              ? inventoryEntry.salesPriceMinNoTax[currencyLower]
+              : 'fail';
+
+          const stepPrice =
+            inventoryEntry && inventoryEntry.salesPriceStepNoTax
+              ? inventoryEntry.salesPriceStepNoTax[currencyLower]
+              : 'fail';
+
+          const maxPrice =
+            inventoryEntry && inventoryEntry.salesPriceMaxNoTax
+              ? inventoryEntry.salesPriceMaxNoTax[currencyLower]
+              : 'fail';
+
+          const rspEl = {
+            id: product.id,
+            sku,
+            titleGoGift: product.title['en'],
+            descGoGift: product.shortDescription['en'],
+            minPriceGoGift: minPrice,
+            stepPriceGoGift: stepPrice,
+            maxPriceGoGift: maxPrice,
+          };
+          return rspEl;
+        } catch (err) {
+          console.log(
+            'AdminGiftCardIntegrationsController -> getGiftCardRequest -> err',
+            err,
           );
-        const minPrice =
-          inventoryEntry && inventoryEntry.salesPriceMinNoTax
-            ? inventoryEntry.salesPriceMinNoTax[currencyLower]
-            : 'fail';
-
-        const stepPrice =
-          inventoryEntry && inventoryEntry.salesPriceStepNoTax
-            ? inventoryEntry.salesPriceStepNoTax[currencyLower]
-            : 'fail';
-
-        const maxPrice =
-          inventoryEntry && inventoryEntry.salesPriceMaxNoTax
-            ? inventoryEntry.salesPriceMaxNoTax[currencyLower]
-            : 'fail';
-
-        return {
-          id: product.id,
-          sku,
-          titleGoGift: product.title['en'],
-          descGoGift: product.shortDescription['en'],
-          minPriceGoGift: minPrice,
-          stepPriceGoGift: stepPrice,
-          maxPriceGoGift: maxPrice,
-        };
+          return null;
+        }
       },
     );
-    return Promise.all(promiseList); */
+    const rspList = await Promise.all(promiseList);
+
+    return rspList.filter((rsp) => rsp);
+    */
   }
 
   @Post('/check-gogift-integrations/')

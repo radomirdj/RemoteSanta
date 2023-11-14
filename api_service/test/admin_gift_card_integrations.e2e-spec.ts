@@ -41,7 +41,7 @@ describe('GoGift Third Prty Integrations Admin', () => {
   describe('GoGift Third Prty Integrations Admin - GoGift', () => {
     it.skip('Get All US gift card integrations - GoGift', async () => {
       const response = await request(app.getHttpServer())
-        .get('/admin/gift-card-integrations/gogift-integrations/US')
+        .get('/admin/gift-card-integrations/gogift-integrations/FI')
         .set(
           'Authorization',
           'bearer ' +
@@ -50,16 +50,26 @@ describe('GoGift Third Prty Integrations Admin', () => {
         .expect(200);
       const rsp = response.body;
       console.log('rsp', JSON.stringify(rsp));
-      /* 
-      GENERATE SEED - UNCOMMENT PART OF ENDPOINT
+      /*
+      // GENERATE SEED - UNCOMMENT PART OF ENDPOINT
       const names = rsp
-        .filter((product) => product.sku && product.stepPriceGoGift !== 'fail')
+        .filter(
+          (product) =>
+            product.sku &&
+            product.stepPriceGoGift !== 'fail' &&
+            !product.titleGoGift.includes('The Global Gift Card'),
+        )
         .map((product, i) => {
+          // const fullConstraintArray = [
+          //   25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750,
+          //   800, 900, 1000, 1500, 2500, 3000, 3500, 4000, 4500, 5000, 6000,
+          //   7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000,
+          //   17000, 18000, 19000, 20000, 25000, 30000,
+          // ];
           const fullConstraintArray = [
-            25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750,
-            800, 900, 1000, 1500, 2500, 3000, 3500, 4000, 4500, 5000, 6000,
-            7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000,
-            17000, 18000, 19000, 20000, 25000, 30000,
+            5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85,
+            90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750,
+            800, 900, 1000,
           ];
 
           const constraintArray = fullConstraintArray.filter(
@@ -76,24 +86,23 @@ describe('GoGift Third Prty Integrations Admin', () => {
               return true;
             },
           );
-          console.log('product', product);
-
+          // console.log('product', product);
           return `
 - id: ${uuidv4()}
   priority: ${i * 10}
-  countryId: 4b5f74e9-37fc-4f1d-b2fc-ddca7269d19d
-  website: WEBSITE_PLACEHOLDER
-  image: IMAGE_PLACEHOLDER
+  countryId: 3f9b33e4-75a6-480f-9a98-ab6c0eb5f24f
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
   title: ${product.titleGoGift} 
   description: ${product.descGoGift} 
-  currency: INR
+  currency: EUR
   constraintType: LIST
   constraintJson: [ ${constraintArray.join(', ')} ]
   gogiftId: '${product.id}'`;
         });
       fs.writeFileSync('./seed_integrations.yml', names.join('\n'));
       */
-    }, 30000);
+    }, 300000);
     it.skip('Check gogift intergrations US', async () => {
       const response = await request(app.getHttpServer())
         .post('/admin/gift-card-integrations/check-gogift-integrations/')
@@ -103,11 +112,11 @@ describe('GoGift Third Prty Integrations Admin', () => {
             createToken({ email: admin.email, sub: admin.cognitoSub }),
         )
         .send({
-          countryId: '90f80d8c-40dc-4c43-b385-6f6fcf8e848c',
+          countryId: '3f9b33e4-75a6-480f-9a98-ab6c0eb5f24f',
         })
         .expect(201);
       const rsp = response.body;
       console.log('rsp', JSON.stringify(rsp));
-    }, 30000);
+    }, 60000);
   });
 });
