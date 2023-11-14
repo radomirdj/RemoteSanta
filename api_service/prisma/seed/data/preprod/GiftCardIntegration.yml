@@ -5497,6 +5497,677 @@
       1000,
     ]
 
+#Spain
+- id: bc50c75d-2b69-443d-b810-8d407ef9f723
+  priority: 0
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: TripGift
+  description: TripGift® offers everything needed to book local or international travel online - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '605019371695226880'
+
+- id: 1e82db9e-2a9e-43b0-bf36-a5030081cdbd
+  priority: 10
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Airbnb
+  description: Give Airbnb. Amazing places to stay and things to do
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '620598898906755072'
+
+- id: f31ef38f-bc44-4e2e-90cd-510f5dcdfc95
+  priority: 20
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Uber
+  description: Go anywhere. Get anything
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+    ]
+  gogiftId: '621662141582536704'
+
+- id: beedb9f0-df98-4743-8659-cab6b4d88ffe
+  priority: 30
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: TheFork
+  description: The leading online restaurant booking service
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+    ]
+  gogiftId: '485613824595406848'
+
+- id: a091cbf9-5067-4f0f-be83-9a8d79fc9e69
+  priority: 40
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Jack & Jones
+  description: Jeanswear for men
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+    ]
+  gogiftId: '530746827583930368'
+
+- id: 3d9a2202-d55f-44cb-96d7-edb9bd2c1f36
+  priority: 50
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: HotelsGift
+  description: HotelsGift offers the world’s best Hotel gift card with over 750,000 Hotels, Villas & Apartments - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '604988934616117248'
+
+- id: fa54fd5c-a787-4492-91a6-d1c4b95d2a1e
+  priority: 60
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: ToursGift
+  description: Everything needed to book local and international private tours online - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '607125701511213056'
+
+- id: 2c1f259c-b452-43d3-96e5-232358a3ca5a
+  priority: 70
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: eLearnGift
+  description: eLearnGift offers an exciting range of over 200 online Language and Learning courses - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '605318421350957056'
+
+- id: 0e1259fe-6265-461d-bc38-d61d51cde73d
+  priority: 80
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: RentacarGift
+  description: RentacarGift offers a unique choice of 500 Car Rental Brand Providers - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '607200766454644736'
+
+- id: 0da44645-5999-4619-98bd-efec3d1d445b
+  priority: 90
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Zalando
+  description: Shoes and fashion online
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+    ]
+  gogiftId: '170947192679391232'
+
+- id: 525ee77b-2908-4c9a-8d9c-77546842f2cb
+  priority: 100
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Twitch
+  description: We saved you a seat in chat
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+    ]
+  gogiftId: '620604367616471040'
+
+- id: 712d9806-4a63-40ce-90f9-45c9e431cd08
+  priority: 110
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: FlystayGift
+  description: FlystayGift offers the world’s best package Flight + Hotel gift card - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '604947267011866624'
+
+- id: 6e881efd-6ba9-401c-a016-17740e665ead
+  priority: 120
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: AirlineGift
+  description: The world’s best airlines gift card and online travel booking selection - EU Gift Card
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '604593412655529984'
+
+- id: be87bee7-533e-4103-a933-7a9d2a5ce63c
+  priority: 130
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: H&M
+  description: The latest styles and inspiration for everyone
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+    ]
+  gogiftId: '541907224001191936'
+
+- id: a5fefe7e-9f91-4c59-8658-3f579d4a75a8
+  priority: 140
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Ticketmaster
+  description: The number one portal for live event tickets
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+    ]
+  gogiftId: '540554826124623872'
+
+- id: f878c90a-2e99-4389-b09c-ce9ab21152b3
+  priority: 150
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Primark
+  description: Primark offers the latest fashion, beauty, and home goods, at affordable prices
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+    ]
+  gogiftId: '540554825327706112'
+
+- id: 07b0562b-8303-414e-8d3c-cbdb92ba05f1
+  priority: 160
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: name it
+  description: Trendy and comfortable fashion for children
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+    ]
+  gogiftId: '530671228928335872'
+
+- id: 1f7c5426-a1cd-4759-8591-4701afa034ea
+  priority: 170
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Apple
+  description: App Store, iPhone, accessories, music, games, iCloud+
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+    ]
+  gogiftId: '525292791078457344'
+
+- id: 1698d9ca-30a0-426d-a777-daf5d04e18ab
+  priority: 180
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Rumbo
+  description: The trip of your dreams will come true
+  currency: EUR
+  constraintType: LIST
+  constraintJson: [25, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+  gogiftId: '450466392954437632'
+
+- id: 2a190a4c-b4be-4d25-847f-82412beeebf0
+  priority: 190
+  countryId: e69b000d-7b61-4ef2-b1b6-7cfe03942709
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
+  title: Amazon
+  description: Enjoy low prices and great deals on millions and millions of items
+  currency: EUR
+  constraintType: LIST
+  constraintJson:
+    [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      60,
+      65,
+      70,
+      75,
+      80,
+      85,
+      90,
+      95,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      750,
+      800,
+      900,
+      1000,
+    ]
+  gogiftId: '144884036208115712'
+
+
   # Preprod Specific
   # USA - with GoGiftId - AuthomaticBuy
 - id: 79982a89-d4dd-4f19-b891-9949a821d0bd
