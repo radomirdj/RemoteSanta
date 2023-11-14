@@ -4175,7 +4175,7 @@
   countryId: 3f9b33e4-75a6-480f-9a98-ab6c0eb5f24f
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: XXL Sports & Outdoor 
+  title: XXL Sports 
   description: Extra wide range of sports and outdoor products 
   currency: EUR
   constraintType: LIST
@@ -5212,8 +5212,8 @@
   countryId: ec526ef2-f02a-4be4-b41c-472fc985032b
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: The Global Experiences Card
-  description: Over 350,000 tours, activities, attractions and experiences in 120 countries
+  title: The GE Card
+  description: The Global Experiences Card offers over 350,000 tours, activities, attractions and experiences in 120 countries
   currency: EUR
   constraintType: LIST
   constraintJson:
@@ -6325,8 +6325,8 @@
   countryId: 8589bb58-65e9-414d-923d-a5f751362572
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: London Theatre Direct 
-  description: One of the UK’s leading ticket retailers and distributors 
+  title: LTD 
+  description: London Theatre Direct is one of the UK’s leading ticket retailers and distributors 
   currency: GBP
   constraintType: LIST
   constraintJson: [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500 ]
@@ -6697,7 +6697,7 @@
   countryId: 8589bb58-65e9-414d-923d-a5f751362572
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: The National Garden Centre 
+  title: National Garden 
   description: National Garden Gift Vouchers and Cards are accepted in over 1500 garden centres 
   currency: GBP
   constraintType: LIST
@@ -6793,7 +6793,7 @@
   countryId: 8589bb58-65e9-414d-923d-a5f751362572
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: Turtle Bay Restaurants 
+  title: Turtle Bay 
   description: Turtle Bay brings a taste of the Caribbean to the UK in an informal dining experience 
   currency: GBP
   constraintType: LIST
@@ -6829,7 +6829,7 @@
   countryId: 8589bb58-65e9-414d-923d-a5f751362572
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: Not on The High Street 
+  title: NOTHS 
   description: Not On The High Street is a marketplace home to over 5,000 UK small businesses 
   currency: GBP
   constraintType: LIST
@@ -6949,8 +6949,8 @@
   countryId: 8589bb58-65e9-414d-923d-a5f751362572
   website: '---'
   image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/placeholder2.png'
-  title: National Book Tokens 
-  description: The onlys accepted in all major bookselling chains across the UK and Ireland 
+  title: NBT 
+  description: National Book Tokens are the onlys accepted in all major bookselling chains across the UK and Ireland 
   currency: GBP
   constraintType: LIST
   constraintJson: [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 150, 200, 250 ]
