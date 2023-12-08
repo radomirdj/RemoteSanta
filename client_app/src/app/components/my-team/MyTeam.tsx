@@ -21,6 +21,7 @@ import ToolbarQuickFilter from "../ToolbarQuickFilter/ToolbarQuickFilter";
 import CustomPagination from "../custom-pagination/CustomPagination";
 import { getAuthUserSelector } from "../../store/auth/selectors";
 import UserDetailsIcon from "../../assets/icons/user-details.svg";
+import AddIcon from "@mui/icons-material/Add";
 import { UserRole } from "../../enums/UserRole";
 
 const MyTeam = () => {
@@ -49,6 +50,10 @@ const MyTeam = () => {
 
   const userManagerUserDetailsRedirect = (userId: string) => {
     navigate(`/user-manager-user-details/${userId}`);
+  };
+
+  const invitesRedirect = () => {
+    navigate(`/user-manager-invites`);
   };
 
   const sendPoints = (params: GridRenderCellParams) => {
@@ -193,9 +198,22 @@ const MyTeam = () => {
               : "grid-style"
           }
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} md={userAuth.userRole === "USER_MANAGER" ? 6 : 12}>
             <Typography className="my-team-title">My Team</Typography>
           </Grid>
+          {userAuth.userRole === "USER_MANAGER" && (
+            <Grid item xs={12} md={6}>
+              <Button
+                disableRipple
+                variant="contained"
+                className="add-button"
+                onClick={invitesRedirect}
+                startIcon={<AddIcon />}
+              >
+                Invite Teammates
+              </Button>
+            </Grid>
+          )}
           <Box className="box-style">
             <StripedDataGrid
               columnVisibilityModel={{

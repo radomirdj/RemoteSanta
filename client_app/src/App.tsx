@@ -44,6 +44,7 @@ import ChooseGiftCardPersonal from "./app/components/choose-giftcard/ChooseGiftC
 import ChooseGiftCardPeerToPeer from "./app/components/choose-giftcard/ChooseGiftCardPeerToPeer";
 import UserManagerPurchasePoints from "./app/components/user-manager-purchase-points/UserManagerPurchasePoints";
 import UserManagerPurchasePointsSuccess from "./app/components/user-manager-purchase-points/UserManagerPurchasePointsSuccess";
+import SecretSantaWelcome from "./app/components/secret-santa-welcome/SecretSantaWelcome";
 
 const App = () => {
   return (
@@ -73,6 +74,7 @@ const App = () => {
             </PublicRoute>
           }
         />
+        <Route path="secret-santa-welcome" element={<SecretSantaWelcome />} />
         <Route
           path="change-password-success"
           element={

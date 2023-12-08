@@ -25,6 +25,7 @@ function PrivateRoute({ children }: { children: ReactNode }) {
     userRole = localStorage.getItem("userRole");
   }, [stateToken, stateUserRole]);
   if (!token) {
+    sessionStorage.setItem("landingUrl", window.location.pathname);
     return <Navigate to="/login" replace />;
   }
   if (userRole === UserRole.ADMIN) {

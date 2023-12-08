@@ -10,6 +10,10 @@ function PublicRoute({ children }: { children: ReactNode }) {
     token = localStorage.getItem("token");
   }, [stateToken]);
   if (token) {
+    let landingUrl = sessionStorage.getItem("landingUrl");
+    if (landingUrl) {
+      return <Navigate to={landingUrl} replace />;
+    }
     return <Navigate to="/" replace />;
   }
   return <div>{children}</div>;

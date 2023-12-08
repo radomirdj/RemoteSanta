@@ -136,6 +136,7 @@ function* logoutSaga(action: Logout) {
   localStorage.removeItem("token");
   localStorage.removeItem("countryId");
   localStorage.removeItem("userRole");
+  sessionStorage.removeItem("landingUrl");
   action.navigate("/login");
 }
 
