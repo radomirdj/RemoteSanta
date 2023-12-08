@@ -469,7 +469,8 @@ export const countryList: ICountry[] = [
     countryCode: "COL",
     countryName: "Colombia",
     flagEmoji: "🇨🇴",
-    flagEmojiUnicode: "U+1F1E8 U+1F1F4"
+    flagEmojiUnicode: "U+1F1E8 U+1F1F4",
+    hasGiftCards: true
   },
   {
     id: "c199f73e-8a36-406c-b2e1-954c87cca371",
