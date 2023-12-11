@@ -13,11 +13,9 @@ const SecretSantaWelcome = () => {
     navigate("/");
   };
 
-  //useEffect(() => {
-  useMemo(() => {
+  useEffect(() => {
     dispatch(secretSantaTrial());
   }, []);
-  //}, []);
 
   return (
     <>
