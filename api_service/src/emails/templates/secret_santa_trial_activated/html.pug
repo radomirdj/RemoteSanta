@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+  head
+    style(type='text/css').
+      // Add your custom CSS styles here
+  body
+    p Hello #{firstName},
+    p Thank you for registering for Secret Santa Trial. You're officially #{firstNameSecretSantaTo} #{lastNameSecretSantaTo}'s Secret Santa this year! 🎁
+    p Get ready to spread some joy! You can choose the perfect gift for #{firstNameSecretSantaTo} by exploring the link below. We've created a special location-based gift card offer.
+    p 
+      |
+      a(href=chooseGiftUrl)
+        | Choose Gift
+    p Have fun,
+    p Remote Santa Team
+

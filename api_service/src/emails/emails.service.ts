@@ -355,4 +355,20 @@ export class EmailsService {
       randomIdentifier: randomstring.generate(7),
     });
   }
+
+  async secretSantaTrialActivated(
+    to: string[],
+    firstName: string,
+    firstNameSecretSantaTo: string,
+    lastNameSecretSantaTo: string,
+    idSecretSantaTo: string,
+    countryIdSecretSantaTo: string,
+  ) {
+    return this.sendEmail('secret_santa_trial_activated', to, {
+      firstName,
+      firstNameSecretSantaTo,
+      lastNameSecretSantaTo,
+      chooseGiftUrl: `${process.env.FE_BASE_URL}choose-gift-card-peer-to-peer?userId=${idSecretSantaTo}&countryId=${countryIdSecretSantaTo}`,
+    });
+  }
 }

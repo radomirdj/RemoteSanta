@@ -8295,3 +8295,228 @@
   constraintType: LIST
   constraintJson: [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 750, 800, 900, 1000 ]
   gogiftId: '144882334197301248'
+
+
+# Colombia
+- id: 6eaaaffc-d4ac-4cb1-90b9-86d9b88d8e97
+  priority: 0
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.rapsodia.com.co/'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/rapsodia_co.png'
+  title: Rapsodia
+  description: Rapsodia is created with its own distinctive imprint
+  currency: COP
+  constraintType: LIST
+  constraintJson: [100000, 150000, 200000, 250000, 300000]
+
+- id: c150b370-f595-48bf-b3f5-beb5226a9740
+  priority: 10
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: '---'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/tramontina_co.png'
+  title: Tramontina 180
+  description: Everything you need for your home
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      50000,
+      100000,
+      150000,
+      200000,
+      250000,
+      300000,
+      350000,
+      400000,
+      450000,
+      500000,
+    ]
+
+- id: ffd99c9f-73cd-458f-a655-4497537c02ac
+  priority: 20
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.tripgift.com/travel-search.aspx?aff=airlinegift'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/airline_co.png'
+  title: AirlineGift
+  description: The world’s best airlines gift card and online travel booking selection
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
+
+- id: f4ec93fd-ebf6-4678-a8dc-f8d5f513081f
+  priority: 30
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.tripgift.com/productsearch.aspx?aff=elearngift'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/elearn_co.png'
+  title: eLearnGift
+  description: eLearnGift offers an exciting range of over 200 online Language and Learning courses
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
+
+- id: 2faa44d6-21d5-4eb2-92a6-88475b30fdd3
+  priority: 40
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.tripgift.com/travel-search.aspx?aff=flystay'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/fluystay_co.png'
+  title: FlystayGift
+  description: The world’s best package Flight + Hotel gift card and online travel booking selection
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
+
+- id: b6928d60-596c-4924-bdd8-08e9699555b0
+  priority: 50
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.tripgift.com/travel-search.aspx?aff=hotelsgift'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/hotels_co.png'
+  title: HotelsGift
+  description: The world’s best Hotel gift card with over 750,000 Hotels, Villas & Apartments
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
+
+- id: 4f64c01f-014f-44ad-9262-0886c2d0c6f4
+  priority: 60
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.tripgift.com/travel-search.aspx?aff=rentacargift'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/renatcar_co.png'
+  title: RentacarGift
+  description: The world’s only multi-brand Car Rental only gift card
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
+
+- id: e2aff461-3103-4caf-ad90-6a463c353415
+  priority: 70
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://www.tripgift.com/travel-search.aspx?aff=toursgift'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/tours_co.png'
+  title: ToursGift
+  description: Everything needed to book local and international private tours online
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
+
+- id: f8734937-a6eb-421d-bbb2-e2bf959643bc
+  priority: 80
+  countryId: 324427ec-2e09-4346-8db3-bdb45c9c59c3
+  website: 'https://tripgift.com'
+  image: 'https://brandimagescards.s3.us-east-2.amazonaws.com/trip_co.png'
+  title: TripGift
+  description: TripGift® offers everything needed to book local or international travel online
+  currency: COP
+  constraintType: LIST
+  constraintJson:
+    [
+      500000,
+      1000000,
+      1500000,
+      2500000,
+      3000000,
+      3500000,
+      4000000,
+      4500000,
+      5000000,
+      6000000,
+      7000000,
+      8000000,
+      9000000,
+      10000000,
+    ]
