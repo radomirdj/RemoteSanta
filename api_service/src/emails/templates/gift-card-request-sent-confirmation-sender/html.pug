@@ -4,17 +4,15 @@ html(lang="en")
     style(type='text/css').
       // Add your custom CSS styles here
   body
-    p Dear #{firstNameSender},
-    p Thank you for using Remote Santa to purchase a gift card for your colleague, #{firstNameRecipient}! We're excited to let you know that your gift card request has been successfully processed.
-    p At Remote Santa, we take pride in curating memorable gifting experiences. Some manual work is involved in the process of acquiring your chosen gift card. Rest assured, our diligent "Elfs" are meticulously handpicking and preparing your gift card to make it truly special.
-    p Details of the gift card:
+    p Hi #{firstNameSender},
+    p Your gift card for #{firstNameRecipient} is on its way and will be in their inbox in a few minutes!
+    p Here's a sneak peek:
     ul
       li Store: #{storeName}
       li Amount: #{amount} #{currency}
     p Your personalized message to #{firstNameRecipient}:
     blockquote #{personalizedMessage}
-    p Once the gift card is ready, we will promptly send it to #{firstNameRecipient}'s email address. They will receive a beautifully designed digital gift card tailored to their preferences, ready to bring them joy.
-    p If you have any questions or need further assistance, feel free to contact our support team. We're here to help!
-    p Warm regards,
+    p If you have any questions or need assistance, feel free to reach out. We're here to help!
+    p Cheers,
     p Remote Santa Team
 
