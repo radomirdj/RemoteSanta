@@ -25,6 +25,9 @@ import {
   PEER_SEND_POINTS_TO_USER,
   PEER_SEND_POINTS_TO_USER_SUCCESS,
   PEER_SEND_POINTS_TO_USER_FAILURE,
+  SECRET_SANTA_TRIAL,
+  SECRET_SANTA_TRIAL_SUCCESS,
+  SECRET_SANTA_TRIAL_FAILURE,
 } from "./actionTypes";
 
 export interface IOrganizationCountry {
@@ -138,6 +141,10 @@ export interface PeerSendPointsToUserFailurePayload {
   error: string;
 }
 
+export interface SecretSantaTrialFailurePayload {
+  error: string;
+}
+
 export interface FetchOrganization {
   type: typeof FETCH_ORGANIZATION;
 }
@@ -248,6 +255,19 @@ export type PeerSendPointsToUserFailure = {
   payload: PeerSendPointsToUserFailurePayload;
 };
 
+export interface SecretSantaTrial {
+  type: typeof SECRET_SANTA_TRIAL;
+}
+
+export type SecretSantaTrialSuccess = {
+  type: typeof SECRET_SANTA_TRIAL_SUCCESS;
+};
+
+export type SecretSantaTrialFailure = {
+  type: typeof SECRET_SANTA_TRIAL_FAILURE;
+  payload: SecretSantaTrialFailurePayload;
+};
+
 export type OrganizationActions =
   | FetchOrganization
   | FetchOrganizationSuccess
@@ -271,4 +291,7 @@ export type OrganizationActions =
   | SetCloseDialogSendPoints
   | PeerSendPointsToUser
   | PeerSendPointsToUserSuccess
-  | PeerSendPointsToUserFailure;
+  | PeerSendPointsToUserFailure
+  | SecretSantaTrial
+  | SecretSantaTrialSuccess
+  | SecretSantaTrialFailure;

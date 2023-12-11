@@ -74,7 +74,14 @@ const App = () => {
             </PublicRoute>
           }
         />
-        <Route path="secret-santa-welcome" element={<SecretSantaWelcome />} />
+        <Route
+          path="secret-santa-welcome"
+          element={
+            <PrivateRoute>
+              <SecretSantaWelcome />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="change-password-success"
           element={

@@ -410,3 +410,13 @@ export const postBirthdaysSetupStep = (
     }
   );
 };
+
+export const postSecretSantaTrial = (token: string) => {
+  return axios.post<string>(
+    `api/secret-santa-trial/activate`,
+    {},
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+};

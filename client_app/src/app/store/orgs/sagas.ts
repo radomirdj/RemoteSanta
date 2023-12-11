@@ -6,6 +6,7 @@ import {
   getOrganizationUserList,
   getOrgUser,
   orgDeleteUser,
+  postSecretSantaTrial,
   sendPointsToUserPeerToPeer,
   sendPointsToUserUserManager,
 } from "../../services/api-service";
@@ -22,6 +23,8 @@ import {
   fetchOrgUserSuccess,
   peerSendPointsToUserFailure,
   peerSendPointsToUserSuccess,
+  secretSantaTrialFailure,
+  secretSantaTrialSuccess,
   sendPointsToUserFailure,
   sendPointsToUserSuccess,
   setCloseDialogSendPoints,
@@ -33,6 +36,7 @@ import {
   FETCH_ORG_USER,
   FETCH_ORG_USER_LIST,
   PEER_SEND_POINTS_TO_USER,
+  SECRET_SANTA_TRIAL,
   SEND_POINTS_TO_USER,
 } from "./actionTypes";
 import {
@@ -44,6 +48,7 @@ import {
   IOrganization,
   IOrgTransaction,
   IOrgUser,
+  SecretSantaTrial,
   SendPointsToUser,
 } from "./types";
 
@@ -170,6 +175,21 @@ function* sendPointsToUserSaga(action: SendPointsToUser) {
   }
 }
 
+function* secretSantaTrialSaga(action: SecretSantaTrial) {
+  try {
+    const token: string = localStorage.getItem("token") || "";
+    yield call(postSecretSantaTrial, token);
+    yield put(secretSantaTrialSuccess());
+  } catch (e) {
+    console.log("function*signUpSaga -> e", e);
+    yield put(
+      secretSantaTrialFailure({
+        error: e.response.data.message,
+      })
+    );
+  }
+}
+
 function* peerSendPointsToUserSaga(action: SendPointsToUser) {
   try {
     const token: string = localStorage.getItem("token") || "";
@@ -203,6 +223,7 @@ function* OrganizationSaga() {
     takeLatest(DELETE_ORG_USER, deleteOrgUserSaga),
     takeLatest(SEND_POINTS_TO_USER, sendPointsToUserSaga),
     takeLatest(PEER_SEND_POINTS_TO_USER, peerSendPointsToUserSaga),
+    takeLatest(SECRET_SANTA_TRIAL, secretSantaTrialSaga),
   ]);
 }
 
