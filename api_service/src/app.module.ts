@@ -29,6 +29,7 @@ import { CurrencyRatesModule } from './currency_rates/currency_rates.module';
 import { GiftCardThirdPartyApiModule } from './gift_card_third_party_api/gift_card_third_party_api.module';
 import { PaymentsModule } from './payments/payments.module';
 import { AdminGiftCardIntegrationsModule } from './admin_gift_card_integrations/admin_gift_card_integrations.module';
+import { SecretSantaTrialModule } from './secret_santa_trial/secret_santa_trial.module';
 
 @Module({
   imports: [
@@ -70,6 +71,7 @@ import { AdminGiftCardIntegrationsModule } from './admin_gift_card_integrations/
     GiftCardThirdPartyApiModule,
     PaymentsModule,
     AdminGiftCardIntegrationsModule,
+    SecretSantaTrialModule,
   ],
   controllers: [AppController],
   providers: [

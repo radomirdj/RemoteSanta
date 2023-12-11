@@ -200,20 +200,21 @@ model ClaimPointsEventFulfillment {
 
 // monthlyAmount Decimal @db.Money
 model Org {
-  id                        String                      @id @default(uuid())
-  name                      String
-  pointsPerMonth            Int
-  signupPoints              Int                         @default(0)
-  country                   Country                     @relation(fields: [countryId], references: [id])
-  countryId                 String
-  isTestOrg                 Boolean?
-  User                      User[]
-  OrgTransaction            OrgTransaction[]
-  BalanceSide               BalanceSide[]
-  UserInvite                UserInvite[]
-  OrgCompletementStepStatus OrgCompletementStepStatus[]
-  UserInviteImportJob       UserInviteImportJob[]
-  PaymentRequest            PaymentRequest[]
+  id                          String                      @id @default(uuid())
+  name                        String
+  pointsPerMonth              Int
+  signupPoints                Int                         @default(0)
+  country                     Country                     @relation(fields: [countryId], references: [id])
+  countryId                   String
+  isTestOrg                   Boolean?
+  isSecretSantaTrialActivated Boolean?
+  User                        User[]
+  OrgTransaction              OrgTransaction[]
+  BalanceSide                 BalanceSide[]
+  UserInvite                  UserInvite[]
+  OrgCompletementStepStatus   OrgCompletementStepStatus[]
+  UserInviteImportJob         UserInviteImportJob[]
+  PaymentRequest              PaymentRequest[]
 }
 
 model OrgCompletementStep {

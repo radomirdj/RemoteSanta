@@ -13,6 +13,9 @@ export class OrgDto {
   isTestOrg?: boolean;
 
   @Expose()
+  isSecretSantaTrialActivated?: boolean;
+
+  @Expose()
   balance?: number;
 
   @Expose()
