@@ -22,6 +22,9 @@ import {
   PEER_SEND_POINTS_TO_USER,
   PEER_SEND_POINTS_TO_USER_SUCCESS,
   PEER_SEND_POINTS_TO_USER_FAILURE,
+  SECRET_SANTA_TRIAL,
+  SECRET_SANTA_TRIAL_SUCCESS,
+  SECRET_SANTA_TRIAL_FAILURE,
 } from "./actionTypes";
 import {
   FetchOrganization,
@@ -62,6 +65,10 @@ import {
   PeerSendPointsToUserSuccess,
   PeerSendPointsToUserFailurePayload,
   PeerSendPointsToUserFailure,
+  SecretSantaTrial,
+  SecretSantaTrialSuccess,
+  SecretSantaTrialFailurePayload,
+  SecretSantaTrialFailure,
 } from "./types";
 
 export const fetchOrganization = (): FetchOrganization => ({
@@ -203,5 +210,20 @@ export const peerSendPointsToUserFailure = (
   payload: PeerSendPointsToUserFailurePayload
 ): PeerSendPointsToUserFailure => ({
   type: PEER_SEND_POINTS_TO_USER_FAILURE,
+  payload,
+});
+
+export const secretSantaTrial = (): SecretSantaTrial => ({
+  type: SECRET_SANTA_TRIAL,
+});
+
+export const secretSantaTrialSuccess = (): SecretSantaTrialSuccess => ({
+  type: SECRET_SANTA_TRIAL_SUCCESS,
+});
+
+export const secretSantaTrialFailure = (
+  payload: SecretSantaTrialFailurePayload
+): SecretSantaTrialFailure => ({
+  type: SECRET_SANTA_TRIAL_FAILURE,
   payload,
 });

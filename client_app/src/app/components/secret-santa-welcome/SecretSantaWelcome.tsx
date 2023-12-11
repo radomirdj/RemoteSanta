@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppFooter from "../app-footer/AppFooter";
 import Logo from "./../../assets/logo.svg";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { secretSantaTrial } from "../../store/orgs/actions";
 
 const SecretSantaWelcome = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const homeRedirect = () => {
     navigate("/");
   };
+
+  useEffect(() => {
+    dispatch(secretSantaTrial());
+  }, [dispatch]);
+
   return (
     <>
       <div className="background secret-santa-welcome">

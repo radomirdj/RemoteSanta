@@ -23,6 +23,9 @@ import {
   PEER_SEND_POINTS_TO_USER,
   PEER_SEND_POINTS_TO_USER_SUCCESS,
   PEER_SEND_POINTS_TO_USER_FAILURE,
+  SECRET_SANTA_TRIAL,
+  SECRET_SANTA_TRIAL_SUCCESS,
+  SECRET_SANTA_TRIAL_FAILURE,
 } from "./actionTypes";
 
 import { OrganizationActions, OrganizationState } from "./types";
@@ -172,6 +175,23 @@ export default (state = initialState, action: OrganizationActions) => {
         error: null,
       };
     case PEER_SEND_POINTS_TO_USER_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case SECRET_SANTA_TRIAL:
+      return {
+        ...state,
+        pending: true,
+      };
+    case SECRET_SANTA_TRIAL_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        error: null,
+      };
+    case SECRET_SANTA_TRIAL_FAILURE:
       return {
         ...state,
         pending: false,
