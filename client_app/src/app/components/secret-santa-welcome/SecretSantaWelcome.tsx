@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import AppFooter from "../app-footer/AppFooter";
 import Logo from "./../../assets/logo.svg";
 import { Grid, Typography } from "@mui/material";
@@ -13,9 +13,11 @@ const SecretSantaWelcome = () => {
     navigate("/");
   };
 
-  useEffect(() => {
+  //useEffect(() => {
+  useMemo(() => {
     dispatch(secretSantaTrial());
-  }, [dispatch]);
+  }, []);
+  //}, []);
 
   return (
     <>
