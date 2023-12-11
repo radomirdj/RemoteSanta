@@ -143,7 +143,11 @@ export class GiftCardRequestService {
       ]);
     }
 
-    if (!org.isTestOrg && integration.gogiftId) {
+    if (
+      !org.isTestOrg &&
+      integration.gogiftId &&
+      integration.gogiftId !== consts.gogiftConsts.integrationId.SKIP
+    ) {
       await this.automaticFullfillGiftCardRequest(
         giftCardRequest,
         ownerName,
