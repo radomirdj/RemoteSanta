@@ -6,7 +6,7 @@ import {
   Card,
   InputAdornment,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,18 +23,22 @@ const UserManagerPurchasePoints = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    setError,
+    handleSubmit
   } = useForm();
 
   const onSubmit = (data: any) => {
-    dispatch(
-      postPurchasePoints(
-        {
-          purchasePoints: Number(data.amount) * USD_TO_POINTS_CONVERSION_RATE,
-        },
-        navigate
-      )
-    );
+    setError("amount", {
+      type: "defaultError"
+    });
+    // dispatch(
+    //   postPurchasePoints(
+    //     {
+    //       purchasePoints: Number(data.amount) * USD_TO_POINTS_CONVERSION_RATE,
+    //     },
+    //     navigate
+    //   )
+    // );
   };
 
   return (
@@ -63,7 +67,7 @@ const UserManagerPurchasePoints = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">$</InputAdornment>
-                ),
+                )
               }}
               className={
                 errors.amount ? "amount-input-with-error" : "amount-input"
@@ -71,7 +75,7 @@ const UserManagerPurchasePoints = () => {
               type="number"
               {...register("amount", {
                 required: true,
-                min: 1,
+                min: 1
               })}
             />
 
@@ -83,6 +87,11 @@ const UserManagerPurchasePoints = () => {
             {errors.amount?.type === "min" && (
               <Typography className="amount-error-fe">
                 The minimum amount is 1 PTS.
+              </Typography>
+            )}
+            {errors.amount?.type === "defaultError" && (
+              <Typography className="amount-error-fe">
+                PURCHASE POINTS IS DISABLED.
               </Typography>
             )}
             <Button
